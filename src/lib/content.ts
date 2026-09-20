@@ -4,6 +4,7 @@ import type { Section } from "@/config/categories";
 import { CONVERTERS, pairSlug } from "@/config/converters/definitions";
 import { findUnit } from "@/config/converters/units";
 import type { CountryCode } from "@/config/countries";
+import { TOOLS } from "@/config/tools/definitions";
 import type { LocaleCode } from "@/config/locales";
 import { unitName, type TranslateFn } from "@/lib/i18n";
 import { LOCALES } from "@/config/locales";
@@ -135,11 +136,26 @@ function countryItems({ locale, t }: BuildContext): ContentItem[] {
   return items;
 }
 
+function toolItems({ locale, t }: BuildContext): ContentItem[] {
+  return TOOLS.map((tool) => ({
+    id: `tool:${tool.slug}`,
+    section: "tools" as const,
+    category: tool.category,
+    slug: tool.slug,
+    icon: tool.icon,
+    title: t(tool.titleKey),
+    description: t(tool.descKey),
+    href: contentPath(locale, "tools", tool.category, tool.slug),
+    keywords: tool.keywords,
+  }));
+}
+
 /** Everything indexable for one locale and country context. */
 export function allContent(context: BuildContext): ContentItem[] {
   return [
     ...calculatorItems(context),
     ...converterItems(context),
+    ...toolItems(context),
     ...countryItems(context),
   ];
 }

@@ -1,0 +1,4 @@
+# Normalise line endings so the working tree stays clean on Windows.
+* text=auto eol=lf
+*.png binary
+*.ico binary

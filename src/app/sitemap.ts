@@ -8,6 +8,8 @@ import {
 } from "@/config/categories";
 import { CONVERTERS, pairSlug } from "@/config/converters/definitions";
 import { COUNTRY_CODES } from "@/config/countries";
+import { TOOLS } from "@/config/tools/definitions";
+import { TOOL_CATEGORIES } from "@/config/categories";
 import {
   absoluteUrl,
   categoryPath,
@@ -47,7 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Sections that currently hold content. Empty ones are excluded until they do.
   const liveSections: Section[] = SECTIONS.filter((section) =>
-    ["calculators", "converters", "countries"].includes(section),
+    ["calculators", "converters", "tools", "countries"].includes(section),
   );
 
   for (const locale of locales) {
@@ -78,6 +80,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
           "monthly",
         );
       }
+    }
+
+    for (const category of TOOL_CATEGORIES) {
+      add(categoryPath(locale, "tools", category), 0.7, "monthly");
+    }
+
+    for (const tool of TOOLS) {
+      add(contentPath(locale, "tools", tool.category, tool.slug), 0.8, "monthly");
     }
 
     for (const country of COUNTRY_CODES) {
