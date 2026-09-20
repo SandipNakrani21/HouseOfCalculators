@@ -216,3 +216,37 @@ export function inflationAdjusted(
 export function round2(value: number): number {
   return Math.round((value + Number.EPSILON) * 100) / 100;
 }
+
+export type AmortisationMonth = {
+  period: number;
+  payment: number;
+  principalPaid: number;
+  interestPaid: number;
+  balance: number;
+};
+
+/** Month-by-month amortisation, for the monthly breakdown view. */
+export function amortisationMonths(
+  principal: number,
+  annualRate: number,
+  months: number,
+): AmortisationMonth[] {
+  const payment = emi(principal, annualRate, months);
+  const i = pct(annualRate) / 12;
+  const schedule: AmortisationMonth[] = [];
+
+  let balance = principal;
+  for (let month = 1; month <= months; month += 1) {
+    const interest = balance * i;
+    const towardsPrincipal = Math.min(payment - interest, balance);
+    balance = Math.max(balance - towardsPrincipal, 0);
+    schedule.push({
+      period: month,
+      payment,
+      principalPaid: towardsPrincipal,
+      interestPaid: interest,
+      balance,
+    });
+  }
+  return schedule;
+}

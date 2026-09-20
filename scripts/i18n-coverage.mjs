@@ -15,7 +15,7 @@ const DICT_DIR = "src/lib/i18n/dictionaries";
 const SOURCE_DIRS = ["src/app", "src/components", "src/config", "src/lib"];
 
 const KEY_PATTERN =
-  /["'`](app|common|gate|header|home|category|calc|units|country|tax|levy|field|option|result|table|footer|error)\.[A-Za-z0-9._-]+["'`]/g;
+  /["'`](app|common|gate|header|nav|home|section|category|calc|conv|unit|breakdown|actions|export|ads|a11y|units|country|tax|levy|field|option|result|table|footer|error)\.[A-Za-z0-9._-]+["'`]/g;
 
 function walk(dir) {
   const out = [];

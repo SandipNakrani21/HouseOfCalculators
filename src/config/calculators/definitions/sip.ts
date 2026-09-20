@@ -10,7 +10,8 @@ import { sipFutureValue, stepUpSipFutureValue, stepUpSipInvested } from "@/lib/f
 export const sipCalculator: CalculatorDef = {
   slug: "sip",
   icon: "📈",
-  category: "investment",
+  version: 1,
+  category: "finance",
   titleKey: "calc.sip.title",
   descKey: "calc.sip.desc",
   countries: ["in", "ae", "us", "gb", "ca", "au"],

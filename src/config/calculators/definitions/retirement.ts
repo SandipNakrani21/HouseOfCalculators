@@ -7,6 +7,7 @@ import { inflationAdjusted, lumpsumFutureValue, sipFutureValue } from "@/lib/fin
 const ALL: CountryCode[] = [
   "in", "us", "gb", "ae", "ca", "au", "de", "at", "ch", "fr",
   "be", "nl", "jp", "es", "mx", "it", "pt", "br", "pl", "tr",
+  "ru", "cn",
 ];
 
 /** Growth of an existing pot plus ongoing monthly contributions. */
@@ -26,7 +27,8 @@ function projectPot(
 export const retirementCalculator: CalculatorDef = {
   slug: "retirement",
   icon: "🌴",
-  category: "retirement",
+  version: 1,
+  category: "finance",
   titleKey: "calc.retirement.title",
   descKey: "calc.retirement.desc",
   countries: ALL,
@@ -97,10 +99,12 @@ export const retirementCalculator: CalculatorDef = {
 export const pensionCalculator: CalculatorDef = {
   slug: "pension",
   icon: "👴",
-  category: "retirement",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.pension.title",
   descKey: "calc.pension.desc",
-  countries: ["gb", "de", "at", "ch", "fr", "be", "nl", "jp", "es", "it", "pt", "pl", "tr", "br", "ca"],
+  countries: ["gb", "de", "at", "ch", "fr", "be", "nl", "jp", "es", "it", "pt", "pl", "tr", "br", "ca", "ru", "cn"],
   fields: ({ countryCode }) => {
     const scale = MONEY_SCALE[countryCode];
     return [
@@ -163,7 +167,9 @@ export const pensionCalculator: CalculatorDef = {
 export const fourOhOneKCalculator: CalculatorDef = {
   slug: "401k",
   icon: "🥚",
-  category: "retirement",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.401k.title",
   descKey: "calc.401k.desc",
   countries: ["us"],
@@ -224,7 +230,9 @@ const PIA_BENDS: Slab[] = [
 export const socialSecurityBenefitCalculator: CalculatorDef = {
   slug: "social-security-benefit",
   icon: "🇺🇸",
-  category: "retirement",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.social-security-benefit.title",
   descKey: "calc.social-security-benefit.desc",
   countries: ["us"],
@@ -273,7 +281,9 @@ export const socialSecurityBenefitCalculator: CalculatorDef = {
 export const superannuationCalculator: CalculatorDef = {
   slug: "superannuation",
   icon: "🦘",
-  category: "retirement",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.superannuation.title",
   descKey: "calc.superannuation.desc",
   countries: ["au"],
@@ -331,7 +341,9 @@ const HELP_SLABS: Slab[] = [
 export const hecsCalculator: CalculatorDef = {
   slug: "hecs",
   icon: "🎓",
-  category: "loan",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.hecs.title",
   descKey: "calc.hecs.desc",
   countries: ["au"],
@@ -394,7 +406,8 @@ export const hecsCalculator: CalculatorDef = {
 export const inflationCalculator: CalculatorDef = {
   slug: "inflation",
   icon: "📉",
-  category: "general",
+  version: 1,
+  category: "finance",
   titleKey: "calc.inflation.title",
   descKey: "calc.inflation.desc",
   countries: ALL,

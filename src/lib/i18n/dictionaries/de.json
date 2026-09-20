@@ -404,5 +404,8 @@
   "footer.about": "Über uns",
   "error.notFound": "Diese Seite konnten wir nicht finden",
   "error.notFoundBody": "Der gesuchte Rechner wurde möglicherweise verschoben oder wird in diesem Land nicht angeboten.",
-  "error.goHome": "Zu allen Rechnern"
+  "error.goHome": "Zu allen Rechnern",
+  "country.ru": "Russland",
+  "country.cn": "China",
+  "levy.housingFund": "Wohnungsfonds"
 }

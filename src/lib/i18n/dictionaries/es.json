@@ -363,5 +363,8 @@
   "calc.tip.title": "Calculadora de propinas",
   "calc.tip.desc": "Divide una cuenta y calcula la propina por persona.",
   "calc.tip.explain": "La propina es un porcentaje de la cuenta y se calcula antes de dividir, así que todos aportan la misma parte de ambas cosas.",
-  "calc.sip.stepUpHint": "Subir la aportación este porcentaje cada año."
+  "calc.sip.stepUpHint": "Subir la aportación este porcentaje cada año.",
+  "country.ru": "Rusia",
+  "country.cn": "China",
+  "levy.housingFund": "Fondo de vivienda"
 }

@@ -1,16 +1,9 @@
+import type { CalculatorCategory } from "@/config/categories";
 import type { Country, CountryCode } from "@/config/countries";
 import type { Formatter } from "@/lib/format";
 import type { TranslateFn } from "@/lib/i18n";
 
-export type Category =
-  | "investment"
-  | "savings"
-  | "loan"
-  | "tax"
-  | "retirement"
-  | "income"
-  | "business"
-  | "general";
+export type { CalculatorCategory as Category } from "@/config/categories";
 
 /** Everything a definition needs to shape itself for the visitor's locale. */
 export type CalcContext = {
@@ -55,7 +48,14 @@ export type CalculatorField = {
 
 export type FieldValues = Record<string, number | string | boolean>;
 
-export type ResultKind = "currency" | "percent" | "number" | "years" | "text";
+/** `label` marks a value that is itself a dictionary key to translate. */
+export type ResultKind =
+  | "currency"
+  | "percent"
+  | "number"
+  | "years"
+  | "text"
+  | "label";
 
 export type ResultRow = {
   labelKey: string;
@@ -74,26 +74,52 @@ export type ChartSlice = {
   tone: "principal" | "returns" | "tax" | "neutral";
 };
 
+export type BreakdownColumn = {
+  key: string;
+  labelKey: string;
+  kind: ResultKind;
+};
+
+/**
+ * One way of slicing the same schedule - monthly, yearly, whole term. The UI
+ * for these is shared; only the rows differ per calculator.
+ */
+export type BreakdownView = {
+  id: string;
+  labelKey: string;
+  columns: BreakdownColumn[];
+  rows: Record<string, number | string>[];
+  /** Long schedules are paged rather than rendering hundreds of rows at once. */
+  paginate?: boolean;
+};
+
 export type CalculatorResult = {
   /** The single number the page leads with. */
   primary: ResultRow;
   rows: ResultRow[];
   /** Donut slices. Omit for calculators where a split makes no sense. */
   chart?: ChartSlice[];
-  /** Optional year-by-year table, e.g. a loan amortisation schedule. */
+  /** Optional year-by-year table, e.g. a tax band breakdown. */
   table?: {
-    columns: { key: string; labelKey: string; kind: ResultKind }[];
+    columns: BreakdownColumn[];
     rows: Record<string, number | string>[];
   };
+  /** Several views of one schedule, shown as tabs. */
+  breakdown?: BreakdownView[];
   /** Extra caveats specific to the inputs, e.g. "above the statutory cap". */
   notes?: { key: string; params?: Record<string, string | number> }[];
 };
 
 export type CalculatorDef = {
   slug: string;
-  /** Emoji used on the home grid card. */
+  /** Emoji used on the grid card. */
   icon: string;
-  category: Category;
+  /**
+   * Bumped when the formula or a statutory rule changes in a way that alters
+   * published results, so a change is never silent.
+   */
+  version: number;
+  category: CalculatorCategory;
   titleKey: string;
   descKey: string;
   /**
@@ -104,6 +130,14 @@ export type CalculatorDef = {
   params?: (ctx: CalcContext) => Record<string, string | number>;
   /** Countries this calculator is offered in. */
   countries: CountryCode[];
+  /**
+   * True when the country changes the rules, not merely the currency. These
+   * live under /countries/{country}/{slug}; the rest sit under their subject
+   * category, so the same calculation never gets two competing URLs.
+   */
+  isCountrySpecific?: boolean;
+  /** Slugs to surface as related tools, beyond the automatic suggestions. */
+  relatedCalculators?: string[];
   /** Extra words that should match this calculator in search. */
   keywordsKey?: string;
   /** Fields can differ per country - caps, slab names, currency ranges. */

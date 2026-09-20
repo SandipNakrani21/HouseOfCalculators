@@ -594,6 +594,54 @@ const uae = defineRules({
   slabs: [{ from: 0, rate: 0 }],
 });
 
+/* ----------------------------------------------------------------- Russia */
+
+// NDFL became progressive in 2025; before that it was a flat 13 percent.
+const RU_SLABS: Slab[] = [
+  { from: 0, rate: 13 },
+  { from: 2_400_000, rate: 15 },
+  { from: 5_000_000, rate: 18 },
+  { from: 20_000_000, rate: 20 },
+  { from: 50_000_000, rate: 22 },
+];
+
+const russia = defineRules({
+  taxYear: "2025",
+  verifiedFor: "2025 progressive NDFL scale, resident",
+  noteKey: "calc.income-tax.note.ru",
+  slabs: RU_SLABS,
+  // Social contributions in Russia are paid by the employer, not withheld
+  // from the employee, so nothing is deducted here.
+});
+
+/* ------------------------------------------------------------------ China */
+
+const CN_SLABS: Slab[] = [
+  { from: 0, rate: 3 },
+  { from: 36_000, rate: 10 },
+  { from: 144_000, rate: 20 },
+  { from: 300_000, rate: 25 },
+  { from: 420_000, rate: 30 },
+  { from: 660_000, rate: 35 },
+  { from: 960_000, rate: 45 },
+];
+
+const china = defineRules({
+  taxYear: "2025",
+  verifiedFor: "2025 annual IIT scale, resident employee",
+  noteKey: "calc.income-tax.note.cn",
+  allowance: 60_000, // Standard basic deduction.
+  slabs: CN_SLABS,
+  social: ({ gross }) => [
+    // Rates and the contribution ceiling are set city by city; these are
+    // common Beijing-style figures.
+    { labelKey: "levy.pensionInsurance", amount: contribution(gross, 8, { ceiling: 400_000 }) },
+    { labelKey: "levy.healthInsurance", amount: contribution(gross, 2, { ceiling: 400_000 }) },
+    { labelKey: "levy.unemploymentInsurance", amount: contribution(gross, 0.5, { ceiling: 400_000 }) },
+    { labelKey: "levy.housingFund", amount: contribution(gross, 12, { ceiling: 400_000 }) },
+  ],
+});
+
 export const INCOME_TAX_RULES: Record<CountryCode, IncomeTaxRules> = {
   in: india,
   us: unitedStates,
@@ -615,6 +663,8 @@ export const INCOME_TAX_RULES: Record<CountryCode, IncomeTaxRules> = {
   pl: poland,
   tr: turkiye,
   ae: uae,
+  ru: russia,
+  cn: china,
 };
 
 export type { IncomeTaxRules };

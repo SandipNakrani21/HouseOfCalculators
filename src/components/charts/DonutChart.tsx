@@ -1,6 +1,7 @@
 "use client";
 
 import type { ChartSlice } from "@/config/calculators/types";
+import type { Formatter } from "@/lib/format";
 import { useLocale } from "@/lib/locale-context";
 
 const TONE_VAR: Record<ChartSlice["tone"], string> = {
@@ -24,14 +25,18 @@ export function DonutChart({
   centerLabel,
   centerValue,
   params,
+  fmt: override,
 }: {
   slices: ChartSlice[];
   centerLabel?: string;
   centerValue?: string;
   /** Placeholders for the legend copy, resolved per country. */
   params?: Record<string, string | number>;
+  /** Formatter for the page's country, which may differ from the visitor's. */
+  fmt?: Formatter;
 }) {
-  const { t: translate, fmt } = useLocale();
+  const { t: translate, fmt: localeFmt } = useLocale();
+  const fmt = override ?? localeFmt;
   const t = (key: string) => translate(key, params);
   const positive = slices.filter((slice) => slice.value > 0);
   const total = positive.reduce((sum, slice) => sum + slice.value, 0);

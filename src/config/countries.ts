@@ -22,7 +22,9 @@ export type CountryCode =
   | "pt"
   | "br"
   | "pl"
-  | "tr";
+  | "tr"
+  | "ru"
+  | "cn";
 
 export type Country = {
   code: CountryCode;
@@ -254,6 +256,26 @@ export const COUNTRIES: Record<CountryCode, Country> = {
     region: "TR",
     languages: ["tr", "en"],
     consumptionTax: { labelKey: "tax.vat", standardRate: 20, rates: [1, 10, 20] },
+    fiscalYear: { start: "01-01", label: "2025" },
+  },
+  ru: {
+    code: "ru",
+    name: "Russia",
+    currency: { code: "RUB", symbol: "₽", decimals: 2 },
+    numbering: "western",
+    region: "RU",
+    languages: ["ru", "en"],
+    consumptionTax: { labelKey: "tax.vat", standardRate: 20, rates: [0, 10, 20] },
+    fiscalYear: { start: "01-01", label: "2025" },
+  },
+  cn: {
+    code: "cn",
+    name: "China",
+    currency: { code: "CNY", symbol: "¥", decimals: 2 },
+    numbering: "western",
+    region: "CN",
+    languages: ["zh", "en"],
+    consumptionTax: { labelKey: "tax.vat", standardRate: 13, rates: [0, 6, 9, 13] },
     fiscalYear: { start: "01-01", label: "2025" },
   },
   ae: {

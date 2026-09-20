@@ -11,6 +11,7 @@ import { applySlabs, INCOME_TAX_RULES, type Slab } from "@/lib/finance/tax";
 const ALL: CountryCode[] = [
   "in", "us", "gb", "ae", "ca", "au", "de", "at", "ch", "fr",
   "be", "nl", "jp", "es", "mx", "it", "pt", "br", "pl", "tr",
+  "ru", "cn",
 ];
 
 /* ------------------------------------------------------------ Income tax */
@@ -18,7 +19,9 @@ const ALL: CountryCode[] = [
 export const incomeTaxCalculator: CalculatorDef = {
   slug: "income-tax",
   icon: "🧾",
-  category: "tax",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.income-tax.title",
   descKey: "calc.income-tax.desc",
   countries: ALL,
@@ -177,7 +180,9 @@ export const incomeTaxCalculator: CalculatorDef = {
 export const consumptionTaxCalculator: CalculatorDef = {
   slug: "vat",
   icon: "🧮",
-  category: "business",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.vat.title",
   descKey: "calc.vat.desc",
   params: ({ country, t }) => ({ tax: t(country.consumptionTax.labelKey) }),
@@ -332,7 +337,9 @@ const GAINS_RULES: Partial<Record<CountryCode, GainsRule>> = {
 export const capitalGainsCalculator: CalculatorDef = {
   slug: "capital-gains",
   icon: "📊",
-  category: "tax",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.capital-gains.title",
   descKey: "calc.capital-gains.desc",
   countries: Object.keys(GAINS_RULES) as CountryCode[],
@@ -477,7 +484,9 @@ const SDLT_FIRST_TIME: Slab[] = [
 export const stampDutyCalculator: CalculatorDef = {
   slug: "stamp-duty",
   icon: "📜",
-  category: "tax",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.stamp-duty.title",
   descKey: "calc.stamp-duty.desc",
   countries: ["gb"],
@@ -576,7 +585,9 @@ export const stampDutyCalculator: CalculatorDef = {
 export const churchTaxCalculator: CalculatorDef = {
   slug: "church-tax",
   icon: "⛪",
-  category: "tax",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.church-tax.title",
   descKey: "calc.church-tax.desc",
   countries: ["de", "at", "ch"],
@@ -642,7 +653,9 @@ const PROPERTY_TAX_RATE: Partial<Record<CountryCode, number>> = {
 export const propertyTaxCalculator: CalculatorDef = {
   slug: "property-tax",
   icon: "🏡",
-  category: "tax",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.property-tax.title",
   descKey: "calc.property-tax.desc",
   countries: Object.keys(PROPERTY_TAX_RATE) as CountryCode[],

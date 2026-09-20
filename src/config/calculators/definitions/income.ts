@@ -11,6 +11,7 @@ import { INCOME_TAX_RULES, contribution } from "@/lib/finance/tax";
 const ALL: CountryCode[] = [
   "in", "us", "gb", "ae", "ca", "au", "de", "at", "ch", "fr",
   "be", "nl", "jp", "es", "mx", "it", "pt", "br", "pl", "tr",
+  "ru", "cn",
 ];
 
 /* ---------------------------------------------------------------- Salary */
@@ -18,7 +19,9 @@ const ALL: CountryCode[] = [
 export const salaryCalculator: CalculatorDef = {
   slug: "salary",
   icon: "💼",
-  category: "income",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.salary.title",
   descKey: "calc.salary.desc",
   countries: ALL,
@@ -151,7 +154,9 @@ function contributionsCalculator({
   return {
     slug,
     icon,
-    category: "income",
+    version: 1,
+    category: "finance",
+    isCountrySpecific: true,
     titleKey,
     descKey,
     countries,
@@ -244,7 +249,7 @@ export const eiCalculator = contributionsCalculator({
 export const socialSecurityCalculator = contributionsCalculator({
   slug: "social-security",
   icon: "🛡️",
-  countries: ["de", "at", "ch", "fr", "be", "es", "it", "pt", "pl", "jp", "tr", "us", "mx", "br"],
+  countries: ["de", "at", "ch", "fr", "be", "es", "it", "pt", "pl", "jp", "tr", "us", "mx", "br", "cn"],
   titleKey: "calc.social-security.title",
   descKey: "calc.social-security.desc",
 });
@@ -254,7 +259,9 @@ export const socialSecurityCalculator = contributionsCalculator({
 export const thirtyPercentRulingCalculator: CalculatorDef = {
   slug: "30-percent-ruling",
   icon: "🧳",
-  category: "income",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.30-percent-ruling.title",
   descKey: "calc.30-percent-ruling.desc",
   countries: ["nl"],
@@ -327,7 +334,9 @@ export const thirtyPercentRulingCalculator: CalculatorDef = {
 export const payrollCalculator: CalculatorDef = {
   slug: "payroll",
   icon: "🧾",
+  version: 1,
   category: "business",
+  isCountrySpecific: true,
   titleKey: "calc.payroll.title",
   descKey: "calc.payroll.desc",
   countries: ["nl", "de", "be", "fr"],
@@ -402,7 +411,9 @@ export const payrollCalculator: CalculatorDef = {
 export const severancePayCalculator: CalculatorDef = {
   slug: "severance-pay",
   icon: "📤",
-  category: "income",
+  version: 1,
+  category: "finance",
+  isCountrySpecific: true,
   titleKey: "calc.severance-pay.title",
   descKey: "calc.severance-pay.desc",
   countries: ["tr"],
@@ -476,7 +487,8 @@ export const severancePayCalculator: CalculatorDef = {
 export const tipCalculator: CalculatorDef = {
   slug: "tip",
   icon: "🧾",
-  category: "general",
+  version: 1,
+  category: "everyday",
   titleKey: "calc.tip.title",
   descKey: "calc.tip.desc",
   countries: ["us", "ca", "gb", "au"],

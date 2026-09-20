@@ -2,82 +2,103 @@
 
 /*
  * Design tokens. Light values live on :root, dark values are applied both by
- * the OS preference and by an explicit data-theme, so a future theme toggle
- * has something to switch.
+ * the OS preference and by an explicit data-theme, so a theme toggle has
+ * something to switch.
  */
 :root {
-  --background: #ffffff;
-  --surface: #ffffff;
-  --surface-muted: #f7f8fa;
-  --foreground: #1c1f2b;
-  --muted: #6b7180;
-  --border: #e7e9ee;
-  --border-strong: #d2d6e0;
+  /* Brand palette */
+  --brand-blue: #2563eb;
+  --brand-blue-hover: #1d4ed8;
+  --brand-navy: #0f172a;
+  --brand-teal: #14b8a6;
+  --brand-sky: #38bdf8;
+  --brand-yellow: #facc15;
 
-  --primary: #00b386;
-  --primary-hover: #009b74;
-  --primary-soft: #e6f7f2;
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-muted: #f1f5f9;
+  --foreground: #111827;
+  --heading: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --primary: var(--brand-blue);
+  --primary-hover: var(--brand-blue-hover);
+  --primary-soft: #eff6ff;
   --primary-contrast: #ffffff;
 
-  /* Chart tones. `principal` is money you put in, `returns` is what it grew by. */
-  --tone-principal: #b8c4ff;
-  --tone-returns: #5367ff;
-  --tone-tax: #ff7043;
-  --tone-neutral: #9aa1b1;
+  --accent: var(--brand-teal);
+  --accent-soft: #f0fdfa;
 
-  --ring: #5367ff33;
+  /* Chart tones. `principal` is money you put in, `returns` is what it grew by. */
+  --tone-principal: #93c5fd;
+  --tone-returns: var(--brand-teal);
+  --tone-tax: #f97316;
+  --tone-neutral: #94a3b8;
+
+  --ring: #2563eb33;
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.06);
 
   /*
-   * System stack rather than a webfont: the site ships Latin, Devanagari,
-   * Gujarati and Arabic text, and every target OS already has a good face for
-   * each script. Nothing to download, nothing to fall back from.
+   * System stack rather than a webfont: the site ships Latin, Cyrillic, CJK,
+   * Devanagari, Gujarati and Arabic text, and every target OS already has a
+   * good face for each script. Nothing to download, nothing to fall back from.
    */
   --font-app-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Nirmala UI", "Noto Sans", "Noto Sans Devanagari", "Noto Sans Gujarati",
-    "Noto Sans Arabic", "Segoe UI Arabic", Roboto, Helvetica, Arial, sans-serif;
-  --shadow-card: 0 1px 2px rgba(28, 31, 43, 0.04), 0 4px 16px rgba(28, 31, 43, 0.06);
+    "Noto Sans Arabic", "Segoe UI Arabic", "Microsoft YaHei", "Hiragino Sans",
+    "Yu Gothic UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --background: #0e1017;
-    --surface: #161922;
-    --surface-muted: #1c202b;
-    --foreground: #e9ebf0;
-    --muted: #9aa1b1;
-    --border: #262b38;
-    --border-strong: #333a4a;
+    --background: #0b1120;
+    --surface: #111827;
+    --surface-muted: #1a2234;
+    --foreground: #e5e7eb;
+    --heading: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #1f2937;
+    --border-strong: #334155;
 
-    --primary: #00c896;
-    --primary-hover: #00b386;
-    --primary-soft: #0e2b24;
+    --primary: #3b82f6;
+    --primary-hover: #60a5fa;
+    --primary-soft: #16233c;
 
-    --tone-principal: #3b4680;
-    --tone-returns: #7d8dff;
-    --tone-tax: #ff8a65;
-    --tone-neutral: #6b7180;
+    --accent: #2dd4bf;
+    --accent-soft: #10302c;
+
+    --tone-principal: #3b5a8a;
+    --tone-returns: #2dd4bf;
+    --tone-tax: #fb923c;
+    --tone-neutral: #64748b;
 
     --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.25);
   }
 }
 
 :root[data-theme="dark"] {
-  --background: #0e1017;
-  --surface: #161922;
-  --surface-muted: #1c202b;
-  --foreground: #e9ebf0;
-  --muted: #9aa1b1;
-  --border: #262b38;
-  --border-strong: #333a4a;
+  --background: #0b1120;
+  --surface: #111827;
+  --surface-muted: #1a2234;
+  --foreground: #e5e7eb;
+  --heading: #f1f5f9;
+  --muted: #94a3b8;
+  --border: #1f2937;
+  --border-strong: #334155;
 
-  --primary: #00c896;
-  --primary-hover: #00b386;
-  --primary-soft: #0e2b24;
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --primary-soft: #16233c;
 
-  --tone-principal: #3b4680;
-  --tone-returns: #7d8dff;
-  --tone-tax: #ff8a65;
-  --tone-neutral: #6b7180;
+  --accent: #2dd4bf;
+  --accent-soft: #10302c;
+
+  --tone-principal: #3b5a8a;
+  --tone-returns: #2dd4bf;
+  --tone-tax: #fb923c;
+  --tone-neutral: #64748b;
 
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.25);
 }
@@ -87,6 +108,7 @@
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
   --color-foreground: var(--foreground);
+  --color-heading: var(--heading);
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
@@ -94,12 +116,13 @@
   --color-primary-hover: var(--primary-hover);
   --color-primary-soft: var(--primary-soft);
   --color-primary-contrast: var(--primary-contrast);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
   --color-tone-principal: var(--tone-principal);
   --color-tone-returns: var(--tone-returns);
   --color-tone-tax: var(--tone-tax);
   --color-tone-neutral: var(--tone-neutral);
   --font-sans: var(--font-app-sans);
-  --font-mono: var(--font-geist-mono);
   --shadow-card: var(--shadow-card);
 }
 
@@ -110,8 +133,14 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-app-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--font-app-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--heading);
 }
 
 /* Arabic reads better with a touch more line height at the same size. */
@@ -119,10 +148,17 @@ body {
   line-height: 1.75;
 }
 
+/* Keyboard focus must always be visible, including on custom controls. */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /*
  * Range inputs are the primary control on every calculator, so they are
- * styled once here rather than per component. The filled portion is driven
- * by a --fill custom property set inline from React.
+ * styled once here rather than per component. The filled portion is driven by
+ * a --fill custom property set inline from React.
  */
 input[type="range"] {
   -webkit-appearance: none;
@@ -159,7 +195,7 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
   background: var(--primary);
   border: 3px solid var(--surface);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.25);
   cursor: grab;
 }
 
@@ -169,7 +205,7 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 50%;
   background: var(--primary);
   border: 3px solid var(--surface);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.25);
   cursor: grab;
 }
 
@@ -182,11 +218,22 @@ input[type="range"]:focus-visible::-webkit-slider-thumb {
   font-variant-numeric: tabular-nums;
 }
 
+/*
+ * Ad containers reserve their height before the ad arrives, so a slot filling
+ * in never pushes content around. Empty slots collapse in development.
+ */
+.ad-slot {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

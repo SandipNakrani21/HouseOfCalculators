@@ -406,5 +406,8 @@
   "footer.about": "À propos",
   "error.notFound": "Page introuvable",
   "error.notFoundBody": "Le calculateur que vous cherchez a peut-être été déplacé ou n'est pas proposé dans ce pays.",
-  "error.goHome": "Voir tous les calculateurs"
+  "error.goHome": "Voir tous les calculateurs",
+  "country.ru": "Russie",
+  "country.cn": "Chine",
+  "levy.housingFund": "Fonds du logement"
 }

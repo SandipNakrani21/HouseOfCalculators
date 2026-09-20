@@ -3,6 +3,7 @@
 import { useId } from "react";
 
 import type { CalculatorField, FieldValues } from "@/config/calculators/types";
+import type { Formatter } from "@/lib/format";
 import { useLocale } from "@/lib/locale-context";
 
 type Props = {
@@ -11,6 +12,8 @@ type Props = {
   onChange: (value: number | string | boolean) => void;
   /** Placeholders for the label copy, e.g. the country name for its tax. */
   params?: Record<string, string | number>;
+  /** Formatter for the page's country, which may differ from the visitor's. */
+  fmt?: Formatter;
 };
 
 /**
@@ -18,8 +21,9 @@ type Props = {
  * the way a finance calculator is usually driven: type an exact figure, or
  * drag to explore.
  */
-export function FieldControl({ field, value, onChange, params }: Props) {
-  const { t: translate, fmt } = useLocale();
+export function FieldControl({ field, value, onChange, params, fmt: override }: Props) {
+  const { t: translate, fmt: localeFmt } = useLocale();
+  const fmt = override ?? localeFmt;
   const t = (key: string) => translate(key, params);
   const id = useId();
 

@@ -59,6 +59,8 @@ const UNITS_PER_EUR: Record<CountryCode, number> = {
   tr: 40,
   ae: 4,
   in: 90,
+  ru: 100,
+  cn: 7.8,
 };
 
 /** Typical annual gross income and property price, in local currency. */
@@ -83,6 +85,8 @@ const TYPICAL: Record<CountryCode, { income: number; property: number }> = {
   tr: { income: 600_000, property: 4_000_000 },
   ae: { income: 300_000, property: 1_800_000 },
   in: { income: 1_200_000, property: 6_000_000 },
+  ru: { income: 1_200_000, property: 9_000_000 },
+  cn: { income: 150_000, property: 2_000_000 },
 };
 
 /** Rounds up to the nearest 1, 2 or 5 times a power of ten, so steps read well. */

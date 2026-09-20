@@ -6,7 +6,7 @@ import {
   type CalculatorField,
   type CalculatorResult,
 } from "@/config/calculators/types";
-import { amortisationSchedule, emi } from "@/lib/finance";
+import { amortisationMonths, amortisationSchedule, emi } from "@/lib/finance";
 
 /**
  * Every level-payment loan on the site shares one engine. What differs between
@@ -55,17 +55,48 @@ function loanResult(
       { labelKey: "result.principal", value: principal, tone: "principal" },
       { labelKey: "result.totalInterest", value: interest, tone: "returns" },
     ],
-    table: {
-      columns: [
-        { key: "year", labelKey: "table.year", kind: "number" },
-        { key: "principalPaid", labelKey: "table.principalPaid", kind: "currency" },
-        { key: "interestPaid", labelKey: "table.interestPaid", kind: "currency" },
-        { key: "balance", labelKey: "table.balance", kind: "currency" },
-      ],
-      rows: amortisationSchedule(principal, rate, months).map((entry) => ({
-        ...entry,
-      })),
-    },
+    // Three views of one schedule: the month-by-month detail, the yearly
+    // summary most people actually read, and the whole-term totals.
+    breakdown: [
+      {
+        id: "monthly",
+        labelKey: "breakdown.monthly",
+        paginate: true,
+        columns: [
+          { key: "period", labelKey: "table.month", kind: "number" },
+          { key: "payment", labelKey: "table.payment", kind: "currency" },
+          { key: "principalPaid", labelKey: "table.principalPaid", kind: "currency" },
+          { key: "interestPaid", labelKey: "table.interestPaid", kind: "currency" },
+          { key: "balance", labelKey: "table.balance", kind: "currency" },
+        ],
+        rows: amortisationMonths(principal, rate, months).map((entry) => ({ ...entry })),
+      },
+      {
+        id: "yearly",
+        labelKey: "breakdown.yearly",
+        columns: [
+          { key: "year", labelKey: "table.year", kind: "number" },
+          { key: "principalPaid", labelKey: "table.principalPaid", kind: "currency" },
+          { key: "interestPaid", labelKey: "table.interestPaid", kind: "currency" },
+          { key: "balance", labelKey: "table.balance", kind: "currency" },
+        ],
+        rows: amortisationSchedule(principal, rate, months).map((entry) => ({ ...entry })),
+      },
+      {
+        id: "full-term",
+        labelKey: "breakdown.fullTerm",
+        columns: [
+          { key: "label", labelKey: "table.item", kind: "label" },
+          { key: "value", labelKey: "table.amount", kind: "currency" },
+        ],
+        rows: [
+          { label: "result.principal", value: principal },
+          { label: "result.totalInterest", value: interest },
+          { label: "result.totalPayable", value: totalPaid },
+          { label: "result.monthlyPayment", value: monthly },
+        ],
+      },
+    ],
   };
 }
 
@@ -91,6 +122,8 @@ const DEFAULT_MORTGAGE_RATE: Record<string, number> = {
   pl: 7.5,
   tr: 40,
   ae: 4.5,
+  ru: 22,
+  cn: 3.1,
 };
 
 function mortgageRate(country: string): number {
@@ -118,12 +151,15 @@ const ALL = [
   "br",
   "pl",
   "tr",
+  "ru",
+  "cn",
 ] as const;
 
 export const mortgageCalculator: CalculatorDef = {
   slug: "mortgage",
   icon: "🏠",
-  category: "loan",
+  version: 1,
+  category: "finance",
   titleKey: "calc.mortgage.title",
   descKey: "calc.mortgage.desc",
   countries: [...ALL],
@@ -192,7 +228,8 @@ export const mortgageCalculator: CalculatorDef = {
 export const autoLoanCalculator: CalculatorDef = {
   slug: "auto-loan",
   icon: "🚗",
-  category: "loan",
+  version: 1,
+  category: "finance",
   titleKey: "calc.auto-loan.title",
   descKey: "calc.auto-loan.desc",
   countries: [...ALL],
@@ -249,7 +286,8 @@ export const autoLoanCalculator: CalculatorDef = {
 export const personalLoanCalculator: CalculatorDef = {
   slug: "loan",
   icon: "🏦",
-  category: "loan",
+  version: 1,
+  category: "finance",
   titleKey: "calc.loan.title",
   descKey: "calc.loan.desc",
   countries: [...ALL],
@@ -294,7 +332,8 @@ export const personalLoanCalculator: CalculatorDef = {
 export const studentLoanCalculator: CalculatorDef = {
   slug: "student-loan",
   icon: "🎓",
-  category: "loan",
+  version: 1,
+  category: "finance",
   titleKey: "calc.student-loan.title",
   descKey: "calc.student-loan.desc",
   countries: ["us", "gb", "ca", "au", "in"],

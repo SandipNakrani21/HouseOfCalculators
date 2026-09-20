@@ -119,3 +119,28 @@ export const LANGUAGE_COVERAGE = LANGUAGE_CODES.reduce(
 export function isLanguageReady(lang: LanguageCode): boolean {
   return lang === "en" || LANGUAGE_COVERAGE[lang] >= READINESS_THRESHOLD;
 }
+
+/**
+ * Whether a language defines a key itself, ignoring the English fallback.
+ *
+ * Needed for optional variants such as a unit's plural form: falling back to
+ * the English plural in a German sentence would be worse than using the
+ * German singular, so the caller needs to know which it is getting.
+ */
+export function hasOwnKey(lang: LanguageCode, key: string): boolean {
+  return Boolean(RAW[lang] && key in RAW[lang]);
+}
+
+/**
+ * A unit's name, plural where the language provides one and singular where it
+ * does not. `Metres to Feet` is what people search for; `Metre to Foot` is not.
+ */
+export function unitName(
+  lang: LanguageCode,
+  t: TranslateFn,
+  labelKey: string,
+  plural = false,
+): string {
+  const pluralKey = `${labelKey}.plural`;
+  return plural && hasOwnKey(lang, pluralKey) ? t(pluralKey) : t(labelKey);
+}

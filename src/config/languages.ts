@@ -16,7 +16,9 @@ export type LanguageCode =
   | "it"
   | "pt"
   | "pl"
-  | "tr";
+  | "tr"
+  | "ru"
+  | "zh";
 
 export type Language = {
   code: LanguageCode;
@@ -44,6 +46,8 @@ export const LANGUAGES: Record<LanguageCode, Language> = {
   pt: { code: "pt", native: "Português", english: "Portuguese", dir: "ltr", intlTag: "pt" },
   pl: { code: "pl", native: "Polski", english: "Polish", dir: "ltr", intlTag: "pl" },
   tr: { code: "tr", native: "Türkçe", english: "Turkish", dir: "ltr", intlTag: "tr" },
+  ru: { code: "ru", native: "Русский", english: "Russian", dir: "ltr", intlTag: "ru" },
+  zh: { code: "zh", native: "简体中文", english: "Chinese (Simplified)", dir: "ltr", intlTag: "zh-Hans" },
 };
 
 export const LANGUAGE_CODES = Object.keys(LANGUAGES) as LanguageCode[];

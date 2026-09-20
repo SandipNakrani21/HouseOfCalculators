@@ -1,51 +1,111 @@
 "use client";
 
-import { createContext, useContext, useMemo, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useSyncExternalStore,
+  type ReactNode,
+} from "react";
 
-import { COUNTRIES, type Country, type CountryCode } from "@/config/countries";
-import { LANGUAGES, type Language, type LanguageCode } from "@/config/languages";
+import { COUNTRIES, isCountryCode, type Country, type CountryCode } from "@/config/countries";
+import { LANGUAGES, type Language } from "@/config/languages";
+import { LOCALES, type Locale, type LocaleCode } from "@/config/locales";
 import { createFormatter, type Formatter } from "@/lib/format";
+import { readStoredCountry, storeCountry } from "@/lib/preferences";
 import { translate, type Dictionary, type TranslateFn } from "@/lib/i18n";
 
 export type LocaleValue = {
-  country: Country;
+  locale: Locale;
+  localeCode: LocaleCode;
   language: Language;
-  countryCode: CountryCode;
-  lang: LanguageCode;
-  /** Path prefix for links, e.g. `/in/hi`. */
+  dir: "ltr" | "rtl";
+  /** Path prefix for links, e.g. `/en-us`. */
   base: string;
   t: TranslateFn;
+
+  /**
+   * Country context. Defaults to the locale's country and can be overridden by
+   * the visitor, so language and country stay independent.
+   */
+  country: Country;
+  countryCode: CountryCode;
+  setCountry: (next: CountryCode) => void;
+  /** True when the visitor picked a country rather than inheriting one. */
+  countryIsExplicit: boolean;
+
   fmt: Formatter;
-  dir: "ltr" | "rtl";
 };
 
 const LocaleContext = createContext<LocaleValue | null>(null);
 
+/**
+ * The stored country is read as an external store rather than in an effect, so
+ * the server snapshot (the locale's default) renders first and the visitor's
+ * override is applied without a hydration mismatch.
+ */
+const countryStore = {
+  subscribe(onChange: () => void) {
+    const handler = () => onChange();
+    window.addEventListener("hoc:country", handler);
+    return () => window.removeEventListener("hoc:country", handler);
+  },
+  snapshot(): string | null {
+    return readStoredCountry();
+  },
+  serverSnapshot(): string | null {
+    return null;
+  },
+};
+
 export function LocaleProvider({
-  countryCode,
-  lang,
+  localeCode,
   dictionary,
+  /** Fixed country for pages that are about one country, e.g. country tools. */
+  forcedCountry,
   children,
 }: {
-  countryCode: CountryCode;
-  lang: LanguageCode;
-  /** Pre-merged dictionary passed down from the server layout. */
+  localeCode: LocaleCode;
   dictionary: Dictionary;
+  forcedCountry?: CountryCode;
   children: ReactNode;
 }) {
+  const stored = useSyncExternalStore(
+    countryStore.subscribe,
+    countryStore.snapshot,
+    countryStore.serverSnapshot,
+  );
+
+  const locale = LOCALES[localeCode];
+
+  // A country tool is about its own country, so the visitor's preference does
+  // not silently change what the page is showing.
+  const countryCode: CountryCode =
+    forcedCountry ??
+    (stored && isCountryCode(stored) ? stored : locale.defaultCountry);
+
+  const setCountry = useCallback((next: CountryCode) => {
+    storeCountry(next);
+    window.dispatchEvent(new Event("hoc:country"));
+  }, []);
+
   const value = useMemo<LocaleValue>(() => {
     const t: TranslateFn = (key, params) => translate(dictionary, key, params);
     return {
-      countryCode,
-      lang,
-      country: COUNTRIES[countryCode],
-      language: LANGUAGES[lang],
-      base: `/${countryCode}/${lang}`,
+      locale,
+      localeCode,
+      language: LANGUAGES[locale.language],
+      dir: locale.dir,
+      base: `/${locale.path}`,
       t,
-      fmt: createFormatter(countryCode, lang),
-      dir: LANGUAGES[lang].dir,
+      country: COUNTRIES[countryCode],
+      countryCode,
+      setCountry,
+      countryIsExplicit: forcedCountry !== undefined || stored !== null,
+      fmt: createFormatter(countryCode, locale.language),
     };
-  }, [countryCode, lang, dictionary]);
+  }, [locale, localeCode, dictionary, countryCode, setCountry, forcedCountry, stored]);
 
   return (
     <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>

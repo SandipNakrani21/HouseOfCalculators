@@ -1,80 +1,75 @@
 import { NextResponse, type NextRequest } from "next/server";
 
+import { isCountryCode } from "@/config/countries";
 import {
-  DEFAULT_COUNTRY,
-  defaultLanguageFor,
-  isCountryCode,
-  resolveLanguage,
-  type CountryCode,
-} from "@/config/countries";
-import { isLanguageCode } from "@/config/languages";
-import { LOCALE_COOKIE } from "@/lib/locale-cookie";
+  DEFAULT_LOCALE,
+  LOCALES,
+  LOCALE_CODES,
+  isLocalePath,
+  localeFromPath,
+  matchAcceptLanguage,
+  type LocaleCode,
+} from "@/config/locales";
+import { LOCALE_COOKIE } from "@/lib/preferences";
+import { isLocaleReady } from "@/lib/seo";
 
 /**
- * Every page lives under /{country}/{lang}. This redirects any URL that is
- * missing or has a bad prefix onto a valid one, picking the country from the
- * saved cookie first, then the CDN geo hint, then Accept-Language.
+ * Every page lives under /{locale}. A request without one is redirected to the
+ * best guess: the visitor's stored choice first, then their browser languages,
+ * then the CDN's country hint, then the default locale.
+ *
+ * Redirects are never used to *hide* other locales - each one stays reachable
+ * at its own URL so search engines can crawl all of them.
  */
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const segments = pathname.split("/").filter(Boolean);
-  const [maybeCountry, maybeLang] = segments;
+  const [first, ...rest] = pathname.split("/").filter(Boolean);
 
-  if (
-    maybeCountry &&
-    maybeLang &&
-    isCountryCode(maybeCountry) &&
-    isLanguageCode(maybeLang)
-  ) {
-    const resolved = resolveLanguage(maybeCountry, maybeLang);
-    // A language the country does not offer, e.g. /us/hi, falls back instead
-    // of 404ing so a shared link still lands somewhere useful.
-    if (resolved === maybeLang) return NextResponse.next();
+  if (first && isLocalePath(first)) {
+    const locale = localeFromPath(first)!;
+    // A locale that is not translated far enough to ship falls back rather
+    // than serving a page that would be mostly English.
+    if (isLocaleReady(locale.code)) return NextResponse.next();
 
     const url = request.nextUrl.clone();
-    url.pathname = `/${maybeCountry}/${resolved}/${segments.slice(2).join("/")}`;
+    url.pathname = `/${LOCALES[DEFAULT_LOCALE].path}/${rest.join("/")}`;
     return NextResponse.redirect(url);
   }
 
-  const country = pickCountry(request);
-  const lang = pickLanguage(request, country);
-
+  const locale = pickLocale(request);
   const url = request.nextUrl.clone();
-  url.pathname = `/${country}/${lang}${pathname === "/" ? "" : pathname}`;
+  url.pathname = `/${LOCALES[locale].path}${pathname === "/" ? "" : pathname}`;
   return NextResponse.redirect(url);
 }
 
-function pickCountry(request: NextRequest): CountryCode {
-  const saved = request.cookies.get(LOCALE_COOKIE)?.value?.split(":")[0];
-  if (saved && isCountryCode(saved)) return saved;
+function pickLocale(request: NextRequest): LocaleCode {
+  const saved = request.cookies.get(LOCALE_COOKIE)?.value;
+  if (saved && (LOCALE_CODES as string[]).includes(saved) && isLocaleReady(saved as LocaleCode)) {
+    return saved as LocaleCode;
+  }
 
-  // Vercel and Cloudflare both expose the visitor country in a header.
+  const fromHeader = matchAcceptLanguage(request.headers.get("accept-language"));
+  if (fromHeader && isLocaleReady(fromHeader)) return fromHeader;
+
+  // Vercel and Cloudflare both expose the visitor country in a header. It is a
+  // weaker signal than an explicit language preference, so it comes last.
   const geo = (
     request.headers.get("x-vercel-ip-country") ??
     request.headers.get("cf-ipcountry") ??
     ""
   ).toLowerCase();
-  if (isCountryCode(geo)) return geo;
-
-  return DEFAULT_COUNTRY;
-}
-
-function pickLanguage(request: NextRequest, country: CountryCode) {
-  const saved = request.cookies.get(LOCALE_COOKIE)?.value?.split(":")[1];
-  if (saved && isLanguageCode(saved)) return resolveLanguage(country, saved);
-
-  const header = request.headers.get("accept-language") ?? "";
-  for (const part of header.split(",")) {
-    const tag = part.split(";")[0]?.trim().split("-")[0]?.toLowerCase();
-    if (tag && isLanguageCode(tag)) {
-      const resolved = resolveLanguage(country, tag);
-      if (resolved === tag) return resolved;
-    }
+  if (isCountryCode(geo)) {
+    const match = LOCALE_CODES.find(
+      (code) => LOCALES[code].defaultCountry === geo && isLocaleReady(code),
+    );
+    if (match) return match;
   }
-  return defaultLanguageFor(country);
+
+  return DEFAULT_LOCALE;
 }
 
 export const config = {
   // Skip Next internals, the API surface and anything that looks like a file.
   matcher: ["/((?!_next|api|.*\\.[\\w]+$).*)"],
 };
+
