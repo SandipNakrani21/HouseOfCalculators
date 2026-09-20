@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "i18n": "node scripts/i18n-coverage.mjs"
   },
   "dependencies": {
     "next": "16.3.5",

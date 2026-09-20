@@ -6,7 +6,12 @@ import { CalculatorRunner } from "@/components/CalculatorRunner";
 import { CountryBadge } from "@/components/ui/CountryBadge";
 import { CALCULATORS, calculatorsFor, getCalculator } from "@/config/calculators";
 import type { CalcContext } from "@/config/calculators/types";
-import { COUNTRIES, isCountryCode, type CountryCode } from "@/config/countries";
+import {
+  COUNTRIES,
+  availableLanguages,
+  isCountryCode,
+  type CountryCode,
+} from "@/config/countries";
 import { isLanguageCode, type LanguageCode } from "@/config/languages";
 import { createFormatter } from "@/lib/format";
 import { countryParams, createTranslator } from "@/lib/i18n";
@@ -16,7 +21,7 @@ type PageParams = { country: string; lang: string; slug: string };
 export function generateStaticParams() {
   return CALCULATORS.flatMap((calc) =>
     calc.countries.flatMap((country) =>
-      COUNTRIES[country].languages.map((lang) => ({
+      availableLanguages(country).map((lang) => ({
         country,
         lang,
         slug: calc.slug,

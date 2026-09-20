@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   COUNTRIES,
   COUNTRY_CODES,
+  availableLanguages,
   resolveLanguage,
   type CountryCode,
 } from "@/config/countries";
@@ -21,6 +22,12 @@ type Props = {
   mode: "gate" | "switch";
   onClose: () => void;
 };
+
+/** "$ USD", but just "CHF" where the symbol already is the code. */
+function currencyLabel(code: CountryCode): string {
+  const { symbol, code: iso } = COUNTRIES[code].currency;
+  return symbol === iso ? iso : `${symbol} ${iso}`;
+}
 
 export function LocaleDialog({ open, mode, onClose }: Props) {
   const { t, countryCode, lang } = useLocale();
@@ -52,7 +59,7 @@ export function LocaleDialog({ open, mode, onClose }: Props) {
   }, [open, mode, onClose]);
 
   const languages = useMemo(
-    () => COUNTRIES[draftCountry].languages,
+    () => availableLanguages(draftCountry),
     [draftCountry],
   );
 
@@ -132,8 +139,7 @@ export function LocaleDialog({ open, mode, onClose }: Props) {
                           {t(`country.${code}`)}
                         </span>
                         <span className="block text-xs text-muted">
-                          {COUNTRIES[code].currency.symbol}{" "}
-                          {COUNTRIES[code].currency.code}
+                          {currencyLabel(code)}
                         </span>
                       </span>
                     </button>

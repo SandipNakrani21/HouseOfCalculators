@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 import { LocaleGate } from "@/components/LocaleGate";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { COUNTRY_CODES, COUNTRIES, isCountryCode } from "@/config/countries";
+import { COUNTRY_CODES, availableLanguages, isCountryCode } from "@/config/countries";
 import { LANGUAGES, isLanguageCode } from "@/config/languages";
 import { createTranslator, getDictionary } from "@/lib/i18n";
 
@@ -22,7 +22,7 @@ type LocaleParams = { country: string; lang: string };
  */
 export function generateStaticParams(): LocaleParams[] {
   return COUNTRY_CODES.flatMap((country) =>
-    COUNTRIES[country].languages.map((lang) => ({ country, lang })),
+    availableLanguages(country).map((lang) => ({ country, lang })),
   );
 }
 
@@ -53,7 +53,7 @@ export default async function LocaleLayout({
 }) {
   const { country, lang } = await params;
   if (!isCountryCode(country) || !isLanguageCode(lang)) notFound();
-  if (!COUNTRIES[country].languages.includes(lang)) notFound();
+  if (!availableLanguages(country).includes(lang)) notFound();
 
   const dictionary = getDictionary(lang);
   const dir = LANGUAGES[lang].dir;

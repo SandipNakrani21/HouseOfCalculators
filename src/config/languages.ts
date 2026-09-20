@@ -2,7 +2,21 @@
  * Every language the site can render in.
  * `dir` drives the html[dir] attribute so RTL languages lay out correctly.
  */
-export type LanguageCode = "en" | "hi" | "gu" | "mr" | "es" | "ar";
+export type LanguageCode =
+  | "en"
+  | "hi"
+  | "gu"
+  | "mr"
+  | "es"
+  | "ar"
+  | "de"
+  | "fr"
+  | "nl"
+  | "ja"
+  | "it"
+  | "pt"
+  | "pl"
+  | "tr";
 
 export type Language = {
   code: LanguageCode;
@@ -22,6 +36,14 @@ export const LANGUAGES: Record<LanguageCode, Language> = {
   mr: { code: "mr", native: "मराठी", english: "Marathi", dir: "ltr", intlTag: "mr" },
   es: { code: "es", native: "Español", english: "Spanish", dir: "ltr", intlTag: "es" },
   ar: { code: "ar", native: "العربية", english: "Arabic", dir: "rtl", intlTag: "ar" },
+  de: { code: "de", native: "Deutsch", english: "German", dir: "ltr", intlTag: "de" },
+  fr: { code: "fr", native: "Français", english: "French", dir: "ltr", intlTag: "fr" },
+  nl: { code: "nl", native: "Nederlands", english: "Dutch", dir: "ltr", intlTag: "nl" },
+  ja: { code: "ja", native: "日本語", english: "Japanese", dir: "ltr", intlTag: "ja" },
+  it: { code: "it", native: "Italiano", english: "Italian", dir: "ltr", intlTag: "it" },
+  pt: { code: "pt", native: "Português", english: "Portuguese", dir: "ltr", intlTag: "pt" },
+  pl: { code: "pl", native: "Polski", english: "Polish", dir: "ltr", intlTag: "pl" },
+  tr: { code: "tr", native: "Türkçe", english: "Turkish", dir: "ltr", intlTag: "tr" },
 };
 
 export const LANGUAGE_CODES = Object.keys(LANGUAGES) as LanguageCode[];

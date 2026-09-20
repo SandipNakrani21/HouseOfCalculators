@@ -1,23 +1,40 @@
-import { LANGUAGES, type LanguageCode } from "@/config/languages";
+import { LANGUAGES, LANGUAGE_CODES, type LanguageCode } from "@/config/languages";
 
 import ar from "./dictionaries/ar.json";
+import de from "./dictionaries/de.json";
 import en from "./dictionaries/en.json";
 import es from "./dictionaries/es.json";
+import fr from "./dictionaries/fr.json";
 import gu from "./dictionaries/gu.json";
 import hi from "./dictionaries/hi.json";
 import mr from "./dictionaries/mr.json";
 
 export type Dictionary = Record<string, string>;
 
-/** English is the source of truth; other languages fall back to it key by key. */
-const RAW: Record<LanguageCode, Dictionary> = { en, hi, gu, mr, es, ar };
+/**
+ * English is the source of truth; other languages fall back to it key by key.
+ * A language with no entry here simply has no translation yet - it stays in
+ * the language registry, but `isLanguageReady` keeps it out of the picker
+ * until its file exists and covers enough of the site.
+ */
+const RAW: Partial<Record<LanguageCode, Dictionary>> = {
+  en,
+  hi,
+  gu,
+  mr,
+  es,
+  ar,
+  de,
+  fr,
+};
 
-const MERGED: Record<LanguageCode, Dictionary> = Object.fromEntries(
-  (Object.keys(RAW) as LanguageCode[]).map((code) => [
-    code,
-    { ...RAW.en, ...RAW[code] },
-  ]),
-) as Record<LanguageCode, Dictionary>;
+const MERGED = LANGUAGE_CODES.reduce(
+  (all, code) => {
+    all[code] = { ...en, ...(RAW[code] ?? {}) };
+    return all;
+  },
+  {} as Record<LanguageCode, Dictionary>,
+);
 
 export function getDictionary(lang: LanguageCode): Dictionary {
   return MERGED[lang] ?? MERGED.en;
@@ -74,4 +91,31 @@ export function countryParams(
     country,
     countryObl: oblique === obliqueKey ? country : oblique,
   };
+}
+
+/**
+ * A language is only offered once its dictionary actually covers the site.
+ *
+ * Every key falls back to English when it is missing, which is the right
+ * runtime behaviour but the wrong promise to make in the picker: choosing
+ * 日本語 and getting an English page is worse than not being offered it. The
+ * threshold is measured against English, so a language switches itself on as
+ * soon as its file is filled in - there is no separate list to maintain.
+ */
+export const READINESS_THRESHOLD = 0.75;
+
+const ENGLISH_KEYS = Object.keys(en);
+
+export const LANGUAGE_COVERAGE = LANGUAGE_CODES.reduce(
+  (all, code) => {
+    const dict = RAW[code];
+    const covered = dict ? ENGLISH_KEYS.filter((key) => key in dict).length : 0;
+    all[code] = covered / ENGLISH_KEYS.length;
+    return all;
+  },
+  {} as Record<LanguageCode, number>,
+);
+
+export function isLanguageReady(lang: LanguageCode): boolean {
+  return lang === "en" || LANGUAGE_COVERAGE[lang] >= READINESS_THRESHOLD;
 }

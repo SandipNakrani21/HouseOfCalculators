@@ -1,11 +1,11 @@
 import { MONEY_SCALE } from "@/config/calculators/scale";
 import { num, type CalculatorDef } from "@/config/calculators/types";
-import { sipFutureValue } from "@/lib/finance";
+import { sipFutureValue, stepUpSipFutureValue, stepUpSipInvested } from "@/lib/finance";
 
 /**
  * Monthly contribution into a fund. The maths is the same everywhere; what
  * changes per country is the money scale and what the product is called -
- * SIP in India, a monthly investment plan elsewhere.
+ * an SIP in India, a regular investment plan elsewhere.
  */
 export const sipCalculator: CalculatorDef = {
   slug: "sip",
@@ -13,13 +13,13 @@ export const sipCalculator: CalculatorDef = {
   category: "investment",
   titleKey: "calc.sip.title",
   descKey: "calc.sip.desc",
-  countries: ["in", "us", "gb", "ae"],
+  countries: ["in", "ae", "us", "gb", "ca", "au"],
   fields: ({ countryCode }) => {
     const scale = MONEY_SCALE[countryCode];
     return [
       {
         id: "monthly",
-        labelKey: "calc.sip.field.monthly",
+        labelKey: "field.monthlyInvestment",
         kind: "currency",
         min: scale.monthlyMin,
         max: scale.monthlyMax,
@@ -28,7 +28,7 @@ export const sipCalculator: CalculatorDef = {
       },
       {
         id: "rate",
-        labelKey: "calc.sip.field.rate",
+        labelKey: "field.expectedReturn",
         kind: "percent",
         min: 1,
         max: 30,
@@ -37,12 +37,22 @@ export const sipCalculator: CalculatorDef = {
       },
       {
         id: "years",
-        labelKey: "calc.sip.field.years",
+        labelKey: "field.timePeriod",
         kind: "years",
         min: 1,
         max: 40,
         step: 1,
         default: 10,
+      },
+      {
+        id: "stepUp",
+        labelKey: "field.annualStepUp",
+        hintKey: "calc.sip.stepUpHint",
+        kind: "percent",
+        min: 0,
+        max: 25,
+        step: 1,
+        default: 0,
       },
     ];
   },
@@ -50,35 +60,44 @@ export const sipCalculator: CalculatorDef = {
     const monthly = num(values, "monthly");
     const rate = num(values, "rate");
     const years = num(values, "years");
+    const stepUp = num(values, "stepUp");
 
-    const invested = monthly * Math.round(years * 12);
-    const maturity = sipFutureValue(monthly, rate, years);
+    // A step-up SIP raises the instalment every year, so both the amount paid
+    // in and the maturity have to be walked month by month.
+    const invested =
+      stepUp > 0
+        ? stepUpSipInvested(monthly, years, stepUp)
+        : monthly * Math.round(years * 12);
+    const maturity =
+      stepUp > 0
+        ? stepUpSipFutureValue(monthly, rate, years, stepUp)
+        : sipFutureValue(monthly, rate, years);
     const returns = Math.max(maturity - invested, 0);
 
     return {
       primary: {
-        labelKey: "calc.sip.result.total",
+        labelKey: "result.totalValue",
         value: maturity,
         kind: "currency",
         emphasis: true,
       },
       rows: [
         {
-          labelKey: "calc.sip.result.invested",
+          labelKey: "result.investedAmount",
           value: invested,
           kind: "currency",
           tone: "principal",
         },
         {
-          labelKey: "calc.sip.result.returns",
+          labelKey: "result.estimatedReturns",
           value: returns,
           kind: "currency",
           tone: "returns",
         },
       ],
       chart: [
-        { labelKey: "calc.sip.result.invested", value: invested, tone: "principal" },
-        { labelKey: "calc.sip.result.returns", value: returns, tone: "returns" },
+        { labelKey: "result.investedAmount", value: invested, tone: "principal" },
+        { labelKey: "result.estimatedReturns", value: returns, tone: "returns" },
       ],
     };
   },
