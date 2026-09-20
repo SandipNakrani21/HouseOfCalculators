@@ -5,6 +5,7 @@ import { CONVERTERS, pairSlug } from "@/config/converters/definitions";
 import { findUnit } from "@/config/converters/units";
 import type { CountryCode } from "@/config/countries";
 import { TOOLS } from "@/config/tools/definitions";
+import { CHARTS } from "@/config/charts/definitions";
 import type { LocaleCode } from "@/config/locales";
 import { unitName, type TranslateFn } from "@/lib/i18n";
 import { LOCALES } from "@/config/locales";
@@ -150,12 +151,27 @@ function toolItems({ locale, t }: BuildContext): ContentItem[] {
   }));
 }
 
+function chartItems({ locale, t }: BuildContext): ContentItem[] {
+  return CHARTS.map((chart) => ({
+    id: "chart:" + chart.slug,
+    section: "charts" as const,
+    category: chart.category,
+    slug: chart.slug,
+    icon: chart.icon,
+    title: t(chart.titleKey),
+    description: t(chart.descKey),
+    href: contentPath(locale, "charts", chart.category, chart.slug),
+    keywords: chart.keywords,
+  }));
+}
+
 /** Everything indexable for one locale and country context. */
 export function allContent(context: BuildContext): ContentItem[] {
   return [
     ...calculatorItems(context),
     ...converterItems(context),
     ...toolItems(context),
+    ...chartItems(context),
     ...countryItems(context),
   ];
 }
