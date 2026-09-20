@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Calcora
 
-## Getting Started
+Financial calculators that follow the visitor's country. The site asks for a
+country and a language on the first visit, stores the choice, and serves every
+page under `/{country}/{lang}` — so the currency, the statutory rules and all
+of the copy change together.
 
-First, run the development server:
+The UI takes its shape from Groww's calculator pages: a card of sliders on the
+left, a donut split on the right, the result rows underneath, and a searchable
+grid of every calculator on the home page.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev     # http://localhost:3000
+npm run build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How the locale works
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `src/proxy.ts` puts every request under a valid `/{country}/{lang}` prefix,
+  choosing from the saved cookie, then the CDN geo header, then
+  `Accept-Language`. A language a country does not offer redirects to one it
+  does, so a shared link always lands somewhere.
+- `src/app/[country]/[lang]/layout.tsx` is the root layout. It sets
+  `html[lang]` and `html[dir]` and hands the dictionary to `LocaleProvider`.
+- `LocaleGate` opens the country → language picker when no choice has been
+  stored. It reads the cookie through `useSyncExternalStore`, so pages stay
+  statically rendered.
+- Every page is prerendered for every country and language pair.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Adding a calculator
 
-## Learn More
+1. Write a definition in `src/config/calculators/definitions/`. A definition
+   declares which countries offer it, what fields to show, and how to compute
+   the result:
 
-To learn more about Next.js, take a look at the following resources:
+   ```ts
+   export const fdCalculator: CalculatorDef = {
+     slug: "fd",
+     icon: "🏛️",
+     category: "savings",
+     titleKey: "calc.fd.title",
+     descKey: "calc.fd.desc",
+     countries: ["in", "ae"],
+     fields: ({ countryCode }) => [...],
+     compute: (values, { country, fmt, t }) => ({ primary, rows, chart }),
+   };
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Register it in `src/config/calculators/index.ts`.
+3. Add its dictionary keys to every file in `src/lib/i18n/dictionaries/`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Nothing else needs touching: the home grid, search, the calculator page, the
+chart, the breakdown table and the metadata are all driven by the definition.
 
-## Deploy on Vercel
+Fields and results can differ per country from inside a single definition —
+slider ranges come from `src/config/calculators/scale.ts`, and copy such as
+`"{tax} Calculator"` resolves to GST, VAT or Sales Tax through the
+definition's `params`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Adding a country
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Add an entry to `src/config/countries.ts` (currency, number grouping, the
+languages it offers, its consumption tax and fiscal year), a money scale in
+`src/config/calculators/scale.ts`, a `country.<code>` key in every dictionary,
+and list the code on each calculator that should appear there. Income tax needs
+a rule set in `src/lib/finance/tax/income-tax.ts`.
+
+## Adding a language
+
+Add it to `src/config/languages.ts`, copy `dictionaries/en.json` and translate
+it, then list the code on the countries that should offer it. Missing keys fall
+back to English rather than rendering blank. Right-to-left is handled by the
+`dir` field — Arabic is already wired end to end, and the layout uses logical
+properties (`ps-*`, `text-start`) throughout.
+
+## Country-specific logic
+
+`src/lib/finance/` holds the pure maths, which is the same everywhere. The
+country-specific parts live beside it:
+
+- `tax/income-tax.ts` — slabs, allowances, rebates and payroll add-ons per
+  country: India's old and new regimes with the 87A rebate and cess, US federal
+  brackets with FICA, UK bands with the tapered personal allowance and National
+  Insurance, and the UAE's absence of personal income tax.
+- `config/countries.ts` — the consumption tax each country charges and at what
+  rates.
+
+**Statutory rates need checking before launch.** Each rule set carries a
+`verifiedFor` field naming the tax year it was written against (FY 2025-26 for
+India, 2025 for the US, 2025/26 for the UK). They are the numbers to re-confirm
+against the tax authority each year, and they are all data in one file so an
+update is an edit rather than a rewrite.
