@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
 import { AdScript } from "@/components/ads/AdSlot";
+import { ConsentBanner } from "@/components/consent/ConsentBanner";
+import { ConsentScript } from "@/components/consent/ConsentScript";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { WelcomeDialog } from "@/components/navigation/WelcomeDialog";
@@ -96,6 +98,7 @@ export default async function LocaleLayout({
           </main>
           <SiteFooter ready={ready} popular={popular} />
           <WelcomeDialog ready={ready} />
+          <ConsentBanner />
         </LocaleProvider>
 
         <script
@@ -108,6 +111,7 @@ export default async function LocaleLayout({
             __html: jsonLd(websiteSchema(locale.code)),
           }}
         />
+        <ConsentScript />
         <AdScript />
       </body>
     </html>

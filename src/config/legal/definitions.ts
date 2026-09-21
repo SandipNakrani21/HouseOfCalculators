@@ -1,4 +1,4 @@
-import { COUNTRY_COOKIE, LOCALE_COOKIE } from "@/lib/preferences";
+import { CONSENT_COOKIE, COUNTRY_COOKIE, LOCALE_COOKIE } from "@/lib/preferences";
 
 /**
  * The five pages an advertising-supported site needs, built the same way as
@@ -77,6 +77,7 @@ export function legalParams(): Record<string, string> {
   return {
     localeCookie: LOCALE_COOKIE,
     countryCookie: COUNTRY_COOKIE,
+    consentCookie: CONSENT_COOKIE,
     entity: OPERATOR.entity ?? "[ENTITY NAME]",
     email: OPERATOR.email ?? "[CONTACT EMAIL]",
     jurisdiction: OPERATOR.jurisdiction ?? "[JURISDICTION]",
@@ -109,7 +110,7 @@ const privacy: LegalPage = {
     {
       titleKey: "legal.privacy.stored.title",
       body: ["legal.privacy.stored.1", "legal.privacy.stored.2"],
-      bullets: ["legal.privacy.stored.b1", "legal.privacy.stored.b2"],
+      bullets: ["legal.privacy.stored.b1", "legal.privacy.stored.b2", "legal.privacy.stored.b3"],
     },
     {
       titleKey: "legal.privacy.notCollected.title",
@@ -173,7 +174,7 @@ const cookies: LegalPage = {
     {
       titleKey: "legal.cookies.own.title",
       body: ["legal.cookies.own.1", "legal.cookies.own.2"],
-      bullets: ["legal.cookies.own.b1", "legal.cookies.own.b2"],
+      bullets: ["legal.cookies.own.b1", "legal.cookies.own.b2", "legal.cookies.own.b3"],
     },
     {
       titleKey: "legal.cookies.third.title",

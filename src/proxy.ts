@@ -70,6 +70,16 @@ function pickLocale(request: NextRequest): LocaleCode {
 
 export const config = {
   // Skip Next internals, the API surface and anything that looks like a file.
-  matcher: ["/((?!_next|api|.*\\.[\\w]+$).*)"],
+  //
+  // The generated metadata routes have to be named too. They carry no file
+  // extension, so without this the locale redirect swallows /opengraph-image
+  // and every shared link loses its preview image.
+  //
+  // Next statically analyses this, so it has to stay a literal - it cannot be
+  // built from a constant. `tests/hreflang.test.ts` reads the literal back out
+  // of this file rather than keeping a second copy that could drift.
+  matcher: [
+    "/((?!_next|api|(?:opengraph-image|twitter-image|apple-icon|icon|manifest)(?:/|$)|.*\\.[\\w]+$).*)",
+  ],
 };
 

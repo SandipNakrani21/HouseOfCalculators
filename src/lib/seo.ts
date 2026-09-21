@@ -24,6 +24,9 @@ export function readyLocales(): LocaleCode[] {
 
 export const SITE_NAME = "House of Calculators";
 
+/** The generated share card. Next serves it from this root-level route. */
+const OG_IMAGE = absoluteUrl("/opengraph-image");
+
 type MetaInput = {
   locale: LocaleCode;
   /** Path within the locale, e.g. `/en-us/calculators/finance/mortgage`. */
@@ -77,11 +80,16 @@ export function buildMetadata({
       url: canonical,
       siteName: SITE_NAME,
       locale: locale.replace("-", "_"),
+      // Named explicitly rather than left to the file convention: setting
+      // `openGraph` here replaces it wholesale, so without this every page
+      // would be shared with no preview image at all.
+      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [OG_IMAGE],
     },
   };
 }

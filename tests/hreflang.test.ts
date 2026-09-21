@@ -1,4 +1,6 @@
 import { strict as assert } from "node:assert";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { describe, test } from "node:test";
 
 import {
@@ -235,6 +237,67 @@ describe("url shape", () => {
       assert.match(path, /^[a-z]{2}-[a-z]{2}$/, `${path} is not a clean locale segment`);
     }
   });
+});
+
+describe("proxy matcher", () => {
+  // The matcher decides which requests the locale redirect touches. Getting it
+  // wrong is invisible in the page tree: the metadata routes carry no file
+  // extension, so they were being redirected into a locale that has no such
+  // page, and every shared link lost its preview image.
+  /**
+   * The matcher literal, read back out of the source.
+   *
+   * Next statically analyses `config.matcher`, so it cannot be imported from
+   * a shared constant, and `proxy.ts` itself cannot be imported here because
+   * it pulls in `next/server`. Reading the file is what keeps this testing the
+   * pattern that actually ships rather than a copy of it.
+   */
+  const source = readFileSync(join(process.cwd(), "src", "proxy.ts"), "utf8");
+  const found = /matcher:\s*\[\s*"((?:[^"\\]|\\.)*)"/.exec(source);
+  assert.ok(found, "could not find the matcher literal in src/proxy.ts");
+  const pattern = JSON.parse(`"${found[1]}"`) as string;
+
+  /** Whether the locale redirect would run for a path. */
+  function handled(pathname: string): boolean {
+    return new RegExp(`^${pattern}$`).test(pathname);
+  }
+
+  test("leaves the generated metadata routes alone", () => {
+    for (const path of [
+      "/opengraph-image",
+      "/twitter-image",
+      "/apple-icon",
+      "/icon",
+      "/icon.svg",
+      "/manifest.webmanifest",
+      "/robots.txt",
+      "/sitemap.xml",
+      "/favicon.ico",
+    ]) {
+      assert.equal(handled(path), false, `${path} would be redirected away`);
+    }
+  });
+
+  test("leaves Next internals and the API surface alone", () => {
+    for (const path of ["/_next/static/chunk.js", "/api/anything"]) {
+      assert.equal(handled(path), false, `${path} would be redirected`);
+    }
+  });
+
+  test("still handles ordinary pages", () => {
+    for (const path of [
+      "/",
+      "/en-us",
+      "/en-us/calculators/finance/mortgage",
+      "/calculators",
+      "/en-us/privacy",
+      // A page whose slug merely starts with a metadata word must still route.
+      "/en-us/tools/utility/icon-picker",
+    ]) {
+      assert.equal(handled(path), true, `${path} would skip locale routing`);
+    }
+  });
+
 });
 
 describe("sitemap", () => {

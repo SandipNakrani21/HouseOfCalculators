@@ -6,7 +6,15 @@
 
 export const LOCALE_COOKIE = "hoc_locale";
 export const COUNTRY_COOKIE = "hoc_country";
+/**
+ * Whether the visitor accepted advertising cookies. Only meaningful when
+ * advertising is switched on at all; with no publisher id there are no such
+ * cookies to consent to, and nothing asks.
+ */
+export const CONSENT_COOKIE = "hoc_consent";
 export const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
+export type ConsentChoice = "granted" | "denied";
 
 function write(name: string, value: string): void {
   try {
@@ -46,4 +54,13 @@ export function readStoredCountry(): string | null {
 
 export function hasStoredLocale(): boolean {
   return read(LOCALE_COOKIE) !== null;
+}
+
+export function storeConsent(choice: ConsentChoice): void {
+  write(CONSENT_COOKIE, choice);
+}
+
+export function readConsent(): ConsentChoice | null {
+  const value = read(CONSENT_COOKIE);
+  return value === "granted" || value === "denied" ? value : null;
 }

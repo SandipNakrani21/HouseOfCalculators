@@ -1,0 +1,89 @@
+# Spec §66. The same gates as `npm run check`, plus the production build,
+# run on every push and pull request.
+#
+# The jobs are split rather than chained so a failure names itself in the
+# checks list: "tests" failing tells you more than "check" failing does.
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+# A new push supersedes an in-flight run on the same branch.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  # Keeps canonical URLs and hreflang off the production origin in CI.
+  NEXT_PUBLIC_SITE_URL: https://example.invalid
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+
+  typecheck:
+    name: Types
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # The suite runs .ts directly through Node's own runner, so the
+          # major version matters more than it would with a bundler.
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+
+  i18n:
+    name: Dictionary coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # Fails when a key referenced in source is missing from English. The
+      # per-language coverage figures are reported, not enforced - a language
+      # below the readiness threshold is gated off rather than broken.
+      - run: npm run i18n
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
