@@ -60,7 +60,11 @@ export function numberToWords(value: number): string {
   }
 
   const words = parts.join(" ");
-  const decimal = cents ? ` point ${underThousand(cents)}` : "";
+  // The two decimal places are read as written, so a leading zero has to be
+  // spoken: without it 12.05 and 12.5 both came out as "twelve point five".
+  const decimal = cents
+    ? ` point ${cents < 10 ? `zero ${ONES[cents]}` : underThousand(cents)}`
+    : "";
   return `${negative ? "minus " : ""}${words}${decimal}`;
 }
 

@@ -44,31 +44,35 @@ export function addMonths(date: Date, months: number): Date {
   return new Date(Date.UTC(year, month, Math.min(day, lastDay)));
 }
 
-/** Calendar difference, expressed the way people say it. */
+/**
+ * Calendar difference, expressed the way people say it.
+ *
+ * Counted by whole `addMonths` steps rather than by borrowing days from the
+ * previous month. Borrowing looks simpler but breaks whenever the start day is
+ * later than the borrowed month is long: 31 January to 1 March borrowed only
+ * February's 28 days and reported "1 month and -2 days". Stepping instead
+ * reuses the clamping rule already defined above, so the two agree by
+ * construction - 31 January plus one month is 28 February, and the remainder
+ * is counted from there.
+ */
 export function calendarDifference(
   from: Date,
   to: Date,
 ): { years: number; months: number; days: number } {
   const [start, end] = from <= to ? [from, to] : [to, from];
 
-  let years = end.getUTCFullYear() - start.getUTCFullYear();
-  let months = end.getUTCMonth() - start.getUTCMonth();
-  let days = end.getUTCDate() - start.getUTCDate();
+  let months =
+    (end.getUTCFullYear() - start.getUTCFullYear()) * 12 +
+    (end.getUTCMonth() - start.getUTCMonth());
 
-  if (days < 0) {
-    months -= 1;
-    // Borrow the length of the month before the end date.
-    const borrowed = new Date(
-      Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), 0),
-    ).getUTCDate();
-    days += borrowed;
-  }
-  if (months < 0) {
-    years -= 1;
-    months += 12;
-  }
+  // The month count overshoots when the end day falls before the anniversary.
+  if (addMonths(start, months) > end) months -= 1;
 
-  return { years, months, days };
+  return {
+    years: Math.floor(months / 12),
+    months: months % 12,
+    days: daysBetween(addMonths(start, months), end),
+  };
 }
 
 /** Whole days excluding Saturdays and Sundays, counting both endpoints. */
