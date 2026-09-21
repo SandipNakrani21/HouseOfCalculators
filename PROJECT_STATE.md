@@ -14,7 +14,7 @@
 | **Purpose** | Global, multilingual, mobile-first platform for calculators, converters, tools, reference tables, guides and country-specific utilities |
 | **Target users** | Anyone searching for a calculation ("mortgage payment", "meters to feet", "UK stamp duty"), across 16 locales and 22 countries |
 | **Monetization** | Organic search traffic → Google AdSense (slots built in, no publisher id configured yet) |
-| **Status** | Six product pillars implemented and building. 615 static pages generated. 487 tests passing. English complete; 7 other languages at ~29–33% coverage and therefore **gated off**. Statutory tax figures **unverified**. |
+| **Status** | Six product pillars plus the legal pages implemented and building. 625 static pages generated. 509 tests passing. English complete; 7 other languages at ~29–33% coverage and therefore **gated off**. Statutory tax figures **unverified**. |
 
 **Governing spec:** `C:\Users\sandi\Downloads\HouseOfCalculators_Project_Specification.md` (85 sections). The build follows it; deviations are documented in §7 below.
 
@@ -93,7 +93,8 @@ src/
 │   ├── converters/          units.ts (engine), definitions.ts (13 converters)
 │   ├── tools/definitions.ts 14 tools (metadata only)
 │   ├── charts/definitions.ts 19 tables (each has a `build(ctx)` generator)
-│   └── guides/definitions.ts 12 guides (structured, not free prose)
+│   ├── guides/definitions.ts 12 guides (structured, not free prose)
+│   └── legal/definitions.ts  5 legal pages + OPERATOR details
 ├── lib/
 │   ├── i18n/                index.ts + dictionaries/*.json
 │   ├── finance/             index.ts (pure maths), tax/{define,rules,slabs,index}.ts
@@ -119,9 +120,10 @@ docs/tax-rules-to-verify.md  every statutory number that needs checking
 | Tools | 14 |
 | Charts/tables | 19 |
 | Guides | 12 |
+| Legal pages | 5 (privacy, terms, cookies, contact, about) |
 | Locales | 16 (12 launch + 4 extra) |
 | Countries | 22 |
-| Static pages built | 615 |
+| Static pages built | 625 |
 
 ### Key relationships
 - `lib/content.ts` aggregates every registry into `ContentItem[]` — **the one place** search, grids and the sitemap read from, so a page can't exist in one and be missing from another.
@@ -220,6 +222,20 @@ Both the date and the number fix were verified in the running app, not only in t
 
 **Still open from this task:** search scoring tests, and component/E2E tests (spec §67) — neither started.
 
+### Then: the legal pages (commit `94c5488`)
+
+Five pages the footer had been linking to 404s: privacy, terms, cookies, contact, about. Structure in `src/config/legal/definitions.ts`, prose in `en.json` via `scripts/add-legal-keys.mjs`, one route at `src/app/[locale]/[legal]/page.tsx`, 22 tests in `tests/legal.test.ts`.
+
+The copy describes **what this site actually does**, not a template:
+- Calculation runs in the browser, so a visitor's numbers never leave their device. That is a real property of the architecture (spec §30) and it leads the policy.
+- No accounts and no contact form, so there is nothing stored to have rights over. Contact is an email address for that reason.
+- The two preference cookies are named from `LOCALE_COOKIE` / `COUNTRY_COOKIE` in `lib/preferences`, so the policy cannot describe a cookie the site does not set.
+- The terms lead with what the results are *not*, and state that statutory figures carry the year they were written for and are not warranted current.
+
+**⚠️ Before launch:** `OPERATOR` in `src/config/legal/definitions.ts` holds `entity`, `email` and `jurisdiction`, all still `null`. While any is unset **every legal page renders a visible "not ready to publish" notice**. Fill them in and the notice disappears — that is the whole remaining work on these pages.
+
+`app.name` is now `House of Calculators` in all seven translated dictionaries (was the pre-rebrand name). Decision: **one brand in Latin script across every locale**, so it stays searchable and matches the domain.
+
 ---
 
 ## 7. Decisions Already Made
@@ -252,7 +268,7 @@ Both the date and the number fix were verified in the running app, not only in t
 | 2 | **6 locales have no dictionary at all**: nl, ja, it, pt, pl, tr (+ new ru, zh) | Not started | Add file + import into `RAW` in `src/lib/i18n/index.ts`; the gate switches them on automatically |
 | 3 | **All statutory tax figures unverified** | Documented, not fixed | `docs/tax-rules-to-verify.md` lists every number. Must be checked before launch |
 | 4 | Known model gaps: CH (no cantonal tax), US/CA (no state/provincial), DE (contributions not deducted as Vorsorgeaufwendungen), FR (no quotient familial), BR (ICMS modelled as single VAT) | Each stated in the page's own note | Same doc |
-| 5 | Legal pages (`/privacy`, `/terms`, `/cookies`, `/contact`, `/about`) **linked in the footer but do not exist → 404** | Not started | Spec §35 requires them before AdSense |
+| 5 | ~~Legal pages linked in the footer but do not exist → 404~~ | **Fixed** (`94c5488`) | All five built and in the sitemap. See issue 15 for the one thing left on them |
 | 6 | No cookie-consent implementation | Not started | Required for EU traffic with ads (spec §35) |
 | 7 | AdSense not configured | By design | Set `NEXT_PUBLIC_ADSENSE_CLIENT`; slots render nothing until then |
 | 8 | Guide category page derived from the charts page via `sed` | Works, verified | Worth a read-through for leftover chart naming |
@@ -260,7 +276,8 @@ Both the date and the number fix were verified in the running app, not only in t
 | 10 | `MODULE_TYPELESS_PACKAGE_JSON` warnings when running tests | Cosmetic | Scoped `tests/package.json` already added; warnings come from `src/` files |
 | 11 | No CI pipeline (spec §66) | Not started | `npm run check` exists as the local equivalent |
 | 12 | ~~`npx tsc --noEmit` failed on the test files (`TS5097`)~~ | **Fixed** (`0c4953a`) | `"allowImportingTsExtensions": true` added to `tsconfig.json`, valid because `noEmit` is already set. The tests stay type-checked |
-| 13 | **`app.name` is still the pre-rebrand brand in all 7 translated dictionaries** (`Calcora`, `कैलकोरा`, `كالكورا`, …) | Open — needs a naming decision, not a code change | The `{app}` slots around it are now correct (`b1b5b77`), so this is one string per language. Decide first whether the brand stays `House of Calculators` untransliterated in every language or is transliterated per script |
+| 13 | ~~`app.name` was still the pre-rebrand brand in all 7 translated dictionaries~~ | **Fixed** (`94c5488`) | Set to `House of Calculators` in every language. Decided: one brand in Latin script everywhere, so it stays searchable and matches the domain |
+| 15 | **`OPERATOR` details are unset** — entity, contact email and governing-law jurisdiction are all `null` in `src/config/legal/definitions.ts` | Open, **blocks launch and AdSense review** | Every legal page shows a "not ready to publish" notice until they are filled in. This is a one-object edit; the notice disappears on its own |
 | 14 | **No pluralisation**: the date tools render "0 years, 1 months and 1 days" | Open, cosmetic but visible on every date result | Needs plural-aware keys. English alone would be a patch; doing it per language is the real fix, since plural rules differ (Arabic has six forms). Consider `Intl.PluralRules` keyed as `key.one` / `key.other` with the existing English fallback |
 
 ---
@@ -270,22 +287,23 @@ Both the date and the number fix were verified in the running app, not only in t
 ### Immediate next task
 1. ~~Commit the guides pillar + tests~~ — done (`0c4953a`).
 2. ~~Finish the test suite~~ — done (`b1b5b77`), 487 tests, five bugs found and fixed.
-3. **Legal pages** — privacy, terms, cookies, contact, about. The footer links to five 404s today and AdSense review will require them. This is now the first thing to do.
+3. ~~Legal pages~~ — done (`94c5488`), all five built, in the sitemap and tested.
+4. **Fill in `OPERATOR`** (issue 15) — entity, contact email, governing-law jurisdiction. Until then every legal page carries a visible "not ready to publish" notice, so this blocks launch and AdSense review. Needs the user, not a code change.
 
 ### Short term
-4. **Translate the new keys for de, fr, es** (restores 3 locales). While doing it, set `app.name` (issue 13) and keep `npm run test` green — `tests/i18n.test.ts` now fails the build on a mismatched placeholder, which is the point.
-5. Then hi, gu, mr, ar (restores India/UAE).
-6. Cookie-consent component.
+5. **Translate the new keys for de, fr, es** (restores 3 locales). Note English grew to 1391 keys with the legal copy, so coverage now reads 26–30%. Keep `npm run test` green while translating — `tests/i18n.test.ts` fails on a mismatched placeholder, which is the point of it. Leave `app.name` alone: the brand is deliberately the same Latin string in every language.
+6. Then hi, gu, mr, ar (restores India/UAE).
+7. **Cookie-consent component** — the cookies page now describes the cookies honestly, but EU traffic with ads still needs a consent mechanism (spec §35).
 
 ### Later
-7. New locale dictionaries: nl, ja, it, pt, pl, tr, ru, zh.
-8. Verify statutory tax figures against `docs/tax-rules-to-verify.md`.
-9. Currency converter (spec §12 — needs a live rate source with timestamps; **never hard-code rates**).
-10. Remaining calculator categories the spec lists but that aren't built: math, health, education, engineering, construction.
-11. CI pipeline; GA4 + Search Console; performance budgets.
+8. New locale dictionaries: nl, ja, it, pt, pl, tr, ru, zh.
+9. Verify statutory tax figures against `docs/tax-rules-to-verify.md`.
+10. Currency converter (spec §12 — needs a live rate source with timestamps; **never hard-code rates**).
+11. Remaining calculator categories the spec lists but that aren't built: math, health, education, engineering, construction.
+12. CI pipeline; GA4 + Search Console; performance budgets. **Adding GA4 means updating the privacy and cookies pages first** — both currently state that no analytics are used, and a policy that quietly becomes untrue is worse than no policy.
 
 ### Optional
-12. Component/E2E tests; theme toggle; PostgreSQL + admin CMS (spec §47/§77) once content outgrows config files.
+13. Component/E2E tests; theme toggle; PostgreSQL + admin CMS (spec §47/§77) once content outgrows config files.
 
 ---
 
@@ -337,6 +355,9 @@ Both the date and the number fix were verified in the running app, not only in t
 | `src/components/**` | ~20 components in spec-shaped folders |
 | `tests/{finance,tax}.test.ts`, `tests/alias-hooks.mjs`, `tests/register-alias.mjs`, `tests/package.json` | Test suite + ESM loader |
 | `scripts/{i18n-coverage,add-en-keys,add-tool-keys,add-chart-keys,add-guide-keys}.mjs` | Dictionary tooling |
+| `src/config/legal/definitions.ts` | 5 legal pages + the `OPERATOR` details that must be filled before launch |
+| `src/app/[locale]/[legal]/page.tsx` | One route serving all five legal pages |
+| `tests/{converters,tools,i18n,hreflang,legal}.test.ts` | The rest of the suite — 509 tests total |
 | `docs/tax-rules-to-verify.md` | Every statutory figure needing verification |
 | `.gitattributes` | LF normalisation |
 
