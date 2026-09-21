@@ -98,31 +98,64 @@ function nice(value: number): number {
   return stepped * magnitude;
 }
 
+/**
+ * The same, rounding down.
+ *
+ * A slider's floor has to round the other way: rounding a minimum up can push
+ * it past the value the field defaults to. Brazil hit exactly that - a typical
+ * income of R$60,000 against a floor that rounded to R$100,000 - which opened
+ * four calculators there with the handle pinned outside its own range.
+ */
+function niceFloor(value: number): number {
+  if (value <= 0) return 1;
+  const magnitude = Math.pow(10, Math.floor(Math.log10(value)));
+  const normalised = value / magnitude;
+  const stepped = normalised >= 10 ? 10 : normalised >= 5 ? 5 : normalised >= 2 ? 2 : 1;
+  return stepped * magnitude;
+}
+
 function buildScale(country: CountryCode): MoneyScale {
   const factor = UNITS_PER_EUR[country];
   const typical = TYPICAL[country];
   const at = (euros: number) => nice(euros * factor);
+  const floorAt = (euros: number) => niceFloor(euros * factor);
+
+  const defaults = {
+    monthly: at(400),
+    lump: at(10_000),
+    income: typical.income,
+    loan: Math.round(typical.property * 0.8),
+    property: typical.property,
+  };
+
+  // The bounds are derived from a euro conversion while the defaults come from
+  // a hand-set table of typical local figures. Nothing makes the two agree, so
+  // the range is widened to contain its own default rather than trusting that
+  // it already does.
+  const range = (min: number, max: number, value: number) => ({
+    min: Math.min(min, value),
+    max: Math.max(max, value),
+  });
+
+  const income = range(floorAt(10_000), at(1_000_000), defaults.income);
+  const loan = range(floorAt(5_000), at(2_000_000), defaults.loan);
+  const monthly = range(floorAt(25), at(20_000), defaults.monthly);
+  const lump = range(floorAt(500), at(2_000_000), defaults.lump);
 
   return {
     monthlyStep: at(25),
-    monthlyMin: at(25),
-    monthlyMax: at(20_000),
+    monthlyMin: monthly.min,
+    monthlyMax: monthly.max,
     lumpStep: at(500),
-    lumpMin: at(500),
-    lumpMax: at(2_000_000),
+    lumpMin: lump.min,
+    lumpMax: lump.max,
     incomeStep: at(1_000),
-    incomeMin: at(10_000),
-    incomeMax: at(1_000_000),
+    incomeMin: income.min,
+    incomeMax: income.max,
     loanStep: at(5_000),
-    loanMin: at(5_000),
-    loanMax: at(2_000_000),
-    defaults: {
-      monthly: at(400),
-      lump: at(10_000),
-      income: typical.income,
-      loan: Math.round(typical.property * 0.8),
-      property: typical.property,
-    },
+    loanMin: loan.min,
+    loanMax: loan.max,
+    defaults,
   };
 }
 

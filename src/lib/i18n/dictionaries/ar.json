@@ -47,7 +47,7 @@
   "calc.formula": "المعادلة",
   "calc.faq": "الأسئلة الشائعة",
   "calc.related": "حاسبات ذات صلة",
-  "calc.countryNote": "الأرقام تتبع قوانين {country} لسنة {year}.",
+  "calc.countryNote.rules": "الأرقام تتبع قوانين {country} لسنة {year}.",
   "calc.notAvailable": "هذه الحاسبة غير متاحة في {country}.",
   "calc.seeAvailable": "عرض حاسبات {country}",
   "units.year": "سنة",

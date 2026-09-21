@@ -63,6 +63,28 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
     );
   }
 
+  if (field.kind === "text") {
+    // For inputs that are a list rather than a single number, such as the set
+    // of values a statistics calculator works over.
+    return (
+      <div className="space-y-2">
+        <label htmlFor={id} className="block text-sm font-medium text-foreground">
+          {t(field.labelKey)}
+        </label>
+        <input
+          id={id}
+          type="text"
+          value={String(value ?? "")}
+          onChange={(event) => onChange(event.target.value)}
+          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-[var(--ring)]"
+        />
+        {field.hintKey ? (
+          <p className="text-xs text-muted">{t(field.hintKey)}</p>
+        ) : null}
+      </div>
+    );
+  }
+
   if (field.kind === "toggle") {
     const checked = value === true || value === "true";
     return (

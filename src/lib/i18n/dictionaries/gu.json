@@ -47,7 +47,7 @@
   "calc.formula": "સૂત્ર",
   "calc.faq": "વારંવાર પૂછાતા પ્રશ્નો",
   "calc.related": "સંબંધિત કૅલ્ક્યુલેટર",
-  "calc.countryNote": "આંકડા {year} માટે {countryObl}ના નિયમો પ્રમાણે છે.",
+  "calc.countryNote.rules": "આંકડા {year} માટે {countryObl}ના નિયમો પ્રમાણે છે.",
   "calc.notAvailable": "આ કૅલ્ક્યુલેટર {country} માટે ઉપલબ્ધ નથી.",
   "calc.seeAvailable": "{countryObl}નાં કૅલ્ક્યુલેટર જુઓ",
   "units.year": "વર્ષ",

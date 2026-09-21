@@ -21,7 +21,7 @@ export function BreakdownPanel({
   t,
 }: {
   views: BreakdownView[];
-  format: (value: number | string, kind: ResultKind) => string;
+  format: (value: number | string, kind: ResultKind, decimals?: number) => string;
   t: (key: string, params?: Record<string, string | number>) => string;
 }) {
   const [activeId, setActiveId] = useState(views[0]?.id);
@@ -94,7 +94,7 @@ export function BreakdownPanel({
                     key={column.key}
                     className="tabular py-2.5 text-start text-foreground"
                   >
-                    {format(row[column.key], column.kind)}
+                    {format(row[column.key], column.kind, column.decimals)}
                   </td>
                 ))}
               </tr>
@@ -115,7 +115,7 @@ export function BreakdownPanel({
                 <div key={column.key} className="flex justify-between gap-3">
                   <dt className="text-xs text-muted">{t(column.labelKey)}</dt>
                   <dd className="tabular text-xs font-medium text-foreground">
-                    {format(row[column.key], column.kind)}
+                    {format(row[column.key], column.kind, column.decimals)}
                   </dd>
                 </div>
               ))}

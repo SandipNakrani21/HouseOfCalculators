@@ -25,7 +25,7 @@ export function ResultActions({
   title: string;
   values: FieldValues;
   result: CalculatorResult;
-  format: (value: number | string, kind: ResultKind) => string;
+  format: (value: number | string, kind: ResultKind, decimals?: number) => string;
   t: (key: string, params?: Record<string, string | number>) => string;
 }) {
   const [copied, setCopied] = useState(false);
@@ -58,10 +58,10 @@ export function ResultActions({
     const rows: string[][] = [[t("export.item"), t("export.value")]];
     rows.push([
       t(result.primary.labelKey),
-      format(result.primary.value, result.primary.kind),
+      format(result.primary.value, result.primary.kind, result.primary.decimals),
     ]);
     for (const row of result.rows) {
-      rows.push([t(row.labelKey), format(row.value, row.kind)]);
+      rows.push([t(row.labelKey), format(row.value, row.kind, row.decimals)]);
     }
 
     for (const view of result.breakdown ?? []) {
@@ -69,7 +69,7 @@ export function ResultActions({
       rows.push(view.columns.map((column) => t(column.labelKey)));
       for (const entry of view.rows) {
         rows.push(
-          view.columns.map((column) => format(entry[column.key], column.kind)),
+          view.columns.map((column) => format(entry[column.key], column.kind, column.decimals)),
         );
       }
     }

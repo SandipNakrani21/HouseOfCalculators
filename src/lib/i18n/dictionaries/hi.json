@@ -47,7 +47,7 @@
   "calc.formula": "सूत्र",
   "calc.faq": "अक्सर पूछे जाने वाले सवाल",
   "calc.related": "संबंधित कैलकुलेटर",
-  "calc.countryNote": "आंकड़े {year} के लिए {country} के नियमों पर आधारित हैं।",
+  "calc.countryNote.rules": "आंकड़े {year} के लिए {country} के नियमों पर आधारित हैं।",
   "calc.notAvailable": "यह कैलकुलेटर {country} के लिए उपलब्ध नहीं है।",
   "calc.seeAvailable": "{country} के कैलकुलेटर देखें",
   "units.year": "वर्ष",

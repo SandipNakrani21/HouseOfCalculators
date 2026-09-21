@@ -5,6 +5,7 @@ import { CalculatorRunner } from "@/components/calculator/CalculatorRunner";
 import { Breadcrumbs, type Crumb } from "@/components/layout/Breadcrumbs";
 import { CountryBadge } from "@/components/shared/CountryBadge";
 import { calculatorsFor } from "@/config/calculators";
+import { countryRelevanceOf } from "@/config/calculators/types";
 import type { CalcContext, CalculatorDef } from "@/config/calculators/types";
 import { COUNTRIES, type CountryCode } from "@/config/countries";
 import type { LocaleCode } from "@/config/locales";
@@ -38,6 +39,7 @@ export function CalculatorPageBody({
   const fmt = createFormatter(country, language);
   const ctx: CalcContext = { countryCode: country, country: COUNTRIES[country], t, fmt };
   const params = calculator.params?.(ctx);
+  const relevance = countryRelevanceOf(calculator);
 
   const title = t(calculator.titleKey, params);
   const related = relatedTo(calculator, country)
@@ -61,13 +63,18 @@ export function CalculatorPageBody({
         <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
           {t(calculator.descKey, params)}
         </p>
-        <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-surface-muted px-3 py-1.5 text-xs text-muted">
-          <CountryBadge code={country} />
-          {t("calc.countryNote", {
-            country: t(`country.${country}`),
-            year: COUNTRIES[country].fiscalYear.label,
-          })}
-        </p>
+        {relevance === "none" ? null : (
+          // Say what the country actually changes here. Claiming a BMI follows
+          // a country's rules for a tax year would be simply untrue.
+          <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-surface-muted px-3 py-1.5 text-xs text-muted">
+            <CountryBadge code={country} />
+            {t(`calc.countryNote.${relevance}`, {
+              country: t(`country.${country}`),
+              year: COUNTRIES[country].fiscalYear.label,
+              currency: COUNTRIES[country].currency.code,
+            })}
+          </p>
+        )}
       </header>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]">

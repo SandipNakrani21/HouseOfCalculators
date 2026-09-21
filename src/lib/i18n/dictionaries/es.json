@@ -47,7 +47,7 @@
   "calc.formula": "Fórmula",
   "calc.faq": "Preguntas frecuentes",
   "calc.related": "Calculadoras relacionadas",
-  "calc.countryNote": "{country}: las cifras siguen las reglas vigentes para {year}.",
+  "calc.countryNote.rules": "{country}: las cifras siguen las reglas vigentes para {year}.",
   "calc.notAvailable": "{country}: esta calculadora no está disponible aquí.",
   "calc.seeAvailable": "Ver las calculadoras de este país",
   "units.year": "año",

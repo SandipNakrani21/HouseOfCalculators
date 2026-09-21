@@ -8,6 +8,7 @@ import { FieldControl, visibleFields } from "@/components/calculator/FieldContro
 import { DonutChart } from "@/components/charts/DonutChart";
 import { CountrySelector } from "@/components/navigation/CountrySelector";
 import { getCalculator } from "@/config/calculators";
+import { countryRelevanceOf } from "@/config/calculators/types";
 import type {
   CalcContext,
   CalculatorDef,
@@ -98,18 +99,18 @@ export function CalculatorRunner({
   );
 
   const format = useCallback(
-    (value: number | string, kind: ResultKind) => {
+    (value: number | string, kind: ResultKind, decimals?: number) => {
       if (kind === "label") return t(String(value));
       if (typeof value === "string") return value;
       switch (kind) {
         case "currency":
-          return fmt.currency(value);
+          return fmt.currency(value, decimals === undefined ? undefined : { decimals });
         case "percent":
-          return fmt.percent(value, { decimals: 2 });
+          return fmt.percent(value, { decimals: decimals ?? 2 });
         case "years":
-          return `${fmt.number(value)} ${t("units.years")}`;
+          return `${fmt.number(value, { decimals })} ${t("units.years")}`;
         default:
-          return fmt.number(value);
+          return fmt.number(value, { decimals });
       }
     },
     [fmt, t],
@@ -123,7 +124,7 @@ export function CalculatorRunner({
   return (
     <div className="space-y-6">
       <section className="rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow-card)] sm:p-7">
-        {lockedCountry ? null : (
+        {lockedCountry || countryRelevanceOf(calculator) === "none" ? null : (
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-5">
             <div>
               <h2 className="text-sm font-semibold">{t("calc.countryContext")}</h2>
@@ -182,7 +183,7 @@ export function CalculatorRunner({
             {t(result.primary.labelKey)}
           </p>
           <p className="tabular mt-1 text-3xl font-bold text-primary">
-            {format(result.primary.value, result.primary.kind)}
+            {format(result.primary.value, result.primary.kind, result.primary.decimals)}
           </p>
         </div>
 
@@ -195,7 +196,7 @@ export function CalculatorRunner({
               >
                 <p className="text-xs text-muted">{t(row.labelKey)}</p>
                 <p className="tabular mt-0.5 text-lg font-semibold">
-                  {format(row.value, row.kind)}
+                  {format(row.value, row.kind, row.decimals)}
                 </p>
               </li>
             ))}
@@ -219,7 +220,7 @@ export function CalculatorRunner({
                 {t(row.labelKey)}
               </dt>
               <dd className="tabular text-end text-sm font-medium text-foreground">
-                {format(row.value, row.kind)}
+                {format(row.value, row.kind, row.decimals)}
               </dd>
             </div>
           ))}

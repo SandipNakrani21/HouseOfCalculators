@@ -47,7 +47,7 @@
   "calc.formula": "Formel",
   "calc.faq": "Häufige Fragen",
   "calc.related": "Verwandte Rechner",
-  "calc.countryNote": "{country}: Die Zahlen folgen den Regeln für {year}.",
+  "calc.countryNote.rules": "{country}: Die Zahlen folgen den Regeln für {year}.",
   "calc.notAvailable": "{country}: Dieser Rechner ist hier nicht verfügbar.",
   "calc.seeAvailable": "Rechner für dieses Land ansehen",
   "units.year": "J.",

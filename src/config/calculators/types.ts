@@ -20,7 +20,9 @@ export type FieldKind =
   | "years"
   | "months"
   | "select"
-  | "toggle";
+  | "toggle"
+  /** Free text, for inputs that are a list rather than a single number. */
+  | "text";
 
 export type SelectOption = {
   value: string;
@@ -63,6 +65,8 @@ export type ResultRow = {
   kind: ResultKind;
   /** Renders bigger and bolder - the headline number of the group. */
   emphasis?: boolean;
+  /** Decimal places. Defaults to 0, which is right for money but not for a BMI. */
+  decimals?: number;
   /** Swatch colour, matched to the chart slice of the same name. */
   tone?: "principal" | "returns" | "tax" | "neutral";
   hintKey?: string;
@@ -78,6 +82,8 @@ export type BreakdownColumn = {
   key: string;
   labelKey: string;
   kind: ResultKind;
+  /** Decimal places for this column; defaults to 0. */
+  decimals?: number;
 };
 
 /**
@@ -136,6 +142,19 @@ export type CalculatorDef = {
    * category, so the same calculation never gets two competing URLs.
    */
   isCountrySpecific?: boolean;
+  /**
+   * What the country actually changes for this calculator. It decides the note
+   * under the heading and whether a country selector is offered at all.
+   *
+   *   rules    - statutory figures differ (tax, duty, contributions)
+   *   currency - only the money symbol and grouping change
+   *   units    - metric or imperial defaults follow the country
+   *   none     - nothing changes; a hypotenuse is a hypotenuse
+   *
+   * Defaults to "rules" for a country-specific calculator and "currency"
+   * otherwise, which is what every existing finance definition means.
+   */
+  countryRelevance?: "rules" | "currency" | "units" | "none";
   /** Slugs to surface as related tools, beyond the automatic suggestions. */
   relatedCalculators?: string[];
   /** Extra words that should match this calculator in search. */
@@ -164,4 +183,18 @@ export function str(values: FieldValues, id: string, fallback = ""): string {
 export function bool(values: FieldValues, id: string, fallback = false): boolean {
   const raw = values[id];
   return typeof raw === "boolean" ? raw : raw === "true" ? true : fallback;
+}
+
+/**
+ * What the country changes for a calculator, with the default applied.
+ * Kept here rather than inline so the page and the runner cannot disagree
+ * about whether to offer a country selector.
+ */
+export function countryRelevanceOf(
+  calculator: Pick<CalculatorDef, "countryRelevance" | "isCountrySpecific">,
+): "rules" | "currency" | "units" | "none" {
+  return (
+    calculator.countryRelevance ??
+    (calculator.isCountrySpecific ? "rules" : "currency")
+  );
 }

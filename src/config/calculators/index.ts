@@ -11,6 +11,7 @@ import {
   thirtyPercentRulingCalculator,
   tipCalculator,
 } from "./definitions/income";
+import { HEALTH_CALCULATORS } from "./definitions/health";
 import {
   autoLoanCalculator,
   mortgageCalculator,
@@ -26,6 +27,7 @@ import {
   socialSecurityBenefitCalculator,
   superannuationCalculator,
 } from "./definitions/retirement";
+import { MATH_CALCULATORS } from "./definitions/maths";
 import { sipCalculator } from "./definitions/sip";
 import {
   capitalGainsCalculator,
@@ -70,6 +72,11 @@ export const CALCULATORS: CalculatorDef[] = [
   payrollCalculator,
   severancePayCalculator,
   tipCalculator,
+
+  // Generic, country-independent sets. Grouped rather than interleaved so
+  // the finance tools most visitors arrive for stay at the top of the grid.
+  ...HEALTH_CALCULATORS,
+  ...MATH_CALCULATORS,
 ];
 
 export function calculatorsFor(country: CountryCode): CalculatorDef[] {
