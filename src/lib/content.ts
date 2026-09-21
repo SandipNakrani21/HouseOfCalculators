@@ -6,6 +6,7 @@ import { findUnit } from "@/config/converters/units";
 import type { CountryCode } from "@/config/countries";
 import { TOOLS } from "@/config/tools/definitions";
 import { CHARTS } from "@/config/charts/definitions";
+import { GUIDES } from "@/config/guides/definitions";
 import type { LocaleCode } from "@/config/locales";
 import { unitName, type TranslateFn } from "@/lib/i18n";
 import { LOCALES } from "@/config/locales";
@@ -165,6 +166,20 @@ function chartItems({ locale, t }: BuildContext): ContentItem[] {
   }));
 }
 
+function guideItems({ locale, t }: BuildContext): ContentItem[] {
+  return GUIDES.map((guide) => ({
+    id: "guide:" + guide.slug,
+    section: "guides" as const,
+    category: guide.category,
+    slug: guide.slug,
+    icon: guide.icon,
+    title: t(guide.titleKey),
+    description: t(guide.descKey),
+    href: contentPath(locale, "guides", guide.category, guide.slug),
+    keywords: guide.keywords,
+  }));
+}
+
 /** Everything indexable for one locale and country context. */
 export function allContent(context: BuildContext): ContentItem[] {
   return [
@@ -172,6 +187,7 @@ export function allContent(context: BuildContext): ContentItem[] {
     ...converterItems(context),
     ...toolItems(context),
     ...chartItems(context),
+    ...guideItems(context),
     ...countryItems(context),
   ];
 }

@@ -9,8 +9,9 @@ import {
 import { CONVERTERS, pairSlug } from "@/config/converters/definitions";
 import { COUNTRY_CODES } from "@/config/countries";
 import { TOOLS } from "@/config/tools/definitions";
-import { CHART_CATEGORIES, TOOL_CATEGORIES } from "@/config/categories";
+import { CHART_CATEGORIES, GUIDE_CATEGORIES, TOOL_CATEGORIES } from "@/config/categories";
 import { CHARTS } from "@/config/charts/definitions";
+import { GUIDES } from "@/config/guides/definitions";
 import {
   absoluteUrl,
   categoryPath,
@@ -50,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Sections that currently hold content. Empty ones are excluded until they do.
   const liveSections: Section[] = SECTIONS.filter((section) =>
-    ["calculators", "converters", "tools", "charts", "countries"].includes(section),
+    ["calculators", "converters", "tools", "charts", "guides", "countries"].includes(section),
   );
 
   for (const locale of locales) {
@@ -97,6 +98,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     for (const chart of CHARTS) {
       add(contentPath(locale, "charts", chart.category, chart.slug), 0.8, "monthly");
+    }
+
+    for (const category of GUIDE_CATEGORIES) {
+      add(categoryPath(locale, "guides", category), 0.7, "monthly");
+    }
+
+    for (const guide of GUIDES) {
+      add(contentPath(locale, "guides", guide.category, guide.slug), 0.8, "monthly");
     }
 
     for (const country of COUNTRY_CODES) {

@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "i18n": "node scripts/i18n-coverage.mjs"
+    "i18n": "node scripts/i18n-coverage.mjs",
+    "test": "node --import ./tests/register-alias.mjs --test \"tests/**/*.test.ts\"",
+    "check": "npm run lint && npx tsc --noEmit && npm run test && npm run i18n"
   },
   "dependencies": {
     "next": "16.3.5",
