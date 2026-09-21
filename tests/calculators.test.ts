@@ -33,13 +33,21 @@ function contextFor(country: CountryCode): CalcContext {
 }
 
 /**
- * Every combination of the select and toggle answers.
+ * Answer sets that reach every branch without exploding.
  *
  * A calculator's conditional fields and branch-specific results only appear
  * for particular answers, so testing the defaults alone would leave most of
- * the surface unreached - including, on the health calculators, the entire
- * imperial branch.
+ * the surface unreached - the entire imperial branch of the health
+ * calculators, for one.
+ *
+ * The full cross product is only viable when it is small: the GPA calculator
+ * has six grade selects of eleven options each, which is 1.7 million
+ * combinations per country. So the product is used while it stays under a
+ * budget, and otherwise every option is exercised once against the defaults.
+ * That still reaches every option and every single-field branch.
  */
+const COMBINATION_BUDGET = 64;
+
 function answerCombinations(fields: CalculatorField[]): FieldValues[] {
   const base: FieldValues = {};
   for (const field of fields) base[field.id] = field.default;
@@ -53,13 +61,24 @@ function answerCombinations(fields: CalculatorField[]): FieldValues[] {
     )
     .filter((options) => options.length > 0);
 
-  return choices.reduce<FieldValues[]>(
-    (combos, options) =>
-      combos.flatMap((combo) =>
-        options.map(([id, value]) => ({ ...combo, [id]: value })),
-      ),
-    [base],
-  );
+  const product = choices.reduce((total, options) => total * options.length, 1);
+
+  if (product <= COMBINATION_BUDGET) {
+    return choices.reduce<FieldValues[]>(
+      (combos, options) =>
+        combos.flatMap((combo) =>
+          options.map(([id, value]) => ({ ...combo, [id]: value })),
+        ),
+      [base],
+    );
+  }
+
+  return [
+    base,
+    ...choices.flatMap((options) =>
+      options.map(([id, value]) => ({ ...base, [id]: value })),
+    ),
+  ];
 }
 
 /** Keys a calculator reaches for one set of answers. */
@@ -179,15 +198,12 @@ describe("registry", () => {
   });
 
   test("every category the IA declares either has calculators or is empty on purpose", () => {
-    // Currently business, education, engineering and construction are declared
-    // but unbuilt. This test records which, so adding one is a visible change.
+    // Every category the IA declares now has calculators in it. Recording
+    // that here makes a category emptying out a visible failure rather than
+    // a category page that quietly lists nothing.
     const populated = new Set(CALCULATORS.map((calc) => calc.category));
     const empty = CALCULATOR_CATEGORIES.filter((category) => !populated.has(category));
-    assert.deepEqual(
-      empty.sort(),
-      ["construction", "education", "engineering"].sort(),
-      `empty categories changed: ${empty.join(", ")}`,
-    );
+    assert.deepEqual(empty, [], `empty categories: ${empty.join(", ")}`);
   });
 });
 

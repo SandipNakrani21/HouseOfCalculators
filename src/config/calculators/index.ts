@@ -11,6 +11,9 @@ import {
   thirtyPercentRulingCalculator,
   tipCalculator,
 } from "./definitions/income";
+import { BUSINESS_CALCULATORS, EVERYDAY_CALCULATORS } from "./definitions/business";
+import { CONSTRUCTION_CALCULATORS, ENGINEERING_CALCULATORS } from "./definitions/construction";
+import { EDUCATION_CALCULATORS } from "./definitions/education";
 import { HEALTH_CALCULATORS } from "./definitions/health";
 import {
   autoLoanCalculator,
@@ -77,6 +80,11 @@ export const CALCULATORS: CalculatorDef[] = [
   // the finance tools most visitors arrive for stay at the top of the grid.
   ...HEALTH_CALCULATORS,
   ...MATH_CALCULATORS,
+  ...BUSINESS_CALCULATORS,
+  ...EVERYDAY_CALCULATORS,
+  ...EDUCATION_CALCULATORS,
+  ...CONSTRUCTION_CALCULATORS,
+  ...ENGINEERING_CALCULATORS,
 ];
 
 export function calculatorsFor(country: CountryCode): CalculatorDef[] {

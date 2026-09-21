@@ -128,7 +128,12 @@ export function CalculatorRunner({
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-5">
             <div>
               <h2 className="text-sm font-semibold">{t("calc.countryContext")}</h2>
-              <p className="text-xs text-muted">{t("calc.countryContextHint")}</p>
+              {/* Says what the country changes here, for the same reason the
+                  badge above does: "currency, formatting and rules" is wrong
+                  on a calculator where it only sets the units. */}
+              <p className="text-xs text-muted">
+                {t(`calc.countryContextHint.${countryRelevanceOf(calculator)}`)}
+              </p>
             </div>
             <CountrySelector only={allowedCountries} />
           </div>
@@ -166,9 +171,19 @@ export function CalculatorRunner({
                 params={params}
                 fmt={fmt}
                 centerLabel={t(result.primary.labelKey)}
-                centerValue={fmt.currencyShort(
-                  typeof result.primary.value === "number" ? result.primary.value : 0,
-                )}
+                // Money is abbreviated so a long figure fits inside the ring.
+                // Anything else is formatted normally: rendering a 40% margin
+                // through the currency formatter produced "$40".
+                centerValue={
+                  result.primary.kind === "currency" &&
+                  typeof result.primary.value === "number"
+                    ? fmt.currencyShort(result.primary.value)
+                    : format(
+                        result.primary.value,
+                        result.primary.kind,
+                        result.primary.decimals,
+                      )
+                }
               />
             </div>
           ) : null}
