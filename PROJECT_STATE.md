@@ -1,7 +1,7 @@
 # PROJECT_STATE.md
 
 > Source of truth for continuing this project in a new Claude session.
-> Last updated: 2026-09-21. Working directory: `D:\Calculator`.
+> Last updated: 2026-09-21 (session 4). Working directory: `D:\Calculator`.
 
 ---
 
@@ -14,7 +14,7 @@
 | **Purpose** | Global, multilingual, mobile-first platform for calculators, converters, tools, reference tables, guides and country-specific utilities |
 | **Target users** | Anyone searching for a calculation ("mortgage payment", "meters to feet", "UK stamp duty"), across 16 locales and 22 countries |
 | **Monetization** | Organic search traffic → Google AdSense (slots built in, no publisher id configured yet) |
-| **Status** | Six product pillars implemented and building. 615 static pages generated. English complete; 7 other languages at ~29–33% coverage and therefore **gated off**. Statutory tax figures **unverified**. |
+| **Status** | Six product pillars implemented and building. 615 static pages generated. 487 tests passing. English complete; 7 other languages at ~29–33% coverage and therefore **gated off**. Statutory tax figures **unverified**. |
 
 **Governing spec:** `C:\Users\sandi\Downloads\HouseOfCalculators_Project_Specification.md` (85 sections). The build follows it; deviations are documented in §7 below.
 
@@ -193,26 +193,32 @@ All 23 route files listed in §3. Every page defines its own `generateMetadata` 
 
 ## 6. Current Task
 
-**Most recent work: adding the test suite (spec §53, §67).**
+**The test suite is finished (spec §53, §67). 487 tests, 487 passing.**
 
-Completed:
-- `tests/finance.test.ts` — 25 tests: EMI known values, zero-rate, single-period, schedule reconciliation, compounding, SIP/step-up, SWP, CAGR edge cases.
-- `tests/tax.test.ts` — per-country invariants (monotonic, never exceeds gross, parts sum to total, non-negative taxable income) plus known figures for IN/US/GB/AE/DE/AU.
-- `tests/alias-hooks.mjs` + `tests/register-alias.mjs` — ESM loader resolving `@/` aliases, extensionless imports and JSON import attributes. **Working**; the directory-vs-file bug was fixed.
-- `tests/package.json` with `{"type":"module"}` to scope the ESM warning.
-- npm scripts `test` and `check`.
+| File | Tests | Covers |
+|---|---|---|
+| `tests/finance.test.ts` | 25 | EMI known values, zero-rate, single-period, schedule reconciliation, compounding, SIP/step-up, SWP, CAGR |
+| `tests/tax.test.ts` | 147 | Per-country invariants (monotonic, never exceeds gross, parts sum to total, non-negative taxable income) plus known figures for IN/US/GB/AE/DE/AU |
+| `tests/converters.test.ts` | 134 | Exact defined factors, temperature offsets, fuel-economy reciprocal + the 235.2 constant, round-trips across every unit pair of all 13 converters, definition integrity, pair-slug uniqueness |
+| `tests/tools.test.ts` | 83 | UTC date arithmetic across DST weekends, month clamping, ISO week edges over 8 years, Roman round-trip across all of 1..3999, primes, fractions, planner reconciliation |
+| `tests/i18n.test.ts` | 72 | Placeholder integrity both directions, brace well-formedness, no keys English does not define, fallback completeness, readiness gate, `countryObl`/plural variant rules |
+| `tests/hreflang.test.ts` | 26 | Self-reference, canonical agreement, bidirectionality, `x-default`, and the same checks over every sitemap entry |
 
-**Status: 172 tests, 172 passing, 0 failing.**
+`tests/alias-hooks.mjs` + `tests/register-alias.mjs` are the ESM loader resolving `@/` aliases, extensionless imports and JSON import attributes. `tests/package.json` scopes the ESM warning.
 
-Still pending for this task (spec §53/§67 asks for more coverage):
-- Converter tests (exact factor definitions, temperature offsets, fuel-economy reciprocal, round-trips).
-- Tool tests (dates across DST-free UTC, month clamping, ISO week edges, Roman round-trip, primes, fractions).
-- i18n integrity test — **high value**: assert every language's placeholders (`{count}`, `{country}`…) match English. Mismatched placeholders are a real, silent bug class.
-- hreflang bidirectionality test (spec §22).
-- Search scoring tests.
-- Component/E2E tests (spec §67) — not started.
+**The suite found five real bugs, all fixed in commit `b1b5b77`:**
 
-**Uncommitted work:** guides pillar, tests, `scripts/add-guide-keys.mjs`, modifications to `src/lib/content.ts`, `src/app/sitemap.ts`, `src/lib/i18n/dictionaries/en.json`, `package.json`.
+| # | Bug | Why it was invisible |
+|---|---|---|
+| 1 | `calendarDifference` returned **negative days** — 31 Jan → 1 Mar read "1 month and -2 days" on the date-difference and age tools | Borrowing the previous month's length is not enough when the start day exceeds that month's length. Now counted in whole `addMonths` steps, so it agrees with the clamping rule in the same file by construction |
+| 2 | `numberToWords` dropped the leading zero: 12.05 and 12.5 both spelled "twelve point five" | On a tool whose stated purpose is writing an amount on a cheque |
+| 3 | `field.taxRate` / `result.taxAmount` carried a `{tax}` slot in ar/es/gu/hi/mr | Those keys render through `labelKey`, which every call site translates **with no params** → a literal `{tax} दर` on the page. English had been fixed for this before; the translations had not |
+| 4 | `gate.language.subtitle` carried `{app}` in all 7 translations | The welcome dialog passes no params → a literal `{app}` in the first dialog a non-English visitor sees |
+| 5 | `footer.disclaimer` spelled the **pre-rebrand name** into the sentence in all 7 languages instead of using the `{app}` slot | The rename to House of Calculators never reached the translations |
+
+Both the date and the number fix were verified in the running app, not only in tests.
+
+**Still open from this task:** search scoring tests, and component/E2E tests (spec §67) — neither started.
 
 ---
 
@@ -253,19 +259,21 @@ Still pending for this task (spec §53/§67 asks for more coverage):
 | 9 | No `favicon`/OG image beyond the scaffold default | Not started | |
 | 10 | `MODULE_TYPELESS_PACKAGE_JSON` warnings when running tests | Cosmetic | Scoped `tests/package.json` already added; warnings come from `src/` files |
 | 11 | No CI pipeline (spec §66) | Not started | `npm run check` exists as the local equivalent |
-| 12 | **`npx tsc --noEmit` reports 3 errors — in the test files only** (`TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled`). Node's native runner *requires* those extensions. `src/` itself type-checks clean, and `npm run build` succeeds | Open, introduced with the test suite | Fix is one of: add `"allowImportingTsExtensions": true` to `tsconfig.json` (valid because `noEmit` is already set), or add `"tests"` to `exclude`. **Prefer the first** — excluding the tests means they stop being type-checked at all. Do this before the next `npm run check` |
+| 12 | ~~`npx tsc --noEmit` failed on the test files (`TS5097`)~~ | **Fixed** (`0c4953a`) | `"allowImportingTsExtensions": true` added to `tsconfig.json`, valid because `noEmit` is already set. The tests stay type-checked |
+| 13 | **`app.name` is still the pre-rebrand brand in all 7 translated dictionaries** (`Calcora`, `कैलकोरा`, `كالكورا`, …) | Open — needs a naming decision, not a code change | The `{app}` slots around it are now correct (`b1b5b77`), so this is one string per language. Decide first whether the brand stays `House of Calculators` untransliterated in every language or is transliterated per script |
+| 14 | **No pluralisation**: the date tools render "0 years, 1 months and 1 days" | Open, cosmetic but visible on every date result | Needs plural-aware keys. English alone would be a patch; doing it per language is the real fix, since plural rules differ (Arabic has six forms). Consider `Intl.PluralRules` keyed as `key.one` / `key.other` with the existing English fallback |
 
 ---
 
 ## 9. Next Steps
 
 ### Immediate next task
-1. **Commit the guides pillar + tests** (currently uncommitted).
-2. **Finish the test suite**: converters, tools, i18n placeholder integrity, hreflang bidirectionality.
+1. ~~Commit the guides pillar + tests~~ — done (`0c4953a`).
+2. ~~Finish the test suite~~ — done (`b1b5b77`), 487 tests, five bugs found and fixed.
+3. **Legal pages** — privacy, terms, cookies, contact, about. The footer links to five 404s today and AdSense review will require them. This is now the first thing to do.
 
 ### Short term
-3. **Legal pages** — privacy, terms, cookies, contact, about (unblocks the footer 404s and AdSense review).
-4. **Translate the new keys for de, fr, es** (restores 3 locales).
+4. **Translate the new keys for de, fr, es** (restores 3 locales). While doing it, set `app.name` (issue 13) and keep `npm run test` green — `tests/i18n.test.ts` now fails the build on a mismatched placeholder, which is the point.
 5. Then hi, gu, mr, ar (restores India/UAE).
 6. Cookie-consent component.
 
