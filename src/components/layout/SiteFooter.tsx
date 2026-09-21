@@ -3,11 +3,10 @@
 import Link from "next/link";
 
 import { SECTIONS, sectionKey } from "@/config/categories";
+import { LEGAL_SLUGS } from "@/config/legal/definitions";
 import { LOCALES, type LocaleCode } from "@/config/locales";
 import { useLocale } from "@/lib/locale-context";
 import { sectionPath, swapLocale } from "@/lib/routes";
-
-const LEGAL = ["privacy", "terms", "cookies", "contact", "about"] as const;
 
 /**
  * Footer as a navigation aid rather than a keyword dump: the six sections, a
@@ -108,7 +107,7 @@ export function SiteFooter({
                 {t("footer.legal")}
               </h2>
               <ul className="mt-3 space-y-2">
-                {LEGAL.map((page) => (
+                {LEGAL_SLUGS.map((page) => (
                   <li key={page}>
                     <Link
                       href={`${base}/${page}`}

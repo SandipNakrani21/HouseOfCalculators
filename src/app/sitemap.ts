@@ -12,6 +12,7 @@ import { TOOLS } from "@/config/tools/definitions";
 import { CHART_CATEGORIES, GUIDE_CATEGORIES, TOOL_CATEGORIES } from "@/config/categories";
 import { CHARTS } from "@/config/charts/definitions";
 import { GUIDES } from "@/config/guides/definitions";
+import { LEGAL_PAGES } from "@/config/legal/definitions";
 import {
   absoluteUrl,
   categoryPath,
@@ -110,6 +111,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     for (const country of COUNTRY_CODES) {
       add(countryPath(locale, country), 0.7, "monthly");
+    }
+
+    // Listed so they are indexable and discoverable, but low priority: they
+    // exist to be found when looked for, not to compete with the tools.
+    for (const page of LEGAL_PAGES) {
+      add(`${localeHome(locale)}/${page.slug}`, 0.3, "monthly");
     }
 
     for (const calc of CALCULATORS) {
