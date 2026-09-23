@@ -2,6 +2,8 @@
 
 > Source of truth for continuing this project in a new Claude session.
 > Last updated: 2026-09-24 (session 5). Working directory: `D:\Calculator`.
+>
+> **Done vs pending against the spec, section by section: see [§14 Spec Compliance Tracker](#14-spec-compliance-tracker).**
 
 ---
 
@@ -199,7 +201,7 @@ All 23 route files listed in §3. Every page defines its own `generateMetadata` 
 
 ## 6. Current Task
 
-**The test suite is finished (spec §53, §67). 487 tests, 487 passing.**
+**Session 4: the test suite was finished (spec §53, §67) at 487 tests. It is now 881 — see the session 5 block below.**
 
 | File | Tests | Covers |
 |---|---|---|
@@ -332,6 +334,8 @@ The user asked to read the governing spec and complete pending work. Audit resul
 | 13 | ~~`app.name` was still the pre-rebrand brand in all 7 translated dictionaries~~ | **Fixed** (`94c5488`) | Set to `House of Calculators` in every language. Decided: one brand in Latin script everywhere, so it stays searchable and matches the domain |
 | 15 | **`OPERATOR` details are unset** — entity, contact email and governing-law jurisdiction are all `null` in `src/config/legal/definitions.ts` | Open, **blocks launch and AdSense review** | Every legal page shows a "not ready to publish" notice until they are filled in. This is a one-object edit; the notice disappears on its own |
 | 16 | Health pages carry disclaimers in notes/explainers but no dedicated medical-disclaimer block | Open, low | Spec §2.1 asks for "appropriate disclaimers"; current wording is careful but worth a review before launch |
+| 17 | **Every page ships all 8 language dictionaries to the browser** — one client chunk of ~383 KB (~109 KB gzipped) containing de/fr/es/hi/gu/mr/ar alongside English, referenced by every built page including the home page. Violates spec §29 and §64 | Open, **highest-value performance fix** | Cause: client modules import `@/lib/i18n` (`locale-context.tsx` imports `translate`; `format.ts` imports `getDictionary`), and that module statically imports every JSON file. Fix: keep dictionary loading server-side and pass only the active dictionary (already done via `LocaleProvider`'s `dictionary` prop), and make the client-reachable helpers dictionary-free — e.g. split `translate` and the formatter's unit lookup into a module with no JSON imports |
+| 18 | **Share links do not restore inputs** — "Copy link" in `ResultActions.tsx` writes every input into the query string, but `CalculatorRunner` never reads `searchParams`, so the recipient sees the defaults | Open, user-visible bug (spec §55) | Read the query on mount (client-only, pages stay static), validate each value against the field's kind and range, and ignore unknown keys. Keep these URLs out of the index — canonical already points to the clean URL |
 | 14 | **No pluralisation**: the date tools render "0 years, 1 months and 1 days" | Open, cosmetic but visible on every date result | Needs plural-aware keys. English alone would be a patch; doing it per language is the real fix, since plural rules differ (Arabic has six forms). Consider `Intl.PluralRules` keyed as `key.one` / `key.other` with the existing English fallback |
 
 ---
@@ -345,6 +349,8 @@ The user asked to read the governing spec and complete pending work. Audit resul
 4. **Verify statutory tax figures** against `docs/tax-rules-to-verify.md` (issue 3).
 
 ### Short term — code
+4a. **Fix issue 17** — stop shipping every dictionary to the browser.
+4b. **Fix issue 18** — make shared links restore their inputs.
 5. **Translate de, fr, es** (restores 3 locales). ~1,730 keys each now. Keep `npm run test` green — `tests/i18n.test.ts` fails on a mismatched placeholder, which is its point. Leave `app.name` alone.
 6. **Pluralisation** (issue 14) — better done *before* bulk translation, since it changes key shapes.
 7. Then hi, gu, mr, ar.
@@ -411,7 +417,7 @@ The user asked to read the governing spec and complete pending work. Audit resul
 | `scripts/{i18n-coverage,add-en-keys,add-tool-keys,add-chart-keys,add-guide-keys}.mjs` | Dictionary tooling |
 | `src/config/legal/definitions.ts` | 5 legal pages + the `OPERATOR` details that must be filled before launch |
 | `src/app/[locale]/[legal]/page.tsx` | One route serving all five legal pages |
-| `tests/{converters,tools,i18n,hreflang,legal}.test.ts` | The rest of the suite — 509 tests total |
+| `tests/{converters,tools,i18n,hreflang,legal}.test.ts` | The rest of the suite. Session 5 added `{health,maths,business,calculators,consent,random-tools}.test.ts` — 881 tests total |
 | `docs/tax-rules-to-verify.md` | Every statutory figure needing verification |
 | `.gitattributes` | LF normalisation |
 
@@ -424,7 +430,7 @@ The user asked to read the governing spec and complete pending work. Audit resul
 | `src/lib/i18n/index.ts` | Partial `RAW`, readiness gate, `countryParams`, `unitName`, `hasOwnKey` |
 | `src/lib/format.ts` | Manual currency composition; Latin digits |
 | `src/lib/locale-context.tsx` | Rewritten for locale/country split |
-| `src/lib/i18n/dictionaries/*.json` | English 1256 keys; 7 others migrated to shared vocabulary |
+| `src/lib/i18n/dictionaries/*.json` | English 2,139 keys; 7 others migrated to shared vocabulary (17–19% coverage) |
 | `README.md` | Rewritten (describes the pre-rebrand "Calcora" scope — **stale, needs updating**) |
 | `package.json` | Renamed; added `i18n`, `test`, `check` scripts |
 
@@ -442,9 +448,9 @@ The user asked to read the governing spec and complete pending work. Audit resul
 
 ```bash
 npm run dev      # dev server on :3000
-npm run build    # production build (615 static pages)
+npm run build    # production build (710 static pages)
 npm run lint     # eslint, must be clean
-npm run test     # node --test with the alias loader (172 tests)
+npm run test     # node --test with the alias loader (881 tests)
 npm run i18n     # dictionary coverage report
 npm run check    # lint + tsc + test + i18n
 npx tsc --noEmit # type-check
@@ -474,3 +480,320 @@ Open the new session in `D:\Calculator` and:
 **Before changing anything, read §7 (Decisions Already Made).** Several choices that look arbitrary — manual currency composition, the 75% readiness gate, the `isCountrySpecific` URL split — exist because the obvious alternative produced a real bug or a real SEO problem.
 
 **Two things must not be quietly treated as done:** the statutory tax figures are unverified (`docs/tax-rules-to-verify.md`), and seven languages are gated off rather than broken. Neither is a bug; both are open work.
+
+---
+
+## 14. Spec Compliance Tracker
+
+> Every section of `HouseOfCalculators_Project_Specification.md` (85 sections), checked against the actual code on **2026-09-24** at commit `e325164`. Statuses were verified by reading code, running the build and checking the running app — not copied from earlier notes.
+
+**Legend:** ✅ Done · 🟡 Partial · ❌ Pending · ⏸ Deliberately deferred (reason given) · 👤 Needs the user · ↔ Deliberate deviation from spec (see §7)
+
+### 14.1 Summary
+
+| Area | Status | Headline |
+|---|---|---|
+| Product pillars (§1) | ✅ | All six pillars live |
+| Calculators (§2.1) | 🟡 | 60 built, every category populated. ~14 listed items missing (compound/simple interest, scientific, probability, commission, brick…) |
+| Converters (§3) | 🟡 | 13 of 16 categories. Currency, time zone, frequency missing |
+| Tools (§4) | 🟡 | 23 built. World clock, meeting planner, study planner, even/odd missing |
+| Charts & tables (§5) | 🟡 | 19 built. Shoe/clothing sizes, time-zone and calendar references missing |
+| Guides (§6) | 🟡 | 12 built. CAGR, BMI, profit-margin, EMI "what is", time-zone guides missing |
+| Country tools (§7) | ✅ | 22 countries, covering all 12 spec markets |
+| Locales (§8) | 🟡 | 16 locales defined; **only en-US and en-GB ship**. 7 languages at 17–19%, 8 not started |
+| Engines (§11–13) | ✅ | Calculator, converter, country config all configuration-driven |
+| SEO (§19–28) | ✅ | Metadata, canonical, hreflang, sitemap, JSON-LD all tested. Validation in Google tools needs a deployment |
+| Performance (§29, §64) | ❌ | **Not measured, and every page ships all 8 dictionaries** (issue 17) |
+| Ads (§31–34) | 🟡 | Slots built and compliant; no publisher id (👤) |
+| Legal & consent (§35) | 🟡 | All pages + consent built; operator details unset (👤) |
+| Analytics (§36–37) | ❌ | Not started |
+| Search (§38) | ✅ | Grouped, typo-tolerant |
+| Accessibility (§42) | 🟡 | Built in; no formal audit |
+| Security (§43) | ❌ | No security headers or CSP configured |
+| Testing (§53, §67) | 🟡 | 881 unit tests; no component or E2E tests |
+| CI/CD (§66) | 🟡 | Workflow written, never run; no preview deploys |
+| Database / CMS (§47, §77) | ⏸ | Config files are sufficient at current scale |
+| Launch checklist (§68) | 🟡 | See 14.9 |
+
+### 14.2 Product scope — calculators (§2.1)
+
+Where a spec item is covered by a tool or a broader calculator, that is noted rather than built twice (spec §40 — one URL per intent).
+
+| Spec item | Status | Where / notes |
+|---|---|---|
+| **Finance** | | |
+| EMI Calculator | ✅ | `loan` (EMI + amortisation, monthly/yearly/full-term breakdown) |
+| Loan Calculator | ✅ | `loan`, `auto-loan`, `student-loan` |
+| Mortgage Calculator | ✅ | `mortgage` |
+| SIP Calculator | ✅ | `sip` (with step-up) |
+| Compound Interest Calculator | ❌ | Logic exists (`compoundFutureValue` in `lib/finance`); guide + chart exist; **no calculator page** |
+| Simple Interest Calculator | ❌ | Logic exists (`simpleInterest`); **no calculator page** |
+| CAGR Calculator | 🟡 | Inside `growth-rate` (business). No standalone finance page |
+| ROI Calculator | ✅ | `roi` (with annualised return) |
+| Profit Margin / Markup / Break-Even | ✅ | `profit-margin`, `markup`, `break-even` |
+| Savings Goal / Debt Payoff | ✅ | Tools `savings-goal`, `debt-payoff` |
+| Retirement Calculator | ✅ | `retirement`, `pension`, `401k`, `superannuation` |
+| Inflation Calculator | ✅ | `inflation` |
+| Tip / Discount | ✅ | `tip`, `discount` |
+| Salary / Take-home | ✅ | `salary`, `income-tax`, `payroll` + country tools |
+| **Math** | | |
+| Percentage | ✅ | Tool `percentage` |
+| Fraction Calculator | 🟡 | Tool `fraction-simplifier` simplifies only; **no fraction arithmetic** (+ − × ÷) |
+| Average / Statistics | ✅ | `statistics` (mean, median, mode, SD, variance) |
+| Ratio / Proportion | ✅ | `ratio` (simplify + scale a:b = c:x) |
+| Scientific Calculator | ❌ | Not built |
+| Exponent / Square Root | ✅ | `exponent` (power, nth root, square root, log) |
+| GCD / HCF / LCM | ✅ | Tool `factor-finder` |
+| Probability Calculator | ❌ | Not built |
+| Pythagorean | ✅ | `triangle` |
+| Quadratic Equation | ✅ | `quadratic-equation` (incl. complex roots, vertex) |
+| Area / Perimeter / Volume | ✅ | `area`, `volume` |
+| **Health & Fitness** | | |
+| BMI / BMR / TDEE / Calorie needs | ✅ | `bmi`, `bmr`, `tdee` (TDEE includes goal calories) |
+| Macro Calculator | 🟡 | Macro split shown inside `tdee`; no adjustable standalone page |
+| Body Fat / Water Intake | ✅ | `body-fat` (US Navy), `water-intake` |
+| Pace — running | ✅ | `running-pace` (with race-time table) |
+| Pace — cycling | ❌ | Not built |
+| Age utility | ✅ | Tool `age` |
+| Pregnancy due date | ❌ | Not built — needs careful medical wording |
+| Health disclaimers | 🟡 | In every health page's notes/explainer; no dedicated disclaimer block (issue 16) |
+| **Business** | | |
+| Revenue Calculator | ❌ | Not built |
+| Profit / Margin / ROI / ROAS / Growth / CAGR / Break-even | ✅ | `profit-margin`, `roi`, `roas`, `growth-rate`, `break-even` |
+| Commission Calculator | ❌ | Not built |
+| Business days | ✅ | Tool `working-days` |
+| **Education** | | |
+| Grade / Weighted Grade | ✅ | `weighted-grade` |
+| GPA / CGPA | 🟡 | `gpa` (4.0 scale). CGPA (cumulative across terms, 10-point scale used in India) not built |
+| Exam Score Calculator | 🟡 | Covered by tool `percentage`; no dedicated page |
+| Final Score Needed | ✅ | `final-grade` |
+| **Engineering / Construction** | | |
+| Concrete / Tile / Paint / Roof Area | ✅ | `concrete`, `tile`, `paint`, `roof-area` |
+| Brick Calculator | ❌ | Not built |
+| Flooring | 🟡 | `tile` covers area-based flooring; no pack/plank-based page |
+| Electrical / Ohm's Law | ✅ | `ohms-law`, `electricity-cost` |
+| Force / Torque | ✅ | `force`, `torque` |
+| Pressure / Energy | ✅ | As converters |
+| **Everyday** | | |
+| Fuel / Electricity cost | ✅ | `fuel-cost`, `electricity-cost` |
+| Split Bill | ✅ | `tip` splits per person |
+| Recipe scaling | ✅ | `recipe-scaler` |
+| Time and date | ✅ | Date tools |
+
+**Total: 60 calculators** — finance 25, math 7, health 6, business 7, everyday 5, education 3, construction 4, engineering 3.
+
+### 14.3 Converters (§3, §12)
+
+| Spec item | Status | Notes |
+|---|---|---|
+| Length, Weight, Temperature, Area, Volume, Speed, Data, Energy, Pressure, Power, Angle, Fuel Economy, Time | ✅ | 13 categories, 61 featured pair pages, one shared unit engine, 134 tests |
+| Currency | ⏸ | Needs a live, timestamped rate source. Spec forbids hard-coded rates |
+| Time Zone | ⏸ | Needs a zone database; group with world clock and meeting planner |
+| Frequency | ❌ | Not built — trivial with the existing engine |
+| Per-type UI (rate+timestamp, formula for temperature) | 🟡 | Explainer per converter; currency variant not applicable yet |
+| `externalDataSource` | ❌ | Not built — needed for currency |
+
+### 14.4 Tools (§4)
+
+| Spec item | Status | Where |
+|---|---|---|
+| Date Difference, Working/Business Days, Add/Subtract Days, Week Number, Age | ✅ | `date-difference`, `working-days`, `add-days` (negative subtracts), `week-number`, `age` |
+| Day of Week | ✅ | `day-of-week` |
+| Countdown / Event Countdown | ✅ | `countdown` |
+| World Clock | ⏸ | Needs zone database |
+| Time Zone Meeting Planner | ⏸ | Needs zone database |
+| Number ↔ Words | ✅ | `number-to-words`, `words-to-number` (round-trip tested) |
+| Roman Numerals, Prime Checker, Fraction Simplifier | ✅ | Existing tools |
+| Even/Odd Checker | 🟡 | Not explicit; `factor-finder` shows divisors. A one-line addition to factor-finder would close it |
+| Factor Finder, Number Formatter | ✅ | `factor-finder`, `number-formatter` |
+| Random Number, Password Generator | ✅ | Existing tools |
+| Random Name Picker / Team Generator | ✅ | `random-picker` (pick, shuffle, teams) |
+| Dice Roller, Coin Flip | ✅ | `dice-roller`, `coin-flip` (CSPRNG, fairness-tested) |
+| Budget / Savings Goal / Debt Payoff Planner | ✅ | `budget-planner`, `savings-goal`, `debt-payoff` |
+| Retirement Planner | ✅ | Calculator `retirement` |
+| Study Planner | ❌ | Not built |
+
+**Total: 23 tools** — date-time 7, number-math 8, utility 5, planning 3.
+
+### 14.5 Charts & tables (§5)
+
+| Spec item | Status | Where |
+|---|---|---|
+| Length, weight, temperature, area, volume, speed, pressure tables | ✅ | `*-conversion-table` (7) |
+| Multiplication, squares, cubes, primes, Roman numerals, metric prefixes | ✅ | `multiplication-table`, `squares-and-cubes`, `prime-numbers`, `roman-numeral-chart`, `metric-prefixes` |
+| Fraction reference / Percentage tables | ✅ | `percentage-fraction-table` |
+| Amortization, compound growth, investment growth, inflation | ✅ | `amortisation-example`, `compound-growth-table`, `inflation-reference` |
+| Cooking measurements, paper sizes, screen sizes | ✅ | `cooking-measurements`, `paper-sizes`, `screen-resolutions` |
+| Shoe-size / Clothing-size references | ❌ | Not built |
+| Time zone reference | ❌ | Not built |
+| Calendar reference | ❌ | Not built |
+| Tables ↔ tools linked both ways | ✅ | Built into the chart pages |
+
+**Total: 19 tables**, all generated from the same code as the tools (cannot drift).
+
+### 14.6 Guides (§6)
+
+| Spec item | Status | Where |
+|---|---|---|
+| How to calculate EMI | ✅ | `how-to-calculate-loan-payment` |
+| How to calculate percentage / compound interest | ✅ | `how-to-calculate-percentage`, `how-to-calculate-compound-interest` |
+| How to calculate CAGR / BMI / profit margin | ❌ | Not written — the calculators now exist, so these are unblocked |
+| What is EMI | 🟡 | `what-is-amortisation` covers it; no page titled for EMI |
+| What is CAGR / BMI | ❌ | Not written |
+| What is compound interest / inflation | ✅ | `what-is-compound-interest`, `what-is-inflation` |
+| Formula pages (formula → variables → steps → example → calculator → FAQ) | ✅ | `future-value-formula`; every guide follows this structure |
+| Compare loans / read amortization / plan savings | ✅ | `how-to-compare-loan-offers`, `how-to-read-an-amortisation-schedule`, `how-to-plan-monthly-savings` |
+| Convert time zones for meetings | ⏸ | Waits for the time-zone tools |
+| Extra (not in spec) | ✅ | `how-to-calculate-vat`, `what-is-a-marginal-tax-rate` |
+
+### 14.7 Platform, SEO and UX (§7–§65)
+
+| § | Requirement | Status | Notes |
+|---|---|---|---|
+| 7 | Country tools only where rules genuinely differ | ✅ | `isCountrySpecific` + `countryRelevance` |
+| 8 | 12 spec locales | 🟡 | All 12 defined (+4 extra). Only en-US/en-GB pass the 75% gate |
+| 8 | Language ≠ Country ≠ Currency ≠ Rules | ✅ | Core architecture |
+| 8 | Switch language, stay on the same page | ✅ | `swapLocale` |
+| 8 | **Preserve calculator inputs across language switch** | ❌ | Inputs reset on switch |
+| 8 | Translations not all shipped in one bundle | ❌ | **Violated — issue 17** |
+| 8 | Server-rendered localized content + metadata + hreflang | ✅ | Tested (29 hreflang tests) |
+| 8 | RTL support | ✅ | `dir` from locale; Arabic ready when translated |
+| 9 | next-intl | ↔ | Custom i18n with a readiness gate (§7) |
+| 9 | PostgreSQL | ⏸ | Not needed while content is config-driven |
+| 9 | Hosting / CDN | 👤 | Not chosen |
+| 11 | Configuration-driven calculator engine, versioned | ✅ | `CalculatorDef` with `version`; shared breakdown UI |
+| 11 | `formulaId` | ↔ | Each definition carries `compute`; formulas live in `lib/*` with tests |
+| 11 | Export formats PDF / XLSX | ❌ | CSV and print only |
+| 12 | Centralised unit system | ✅ | `config/converters/units.ts` |
+| 13 | Country config: currency, number format, measurement system | ✅ | `measurementSystem` added session 5 |
+| 13 | Explicit `dateFormat` per country | 🟡 | Handled by `Intl` per locale; not a config field |
+| 14 | Header, hero, search, popular calculators & converters, categories, country tools, why-us, CTA, footer | ✅ | Homepage |
+| 14 | **Charts & tables section, featured guides section on homepage** | ❌ | Not on the homepage |
+| 15 | Calculator page: breadcrumb → country → inputs → reset → result → summary → chart → breakdown → export/share → how it works → related → FAQ → ad | ✅ | `CalculatorPageBody` |
+| 15 | Formula + worked example on calculator pages | 🟡 | Formula in the explainer; worked examples live in guides |
+| 15 | **Guide links from calculator pages** | ❌ | Calculator pages link only to other calculators |
+| 16 | Responsive: mobile/tablet/desktop, stacked inputs, table → cards on mobile | ✅ | Breakdown has a mobile card layout |
+| 17 | 150–250ms transitions, `prefers-reduced-motion` | ✅ | `globals.css` |
+| 18 | Spec palette | ✅ | Design tokens |
+| 19–21 | Unique titles, descriptions, one H1, canonical, OG, Twitter, favicon | ✅ | `buildMetadata`; icon + generated OG image |
+| 22 | hreflang bidirectional + x-default | ✅ | Tested |
+| 23 | Automated sitemap | ✅ | One sitemap with alternates |
+| 23 | Split sitemaps per section/locale | ⏸ | Unnecessary at 710 URLs |
+| 24 | Self-referencing canonical | ✅ | Tested against hreflang |
+| 25 | Internal linking | 🟡 | Calculator ↔ calculator, chart ↔ tool, guide → calculator. Missing calculator → guide (see §15 above) |
+| 27 | JSON-LD: Organization, WebSite, BreadcrumbList, Article | ✅ | |
+| 27 | Validated in Rich Results Test | 👤 | Needs a public URL |
+| 28 | No filler, no doorway pages | ✅ | Every page hand-written; featured pairs only |
+| 29 | CWV targets (LCP ≤ 2.5s, INP ≤ 200ms, CLS ≤ 0.1) | ❌ | Never measured |
+| 30 | Static generation; client-side calculation | ✅ | 710 static pages; no server round-trips |
+| 31–32 | Ad slots planned, separated from controls, no click encouragement | ✅ | `AdSlot` labelled and spaced |
+| 34 | Reserved ad height (CLS) | ✅ | Per-placement `min-h` |
+| 34 | Lazy-load below-the-fold ads | ❌ | Not implemented |
+| 35 | Privacy, Terms, Cookies, Contact, About | ✅ | Built from real site behaviour |
+| 35 | Consent management | ✅ | Consent Mode v2, reject-first banner |
+| 35 | Operator details on legal pages | 👤 | Issue 15 |
+| 36 | GA4, Search Console, event tracking | ❌ | Not started. Update privacy/cookies pages **first** |
+| 37 | SEO analytics dashboard | ❌ | Not started |
+| 38 | Global search, grouped by type, typo-tolerant | ✅ | |
+| 39 | Slug rules | ✅ | Tested |
+| 40 | Programmatic pages only with distinct value | ✅ | Featured converter pairs only |
+| 42 | Keyboard, labels, focus, live regions, reduced motion, skip link | ✅ | Built in |
+| 42 | Formal screen-reader / contrast audit | ❌ | Not done |
+| 43 | Security headers, CSP | ❌ | `next.config.ts` is empty |
+| 43 | No secrets in client, safe rendering | ✅ | No secrets exist; `dangerouslySetInnerHTML` only for JSON-LD (escaped) and the consent script |
+| 44 | Third-party scripts: AdSense only, async, consent-gated | ✅ | |
+| 45 | Image-light, SVG icons | ✅ | No raster images |
+| 47 | Database tables | ⏸ | |
+| 48 | Content relationship model | 🟡 | `relatedCalculators` + automatic related; no cross-type relationships in data |
+| 49 | Visible breadcrumbs + BreadcrumbList | ✅ | Generated from one list |
+| 50 | Robots / noindex rules | ✅ | `robots.ts`; `noindex` supported in `buildMetadata` |
+| 52 | Localized error / empty states | 🟡 | Inputs clamp on blur, results carry notes; no inline validation messages ("Please enter a value greater than 0") |
+| 53 | Unit, boundary, rounding, country-rule, known-value tests | ✅ | 881 tests |
+| 53 | Formula versioning | ✅ | `version` on every calculator; `verifiedFor` on tax rules |
+| 54 | Data freshness classification + source/retrieval time for dynamic data | ⏸ | No dynamic data yet |
+| 55 | Print, CSV | ✅ | |
+| 55 | **Share a results URL** | ❌ | **Bug — issue 18.** "Copy link" writes inputs to the URL but the page never reads them back |
+| 56 | Copy link, native Web Share | ✅ | |
+| 56 | WhatsApp / email share | ❌ | Not built |
+| 57 | Footer: sections, popular, languages, legal | 🟡 | Popular calculators only; no popular converters/guides lists |
+| 58 | Separate language and country selectors | ✅ | |
+| 59 | No horizontal overflow, numeric keyboards | ✅ | `inputMode="decimal"` |
+| 59 | Searchable country selector / bottom sheets | ❌ | 22-item list, not searchable |
+| 62–63 | Folder structure and component library | ↔ | Same shape; dictionaries per language rather than per locale |
+| 64 | Performance budget | ❌ | None set; see issue 17 |
+| 66 | CI: lint, types, tests, build | 🟡 | Workflow written, never run (👤 push) |
+| 66 | CI: SEO checks, accessibility checks, preview deploy | ❌ | Not built |
+| 67 | Component tests / E2E flows / device & network tests | ❌ | Not started |
+| 76 | Scales by configuration | ✅ | Adding a calculator = definition + keys + registry line |
+| 78 | Versioning with effective dates and sources | 🟡 | Version numbers yes; per-rule effective date/source only partly (`verifiedFor`) |
+| 79 | No fake "updated" dates | ✅ | Guides and legal pages carry real dates |
+
+### 14.8 Development phases (§69)
+
+| Phase | Status |
+|---|---|
+| 1 — Foundation (Next.js, TS, Tailwind, design system, routing, locales, SEO) | ✅ except **analytics foundation** ❌ |
+| 2 — Core engines (calculator, converter, country, formatting, breakdown) | ✅ |
+| 3 — First content set (finance, math, date, length, weight, temperature, health, business) | ✅ except **currency** ⏸ |
+| 4 — SEO expansion (guides, tables, country tools, internal linking, schema, search) | ✅ except **localized versions** 🟡 (translation) |
+| 5 — Monetization (AdSense, responsive ads, placement tests, viewability, revenue analytics) | 🟡 components done; account, testing, analytics 👤/❌ |
+| 6 — Scale | ❌ not started |
+
+### 14.9 Launch readiness checklist (§68)
+
+| Item | Status |
+|---|---|
+| **Product** | |
+| Core calculators complete | ✅ 60 |
+| Core converters complete | 🟡 currency missing |
+| Search works | ✅ |
+| Country selector works | ✅ |
+| Language selector works | ✅ (only English locales live) |
+| Breakdown works | ✅ |
+| Export works where planned | 🟡 CSV/print yes; share-link restore broken (issue 18) |
+| **SEO** | |
+| Unique titles, metadata, canonical, hreflang, sitemap, robots, breadcrumbs, internal links | ✅ |
+| Structured data validated | 👤 needs deployment |
+| No accidental noindex | ✅ |
+| Search Console configured | 👤 |
+| **Performance** | |
+| LCP / INP / CLS targets | ❌ not measured |
+| Mobile test | 🟡 spot-checked, not systematic |
+| Third-party scripts audited | ✅ AdSense only |
+| Ads tested for CLS | ❌ needs a live publisher id |
+| **Ads** | |
+| AdSense account / compliance review | 👤 |
+| Ads distinct from controls, responsive, no click encouragement, reserve space, not dominant | ✅ |
+| **Accessibility** | |
+| Keyboard, labels, focus, reduced motion | ✅ |
+| Contrast / screen-reader checks | ❌ no formal audit |
+| **Legal / Privacy** | |
+| Privacy, Terms, Contact | ✅ built — 👤 operator details |
+| Consent implementation | ✅ |
+| Advertising disclosures | ✅ privacy + cookies + about pages |
+
+### 14.10 Prioritised pending list
+
+**👤 Needs you (blocks launch)**
+1. Operator details — entity, email, jurisdiction (issue 15).
+2. Push to GitHub so CI runs (issue 11).
+3. Choose hosting; set `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_ADSENSE_CLIENT`.
+4. Get the tax figures verified (issue 3, `docs/tax-rules-to-verify.md`).
+5. After deploy: Search Console, Rich Results validation, AdSense review.
+
+**❌ Code — highest value first**
+1. **Ship only the active language's dictionary** (issue 17) — ~109 KB gzipped wasted on every page today.
+2. **Fix share links** so they restore inputs (issue 18).
+3. Security headers + CSP (§43).
+4. Measure Core Web Vitals; set a performance budget (§29, §64).
+5. Calculator → guide links; charts and guides sections on the homepage (§14, §15, §25).
+6. Pluralisation (issue 14), then translate de/fr/es, then hi/gu/mr/ar.
+7. Missing calculators: compound interest, simple interest (logic already written), commission, revenue, brick, probability, scientific, fraction arithmetic, CGPA, cycling pace.
+8. Missing guides: CAGR, BMI, profit margin, what is EMI/CAGR/BMI.
+9. Missing tables: shoe/clothing sizes, calendar. Frequency converter. Study planner. Even/odd in factor-finder.
+10. Inline validation messages (§52); lazy-load below-fold ads (§34); searchable country selector (§59); WhatsApp/email share (§56); PDF/XLSX export (§55).
+11. Component and E2E tests (§67); SEO/accessibility checks in CI (§66).
+12. GA4 + events — **update privacy and cookies pages first** (§36).
+
+**⏸ Deferred by design**
+Currency converter, time-zone converter, world clock, meeting planner (need live data); PostgreSQL + admin CMS (§47, §77); split sitemaps (§23).
