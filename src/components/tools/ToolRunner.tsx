@@ -15,6 +15,19 @@ import {
   RomanNumeralsTool,
 } from "@/components/tools/NumberTools";
 import {
+  BudgetPlannerTool,
+  CountdownTool,
+  DayOfWeekTool,
+  FactorFinderTool,
+  NumberFormatterTool,
+  WordsToNumberTool,
+} from "@/components/tools/MoreTools";
+import {
+  CoinFlipTool,
+  DiceRollerTool,
+  RandomPickerTool,
+} from "@/components/tools/RandomTools";
+import {
   DebtPayoffTool,
   PasswordGeneratorTool,
   RandomNumberTool,
@@ -43,6 +56,15 @@ const TOOLS: Record<string, () => React.JSX.Element> = {
   "password-generator": PasswordGeneratorTool,
   "savings-goal": SavingsGoalTool,
   "debt-payoff": DebtPayoffTool,
+  "day-of-week": DayOfWeekTool,
+  countdown: CountdownTool,
+  "words-to-number": WordsToNumberTool,
+  "factor-finder": FactorFinderTool,
+  "number-formatter": NumberFormatterTool,
+  "dice-roller": DiceRollerTool,
+  "coin-flip": CoinFlipTool,
+  "random-picker": RandomPickerTool,
+  "budget-planner": BudgetPlannerTool,
 };
 
 export function ToolRunner({ slug }: { slug: string }) {

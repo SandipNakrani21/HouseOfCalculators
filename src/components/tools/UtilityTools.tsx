@@ -12,23 +12,7 @@ import {
 } from "@/components/tools/ToolShell";
 import { useLocale } from "@/lib/locale-context";
 import { debtPayoff, depositForGoal, savingsGoal } from "@/lib/tools/planning";
-
-/** Uniform integer in [min, max], drawn from the platform CSPRNG. */
-function randomInt(min: number, max: number): number {
-  const span = max - min + 1;
-  if (span <= 0) return min;
-
-  // Rejection sampling: taking a modulus of a 32-bit draw would make the
-  // lowest values very slightly more likely.
-  const limit = Math.floor(0xffffffff / span) * span;
-  const buffer = new Uint32Array(1);
-  let draw = limit;
-  while (draw >= limit) {
-    crypto.getRandomValues(buffer);
-    draw = buffer[0];
-  }
-  return min + (draw % span);
-}
+import { randomInt } from "@/lib/tools/random";
 
 export function RandomNumberTool() {
   const { t, fmt } = useLocale();

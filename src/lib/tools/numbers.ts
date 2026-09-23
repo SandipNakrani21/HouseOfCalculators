@@ -185,3 +185,73 @@ export const percentage = {
   /** Increase or decrease a value by a percentage. */
   apply: (value: number, percent: number) => value * (1 + percent / 100),
 };
+
+const WORD_VALUES: Record<string, number> = {
+  zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7,
+  eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13,
+  fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18,
+  nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60,
+  seventy: 70, eighty: 80, ninety: 90,
+};
+
+/** Words that multiply what came before them rather than adding to it. */
+const WORD_SCALES: Record<string, number> = {
+  hundred: 100,
+  thousand: 1_000,
+  million: 1_000_000,
+  billion: 1_000_000_000,
+  trillion: 1_000_000_000_000,
+};
+
+/**
+ * Reads an English number back out of words - the inverse of `numberToWords`.
+ *
+ * Returns null rather than a guess when the input is not a number in words.
+ * A tool that silently turned "seventy dogs" into 70 would be worse than one
+ * that said it did not understand.
+ */
+export function wordsToNumber(input: string): number | null {
+  const words = input
+    .toLowerCase()
+    .replace(/[,]/g, " ")
+    .replace(/-/g, " ")
+    .split(/\s+/)
+    .filter((word) => word && word !== "and");
+
+  if (words.length === 0) return null;
+
+  let negative = false;
+  if (words[0] === "minus" || words[0] === "negative") {
+    negative = true;
+    words.shift();
+  }
+
+  let total = 0;
+  let current = 0;
+  let seen = false;
+
+  for (const word of words) {
+    if (word in WORD_VALUES) {
+      current += WORD_VALUES[word];
+      seen = true;
+      continue;
+    }
+
+    const scale = WORD_SCALES[word];
+    if (scale === undefined) return null;
+
+    if (scale === 100) {
+      // "two hundred" multiplies the pending amount; "hundred" alone is 100.
+      current = (current || 1) * 100;
+    } else {
+      // A thousand and above closes off the group before it.
+      total += (current || 1) * scale;
+      current = 0;
+    }
+    seen = true;
+  }
+
+  if (!seen) return null;
+  const value = total + current;
+  return negative ? -value : value;
+}
