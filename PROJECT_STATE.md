@@ -1,7 +1,7 @@
 # PROJECT_STATE.md
 
 > Source of truth for continuing this project in a new Claude session.
-> Last updated: 2026-09-21 (session 4). Working directory: `D:\Calculator`.
+> Last updated: 2026-09-24 (session 5). Working directory: `D:\Calculator`.
 
 ---
 
@@ -14,7 +14,7 @@
 | **Purpose** | Global, multilingual, mobile-first platform for calculators, converters, tools, reference tables, guides and country-specific utilities |
 | **Target users** | Anyone searching for a calculation ("mortgage payment", "meters to feet", "UK stamp duty"), across 16 locales and 22 countries |
 | **Monetization** | Organic search traffic → Google AdSense (slots built in, no publisher id configured yet) |
-| **Status** | Six product pillars plus the legal pages implemented and building. 625 static pages generated. 509 tests passing. English complete; 7 other languages at ~29–33% coverage and therefore **gated off**. Statutory tax figures **unverified**. |
+| **Status** | Six product pillars, legal pages, cookie consent and CI implemented and building. Every calculator and tool category in the spec has content. 710 static pages. 881 tests passing. English complete; 7 other languages at 17–19% coverage and therefore **gated off**. Statutory tax figures **unverified**. Operator details (entity, email, jurisdiction) **unset**. |
 
 **Governing spec:** `C:\Users\sandi\Downloads\HouseOfCalculators_Project_Specification.md` (85 sections). The build follows it; deviations are documented in §7 below.
 
@@ -83,7 +83,9 @@ src/
 │   ├── navigation/          LocaleSelector, CountrySelector, WelcomeDialog
 │   ├── search/              SearchBox
 │   ├── shared/              ContentCard, CardGrid, SectionHeading, CountryBadge, Dropdown
-│   └── tools/               ToolRunner, ToolShell, DateTools, NumberTools, UtilityTools
+│   ├── consent/             ConsentScript (Consent Mode v2 defaults), ConsentBanner
+│   └── tools/               ToolRunner, ToolShell, DateTools, NumberTools, UtilityTools,
+│                            MoreTools, RandomTools
 ├── config/
 │   ├── locales.ts           16 locales
 │   ├── languages.ts         14 languages
@@ -91,14 +93,16 @@ src/
 │   ├── categories.ts        sections + per-section category vocabularies
 │   ├── calculators/         types.ts, scale.ts, index.ts (registry), definitions/*
 │   ├── converters/          units.ts (engine), definitions.ts (13 converters)
-│   ├── tools/definitions.ts 14 tools (metadata only)
+│   ├── tools/definitions.ts 23 tools (metadata only)
 │   ├── charts/definitions.ts 19 tables (each has a `build(ctx)` generator)
 │   ├── guides/definitions.ts 12 guides (structured, not free prose)
+│   ├── calculators/definitions/{health,maths,business,education,construction}.ts  33 generic calculators
 │   └── legal/definitions.ts  5 legal pages + OPERATOR details
 ├── lib/
 │   ├── i18n/                index.ts + dictionaries/*.json
 │   ├── finance/             index.ts (pure maths), tax/{define,rules,slabs,index}.ts
-│   ├── tools/               dates.ts, numbers.ts, planning.ts
+│   ├── tools/               dates.ts, numbers.ts, planning.ts, random.ts (shared CSPRNG)
+│   ├── health/ maths/ business/ construction/   pure logic for the generic calculators
 │   ├── format.ts            currency/number formatting per country+language
 │   ├── locale-context.tsx   client LocaleProvider + useLocale
 │   ├── preferences.ts       cookie read/write
@@ -115,15 +119,15 @@ docs/tax-rules-to-verify.md  every statutory number that needs checking
 ### Content registry counts (verified)
 | Registry | Count |
 |---|---|
-| Calculators | 27 (19 country-specific, 8 generic) |
+| Calculators | 60 across all 8 spec categories (19 country-specific, 41 generic) |
 | Converters | 13 categories, 61 featured pair pages |
-| Tools | 14 |
+| Tools | 23 across all 4 tool categories |
 | Charts/tables | 19 |
 | Guides | 12 |
 | Legal pages | 5 (privacy, terms, cookies, contact, about) |
 | Locales | 16 (12 launch + 4 extra) |
 | Countries | 22 |
-| Static pages built | 625 |
+| Static pages built | 710 |
 
 ### Key relationships
 - `lib/content.ts` aggregates every registry into `ContentItem[]` — **the one place** search, grids and the sitemap read from, so a page can't exist in one and be missing from another.
@@ -236,6 +240,45 @@ The copy describes **what this site actually does**, not a template:
 
 `app.name` is now `House of Calculators` in all seven translated dictionaries (was the pre-rebrand name). Decision: **one brand in Latin script across every locale**, so it stays searchable and matches the domain.
 
+### Then: the spec completion pass (session 5, commits `38ae10f` → `a19a94b`)
+
+The user asked to read the governing spec and complete pending work. Audit result: the engine was complete, content and launch plumbing were not. Done, in order:
+
+| Commit | What |
+|---|---|
+| `38ae10f` | **Health** (bmi, bmr, tdee, body-fat, water-intake, running-pace) and **Maths** (statistics, ratio, exponent, quadratic-equation, triangle, area, volume) |
+| `34c23f4` | **Business** (profit-margin, markup, break-even, roi, roas, growth-rate), **Everyday** (discount, fuel-cost, electricity-cost, recipe-scaler), **Education** (gpa, weighted-grade, final-grade), **Construction** (concrete, paint, tile, roof-area), **Engineering** (ohms-law, force, torque). 27 → 60 calculators; no category empty |
+| `5b28c42` | Brand **icon.svg** + generated **opengraph-image**, scaffold assets removed, **cookie consent** (Consent Mode v2), **CI** (`.github/workflows/ci.yml`) |
+| `a19a94b` | Nine **tools**: day-of-week, countdown, words-to-number, factor-finder, number-formatter, dice-roller, coin-flip, random-picker, budget-planner. 14 → 23 |
+
+**Engine additions** made along the way (all backward-compatible):
+- `Country.measurementSystem` (`metric` / `us-customary` / `mixed`) — spec §13, never previously built. Health/construction/fuel calculators default their units from it.
+- `CalculatorDef.countryRelevance` (`rules` / `currency` / `units` / `none`) — drives the badge under the H1 and the country-selector hint, and hides the selector entirely for `none`. Helper `countryRelevanceOf()` applies the default (`rules` if country-specific, else `currency`).
+- `ResultRow.decimals` / `BreakdownColumn.decimals` — the formatter defaults to 0 decimals, which rendered a BMI of 24.3 as "24".
+- Field kind `text` — for list inputs (statistics). An empty `select` renders nothing.
+- `lib/tools/random.ts` — the CSPRNG helper that was private to UtilityTools, now shared: `randomInt` (rejection sampling), `shuffle` (Fisher-Yates), `pick`, `splitTeams`, `rollDice`, `flipCoins`.
+
+**Bugs found and fixed in this pass:**
+
+| Bug | How it surfaced |
+|---|---|
+| **Brazil's slider floor sat above its own default** (R$100,000 floor vs R$60,000 default) on income-tax, salary, pension and social-security. `nice()` rounded minimums *up*. Now `niceFloor()` for minimums, and each range is widened to contain its default | New registry test asserting every field defaults inside its range |
+| Page claimed "Figures follow United States rules for 2025" on BMI and quadratic pages | Browser check → `countryRelevance` |
+| Donut centre formatted every primary as currency — a 40% margin read "$40" | Browser check |
+| Locale proxy swallowed `/opengraph-image` (no file extension), so shared links had no preview | curl returned 307 |
+| `buildMetadata` set `openGraph` without `images`, which replaces the file convention wholesale — no `og:image` emitted | Checked the emitted HTML |
+
+**Consent design** (see §7): banner only when `NEXT_PUBLIC_ADSENSE_CLIENT` is set; asks about advertising cookies only; defaults all four Consent Mode signals to denied in an inline script emitted *before* the ads script; reject shown first with identical styling. Verified end to end in the browser with a temporary publisher id.
+
+**Still open from the spec audit** (not done, deliberately):
+- **Time-zone converter, world clock, meeting planner** (§3, §4) — need a zone database; group with the currency work.
+- **Currency converter** (§12) — needs a live, timestamped rate source. Never hard-code rates.
+- **Search scoring tests, component/E2E tests** (§67).
+- Charts: shoe/clothing size and time-zone reference tables (§5).
+- Sitemap split into per-section files (§23) — one sitemap is fine at 710 URLs.
+- PDF/XLSX export (§55) — CSV and print exist.
+- GA4 / Search Console (§36) — see the privacy-page note in §9.
+
 ---
 
 ## 7. Decisions Already Made
@@ -257,6 +300,16 @@ The copy describes **what this site actually does**, not a template:
 | Tests use Node's native runner | Vitest install fails on peer deps here; Node 24 runs `.ts` natively | |
 | Kept hi/gu/mr/ar beyond the spec's 12 locales | Already translated; wasteful to discard | |
 | Brand name in a dictionary key (`app.name`) | Renaming is a one-line change | |
+| **Brand stays "House of Calculators" in Latin script in every language** | User's decision (session 4). Keeps it searchable and matching the domain | Don't transliterate or translate it |
+| `countryRelevance` on every calculator; `none` hides the country badge and selector | Claiming a BMI follows a country's tax-year rules was simply untrue | New calculators must set it honestly |
+| Construction/fuel calculators work in the units given, never convert silently | A trade calculator that turned feet into metres behind the user's back would be worse than useless | |
+| Maths calculators do **not** duplicate percentage / primes / fractions / Roman numerals | Those exist as tools; a second URL would compete for the same query (spec §40) | |
+| Consent banner only when a publisher id is set, and only about **advertising** cookies | With no ads there is nothing to consent to; the locale/country cookies are strictly functional | Don't gate the preference cookies |
+| Consent Mode defaults set in an **inline script before `<AdScript />`** | The ads script is async; if it runs first it can set a cookie nobody agreed to. A test pins the order | |
+| Reject button first and styled identically to accept | Anything else is a dark pattern; a test pins it | |
+| `proxy.ts` `config.matcher` is an **inline literal** | Next statically analyses it and rejects an imported constant. `tests/hreflang.test.ts` parses the literal out of the file | Don't extract it to a module |
+| All randomness through `lib/tools/random.ts` (CSPRNG) | People settle things with these tools; `Math.random` / sort-by-random is not fair | |
+| Client state from cookies/clock via `useSyncExternalStore`, not `setState` in an effect | Keeps pages static and satisfies the React compiler lint rule `react-hooks/set-state-in-effect` | |
 
 ---
 
@@ -264,46 +317,47 @@ The copy describes **what this site actually does**, not a template:
 
 | # | Problem | Status | Tried / Next step |
 |---|---|---|---|
-| 1 | **7 languages gated off** (ar/de/es/fr/gu/hi/mr at 29–33%). Only `en-US` and `en-GB` currently build | Known, by design of the gate | English grew from 477 → 1256 keys across the re-architecture. Next step: translate the ~850 new keys per language. Order by market: de, fr, es, then hi/gu/mr/ar |
+| 1 | **7 languages gated off** (ar/de/es/fr/gu/hi/mr now at 17–19%). Only `en-US` and `en-GB` currently build | Known, by design of the gate | English is now **2,139 keys** (was 1,256 before session 5's calculators, tools and legal copy). ~1,730 keys to translate per language to reach the 75% gate. Order by market: de, fr, es, then hi/gu/mr/ar |
 | 2 | **6 locales have no dictionary at all**: nl, ja, it, pt, pl, tr (+ new ru, zh) | Not started | Add file + import into `RAW` in `src/lib/i18n/index.ts`; the gate switches them on automatically |
 | 3 | **All statutory tax figures unverified** | Documented, not fixed | `docs/tax-rules-to-verify.md` lists every number. Must be checked before launch |
 | 4 | Known model gaps: CH (no cantonal tax), US/CA (no state/provincial), DE (contributions not deducted as Vorsorgeaufwendungen), FR (no quotient familial), BR (ICMS modelled as single VAT) | Each stated in the page's own note | Same doc |
 | 5 | ~~Legal pages linked in the footer but do not exist → 404~~ | **Fixed** (`94c5488`) | All five built and in the sitemap. See issue 15 for the one thing left on them |
-| 6 | No cookie-consent implementation | Not started | Required for EU traffic with ads (spec §35) |
+| 6 | ~~No cookie-consent implementation~~ | **Fixed** (`5b28c42`) | Consent Mode v2 + banner, active only when a publisher id is set. Re-check Google's current CMP requirements for EEA/UK before launch — Google may require a certified CMP rather than a custom banner for personalised ads there |
 | 7 | AdSense not configured | By design | Set `NEXT_PUBLIC_ADSENSE_CLIENT`; slots render nothing until then |
 | 8 | Guide category page derived from the charts page via `sed` | Works, verified | Worth a read-through for leftover chart naming |
-| 9 | No `favicon`/OG image beyond the scaffold default | Not started | |
+| 9 | ~~No favicon/OG image beyond the scaffold default~~ | **Fixed** (`5b28c42`) | `src/app/icon.svg` + generated `src/app/opengraph-image.tsx`. No `apple-icon` PNG yet |
 | 10 | `MODULE_TYPELESS_PACKAGE_JSON` warnings when running tests | Cosmetic | Scoped `tests/package.json` already added; warnings come from `src/` files |
-| 11 | No CI pipeline (spec §66) | Not started | `npm run check` exists as the local equivalent |
+| 11 | ~~No CI pipeline~~ | **Fixed** (`5b28c42`) | `.github/workflows/ci.yml`: lint, types, tests, i18n, build as separate jobs on Node 24. **Not yet run on GitHub** — no remote push has happened this session |
 | 12 | ~~`npx tsc --noEmit` failed on the test files (`TS5097`)~~ | **Fixed** (`0c4953a`) | `"allowImportingTsExtensions": true` added to `tsconfig.json`, valid because `noEmit` is already set. The tests stay type-checked |
 | 13 | ~~`app.name` was still the pre-rebrand brand in all 7 translated dictionaries~~ | **Fixed** (`94c5488`) | Set to `House of Calculators` in every language. Decided: one brand in Latin script everywhere, so it stays searchable and matches the domain |
 | 15 | **`OPERATOR` details are unset** — entity, contact email and governing-law jurisdiction are all `null` in `src/config/legal/definitions.ts` | Open, **blocks launch and AdSense review** | Every legal page shows a "not ready to publish" notice until they are filled in. This is a one-object edit; the notice disappears on its own |
+| 16 | Health pages carry disclaimers in notes/explainers but no dedicated medical-disclaimer block | Open, low | Spec §2.1 asks for "appropriate disclaimers"; current wording is careful but worth a review before launch |
 | 14 | **No pluralisation**: the date tools render "0 years, 1 months and 1 days" | Open, cosmetic but visible on every date result | Needs plural-aware keys. English alone would be a patch; doing it per language is the real fix, since plural rules differ (Arabic has six forms). Consider `Intl.PluralRules` keyed as `key.one` / `key.other` with the existing English fallback |
 
 ---
 
 ## 9. Next Steps
 
-### Immediate next task
-1. ~~Commit the guides pillar + tests~~ — done (`0c4953a`).
-2. ~~Finish the test suite~~ — done (`b1b5b77`), 487 tests, five bugs found and fixed.
-3. ~~Legal pages~~ — done (`94c5488`), all five built, in the sitemap and tested.
-4. **Fill in `OPERATOR`** (issue 15) — entity, contact email, governing-law jurisdiction. Until then every legal page carries a visible "not ready to publish" notice, so this blocks launch and AdSense review. Needs the user, not a code change.
+### Blocking launch — needs the user
+1. **Fill in `OPERATOR`** (issue 15) in `src/config/legal/definitions.ts` — entity, contact email, governing-law jurisdiction. Every legal page shows a "not ready to publish" notice until then.
+2. **Push to GitHub** so the CI workflow actually runs once (issue 11).
+3. **Set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_ADSENSE_CLIENT`** in the deployment environment; choose hosting (spec §9).
+4. **Verify statutory tax figures** against `docs/tax-rules-to-verify.md` (issue 3).
 
-### Short term
-5. **Translate the new keys for de, fr, es** (restores 3 locales). Note English grew to 1391 keys with the legal copy, so coverage now reads 26–30%. Keep `npm run test` green while translating — `tests/i18n.test.ts` fails on a mismatched placeholder, which is the point of it. Leave `app.name` alone: the brand is deliberately the same Latin string in every language.
-6. Then hi, gu, mr, ar (restores India/UAE).
-7. **Cookie-consent component** — the cookies page now describes the cookies honestly, but EU traffic with ads still needs a consent mechanism (spec §35).
+### Short term — code
+5. **Translate de, fr, es** (restores 3 locales). ~1,730 keys each now. Keep `npm run test` green — `tests/i18n.test.ts` fails on a mismatched placeholder, which is its point. Leave `app.name` alone.
+6. **Pluralisation** (issue 14) — better done *before* bulk translation, since it changes key shapes.
+7. Then hi, gu, mr, ar.
 
 ### Later
-8. New locale dictionaries: nl, ja, it, pt, pl, tr, ru, zh.
-9. Verify statutory tax figures against `docs/tax-rules-to-verify.md`.
-10. Currency converter (spec §12 — needs a live rate source with timestamps; **never hard-code rates**).
-11. Remaining calculator categories the spec lists but that aren't built: math, health, education, engineering, construction.
-12. CI pipeline; GA4 + Search Console; performance budgets. **Adding GA4 means updating the privacy and cookies pages first** — both currently state that no analytics are used, and a policy that quietly becomes untrue is worse than no policy.
+8. Currency converter + time-zone converter/world clock/meeting planner (need live data sources; **never hard-code rates**).
+9. New locale dictionaries: nl, ja, it, pt, pl, tr, ru, zh.
+10. GA4 + Search Console. **Update the privacy and cookies pages first** — both state no analytics are used.
+11. Remaining charts (shoe/clothing sizes, time-zone reference), `apple-icon`, PDF/XLSX export.
+12. Search scoring tests; component/E2E tests (spec §67).
 
 ### Optional
-13. Component/E2E tests; theme toggle; PostgreSQL + admin CMS (spec §47/§77) once content outgrows config files.
+13. Theme toggle; PostgreSQL + admin CMS (spec §47/§77) once content outgrows config files.
 
 ---
 
@@ -406,22 +460,16 @@ npx tsc --noEmit # type-check
 
 ## 13. How To Continue
 
-Open the new session in `D:\Calculator` and do this, in order:
+Open the new session in `D:\Calculator` and:
 
-1. **Orient** — skim `PROJECT_STATE.md` (this file), then `src/config/categories.ts`, `src/lib/routes.ts` and `src/lib/content.ts`. Those three explain the whole information architecture.
-2. **Fix known issue #12 first** — one line in `tsconfig.json`:
-   ```jsonc
-   "allowImportingTsExtensions": true   // valid because noEmit is already set
-   ```
-   Without it `npm run check` fails on the test files, even though `src/` and the production build are clean.
-3. **Then verify the build is green:**
-   ```bash
-   npm run check
-   ```
-   Expect after the fix: lint clean, tsc clean, 172 tests passing, "Every statically referenced key is defined in English." `npm run build` should produce 615 static pages.
-4. **Commit the outstanding work** — the guides pillar and the test suite are implemented and passing but uncommitted. Check `git status` first.
-5. **Then pick up the immediate next task**: finish the test suite (converters, tools, **i18n placeholder integrity**, hreflang bidirectionality). The i18n placeholder test is the highest-value one — mismatched `{placeholders}` between English and a translation are silent and user-visible.
-6. **After that**, the legal pages, since the footer currently links to five 404s and AdSense review will require them.
+1. **Orient** — this file, then `src/config/categories.ts`, `src/lib/routes.ts`, `src/lib/content.ts`. For calculators: `src/config/calculators/types.ts` (note `countryRelevance`, `decimals`, the `text` field kind).
+2. **Verify green:** `npm run check` then `npm run build`. Expect lint clean, tsc clean, **881 tests**, "Every statically referenced key is defined in English", **710 static pages**. Working tree should be clean at `a19a94b` or later.
+3. **Ask the user** for the `OPERATOR` details and whether to push to GitHub — both are theirs to provide.
+4. **Then** pick up §9 "Short term": pluralisation first, then translation.
+
+**Adding a calculator** is: pure logic in `src/lib/<area>/` with a test, a definition in `src/config/calculators/definitions/`, set `countryRelevance` honestly, register in `index.ts`, add English copy via a `scripts/add-*-keys.mjs` script. `tests/calculators.test.ts` will then run it in every country across its select/toggle answers and fail on any missing key, NaN, negative chart slice or out-of-range default.
+
+**Shell gotcha:** Bash heredocs and `node -e` in this environment mangle backticks and `${}`. Use the Write/Edit tools or a script file in the scratchpad for anything containing template literals.
 
 **Before changing anything, read §7 (Decisions Already Made).** Several choices that look arbitrary — manual currency composition, the 75% readiness gate, the `isCountrySpecific` URL split — exist because the obvious alternative produced a real bug or a real SEO problem.
 
