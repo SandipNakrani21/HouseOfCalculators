@@ -1,7 +1,7 @@
 # PROJECT_STATE.md
 
 > Source of truth for continuing this project in a new Claude session.
-> Last updated: 2026-09-24 (session 5). Working directory: `D:\Calculator`.
+> Last updated: 2026-09-24 (session 5, redesign `c5fed9d`). Working directory: `D:\Calculator`.
 >
 > **Done vs pending against the spec, section by section: see [§14 Spec Compliance Tracker](#14-spec-compliance-tracker).**
 
@@ -16,7 +16,7 @@
 | **Purpose** | Global, multilingual, mobile-first platform for calculators, converters, tools, reference tables, guides and country-specific utilities |
 | **Target users** | Anyone searching for a calculation ("mortgage payment", "meters to feet", "UK stamp duty"), across 16 locales and 22 countries |
 | **Monetization** | Organic search traffic → Google AdSense (slots built in, no publisher id configured yet) |
-| **Status** | Six product pillars, legal pages, cookie consent and CI implemented and building. Every calculator and tool category in the spec has content. 710 static pages. 881 tests passing. English complete; 7 other languages at 17–19% coverage and therefore **gated off**. Statutory tax figures **unverified**. Operator details (entity, email, jurisdiction) **unset**. |
+| **Status** | Six product pillars, legal pages, cookie consent and CI implemented and building. Every calculator and tool category in the spec has content. 710 static pages. 912 tests passing. **Whole site redesigned after the user's landing-page comp** (see §6). English complete; 7 other languages at 17–19% coverage and therefore **gated off**. Statutory tax figures **unverified**. Operator details (entity, email, jurisdiction) **unset**. |
 
 **Governing spec:** `C:\Users\sandi\Downloads\HouseOfCalculators_Project_Specification.md` (85 sections). The build follows it; deviations are documented in §7 below.
 
@@ -33,7 +33,8 @@
 | Backend | None yet | All calculation is deterministic and client-side |
 | Database | None yet | Spec suggests PostgreSQL later; not needed while content is config-driven |
 | Tests | **Node's built-in test runner** running `.ts` natively | Vitest install failed on peer deps; native runner works via a custom ESM loader |
-| Fonts | System stack only | No webfont; covers Latin/Cyrillic/CJK/Devanagari/Gujarati/Arabic |
+| Fonts | **Plus Jakarta Sans** (next/font, self-hosted, Latin only) + Caveat for one hero line | Other scripts fall back to the system stack. Replaced "no webfont" at the user's direction for the redesign |
+| Icons | **lucide-react** | Rendered in pastel tiles via `components/shared/Icon.tsx`; names mapped in `lib/visuals.ts` |
 | Charts | Hand-written inline SVG | No chart library |
 | Deployment | Not configured | |
 
@@ -281,6 +282,25 @@ The user asked to read the governing spec and complete pending work. Audit resul
 - PDF/XLSX export (§55) — CSV and print exist.
 - GA4 / Search Console (§36) — see the privacy-page note in §9.
 
+### Then: the full-site redesign (session 5, commit `c5fed9d`)
+
+The user supplied a landing-page comp and asked for the whole site to follow it, with modern, professional animation and scroll-triggered fade-ins. Done:
+
+| Area | What changed |
+|---|---|
+| Tokens (`globals.css`) | Comp palette, ten pastel `tone-*` families, `.card`, `.card-link`, `.btn-primary`, `.btn-secondary`, `.page-wash` (blue wash + dot grid behind every page top). Dark mode retained with a navy variant |
+| Motion | `data-reveal` (up/left/right/scale/fade/stagger) driven by `components/motion/RevealObserver.tsx`; `CountUp`; floating hero art; card lifts; FAQ accordions; value flash. All off under reduced motion |
+| Header / footer | Navy strip, SVG logo (`layout/Logo.tsx`), underline nav, search dialog (`/`, Ctrl+K, arrow keys); navy five-column footer |
+| Homepage | Rebuilt after the comp: hero + art, stats, categories, popular, more ways, why choose + device mockup, countries with flags, guides, CTA. `components/home/*` |
+| Inner pages | All 18 use `shared/PageHeader.tsx`; cards take `visual`; calculator/converter/tool/guide/breakdown restyled |
+| Tests | `tests/content.test.ts` (31) |
+
+**Adapted from the comp, deliberately:** no fabricated figures (counts computed), no newsletter form, no social icons, no stock photos (illustrated thumbnails), no placeholder ad boxes (`AdSlot` still renders nothing without a publisher id), "Blog" → the existing Guides section, "Used Worldwide" → "Built for Every Country" (the site is not launched).
+
+**Bugs fixed during the redesign:** unlayered CSS overriding utilities (footer headings invisible); "{tax} Calculator" leaking into country pages, search and the footer (now `lib/calculator-copy.ts`); mobile horizontal overflow; language pill wrapping on phones.
+
+**Screenshot tool** used for review, reusable: a CDP script that sets cookies, forces light/dark, scrolls to fire reveals, and captures viewport slices with local Chrome. Kept in the session scratchpad only; recreate if needed (Node 24 has WebSocket built in, so nothing to install).
+
 ---
 
 ## 7. Decisions Already Made
@@ -297,7 +317,13 @@ The user asked to read the governing spec and complete pending work. Audit resul
 | Calculation runs **client-side** | Deterministic; spec §30 explicitly forbids a server round-trip per keystroke | |
 | Charts generated from live data, not transcribed | A table can't drift from the tool beside it | |
 | Featured converter pairs only | Spec §40 — every permutation would be thin duplicate pages | |
-| `CountryBadge` instead of flag emoji | Windows has no regional-indicator glyphs; it silently rendered bare letters | |
+| `CountryBadge` renders **round flag SVGs** from `public/flags` (flag-icons, MIT), never flag emoji | Windows has no regional-indicator glyphs; emoji rendered as bare letters | |
+| **Design follows the user's landing-page comp** for every page | User's direction (session 5) | Colours, type, cards, icons and motion come from it; content must stay truthful (see below) |
+| Comp claims are replaced with real, computed figures | The comp said "1,000+ calculators", "10+ languages", "millions of users" — none true. Counts are computed from the registries | Never hard-code marketing numbers |
+| No newsletter field, no social icons in the footer | The privacy policy says there are no forms; there are no social accounts | Adding either means updating the privacy page first |
+| Base CSS in `@layer base`, component classes in `@layer components` | Unlayered CSS beats Tailwind utilities; `text-white` on headings was being ignored | Never add unlayered element rules |
+| Scroll reveal via `data-reveal` attributes + one `RevealObserver` | Pages stay server components; content hidden only after an inline script sets `html.js` | The LCP heading uses `animate-rise` (no fade) |
+| Every icon/colour comes from `lib/visuals.ts`; items keep their category colour | One family per category, as in the comp | Add new slugs to `ITEM_ICONS` |
 | `proxy.ts` not `middleware.ts` | Next 16 deprecated the middleware convention (`AGENTS.md` warns about this) | |
 | Tests use Node's native runner | Vitest install fails on peer deps here; Node 24 runs `.ts` natively | |
 | Kept hi/gu/mr/ar beyond the spec's 12 locales | Already translated; wasteful to discard | |
@@ -386,7 +412,7 @@ The user asked to read the governing spec and complete pending work. Audit resul
 - No fake freshness dates on guides (`reviewed` is a real review date).
 - No ad patterns that could be mistaken for controls; no ads at all without a publisher id.
 - No `Math.random` for anything a user might treat as fair.
-- No webfont (system stack covers all six scripts).
+- ~~No webfont~~ — reversed in session 5 at the user's request: Plus Jakarta Sans for Latin via next/font, system faces for other scripts.
 
 **Technical constraints discovered the hard way**
 - Bash heredocs in this environment mangle backticks and `${}` — use the `Write` tool or Node scripts for anything with template literals.
@@ -469,7 +495,7 @@ npx tsc --noEmit # type-check
 Open the new session in `D:\Calculator` and:
 
 1. **Orient** — this file, then `src/config/categories.ts`, `src/lib/routes.ts`, `src/lib/content.ts`. For calculators: `src/config/calculators/types.ts` (note `countryRelevance`, `decimals`, the `text` field kind).
-2. **Verify green:** `npm run check` then `npm run build`. Expect lint clean, tsc clean, **881 tests**, "Every statically referenced key is defined in English", **710 static pages**. Working tree should be clean at `a19a94b` or later.
+2. **Verify green:** `npm run check` then `npm run build`. Expect lint clean, tsc clean, **912 tests**, "Every statically referenced key is defined in English", **710 static pages**. Working tree should be clean at `c5fed9d` or later. For any UI work, read §6's redesign block and the design rows in §7 first.
 3. **Ask the user** for the `OPERATOR` details and whether to push to GitHub — both are theirs to provide.
 4. **Then** pick up §9 "Short term": pluralisation first, then translation.
 
