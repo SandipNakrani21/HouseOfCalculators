@@ -127,6 +127,10 @@ export default async function LocaleLayout({
       lang={locale.code}
       dir={locale.dir}
       className={`h-full ${jakarta.variable} ${caveat.variable}`}
+      // globals.css sets smooth scrolling for in-page links. This tells
+      // Next 16 to switch it off during route changes, so a new page opens
+      // at the top instantly instead of gliding up from where you were.
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">

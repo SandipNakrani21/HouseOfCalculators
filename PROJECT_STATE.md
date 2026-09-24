@@ -323,6 +323,7 @@ The user supplied a landing-page comp and asked for the whole site to follow it,
 | No newsletter field, no social icons in the footer | The privacy policy says there are no forms; there are no social accounts | Adding either means updating the privacy page first |
 | Base CSS in `@layer base`, component classes in `@layer components` | Unlayered CSS beats Tailwind utilities; `text-white` on headings was being ignored | Never add unlayered element rules |
 | Scroll reveal via `data-reveal` attributes + one `RevealObserver` | Pages stay server components; content hidden only after an inline script sets `html.js` | The LCP heading uses `animate-rise` (no fade) |
+| **`favicon.ico` lives in `public/`, not `src/app/`** | In `src/app/` it breaks the Turbopack production build of this project with a misleading `next/font/google queries have exactly one entry` error. Found by bisecting | Don't move it back; `<link rel=icon>` comes from `src/app/icon.svg` |
 | Every icon/colour comes from `lib/visuals.ts`; items keep their category colour | One family per category, as in the comp | Add new slugs to `ITEM_ICONS` |
 | `proxy.ts` not `middleware.ts` | Next 16 deprecated the middleware convention (`AGENTS.md` warns about this) | |
 | Tests use Node's native runner | Vitest install fails on peer deps here; Node 24 runs `.ts` natively | |
