@@ -1,7 +1,9 @@
 # PROJECT_STATE.md
 
 > Source of truth for continuing this project in a new Claude session.
-> Last updated: 2026-09-24 (session 5, redesign `c5fed9d`). Working directory: `D:\Calculator`.
+> Last updated: 2026-09-24 (end of session 5, commit `2c08073`). Working directory: `D:\Calculator`.
+>
+> **State at hand-off:** clean working tree, clean production build (710/710 pages), lint + tsc clean, 912/912 tests, no console errors or server warnings.
 >
 > **Done vs pending against the spec, section by section: see [§14 Spec Compliance Tracker](#14-spec-compliance-tracker).**
 
@@ -16,7 +18,7 @@
 | **Purpose** | Global, multilingual, mobile-first platform for calculators, converters, tools, reference tables, guides and country-specific utilities |
 | **Target users** | Anyone searching for a calculation ("mortgage payment", "meters to feet", "UK stamp duty"), across 16 locales and 22 countries |
 | **Monetization** | Organic search traffic → Google AdSense (slots built in, no publisher id configured yet) |
-| **Status** | Six product pillars, legal pages, cookie consent and CI implemented and building. Every calculator and tool category in the spec has content. 710 static pages. 912 tests passing. **Whole site redesigned after the user's landing-page comp** (see §6). English complete; 7 other languages at 17–19% coverage and therefore **gated off**. Statutory tax figures **unverified**. Operator details (entity, email, jurisdiction) **unset**. |
+| **Status** | Six product pillars, legal pages, cookie consent and CI implemented and building. Every calculator and tool category in the spec has content. 710 static pages. 912 tests passing. **Whole site redesigned after the user's landing-page comp** (see §6), with scroll animations, light and dark themes, and a phone layout checked at 390px. English complete; 7 other languages at 17–19% coverage and therefore **gated off**. Statutory tax figures **unverified**. Operator details (entity, email, jurisdiction) **unset**. |
 
 **Governing spec:** `C:\Users\sandi\Downloads\HouseOfCalculators_Project_Specification.md` (85 sections). The build follows it; deviations are documented in §7 below.
 
@@ -73,7 +75,9 @@ This prevents the same calculation having two competing URLs (spec §7, §40).
 src/
 ├── app/
 │   ├── [locale]/            root layout (owns <html>), landing page, 6 section trees
-│   ├── globals.css          design tokens + component-level CSS
+│   ├── globals.css          design tokens, @layer base/components, animations, reveal CSS
+│   ├── icon.svg             favicon/link-icon (logo mark)
+│   ├── opengraph-image.tsx  generated 1200x630 share card
 │   ├── sitemap.ts           one sitemap, per-entry hreflang alternates
 │   └── robots.ts
 ├── components/
@@ -82,10 +86,13 @@ src/
 │   │                        BreakdownPanel, ResultActions, CalculatorGrid
 │   ├── charts/              DonutChart, ReferenceTable
 │   ├── converter/           ConverterRunner
-│   ├── layout/              SiteHeader, SiteFooter, Breadcrumbs
+│   ├── home/                HeroArt, DeviceMockup, GuideArt (drawn in markup, no images)
+│   ├── layout/              SiteHeader, SiteFooter, Breadcrumbs, Logo
+│   ├── motion/              RevealObserver (scroll reveals), CountUp
 │   ├── navigation/          LocaleSelector, CountrySelector, WelcomeDialog
 │   ├── search/              SearchBox
-│   ├── shared/              ContentCard, CardGrid, SectionHeading, CountryBadge, Dropdown
+│   ├── shared/              ContentCard, CardGrid, SectionHeading, ViewAllLink, PageHeader,
+│   │                        Icon + IconTile, CountryBadge (round flags), Dropdown
 │   ├── consent/             ConsentScript (Consent Mode v2 defaults), ConsentBanner
 │   └── tools/               ToolRunner, ToolShell, DateTools, NumberTools, UtilityTools,
 │                            MoreTools, RandomTools
@@ -106,6 +113,9 @@ src/
 │   ├── finance/             index.ts (pure maths), tax/{define,rules,slabs,index}.ts
 │   ├── tools/               dates.ts, numbers.ts, planning.ts, random.ts (shared CSPRNG)
 │   ├── health/ maths/ business/ construction/   pure logic for the generic calculators
+│   ├── visuals.ts           icon + colour for every section/category/item
+│   ├── calculator-copy.ts   calculator title/description with country params filled
+│   ├── ads.ts               ADS_ENABLED flag for server layouts
 │   ├── format.ts            currency/number formatting per country+language
 │   ├── locale-context.tsx   client LocaleProvider + useLocale
 │   ├── preferences.ts       cookie read/write
@@ -114,7 +124,8 @@ src/
 │   ├── content.ts           unified content index (search + grids + sitemap)
 │   └── search.ts            typo-tolerant scoring
 ├── proxy.ts                 locale routing (NOT middleware.ts)
-scripts/                     i18n-coverage.mjs + 4 dictionary-seeding scripts
+public/                      favicon.ico (must stay here, see §7), flags/*.svg (22, MIT)
+scripts/                     i18n-coverage.mjs + add-*-keys.mjs dictionary-seeding scripts
 tests/                       node test runner + custom ESM loader
 docs/tax-rules-to-verify.md  every statutory number that needs checking
 ```
@@ -165,11 +176,23 @@ docs/tax-rules-to-verify.md  every statutory number that needs checking
 - Header with 6-section nav + mobile menu; footer; breadcrumbs; welcome dialog with *separate* language and country questions.
 - Russia and China added as countries + languages.
 
-### Session part 3 — remaining pillars (commits `464cc0e`, `1c6c967`, and uncommitted)
-- **Tools pillar** (committed): 14 tools; UTC date arithmetic; month-clamping; ISO weeks; Roman numeral round-trip validation; CSPRNG with rejection sampling; debt planner that reports non-clearing payments.
-- **Charts pillar** (committed): 19 reference tables generated from live data, server-rendered, bidirectional links to tools.
-- **Guides pillar** (uncommitted): 12 structured guides with formula → variables → steps → worked example → calculator → FAQ; `Article` JSON-LD; honest `reviewed` dates. Worked-example figures verified against the shipped implementations.
-- **Tests** (uncommitted): 172 passing across finance and tax.
+### Session part 3 — remaining pillars (commits `464cc0e`, `1c6c967`, `0c4953a`)
+- **Tools pillar**: 14 tools; UTC date arithmetic; month-clamping; ISO weeks; Roman numeral round-trip validation; CSPRNG with rejection sampling; debt planner that reports non-clearing payments.
+- **Charts pillar**: 19 reference tables generated from live data, server-rendered, bidirectional links to tools.
+- **Guides pillar**: 12 structured guides with formula → variables → steps → worked example → calculator → FAQ; `Article` JSON-LD; honest `reviewed` dates. Worked-example figures verified against the shipped implementations.
+- **Tests**: 172 passing across finance and tax.
+
+### Session 4 — tests, bugs, legal (commits `0c4953a` → `c5b429e`)
+- Test suite finished: converters, tools, i18n integrity, hreflang (172 → 487, then 509 with the legal pages). Five real bugs found and fixed.
+- Legal pages (privacy, terms, cookies, contact, about) written from the site's real behaviour.
+- Brand set to "House of Calculators" in every language.
+
+### Session 5 — spec completion, redesign, rebuild (commits `38ae10f` → `2c08073`)
+- Spec audit → 33 new calculators (all 8 categories populated), 9 new tools, cookie consent, CI, icon + share card.
+- Spec compliance tracker (§14) written against the spec.
+- **Full-site redesign** after the user's landing-page comp: new design system, animations, every page.
+- Clean rebuild and re-run: real `favicon.ico`, route-change scrolling fixed.
+- Tests 509 → 912. Details of all of it in §6.
 
 ---
 
@@ -188,6 +211,11 @@ docs/tax-rules-to-verify.md  every statutory number that needs checking
 | `src/lib/finance/tax/rules.ts` | 22 country rule sets, each with `verifiedFor` |
 | `src/components/calculator/CalculatorRunner.tsx` | Generic engine: looks up the definition by slug client-side (definitions hold functions, which can't cross the server boundary) |
 | `src/lib/i18n/index.ts` | Dictionaries, `translate`, `countryParams`, `isLanguageReady`, `unitName` |
+| `src/app/globals.css` | The design system: tokens, tone families, `.card`, buttons, animations, reveal rules. Base/components are **layered** |
+| `src/lib/visuals.ts` | Icon name + tone for every section, category and item |
+| `src/components/shared/PageHeader.tsx` | Heading used by all 18 inner pages |
+| `src/components/motion/RevealObserver.tsx` | The one observer behind every `data-reveal` |
+| `src/lib/calculator-copy.ts` | Always use this to list a calculator's title — it fills country params |
 
 ### Routes (all implemented)
 All 23 route files listed in §3. Every page defines its own `generateMetadata` (important: without it a page would inherit the locale home's canonical).
@@ -202,7 +230,7 @@ All 23 route files listed in §3. Every page defines its own `generateMetadata` 
 
 ## 6. Current Task
 
-**Session 4: the test suite was finished (spec §53, §67) at 487 tests. It is now 881 — see the session 5 block below.**
+**Session 4: the test suite was finished (spec §53, §67) at 487 tests. It is now 912 — see the session 5 blocks below.**
 
 | File | Tests | Covers |
 |---|---|---|
@@ -301,6 +329,19 @@ The user supplied a landing-page comp and asked for the whole site to follow it,
 
 **Screenshot tool** used for review, reusable: a CDP script that sets cookies, forces light/dark, scrolls to fire reveals, and captures viewport slices with local Chrome. Kept in the session scratchpad only; recreate if needed (Node 24 has WebSocket built in, so nothing to install).
 
+### Then: clean rebuild and re-run (session 5, commit `2c08073`)
+
+The user asked for a rebuild and re-run. Done from scratch (`.next` deleted, dev server restarted); every route smoke-tested (pages 200, unknown page 404, favicon, icon, share card, sitemap, robots). Two issues surfaced and were fixed:
+
+| Issue | Fix |
+|---|---|
+| `/favicon.ico` 404 on every page load (redesign had removed the scaffold favicon; browsers still request it) | Real ICO (16/32/48 px, PNG-encoded) rendered from the logo, in **`public/favicon.ico`** |
+| Next 16 warning: `scroll-behavior: smooth` on `<html>` — every route change glided up from where you were | `data-scroll-behavior="smooth"` on `<html>` in the locale layout |
+
+**Gotcha found while fixing the first:** with `favicon.ico` in `src/app/`, this project's Turbopack production build fails with a misleading *"next/font/google queries have exactly one entry"* error. Proven by bisecting a clean build with and without the file. It stays in `public/` (recorded in §7).
+
+**How to do a clean rebuild:** stop the dev server → `rm -rf .next` → `npm run build` → `preview_start calculator-dev`. Stale "WebSocket …/_next/hmr failed" console errors after a restart come from the old server session; check in a fresh tab.
+
 ---
 
 ## 7. Decisions Already Made
@@ -338,6 +379,7 @@ The user supplied a landing-page comp and asked for the whole site to follow it,
 | Reject button first and styled identically to accept | Anything else is a dark pattern; a test pins it | |
 | `proxy.ts` `config.matcher` is an **inline literal** | Next statically analyses it and rejects an imported constant. `tests/hreflang.test.ts` parses the literal out of the file | Don't extract it to a module |
 | All randomness through `lib/tools/random.ts` (CSPRNG) | People settle things with these tools; `Math.random` / sort-by-random is not fair | |
+| `<html data-scroll-behavior="smooth">` stays with the smooth-scroll CSS | Without it Next 16 animates every route change's scroll-to-top | Remove both together or neither |
 | Client state from cookies/clock via `useSyncExternalStore`, not `setState` in an effect | Keeps pages static and satisfies the React compiler lint rule `react-hooks/set-state-in-effect` | |
 
 ---
@@ -346,7 +388,7 @@ The user supplied a landing-page comp and asked for the whole site to follow it,
 
 | # | Problem | Status | Tried / Next step |
 |---|---|---|---|
-| 1 | **7 languages gated off** (ar/de/es/fr/gu/hi/mr now at 17–19%). Only `en-US` and `en-GB` currently build | Known, by design of the gate | English is now **2,139 keys** (was 1,256 before session 5's calculators, tools and legal copy). ~1,730 keys to translate per language to reach the 75% gate. Order by market: de, fr, es, then hi/gu/mr/ar |
+| 1 | **7 languages gated off** (ar/de/es/fr/gu/hi/mr now at 17–19%). Only `en-US` and `en-GB` currently build | Known, by design of the gate | English is now **2,205 keys** (was 1,256 before session 5). ~1,780 keys to translate per language to reach the 75% gate. Order by market: de, fr, es, then hi/gu/mr/ar |
 | 2 | **6 locales have no dictionary at all**: nl, ja, it, pt, pl, tr (+ new ru, zh) | Not started | Add file + import into `RAW` in `src/lib/i18n/index.ts`; the gate switches them on automatically |
 | 3 | **All statutory tax figures unverified** | Documented, not fixed | `docs/tax-rules-to-verify.md` lists every number. Must be checked before launch |
 | 4 | Known model gaps: CH (no cantonal tax), US/CA (no state/provincial), DE (contributions not deducted as Vorsorgeaufwendungen), FR (no quotient familial), BR (ICMS modelled as single VAT) | Each stated in the page's own note | Same doc |
@@ -354,7 +396,7 @@ The user supplied a landing-page comp and asked for the whole site to follow it,
 | 6 | ~~No cookie-consent implementation~~ | **Fixed** (`5b28c42`) | Consent Mode v2 + banner, active only when a publisher id is set. Re-check Google's current CMP requirements for EEA/UK before launch — Google may require a certified CMP rather than a custom banner for personalised ads there |
 | 7 | AdSense not configured | By design | Set `NEXT_PUBLIC_ADSENSE_CLIENT`; slots render nothing until then |
 | 8 | Guide category page derived from the charts page via `sed` | Works, verified | Worth a read-through for leftover chart naming |
-| 9 | ~~No favicon/OG image beyond the scaffold default~~ | **Fixed** (`5b28c42`) | `src/app/icon.svg` + generated `src/app/opengraph-image.tsx`. No `apple-icon` PNG yet |
+| 9 | ~~No favicon/OG image beyond the scaffold default~~ | **Fixed** (`5b28c42`, `2c08073`) | `src/app/icon.svg`, generated `src/app/opengraph-image.tsx`, and `public/favicon.ico`. No `apple-icon` PNG yet |
 | 10 | `MODULE_TYPELESS_PACKAGE_JSON` warnings when running tests | Cosmetic | Scoped `tests/package.json` already added; warnings come from `src/` files |
 | 11 | ~~No CI pipeline~~ | **Fixed** (`5b28c42`) | `.github/workflows/ci.yml`: lint, types, tests, i18n, build as separate jobs on Node 24. **Not yet run on GitHub** — no remote push has happened this session |
 | 12 | ~~`npx tsc --noEmit` failed on the test files (`TS5097`)~~ | **Fixed** (`0c4953a`) | `"allowImportingTsExtensions": true` added to `tsconfig.json`, valid because `noEmit` is already set. The tests stay type-checked |
@@ -363,6 +405,8 @@ The user supplied a landing-page comp and asked for the whole site to follow it,
 | 16 | Health pages carry disclaimers in notes/explainers but no dedicated medical-disclaimer block | Open, low | Spec §2.1 asks for "appropriate disclaimers"; current wording is careful but worth a review before launch |
 | 17 | **Every page ships all 8 language dictionaries to the browser** — one client chunk of ~383 KB (~109 KB gzipped) containing de/fr/es/hi/gu/mr/ar alongside English, referenced by every built page including the home page. Violates spec §29 and §64 | Open, **highest-value performance fix** | Cause: client modules import `@/lib/i18n` (`locale-context.tsx` imports `translate`; `format.ts` imports `getDictionary`), and that module statically imports every JSON file. Fix: keep dictionary loading server-side and pass only the active dictionary (already done via `LocaleProvider`'s `dictionary` prop), and make the client-reachable helpers dictionary-free — e.g. split `translate` and the formatter's unit lookup into a module with no JSON imports |
 | 18 | **Share links do not restore inputs** — "Copy link" in `ResultActions.tsx` writes every input into the query string, but `CalculatorRunner` never reads `searchParams`, so the recipient sees the defaults | Open, user-visible bug (spec §55) | Read the query on mount (client-only, pages stay static), validate each value against the field's kind and range, and ignore unknown keys. Keep these URLs out of the index — canonical already points to the clean URL |
+| 19 | `src/components/calculator/CalculatorGrid.tsx` is not imported anywhere | Open, low | Dead code from an earlier layout; not restyled in the redesign. Delete it or put it back into use |
+| 20 | `README.md` still describes the pre-rebrand "Calcora" project | Open, low | Rewrite from §1–§3 of this file |
 | 14 | **No pluralisation**: the date tools render "0 years, 1 months and 1 days" | Open, cosmetic but visible on every date result | Needs plural-aware keys. English alone would be a patch; doing it per language is the real fix, since plural rules differ (Arabic has six forms). Consider `Intl.PluralRules` keyed as `key.one` / `key.other` with the existing English fallback |
 
 ---
@@ -420,6 +464,11 @@ The user supplied a landing-page comp and asked for the whole site to follow it,
 - Next 16: `params` are Promises; `middleware.ts` is deprecated in favour of `proxy.ts`; the root layout can live at `app/[locale]/layout.tsx` with no `app/layout.tsx`.
 - Passing a calculator definition from a server component to a client one fails — definitions contain functions. Pass the slug and look it up client-side.
 - Reading cookies via `cookies()` in a layout makes every page dynamic; `useSyncExternalStore` keeps them static.
+- Tailwind v4 utilities live in `@layer utilities`; any **unlayered** CSS beats them regardless of specificity. Put element rules in `@layer base`.
+- `favicon.ico` in `src/app/` breaks the Turbopack build with a misleading Google-fonts error; keep it in `public/`.
+- `proxy.ts` `config.matcher` must be an inline string literal (statically analysed).
+- Headless Chrome's `captureBeyondViewport` drops some composited layers; for screenshots, scroll and capture one viewport at a time.
+- The React compiler lint rule `react-hooks/set-state-in-effect` rejects synchronous `setState` inside effects — read external state (cookies, scroll, clock) with `useSyncExternalStore`.
 
 ---
 
@@ -444,20 +493,26 @@ The user supplied a landing-page comp and asked for the whole site to follow it,
 | `scripts/{i18n-coverage,add-en-keys,add-tool-keys,add-chart-keys,add-guide-keys}.mjs` | Dictionary tooling |
 | `src/config/legal/definitions.ts` | 5 legal pages + the `OPERATOR` details that must be filled before launch |
 | `src/app/[locale]/[legal]/page.tsx` | One route serving all five legal pages |
-| `tests/{converters,tools,i18n,hreflang,legal}.test.ts` | The rest of the suite. Session 5 added `{health,maths,business,calculators,consent,random-tools}.test.ts` — 881 tests total |
+| `tests/{converters,tools,i18n,hreflang,legal}.test.ts` | Session 4 tests. Session 5 added `{health,maths,business,calculators,consent,random-tools,content}.test.ts` — **912 tests total** |
+| `src/lib/{health,maths,business,construction}/index.ts` | Pure logic for the 33 generic calculators (session 5) |
+| `src/config/calculators/definitions/{health,maths,business,education,construction}.ts` | Their definitions |
+| `src/components/{home,motion}/*`, `shared/{Icon,PageHeader}.tsx`, `layout/Logo.tsx`, `consent/*` | Redesign and consent components (session 5) |
+| `src/lib/{visuals,ads,calculator-copy}.ts`, `src/lib/tools/random.ts` | Visual map, ads flag, calculator copy, shared CSPRNG (session 5) |
+| `public/favicon.ico`, `public/flags/*` | Favicon and 22 round flags (session 5) |
+| `.github/workflows/ci.yml` | CI (session 5, never run yet) |
 | `docs/tax-rules-to-verify.md` | Every statutory figure needing verification |
 | `.gitattributes` | LF normalisation |
 
 ### Modified
 | Path | Change |
 |---|---|
-| `src/app/globals.css` | Rewritten to the spec palette |
+| `src/app/globals.css` | Rewritten again in session 5 to the landing-page comp's design system |
 | `src/config/{countries,languages}.ts` | 22 countries, 14 languages; readiness filtering |
 | `src/config/calculators/**` | Spec categories, `version`, `isCountrySpecific` |
 | `src/lib/i18n/index.ts` | Partial `RAW`, readiness gate, `countryParams`, `unitName`, `hasOwnKey` |
 | `src/lib/format.ts` | Manual currency composition; Latin digits |
 | `src/lib/locale-context.tsx` | Rewritten for locale/country split |
-| `src/lib/i18n/dictionaries/*.json` | English 2,139 keys; 7 others migrated to shared vocabulary (17–19% coverage) |
+| `src/lib/i18n/dictionaries/*.json` | English **2,205** keys; 7 others migrated to shared vocabulary (17–19% coverage) |
 | `README.md` | Rewritten (describes the pre-rebrand "Calcora" scope — **stale, needs updating**) |
 | `package.json` | Renamed; added `i18n`, `test`, `check` scripts |
 
@@ -468,6 +523,7 @@ The user supplied a landing-page comp and asked for the whole site to follow it,
 - `src/components/ui/*` → moved to `calculator/`, `charts/`, `shared/`
 - `src/lib/finance/tax/income-tax.ts` → split into `define.ts` + `rules.ts`
 - `src/config/calculators/definitions/{emi,consumption-tax,income-tax}.ts` → merged into `loans.ts`, `tax.ts`
+- `src/app/favicon.ico` (Next scaffold) and `public/{file,globe,next,vercel,window}.svg` → removed; new favicon lives in `public/`
 
 ---
 
@@ -477,10 +533,13 @@ The user supplied a landing-page comp and asked for the whole site to follow it,
 npm run dev      # dev server on :3000
 npm run build    # production build (710 static pages)
 npm run lint     # eslint, must be clean
-npm run test     # node --test with the alias loader (881 tests)
+npm run test     # node --test with the alias loader (912 tests)
 npm run i18n     # dictionary coverage report
 npm run check    # lint + tsc + test + i18n
 npx tsc --noEmit # type-check
+
+# clean rebuild (stop the dev server first)
+rm -rf .next && npm run build
 ```
 
 **Environment variables (names only):** `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_ADSENSE_CLIENT`.
@@ -496,7 +555,7 @@ npx tsc --noEmit # type-check
 Open the new session in `D:\Calculator` and:
 
 1. **Orient** — this file, then `src/config/categories.ts`, `src/lib/routes.ts`, `src/lib/content.ts`. For calculators: `src/config/calculators/types.ts` (note `countryRelevance`, `decimals`, the `text` field kind).
-2. **Verify green:** `npm run check` then `npm run build`. Expect lint clean, tsc clean, **912 tests**, "Every statically referenced key is defined in English", **710 static pages**. Working tree should be clean at `c5fed9d` or later. For any UI work, read §6's redesign block and the design rows in §7 first.
+2. **Verify green:** `npm run check` then `npm run build`. Expect lint clean, tsc clean, **912 tests**, "Every statically referenced key is defined in English", **710 static pages**. Working tree should be clean at `2c08073` or later. For any UI work, read §6's redesign block and the design rows in §7 first.
 3. **Ask the user** for the `OPERATOR` details and whether to push to GitHub — both are theirs to provide.
 4. **Then** pick up §9 "Short term": pluralisation first, then translation.
 
@@ -512,7 +571,7 @@ Open the new session in `D:\Calculator` and:
 
 ## 14. Spec Compliance Tracker
 
-> Every section of `HouseOfCalculators_Project_Specification.md` (85 sections), checked against the actual code on **2026-09-24** at commit `e325164`. Statuses were verified by reading code, running the build and checking the running app — not copied from earlier notes.
+> Every section of `HouseOfCalculators_Project_Specification.md` (85 sections), checked against the actual code on **2026-09-24**; first written at `e325164`, re-checked after the redesign at `2c08073`. Statuses were verified by reading code, running the build and checking the running app — not copied from earlier notes.
 
 **Legend:** ✅ Done · 🟡 Partial · ❌ Pending · ⏸ Deliberately deferred (reason given) · 👤 Needs the user · ↔ Deliberate deviation from spec (see §7)
 
@@ -534,10 +593,11 @@ Open the new session in `D:\Calculator` and:
 | Ads (§31–34) | 🟡 | Slots built and compliant; no publisher id (👤) |
 | Legal & consent (§35) | 🟡 | All pages + consent built; operator details unset (👤) |
 | Analytics (§36–37) | ❌ | Not started |
-| Search (§38) | ✅ | Grouped, typo-tolerant |
+| Search (§38) | ✅ | Grouped, typo-tolerant, keyboard navigable, opens with / or Ctrl+K |
+| Design, responsive, motion (§16–18, §59–61) | ✅ | Redesigned after the user's comp; scroll reveals; reduced-motion honoured; checked at 1440/390px, light and dark |
 | Accessibility (§42) | 🟡 | Built in; no formal audit |
 | Security (§43) | ❌ | No security headers or CSP configured |
-| Testing (§53, §67) | 🟡 | 881 unit tests; no component or E2E tests |
+| Testing (§53, §67) | 🟡 | 912 unit tests; no component or E2E tests |
 | CI/CD (§66) | 🟡 | Workflow written, never run; no preview deploys |
 | Database / CMS (§47, §77) | ⏸ | Config files are sufficient at current scale |
 | Launch checklist (§68) | 🟡 | See 14.9 |
@@ -695,14 +755,15 @@ Where a spec item is covered by a tool or a broader calculator, that is noted ra
 | 13 | Country config: currency, number format, measurement system | ✅ | `measurementSystem` added session 5 |
 | 13 | Explicit `dateFormat` per country | 🟡 | Handled by `Intl` per locale; not a config field |
 | 14 | Header, hero, search, popular calculators & converters, categories, country tools, why-us, CTA, footer | ✅ | Homepage |
-| 14 | **Charts & tables section, featured guides section on homepage** | ❌ | Not on the homepage |
+| 14 | Featured guides section on homepage | ✅ | "Guides & Tips" (redesign) |
+| 14 | Charts & tables on homepage | 🟡 | Linked from the "More Ways to Calculate" cards; no table preview section |
 | 15 | Calculator page: breadcrumb → country → inputs → reset → result → summary → chart → breakdown → export/share → how it works → related → FAQ → ad | ✅ | `CalculatorPageBody` |
 | 15 | Formula + worked example on calculator pages | 🟡 | Formula in the explainer; worked examples live in guides |
 | 15 | **Guide links from calculator pages** | ❌ | Calculator pages link only to other calculators |
 | 16 | Responsive: mobile/tablet/desktop, stacked inputs, table → cards on mobile | ✅ | Breakdown has a mobile card layout |
-| 17 | 150–250ms transitions, `prefers-reduced-motion` | ✅ | `globals.css` |
-| 18 | Spec palette | ✅ | Design tokens |
-| 19–21 | Unique titles, descriptions, one H1, canonical, OG, Twitter, favicon | ✅ | `buildMetadata`; icon + generated OG image |
+| 17 | 150–250ms transitions, count-up, reveals, `prefers-reduced-motion` | ✅ | `globals.css`, `components/motion/*` |
+| 18 | Spec palette | ✅ | Comp palette (same blue/navy/teal/sky/yellow family) |
+| 19–21 | Unique titles, descriptions, one H1, canonical, OG, Twitter, favicon | ✅ | `buildMetadata`; `icon.svg`, `public/favicon.ico`, generated OG image |
 | 22 | hreflang bidirectional + x-default | ✅ | Tested |
 | 23 | Automated sitemap | ✅ | One sitemap with alternates |
 | 23 | Split sitemaps per section/locale | ⏸ | Unnecessary at 710 URLs |
@@ -735,7 +796,7 @@ Where a spec item is covered by a tool or a broader calculator, that is noted ra
 | 49 | Visible breadcrumbs + BreadcrumbList | ✅ | Generated from one list |
 | 50 | Robots / noindex rules | ✅ | `robots.ts`; `noindex` supported in `buildMetadata` |
 | 52 | Localized error / empty states | 🟡 | Inputs clamp on blur, results carry notes; no inline validation messages ("Please enter a value greater than 0") |
-| 53 | Unit, boundary, rounding, country-rule, known-value tests | ✅ | 881 tests |
+| 53 | Unit, boundary, rounding, country-rule, known-value tests | ✅ | 912 tests |
 | 53 | Formula versioning | ✅ | `version` on every calculator; `verifiedFor` on tax rules |
 | 54 | Data freshness classification + source/retrieval time for dynamic data | ⏸ | No dynamic data yet |
 | 55 | Print, CSV | ✅ | |
@@ -813,7 +874,7 @@ Where a spec item is covered by a tool or a broader calculator, that is noted ra
 2. **Fix share links** so they restore inputs (issue 18).
 3. Security headers + CSP (§43).
 4. Measure Core Web Vitals; set a performance budget (§29, §64).
-5. Calculator → guide links; charts and guides sections on the homepage (§14, §15, §25).
+5. Calculator → guide links (§15, §25). *(Homepage guides section done in the redesign.)*
 6. Pluralisation (issue 14), then translate de/fr/es, then hi/gu/mr/ar.
 7. Missing calculators: compound interest, simple interest (logic already written), commission, revenue, brick, probability, scientific, fraction arithmetic, CGPA, cycling pace.
 8. Missing guides: CAGR, BMI, profit margin, what is EMI/CAGR/BMI.
