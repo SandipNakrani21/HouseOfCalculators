@@ -10,7 +10,7 @@ import type { ChartTable } from "@/config/charts/definitions";
  */
 export function ReferenceTable({ table, caption }: { table: ChartTable; caption: string }) {
   return (
-    <figure className="rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow-card)] sm:p-7">
+    <figure data-reveal="up" className="card p-5 sm:p-7">
       <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
         <table className="w-full text-sm">
           <caption className="sr-only">{caption}</caption>

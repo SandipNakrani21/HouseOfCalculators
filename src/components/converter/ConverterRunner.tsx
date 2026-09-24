@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowLeftRight } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import {
@@ -61,11 +62,11 @@ export function ConverterRunner({
     fmt.number(input, { decimals: trimDecimals(input, decimals) });
 
   const selectClass =
-    "w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-sm text-foreground outline-none focus:border-primary";
+    "w-full cursor-pointer rounded-xl border border-border bg-surface px-3.5 py-2.5 text-sm font-medium text-heading outline-none transition-all hover:border-primary/40 focus:border-primary focus:ring-4 focus:ring-[var(--ring)] disabled:cursor-default disabled:opacity-80";
 
   return (
     <div className="space-y-6">
-      <section className="rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow-card)] sm:p-7">
+      <section className="card animate-fade-up p-5 sm:p-7">
         <div className="grid gap-4 sm:grid-cols-[1fr_auto_1fr] sm:items-end">
           <div className="space-y-2">
             <label
@@ -80,7 +81,7 @@ export function ConverterRunner({
               inputMode="decimal"
               value={Number.isFinite(value) ? value : ""}
               onChange={(event) => setValue(Number(event.target.value))}
-              className="tabular w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-lg font-semibold outline-none focus:border-primary"
+              className="tabular w-full rounded-xl border border-border bg-surface px-4 py-3 text-xl font-bold text-heading outline-none transition-all focus:border-primary focus:ring-4 focus:ring-[var(--ring)]"
             />
             <select
               aria-label={t("conv.fromUnit")}
@@ -106,20 +107,9 @@ export function ConverterRunner({
                 setFrom(to);
                 setTo(from);
               }}
-              className="rounded-full border border-border p-2.5 transition-colors hover:border-primary hover:text-primary disabled:opacity-40"
+              className="btn-primary group h-11 w-11 !rounded-full disabled:pointer-events-none disabled:opacity-40 disabled:shadow-none"
             >
-              <svg
-                aria-hidden
-                viewBox="0 0 20 20"
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M4 7h12l-3-3M16 13H4l3 3" />
-              </svg>
+              <ArrowLeftRight aria-hidden className="h-5 w-5 transition-transform duration-500 group-hover:rotate-180" />
             </button>
           </div>
 
@@ -127,9 +117,11 @@ export function ConverterRunner({
             <span className="block text-sm font-medium">{t("conv.to")}</span>
             <output
               aria-live="polite"
-              className="tabular block rounded-lg bg-primary-soft px-3 py-2.5 text-lg font-bold text-primary"
+              className="tabular block overflow-hidden rounded-xl bg-gradient-to-br from-[#1d4ed8] to-[#3b82f6] px-4 py-3 text-xl font-extrabold text-white shadow-[var(--shadow-primary)]"
             >
-              {show(result)}
+              <span key={show(result)} className="value-flash block truncate">
+                {show(result)}
+              </span>
             </output>
             <select
               aria-label={t("conv.toUnit")}
@@ -147,7 +139,7 @@ export function ConverterRunner({
           </div>
         </div>
 
-        <p className="tabular mt-5 border-t border-border pt-4 text-sm text-muted">
+        <p className="tabular mt-6 inline-flex rounded-full bg-primary-soft px-4 py-1.5 text-sm font-semibold text-primary">
           {t("conv.rate", {
             from: `1 ${fromUnit.symbol}`,
             to: `${show(ratio)} ${toUnit.symbol}`,
@@ -156,8 +148,8 @@ export function ConverterRunner({
       </section>
 
       {/* Quick reference table: the thing people scan rather than type into. */}
-      <section className="rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow-card)] sm:p-7">
-        <h2 className="mb-4 text-lg font-semibold">
+      <section data-reveal="up" className="card p-5 sm:p-7">
+        <h2 className="mb-4 text-lg font-bold">
           {t("conv.table.title", {
             from: t(fromUnit.labelKey),
             to: t(toUnit.labelKey),

@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { calculatorCopy } from "@/lib/calculator-copy";
+import { categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
 import { AdSlot } from "@/components/ads/AdSlot";
@@ -81,14 +84,12 @@ export default async function CategoryPage({
         ]}
       />
 
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold sm:text-3xl">
-          {t("category.page.title", { category: name })}
-        </h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
-          {t(`category.calculators.${resolved}.intro`)}
-        </p>
-      </header>
+      <PageHeader
+        visual={categoryVisual("calculators", resolved)}
+        eyebrow={t("section.calculators")}
+        title={t("category.page.title", { category: name })}
+        description={t(`category.calculators.${resolved}.intro`)}
+      />
 
       {items.length ? (
         <CardGrid>
@@ -96,9 +97,8 @@ export default async function CategoryPage({
             <li key={calc.slug}>
               <ContentCard
                 href={contentPath(code, "calculators", resolved, calc.slug)}
-                icon={calc.icon}
-                title={t(calc.titleKey)}
-                description={t(calc.descKey)}
+                visual={itemVisual("calculators", resolved, calc.slug)}
+                {...calculatorCopy(calc, t, locale.defaultCountry, locale.language)}
               />
             </li>
           ))}

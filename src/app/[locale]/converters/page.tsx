@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { sectionVisual, categoryVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
 import { AdSlot } from "@/components/ads/AdSlot";
@@ -47,19 +49,18 @@ export default async function ConvertersPage({
         ]}
       />
 
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold sm:text-3xl">{t("section.converters")}</h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
-          {t("section.converters.intro")}
-        </p>
-      </header>
+      <PageHeader
+        visual={sectionVisual("converters")}
+        title={t("section.converters")}
+        description={t("section.converters.intro")}
+      />
 
       <CardGrid>
         {CONVERTERS.map((converter) => (
           <li key={converter.slug}>
             <ContentCard
               href={contentPath(code, "converters", converter.category, converter.slug)}
-              icon={converter.icon}
+              visual={categoryVisual("converters", converter.category)}
               title={t(converter.titleKey)}
               description={t(converter.descKey)}
             />

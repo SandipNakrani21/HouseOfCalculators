@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { IconTile } from "@/components/shared/Icon";
+import { itemVisual } from "@/lib/visuals";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -72,34 +75,34 @@ export default async function ToolPage({
         ]}
       />
 
-      <header className="mb-6">
-        <h1 className="flex items-center gap-3 text-2xl font-bold sm:text-3xl">
-          <span aria-hidden>{tool.icon}</span>
-          {t(tool.titleKey)}
-        </h1>
-        <p className="mt-2 text-sm text-muted sm:text-base">{t(tool.descKey)}</p>
-      </header>
+      <PageHeader
+        className="mb-6"
+        visual={itemVisual("tools", tool.category, tool.slug)}
+        eyebrow={t("section.tools")}
+        title={t(tool.titleKey)}
+        description={t(tool.descKey)}
+      />
 
       <ToolRunner slug={slug} />
 
       <AdSlot slot="tool-mid" placement="inline" />
 
-      <section className="rounded-2xl border border-border bg-surface p-5 sm:p-7">
-        <h2 className="mb-3 text-lg font-semibold">{t("calc.howItWorks")}</h2>
+      <section data-reveal="up" className="card p-5 sm:p-7">
+        <h2 className="mb-3 text-lg font-bold">{t("calc.howItWorks")}</h2>
         <p className="text-sm leading-relaxed text-muted">{t(tool.explainerKey)}</p>
       </section>
 
       {related.length ? (
         <section className="mt-6">
           <h2 className="mb-3 text-lg font-semibold">{t("calc.related")}</h2>
-          <ul className="flex flex-wrap gap-2">
+          <ul data-reveal="stagger" className="flex flex-wrap gap-2.5">
             {related.map((item) => (
               <li key={item.slug}>
                 <Link
                   href={contentPath(code, "tools", item.category, item.slug)}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 text-sm text-foreground transition-colors hover:border-primary hover:text-primary"
+                  className="group inline-flex items-center gap-2 rounded-full border border-border bg-surface py-1.5 ps-1.5 pe-4 text-sm font-semibold text-heading shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary"
                 >
-                  <span aria-hidden>{item.icon}</span>
+                  <IconTile visual={itemVisual("tools", item.category, item.slug)} size="xs" className="group-hover:scale-110" />
                   {t(item.titleKey)}
                 </Link>
               </li>

@@ -1,8 +1,11 @@
 "use client";
 
+import { Search } from "lucide-react";
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useId, useMemo, useRef, useState } from "react";
 
+import { IconTile } from "@/components/shared/Icon";
 import type { CalcContext } from "@/config/calculators/types";
 import { SECTIONS, sectionKey, type Section } from "@/config/categories";
 import { useLocale } from "@/lib/locale-context";
@@ -13,18 +16,33 @@ import { search } from "@/lib/search";
  * Global search across every section. Results are grouped by section so a
  * query like "EMI" can show the calculator, the guide and the reference table
  * as distinct kinds of answer rather than one flat list.
+ *
+ * Three sizes: `compact` for the header and menus, `default`, and `hero` for
+ * the landing page, which adds the blue Search button from the design.
+ * Arrow keys move through the results and Enter opens the highlighted one -
+ * or the best match, when nothing is highlighted yet.
  */
 export function SearchBox({
-  compact = false,
+  variant = "default",
+  compact,
   autoFocus = false,
+  onNavigate,
 }: {
+  variant?: "compact" | "default" | "hero";
+  /** Older call sites pass `compact`; it maps onto the compact variant. */
   compact?: boolean;
   autoFocus?: boolean;
+  /** Called after a result is chosen, e.g. to close a dialog around the box. */
+  onNavigate?: () => void;
 }) {
+  const size = compact ? "compact" : variant;
   const { t, fmt, localeCode, countryCode, country } = useLocale();
+  const router = useRouter();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(-1);
   const blurTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const listId = useId();
 
   const items = useMemo(() => {
     const calcContext: CalcContext = { countryCode, country, t, fmt };
@@ -45,22 +63,42 @@ export function SearchBox({
     );
   }, [results]);
 
+  // The order the keyboard walks, which is the grouped display order.
+  const flat = useMemo(() => grouped.flatMap(([, list]) => list), [grouped]);
+
   const showPanel = open && query.trim().length > 0;
+
+  const go = (item: ContentItem | undefined) => {
+    if (!item) return;
+    setOpen(false);
+    setQuery("");
+    setActive(-1);
+    onNavigate?.();
+    router.push(item.href);
+  };
+
+  const inputClass = {
+    compact: "rounded-xl py-2 ps-9 pe-3 text-sm",
+    default: "rounded-xl py-3 ps-11 pe-4 text-base",
+    hero: "rounded-2xl py-4 ps-12 pe-32 text-[15px] sm:pe-36",
+  }[size];
 
   return (
     <div className="relative">
-      <div className="relative">
-        <svg
+      <form
+        role="search"
+        className="relative"
+        onSubmit={(event) => {
+          event.preventDefault();
+          go(flat[active] ?? flat[0]);
+        }}
+      >
+        <Search
           aria-hidden
-          viewBox="0 0 20 20"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          className="pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"
-        >
-          <circle cx="9" cy="9" r="6" />
-          <path d="M13.5 13.5L17 17" strokeLinecap="round" />
-        </svg>
+          className={`pointer-events-none absolute top-1/2 -translate-y-1/2 text-muted ${
+            size === "compact" ? "start-3 h-4 w-4" : "start-4 h-5 w-5"
+          }`}
+        />
         <input
           type="search"
           value={query}
@@ -68,31 +106,53 @@ export function SearchBox({
           onChange={(event) => {
             setQuery(event.target.value);
             setOpen(true);
+            setActive(-1);
           }}
           onFocus={() => setOpen(true)}
           onBlur={() => {
             // Delay so a click on a result lands before the panel unmounts.
-            blurTimer.current = setTimeout(() => setOpen(false), 120);
+            blurTimer.current = setTimeout(() => setOpen(false), 150);
           }}
           onKeyDown={(event) => {
-            if (event.key === "Escape") setOpen(false);
+            if (event.key === "Escape") {
+              setOpen(false);
+              setActive(-1);
+            } else if (event.key === "ArrowDown") {
+              event.preventDefault();
+              setOpen(true);
+              setActive((index) => Math.min(index + 1, flat.length - 1));
+            } else if (event.key === "ArrowUp") {
+              event.preventDefault();
+              setActive((index) => Math.max(index - 1, -1));
+            }
           }}
           placeholder={t("common.searchPlaceholder")}
           aria-label={t("common.search")}
           role="combobox"
           aria-expanded={showPanel}
-          aria-controls="search-results"
-          className={`w-full rounded-xl border border-border bg-surface ps-9 pe-3 text-foreground outline-none transition-colors placeholder:text-muted focus:border-primary ${
-            compact ? "py-2 text-sm" : "py-3 text-base"
+          aria-controls={listId}
+          aria-autocomplete="list"
+          aria-activedescendant={active >= 0 ? `${listId}-${active}` : undefined}
+          className={`w-full border border-border bg-surface text-foreground outline-none transition-all placeholder:text-muted focus:border-primary focus:ring-4 focus:ring-[var(--ring)] ${inputClass} ${
+            size === "hero" ? "shadow-[var(--shadow-card)]" : ""
           }`}
         />
-      </div>
+        {size === "hero" ? (
+          <button
+            type="submit"
+            className="btn-primary absolute end-2 top-1/2 -translate-y-1/2 px-4 py-2.5 text-sm sm:px-5"
+          >
+            <Search aria-hidden className="h-4 w-4" />
+            {t("common.search")}
+          </button>
+        ) : null}
+      </form>
 
       {showPanel ? (
         <div
-          id="search-results"
+          id={listId}
           role="listbox"
-          className="absolute z-50 mt-2 max-h-[70vh] w-full min-w-72 overflow-y-auto rounded-xl border border-border bg-surface p-2 shadow-[var(--shadow-card)]"
+          className="animate-pop absolute z-50 mt-2 max-h-[70vh] w-full min-w-72 origin-top overflow-y-auto rounded-2xl border border-border bg-surface p-2 shadow-[var(--shadow-lift)]"
           onPointerDown={() => {
             if (blurTimer.current) clearTimeout(blurTimer.current);
           }}
@@ -104,34 +164,43 @@ export function SearchBox({
           ) : (
             grouped.map(([section, sectionResults]) => (
               <section key={section} className="mb-1 last:mb-0">
-                <h3 className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wide text-muted">
+                <h3 className="px-3 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wider text-muted">
                   {t(sectionKey(section))}
                 </h3>
                 <ul>
-                  {sectionResults.map((result) => (
-                    <li key={result.id}>
-                      <Link
-                        href={result.href}
-                        onClick={() => {
-                          setOpen(false);
-                          setQuery("");
-                        }}
-                        className="flex items-start gap-3 rounded-lg px-3 py-2 transition-colors hover:bg-surface-muted"
-                      >
-                        <span aria-hidden className="mt-0.5 text-base">
-                          {result.icon}
-                        </span>
-                        <span className="min-w-0">
-                          <span className="block truncate text-sm font-medium text-foreground">
-                            {result.title}
+                  {sectionResults.map((result) => {
+                    const index = flat.indexOf(result);
+                    const highlighted = index === active;
+                    return (
+                      <li key={result.id}>
+                        <Link
+                          id={`${listId}-${index}`}
+                          role="option"
+                          aria-selected={highlighted}
+                          href={result.href}
+                          onMouseEnter={() => setActive(index)}
+                          onClick={() => {
+                            setOpen(false);
+                            setQuery("");
+                            onNavigate?.();
+                          }}
+                          className={`flex items-center gap-3 rounded-xl px-3 py-2 transition-colors ${
+                            highlighted ? "bg-primary-soft" : "hover:bg-surface-muted"
+                          }`}
+                        >
+                          <IconTile visual={result.visual} size="sm" shape="rounded" />
+                          <span className="min-w-0">
+                            <span className="block truncate text-sm font-semibold text-heading">
+                              {result.title}
+                            </span>
+                            <span className="block truncate text-xs text-muted">
+                              {result.description}
+                            </span>
                           </span>
-                          <span className="block truncate text-xs text-muted">
-                            {result.description}
-                          </span>
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </section>
             ))

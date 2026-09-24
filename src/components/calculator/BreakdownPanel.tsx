@@ -37,12 +37,12 @@ export function BreakdownPanel({
     : active.rows;
 
   return (
-    <section className="rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow-card)] sm:p-7">
+    <section data-reveal="up" className="card p-5 sm:p-7">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-lg font-semibold">{t("calc.breakdown")}</h2>
+        <h2 className="text-lg font-bold">{t("calc.breakdown")}</h2>
 
         {views.length > 1 ? (
-          <div role="tablist" aria-label={t("calc.breakdown")} className="flex gap-1">
+          <div role="tablist" aria-label={t("calc.breakdown")} className="flex gap-1 rounded-xl bg-surface-muted p-1">
             {views.map((view) => {
               const selected = view.id === active.id;
               return (
@@ -55,10 +55,10 @@ export function BreakdownPanel({
                     setActiveId(view.id);
                     setPage(0);
                   }}
-                  className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+                  className={`rounded-lg px-3.5 py-1.5 text-sm font-semibold transition-all duration-300 ${
                     selected
-                      ? "bg-primary-soft text-primary"
-                      : "text-muted hover:bg-surface-muted"
+                      ? "bg-surface text-primary shadow-[var(--shadow-card)]"
+                      : "text-muted hover:text-heading"
                   }`}
                 >
                   {t(view.labelKey)}
@@ -133,7 +133,7 @@ export function BreakdownPanel({
             type="button"
             onClick={() => setPage((current) => Math.max(current - 1, 0))}
             disabled={page === 0}
-            className="rounded-lg border border-border px-3 py-1.5 text-sm font-medium disabled:opacity-40"
+            className="rounded-xl border border-border bg-surface px-3.5 py-1.5 text-sm font-semibold text-heading transition-colors hover:border-primary/40 hover:text-primary disabled:pointer-events-none disabled:opacity-40"
           >
             {t("common.previous")}
           </button>
@@ -146,7 +146,7 @@ export function BreakdownPanel({
               setPage((current) => Math.min(current + 1, pageCount - 1))
             }
             disabled={page >= pageCount - 1}
-            className="rounded-lg border border-border px-3 py-1.5 text-sm font-medium disabled:opacity-40"
+            className="rounded-xl border border-border bg-surface px-3.5 py-1.5 text-sm font-semibold text-heading transition-colors hover:border-primary/40 hover:text-primary disabled:pointer-events-none disabled:opacity-40"
           >
             {t("common.next")}
           </button>

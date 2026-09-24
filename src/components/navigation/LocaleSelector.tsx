@@ -2,6 +2,8 @@
 
 import { usePathname, useRouter } from "next/navigation";
 
+import { Globe } from "lucide-react";
+
 import { Dropdown } from "@/components/shared/Dropdown";
 import { LOCALES, type LocaleCode } from "@/config/locales";
 import { useLocale } from "@/lib/locale-context";
@@ -60,10 +62,10 @@ export function LocaleSelector({ ready }: { ready: LocaleCode[] }) {
       label={t("header.language")}
       trigger={
         <>
-          <span aria-hidden className="text-base leading-none">
-            🌐
-          </span>
-          <span className="font-medium text-foreground">
+          <Globe aria-hidden className="h-4 w-4 text-primary" strokeWidth={2} />
+          {/* Icon only on phones, where the name would wrap and push the
+              menu button off-screen; the trigger's aria-label names it. */}
+          <span className="hidden whitespace-nowrap font-medium text-foreground sm:inline">
             {LOCALES[localeCode].native}
           </span>
         </>

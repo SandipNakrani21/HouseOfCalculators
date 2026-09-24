@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { sectionVisual, categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
 import { AdSlot } from "@/components/ads/AdSlot";
@@ -52,25 +54,24 @@ export default async function ChartsPage({
         ]}
       />
 
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold sm:text-3xl">{t("section.charts")}</h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
-          {t("section.charts.intro")}
-        </p>
-      </header>
+      <PageHeader
+        visual={sectionVisual("charts")}
+        title={t("section.charts")}
+        description={t("section.charts.intro")}
+      />
 
       {CHART_CATEGORIES.map((category) => {
         const charts = chartsIn(category);
         if (!charts.length) return null;
         return (
           <section key={category} className="mb-12">
-            <SectionHeading title={t(categoryKey("charts", category))} />
+            <SectionHeading visual={categoryVisual("charts", category)} title={t(categoryKey("charts", category))} />
             <CardGrid>
               {charts.map((chart) => (
                 <li key={chart.slug}>
                   <ContentCard
                     href={contentPath(code, "charts", category, chart.slug)}
-                    icon={chart.icon}
+                    visual={itemVisual("charts", category, chart.slug)}
                     title={t(chart.titleKey)}
                     description={t(chart.descKey)}
                   />

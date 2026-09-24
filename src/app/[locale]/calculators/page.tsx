@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { calculatorCopy } from "@/lib/calculator-copy";
+import { sectionVisual, categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
 import { AdSlot } from "@/components/ads/AdSlot";
@@ -57,12 +60,11 @@ export default async function CalculatorsPage({
         ]}
       />
 
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold sm:text-3xl">{t("section.calculators")}</h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
-          {t("section.calculators.intro")}
-        </p>
-      </header>
+      <PageHeader
+        visual={sectionVisual("calculators")}
+        title={t("section.calculators")}
+        description={t("section.calculators.intro")}
+      />
 
       {CALCULATOR_CATEGORIES.map((category) => {
         const items = calculators.filter((calc) => calc.category === category);
@@ -70,15 +72,14 @@ export default async function CalculatorsPage({
 
         return (
           <section key={category} className="mb-12">
-            <SectionHeading title={t(categoryKey("calculators", category))} />
+            <SectionHeading visual={categoryVisual("calculators", category)} title={t(categoryKey("calculators", category))} />
             <CardGrid>
               {items.map((calc) => (
                 <li key={calc.slug}>
                   <ContentCard
                     href={contentPath(code, "calculators", category, calc.slug)}
-                    icon={calc.icon}
-                    title={t(calc.titleKey)}
-                    description={t(calc.descKey)}
+                    visual={itemVisual("calculators", category, calc.slug)}
+                    {...calculatorCopy(calc, t, locale.defaultCountry, locale.language)}
                   />
                 </li>
               ))}

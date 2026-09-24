@@ -76,7 +76,7 @@ export function DiceRollerTool() {
       <button
         type="button"
         onClick={() => setRolls(rollDice(count, sides))}
-        className="mt-4 w-full rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-contrast sm:w-auto"
+        className="mt-4 w-full btn-primary px-4 py-2.5 text-sm font-medium text-primary-contrast sm:w-auto"
       >
         {t("tool.action.roll")}
       </button>
@@ -131,7 +131,7 @@ export function CoinFlipTool() {
       <button
         type="button"
         onClick={() => setResult(flipCoins(count))}
-        className="mt-4 w-full rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-contrast sm:w-auto"
+        className="mt-4 w-full btn-primary px-4 py-2.5 text-sm font-medium text-primary-contrast sm:w-auto"
       >
         {t("tool.action.flip")}
       </button>
@@ -210,7 +210,7 @@ export function RandomPickerTool() {
             setOrder([]);
             setGroups([]);
           }}
-          className="rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-contrast disabled:opacity-50"
+          className="btn-primary px-4 py-2.5 text-sm font-medium text-primary-contrast disabled:opacity-50"
         >
           {t("tool.action.pickOne")}
         </button>
@@ -222,7 +222,7 @@ export function RandomPickerTool() {
             setPicked(null);
             setGroups([]);
           }}
-          className="rounded-lg border border-border-strong px-4 py-2.5 text-sm font-medium disabled:opacity-50"
+          className="btn-secondary px-4 py-2.5 text-sm font-medium disabled:opacity-50"
         >
           {t("tool.action.shuffle")}
         </button>
@@ -234,7 +234,7 @@ export function RandomPickerTool() {
             setPicked(null);
             setOrder([]);
           }}
-          className="rounded-lg border border-border-strong px-4 py-2.5 text-sm font-medium disabled:opacity-50"
+          className="btn-secondary px-4 py-2.5 text-sm font-medium disabled:opacity-50"
         >
           {t("tool.action.makeTeams")}
         </button>

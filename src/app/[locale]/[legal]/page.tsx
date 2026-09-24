@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { legalVisual } from "@/lib/visuals";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -128,20 +130,15 @@ export default async function LegalPage({
         ]}
       />
 
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold sm:text-3xl">
-          <span aria-hidden className="mr-2">
-            {page.icon}
-          </span>
-          {t(page.titleKey)}
-        </h1>
-        <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-          {t(page.introKey, substitutions)}
-        </p>
-        <p className="mt-3 text-xs text-muted">
+      <PageHeader
+        visual={legalVisual(page.slug)}
+        title={t(page.titleKey)}
+        description={t(page.introKey, substitutions)}
+      >
+        <p className="mt-3 text-xs font-medium text-muted">
           {t("legal.updated", { date: page.updated })}
         </p>
-      </header>
+      </PageHeader>
 
       {missing.length > 0 ? (
         // A placeholder that reads like a real company is the kind of thing

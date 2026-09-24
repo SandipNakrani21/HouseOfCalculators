@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { categoryVisual } from "@/lib/visuals";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -74,21 +76,19 @@ export default async function ConverterCategoryPage({
         ]}
       />
 
-      <header className="mb-6">
-        <h1 className="flex items-center gap-3 text-2xl font-bold sm:text-3xl">
-          <span aria-hidden>{converter.icon}</span>
-          {t(converter.titleKey)}
-        </h1>
-        <p className="mt-2 text-sm text-muted sm:text-base">
-          {t(converter.descKey)}
-        </p>
-      </header>
+      <PageHeader
+        className="mb-6"
+        visual={categoryVisual("converters", converter.category)}
+        eyebrow={t("section.converters")}
+        title={t(converter.titleKey)}
+        description={t(converter.descKey)}
+      />
 
       <ConverterRunner slug={converter.slug} />
 
       <AdSlot slot="converter-category-mid" placement="inline" />
 
-      <section className="rounded-2xl border border-border bg-surface p-5 sm:p-7">
+      <section data-reveal="up" className="card p-5 sm:p-7">
         <h2 className="mb-3 text-lg font-semibold">{t("conv.howItWorks")}</h2>
         <p className="text-sm leading-relaxed text-muted">
           {t(converter.explainerKey)}

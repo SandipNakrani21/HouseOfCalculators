@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
@@ -76,21 +78,19 @@ export default async function ToolCategoryPage({
         ]}
       />
 
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold sm:text-3xl">
-          {t("tools.category.title", { category: name })}
-        </h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
-          {t(`category.tools.${resolved}.intro`)}
-        </p>
-      </header>
+      <PageHeader
+        visual={categoryVisual("tools", resolved)}
+        eyebrow={t("section.tools")}
+        title={t("tools.category.title", { category: name })}
+        description={t(`category.tools.${resolved}.intro`)}
+      />
 
       <CardGrid>
         {toolsIn(resolved).map((tool) => (
           <li key={tool.slug}>
             <ContentCard
               href={contentPath(code, "tools", resolved, tool.slug)}
-              icon={tool.icon}
+              visual={itemVisual("tools", resolved, tool.slug)}
               title={t(tool.titleKey)}
               description={t(tool.descKey)}
             />

@@ -144,7 +144,7 @@ export function WelcomeDialog({ ready }: { ready: LocaleCode[] }) {
           <button
             type="button"
             onClick={confirm}
-            className="shrink-0 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-contrast transition-colors hover:bg-primary-hover"
+            className="shrink-0 btn-primary px-4 py-2.5 text-sm font-semibold text-primary-contrast transition-colors hover:bg-primary-hover"
           >
             {t("common.continue")}
           </button>

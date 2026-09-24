@@ -1,5 +1,6 @@
 "use client";
 
+import { RotateCcw } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
 
 import { BreakdownPanel } from "@/components/calculator/BreakdownPanel";
@@ -123,7 +124,7 @@ export function CalculatorRunner({
 
   return (
     <div className="space-y-6">
-      <section className="rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow-card)] sm:p-7">
+      <section className="card animate-fade-up p-5 sm:p-8">
         {lockedCountry || countryRelevanceOf(calculator) === "none" ? null : (
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-5">
             <div>
@@ -158,8 +159,9 @@ export function CalculatorRunner({
             <button
               type="button"
               onClick={() => setValues(initial)}
-              className="text-sm font-medium text-primary hover:underline"
+              className="group inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm font-semibold text-primary transition-colors hover:bg-primary-soft"
             >
+              <RotateCcw aria-hidden className="h-3.5 w-3.5 transition-transform duration-500 group-hover:-rotate-180" />
               {t("common.reset")}
             </button>
           </div>
@@ -192,12 +194,19 @@ export function CalculatorRunner({
         {/* The headline answer, announced to assistive technology when it changes. */}
         <div
           aria-live="polite"
-          className="mt-8 rounded-xl bg-primary-soft px-5 py-4 text-center"
+          className="relative mt-8 overflow-hidden rounded-2xl bg-gradient-to-br from-[#1d4ed8] via-[#2563eb] to-[#3b82f6] px-5 py-6 text-center text-white shadow-[var(--shadow-primary)]"
         >
-          <p className="text-sm font-medium text-muted">
+          {/* Decorative rings, as on the landing page's call to action. */}
+          <span aria-hidden className="absolute -end-8 -top-10 h-32 w-32 rounded-full border-[18px] border-white/10" />
+          <span aria-hidden className="absolute -bottom-12 -start-6 h-28 w-28 rounded-full bg-white/10 blur-xl" />
+          <p className="relative text-sm font-semibold text-blue-100">
             {t(result.primary.labelKey)}
           </p>
-          <p className="tabular mt-1 text-3xl font-bold text-primary">
+          {/* Keyed on the value so each new answer replays the flash. */}
+          <p
+            key={String(result.primary.value)}
+            className="value-flash tabular relative mt-1 text-3xl font-extrabold tracking-tight sm:text-4xl"
+          >
             {format(result.primary.value, result.primary.kind, result.primary.decimals)}
           </p>
         </div>
@@ -207,10 +216,10 @@ export function CalculatorRunner({
             {emphasisRows.map((row) => (
               <li
                 key={row.labelKey}
-                className="rounded-xl border border-border bg-surface-muted px-4 py-3"
+                className="rounded-xl border border-border bg-surface-muted px-4 py-3 transition-colors hover:border-primary/30"
               >
-                <p className="text-xs text-muted">{t(row.labelKey)}</p>
-                <p className="tabular mt-0.5 text-lg font-semibold">
+                <p className="text-xs font-medium text-muted">{t(row.labelKey)}</p>
+                <p className="tabular mt-0.5 text-lg font-bold text-heading">
                   {format(row.value, row.kind, row.decimals)}
                 </p>
               </li>
@@ -234,7 +243,7 @@ export function CalculatorRunner({
                 ) : null}
                 {t(row.labelKey)}
               </dt>
-              <dd className="tabular text-end text-sm font-medium text-foreground">
+              <dd className="tabular text-end text-sm font-bold text-heading">
                 {format(row.value, row.kind, row.decimals)}
               </dd>
             </div>

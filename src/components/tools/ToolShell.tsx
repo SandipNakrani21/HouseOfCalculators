@@ -5,7 +5,7 @@ import { useId, type ReactNode } from "react";
 /** Card the tools render inside, so every tool page has the same frame. */
 export function ToolCard({ children }: { children: ReactNode }) {
   return (
-    <section className="rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow-card)] sm:p-7">
+    <section className="card animate-fade-up p-5 sm:p-8">
       {children}
     </section>
   );
@@ -44,7 +44,7 @@ export function Field({
 }
 
 export const inputClass =
-  "w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary";
+  "w-full rounded-xl border border-border bg-surface px-3.5 py-2.5 text-sm text-foreground outline-none transition-all focus:border-primary focus:ring-4 focus:ring-[var(--ring)]";
 
 /**
  * The tool's answer. Announced politely so a screen reader hears the new value
@@ -64,19 +64,31 @@ export function ToolResult({
   return (
     <div
       aria-live="polite"
-      className={`mt-6 rounded-xl px-5 py-4 text-center ${
-        tone === "warning" ? "bg-surface-muted" : "bg-primary-soft"
+      className={`relative mt-6 overflow-hidden rounded-2xl px-5 py-6 text-center ${
+        tone === "warning"
+          ? "border border-border bg-surface-muted"
+          : "bg-gradient-to-br from-[#1d4ed8] via-[#2563eb] to-[#3b82f6] text-white shadow-[var(--shadow-primary)]"
       }`}
     >
-      <p className="text-sm font-medium text-muted">{label}</p>
+      {tone === "warning" ? null : (
+        <span aria-hidden className="absolute -end-8 -top-10 h-32 w-32 rounded-full border-[18px] border-white/10" />
+      )}
+      <p className={`relative text-sm font-semibold ${tone === "warning" ? "text-muted" : "text-blue-100"}`}>
+        {label}
+      </p>
       <p
-        className={`tabular mt-1 text-2xl font-bold sm:text-3xl ${
-          tone === "warning" ? "text-foreground" : "text-primary"
+        key={value}
+        className={`value-flash tabular relative mt-1 break-words text-2xl font-extrabold tracking-tight sm:text-3xl ${
+          tone === "warning" ? "text-heading" : "text-white"
         }`}
       >
         {value}
       </p>
-      {detail ? <div className="mt-2 text-sm text-muted">{detail}</div> : null}
+      {detail ? (
+        <div className={`relative mt-2 text-sm ${tone === "warning" ? "text-muted" : "text-blue-100"}`}>
+          {detail}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -93,7 +105,7 @@ export function ToolFacts({
       {items.map((item) => (
         <div key={item.label} className="flex justify-between gap-4 py-2.5">
           <dt className="text-sm text-muted">{item.label}</dt>
-          <dd className="tabular text-sm font-medium">{item.value}</dd>
+          <dd className="tabular text-end text-sm font-bold text-heading">{item.value}</dd>
         </div>
       ))}
     </dl>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 
+import { Logo } from "@/components/layout/Logo";
 import { SECTIONS, sectionKey } from "@/config/categories";
 import { LEGAL_SLUGS } from "@/config/legal/definitions";
 import { LOCALES, type LocaleCode } from "@/config/locales";
@@ -9,9 +10,13 @@ import { useLocale } from "@/lib/locale-context";
 import { sectionPath, swapLocale } from "@/lib/routes";
 
 /**
- * Footer as a navigation aid rather than a keyword dump: the six sections, a
- * short list of popular tools, the languages the site actually ships in, and
- * the legal pages an advertising-supported site needs.
+ * The navy footer from the landing-page design: brand, quick links, popular
+ * calculators, support and languages, then a bottom bar.
+ *
+ * Two things in the design are deliberately left out. The newsletter field:
+ * the privacy policy says this site has no forms and collects no personal
+ * data, and a sign-up box would make that untrue. The social icons: there are
+ * no accounts for them to link to, and dead links would be worse than none.
  */
 export function SiteFooter({
   ready,
@@ -23,36 +28,42 @@ export function SiteFooter({
 }) {
   const { t, base, localeCode } = useLocale();
 
+  const heading = "mb-4 text-sm font-bold text-white";
+  const link =
+    "group inline-flex items-center gap-1.5 text-sm text-on-navy-muted transition-colors hover:text-white";
+
   return (
-    <footer className="mt-16 border-t border-border bg-surface">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="relative mt-20 overflow-hidden bg-navy text-on-navy">
+      {/* A faint glow in the corner, echoing the hero. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -end-32 -top-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 pb-8 pt-14 sm:px-6">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr_1fr_1fr]">
           <div>
-            <Link href={base} className="flex items-center gap-2">
-              <span
-                aria-hidden
-                className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-sm font-bold text-primary-contrast"
-              >
-                H
-              </span>
-              <span className="text-base font-bold text-heading">
-                {t("app.name")}
-              </span>
+            <Link href={base} className="inline-block">
+              <Logo name={t("app.name")} onDark />
             </Link>
-            <p className="mt-3 text-sm text-muted">{t("app.positioning")}</p>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-on-navy-muted">
+              {t("footer.brandBlurb")}
+            </p>
           </div>
 
           <nav aria-labelledby="footer-sections">
-            <h2 id="footer-sections" className="text-sm font-semibold text-heading">
+            <h2 id="footer-sections" className={heading}>
               {t("footer.explore")}
             </h2>
-            <ul className="mt-3 space-y-2">
+            <ul className="space-y-2.5">
+              <li>
+                <Link href={base} className={link}>
+                  {t("nav.home")}
+                </Link>
+              </li>
               {SECTIONS.map((section) => (
                 <li key={section}>
-                  <Link
-                    href={sectionPath(localeCode, section)}
-                    className="text-sm text-muted hover:text-primary"
-                  >
+                  <Link href={sectionPath(localeCode, section)} className={link}>
                     {t(sectionKey(section))}
                   </Link>
                 </li>
@@ -61,16 +72,13 @@ export function SiteFooter({
           </nav>
 
           <nav aria-labelledby="footer-popular">
-            <h2 id="footer-popular" className="text-sm font-semibold text-heading">
+            <h2 id="footer-popular" className={heading}>
               {t("footer.popular")}
             </h2>
-            <ul className="mt-3 space-y-2">
+            <ul className="space-y-2.5">
               {popular.map((item) => (
                 <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-muted hover:text-primary"
-                  >
+                  <Link href={item.href} className={link}>
                     {item.title}
                   </Link>
                 </li>
@@ -78,60 +86,55 @@ export function SiteFooter({
             </ul>
           </nav>
 
-          <div className="space-y-6">
-            <nav aria-labelledby="footer-languages">
-              <h2
-                id="footer-languages"
-                className="text-sm font-semibold text-heading"
-              >
-                {t("header.language")}
-              </h2>
-              <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2">
-                {ready.map((code) => (
-                  <li key={code}>
-                    <Link
-                      href={swapLocale(base, code)}
-                      hrefLang={code}
-                      lang={LOCALES[code].language}
-                      className="text-sm text-muted hover:text-primary"
-                    >
-                      {LOCALES[code].native}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+          <nav aria-labelledby="footer-legal">
+            <h2 id="footer-legal" className={heading}>
+              {t("footer.support")}
+            </h2>
+            <ul className="space-y-2.5">
+              {LEGAL_SLUGS.map((page) => (
+                <li key={page}>
+                  <Link href={`${base}/${page}`} className={link}>
+                    {t(`footer.${page}`)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-            <nav aria-labelledby="footer-legal">
-              <h2 id="footer-legal" className="text-sm font-semibold text-heading">
-                {t("footer.legal")}
-              </h2>
-              <ul className="mt-3 space-y-2">
-                {LEGAL_SLUGS.map((page) => (
-                  <li key={page}>
-                    <Link
-                      href={`${base}/${page}`}
-                      className="text-sm text-muted hover:text-primary"
-                    >
-                      {t(`footer.${page}`)}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+          <nav aria-labelledby="footer-languages">
+            <h2 id="footer-languages" className={heading}>
+              {t("header.language")}
+            </h2>
+            <ul className="space-y-2.5">
+              {ready.map((code) => (
+                <li key={code}>
+                  <Link
+                    href={swapLocale(base, code)}
+                    hrefLang={code}
+                    lang={LOCALES[code].language}
+                    className={link}
+                  >
+                    {LOCALES[code].native}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
 
-        <div className="mt-10 space-y-3 border-t border-border pt-6">
-          <p className="max-w-4xl text-xs leading-relaxed text-muted">
+        <div className="mt-12 border-t border-white/10 pt-6">
+          <p className="max-w-4xl text-xs leading-relaxed text-on-navy-muted">
             {t("footer.disclaimer", { app: t("app.name") })}
           </p>
-          <p className="text-xs text-muted">
-            {t("footer.rights", {
-              year: new Date().getFullYear(),
-              app: t("app.name"),
-            })}
-          </p>
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-on-navy-muted">
+            <p>
+              {t("footer.rights", {
+                year: new Date().getFullYear(),
+                app: t("app.name"),
+              })}
+            </p>
+            <p className="font-medium text-on-navy">{t("footer.motto")}</p>
+          </div>
         </div>
       </div>
     </footer>

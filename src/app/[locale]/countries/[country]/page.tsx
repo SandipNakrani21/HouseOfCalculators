@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { calculatorCopy } from "@/lib/calculator-copy";
+import { itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
 import { AdSlot } from "@/components/ads/AdSlot";
@@ -70,40 +73,37 @@ export default async function CountryPage({
         ]}
       />
 
-      <header className="mb-8">
-        <h1 className="flex items-center gap-3 text-2xl font-bold sm:text-3xl">
-          <CountryBadge code={country} size="lg" />
-          {t("country.page.title", { country: name })}
-        </h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
-          {t("country.page.intro", { country: name })}
-        </p>
-
-        <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3 rounded-2xl border border-border bg-surface p-4">
+      <PageHeader
+        media={<CountryBadge code={country} size="xl" className="ring-4 ring-surface shadow-[var(--shadow-card)]" />}
+        eyebrow={t("section.countries")}
+        title={t("country.page.title", { country: name })}
+        description={t("country.page.intro", { country: name })}
+      >
+        <dl className="card mt-5 flex flex-wrap gap-x-10 gap-y-3 px-5 py-4">
           <div>
-            <dt className="text-xs text-muted">{t("country.currency")}</dt>
-            <dd className="text-sm font-medium">
+            <dt className="text-xs font-medium text-muted">{t("country.currency")}</dt>
+            <dd className="text-sm font-bold text-heading">
               {config.currency.symbol} {config.currency.code}
             </dd>
           </div>
           <div>
-            <dt className="text-xs text-muted">{t("country.consumptionTax")}</dt>
-            <dd className="text-sm font-medium">
+            <dt className="text-xs font-medium text-muted">{t("country.consumptionTax")}</dt>
+            <dd className="text-sm font-bold text-heading">
               {t(config.consumptionTax.labelKey)} · {config.consumptionTax.standardRate}%
             </dd>
           </div>
           <div>
-            <dt className="text-xs text-muted">{t("country.taxYear")}</dt>
-            <dd className="tabular text-sm font-medium">{config.fiscalYear.label}</dd>
+            <dt className="text-xs font-medium text-muted">{t("country.taxYear")}</dt>
+            <dd className="tabular text-sm font-bold text-heading">{config.fiscalYear.label}</dd>
           </div>
           <div>
-            <dt className="text-xs text-muted">{t("country.numberFormat")}</dt>
-            <dd className="tabular text-sm font-medium">
+            <dt className="text-xs font-medium text-muted">{t("country.numberFormat")}</dt>
+            <dd className="tabular text-sm font-bold text-heading">
               {new Intl.NumberFormat(`en-${config.region}-u-nu-latn`).format(1234567.89)}
             </dd>
           </div>
         </dl>
-      </header>
+      </PageHeader>
 
       {tools.length ? (
         <CardGrid>
@@ -111,9 +111,8 @@ export default async function CountryPage({
             <li key={calc.slug}>
               <ContentCard
                 href={countryToolPath(code, country, calc.slug)}
-                icon={calc.icon}
-                title={t(calc.titleKey)}
-                description={t(calc.descKey)}
+                visual={itemVisual("calculators", calc.category, calc.slug)}
+                {...calculatorCopy(calc, t, country, locale.language)}
               />
             </li>
           ))}

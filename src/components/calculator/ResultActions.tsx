@@ -1,5 +1,6 @@
 "use client";
 
+import { Check, Download, Link2, Printer, Share2 } from "lucide-react";
 import { useState } from "react";
 
 import type {
@@ -91,20 +92,29 @@ export function ResultActions({
   };
 
   const buttonClass =
-    "rounded-lg border border-border px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-border-strong hover:bg-surface-muted";
+    "group inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-3.5 py-2 text-sm font-semibold text-heading transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary-soft hover:text-primary";
+  const iconClass = "h-4 w-4 text-muted transition-colors group-hover:text-primary";
 
   return (
     <div className="mt-6 flex flex-wrap gap-2 border-t border-border pt-5 print:hidden">
       <button type="button" onClick={() => window.print()} className={buttonClass}>
+        <Printer aria-hidden className={iconClass} />
         {t("actions.print")}
       </button>
       <button type="button" onClick={downloadCsv} className={buttonClass}>
+        <Download aria-hidden className={iconClass} />
         {t("actions.downloadCsv")}
       </button>
       <button type="button" onClick={copyLink} className={buttonClass}>
+        {copied ? (
+          <Check aria-hidden className="h-4 w-4 text-green-600" />
+        ) : (
+          <Link2 aria-hidden className={iconClass} />
+        )}
         {copied ? t("common.copied") : t("common.copyLink")}
       </button>
       <button type="button" onClick={share} className={buttonClass}>
+        <Share2 aria-hidden className={iconClass} />
         {t("actions.share")}
       </button>
     </div>

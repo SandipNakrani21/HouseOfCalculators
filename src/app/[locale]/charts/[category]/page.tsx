@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
@@ -73,21 +75,19 @@ export default async function ChartCategoryPage({
         ]}
       />
 
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold sm:text-3xl">
-          {t("charts.category.title", { category: name })}
-        </h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
-          {t(`category.charts.${resolved}.intro`)}
-        </p>
-      </header>
+      <PageHeader
+        visual={categoryVisual("charts", resolved)}
+        eyebrow={t("section.charts")}
+        title={t("charts.category.title", { category: name })}
+        description={t(`category.charts.${resolved}.intro`)}
+      />
 
       <CardGrid>
         {chartsIn(resolved).map((chart) => (
           <li key={chart.slug}>
             <ContentCard
               href={contentPath(code, "charts", resolved, chart.slug)}
-              icon={chart.icon}
+              visual={itemVisual("charts", resolved, chart.slug)}
               title={t(chart.titleKey)}
               description={t(chart.descKey)}
             />

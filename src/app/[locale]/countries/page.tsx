@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { CountryBadge } from "@/components/shared/CountryBadge";
+import { sectionVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
@@ -47,12 +50,11 @@ export default async function CountriesPage({
         ]}
       />
 
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold sm:text-3xl">{t("section.countries")}</h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
-          {t("section.countries.intro")}
-        </p>
-      </header>
+      <PageHeader
+        visual={sectionVisual("countries")}
+        title={t("section.countries")}
+        description={t("section.countries.intro")}
+      />
 
       <CardGrid>
         {COUNTRY_CODES.map((country) => {
@@ -63,7 +65,7 @@ export default async function CountriesPage({
             <li key={country}>
               <ContentCard
                 href={countryPath(code, country)}
-                icon="🌍"
+                media={<CountryBadge code={country} size="lg" />}
                 title={t(`country.${country}`)}
                 description={t("country.toolCount", { count })}
               />

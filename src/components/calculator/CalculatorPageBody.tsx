@@ -1,4 +1,10 @@
+import { ChevronDown, CircleHelp, Lightbulb } from "lucide-react";
 import Link from "next/link";
+
+import { IconTile } from "@/components/shared/Icon";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { categoryKey } from "@/config/categories";
+import { itemVisual } from "@/lib/visuals";
 
 import { AdSlot } from "@/components/ads/AdSlot";
 import { CalculatorRunner } from "@/components/calculator/CalculatorRunner";
@@ -46,7 +52,7 @@ export function CalculatorPageBody({
     .slice(0, 6)
     .map((item) => ({
       slug: item.slug,
-      icon: item.icon,
+      visual: itemVisual("calculators", item.category, item.slug),
       title: t(item.titleKey, item.params?.(ctx)),
       href: calculatorPath(locale, item, country),
     }));
@@ -55,18 +61,17 @@ export function CalculatorPageBody({
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10">
       <Breadcrumbs trail={trail} label={t("a11y.breadcrumb")} />
 
-      <header className="mb-6">
-        <h1 className="flex items-center gap-3 text-2xl font-bold sm:text-3xl">
-          <span aria-hidden>{calculator.icon}</span>
-          {title}
-        </h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
-          {t(calculator.descKey, params)}
-        </p>
+      <PageHeader
+        className="mb-6"
+        visual={itemVisual("calculators", calculator.category, calculator.slug)}
+        eyebrow={t(categoryKey("calculators", calculator.category))}
+        title={title}
+        description={t(calculator.descKey, params)}
+      >
         {relevance === "none" ? null : (
           // Say what the country actually changes here. Claiming a BMI follows
           // a country's rules for a tax year would be simply untrue.
-          <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-surface-muted px-3 py-1.5 text-xs text-muted">
+          <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted shadow-[var(--shadow-card)]">
             <CountryBadge code={country} />
             {t(`calc.countryNote.${relevance}`, {
               country: t(`country.${country}`),
@@ -75,7 +80,7 @@ export function CalculatorPageBody({
             })}
           </p>
         )}
-      </header>
+      </PageHeader>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]">
         <div className="min-w-0 space-y-6">
@@ -88,8 +93,13 @@ export function CalculatorPageBody({
           <AdSlot slot="calculator-mid" placement="inline" />
 
           {calculator.explainerKeys?.length ? (
-            <section className="rounded-2xl border border-border bg-surface p-5 sm:p-7">
-              <h2 className="mb-3 text-lg font-semibold">{t("calc.howItWorks")}</h2>
+            <section data-reveal="up" className="card p-5 sm:p-7">
+              <h2 className="mb-4 flex items-center gap-3 text-lg font-bold">
+                <span className="tile tone-amber h-9 w-9 rounded-xl">
+                  <Lightbulb aria-hidden className="h-5 w-5" />
+                </span>
+                {t("calc.howItWorks")}
+              </h2>
               <div className="space-y-3">
                 {calculator.explainerKeys.map((key) => (
                   <p key={key} className="text-sm leading-relaxed text-muted">
@@ -101,15 +111,21 @@ export function CalculatorPageBody({
           ) : null}
 
           {calculator.faqKeys?.length ? (
-            <section className="rounded-2xl border border-border bg-surface p-5 sm:p-7">
-              <h2 className="mb-3 text-lg font-semibold">{t("calc.faq")}</h2>
+            <section data-reveal="up" className="card p-5 sm:p-7">
+              <h2 className="mb-2 flex items-center gap-3 text-lg font-bold">
+                <span className="tile tone-violet h-9 w-9 rounded-xl">
+                  <CircleHelp aria-hidden className="h-5 w-5" />
+                </span>
+                {t("calc.faq")}
+              </h2>
               <div className="divide-y divide-border">
                 {calculator.faqKeys.map((key) => (
-                  <details key={key} className="group py-3">
-                    <summary className="cursor-pointer list-none text-sm font-medium text-foreground marker:hidden">
+                  <details key={key} className="faq group py-1">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg py-3 text-[15px] font-semibold text-heading transition-colors hover:text-primary [&::-webkit-details-marker]:hidden">
                       {t(`${key}.q`, params)}
+                      <ChevronDown aria-hidden className="h-4 w-4 shrink-0 text-muted transition-transform duration-300 group-open:rotate-180 group-open:text-primary" />
                     </summary>
-                    <p className="mt-2 text-sm leading-relaxed text-muted">
+                    <p className="faq-answer pb-4 text-sm leading-relaxed text-muted">
                       {t(`${key}.a`, params)}
                     </p>
                   </details>
@@ -120,17 +136,17 @@ export function CalculatorPageBody({
         </div>
 
         <aside className="space-y-6">
-          <section>
-            <h2 className="mb-3 text-sm font-semibold">{t("calc.related")}</h2>
-            <ul className="overflow-hidden rounded-2xl border border-border bg-surface">
+          <section data-reveal="left" className="lg:sticky lg:top-24">
+            <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-muted">{t("calc.related")}</h2>
+            <ul className="card overflow-hidden p-1.5">
               {related.map((item) => (
-                <li key={item.slug} className="border-b border-border last:border-0">
+                <li key={item.slug}>
                   <Link
                     href={item.href}
-                    className="flex items-center gap-3 px-4 py-3 text-sm text-foreground transition-colors hover:bg-surface-muted hover:text-primary"
+                    className="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-heading transition-all hover:bg-primary-soft hover:text-primary"
                   >
-                    <span aria-hidden>{item.icon}</span>
-                    {item.title}
+                    <IconTile visual={item.visual} size="sm" shape="rounded" className="group-hover:scale-110" />
+                    <span className="min-w-0 flex-1 truncate">{item.title}</span>
                   </Link>
                 </li>
               ))}

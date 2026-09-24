@@ -1,4 +1,8 @@
+import { ArrowRight, ChevronDown } from "lucide-react";
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { IconTile } from "@/components/shared/Icon";
+import { itemVisual, sectionVisual } from "@/lib/visuals";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -94,18 +98,17 @@ export default async function GuidePage({
       />
 
       <article>
-        <header className="mb-6">
-          <h1 className="flex items-center gap-3 text-2xl font-bold sm:text-3xl">
-            <span aria-hidden>{guide.icon}</span>
-            {title}
-          </h1>
-          <p className="mt-2 text-sm text-muted sm:text-base">
-            {t(guide.descKey)}
-          </p>
-          <p className="mt-3 text-xs text-muted">
+        <PageHeader
+          className="mb-6"
+          visual={itemVisual("guides", guide.category, guide.slug)}
+          eyebrow={t("section.guides")}
+          title={title}
+          description={t(guide.descKey)}
+        >
+          <p className="mt-3 text-xs font-medium text-muted">
             {t("guide.reviewed", { date: guide.reviewed })}
           </p>
-        </header>
+        </PageHeader>
 
         <div className="space-y-4">
           {guide.introKeys.map((key) => (
@@ -116,9 +119,9 @@ export default async function GuidePage({
         </div>
 
         {guide.formula ? (
-          <section className="mt-8">
-            <h2 className="mb-3 text-lg font-semibold">{t("calc.formula")}</h2>
-            <p className="tabular rounded-xl border border-border bg-surface-muted px-5 py-4 text-center text-base font-medium sm:text-lg">
+          <section data-reveal="up" className="mt-10">
+            <h2 className="mb-3 text-xl font-bold">{t("calc.formula")}</h2>
+            <p className="tabular relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#1d4ed8] via-[#2563eb] to-[#3b82f6] px-5 py-6 text-center text-lg font-bold text-white shadow-[var(--shadow-primary)] sm:text-xl">
               {guide.formula.expression}
             </p>
             <dl className="mt-4 divide-y divide-border border-t border-border">
@@ -135,8 +138,8 @@ export default async function GuidePage({
         ) : null}
 
         {guide.stepKeys?.length ? (
-          <section className="mt-8">
-            <h2 className="mb-3 text-lg font-semibold">{t("guide.steps")}</h2>
+          <section data-reveal="up" className="mt-10">
+            <h2 className="mb-3 text-xl font-bold">{t("guide.steps")}</h2>
             <ol className="space-y-3">
               {guide.stepKeys.map((key, index) => (
                 <li key={key} className="flex gap-3">
@@ -154,12 +157,12 @@ export default async function GuidePage({
         ) : null}
 
         {guide.workedExample ? (
-          <section className="mt-8">
-            <h2 className="mb-3 text-lg font-semibold">{t("guide.workedExample")}</h2>
+          <section data-reveal="up" className="mt-10">
+            <h2 className="mb-3 text-xl font-bold">{t("guide.workedExample")}</h2>
             <p className="mb-4 text-sm leading-relaxed text-muted">
               {t(guide.workedExample.introKey)}
             </p>
-            <dl className="overflow-hidden rounded-xl border border-border">
+            <dl className="card overflow-hidden">
               {guide.workedExample.rows.map((row) => (
                 <div
                   key={row.key}
@@ -184,8 +187,8 @@ export default async function GuidePage({
         <AdSlot slot="guide-mid" placement="inline" />
 
         {guide.notesKeys?.length ? (
-          <section className="mt-8 space-y-4">
-            <h2 className="text-lg font-semibold">{t("guide.worthKnowing")}</h2>
+          <section data-reveal="up" className="mt-10 space-y-4">
+            <h2 className="text-xl font-bold">{t("guide.worthKnowing")}</h2>
             {guide.notesKeys.map((key) => (
               <p key={key} className="text-sm leading-relaxed text-muted">
                 {t(key)}
@@ -194,8 +197,8 @@ export default async function GuidePage({
           </section>
         ) : null}
 
-        <section className="mt-8">
-          <h2 className="mb-3 text-lg font-semibold">{t("guide.useTheTool")}</h2>
+        <section data-reveal="up" className="mt-10">
+          <h2 className="mb-3 text-xl font-bold">{t("guide.useTheTool")}</h2>
           <ul className="grid gap-2 sm:grid-cols-2">
             {guide.related.map((link) => (
               <li key={`${link.section}-${link.category}-${link.slug ?? ""}`}>
@@ -205,25 +208,29 @@ export default async function GuidePage({
                       ? contentPath(code, link.section, link.category, link.slug)
                       : categoryPath(code, link.section, link.category)
                   }
-                  className="flex items-center justify-between gap-3 rounded-xl border border-border bg-surface px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+                  className="card card-link group flex items-center justify-between gap-3 px-4 py-3.5 text-sm font-semibold text-heading hover:text-primary"
                 >
-                  {t(`section.${link.section}`)}
-                  <span aria-hidden>→</span>
+                  <span className="flex items-center gap-3">
+                    <IconTile visual={sectionVisual(link.section)} size="sm" shape="rounded" />
+                    {t(`section.${link.section}`)}
+                  </span>
+                  <ArrowRight aria-hidden className="card-arrow h-4 w-4" />
                 </Link>
               </li>
             ))}
           </ul>
         </section>
 
-        <section className="mt-8">
-          <h2 className="mb-3 text-lg font-semibold">{t("calc.faq")}</h2>
+        <section data-reveal="up" className="mt-10">
+          <h2 className="mb-3 text-xl font-bold">{t("calc.faq")}</h2>
           <div className="divide-y divide-border">
             {guide.faqKeys.map((key) => (
-              <details key={key} className="py-3">
-                <summary className="cursor-pointer list-none text-sm font-medium marker:hidden">
+              <details key={key} className="faq group py-1">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-3 text-[15px] font-semibold text-heading transition-colors hover:text-primary [&::-webkit-details-marker]:hidden">
                   {t(`${key}.q`)}
+                  <ChevronDown aria-hidden className="h-4 w-4 shrink-0 text-muted transition-transform duration-300 group-open:rotate-180 group-open:text-primary" />
                 </summary>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
+                <p className="faq-answer pb-4 text-sm leading-relaxed text-muted">
                   {t(`${key}.a`)}
                 </p>
               </details>
@@ -234,15 +241,15 @@ export default async function GuidePage({
 
       {related.length ? (
         <section className="mt-10">
-          <h2 className="mb-3 text-lg font-semibold">{t("guide.moreGuides")}</h2>
-          <ul className="flex flex-wrap gap-2">
+          <h2 className="mb-3 text-xl font-bold">{t("guide.moreGuides")}</h2>
+          <ul data-reveal="stagger" className="flex flex-wrap gap-2.5">
             {related.map((item) => (
               <li key={item.slug}>
                 <Link
                   href={contentPath(code, "guides", item.category, item.slug)}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 text-sm transition-colors hover:border-primary hover:text-primary"
+                  className="group inline-flex items-center gap-2 rounded-full border border-border bg-surface py-1.5 ps-1.5 pe-4 text-sm font-semibold text-heading shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary"
                 >
-                  <span aria-hidden>{item.icon}</span>
+                  <IconTile visual={itemVisual("guides", item.category, item.slug)} size="xs" className="group-hover:scale-110" />
                   {t(item.titleKey)}
                 </Link>
               </li>

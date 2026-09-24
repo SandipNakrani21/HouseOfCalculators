@@ -9,6 +9,8 @@ import { CHARTS } from "@/config/charts/definitions";
 import { GUIDES } from "@/config/guides/definitions";
 import type { LocaleCode } from "@/config/locales";
 import { unitName, type TranslateFn } from "@/lib/i18n";
+import { calculatorCopy } from "@/lib/calculator-copy";
+import { categoryVisual, itemVisual, type Visual } from "@/lib/visuals";
 import { LOCALES } from "@/config/locales";
 import {
   calculatorPath,
@@ -29,6 +31,8 @@ export type ContentItem = {
   category: string;
   slug: string;
   icon: string;
+  /** Icon and colour family, for cards and search results. */
+  visual: Visual;
   title: string;
   description: string;
   href: string;
@@ -57,6 +61,7 @@ function calculatorItems({
       category: calc.isCountrySpecific ? country : calc.category,
       slug: calc.slug,
       icon: calc.icon,
+      visual: itemVisual("calculators", calc.category, calc.slug),
       title: t(calc.titleKey, params),
       description: t(calc.descKey, params),
       href: calculatorPath(locale, calc, country),
@@ -75,6 +80,7 @@ function converterItems({ locale, t }: BuildContext): ContentItem[] {
       category: converter.category,
       slug: converter.slug,
       icon: converter.icon,
+      visual: categoryVisual("converters", converter.category),
       title: t(converter.titleKey),
       description: t(converter.descKey),
       href: categoryPath(locale, "converters", converter.category),
@@ -99,6 +105,7 @@ function converterItems({ locale, t }: BuildContext): ContentItem[] {
         category: converter.category,
         slug: pairSlug(converter, from, to),
         icon: converter.icon,
+        visual: categoryVisual("converters", converter.category),
         title: t("conv.pair.title", names),
         description: t("conv.pair.desc", names),
         href: contentPath(
@@ -128,8 +135,8 @@ function countryItems({ locale, t }: BuildContext): ContentItem[] {
         category: code,
         slug: calc.slug,
         icon: calc.icon,
-        title: t(calc.titleKey),
-        description: t(calc.descKey),
+        visual: itemVisual("calculators", calc.category, calc.slug),
+        ...calculatorCopy(calc, t, code, LOCALES[locale].language),
         href: countryToolPath(locale, code, calc.slug),
         keywords: `${t(`country.${code}`)} ${calc.slug.replace(/-/g, " ")}`,
       });
@@ -145,6 +152,7 @@ function toolItems({ locale, t }: BuildContext): ContentItem[] {
     category: tool.category,
     slug: tool.slug,
     icon: tool.icon,
+    visual: itemVisual("tools", tool.category, tool.slug),
     title: t(tool.titleKey),
     description: t(tool.descKey),
     href: contentPath(locale, "tools", tool.category, tool.slug),
@@ -159,6 +167,7 @@ function chartItems({ locale, t }: BuildContext): ContentItem[] {
     category: chart.category,
     slug: chart.slug,
     icon: chart.icon,
+    visual: itemVisual("charts", chart.category, chart.slug),
     title: t(chart.titleKey),
     description: t(chart.descKey),
     href: contentPath(locale, "charts", chart.category, chart.slug),
@@ -173,6 +182,7 @@ function guideItems({ locale, t }: BuildContext): ContentItem[] {
     category: guide.category,
     slug: guide.slug,
     icon: guide.icon,
+    visual: itemVisual("guides", guide.category, guide.slug),
     title: t(guide.titleKey),
     description: t(guide.descKey),
     href: contentPath(locale, "guides", guide.category, guide.slug),

@@ -51,7 +51,7 @@ export function Dropdown({
         aria-haspopup="true"
         aria-controls={open ? panelId : undefined}
         onClick={() => setOpen((current) => !current)}
-        className="flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-sm transition-colors hover:border-border-strong hover:bg-surface-muted"
+        className="flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-2 text-sm shadow-[0_1px_2px_rgba(16,24,64,0.04)] transition-all hover:border-primary/40 hover:bg-primary-soft"
       >
         {trigger}
         <svg
@@ -69,8 +69,8 @@ export function Dropdown({
       {open ? (
         <div
           id={panelId}
-          className={`absolute z-50 mt-2 max-h-[70vh] w-64 overflow-y-auto rounded-xl border border-border bg-surface p-1.5 shadow-[var(--shadow-card)] ${
-            align === "end" ? "end-0" : "start-0"
+          className={`animate-pop absolute z-50 mt-2 max-h-[70vh] w-64 overflow-y-auto rounded-2xl border border-border bg-surface p-1.5 shadow-[var(--shadow-lift)] ${
+            align === "end" ? "end-0 origin-top-right" : "start-0 origin-top-left"
           }`}
         >
           {children(() => setOpen(false))}

@@ -93,7 +93,7 @@ export function RandomNumberTool() {
         type="button"
         onClick={draw}
         disabled={impossible}
-        className="mt-5 w-full rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-primary-contrast transition-colors hover:bg-primary-hover disabled:opacity-50 sm:w-auto"
+        className="mt-5 w-full btn-primary px-4 py-3 text-sm font-semibold text-primary-contrast transition-colors hover:bg-primary-hover disabled:opacity-50 sm:w-auto"
       >
         {t("tool.action.generate")}
       </button>
@@ -202,7 +202,7 @@ export function PasswordGeneratorTool() {
         <button
           type="button"
           onClick={generate}
-          className="rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-primary-contrast transition-colors hover:bg-primary-hover"
+          className="btn-primary px-4 py-3 text-sm font-semibold text-primary-contrast transition-colors hover:bg-primary-hover"
         >
           {t("tool.action.generate")}
         </button>

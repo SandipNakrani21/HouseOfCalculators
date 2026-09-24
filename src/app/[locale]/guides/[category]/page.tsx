@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
@@ -73,21 +75,19 @@ export default async function GuideCategoryPage({
         ]}
       />
 
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold sm:text-3xl">
-          {t("guides.category.title", { category: name })}
-        </h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
-          {t(`category.guides.${resolved}.intro`)}
-        </p>
-      </header>
+      <PageHeader
+        visual={categoryVisual("guides", resolved)}
+        eyebrow={t("section.guides")}
+        title={t("guides.category.title", { category: name })}
+        description={t(`category.guides.${resolved}.intro`)}
+      />
 
       <CardGrid>
         {guidesIn(resolved).map((guide) => (
           <li key={guide.slug}>
             <ContentCard
               href={contentPath(code, "guides", resolved, guide.slug)}
-              icon={guide.icon}
+              visual={itemVisual("guides", resolved, guide.slug)}
               title={t(guide.titleKey)}
               description={t(guide.descKey)}
             />

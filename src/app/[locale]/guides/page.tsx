@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { sectionVisual, categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
 import { AdSlot } from "@/components/ads/AdSlot";
@@ -52,25 +54,24 @@ export default async function GuidesPage({
         ]}
       />
 
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold sm:text-3xl">{t("section.guides")}</h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
-          {t("section.guides.intro")}
-        </p>
-      </header>
+      <PageHeader
+        visual={sectionVisual("guides")}
+        title={t("section.guides")}
+        description={t("section.guides.intro")}
+      />
 
       {GUIDE_CATEGORIES.map((category) => {
         const guides = guidesIn(category);
         if (!guides.length) return null;
         return (
           <section key={category} className="mb-12">
-            <SectionHeading title={t(categoryKey("guides", category))} />
+            <SectionHeading visual={categoryVisual("guides", category)} title={t(categoryKey("guides", category))} />
             <CardGrid>
               {guides.map((guide) => (
                 <li key={guide.slug}>
                   <ContentCard
                     href={contentPath(code, "guides", category, guide.slug)}
-                    icon={guide.icon}
+                    visual={itemVisual("guides", category, guide.slug)}
                     title={t(guide.titleKey)}
                     description={t(guide.descKey)}
                   />
