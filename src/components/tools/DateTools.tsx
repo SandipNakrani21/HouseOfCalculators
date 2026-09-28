@@ -9,7 +9,10 @@ import {
   ToolFields,
   ToolResult,
   inputClass,
+  selectClass,
 } from "@/components/tools/ToolShell";
+import type { Formatter } from "@/lib/format";
+import { plural, type TranslateFn } from "@/lib/i18n/core";
 import { useLocale } from "@/lib/locale-context";
 import {
   addDays,
@@ -84,12 +87,8 @@ export function DateDifferenceTool() {
 
       <ToolResult
         label={t("tool.result.daysBetween")}
-        value={t("tool.result.days", { count: fmt.number(days) })}
-        detail={t("tool.result.calendarSpan", {
-          years: calendar.years,
-          months: calendar.months,
-          days: calendar.days,
-        })}
+        value={plural(t, fmt.locale, "tool.result.days", days, { display: fmt.number(days) })}
+        detail={t("tool.result.calendarSpan", spanParams(t, fmt, calendar))}
       />
 
       <ToolFacts
@@ -154,7 +153,7 @@ export function AddDaysTool() {
               id={id}
               value={unit}
               onChange={(event) => setUnit(event.target.value as typeof unit)}
-              className={inputClass}
+              className={selectClass}
             >
               <option value="days">{t("units.days")}</option>
               <option value="weeks">{t("units.weeks")}</option>
@@ -168,7 +167,7 @@ export function AddDaysTool() {
               id={id}
               value={direction}
               onChange={(event) => setDirection(Number(event.target.value) as 1 | -1)}
-              className={inputClass}
+              className={selectClass}
             >
               <option value={1}>{t("tool.option.add")}</option>
               <option value={-1}>{t("tool.option.subtract")}</option>
@@ -306,11 +305,7 @@ export function AgeTool() {
 
       <ToolResult
         label={t("tool.result.age")}
-        value={t("tool.result.ageValue", {
-          years: age.years,
-          months: age.months,
-          days: age.days,
-        })}
+        value={t("tool.result.ageValue", spanParams(t, fmt, age))}
       />
 
       <ToolFacts
@@ -376,4 +371,15 @@ export function WeekNumberTool() {
       />
     </ToolCard>
   );
+}
+
+/** "2 years", "1 month", "0 days": each part of a span in its plural form. */
+function spanParams(
+  t: TranslateFn,
+  fmt: Formatter,
+  span: { years: number; months: number; days: number },
+): Record<string, string> {
+  const part = (unit: "years" | "months" | "days") =>
+    plural(t, fmt.locale, `tool.duration.${unit}`, span[unit], { display: fmt.number(span[unit]) });
+  return { years: part("years"), months: part("months"), days: part("days") };
 }

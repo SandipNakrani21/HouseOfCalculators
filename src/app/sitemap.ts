@@ -21,9 +21,8 @@ import {
   countryToolPath,
   localeHome,
   sectionPath,
-  swapLocale,
 } from "@/lib/routes";
-import { readyLocales } from "@/lib/seo";
+import { hreflangAlternates, readyLocales } from "@/lib/seo";
 
 /**
  * One sitemap covering every locale, with `alternates.languages` on each entry
@@ -36,17 +35,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const locales = readyLocales();
   const entries: MetadataRoute.Sitemap = [];
 
-  const add = (path: string, priority: number, frequency: "daily" | "weekly" | "monthly") => {
+  // `lastModified` only where the date is real (a guide's review date).
+  // Stamping every URL with the build time tells search engines that all 700
+  // pages changed on every deploy, and they learn to ignore the field.
+  const add = (
+    path: string,
+    priority: number,
+    frequency: "daily" | "weekly" | "monthly",
+    lastModified?: string,
+  ) => {
     entries.push({
       url: absoluteUrl(path),
-      lastModified: new Date(),
+      ...(lastModified ? { lastModified } : {}),
       changeFrequency: frequency,
       priority,
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((code) => [code, absoluteUrl(swapLocale(path, code))]),
-        ),
-      },
+      // The same hreflang set the page head declares (lib/seo).
+      alternates: { languages: hreflangAlternates(path, locales) },
     });
   };
 
@@ -106,7 +110,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     for (const guide of GUIDES) {
-      add(contentPath(locale, "guides", guide.category, guide.slug), 0.8, "monthly");
+      add(contentPath(locale, "guides", guide.category, guide.slug), 0.8, "monthly", guide.reviewed);
     }
 
     for (const country of COUNTRY_CODES) {

@@ -1,30 +1,27 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Caveat, Plus_Jakarta_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
-import { AdScript } from "@/components/ads/AdSlot";
+import { AdScript } from "@/components/ui/AdSlot";
 import { ConsentBanner } from "@/components/consent/ConsentBanner";
 import { ConsentScript } from "@/components/consent/ConsentScript";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { Interactions } from "@/components/motion/Interactions";
 import { RevealObserver } from "@/components/motion/RevealObserver";
+import { RouteProgress } from "@/components/motion/RouteProgress";
 import { WelcomeDialog } from "@/components/navigation/WelcomeDialog";
+import { ToastProvider } from "@/components/ui/Toast";
 import { calculatorsFor } from "@/config/calculators";
 import { COUNTRIES } from "@/config/countries";
 import { LOCALES, localeFromPath } from "@/config/locales";
 import { createFormatter } from "@/lib/format";
 import { createTranslator, getDictionary } from "@/lib/i18n";
 import { LocaleProvider } from "@/lib/locale-context";
+import { buildNavMenu } from "@/lib/nav-menu";
 import { calculatorPath, siteUrl } from "@/lib/routes";
-import {
-  SITE_NAME,
-  buildMetadata,
-  jsonLd,
-  organizationSchema,
-  readyLocales,
-  websiteSchema,
-} from "@/lib/seo";
+import { SITE_NAME, buildMetadata, readyLocales } from "@/lib/seo";
 
 import "../globals.css";
 
@@ -41,20 +38,27 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-/* The handwritten flourish on the landing hero. One weight, never preloaded. */
+/*
+ * The handwritten flourish on the landing hero. One weight, never preloaded.
+ * Cyrillic is included for Russian; unicode-range means only the pages that
+ * need a subset download it.
+ */
 const caveat = Caveat({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext", "cyrillic"],
   weight: ["600"],
   variable: "--font-caveat",
   display: "swap",
   preload: false,
 });
 
-/*
- * Set before first paint so scroll-reveal content starts hidden only when
- * script is actually running. Without it, everything is simply visible.
+/**
+ * One theme: light, on white. Tells the browser not to darken form controls,
+ * scrollbars or the page when the device is in dark mode.
  */
-const JS_FLAG = "document.documentElement.classList.add('js')";
+export const viewport: Viewport = {
+  colorScheme: "light",
+  themeColor: "#ffffff",
+};
 
 type LocaleParams = { locale: string };
 
@@ -72,7 +76,7 @@ export async function generateMetadata({
   const locale = localeFromPath(path);
   if (!locale) return {};
 
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   return {
     ...buildMetadata({
       locale: locale.code,
@@ -100,8 +104,8 @@ export default async function LocaleLayout({
   const locale = localeFromPath(path);
   if (!locale) notFound();
 
-  const dictionary = getDictionary(locale.language);
-  const t = createTranslator(locale.language);
+  const dictionary = getDictionary(locale.language, locale.code);
+  const t = createTranslator(locale.language, locale.code);
   const ready = readyLocales();
 
   // A short, stable list for the footer: the calculators most visitors arrive
@@ -113,7 +117,7 @@ export default async function LocaleLayout({
     countryCode: country,
     country: COUNTRIES[country],
     t,
-    fmt: createFormatter(country, locale.language),
+    fmt: createFormatter(country, locale.language, t),
   };
   const popular = calculatorsFor(country)
     .slice(0, 6)
@@ -121,6 +125,8 @@ export default async function LocaleLayout({
       title: t(calc.titleKey, calc.params?.(calcContext)),
       href: calculatorPath(locale.code, calc, locale.defaultCountry),
     }));
+
+  const navMenu = buildNavMenu({ locale: locale.code, country, t, calcContext });
 
   return (
     <html
@@ -134,36 +140,34 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
-        <script dangerouslySetInnerHTML={{ __html: JS_FLAG }} />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-contrast"
+          className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-50 focus:rounded-sm focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-contrast"
         >
           {t("a11y.skipToContent")}
         </a>
 
         <LocaleProvider localeCode={locale.code} dictionary={dictionary}>
-          <SiteHeader ready={ready} />
-          <main id="main" className="relative isolate flex-1">
-            <div aria-hidden className="page-wash" />
-            {children}
-          </main>
-          <SiteFooter ready={ready} popular={popular} />
-          <WelcomeDialog ready={ready} />
-          <ConsentBanner />
-          <RevealObserver />
+          <ToastProvider closeLabel={t("common.close")}>
+            <RouteProgress />
+            <SiteHeader ready={ready} menu={navMenu} />
+            {/* overflow-x-clip: decorative glows run past the screen edge. Clipping
+                on <body> alone does not stop phone browsers zooming out to fit
+                them; it has to be on an ordinary element. Clip (not hidden)
+                keeps sticky elements inside working. */}
+            <main id="main" className="relative isolate flex-1 overflow-x-clip">
+              <div aria-hidden className="page-wash" />
+              {children}
+            </main>
+            <SiteFooter ready={ready} popular={popular} />
+            <WelcomeDialog ready={ready} />
+            <ConsentBanner />
+            <RevealObserver />
+            <Interactions />
+          </ToastProvider>
         </LocaleProvider>
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLd(organizationSchema()) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: jsonLd(websiteSchema(locale.code)),
-          }}
-        />
+        {/* Organization and WebSite structured data live on the homepage. */}
         <ConsentScript />
         <AdScript />
       </body>

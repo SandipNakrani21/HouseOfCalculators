@@ -1,4 +1,5 @@
-import { Icon } from "@/components/shared/Icon";
+import { Icon } from "@/components/ui/Icon";
+import { PackIcon, type PackIconName } from "@/components/ui/PackIcon";
 import type { IconName, Tone } from "@/lib/visuals";
 
 /**
@@ -8,10 +9,13 @@ import type { IconName, Tone } from "@/lib/visuals";
  */
 export function GuideArt({
   icon,
+  pack,
   tone,
   glyph,
 }: {
   icon: IconName;
+  /** An icon from the landing icon pack, used instead of `icon` when given. */
+  pack?: PackIconName;
   tone: Tone;
   /** A short formula or symbol set large in the background, e.g. "%". */
   glyph: string;
@@ -19,10 +23,10 @@ export function GuideArt({
   return (
     <div
       aria-hidden
-      className={`tone-${tone} relative grid aspect-[4/3] w-full place-items-center overflow-hidden rounded-xl bg-[var(--tile-bg)]`}
+      className={`tone-${tone} relative grid aspect-[4/3] w-full place-items-center overflow-hidden rounded-md bg-[var(--tile-bg)]`}
     >
       {/* Background glyph */}
-      <span className="absolute -bottom-4 -end-2 text-[88px] font-extrabold leading-none text-[var(--tile-fg)] opacity-[0.12]">
+      <span className="absolute -bottom-4 -end-2 text-[5.5rem] font-extrabold leading-none text-[var(--tile-fg)] opacity-[0.12]">
         {glyph}
       </span>
       {/* Decorative rings */}
@@ -30,9 +34,15 @@ export function GuideArt({
       <span className="absolute end-5 top-4 h-3 w-3 rounded-full bg-[var(--tile-fg)] opacity-30" />
       <span className="absolute bottom-6 start-6 h-2 w-2 rounded-full bg-[var(--tile-fg)] opacity-40" />
 
-      <span className="relative grid h-16 w-16 place-items-center rounded-2xl bg-surface text-[var(--tile-fg)] shadow-[0_16px_30px_-14px_rgba(15,35,120,0.35)] transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110">
-        <Icon name={icon} className="h-8 w-8" />
-      </span>
+      {pack ? (
+        <span className="relative rounded-full bg-surface p-2 shadow-[0_16px_30px_-14px_rgba(15,35,120,0.35)] transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110">
+          <PackIcon name={pack} size={64} />
+        </span>
+      ) : (
+        <span className="relative grid h-16 w-16 place-items-center rounded-lg bg-surface text-[var(--tile-fg)] shadow-[0_16px_30px_-14px_rgba(15,35,120,0.35)] transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110">
+          <Icon name={icon} className="h-8 w-8" />
+        </span>
+      )}
     </div>
   );
 }

@@ -1,5 +1,3 @@
-import { isLanguageReady } from "@/lib/i18n";
-
 import type { LanguageCode } from "./languages";
 
 export type CountryCode =
@@ -321,31 +319,6 @@ export const COUNTRIES: Record<CountryCode, Country> = {
 
 export const COUNTRY_CODES = Object.keys(COUNTRIES) as CountryCode[];
 
-export const DEFAULT_COUNTRY: CountryCode = "us";
-
 export function isCountryCode(value: string): value is CountryCode {
   return Object.prototype.hasOwnProperty.call(COUNTRIES, value);
-}
-
-/**
- * Languages this country actually offers right now: the ones listed above,
- * minus any whose dictionary is not yet translated far enough to ship. English
- * is always present, so the list is never empty.
- */
-export function availableLanguages(country: CountryCode): LanguageCode[] {
-  const ready = COUNTRIES[country].languages.filter(isLanguageReady);
-  return ready.length ? ready : ["en"];
-}
-
-/** The language to use when a country is chosen but no language is stored yet. */
-export function defaultLanguageFor(country: CountryCode): LanguageCode {
-  return availableLanguages(country)[0];
-}
-
-/** Narrows an arbitrary language to one this country actually offers. */
-export function resolveLanguage(country: CountryCode, lang: string): LanguageCode {
-  const supported = availableLanguages(country);
-  return (supported as string[]).includes(lang)
-    ? (lang as LanguageCode)
-    : supported[0];
 }

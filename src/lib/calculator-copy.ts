@@ -2,7 +2,7 @@ import type { CalcContext, CalculatorDef } from "@/config/calculators/types";
 import { COUNTRIES, type CountryCode } from "@/config/countries";
 import type { LanguageCode } from "@/config/languages";
 import { createFormatter } from "@/lib/format";
-import type { TranslateFn } from "@/lib/i18n";
+import type { TranslateFn } from "@/lib/i18n/core";
 
 /**
  * A calculator's title and description, with its placeholders filled for a
@@ -24,7 +24,7 @@ export function calculatorCopy(
     countryCode: country,
     country: COUNTRIES[country],
     t,
-    fmt: createFormatter(country, language),
+    fmt: createFormatter(country, language, t),
   };
   const params = calculator.params?.(context);
   return {

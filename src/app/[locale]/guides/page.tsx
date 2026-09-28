@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/shared/PageHeader";
+import { ListingPage } from "@/components/layout/ListingPage";
 import { sectionVisual, categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
-import { AdSlot } from "@/components/ads/AdSlot";
-import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
-import {
-  CardGrid,
-  ContentCard,
-  SectionHeading,
-} from "@/components/shared/ContentCard";
 import { GUIDE_CATEGORIES, categoryKey } from "@/config/categories";
 import { guidesIn } from "@/config/guides/definitions";
 import { localeFromPath } from "@/config/locales";
@@ -24,7 +17,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const locale = localeFromPath((await params).locale);
   if (!locale) return {};
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   return buildMetadata({
     locale: locale.code,
     path: sectionPath(locale.code, "guides"),
@@ -41,48 +34,36 @@ export default async function GuidesPage({
   const locale = localeFromPath((await params).locale);
   if (!locale) notFound();
 
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   const code = locale.code;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
-      <Breadcrumbs
-        label={t("a11y.breadcrumb")}
-        trail={[
-          { name: t("nav.home"), path: localeHome(code) },
-          { name: t("section.guides"), path: sectionPath(code, "guides") },
-        ]}
-      />
-
-      <PageHeader
-        visual={sectionVisual("guides")}
-        title={t("section.guides")}
-        description={t("section.guides.intro")}
-      />
-
-      {GUIDE_CATEGORIES.map((category) => {
-        const guides = guidesIn(category);
-        if (!guides.length) return null;
-        return (
-          <section key={category} className="mb-12">
-            <SectionHeading visual={categoryVisual("guides", category)} title={t(categoryKey("guides", category))} />
-            <CardGrid>
-              {guides.map((guide) => (
-                <li key={guide.slug}>
-                  <ContentCard
-                    href={contentPath(code, "guides", category, guide.slug)}
-                    visual={itemVisual("guides", category, guide.slug)}
-                    title={t(guide.titleKey)}
-                    description={t(guide.descKey)}
-                  />
-                </li>
-              ))}
-            </CardGrid>
-          </section>
-        );
-      })}
-
-      <AdSlot slot="guides-bottom" placement="leaderboard" />
-    </div>
+    <ListingPage
+      locale={code}
+      breadcrumbLabel={t("a11y.breadcrumb")}
+      loadMoreLabel={t("common.loadMore")}
+      trail={[
+        { name: t("nav.home"), path: localeHome(code) },
+        { name: t("section.guides"), path: sectionPath(code, "guides") },
+      ]}
+      header={{
+        visual: sectionVisual("guides"),
+        title: t("section.guides"),
+        description: t("section.guides.intro"),
+      }}
+      groups={GUIDE_CATEGORIES.map((category) => ({
+        key: category,
+        title: t(categoryKey("guides", category)),
+        visual: categoryVisual("guides", category),
+        items: guidesIn(category).map((item) => ({
+          key: item.slug,
+          href: contentPath(code, "guides", category, item.slug),
+          visual: itemVisual("guides", category, item.slug),
+          title: t(item.titleKey),
+          description: t(item.descKey),
+        })),
+      }))}
+      adSlot="guides-bottom"
+    />
   );
 }

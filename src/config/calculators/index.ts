@@ -95,9 +95,4 @@ export function getCalculator(slug: string): CalculatorDef | undefined {
   return CALCULATORS.find((calc) => calc.slug === slug);
 }
 
-/** Countries where a given calculator exists, for the "not available" fallback. */
-export function countriesOffering(slug: string): CountryCode[] {
-  return getCalculator(slug)?.countries ?? [];
-}
-
 export type { CalculatorDef };

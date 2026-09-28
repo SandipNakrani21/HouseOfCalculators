@@ -1,0 +1,292 @@
+/*
+ * Motion. One easing (--ease-premium), 300-600ms, transform and opacity only,
+ * so everything runs on the compositor at 60fps and nothing shifts layout.
+ * All of it is switched off under prefers-reduced-motion (bottom of file).
+ */
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes rise {
+  from { transform: translateY(14px); }
+  to   { transform: none; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes float-tilt {
+  0%, 100% { transform: translateY(0) rotate(var(--tilt, 0deg)); }
+  50%      { transform: translateY(-12px) rotate(calc(var(--tilt, 0deg) + 3deg)); }
+}
+@keyframes draw {
+  from { stroke-dashoffset: var(--dash, 400); }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes glow {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 0.85; transform: scale(1.06); }
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+@keyframes pop-in {
+  0%   { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes slide-in-end {
+  from { transform: translateX(100%); }
+  to   { transform: none; }
+}
+@keyframes slide-in-start {
+  from { transform: translateX(-100%); }
+  to   { transform: none; }
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes ripple {
+  from { opacity: 0.28; transform: translate(-50%, -50%) scale(0); }
+  to   { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes dialog-in {
+  from { opacity: 0; transform: translateY(28px) scale(0.95); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+@keyframes orbit {
+  to { transform: rotate(360deg); }
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(40px, -30px) scale(1.08); }
+  66%      { transform: translate(-30px, 25px) scale(0.95); }
+}
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-4px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+/* Result figures brighten softly when they change. Opacity only: it replays on
+   every slider tick, and any movement would jitter while dragging. */
+@keyframes value-flash {
+  from { opacity: 0.55; }
+  to   { opacity: 1; }
+}
+
+/* Entrance on load, for above-the-fold content that should not wait for scroll. */
+.animate-fade-up {
+  animation: fade-up 0.7s var(--ease-premium) both;
+  animation-delay: var(--delay, 0ms);
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease both;
+  animation-delay: var(--delay, 0ms);
+}
+
+/*
+ * The largest heading only rises; it never fades. Chrome does not count an
+ * element at opacity 0 as painted, so fading the LCP element in would delay
+ * the metric by the length of the animation.
+ */
+.animate-rise { animation: rise 0.7s var(--ease-premium) both; }
+.animate-float {
+  animation: float 5.5s ease-in-out infinite;
+  animation-delay: var(--delay, 0ms);
+}
+.animate-float-tilt {
+  animation: float-tilt 6.5s ease-in-out infinite;
+  animation-delay: var(--delay, 0ms);
+}
+.animate-draw {
+  stroke-dasharray: var(--dash, 400);
+  animation: draw 1.4s 0.6s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+.animate-glow { animation: glow 7s ease-in-out infinite; }
+.animate-pop { animation: pop-in 0.35s var(--ease-spring) both; }
+.animate-toast { animation: toast-in 0.35s var(--ease-premium) both; }
+.animate-menu { animation: menu-in 0.18s var(--ease-premium) both; }
+/* Background colour glows: a slow wander, never in the way. */
+.animate-drift { animation: drift 18s ease-in-out infinite; animation-delay: var(--delay, 0ms); }
+.animate-dialog { animation: dialog-in 0.55s var(--ease-premium) both; }
+/* Hero rings: one full turn per --orbit-duration. */
+.animate-orbit { animation: orbit var(--orbit-duration, 60s) linear infinite; }
+.animate-orbit-reverse { animation: orbit var(--orbit-duration, 60s) linear infinite reverse; }
+.animate-drawer-end { animation: slide-in-end 0.4s var(--ease-premium) both; }
+[dir="rtl"] .animate-drawer-end { animation-name: slide-in-start; }
+/* Client-side navigations only: the first load never fades (see RouteProgress). */
+.page-enter { animation: page-enter 0.45s var(--ease-premium) both; }
+.value-flash { animation: value-flash 0.3s ease-out; }
+
+/* ======================================================== scroll reveal */
+
+/*
+ * `data-reveal="up|down|left|right|zoom|scale|fade"` fades an element in as it
+ * enters the viewport; RevealObserver adds `.is-visible`.
+ *
+ * By default it fades back out when it leaves, so sections fade in and out as
+ * you scroll in either direction. `data-reveal-once` keeps it visible after
+ * the first time.
+ *
+ * The hidden state applies only under `@media (scripting: enabled)`: with
+ * scripting off, in an old browser, or for a crawler that does not run
+ * script, everything is simply visible. No script is needed to decide.
+ */
+@media (scripting: enabled) {
+[data-reveal] {
+  opacity: 0;
+  transition:
+    opacity var(--duration-slow) var(--ease-premium),
+    transform var(--duration-slow) var(--ease-premium);
+  transition-delay: calc(var(--i, 0) * var(--stagger-step) + var(--delay, 0ms));
+}
+[data-reveal="up"],
+[data-reveal=""] { transform: translateY(28px); }
+[data-reveal="down"] { transform: translateY(-20px); }
+[data-reveal="left"] { transform: translateX(-32px); }
+[data-reveal="right"] { transform: translateX(32px); }
+[data-reveal="zoom"],
+[data-reveal="scale"] { transform: scale(0.94); }
+[data-reveal="fade"] { transform: none; }
+/* Corners and edges, for card grids that assemble from all sides. */
+[data-reveal="top-left"] { transform: translate(-35px, -30px); }
+[data-reveal="top"] { transform: translateY(-35px); }
+[data-reveal="top-right"] { transform: translate(35px, -30px); }
+[data-reveal="bottom-left"] { transform: translate(-35px, 30px); }
+[data-reveal="bottom"] { transform: translateY(35px); }
+[data-reveal="bottom-right"] { transform: translate(35px, 30px); }
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/*
+ * Staggered grids: the parent is observed, and its children cascade in by
+ * position, --stagger-step (90ms) apart.
+ */
+[data-reveal="stagger"] {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal="stagger"] > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity var(--duration-slow) var(--ease-premium),
+    transform var(--duration-slow) var(--ease-premium);
+  transition-delay: calc(var(--i, 0) * var(--stagger-step));
+}
+[data-reveal="stagger"].is-visible > * {
+  opacity: 1;
+  transform: none;
+}
+/* The homepage card grids (.grid-reveal) enter from their corners on the
+   3-column desktop grid; on 1-2 columns that reads as a glitch, so they rise. */
+@media (max-width: 63.99rem) {
+  .grid-reveal[data-reveal]:not(.is-visible) { transform: translateY(25px); }
+}
+} /* scripting: enabled */
+[data-reveal="stagger"] > :nth-child(2) { --i: 1; }
+[data-reveal="stagger"] > :nth-child(3) { --i: 2; }
+[data-reveal="stagger"] > :nth-child(4) { --i: 3; }
+[data-reveal="stagger"] > :nth-child(5) { --i: 4; }
+[data-reveal="stagger"] > :nth-child(6) { --i: 5; }
+[data-reveal="stagger"] > :nth-child(7) { --i: 6; }
+[data-reveal="stagger"] > :nth-child(8) { --i: 7; }
+[data-reveal="stagger"] > :nth-child(9) { --i: 8; }
+[data-reveal="stagger"] > :nth-child(10) { --i: 9; }
+[data-reveal="stagger"] > :nth-child(11) { --i: 10; }
+[data-reveal="stagger"] > :nth-child(n + 12) { --i: 11; }
+
+/* Items a "load more" list is holding back. Visible without scripting. */
+@media (scripting: enabled) {
+  [data-more-hidden] { display: none; }
+}
+
+/*
+ * Parallax: each layer drifts against the scroll by its --depth (set in its
+ * own style). Interactions writes only --scroll-y, on <html>, so no element
+ * the server rendered is touched by script.
+ */
+[data-parallax] {
+  translate: 0 calc(var(--scroll-y, 0) * var(--depth, 0) * -1px);
+}
+
+/* ============================================================= typewriter
+ * The hero heading types itself out: each character (`.type-char`, with its
+ * start time in --d) appears in turn, and a caret travels along just ahead
+ * of the text, then blinks a few times at the end (`.type-last`). Pure CSS,
+ * so the full heading is in the HTML for crawlers and screen readers from
+ * the start. Only with motion allowed: otherwise it is simply shown. */
+@media (prefers-reduced-motion: no-preference) {
+  .type-char {
+    position: relative;
+    opacity: 0;
+    animation: type-in 1ms linear var(--d) forwards;
+  }
+  .type-char::after {
+    content: "";
+    position: absolute;
+    inset-block: 0.14em 0.1em;
+    inset-inline-end: -0.06em;
+    width: 0.07em;
+    border-radius: 999px;
+    /* Animated through its colour rather than opacity: an opacity animation
+       on 34 pseudo-elements can be left stranded on the compositor. */
+    background-color: transparent;
+    animation: caret-pass var(--step) linear var(--d) forwards;
+  }
+  .type-last::after {
+    animation:
+      caret-pass var(--step) linear var(--d) forwards,
+      caret-blink 1s linear calc(var(--d) + var(--step)) 4 forwards;
+  }
+}
+@keyframes type-in {
+  to { opacity: 1; }
+}
+/* Hard switches written as keyframe pairs, and "off" already reached well
+   before 100%: an animation can finish at a progress of 0.9999999..., which a
+   steps() timing (or an "on" 100% frame) would leave showing the caret. */
+@keyframes caret-pass {
+  0%, 90% { background-color: var(--primary); }
+  91%, 100% { background-color: transparent; }
+}
+@keyframes caret-blink {
+  0%, 50% { background-color: var(--primary); }
+  51%, 100% { background-color: transparent; }
+}
+
+/* ======================================================= reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  [data-reveal],
+  [data-reveal="stagger"] > * {
+    opacity: 1;
+    transform: none;
+  }
+  [data-parallax] { translate: none; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}

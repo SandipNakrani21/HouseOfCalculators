@@ -1,6 +1,6 @@
 import { CALCULATORS, calculatorsFor } from "@/config/calculators";
 import type { CalcContext } from "@/config/calculators/types";
-import type { Section } from "@/config/categories";
+import { categoryKey, type Section } from "@/config/categories";
 import { CONVERTERS, pairSlug } from "@/config/converters/definitions";
 import { findUnit } from "@/config/converters/units";
 import type { CountryCode } from "@/config/countries";
@@ -8,7 +8,7 @@ import { TOOLS } from "@/config/tools/definitions";
 import { CHARTS } from "@/config/charts/definitions";
 import { GUIDES } from "@/config/guides/definitions";
 import type { LocaleCode } from "@/config/locales";
-import { unitName, type TranslateFn } from "@/lib/i18n";
+import { unitName, type TranslateFn } from "@/lib/i18n/core";
 import { calculatorCopy } from "@/lib/calculator-copy";
 import { categoryVisual, itemVisual, type Visual } from "@/lib/visuals";
 import { LOCALES } from "@/config/locales";
@@ -17,7 +17,6 @@ import {
   categoryPath,
   contentPath,
   countryToolPath,
-  sectionPath,
 } from "@/lib/routes";
 
 /**
@@ -65,7 +64,9 @@ function calculatorItems({
       title: t(calc.titleKey, params),
       description: t(calc.descKey, params),
       href: calculatorPath(locale, calc, country),
-      keywords: calc.slug.replace(/-/g, " "),
+      // The category name ("Math", "Maths", "Health") so a search for the
+      // subject finds its calculators.
+      keywords: `${calc.slug.replace(/-/g, " ")} ${t(categoryKey("calculators", calc.category))}`,
     };
   });
 }
@@ -94,10 +95,9 @@ function converterItems({ locale, t }: BuildContext): ContentItem[] {
       const toUnit = findUnit(converter, to);
       if (!fromUnit || !toUnit) continue;
 
-      const language = LOCALES[locale].language;
       const names = {
-        from: unitName(language, t, fromUnit.labelKey, true),
-        to: unitName(language, t, toUnit.labelKey, true),
+        from: unitName(t, fromUnit.labelKey, true),
+        to: unitName(t, toUnit.labelKey, true),
       };
       items.push({
         id: `converter:${converter.slug}:${from}-${to}`,
@@ -138,7 +138,7 @@ function countryItems({ locale, t }: BuildContext): ContentItem[] {
         visual: itemVisual("calculators", calc.category, calc.slug),
         ...calculatorCopy(calc, t, code, LOCALES[locale].language),
         href: countryToolPath(locale, code, calc.slug),
-        keywords: `${t(`country.${code}`)} ${calc.slug.replace(/-/g, " ")}`,
+        keywords: `${t(`country.${code}`)} ${calc.slug.replace(/-/g, " ")} ${t(categoryKey("calculators", calc.category))}`,
       });
     }
   }
@@ -200,24 +200,4 @@ export function allContent(context: BuildContext): ContentItem[] {
     ...guideItems(context),
     ...countryItems(context),
   ];
-}
-
-/** Items a visitor can reach from the current country, grouped by section. */
-export function contentBySection(
-  context: BuildContext,
-): Record<Section, ContentItem[]> {
-  const grouped = {
-    calculators: [] as ContentItem[],
-    converters: [] as ContentItem[],
-    tools: [] as ContentItem[],
-    charts: [] as ContentItem[],
-    guides: [] as ContentItem[],
-    countries: [] as ContentItem[],
-  };
-  for (const item of allContent(context)) grouped[item.section].push(item);
-  return grouped;
-}
-
-export function sectionHref(locale: LocaleCode, section: Section): string {
-  return sectionPath(locale, section);
 }

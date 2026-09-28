@@ -161,11 +161,6 @@ export function hypotenuse(a: number, b: number): number {
   return Math.hypot(a, b);
 }
 
-export function missingLeg(hypotenuseLength: number, leg: number): number {
-  const square = hypotenuseLength * hypotenuseLength - leg * leg;
-  return square <= 0 ? 0 : Math.sqrt(square);
-}
-
 /** Angles of a right triangle in degrees, from the two legs. */
 export function rightTriangleAngles(a: number, b: number): { alpha: number; beta: number } {
   const alpha = (Math.atan2(a, b) * 180) / Math.PI;

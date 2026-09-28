@@ -37,8 +37,8 @@ export async function generateMetadata({
   const calculator = getCalculator(slug);
   if (!locale || !calculator || !isCountryCode(country)) return {};
 
-  const t = createTranslator(locale.language);
-  const fmt = createFormatter(country, locale.language);
+  const t = createTranslator(locale.language, locale.code);
+  const fmt = createFormatter(country, locale.language, t);
   const values = calculator.params?.({
     countryCode: country,
     country: COUNTRIES[country],
@@ -56,7 +56,14 @@ export async function generateMetadata({
       country: countryName,
       tool: t(calculator.titleKey, values),
     }),
-    description: t(calculator.descKey, values),
+    // The same tool exists for up to 22 countries; the description says which
+    // one this is (as the page's own badge does), so no two are identical.
+    description: t("country.tool.metaDesc", {
+      description: t(calculator.descKey, values),
+      country: countryName,
+      year: COUNTRIES[country].fiscalYear.label,
+      currency: COUNTRIES[country].currency.code,
+    }),
   });
 }
 
@@ -79,7 +86,7 @@ export default async function CountryToolPage({
     notFound();
   }
 
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   const code = locale.code;
   const countryName = t(`country.${country}`);
 

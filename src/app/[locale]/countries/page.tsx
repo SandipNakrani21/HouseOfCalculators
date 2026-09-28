@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/shared/PageHeader";
-import { CountryBadge } from "@/components/shared/CountryBadge";
+import { ListingPage } from "@/components/layout/ListingPage";
+import { CountryBadge } from "@/components/ui/CountryBadge";
 import { sectionVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
-import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
-import { CardGrid, ContentCard } from "@/components/shared/ContentCard";
 import { calculatorsFor } from "@/config/calculators";
 import { COUNTRY_CODES } from "@/config/countries";
 import { localeFromPath } from "@/config/locales";
@@ -20,7 +18,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const locale = localeFromPath((await params).locale);
   if (!locale) return {};
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   return buildMetadata({
     locale: locale.code,
     path: sectionPath(locale.code, "countries"),
@@ -37,42 +35,33 @@ export default async function CountriesPage({
   const locale = localeFromPath((await params).locale);
   if (!locale) notFound();
 
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   const code = locale.code;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
-      <Breadcrumbs
-        label={t("a11y.breadcrumb")}
-        trail={[
-          { name: t("nav.home"), path: localeHome(code) },
-          { name: t("section.countries"), path: sectionPath(code, "countries") },
-        ]}
-      />
-
-      <PageHeader
-        visual={sectionVisual("countries")}
-        title={t("section.countries")}
-        description={t("section.countries.intro")}
-      />
-
-      <CardGrid>
-        {COUNTRY_CODES.map((country) => {
-          const count = calculatorsFor(country).filter(
-            (calc) => calc.isCountrySpecific,
-          ).length;
-          return (
-            <li key={country}>
-              <ContentCard
-                href={countryPath(code, country)}
-                media={<CountryBadge code={country} size="lg" />}
-                title={t(`country.${country}`)}
-                description={t("country.toolCount", { count })}
-              />
-            </li>
-          );
-        })}
-      </CardGrid>
-    </div>
+    <ListingPage
+      locale={code}
+      breadcrumbLabel={t("a11y.breadcrumb")}
+      loadMoreLabel={t("common.loadMore")}
+      trail={[
+        { name: t("nav.home"), path: localeHome(code) },
+        { name: t("section.countries"), path: sectionPath(code, "countries") },
+      ]}
+      header={{
+        visual: sectionVisual("countries"),
+        title: t("section.countries"),
+        description: t("section.countries.intro"),
+      }}
+      items={COUNTRY_CODES.map((country) => ({
+        key: country,
+        href: countryPath(code, country),
+        media: <CountryBadge code={country} size="lg" />,
+        title: t(`country.${country}`),
+        description: t("country.toolCount", {
+          count: calculatorsFor(country).filter((calc) => calc.isCountrySpecific).length,
+        }),
+      }))}
+      adSlot="countries-bottom"
+    />
   );
 }

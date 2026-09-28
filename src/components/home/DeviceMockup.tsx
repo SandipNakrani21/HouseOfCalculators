@@ -25,12 +25,12 @@ export function DeviceMockup({
       {/* Laptop */}
       <div className="animate-float" style={{ "--delay": "300ms" } as React.CSSProperties}>
         <div className="rounded-t-[18px] border-[10px] border-b-[14px] border-navy bg-navy shadow-[0_30px_60px_-30px_rgba(11,23,51,0.7)]">
-          <div className="overflow-hidden rounded-md bg-surface">
+          <div className="overflow-hidden rounded-sm bg-surface">
             {/* Mini header */}
             <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
               <span className="flex items-center gap-1.5">
                 <LogoMark className="h-5 w-5" />
-                <span className="text-[9px] font-extrabold leading-tight text-heading">
+                <span className="text-[0.5625rem] font-extrabold leading-tight text-heading">
                   {appName}
                 </span>
               </span>
@@ -46,15 +46,15 @@ export function DeviceMockup({
                 {titleLines[0]}
                 <span className="block text-primary">{titleLines[1]}</span>
               </p>
-              <div className="mx-auto mt-4 flex max-w-[70%] items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-start shadow-[var(--shadow-card)]">
+              <div className="mx-auto mt-4 flex max-w-[70%] items-center gap-2 rounded-sm border border-border bg-surface px-3 py-2 text-start shadow-[var(--shadow-card)]">
                 <Search className="h-3 w-3 text-muted" />
-                <span className="text-[9px] text-muted">{searchLabel}</span>
+                <span className="text-[0.5625rem] text-muted">{searchLabel}</span>
               </div>
             </div>
           </div>
         </div>
         {/* Laptop base */}
-        <div className="-mx-[5%] h-3 rounded-b-2xl bg-gradient-to-b from-[#cbd5e1] to-[#94a3b8] shadow-[0_12px_20px_-12px_rgba(11,23,51,0.6)]" />
+        <div className="-mx-[5%] h-3 rounded-b-lg bg-gradient-to-b from-[#cbd5e1] to-[#94a3b8] shadow-[0_12px_20px_-12px_rgba(11,23,51,0.6)]" />
       </div>
 
       {/* Phone */}
@@ -66,17 +66,17 @@ export function DeviceMockup({
         <div className="px-3 pb-4 pt-2.5">
           <span className="flex items-center gap-1">
             <LogoMark className="h-4 w-4" />
-            <span className="text-[7px] font-extrabold leading-tight text-heading">{appName}</span>
+            <span className="text-[0.4375rem] font-extrabold leading-tight text-heading">{appName}</span>
           </span>
           <div className="mt-3 space-y-2">
             {fields.map((label) => (
               <div key={label}>
-                <p className="text-[7px] font-semibold text-muted">{label}</p>
-                <div className="mt-0.5 h-3.5 rounded-md border border-border bg-surface-muted" />
+                <p className="text-[0.4375rem] font-semibold text-muted">{label}</p>
+                <div className="mt-0.5 h-3.5 rounded-sm border border-border bg-surface-muted" />
               </div>
             ))}
           </div>
-          <div className="mt-3 rounded-md bg-primary py-1.5 text-center text-[8px] font-bold text-white">
+          <div className="mt-3 rounded-sm bg-primary py-1.5 text-center text-[0.5rem] font-bold text-white">
             {buttonLabel}
           </div>
         </div>

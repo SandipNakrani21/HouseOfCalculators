@@ -36,8 +36,8 @@ export async function generateMetadata({
   const calculator = getCalculator(slug);
   if (!locale || !calculator || calculator.category !== category) return {};
 
-  const t = createTranslator(locale.language);
-  const fmt = createFormatter(locale.defaultCountry, locale.language);
+  const t = createTranslator(locale.language, locale.code);
+  const fmt = createFormatter(locale.defaultCountry, locale.language, t);
   const values = calculator.params?.({
     countryCode: locale.defaultCountry,
     country: COUNTRIES[locale.defaultCountry],
@@ -73,7 +73,7 @@ export default async function CalculatorPage({
     notFound();
   }
 
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   const code = locale.code;
 
   return (

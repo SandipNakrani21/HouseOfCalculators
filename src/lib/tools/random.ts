@@ -40,12 +40,6 @@ export function shuffle<T>(items: readonly T[]): T[] {
   return result;
 }
 
-/** `count` distinct items, or the whole list when it is shorter than that. */
-export function pick<T>(items: readonly T[], count: number): T[] {
-  if (count <= 0 || items.length === 0) return [];
-  return shuffle(items).slice(0, Math.min(count, items.length));
-}
-
 /**
  * Splits a list into `teams` groups of as equal a size as possible.
  *

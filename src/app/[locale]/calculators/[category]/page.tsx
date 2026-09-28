@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/shared/PageHeader";
+import { ListingPage } from "@/components/layout/ListingPage";
 import { calculatorCopy } from "@/lib/calculator-copy";
 import { categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
-import { AdSlot } from "@/components/ads/AdSlot";
-import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
-import { CardGrid, ContentCard } from "@/components/shared/ContentCard";
 import { calculatorsFor } from "@/config/calculators";
 import {
   CALCULATOR_CATEGORIES,
@@ -45,7 +42,7 @@ export async function generateMetadata({
   const resolved = resolve(category);
   if (!locale || !resolved) return {};
 
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   const name = t(categoryKey("calculators", resolved));
   return buildMetadata({
     locale: locale.code,
@@ -65,7 +62,7 @@ export default async function CategoryPage({
   const resolved = resolve(category);
   if (!locale || !resolved) notFound();
 
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   const code = locale.code;
   const name = t(categoryKey("calculators", resolved));
 
@@ -74,42 +71,29 @@ export default async function CategoryPage({
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
-      <Breadcrumbs
-        label={t("a11y.breadcrumb")}
-        trail={[
-          { name: t("nav.home"), path: localeHome(code) },
-          { name: t("section.calculators"), path: sectionPath(code, "calculators") },
-          { name, path: categoryPath(code, "calculators", resolved) },
-        ]}
-      />
-
-      <PageHeader
-        visual={categoryVisual("calculators", resolved)}
-        eyebrow={t("section.calculators")}
-        title={t("category.page.title", { category: name })}
-        description={t(`category.calculators.${resolved}.intro`)}
-      />
-
-      {items.length ? (
-        <CardGrid>
-          {items.map((calc) => (
-            <li key={calc.slug}>
-              <ContentCard
-                href={contentPath(code, "calculators", resolved, calc.slug)}
-                visual={itemVisual("calculators", resolved, calc.slug)}
-                {...calculatorCopy(calc, t, locale.defaultCountry, locale.language)}
-              />
-            </li>
-          ))}
-        </CardGrid>
-      ) : (
-        <p className="rounded-2xl border border-dashed border-border-strong p-10 text-center text-sm text-muted">
-          {t("category.empty")}
-        </p>
-      )}
-
-      <AdSlot slot="category-bottom" placement="leaderboard" />
-    </div>
+    <ListingPage
+      locale={code}
+      breadcrumbLabel={t("a11y.breadcrumb")}
+      loadMoreLabel={t("common.loadMore")}
+      trail={[
+        { name: t("nav.home"), path: localeHome(code) },
+        { name: t("section.calculators"), path: sectionPath(code, "calculators") },
+        { name, path: categoryPath(code, "calculators", resolved) },
+      ]}
+      header={{
+        visual: categoryVisual("calculators", resolved),
+        eyebrow: t("section.calculators"),
+        title: t("category.page.title", { category: name }),
+        description: t(`category.calculators.${resolved}.intro`),
+      }}
+      items={items.map((calc) => ({
+        key: calc.slug,
+        href: contentPath(code, "calculators", resolved, calc.slug),
+        visual: itemVisual("calculators", resolved, calc.slug),
+        ...calculatorCopy(calc, t, locale.defaultCountry, locale.language),
+      }))}
+      emptyLabel={t("category.empty")}
+      adSlot="category-bottom"
+    />
   );
 }

@@ -1,11 +1,15 @@
 "use client";
 
+import { ArrowRight, Globe2 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from "react";
 
-import { CountryBadge } from "@/components/shared/CountryBadge";
-import { COUNTRIES, COUNTRY_CODES, type CountryCode } from "@/config/countries";
-import { LOCALES, type LocaleCode } from "@/config/locales";
+import { countryOptions } from "@/components/navigation/CountrySelector";
+import { localeOptions } from "@/components/navigation/LocaleSelector";
+import { Button } from "@/components/ui/Button";
+import { Select } from "@/components/ui/Select";
+import type { CountryCode } from "@/config/countries";
+import type { LocaleCode } from "@/config/locales";
 import { useLocale } from "@/lib/locale-context";
 import { hasStoredLocale, storeCountry, storeLocale } from "@/lib/preferences";
 import { swapLocale } from "@/lib/routes";
@@ -13,15 +17,17 @@ import { swapLocale } from "@/lib/routes";
 /** The cookie never changes without a navigation, so there is nothing to subscribe to. */
 const subscribe = () => () => {};
 
+const delay = (ms: number) => ({ "--delay": `${ms}ms` }) as CSSProperties;
+
 /**
  * Shown once, on a first visit, so a new visitor lands in their own language
- * and country rather than a guess. Language and country are asked as two
- * separate questions because they are two separate settings.
+ * and country rather than a guess: one headline, two dropdowns, one button.
+ * Language and country are separate questions because they are separate
+ * settings.
  *
- * The cookie is read as an external store so pages stay statically rendered -
- * reading it on the server would make every page dynamic - and the server
- * snapshot assumes a choice exists so the dialog never flashes for returning
- * visitors.
+ * The cookie is read as an external store so pages stay statically rendered,
+ * and the server snapshot assumes a choice exists so the dialog never flashes
+ * for returning visitors.
  */
 export function WelcomeDialog({ ready }: { ready: LocaleCode[] }) {
   const stored = useSyncExternalStore(subscribe, hasStoredLocale, () => true);
@@ -36,10 +42,15 @@ export function WelcomeDialog({ ready }: { ready: LocaleCode[] }) {
 
   const open = !stored && !dismissed;
 
-  // Focus moves into the dialog so keyboard and screen-reader users are not
-  // left behind the overlay.
+  // Focus moves into the dialog and the page behind stops scrolling.
   useEffect(() => {
-    if (open) panel.current?.focus();
+    if (!open) return;
+    panel.current?.focus();
+    const { overflow } = document.body.style;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = overflow;
+    };
   }, [open]);
 
   if (!open) return null;
@@ -55,99 +66,71 @@ export function WelcomeDialog({ ready }: { ready: LocaleCode[] }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/50 p-0 backdrop-blur-sm sm:items-center sm:p-4">
+    <div className="animate-fade-in fixed inset-0 z-50 flex items-center justify-center bg-navy/55 p-4 backdrop-blur-md">
       <div
         ref={panel}
         tabIndex={-1}
         role="dialog"
         aria-modal="true"
         aria-labelledby="welcome-title"
-        className="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-t-2xl bg-surface shadow-xl outline-none sm:rounded-2xl"
+        className="animate-dialog relative max-h-[calc(100dvh-2rem)] w-full min-w-0 max-w-[36rem] overflow-y-auto rounded-xl bg-surface shadow-[0_40px_80px_-24px_rgba(15,27,61,0.55)] outline-none"
       >
-        <header className="border-b border-border px-6 pb-5 pt-6">
-          <h2 id="welcome-title" className="text-xl font-bold">
-            {t("gate.title", { app: t("app.name") })}
+        {/* Header: a soft blue band with a slowly breathing glow behind the mark. */}
+        <header className="relative overflow-hidden bg-bg-tint px-6 pb-7 pt-8 sm:px-8">
+          <div aria-hidden className="animate-glow absolute -end-16 -top-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--primary)_28%,transparent),transparent_70%)]" />
+          <div aria-hidden className="animate-glow absolute -bottom-24 -start-10 h-48 w-48 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--brand-sky)_24%,transparent),transparent_70%)] [animation-delay:-3s]" />
+          <span aria-hidden className="animate-pop relative grid h-12 w-12 place-items-center rounded-lg bg-gradient-cta text-white shadow-primary">
+            <Globe2 className="h-6 w-6" />
+          </span>
+          <h2
+            id="welcome-title"
+            className="animate-fade-up relative mt-5 text-[1.375rem] font-extrabold leading-snug tracking-tight text-heading sm:text-2xl"
+            style={delay(120)}
+          >
+            {t("gate.headline")}
           </h2>
-          <p className="mt-1 text-sm text-muted">{t("gate.subtitle")}</p>
         </header>
 
-        <div className="space-y-6 px-6 py-5">
-          <section>
-            <h3 className="mb-1 text-sm font-semibold">{t("gate.language.title")}</h3>
-            <p className="mb-3 text-xs text-muted">{t("gate.language.subtitle")}</p>
-            <ul className="grid gap-2 sm:grid-cols-3">
-              {ready.map((code) => {
-                const locale = LOCALES[code];
-                const active = code === draftLocale;
-                return (
-                  <li key={code}>
-                    <button
-                      type="button"
-                      lang={locale.language}
-                      dir={locale.dir}
-                      onClick={() => setDraftLocale(code)}
-                      aria-pressed={active}
-                      className={`w-full rounded-xl border p-2.5 text-start transition-colors ${
-                        active
-                          ? "border-primary bg-primary-soft"
-                          : "border-border hover:border-border-strong hover:bg-surface-muted"
-                      }`}
-                    >
-                      <span className="block text-sm font-medium">{locale.native}</span>
-                      <span className="block text-xs text-muted" dir="ltr">
-                        {locale.code}
-                      </span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="mb-1 text-sm font-semibold">{t("gate.country.title")}</h3>
-            <p className="mb-3 text-xs text-muted">{t("gate.country.subtitle")}</p>
-            <ul className="grid max-h-56 gap-2 overflow-y-auto pe-1 sm:grid-cols-3">
-              {COUNTRY_CODES.map((code) => {
-                const active = code === draftCountry;
-                return (
-                  <li key={code}>
-                    <button
-                      type="button"
-                      onClick={() => setDraftCountry(code)}
-                      aria-pressed={active}
-                      className={`flex w-full items-center gap-2 rounded-xl border p-2.5 text-start transition-colors ${
-                        active
-                          ? "border-primary bg-primary-soft"
-                          : "border-border hover:border-border-strong hover:bg-surface-muted"
-                      }`}
-                    >
-                      <CountryBadge code={code} />
-                      <span className="min-w-0">
-                        <span className="block truncate text-sm font-medium">
-                          {t(`country.${code}`)}
-                        </span>
-                        <span className="block text-xs text-muted">
-                          {COUNTRIES[code].currency.code}
-                        </span>
-                      </span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
+        {/* min-w-0: grid items otherwise refuse to shrink below their longest
+            unbroken text, which pushed the panel off-screen on phones. */}
+        <div className="grid grid-cols-1 gap-5 px-6 py-7 sm:grid-cols-2 sm:px-8">
+          <div className="animate-fade-up min-w-0" style={delay(200)}>
+            <Select
+              showLabel
+              label={t("header.language")}
+              value={draftLocale}
+              onChange={setDraftLocale}
+              options={localeOptions(ready).map((option) => ({
+                ...option,
+                icon: <Globe2 aria-hidden className="h-[18px] w-[18px] text-primary" />,
+              }))}
+            />
+          </div>
+          <div className="animate-fade-up min-w-0" style={delay(280)}>
+            <Select
+              showLabel
+              label={t("header.country")}
+              value={draftCountry}
+              onChange={setDraftCountry}
+              options={countryOptions(t)}
+              searchable
+              searchPlaceholder={t("common.searchCountries")}
+              noResults={t("common.noMatches")}
+            />
+          </div>
         </div>
 
-        <footer className="flex items-center justify-between gap-3 border-t border-border bg-surface-muted px-6 py-4">
-          <p className="text-xs text-muted">{t("gate.note")}</p>
-          <button
-            type="button"
-            onClick={confirm}
-            className="shrink-0 btn-primary px-4 py-2.5 text-sm font-semibold text-primary-contrast transition-colors hover:bg-primary-hover"
-          >
+        <footer
+          className="animate-fade-up flex flex-col-reverse gap-4 border-t border-border bg-bg-soft px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8"
+          style={delay(360)}
+        >
+          <p className="text-xs leading-relaxed text-muted">
+            <span aria-hidden className="me-1 font-bold text-alert">*</span>
+            {t("gate.note")}
+          </p>
+          <Button onClick={confirm} size="md" iconEnd={<ArrowRight />} className="w-full sm:w-auto">
             {t("common.continue")}
-          </button>
+          </Button>
         </footer>
       </div>
     </div>

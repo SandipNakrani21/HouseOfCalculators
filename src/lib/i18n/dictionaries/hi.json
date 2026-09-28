@@ -24,6 +24,7 @@
   "gate.note": "आप दोनों को कभी भी हेडर से बदल सकते हैं।",
   "gate.step": "चरण {total} में से {current}",
   "header.country": "देश",
+  "header.exploreAll": "सभी देखें",
   "header.language": "भाषा",
   "header.switcher": "देश और भाषा",
   "header.menu": "मेन्यू",

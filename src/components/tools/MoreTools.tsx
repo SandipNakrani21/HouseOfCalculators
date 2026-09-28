@@ -10,6 +10,7 @@ import {
   ToolResult,
   inputClass,
 } from "@/components/tools/ToolShell";
+import { plural } from "@/lib/i18n/core";
 import { useLocale } from "@/lib/locale-context";
 import {
   daysBetween,
@@ -111,8 +112,8 @@ export function DayOfWeekTool() {
               },
               {
                 label: t("tool.result.fromToday"),
-                value: t("tool.result.daysValue", {
-                  days: fmt.number(Math.abs(daysBetween(today(), date))),
+                value: plural(t, fmt.locale, "tool.result.days", Math.abs(daysBetween(today(), date)), {
+                  display: fmt.number(Math.abs(daysBetween(today(), date))),
                 }),
               },
             ]}

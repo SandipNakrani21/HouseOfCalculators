@@ -1,14 +1,29 @@
 "use client";
 
-import { CountryBadge } from "@/components/shared/CountryBadge";
-import { Dropdown } from "@/components/shared/Dropdown";
+import { CountryBadge } from "@/components/ui/CountryBadge";
+import { Select, type SelectOption } from "@/components/ui/Select";
 import { COUNTRIES, COUNTRY_CODES, type CountryCode } from "@/config/countries";
 import { useLocale } from "@/lib/locale-context";
 
 /** "$ USD", but just "CHF" where the symbol already is the code. */
-function currencyLabel(code: CountryCode): string {
+export function currencyLabel(code: CountryCode): string {
   const { symbol, code: iso } = COUNTRIES[code].currency;
   return symbol === iso ? iso : `${symbol} ${iso}`;
+}
+
+/** Every country as a dropdown option: flag, name, currency. Sorted by name. */
+export function countryOptions(
+  t: (key: string) => string,
+  only?: CountryCode[],
+): SelectOption<CountryCode>[] {
+  return (only ?? COUNTRY_CODES)
+    .map((code) => ({
+      value: code,
+      label: t(`country.${code}`),
+      hint: currencyLabel(code),
+      icon: <CountryBadge code={code} />,
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label));
 }
 
 /**
@@ -20,66 +35,50 @@ function currencyLabel(code: CountryCode): string {
 export function CountrySelector({
   /** Restrict the list, e.g. to the countries a calculator supports. */
   only,
+  /** Flag only until 2xl, where the header has room for the name. */
+  compact = false,
+  /** Never show the name. */
+  flagOnly = false,
+  align = "end",
+  size = "md",
 }: {
   only?: CountryCode[];
+  compact?: boolean;
+  flagOnly?: boolean;
+  align?: "start" | "end";
+  size?: "sm" | "md" | "lg" | "xl";
 }) {
   const { t, countryCode, setCountry } = useLocale();
 
-  const codes = (only ?? COUNTRY_CODES)
-    .slice()
-    .sort((a, b) => t(`country.${a}`).localeCompare(t(`country.${b}`)));
-
   return (
-    <Dropdown
+    <Select
+      variant="pill"
+      size={size}
+      align={align}
       label={t("header.country")}
-      trigger={
+      value={countryCode}
+      onChange={setCountry}
+      options={countryOptions(t, only)}
+      searchable
+      searchPlaceholder={t("common.searchCountries")}
+      noResults={t("common.noMatches")}
+      trigger={(selected) => (
         <>
-          <CountryBadge code={countryCode} />
-          <span className="hidden font-medium text-foreground sm:inline">
-            {t(`country.${countryCode}`)}
+          {size === "xl" && selected ? (
+            // The header's larger trigger gets a larger flag.
+            <CountryBadge code={selected.value} size="md" />
+          ) : (
+            selected?.icon
+          )}
+          <span
+            className={`whitespace-nowrap font-semibold text-heading ${
+              flagOnly ? "hidden" : compact ? "hidden 2xl:inline" : "inline"
+            }`}
+          >
+            {selected?.label}
           </span>
         </>
-      }
-    >
-      {(close) => (
-        <>
-          <p className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wide text-muted">
-            {t("header.country")}
-          </p>
-          <ul>
-            {codes.map((code) => {
-              const active = code === countryCode;
-              return (
-                <li key={code}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setCountry(code);
-                      close();
-                    }}
-                    aria-current={active ? "true" : undefined}
-                    className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-start transition-colors ${
-                      active
-                        ? "bg-primary-soft text-primary"
-                        : "text-foreground hover:bg-surface-muted"
-                    }`}
-                  >
-                    <CountryBadge code={code} />
-                    <span className="min-w-0 flex-1">
-                      <span className="block truncate text-sm font-medium">
-                        {t(`country.${code}`)}
-                      </span>
-                      <span className="block text-xs text-muted">
-                        {currencyLabel(code)}
-                      </span>
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </>
       )}
-    </Dropdown>
+    />
   );
 }

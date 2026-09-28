@@ -19,15 +19,6 @@ export const SECTIONS = [
 
 export type Section = (typeof SECTIONS)[number];
 
-export const SECTION_ICONS: Record<Section, string> = {
-  calculators: "🧮",
-  converters: "🔄",
-  tools: "🛠️",
-  charts: "📊",
-  guides: "📚",
-  countries: "🌍",
-};
-
 export type CalculatorCategory =
   | "finance"
   | "math"
@@ -64,13 +55,6 @@ export type GuideCategory =
   | "formulas"
   | "practical";
 
-export type AnyCategory =
-  | CalculatorCategory
-  | ConverterCategory
-  | ToolCategory
-  | ChartCategory
-  | GuideCategory;
-
 export const CALCULATOR_CATEGORIES: CalculatorCategory[] = [
   "finance",
   "math",
@@ -80,23 +64,6 @@ export const CALCULATOR_CATEGORIES: CalculatorCategory[] = [
   "engineering",
   "construction",
   "everyday",
-];
-
-export const CONVERTER_CATEGORIES: ConverterCategory[] = [
-  "currency",
-  "length",
-  "weight",
-  "temperature",
-  "area",
-  "volume",
-  "speed",
-  "data",
-  "time",
-  "energy",
-  "pressure",
-  "power",
-  "angle",
-  "fuel-economy",
 ];
 
 export const TOOL_CATEGORIES: ToolCategory[] = [
@@ -119,15 +86,6 @@ export const GUIDE_CATEGORIES: GuideCategory[] = [
   "formulas",
   "practical",
 ];
-
-export const CATEGORIES_BY_SECTION: Record<Section, readonly string[]> = {
-  calculators: CALCULATOR_CATEGORIES,
-  converters: CONVERTER_CATEGORIES,
-  tools: TOOL_CATEGORIES,
-  charts: CHART_CATEGORIES,
-  guides: GUIDE_CATEGORIES,
-  countries: [],
-};
 
 /** Dictionary key for a category label, namespaced so two sections can reuse a word. */
 export function categoryKey(section: Section, category: string): string {

@@ -1,7 +1,7 @@
 import type { CalculatorCategory } from "@/config/categories";
 import type { Country, CountryCode } from "@/config/countries";
 import type { Formatter } from "@/lib/format";
-import type { TranslateFn } from "@/lib/i18n";
+import type { TranslateFn } from "@/lib/i18n/core";
 
 export type { CalculatorCategory as Category } from "@/config/categories";
 
@@ -164,8 +164,24 @@ export type CalculatorDef = {
   compute: (values: FieldValues, ctx: CalcContext) => CalculatorResult;
   /** Dictionary keys rendered in the "how this is calculated" panel. */
   explainerKeys?: string[];
+  /**
+   * The formula behind the headline result, shown under the explainer. The
+   * same shape as a guide's formula, so the two read alike.
+   */
+  formula?: {
+    /** Written as plain text so it reads the same in every language. */
+    expression: string;
+    /** Symbol plus the dictionary key describing it. */
+    variables: { symbol: string; key: string }[];
+  };
   /** Pairs of `<key>.q` / `<key>.a` dictionary entries. */
   faqKeys?: string[];
+  /**
+   * Put inputs and results side by side from a narrower card. Beside the
+   * desktop ad rail the card is too narrow for the default split, which
+   * stacks the result under the inputs.
+   */
+  splitEarly?: boolean;
 };
 
 /** Narrowing helpers - values arrive from inputs as strings or numbers. */

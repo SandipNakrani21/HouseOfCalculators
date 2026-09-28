@@ -33,7 +33,7 @@ export const ICON_NAMES = [
   "ChefHat", "Clock", "Coins", "Cog", "Columns3", "Cookie", "Database",
   "Dices", "Divide", "Droplets", "FileText", "Flame", "Footprints", "Fuel",
   "Gauge", "Globe", "GraduationCap", "Grid3x3", "Hammer", "HardHat", "Hash",
-  "HeartPulse", "Home", "Info", "Landmark", "Lightbulb", "LineChart", "Lock",
+  "HeartHandshake", "HeartPulse", "Home", "Info", "Landmark", "Lightbulb", "LineChart", "Lock",
   "Mail", "Megaphone", "Paintbrush", "Percent", "PieChart", "PiggyBank",
   "Plug", "Receipt", "Ruler", "Scale", "Scroll", "Shield", "ShieldCheck",
   "Shuffle", "Sigma", "Smartphone", "Sparkles", "Superscript", "Table2", "Tag", "Target",

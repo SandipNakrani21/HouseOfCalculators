@@ -1,0 +1,624 @@
+/*
+ * Component classes: the visual vocabulary the React components in
+ * src/components/ui are built from. Layered below utilities, so a page can
+ * still adjust spacing or width with a utility class.
+ *
+ * Colours, radii, shadows and timings all come from tokens.css.
+ */
+/* The animatable sweep of the button border (see .btn below). */
+@property --btn-sweep {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@layer components {
+  /* ============================================================ tones */
+
+  /* A category colour family: sets --tile-fg / --tile-bg for children. */
+  .tone-blue   { --tile-bg: var(--tone-blue-bg);   --tile-fg: var(--tone-blue-fg); }
+  .tone-green  { --tile-bg: var(--tone-green-bg);  --tile-fg: var(--tone-green-fg); }
+  .tone-violet { --tile-bg: var(--tone-violet-bg); --tile-fg: var(--tone-violet-fg); }
+  .tone-orange { --tile-bg: var(--tone-orange-bg); --tile-fg: var(--tone-orange-fg); }
+  .tone-pink   { --tile-bg: var(--tone-pink-bg);   --tile-fg: var(--tone-pink-fg); }
+  .tone-teal   { --tile-bg: var(--tone-teal-bg);   --tile-fg: var(--tone-teal-fg); }
+  .tone-amber  { --tile-bg: var(--tone-amber-bg);  --tile-fg: var(--tone-amber-fg); }
+  .tone-rose   { --tile-bg: var(--tone-rose-bg);   --tile-fg: var(--tone-rose-fg); }
+  .tone-sky    { --tile-bg: var(--tone-sky-bg);    --tile-fg: var(--tone-sky-fg); }
+  .tone-indigo { --tile-bg: var(--tone-indigo-bg); --tile-fg: var(--tone-indigo-fg); }
+
+  /* The pastel icon circle. */
+  .tile {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    background: var(--tile-bg, var(--primary-light));
+    color: var(--tile-fg, var(--primary));
+    transition: transform var(--duration-base) var(--ease-spring);
+  }
+
+  .tone-text { color: var(--tile-fg); }
+  .tone-chip {
+    background: var(--tile-bg);
+    color: var(--tile-fg);
+  }
+
+  /* ========================================================== surfaces */
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  /*
+   * The hover every link card shares: a lift, a blue edge, a deeper shadow,
+   * the icon tile popping and the arrow sliding. Transform and shadow only,
+   * so nothing reflows.
+   */
+  .card-link {
+    transition:
+      transform var(--duration-base) var(--ease-premium),
+      box-shadow var(--duration-base) ease,
+      border-color var(--duration-base) ease;
+  }
+  .card-link:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
+    box-shadow: var(--shadow-lift);
+  }
+  .card-link:hover .tile {
+    transform: scale(1.08) rotate(-4deg);
+  }
+  .card-arrow {
+    transition: transform var(--duration-base) var(--ease-premium);
+  }
+  .card-link:hover .card-arrow,
+  .group:hover > .card-arrow {
+    transform: translateX(4px);
+  }
+  [dir="rtl"] .card-arrow {
+    transform: scaleX(-1);
+  }
+  [dir="rtl"] .card-link:hover .card-arrow {
+    transform: translateX(-4px) scaleX(-1);
+  }
+
+  /* Section backgrounds that alternate with the white page. */
+  .section-soft { background: var(--bg-soft); }
+  .section-tint { background: var(--bg-tint); }
+  .bg-gradient-cta { background: var(--gradient-cta); }
+  .bg-gradient-result { background: var(--gradient-result); }
+
+  /*
+   * The soft blue wash behind the top of every page: two radial glows and a
+   * faint dot grid that fades out downwards, so every page opens the way the
+   * landing page does.
+   */
+  .page-wash {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 460px;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(60% 70% at 85% 0%, color-mix(in srgb, var(--primary) 12%, transparent), transparent 70%),
+      radial-gradient(45% 60% at 5% 10%, color-mix(in srgb, var(--brand-sky) 12%, transparent), transparent 70%);
+  }
+  .page-wash::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(color-mix(in srgb, var(--primary) 22%, transparent) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+    opacity: 0.3;
+  }
+
+  /* =========================================================== buttons */
+
+  /*
+   * .btn + one variant + one size. Each variant also works alone (older
+   * markup uses `btn-primary` by itself), so the shared base is on all of them.
+   *
+   * Every button is a rounded square (8px corners). On hover or keyboard
+   * focus it turns white with primary-coloured text, and a primary border
+   * draws itself around it anticlockwise from the top: the ring is a conic
+   * gradient whose sweep (--btn-sweep, a registered property so it can
+   * animate) grows from 0% to 100%, mirrored so it runs anticlockwise, and
+   * masked down to a 1.5px border.
+   */
+  .btn,
+  .btn-primary,
+  .btn-outline,
+  .btn-secondary,
+  .btn-ghost,
+  .btn-white {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 0;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background-color var(--duration-base) ease,
+      color var(--duration-base) ease,
+      box-shadow var(--duration-base) ease,
+      transform var(--duration-fast) var(--ease-premium);
+  }
+
+  /* The drawing border. */
+  :is(.btn, .btn-primary, .btn-outline, .btn-secondary, .btn-ghost, .btn-white)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(from 0deg, var(--primary) var(--btn-sweep), transparent var(--btn-sweep));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    transform: scaleX(-1);
+    pointer-events: none;
+    transition: --btn-sweep 0.55s var(--ease-premium);
+  }
+
+  :is(.btn, .btn-primary, .btn-outline, .btn-secondary, .btn-ghost, .btn-white):is(:hover, :focus-visible) {
+    background: #ffffff;
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px -12px color-mix(in srgb, var(--primary) 55%, transparent);
+  }
+  :is(.btn, .btn-primary, .btn-outline, .btn-secondary, .btn-ghost, .btn-white):is(:hover, :focus-visible)::after {
+    --btn-sweep: 100%;
+  }
+  :is(.btn, .btn-primary, .btn-outline, .btn-secondary, .btn-ghost, .btn-white):active {
+    transform: translateY(0);
+  }
+  :is(.btn, .btn-primary, .btn-outline, .btn-secondary, .btn-ghost, .btn-white):focus-visible {
+    outline: none;
+  }
+  :is(.btn, .btn-primary, .btn-outline, .btn-secondary, .btn-ghost, .btn-white):disabled,
+  :is(.btn, .btn-primary, .btn-outline, .btn-secondary, .btn-ghost, .btn-white)[aria-disabled="true"] {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .btn-sm { height: 2.25rem; padding-inline: 0.875rem; font-size: 0.8125rem; }
+  .btn-md { height: 2.75rem; padding-inline: 1.25rem; font-size: 0.875rem; }
+  .btn-lg { height: 3.25rem; padding-inline: 1.75rem; font-size: 0.9375rem; }
+  .btn-square { padding-inline: 0; aspect-ratio: 1; }
+
+  .btn-primary {
+    background: var(--primary);
+    color: var(--primary-contrast);
+    box-shadow: var(--shadow-primary);
+  }
+
+  .btn-outline,
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--heading);
+    box-shadow: inset 0 0 0 1px var(--border-strong);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--primary);
+  }
+
+  .btn-white {
+    background: #ffffff;
+    color: var(--primary);
+    box-shadow: 0 10px 24px -12px rgba(15, 23, 42, 0.45);
+  }
+
+  /* The ripple: a circle that grows from the pointer, drawn behind the label. */
+  .ripple-ink {
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    pointer-events: none;
+    background: currentColor;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 600ms var(--ease-premium);
+  }
+
+  /* ============================================================ badges */
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    width: fit-content;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .badge-sm { padding: 0.125rem 0.5rem; font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .badge-md { padding: 0.375rem 0.75rem; font-size: 0.75rem; }
+  /* Phones: the md size, so the hero badge stays on one line. */
+  .badge-lg { padding: 0.375rem 0.75rem; font-size: 0.75rem; }
+  @media (min-width: 40rem) { .badge-lg { padding: 0.5rem 1rem; font-size: 0.9375rem; gap: 0.5rem; } }
+  @media (min-width: 64rem) { .badge-lg { padding: 0.5625rem 1.25rem; font-size: 1.0625rem; } }
+  .badge-soft { background: var(--primary-light); color: var(--primary); }
+  .badge-tone { background: var(--tile-bg); color: var(--tile-fg); }
+  .badge-outline {
+    background: var(--surface);
+    color: var(--primary);
+    border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* A small rounded link, e.g. the "Popular" quick links under the search. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: var(--radius-pill);
+    padding: 0.3rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--primary);
+    transition: background-color var(--duration-fast) ease, transform var(--duration-fast) var(--ease-premium);
+  }
+  .chip:hover { background: var(--primary-light); transform: translateY(-1px); }
+  .chip-outline {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--heading);
+    box-shadow: var(--shadow-card);
+  }
+  .chip-outline:hover { border-color: color-mix(in srgb, var(--primary) 40%, var(--border)); color: var(--primary); background: var(--surface); }
+
+  /* ============================================================= forms */
+
+  .field-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--heading);
+  }
+  .field-hint {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* Fields: rounded squares (8px), tall enough to read and tap comfortably. */
+  .input,
+  .select {
+    width: 100%;
+    min-height: 2.875rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    color: var(--heading);
+    outline: none;
+    transition: border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+  }
+  .input:hover,
+  .select:hover { border-color: var(--border-strong); }
+  .input:focus,
+  .select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--ring);
+  }
+  .input[aria-invalid="true"] { border-color: var(--tone-rose-fg); }
+  .select {
+    appearance: none;
+    padding-inline-end: 2.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2394a3b8' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    cursor: pointer;
+  }
+  [dir="rtl"] .select { background-position: left 0.875rem center; }
+
+  /* Segmented radio group: the option buttons calculators use for choices. */
+  .segment {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+    cursor: pointer;
+    transition: border-color var(--duration-fast) ease, color var(--duration-fast) ease, background-color var(--duration-fast) ease;
+  }
+  .segment:hover { border-color: var(--border-strong); color: var(--heading); }
+  .segment[aria-checked="true"],
+  .segment[aria-pressed="true"] {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  /* On/off switch, a styled checkbox. */
+  .switch {
+    position: relative;
+    width: 2.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    appearance: none;
+    border-radius: var(--radius-pill);
+    background: var(--border-strong);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) ease;
+  }
+  .switch::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    inset-inline-start: 2px;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.25);
+    transition: transform var(--duration-fast) var(--ease-premium);
+  }
+  .switch:checked { background: var(--primary); }
+  .switch:checked::before { transform: translateX(1rem); }
+  [dir="rtl"] .switch:checked::before { transform: translateX(-1rem); }
+
+  /* The headline answer: the blue gradient box every calculator and tool ends in. */
+  .result-box {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--gradient-result);
+    color: #ffffff;
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    box-shadow: var(--shadow-primary);
+  }
+  .result-box::before,
+  .result-box::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .result-box::before {
+    inset-inline-end: -2rem;
+    top: -2.5rem;
+    width: 8rem;
+    height: 8rem;
+    border: 18px solid rgba(255, 255, 255, 0.1);
+  }
+  .result-box::after {
+    inset-inline-start: -1.5rem;
+    bottom: -3rem;
+    width: 7rem;
+    height: 7rem;
+    background: rgba(255, 255, 255, 0.1);
+    filter: blur(16px);
+  }
+  .result-box > * { position: relative; }
+  /* Hover: the box lifts, its rings drift, and the answer pops forward. */
+  .result-box,
+  .result-box::before,
+  .result-box > p {
+    transition:
+      translate var(--duration-base) var(--ease-premium),
+      scale var(--duration-base) var(--ease-premium),
+      box-shadow var(--duration-base) ease;
+  }
+  .result-box:not(.result-box-quiet):hover {
+    translate: 0 -3px;
+    box-shadow: 0 18px 34px -12px rgba(37, 99, 235, 0.7);
+  }
+  .result-box:hover::before { scale: 1.15; translate: -6px 6px; }
+  .result-box:hover > p:nth-child(2) { scale: 1.05; }
+  .result-box-quiet {
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+    color: var(--heading);
+    box-shadow: none;
+  }
+  .result-box-quiet::before,
+  .result-box-quiet::after { display: none; }
+
+  /*
+   * Data tables (breakdowns, conversion and reference tables): cells get a
+   * little side padding so a hovered row's blue tint has room around the text.
+   */
+  .data-table { width: 100%; font-size: 0.875rem; line-height: 1.25rem; }
+  .data-table thead tr {
+    border-bottom: 1px solid var(--border);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    color: var(--muted);
+  }
+  .data-table thead th { padding-block: 0.5rem; text-align: start; font-weight: 500; }
+  .data-table tbody tr:not(:last-child) { border-bottom: 1px solid var(--border); }
+  .data-table tbody td,
+  .data-table tbody th { padding-block: 0.625rem; text-align: start; }
+  .data-table th,
+  .data-table td { padding-inline: 0.75rem; }
+  .data-table tbody tr { transition: background-color var(--duration-fast) ease; }
+  .data-table tbody tr:hover { background: color-mix(in srgb, var(--primary) 10%, transparent); }
+
+  /* A small dark popup over a chart, e.g. a donut segment's amount. */
+  .chart-tooltip {
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+    white-space: nowrap;
+    border-radius: var(--radius-sm);
+    background: var(--heading);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    box-shadow: var(--shadow-lift);
+    animation: pop-in var(--duration-base) var(--ease-premium) both;
+  }
+
+  /* ========================================================== skeleton */
+
+  .skeleton {
+    display: block;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(
+      90deg,
+      var(--bg-soft) 0%,
+      color-mix(in srgb, var(--border) 70%, var(--bg-soft)) 45%,
+      var(--bg-soft) 90%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+  }
+
+  /* ========================================================= accordion */
+
+  .accordion-item summary::-webkit-details-marker { display: none; }
+  .accordion-item[open] .accordion-panel {
+    animation: fade-up 0.35s var(--ease-premium);
+  }
+
+  /* =============================================================== ads */
+
+  /*
+   * Ad containers reserve their height before the ad arrives, so a slot
+   * filling in never pushes content around.
+   */
+  .ad-slot {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    margin-inline: auto;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+  .ad-leaderboard { max-width: 728px; min-height: 90px; }
+  .ad-rectangle { max-width: 300px; min-height: 250px; }
+  .ad-rail { max-width: 300px; min-height: 600px; }
+  @media (max-width: 767px) {
+    /* Phones get the mobile banner size in the leaderboard position. */
+    .ad-leaderboard { max-width: 320px; min-height: 100px; }
+  }
+  .ad-placeholder {
+    border: 1px dashed var(--border-strong);
+    background:
+      repeating-linear-gradient(45deg, transparent 0 10px, color-mix(in srgb, var(--border) 45%, transparent) 10px 11px),
+      var(--bg-soft);
+    color: var(--subtle);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  /* =============================================================== misc */
+
+  /* Numbers in results should not jitter as they animate between values. */
+  .tabular { font-variant-numeric: tabular-nums; }
+
+  /*
+   * A line of text that floats across its strip, looping seamlessly: the
+   * track holds the text twice and slides by half its width. Pauses under
+   * the pointer so it can be read; stands still under reduced motion.
+   */
+  .marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 45s) linear infinite;
+  }
+  /* Paused under the pointer and while anything inside has keyboard focus,
+     so a focused link never slides away (WCAG 2.2.2). */
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee { mask-image: none; }
+    .marquee-track { animation: none; width: auto; }
+    .marquee-track > [aria-hidden="true"] { display: none; }
+  }
+
+  /* Thin bar across the top of the viewport while a page is loading. */
+  .route-progress {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 70;
+    height: 3px;
+    transform-origin: 0 50%;
+    background: var(--gradient-cta);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 60%, transparent);
+    pointer-events: none;
+  }
+  [dir="rtl"] .route-progress { transform-origin: 100% 50%; }
+}
+
+/* ------------------------------------------------------- range inputs */
+
+/*
+ * Range inputs are the primary control on every calculator, so they are
+ * styled once here. The filled portion is driven by --fill, set inline.
+ */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(
+    to right,
+    var(--primary) 0%,
+    var(--brand-sky) var(--fill, 0%),
+    var(--border) var(--fill, 0%),
+    var(--border) 100%
+  );
+  outline: none;
+  cursor: pointer;
+}
+[dir="rtl"] input[type="range"] {
+  background: linear-gradient(
+    to left,
+    var(--primary) 0%,
+    var(--brand-sky) var(--fill, 0%),
+    var(--border) var(--fill, 0%),
+    var(--border) 100%
+  );
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid var(--surface);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.45);
+  cursor: grab;
+  transition: transform 0.15s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid var(--surface);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.45);
+  cursor: grab;
+}
+input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px var(--ring); }

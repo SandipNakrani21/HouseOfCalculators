@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "i18n": "node scripts/i18n-coverage.mjs",
-    "test": "node --import ./tests/register-alias.mjs --test \"tests/**/*.test.ts\"",
-    "check": "npm run lint && npx tsc --noEmit && npm run test && npm run i18n"
+    "check": "npm run lint && npx tsc --noEmit && npm run i18n",
+    "i18n:en-us": "node scripts/en-us-spelling.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.48.0",

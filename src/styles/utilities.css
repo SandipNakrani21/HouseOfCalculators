@@ -1,0 +1,52 @@
+/*
+ * Custom Tailwind utilities. Defined with @utility, so they take variants
+ * (`lg:container-page`, `hover:...`) like any built-in class.
+ */
+
+/* The page container: 1200px of content, centred, with responsive gutters. */
+@utility container-page {
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  @media (width >= 40rem) {
+    --gutter: 24px;
+  }
+}
+
+/* Narrower containers for reading pages and single tools. */
+@utility container-narrow {
+  width: 100%;
+  max-width: calc(56rem + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  @media (width >= 40rem) {
+    --gutter: 24px;
+  }
+}
+
+@utility container-prose {
+  width: 100%;
+  max-width: calc(48rem + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  @media (width >= 40rem) {
+    --gutter: 24px;
+  }
+}
+
+/* Vertical rhythm between page sections. */
+@utility section-gap {
+  padding-top: 5rem;
+  @media (width >= 64rem) {
+    padding-top: 7rem;
+  }
+}
+
+/* Gradient text for the second line of hero headings. */
+@utility text-gradient {
+  background: var(--gradient-cta);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

@@ -162,8 +162,3 @@ function buildScale(country: CountryCode): MoneyScale {
 export const MONEY_SCALE: Record<CountryCode, MoneyScale> = Object.fromEntries(
   COUNTRY_CODES.map((code) => [code, buildScale(code)]),
 ) as Record<CountryCode, MoneyScale>;
-
-/** Widens a country's income ceiling when a calculator needs headroom. */
-export function incomeCeiling(country: CountryCode): number {
-  return Math.max(MONEY_SCALE[country].incomeMax, TYPICAL[country].income * 10);
-}

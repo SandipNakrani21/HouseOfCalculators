@@ -11,7 +11,6 @@
 
 export const KG_PER_POUND = 0.45359237;
 export const CM_PER_INCH = 2.54;
-export const POUNDS_PER_STONE = 14;
 
 export function poundsToKilograms(pounds: number): number {
   return pounds * KG_PER_POUND;
@@ -28,13 +27,6 @@ export function inchesToCentimetres(inches: number): number {
 /** Feet and inches to centimetres, the way a height is actually entered. */
 export function feetInchesToCentimetres(feet: number, inches: number): number {
   return inchesToCentimetres(feet * 12 + inches);
-}
-
-/** Centimetres back to whole feet plus remaining inches. */
-export function centimetresToFeetInches(cm: number): { feet: number; inches: number } {
-  const totalInches = cm / CM_PER_INCH;
-  const feet = Math.floor(totalInches / 12);
-  return { feet, inches: totalInches - feet * 12 };
 }
 
 /** Body mass index: weight in kilograms over height in metres squared. */
@@ -190,9 +182,4 @@ export function formatDuration(totalSeconds: number): string {
   return hours > 0
     ? `${hours}:${pad(minutes)}:${pad(seconds)}`
     : `${minutes}:${pad(seconds)}`;
-}
-
-/** Finishing time at a given pace, for the race-time table. */
-export function finishTime(kilometres: number, secondsPerKm: number): number {
-  return kilometres * secondsPerKm;
 }

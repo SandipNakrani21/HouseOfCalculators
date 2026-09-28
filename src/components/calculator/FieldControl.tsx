@@ -5,6 +5,7 @@ import { useId } from "react";
 import type { CalculatorField, FieldValues } from "@/config/calculators/types";
 import type { Formatter } from "@/lib/format";
 import { useLocale } from "@/lib/locale-context";
+import { MAX_TEXT } from "@/lib/share-link";
 
 type Props = {
   field: CalculatorField;
@@ -32,7 +33,7 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
       <div className="space-y-2">
         <label
           htmlFor={id}
-          className="block text-sm font-medium text-foreground"
+          className="field-label"
         >
           {t(field.labelKey)}
         </label>
@@ -45,11 +46,7 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
                 type="button"
                 onClick={() => onChange(option.value)}
                 aria-pressed={active}
-                className={`rounded-lg border px-3 py-2 text-sm transition-colors ${
-                  active
-                    ? "border-primary bg-primary-soft font-medium text-primary"
-                    : "border-border bg-surface text-muted hover:border-border-strong"
-                }`}
+                className="segment"
               >
                 {option.label ?? t(option.labelKey)}
               </button>
@@ -57,7 +54,7 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
           })}
         </div>
         {field.hintKey ? (
-          <p className="text-xs text-muted">{t(field.hintKey)}</p>
+          <p className="field-hint">{t(field.hintKey)}</p>
         ) : null}
       </div>
     );
@@ -68,18 +65,20 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
     // of values a statistics calculator works over.
     return (
       <div className="space-y-2">
-        <label htmlFor={id} className="block text-sm font-medium text-foreground">
+        <label htmlFor={id} className="field-label">
           {t(field.labelKey)}
         </label>
         <input
           id={id}
           type="text"
+          // The same cap a share link is held to (lib/share-link).
+          maxLength={MAX_TEXT}
           value={String(value ?? "")}
           onChange={(event) => onChange(event.target.value)}
-          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-[var(--ring)]"
+          className="input"
         />
         {field.hintKey ? (
-          <p className="text-xs text-muted">{t(field.hintKey)}</p>
+          <p className="field-hint">{t(field.hintKey)}</p>
         ) : null}
       </div>
     );
@@ -89,7 +88,7 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
     const checked = value === true || value === "true";
     return (
       <label className="flex cursor-pointer items-start justify-between gap-4">
-        <span className="text-sm font-medium text-foreground">
+        <span className="field-label">
           {t(field.labelKey)}
           {field.hintKey ? (
             <span className="mt-1 block text-xs font-normal text-muted">
@@ -101,7 +100,7 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
           type="checkbox"
           checked={checked}
           onChange={(event) => onChange(event.target.checked)}
-          className="mt-1 h-5 w-9 shrink-0 cursor-pointer appearance-none rounded-full bg-border transition-colors before:block before:h-4 before:w-4 before:translate-x-0.5 before:translate-y-0.5 before:rounded-full before:bg-surface before:transition-transform checked:bg-primary checked:before:translate-x-4.5"
+          className="switch mt-1"
         />
       </label>
     );
@@ -123,13 +122,13 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
           : null;
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <div className="flex items-center justify-between gap-3">
-        <label htmlFor={id} className="text-sm font-medium text-foreground">
+        <label htmlFor={id} className="field-label">
           {t(field.labelKey)}
         </label>
 
-        <div className="flex items-center gap-1 rounded-lg bg-primary-soft px-2.5 py-1.5 text-primary focus-within:ring-2 focus-within:ring-[var(--ring)]">
+        <div className="flex h-11 items-center gap-1 rounded-sm bg-primary-light px-3 text-primary transition-shadow focus-within:ring-2 focus-within:ring-[var(--ring)]">
           {field.kind === "currency" ? (
             <span className="text-sm font-medium">{fmt.symbol}</span>
           ) : null}
@@ -151,14 +150,14 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
               if (!Number.isFinite(next)) return onChange(min);
               onChange(Math.min(Math.max(next, min), max));
             }}
-            className="tabular w-24 bg-transparent text-end text-sm font-semibold outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="tabular h-full w-24 bg-transparent text-end text-sm font-semibold outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
           {suffix ? <span className="text-sm font-medium">{suffix}</span> : null}
         </div>
       </div>
 
       {field.slider === false ? null : (
-        <div className="space-y-1">
+        <div className="space-y-2">
           <input
             type="range"
             aria-label={t(field.labelKey)}
@@ -169,7 +168,7 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
             onChange={(event) => onChange(Number(event.target.value))}
             style={{ "--fill": `${fill}%` } as React.CSSProperties}
           />
-          <div className="flex justify-between text-[11px] text-muted">
+          <div className="flex justify-between text-[0.6875rem] text-muted">
             <span className="tabular">{edgeLabel(min, field, fmt.currencyShort)}</span>
             <span className="tabular">{edgeLabel(max, field, fmt.currencyShort)}</span>
           </div>
@@ -177,7 +176,7 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
       )}
 
       {field.hintKey ? (
-        <p className="text-xs text-muted">{t(field.hintKey)}</p>
+        <p className="field-hint">{t(field.hintKey)}</p>
       ) : null}
     </div>
   );

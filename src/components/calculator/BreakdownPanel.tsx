@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { TabList } from "@/components/ui/Tabs";
 import type { BreakdownView, ResultKind } from "@/config/calculators/types";
 
 const PAGE_SIZE = 24;
@@ -42,57 +43,39 @@ export function BreakdownPanel({
         <h2 className="text-lg font-bold">{t("calc.breakdown")}</h2>
 
         {views.length > 1 ? (
-          <div role="tablist" aria-label={t("calc.breakdown")} className="flex gap-1 rounded-xl bg-surface-muted p-1">
-            {views.map((view) => {
-              const selected = view.id === active.id;
-              return (
-                <button
-                  key={view.id}
-                  role="tab"
-                  type="button"
-                  aria-selected={selected}
-                  onClick={() => {
-                    setActiveId(view.id);
-                    setPage(0);
-                  }}
-                  className={`rounded-lg px-3.5 py-1.5 text-sm font-semibold transition-all duration-300 ${
-                    selected
-                      ? "bg-surface text-primary shadow-[var(--shadow-card)]"
-                      : "text-muted hover:text-heading"
-                  }`}
-                >
-                  {t(view.labelKey)}
-                </button>
-              );
-            })}
-          </div>
+          <TabList
+            label={t("calc.breakdown")}
+            idPrefix="breakdown"
+            tabs={views.map((view) => ({ id: view.id, label: t(view.labelKey) }))}
+            value={active.id}
+            onChange={(id) => {
+              setActiveId(id);
+              setPage(0);
+            }}
+          />
         ) : null}
       </div>
 
       {/* Table for tablet and up */}
       <div className="hidden overflow-x-auto sm:block">
-        <table className="w-full text-sm">
+        <table className="data-table">
           <caption className="sr-only">{t(active.labelKey)}</caption>
           <thead>
-            <tr className="border-b border-border text-xs uppercase tracking-wide text-muted">
+            <tr>
               {active.columns.map((column) => (
-                <th
-                  key={column.key}
-                  scope="col"
-                  className="py-2 text-start font-medium"
-                >
+                <th key={column.key} scope="col">
                   {t(column.labelKey)}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-border">
+          <tbody>
             {rows.map((row, index) => (
               <tr key={index}>
                 {active.columns.map((column) => (
                   <td
                     key={column.key}
-                    className="tabular py-2.5 text-start text-foreground"
+                    className="tabular text-foreground"
                   >
                     {format(row[column.key], column.kind, column.decimals)}
                   </td>
@@ -108,7 +91,7 @@ export function BreakdownPanel({
         {rows.map((row, index) => (
           <li
             key={index}
-            className="rounded-xl border border-border bg-surface-muted p-3"
+            className="rounded-md border border-border bg-surface-muted p-3 transition-colors duration-200 hover:border-primary/30 hover:bg-primary-light"
           >
             <dl className="space-y-1">
               {active.columns.map((column) => (
@@ -133,7 +116,7 @@ export function BreakdownPanel({
             type="button"
             onClick={() => setPage((current) => Math.max(current - 1, 0))}
             disabled={page === 0}
-            className="rounded-xl border border-border bg-surface px-3.5 py-1.5 text-sm font-semibold text-heading transition-colors hover:border-primary/40 hover:text-primary disabled:pointer-events-none disabled:opacity-40"
+            className="rounded-md border border-border bg-surface px-3.5 py-1.5 text-sm font-semibold text-heading transition-colors hover:border-primary/40 hover:text-primary disabled:pointer-events-none disabled:opacity-40"
           >
             {t("common.previous")}
           </button>
@@ -146,7 +129,7 @@ export function BreakdownPanel({
               setPage((current) => Math.min(current + 1, pageCount - 1))
             }
             disabled={page >= pageCount - 1}
-            className="rounded-xl border border-border bg-surface px-3.5 py-1.5 text-sm font-semibold text-heading transition-colors hover:border-primary/40 hover:text-primary disabled:pointer-events-none disabled:opacity-40"
+            className="rounded-md border border-border bg-surface px-3.5 py-1.5 text-sm font-semibold text-heading transition-colors hover:border-primary/40 hover:text-primary disabled:pointer-events-none disabled:opacity-40"
           >
             {t("common.next")}
           </button>

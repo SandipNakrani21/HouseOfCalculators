@@ -80,10 +80,6 @@ export function isLocalePath(segment: string): boolean {
   return BY_PATH.has(segment.toLowerCase());
 }
 
-export function localePath(code: LocaleCode): string {
-  return LOCALES[code].path;
-}
-
 /**
  * Best locale for an `Accept-Language` header. Exact `lang-REGION` matches win;
  * otherwise the first locale sharing the language is used, so a browser asking

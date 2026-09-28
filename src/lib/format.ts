@@ -1,6 +1,6 @@
 import { COUNTRIES, type CountryCode } from "@/config/countries";
 import { LANGUAGES, type LanguageCode } from "@/config/languages";
-import { getDictionary, translate } from "@/lib/i18n";
+import type { TranslateFn } from "@/lib/i18n/core";
 
 /**
  * Intl locale for a country + language pair, e.g. `hi` in `IN` -> `hi-IN`.
@@ -63,10 +63,11 @@ function currencyShape(locale: string, code: string, fallback: string): Currency
 export function createFormatter(
   country: CountryCode,
   lang: LanguageCode,
+  /** For the lakh / crore / K / M unit words in `currencyShort`. */
+  t: TranslateFn,
 ): Formatter {
   const { currency } = COUNTRIES[country];
   const locale = intlLocale(country, lang);
-  const dict = getDictionary(lang);
 
   // Composed from the plain number formatter rather than `style: "currency"`:
   // some locales (mr-IN among them) abandon Indian lakh grouping inside the
@@ -101,7 +102,7 @@ export function createFormatter(
       }).format(amount);
       // The unit joins the number before the symbol does, so a suffix currency
       // reads "25 ألف د.إ." rather than "25 د.إ. ألف".
-      const unit = unitKey ? ` ${translate(dict, unitKey)}` : "";
+      const unit = unitKey ? ` ${t(unitKey)}` : "";
       return withSymbol(`${body}${unit}`);
     },
     percent: (value, opts) =>

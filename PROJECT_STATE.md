@@ -1,9 +1,11 @@
 # PROJECT_STATE.md
 
 > Source of truth for continuing this project in a new Claude session.
-> Last updated: 2026-09-24 (end of session 5, commit `2c08073`). Working directory: `D:\Calculator`.
+> Last updated: 2026-09-25 (session 6, on top of commit `e054d06`). Working directory: `D:\Calculator`.
 >
-> **State at hand-off:** clean working tree, clean production build (710/710 pages), lint + tsc clean, 912/912 tests, no console errors or server warnings.
+> **State at hand-off:** session 6 work is **uncommitted** (the owner commits when ready). Clean production build (713 pages), `npm run check` clean (lint, types, i18n), responsive sweep 80/80, no console errors or server warnings. **There is no test suite and no CI** - both removed at the owner's request (see §7 and `CLAUDE.md`).
+>
+> **Working rules (from the owner, also in `CLAUDE.md`):** white/light theme only; one environment (the local dev server); no automated tests unless asked; QA every task at 1440/768/390px plus `npm run check` and `npm run build`.
 >
 > **Done vs pending against the spec, section by section: see [§14 Spec Compliance Tracker](#14-spec-compliance-tracker).**
 
@@ -18,7 +20,7 @@
 | **Purpose** | Global, multilingual, mobile-first platform for calculators, converters, tools, reference tables, guides and country-specific utilities |
 | **Target users** | Anyone searching for a calculation ("mortgage payment", "meters to feet", "UK stamp duty"), across 16 locales and 22 countries |
 | **Monetization** | Organic search traffic → Google AdSense (slots built in, no publisher id configured yet) |
-| **Status** | Six product pillars, legal pages, cookie consent and CI implemented and building. Every calculator and tool category in the spec has content. 710 static pages. 912 tests passing. **Whole site redesigned after the user's landing-page comp** (see §6), with scroll animations, light and dark themes, and a phone layout checked at 390px. English complete; 7 other languages at 17–19% coverage and therefore **gated off**. Statutory tax figures **unverified**. Operator details (entity, email, jurisdiction) **unset**. |
+| **Status** | Six product pillars, legal pages and cookie consent implemented and building. Every calculator and tool category in the spec has content. 713 static pages. **Whole site redesigned twice after the user's comps** (see §6): design-system tokens and components, a dark navy hero on every product page, the user's icon pack, light theme only. Security headers + CSP, strong SEO/AEO structured data. Share links restore inputs; each page ships only its own language. English, German, French and Spanish complete; Portuguese (pt-BR), Italian, Dutch, Russian, Turkish, Japanese and Chinese (zh-CN) added at 100% and live (machine-translated, native review recommended for legal/tax/health copy); Hindi, Gujarati, Marathi and Arabic at ~16% and therefore **gated off**. Statutory tax figures **unverified**. Operator details (entity, email, jurisdiction) **unset**. |
 
 **Governing spec:** `C:\Users\sandi\Downloads\HouseOfCalculators_Project_Specification.md` (85 sections). The build follows it; deviations are documented in §7 below.
 
@@ -30,13 +32,13 @@
 |---|---|---|
 | Framework | **Next.js 16.3.5**, App Router | Turbopack build. `proxy.ts` convention (NOT `middleware.ts` — deprecated in 16) |
 | Language | TypeScript 5, strict | |
-| UI | React 19.2, **Tailwind CSS v4** | Tokens as CSS variables in `src/app/globals.css`, exposed via `@theme inline` |
+| UI | React 19.2, **Tailwind CSS v4** | Tokens in `src/styles/tokens.css` (exposed via `@theme inline`), component classes in `src/styles/components.css`, React components in `src/components/ui`. Rules in `docs/DESIGN_SYSTEM.md` |
 | i18n | **Custom** (no next-intl) | Flat JSON dictionaries + English fallback + readiness gate |
 | Backend | None yet | All calculation is deterministic and client-side |
 | Database | None yet | Spec suggests PostgreSQL later; not needed while content is config-driven |
-| Tests | **Node's built-in test runner** running `.ts` natively | Vitest install failed on peer deps; native runner works via a custom ESM loader |
+| Tests | **None** | The suite (912 tests) was deleted at the owner's request in session 6. Do not write tests unless asked |
 | Fonts | **Plus Jakarta Sans** (next/font, self-hosted, Latin only) + Caveat for one hero line | Other scripts fall back to the system stack. Replaced "no webfont" at the user's direction for the redesign |
-| Icons | **lucide-react** | Rendered in pastel tiles via `components/shared/Icon.tsx`; names mapped in `lib/visuals.ts` |
+| Icons | **lucide-react** + the owner's **icon pack** | Lucide in pastel tiles via `components/ui/Icon.tsx` (names in `lib/visuals.ts`); the pack's PNG icons and flags in `public/landing/{icons,flags}` via `components/ui/PackIcon.tsx` |
 | Charts | Hand-written inline SVG | No chart library |
 | Deployment | Not configured | |
 
@@ -75,7 +77,8 @@ This prevents the same calculation having two competing URLs (spec §7, §40).
 src/
 ├── app/
 │   ├── [locale]/            root layout (owns <html>), landing page, 6 section trees
-│   ├── globals.css          design tokens, @layer base/components, animations, reveal CSS
+│   ├── globals.css          imports src/styles/* (tokens, base, components, animations, utilities)
+│   ├── llms.txt/route.ts    plain-text site map for answer engines
 │   ├── icon.svg             favicon/link-icon (logo mark)
 │   ├── opengraph-image.tsx  generated 1200x630 share card
 │   ├── sitemap.ts           one sitemap, per-entry hreflang alternates
@@ -83,16 +86,19 @@ src/
 ├── components/
 │   ├── ads/                 AdSlot, AdScript
 │   ├── calculator/          CalculatorRunner, CalculatorPageBody, FieldControl,
-│   │                        BreakdownPanel, ResultActions, CalculatorGrid
+│   │                        BreakdownPanel, ResultActions
 │   ├── charts/              DonutChart, ReferenceTable
 │   ├── converter/           ConverterRunner
-│   ├── home/                HeroArt, DeviceMockup, GuideArt (drawn in markup, no images)
-│   ├── layout/              SiteHeader, SiteFooter, Breadcrumbs, Logo
-│   ├── motion/              RevealObserver (scroll reveals), CountUp
+│   ├── home/                CountryMarquee, DeviceMockup, GuideArt
+│   ├── layout/              SiteHeader (mega menu), TopBar (floating disclaimer), SiteFooter,
+│   │                        Logo, DetailPage (the calculator/tool/converter template)
+│   ├── motion/              RevealObserver, CountUp, Interactions (ripple, parallax), RouteProgress
 │   ├── navigation/          LocaleSelector, CountrySelector, WelcomeDialog
 │   ├── search/              SearchBox
-│   ├── shared/              ContentCard, CardGrid, SectionHeading, ViewAllLink, PageHeader,
-│   │                        Icon + IconTile, CountryBadge (round flags), Dropdown
+│   ├── ui/                  the component library: Button, Select (portal dropdown), PageHeader
+│   │                        (dark hero), ContentCard/CardGrid, Breadcrumbs, AdSlot, Accordion,
+│   │                        Tabs, Toast, Modal, Form, PackIcon, CountryBadge, Icon, ... (see
+│   │                        docs/DESIGN_SYSTEM.md and /design-system)
 │   ├── consent/             ConsentScript (Consent Mode v2 defaults), ConsentBanner
 │   └── tools/               ToolRunner, ToolShell, DateTools, NumberTools, UtilityTools,
 │                            MoreTools, RandomTools
@@ -109,7 +115,8 @@ src/
 │   ├── calculators/definitions/{health,maths,business,education,construction}.ts  33 generic calculators
 │   └── legal/definitions.ts  5 legal pages + OPERATOR details
 ├── lib/
-│   ├── i18n/                index.ts + dictionaries/*.json
+│   ├── i18n/                core.ts (client-safe: translate, plural, unitName),
+│   │                        index.ts (SERVER-ONLY: every dictionary, readiness gate)
 │   ├── finance/             index.ts (pure maths), tax/{define,rules,slabs,index}.ts
 │   ├── tools/               dates.ts, numbers.ts, planning.ts, random.ts (shared CSPRNG)
 │   ├── health/ maths/ business/ construction/   pure logic for the generic calculators
@@ -122,11 +129,14 @@ src/
 │   ├── routes.ts            every URL builder
 │   ├── seo.ts               buildMetadata, JSON-LD helpers, readiness gate
 │   ├── content.ts           unified content index (search + grids + sitemap)
+│   ├── share-link.ts        build and validate calculator share URLs
+│   ├── guide-links.ts       guides pointing at a page, for its "Learn how it works" block
 │   └── search.ts            typo-tolerant scoring
 ├── proxy.ts                 locale routing (NOT middleware.ts)
-public/                      favicon.ico (must stay here, see §7), flags/*.svg (22, MIT)
-scripts/                     i18n-coverage.mjs + add-*-keys.mjs dictionary-seeding scripts
-tests/                       node test runner + custom ESM loader
+src/styles/                  tokens.css, base.css, components.css, animations.css, utilities.css
+public/                      favicon.ico (must stay here, see §7), flags/*.svg (22, MIT),
+                             landing/{icons,flags} (the owner's icon pack)
+scripts/                     i18n-coverage.mjs (npm run i18n), en-us-spelling.mjs (npm run i18n:en-us)
 docs/tax-rules-to-verify.md  every statutory number that needs checking
 ```
 
@@ -141,12 +151,12 @@ docs/tax-rules-to-verify.md  every statutory number that needs checking
 | Legal pages | 5 (privacy, terms, cookies, contact, about) |
 | Locales | 16 (12 launch + 4 extra) |
 | Countries | 22 |
-| Static pages built | 710 |
+| Static pages built | 713 (708 HTML pages + icon, share card, robots, sitemap, llms.txt) |
 
 ### Key relationships
 - `lib/content.ts` aggregates every registry into `ContentItem[]` — **the one place** search, grids and the sitemap read from, so a page can't exist in one and be missing from another.
 - `config/charts` imports from `config/converters` and `lib/finance` — tables are *generated* from the same data the tools use, so they cannot drift.
-- `config/countries.ts` imports `isLanguageReady` from `lib/i18n` (readiness gate).
+- **`lib/i18n/index.ts` is server-only** (`import "server-only"`): it bundles every dictionary. Client code imports `lib/i18n/core.ts` and gets the active dictionary from `LocaleProvider`. Importing `@/lib/i18n` from a client module now fails the build instead of silently shipping ~109 KB gzipped of other languages.
 - `lib/seo.ts` `readyLocales()` gates `generateStaticParams`, hreflang and the sitemap.
 
 ---
@@ -194,6 +204,14 @@ docs/tax-rules-to-verify.md  every statutory number that needs checking
 - Clean rebuild and re-run: real `favicon.ico`, route-change scrolling fixed.
 - Tests 509 → 912. Details of all of it in §6.
 
+### Session 6 - design system, second redesign, pending-list fixes (uncommitted)
+- **Owner's working rules** set: light theme only (dark mode removed), one environment, no tests (suite and CI deleted), full QA per task. Recorded in `CLAUDE.md`.
+- **Design system**: tokens split into `src/styles/*`, component library in `src/components/ui`, `/design-system` page, `docs/DESIGN_SYSTEM.md`, `DetailPage` template for every calculator/tool/converter page.
+- **Second redesign** from the owner's screenshots and icon pack: 18px root size ("zoomed in"), 1120px content width, max 3 cards per row and taller cards, rounded-square buttons with an anticlockwise border sweep on hover, taller fields and dropdowns, a dark navy hero with the breadcrumb on the right on every product page, floating disclaimer strip with a red *, new welcome dialog with two dropdowns, live hero calculator, taller header with mega menu, ads on every page type.
+- **Security**: CSP and security headers in `next.config.ts` (HSTS, frame-ancestors none, nosniff, referrer and permissions policies, COOP); `Secure` cookies on https; `npm audit` clean.
+- **SEO/AEO**: `WebApplication` + `FAQPage` JSON-LD on every tool page, `Article` with author on guides, `llms.txt`, meta descriptions 101-148 characters, duplicate titles fixed.
+- **Pending-list code items closed** (issues 14, 17, 18, 19, 20 and the calculator → guide links): see §6.
+
 ---
 
 ## 5. Current Implementation
@@ -210,10 +228,13 @@ docs/tax-rules-to-verify.md  every statutory number that needs checking
 | `src/lib/finance/tax/define.ts` | `defineRules(spec)` — the declarative tax engine |
 | `src/lib/finance/tax/rules.ts` | 22 country rule sets, each with `verifiedFor` |
 | `src/components/calculator/CalculatorRunner.tsx` | Generic engine: looks up the definition by slug client-side (definitions hold functions, which can't cross the server boundary) |
-| `src/lib/i18n/index.ts` | Dictionaries, `translate`, `countryParams`, `isLanguageReady`, `unitName` |
-| `src/app/globals.css` | The design system: tokens, tone families, `.card`, buttons, animations, reveal rules. Base/components are **layered** |
+| `src/lib/i18n/index.ts` | **Server-only.** Dictionaries, `getDictionary`, `createTranslator`, `isLanguageReady`; re-exports `core.ts` |
+| `src/lib/i18n/core.ts` | Client-safe: `translate`, `plural` (CLDR plural keys), `unitName` |
+| `src/lib/share-link.ts` | `buildShareUrl` / `readShareQuery`: share links carry inputs + country; every value validated against its field |
+| `src/styles/tokens.css` | Every colour, radius, shadow, type size, container width and header height. Base/components are **layered** |
 | `src/lib/visuals.ts` | Icon name + tone for every section, category and item |
-| `src/components/shared/PageHeader.tsx` | Heading used by all 18 inner pages |
+| `src/components/ui/PageHeader.tsx` | The dark navy hero used by every inner page |
+| `src/components/layout/DetailPage.tsx` | The calculator/tool/converter page template (hero, card, ad, how it works, FAQ, guides, related, CTA, JSON-LD) |
 | `src/components/motion/RevealObserver.tsx` | The one observer behind every `data-reveal` |
 | `src/lib/calculator-copy.ts` | Always use this to list a calculator's title — it fills country params |
 
@@ -229,6 +250,64 @@ All 23 route files listed in §3. Every page defines its own `generateMetadata` 
 ---
 
 ## 6. Current Task
+
+### Session 6 (continued): two-row header and the country flag band (uncommitted)
+
+The owner asked for a bigger header: taller, a larger logo, more space between the menu items, and dropdowns that clearly look like dropdowns (darker borders, bigger). The single row had about 24px spare at 1280px, so everything could not grow in one row.
+
+| Change | Detail |
+|---|---|
+| **Two-row desktop header (xl+)** | Row 1: logo (68px mark), a wide search field (opens the search dialog, "/" hint), country picker (flag and name) and language picker at `size="xl"`. Row 2: the section menu centred, 1rem to 1.0625rem, chevrons always shown. Below xl: one row as before, with a bigger logo. Overflow 0 at 375-1920 for en-us/en-gb/de-de/fr-fr/es-es (Spanish needed a tighter 1280-1439 step) |
+| Tokens | `--border-control` (#94a3b8): Select pill triggers and the search field. Select field variant now uses `border-strong` like inputs. `--header-top`, `--header-nav` and their compact forms; from xl `--header-height` is their total, so sticky offsets and scroll padding follow. The DetailPage ad rail sticks below the compact header |
+| **Country flag band** (homepage) | `components/home/CountryMarquee.tsx`: all 22 countries as big round flags in two rows drifting opposite ways, full width. Hover or keyboard focus lifts the flag (scale, ring, glow) and opens a card with the currency, the number of country tools (pluralised) and "View tools"; the card is portalled to <body>. Rows pause under the pointer and on focus (WCAG 2.2.2; `.marquee:focus-within`), slide in on scroll (`data-reveal` left/right), and stand still and wrap under reduced motion |
+| i18n | New keys `home.world.currency`, `home.world.toolsLabel`, `home.world.tools.one/.other` and `home.world.view`: de/fr/es need translating |
+
+### Session 6 (continued): SEO and AEO per locale - en-US and en-GB (uncommitted)
+
+The owner asked for SEO and AEO "language-wise, in their own language", English first. Both English locales had been serving identical British-spelled copy. Now each is written, marked up and indexed for its own market:
+
+| Area | What changed |
+|---|---|
+| **Regional dictionaries** | `src/lib/i18n/dictionaries/regional/{en-US,en-GB}.json` override only the keys that differ. en.json stays British; en-US (125 keys) is generated by `scripts/en-us-spelling.mjs` (`npm run i18n:en-us`): meters/liters, amortization, installment, organized, color, tire, wrench, metric ton, ads, dependents... en-GB (4 keys) says "Maths". `getDictionary(lang, locale)` / `createTranslator(lang, locale)`; all 44 call sites pass the locale |
+| Guard | `npm run i18n` fails if a regional key is not in English, if its placeholders differ, or if en.json changed without regenerating en-US |
+| Market snippets | The description suffix names the market ("set up for US users" / "UK users"), so no page has identical snippets across locales |
+| Structured data | One `WebSite` per locale (`/{locale}#website`) linked with `workTranslation`; `isPartOf` points at the page's own locale; `inLanguage` on FAQPage too; WebApplication offer currency follows the locale's market (USD / GBP); Organization `knowsLanguage` |
+| hreflang | One builder (`hreflangAlternates` in lib/seo) for page heads and the sitemap: en-US, en-GB, a language-only `en` fallback and x-default. Open Graph `og:locale:alternate` |
+| AEO | `/{locale}/llms.txt` per locale in its spelling and default country; `/llms.txt` lists all versions. Fixed English strings moved to `llms.*` keys |
+| Dates | Guide review dates formatted per locale inside `<time datetime>` (September 21, 2026 / 21 September 2026) |
+| Search | Folds UK/US spellings ("metres" finds "Meters" on en-US and vice versa); category names indexed ("maths" finds maths calculators); results deduplicated by URL (country tools were listed twice) |
+
+Not done, deliberately: URL slugs stay shared across locales (`/en-gb/.../meters-to-feet`), so hreflang pairs stay 1:1; localized slugs would be a separate, larger change.
+
+### Session 6 (continued): SEO, AEO, responsive and security pass (uncommitted)
+
+The owner asked for a complete SEO / AEO / responsive / security implementation. Audited every sitemap page, fixed what was missing, re-verified:
+
+| Area | What changed |
+|---|---|
+| **SEO audit** | Scratchpad audit over all 704 sitemap URLs: title and description length and uniqueness, one H1 and no skipped heading levels, canonical, OG + Twitter tags, hreflang with x-default, valid JSON-LD, BreadcrumbList, image alt + dimensions, landmarks, every internal link resolving. **0 issues** after the fixes below |
+| Broken links | The converters index linked each card to `/converters/{cat}/{cat}` (26 × 404). Now `/converters/{cat}` |
+| Titles | Brand suffix dropped where it would push a title past 65 characters (`buildMetadata`) |
+| Duplicate descriptions | Country tools (~180 pages) shared one description per tool; now `country.tool.metaDesc` adds country, tax year and currency |
+| Structured data | One `Organization` (`/#organization`) and `WebSite` (`/#website`) referenced by `@id` from every WebApplication, Article, WebPage; `CollectionPage` + `ItemList` on all section/category pages; `WebPage` on charts; `AboutPage`/`ContactPage` on legal pages. `components/seo/JsonLd.tsx` |
+| AEO | FAQ questions are real `<h3>`s; "How is this calculated?" / "How does this conversion work?" question headings; robots.txt names the answer-engine crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, ...) |
+| Sitemap | `lastModified` only where real (guides' `reviewed` date); no more build-time stamp on every URL |
+| Responsive | Sweep extended to 27 page types × 375/390/768/1024/1280/1440/1920 with an off-screen-content check (`main` clips overflow, so a scroll check alone missed it). **Found and fixed:** the homepage hero was wider than phones (search button, links and live card cut off at the right edge) - `grid-cols-1` on the hero and two other grids; hero search button icon-only on phones. Modals and dropdowns (welcome dialog, search, drawer, selects) checked at 4 widths: in viewport, Escape closes, focus lands in search |
+| Core Web Vitals | Measured in headless Chrome on the dev server: CLS 0-0.0002 on all page types, LCP 0.3-1.8 s. All images lazy with dimensions |
+| Security | See **`docs/SECURITY.md`** (new): HTTPS redirect in the proxy, non-GET methods refused (405), mixed-case locale URLs 308 to lowercase, CORP + wider Permissions-Policy + `script-src-attr 'none'`, error boundaries that show only a digest (`[locale]/error.tsx`, `global-error.tsx`), structured server error logging (`src/instrumentation.ts`), RFC 9116 security.txt (live once `OPERATOR.email` is set), https-only newsletter action, input length caps, encoded cookie values. Open-redirect, reflected-XSS and path probes all negative; `npm audit` 0 |
+
+### Session 6: the code items from the pending list (uncommitted)
+
+The owner asked to complete the pending tasks in this file. Done, each verified in the running app:
+
+| Item | What changed |
+|---|---|
+| **Issue 17 - every page shipped all 8 dictionaries** | `lib/i18n` split into `core.ts` (no JSON; what client code uses) and `index.ts` (server-only, guarded with `import "server-only"`). `createFormatter` now takes the page's `t` instead of loading a dictionary; the three unused helpers in `countries.ts` that pulled the gate into client code were removed. **Verified:** no German/Hindi dictionary text in any browser chunk of the build (was one ~383 KB chunk on every page) |
+| **Issue 18 - share links did not restore inputs** | `lib/share-link.ts`. The link carries the inputs and the country (`?principal=...&country=in`). On load the runner reads the query after hydration (pages stay static), keeps only keys that are fields of that calculator, checks each value against its kind (number clamped to the field's range, select must be a listed option, toggle `true`/`false`, text at most 500 chars), switches to the link's country once, then applies the values. **Verified:** round trip, garbage values fall back or clamp, unknown keys and countries ignored, changing country afterwards is not pulled back |
+| **Issue 14 - no pluralisation** | `plural()` in `i18n/core.ts` on `Intl.PluralRules`, keys `key.one` / `key.other` (plus `zero/two/few/many` where a language has them; `.other` covers any missing). Date difference, age, countdown-day, savings/debt planner, random picker counts and the "Years to retirement" row now read "1 month and 1 day", "1 Yr". `npm run i18n` accepts a base key whose `.other` exists |
+| **Calculator → guide links (§15, §25)** | `lib/guide-links.ts` reverses each guide's `related` list; `DetailPage` gains a "Learn how it works" block (calculator, country-tool and tool pages) and chart pages list their guides |
+| **Issue 19** | `CalculatorGrid.tsx` deleted (unused) |
+| **Issue 20** | `README.md` rewritten for House of Calculators |
 
 **Session 4: the test suite was finished (spec §53, §67) at 487 tests. It is now 912 — see the session 5 blocks below.**
 
@@ -259,7 +338,7 @@ Both the date and the number fix were verified in the running app, not only in t
 
 ### Then: the legal pages (commit `94c5488`)
 
-Five pages the footer had been linking to 404s: privacy, terms, cookies, contact, about. Structure in `src/config/legal/definitions.ts`, prose in `en.json` via `scripts/add-legal-keys.mjs`, one route at `src/app/[locale]/[legal]/page.tsx`, 22 tests in `tests/legal.test.ts`.
+Five pages the footer had been linking to 404s: privacy, terms, cookies, contact, about. Structure in `src/config/legal/definitions.ts`, prose in `en.json`, one route at `src/app/[locale]/[legal]/page.tsx`, 22 tests in `tests/legal.test.ts`.
 
 The copy describes **what this site actually does**, not a template:
 - Calculation runs in the browser, so a visitor's numbers never leave their device. That is a real property of the architecture (spec §30) and it leads the policy.
@@ -363,11 +442,15 @@ The user asked for a rebuild and re-run. Done from scratch (`.next` deleted, dev
 | Comp claims are replaced with real, computed figures | The comp said "1,000+ calculators", "10+ languages", "millions of users" — none true. Counts are computed from the registries | Never hard-code marketing numbers |
 | No newsletter field, no social icons in the footer | The privacy policy says there are no forms; there are no social accounts | Adding either means updating the privacy page first |
 | Base CSS in `@layer base`, component classes in `@layer components` | Unlayered CSS beats Tailwind utilities; `text-white` on headings was being ignored | Never add unlayered element rules |
-| Scroll reveal via `data-reveal` attributes + one `RevealObserver` | Pages stay server components; content hidden only after an inline script sets `html.js` | The LCP heading uses `animate-rise` (no fade) |
+| Scroll reveal via `data-reveal` attributes + one `RevealObserver` | Pages stay server components; content is hidden only under `@media (scripting: enabled)` (the old `html.js` inline script caused a React warning and was removed) | The LCP heading uses `animate-rise` (no fade) |
 | **`favicon.ico` lives in `public/`, not `src/app/`** | In `src/app/` it breaks the Turbopack production build of this project with a misleading `next/font/google queries have exactly one entry` error. Found by bisecting | Don't move it back; `<link rel=icon>` comes from `src/app/icon.svg` |
 | Every icon/colour comes from `lib/visuals.ts`; items keep their category colour | One family per category, as in the comp | Add new slugs to `ITEM_ICONS` |
 | `proxy.ts` not `middleware.ts` | Next 16 deprecated the middleware convention (`AGENTS.md` warns about this) | |
-| Tests use Node's native runner | Vitest install fails on peer deps here; Node 24 runs `.ts` natively | |
+| **No automated tests, no CI** | Owner's decision (session 6): the suite and `.github/workflows/ci.yml` were deleted. QA is manual on the dev server, per `CLAUDE.md` | Only write tests when the owner explicitly asks |
+| **Light theme only, one environment** | Owner's decision (session 6). No `dark:` classes or `prefers-color-scheme` styles; everything runs on the local dev server | |
+| **`@/lib/i18n` is server-only; clients use `@/lib/i18n/core`** | Reaching the full module from the browser shipped every language to every page (issue 17) | The `server-only` import turns a regression into a build error |
+| Counted phrases use `plural()` with CLDR keys (`key.one`, `key.other`, ...) | Plural rules differ per language (Arabic has six forms), so the choice is `Intl.PluralRules`'s, not an `n === 1` check | New counted strings get `.one`/`.other` keys |
+| Share links restore values only after validating them, and switch the country once | The query is untrusted input; rupee amounts must not open in a dollar form; a link must not keep overriding the visitor's later choice | |
 | Kept hi/gu/mr/ar beyond the spec's 12 locales | Already translated; wasteful to discard | |
 | Brand name in a dictionary key (`app.name`) | Renaming is a one-line change | |
 | **Brand stays "House of Calculators" in Latin script in every language** | User's decision (session 4). Keeps it searchable and matching the domain | Don't transliterate or translate it |
@@ -397,17 +480,18 @@ The user asked for a rebuild and re-run. Done from scratch (`.next` deleted, dev
 | 7 | AdSense not configured | By design | Set `NEXT_PUBLIC_ADSENSE_CLIENT`; slots render nothing until then |
 | 8 | Guide category page derived from the charts page via `sed` | Works, verified | Worth a read-through for leftover chart naming |
 | 9 | ~~No favicon/OG image beyond the scaffold default~~ | **Fixed** (`5b28c42`, `2c08073`) | `src/app/icon.svg`, generated `src/app/opengraph-image.tsx`, and `public/favicon.ico`. No `apple-icon` PNG yet |
-| 10 | `MODULE_TYPELESS_PACKAGE_JSON` warnings when running tests | Cosmetic | Scoped `tests/package.json` already added; warnings come from `src/` files |
-| 11 | ~~No CI pipeline~~ | **Fixed** (`5b28c42`) | `.github/workflows/ci.yml`: lint, types, tests, i18n, build as separate jobs on Node 24. **Not yet run on GitHub** — no remote push has happened this session |
+| 10 | ~~`MODULE_TYPELESS_PACKAGE_JSON` warnings when running tests~~ | **Obsolete** | The test suite was removed (session 6) |
+| 11 | CI pipeline | **Removed on request** (session 6) | The owner wants one environment and no CI; `.github/workflows/ci.yml` was deleted |
 | 12 | ~~`npx tsc --noEmit` failed on the test files (`TS5097`)~~ | **Fixed** (`0c4953a`) | `"allowImportingTsExtensions": true` added to `tsconfig.json`, valid because `noEmit` is already set. The tests stay type-checked |
 | 13 | ~~`app.name` was still the pre-rebrand brand in all 7 translated dictionaries~~ | **Fixed** (`94c5488`) | Set to `House of Calculators` in every language. Decided: one brand in Latin script everywhere, so it stays searchable and matches the domain |
 | 15 | **`OPERATOR` details are unset** — entity, contact email and governing-law jurisdiction are all `null` in `src/config/legal/definitions.ts` | Open, **blocks launch and AdSense review** | Every legal page shows a "not ready to publish" notice until they are filled in. This is a one-object edit; the notice disappears on its own |
 | 16 | Health pages carry disclaimers in notes/explainers but no dedicated medical-disclaimer block | Open, low | Spec §2.1 asks for "appropriate disclaimers"; current wording is careful but worth a review before launch |
-| 17 | **Every page ships all 8 language dictionaries to the browser** — one client chunk of ~383 KB (~109 KB gzipped) containing de/fr/es/hi/gu/mr/ar alongside English, referenced by every built page including the home page. Violates spec §29 and §64 | Open, **highest-value performance fix** | Cause: client modules import `@/lib/i18n` (`locale-context.tsx` imports `translate`; `format.ts` imports `getDictionary`), and that module statically imports every JSON file. Fix: keep dictionary loading server-side and pass only the active dictionary (already done via `LocaleProvider`'s `dictionary` prop), and make the client-reachable helpers dictionary-free — e.g. split `translate` and the formatter's unit lookup into a module with no JSON imports |
-| 18 | **Share links do not restore inputs** — "Copy link" in `ResultActions.tsx` writes every input into the query string, but `CalculatorRunner` never reads `searchParams`, so the recipient sees the defaults | Open, user-visible bug (spec §55) | Read the query on mount (client-only, pages stay static), validate each value against the field's kind and range, and ignore unknown keys. Keep these URLs out of the index — canonical already points to the clean URL |
-| 19 | `src/components/calculator/CalculatorGrid.tsx` is not imported anywhere | Open, low | Dead code from an earlier layout; not restyled in the redesign. Delete it or put it back into use |
-| 20 | `README.md` still describes the pre-rebrand "Calcora" project | Open, low | Rewrite from §1–§3 of this file |
-| 14 | **No pluralisation**: the date tools render "0 years, 1 months and 1 days" | Open, cosmetic but visible on every date result | Needs plural-aware keys. English alone would be a patch; doing it per language is the real fix, since plural rules differ (Arabic has six forms). Consider `Intl.PluralRules` keyed as `key.one` / `key.other` with the existing English fallback |
+| 17 | ~~**Every page ships all 8 language dictionaries to the browser**~~ **Fixed (session 6)**, see §6. — one client chunk of ~383 KB (~109 KB gzipped) containing de/fr/es/hi/gu/mr/ar alongside English, referenced by every built page including the home page. Violates spec §29 and §64 | **Fixed** | Was: client modules import `@/lib/i18n` (`locale-context.tsx` imports `translate`; `format.ts` imports `getDictionary`), and that module statically imports every JSON file. Fix: keep dictionary loading server-side and pass only the active dictionary (already done via `LocaleProvider`'s `dictionary` prop), and make the client-reachable helpers dictionary-free — e.g. split `translate` and the formatter's unit lookup into a module with no JSON imports |
+| 18 | ~~**Share links do not restore inputs**~~ **Fixed (session 6)**, see §6. — "Copy link" in `ResultActions.tsx` writes every input into the query string, but `CalculatorRunner` never reads `searchParams`, so the recipient sees the defaults | **Fixed** | Was planned as: read the query on mount (client-only, pages stay static), validate each value against the field's kind and range, and ignore unknown keys. Keep these URLs out of the index — canonical already points to the clean URL |
+| 19 | ~~`CalculatorGrid.tsx` is not imported anywhere~~ | **Fixed (session 6)** | Deleted |
+| 20 | ~~`README.md` still describes the pre-rebrand "Calcora" project~~ | **Fixed (session 6)** | Rewritten |
+| 14 | ~~**No pluralisation**: the date tools render "0 years, 1 months and 1 days"~~ | **Fixed (session 6)**: `plural()` in `i18n/core.ts`; translators add `.one`/`.other` (and their language's other categories) |
+| 21 | Dev-only console message "LegalPage ... negative time stamp" on some 404s | Open, cosmetic, dev server only | A React/Next performance-track measurement; does not occur in the production build |
 
 ---
 
@@ -415,26 +499,24 @@ The user asked for a rebuild and re-run. Done from scratch (`.next` deleted, dev
 
 ### Blocking launch — needs the user
 1. **Fill in `OPERATOR`** (issue 15) in `src/config/legal/definitions.ts` — entity, contact email, governing-law jurisdiction. Every legal page shows a "not ready to publish" notice until then.
-2. **Push to GitHub** so the CI workflow actually runs once (issue 11).
+2. **Commit the session 6 work** when satisfied (nothing is committed yet).
 3. **Set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_ADSENSE_CLIENT`** in the deployment environment; choose hosting (spec §9).
 4. **Verify statutory tax figures** against `docs/tax-rules-to-verify.md` (issue 3).
 
 ### Short term — code
-4a. **Fix issue 17** — stop shipping every dictionary to the browser.
-4b. **Fix issue 18** — make shared links restore their inputs.
-5. **Translate de, fr, es** (restores 3 locales). ~1,730 keys each now. Keep `npm run test` green — `tests/i18n.test.ts` fails on a mismatched placeholder, which is its point. Leave `app.name` alone.
-6. **Pluralisation** (issue 14) — better done *before* bulk translation, since it changes key shapes.
-7. Then hi, gu, mr, ar.
+5. **Translate de, fr, es** (restores 3 locales). ~1,820 keys each now. Keep placeholders identical to English; counted phrases need their language's plural categories (`.one`, `.other`, ...). Leave `app.name` alone.
+6. Then hi, gu, mr, ar.
+7. Measure Core Web Vitals and set a performance budget (§29, §64) now that each page ships one dictionary.
 
 ### Later
 8. Currency converter + time-zone converter/world clock/meeting planner (need live data sources; **never hard-code rates**).
 9. New locale dictionaries: nl, ja, it, pt, pl, tr, ru, zh.
 10. GA4 + Search Console. **Update the privacy and cookies pages first** — both state no analytics are used.
 11. Remaining charts (shoe/clothing sizes, time-zone reference), `apple-icon`, PDF/XLSX export.
-12. Search scoring tests; component/E2E tests (spec §67).
+12. ~~Search scoring tests; component/E2E tests (spec §67)~~ - not wanted: the owner removed the test suite. Only if asked.
 
 ### Optional
-13. Theme toggle; PostgreSQL + admin CMS (spec §47/§77) once content outgrows config files.
+13. PostgreSQL + admin CMS (spec §47/§77) once content outgrows config files. (No theme toggle: light theme only, by the owner's rule.)
 
 ---
 
@@ -490,7 +572,7 @@ The user asked for a rebuild and re-run. Done from scratch (`.next` deleted, dev
 | `src/app/{sitemap,robots}.ts` | |
 | `src/components/**` | ~20 components in spec-shaped folders |
 | `tests/{finance,tax}.test.ts`, `tests/alias-hooks.mjs`, `tests/register-alias.mjs`, `tests/package.json` | Test suite + ESM loader |
-| `scripts/{i18n-coverage,add-en-keys,add-tool-keys,add-chart-keys,add-guide-keys}.mjs` | Dictionary tooling |
+| `scripts/{i18n-coverage,en-us-spelling}.mjs` | Dictionary tooling: coverage report, US spelling overrides |
 | `src/config/legal/definitions.ts` | 5 legal pages + the `OPERATOR` details that must be filled before launch |
 | `src/app/[locale]/[legal]/page.tsx` | One route serving all five legal pages |
 | `tests/{converters,tools,i18n,hreflang,legal}.test.ts` | Session 4 tests. Session 5 added `{health,maths,business,calculators,consent,random-tools,content}.test.ts` — **912 tests total** |
@@ -499,7 +581,8 @@ The user asked for a rebuild and re-run. Done from scratch (`.next` deleted, dev
 | `src/components/{home,motion}/*`, `shared/{Icon,PageHeader}.tsx`, `layout/Logo.tsx`, `consent/*` | Redesign and consent components (session 5) |
 | `src/lib/{visuals,ads,calculator-copy}.ts`, `src/lib/tools/random.ts` | Visual map, ads flag, calculator copy, shared CSPRNG (session 5) |
 | `public/favicon.ico`, `public/flags/*` | Favicon and 22 round flags (session 5) |
-| `.github/workflows/ci.yml` | CI (session 5, never run yet) |
+| `src/lib/i18n/core.ts`, `src/lib/share-link.ts`, `src/lib/guide-links.ts` | Client-safe i18n + plurals, share links, guide links (session 6) |
+| `src/styles/*`, `src/components/ui/*`, `docs/DESIGN_SYSTEM.md`, `src/app/[locale]/design-system` | Design system (session 6) |
 | `docs/tax-rules-to-verify.md` | Every statutory figure needing verification |
 | `.gitattributes` | LF normalisation |
 
@@ -509,11 +592,11 @@ The user asked for a rebuild and re-run. Done from scratch (`.next` deleted, dev
 | `src/app/globals.css` | Rewritten again in session 5 to the landing-page comp's design system |
 | `src/config/{countries,languages}.ts` | 22 countries, 14 languages; readiness filtering |
 | `src/config/calculators/**` | Spec categories, `version`, `isCountrySpecific` |
-| `src/lib/i18n/index.ts` | Partial `RAW`, readiness gate, `countryParams`, `unitName`, `hasOwnKey` |
+| `src/lib/i18n/index.ts` | Partial `RAW`, readiness gate, `unitName`, `hasOwnKey` |
 | `src/lib/format.ts` | Manual currency composition; Latin digits |
 | `src/lib/locale-context.tsx` | Rewritten for locale/country split |
 | `src/lib/i18n/dictionaries/*.json` | English **2,205** keys; 7 others migrated to shared vocabulary (17–19% coverage) |
-| `README.md` | Rewritten (describes the pre-rebrand "Calcora" scope — **stale, needs updating**) |
+| `README.md` | Rewritten for House of Calculators (session 6) |
 | `package.json` | Renamed; added `i18n`, `test`, `check` scripts |
 
 ### Deleted / renamed
@@ -523,6 +606,8 @@ The user asked for a rebuild and re-run. Done from scratch (`.next` deleted, dev
 - `src/components/ui/*` → moved to `calculator/`, `charts/`, `shared/`
 - `src/lib/finance/tax/income-tax.ts` → split into `define.ts` + `rules.ts`
 - `src/config/calculators/definitions/{emi,consumption-tax,income-tax}.ts` → merged into `loans.ts`, `tax.ts`
+- Session 6: `tests/**` and `.github/workflows/ci.yml` (owner's request); `components/shared/*` moved to `components/ui/*`; `shared/Dropdown.tsx` → `ui/Select.tsx`; `home/HeroArt.tsx`, `calculator/CalculatorGrid.tsx`, `lib/locale-cookie.ts` deleted
+- Session 7 (clean-up): `home/HeroCalculator.tsx` (unused); the ten one-off `scripts/add-*-keys.mjs` seeders (re-running one would overwrite edited copy in en.json); 21 unused exports (kept `simpleInterest`, `cagr` for the pending calculators); 22 orphaned `country.*.obl` keys in mr.json. The 11 listing pages now share `layout/ListingPage`, the call to action comes from `lib/cta.ts`, and table styling lives in `.data-table`.
 - `src/app/favicon.ico` (Next scaffold) and `public/{file,globe,next,vercel,window}.svg` → removed; new favicon lives in `public/`
 
 ---
@@ -531,20 +616,20 @@ The user asked for a rebuild and re-run. Done from scratch (`.next` deleted, dev
 
 ```bash
 npm run dev      # dev server on :3000
-npm run build    # production build (710 static pages)
+npm run build    # production build (713 static pages)
 npm run lint     # eslint, must be clean
-npm run test     # node --test with the alias loader (912 tests)
 npm run i18n     # dictionary coverage report
-npm run check    # lint + tsc + test + i18n
+npm run check    # lint + tsc + i18n
 npx tsc --noEmit # type-check
 
 # clean rebuild (stop the dev server first)
 rm -rf .next && npm run build
+# then delete .next again before restarting the dev server (CLAUDE.md rule 5)
 ```
 
 **Environment variables (names only):** `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_ADSENSE_CLIENT`.
 
-**No database, no migrations, no deployment pipeline yet.**
+**No database, no migrations, no deployment pipeline, no CI - one environment (the local dev server).**
 
 **Browser preview:** `.claude/launch.json` defines `calculator-dev`; use `preview_start` with that name.
 
@@ -555,11 +640,11 @@ rm -rf .next && npm run build
 Open the new session in `D:\Calculator` and:
 
 1. **Orient** — this file, then `src/config/categories.ts`, `src/lib/routes.ts`, `src/lib/content.ts`. For calculators: `src/config/calculators/types.ts` (note `countryRelevance`, `decimals`, the `text` field kind).
-2. **Verify green:** `npm run check` then `npm run build`. Expect lint clean, tsc clean, **912 tests**, "Every statically referenced key is defined in English", **710 static pages**. Working tree should be clean at `2c08073` or later. For any UI work, read §6's redesign block and the design rows in §7 first.
-3. **Ask the user** for the `OPERATOR` details and whether to push to GitHub — both are theirs to provide.
-4. **Then** pick up §9 "Short term": pluralisation first, then translation.
+2. **Verify green:** `npm run check` then `npm run build`. Expect lint clean, tsc clean, "Every statically referenced key is defined in English", **713 static pages**. Read `CLAUDE.md` (working rules) and, for any UI work, `docs/DESIGN_SYSTEM.md`.
+3. **Ask the user** for the `OPERATOR` details - theirs to provide.
+4. **Then** pick up §9 "Short term": translation.
 
-**Adding a calculator** is: pure logic in `src/lib/<area>/` with a test, a definition in `src/config/calculators/definitions/`, set `countryRelevance` honestly, register in `index.ts`, add English copy via a `scripts/add-*-keys.mjs` script. `tests/calculators.test.ts` will then run it in every country across its select/toggle answers and fail on any missing key, NaN, negative chart slice or out-of-range default.
+**Adding a calculator** is: pure logic in `src/lib/<area>/`, a definition in `src/config/calculators/definitions/`, set `countryRelevance` honestly, register in `index.ts`, add its English copy to `src/lib/i18n/dictionaries/en.json` (then `npm run i18n:en-us` for US spelling). Check it by hand in every country it supports: no missing key, NaN, negative chart slice or out-of-range default.
 
 **Shell gotcha:** Bash heredocs and `node -e` in this environment mangle backticks and `${}`. Use the Write/Edit tools or a script file in the scratchpad for anything containing template literals.
 
@@ -589,16 +674,16 @@ Open the new session in `D:\Calculator` and:
 | Locales (§8) | 🟡 | 16 locales defined; **only en-US and en-GB ship**. 7 languages at 17–19%, 8 not started |
 | Engines (§11–13) | ✅ | Calculator, converter, country config all configuration-driven |
 | SEO (§19–28) | ✅ | Metadata, canonical, hreflang, sitemap, JSON-LD all tested. Validation in Google tools needs a deployment |
-| Performance (§29, §64) | ❌ | **Not measured, and every page ships all 8 dictionaries** (issue 17) |
+| Performance (§29, §64) | 🟡 | Each page now ships only its own dictionary (issue 17 fixed); Core Web Vitals not yet measured |
 | Ads (§31–34) | 🟡 | Slots built and compliant; no publisher id (👤) |
 | Legal & consent (§35) | 🟡 | All pages + consent built; operator details unset (👤) |
 | Analytics (§36–37) | ❌ | Not started |
 | Search (§38) | ✅ | Grouped, typo-tolerant, keyboard navigable, opens with / or Ctrl+K |
-| Design, responsive, motion (§16–18, §59–61) | ✅ | Redesigned after the user's comp; scroll reveals; reduced-motion honoured; checked at 1440/390px, light and dark |
+| Design, responsive, motion (§16–18, §59–61) | ✅ | Design system + second redesign; scroll reveals; reduced-motion honoured; light theme only; responsive sweep of 20 page types at 375/768/1024/1440px |
 | Accessibility (§42) | 🟡 | Built in; no formal audit |
-| Security (§43) | ❌ | No security headers or CSP configured |
-| Testing (§53, §67) | 🟡 | 912 unit tests; no component or E2E tests |
-| CI/CD (§66) | 🟡 | Workflow written, never run; no preview deploys |
+| Security (§43) | ✅ | Full checklist in `docs/SECURITY.md`: CSP, HSTS, HTTPS redirect, method guard, error boundaries, logging, security.txt; `npm audit` clean |
+| Testing (§53, §67) | ↔ | Test suite removed at the owner's request; manual QA per task instead (see `CLAUDE.md`) |
+| CI/CD (§66) | ↔ | Removed at the owner's request: one environment only |
 | Database / CMS (§47, §77) | ⏸ | Config files are sufficient at current scale |
 | Launch checklist (§68) | 🟡 | See 14.9 |
 
@@ -759,7 +844,7 @@ Where a spec item is covered by a tool or a broader calculator, that is noted ra
 | 14 | Charts & tables on homepage | 🟡 | Linked from the "More Ways to Calculate" cards; no table preview section |
 | 15 | Calculator page: breadcrumb → country → inputs → reset → result → summary → chart → breakdown → export/share → how it works → related → FAQ → ad | ✅ | `CalculatorPageBody` |
 | 15 | Formula + worked example on calculator pages | 🟡 | Formula in the explainer; worked examples live in guides |
-| 15 | **Guide links from calculator pages** | ❌ | Calculator pages link only to other calculators |
+| 15 | Guide links from calculator pages | ✅ | "Learn how it works" block, from each guide's `related` list (`lib/guide-links.ts`) |
 | 16 | Responsive: mobile/tablet/desktop, stacked inputs, table → cards on mobile | ✅ | Breakdown has a mobile card layout |
 | 17 | 150–250ms transitions, count-up, reveals, `prefers-reduced-motion` | ✅ | `globals.css`, `components/motion/*` |
 | 18 | Spec palette | ✅ | Comp palette (same blue/navy/teal/sky/yellow family) |
@@ -768,7 +853,7 @@ Where a spec item is covered by a tool or a broader calculator, that is noted ra
 | 23 | Automated sitemap | ✅ | One sitemap with alternates |
 | 23 | Split sitemaps per section/locale | ⏸ | Unnecessary at 710 URLs |
 | 24 | Self-referencing canonical | ✅ | Tested against hreflang |
-| 25 | Internal linking | 🟡 | Calculator ↔ calculator, chart ↔ tool, guide → calculator. Missing calculator → guide (see §15 above) |
+| 25 | Internal linking | ✅ | Calculator ↔ calculator, chart ↔ tool, guide ↔ calculator/tool/chart |
 | 27 | JSON-LD: Organization, WebSite, BreadcrumbList, Article | ✅ | |
 | 27 | Validated in Rich Results Test | 👤 | Needs a public URL |
 | 28 | No filler, no doorway pages | ✅ | Every page hand-written; featured pairs only |
@@ -787,7 +872,7 @@ Where a spec item is covered by a tool or a broader calculator, that is noted ra
 | 40 | Programmatic pages only with distinct value | ✅ | Featured converter pairs only |
 | 42 | Keyboard, labels, focus, live regions, reduced motion, skip link | ✅ | Built in |
 | 42 | Formal screen-reader / contrast audit | ❌ | Not done |
-| 43 | Security headers, CSP | ❌ | `next.config.ts` is empty |
+| 43 | Security headers, CSP | ✅ | `next.config.ts` (session 6) |
 | 43 | No secrets in client, safe rendering | ✅ | No secrets exist; `dangerouslySetInnerHTML` only for JSON-LD (escaped) and the consent script |
 | 44 | Third-party scripts: AdSense only, async, consent-gated | ✅ | |
 | 45 | Image-light, SVG icons | ✅ | No raster images |
@@ -796,22 +881,21 @@ Where a spec item is covered by a tool or a broader calculator, that is noted ra
 | 49 | Visible breadcrumbs + BreadcrumbList | ✅ | Generated from one list |
 | 50 | Robots / noindex rules | ✅ | `robots.ts`; `noindex` supported in `buildMetadata` |
 | 52 | Localized error / empty states | 🟡 | Inputs clamp on blur, results carry notes; no inline validation messages ("Please enter a value greater than 0") |
-| 53 | Unit, boundary, rounding, country-rule, known-value tests | ✅ | 912 tests |
+| 53 | Unit, boundary, rounding, country-rule, known-value tests | ↔ | Suite removed at the owner's request; known values re-checked manually (60 calculators, 27,440 runs, session 6) |
 | 53 | Formula versioning | ✅ | `version` on every calculator; `verifiedFor` on tax rules |
 | 54 | Data freshness classification + source/retrieval time for dynamic data | ⏸ | No dynamic data yet |
 | 55 | Print, CSV | ✅ | |
-| 55 | **Share a results URL** | ❌ | **Bug — issue 18.** "Copy link" writes inputs to the URL but the page never reads them back |
+| 55 | Share a results URL | ✅ | Inputs + country restored and validated (issue 18 fixed) |
 | 56 | Copy link, native Web Share | ✅ | |
 | 56 | WhatsApp / email share | ❌ | Not built |
 | 57 | Footer: sections, popular, languages, legal | 🟡 | Popular calculators only; no popular converters/guides lists |
 | 58 | Separate language and country selectors | ✅ | |
 | 59 | No horizontal overflow, numeric keyboards | ✅ | `inputMode="decimal"` |
-| 59 | Searchable country selector / bottom sheets | ❌ | 22-item list, not searchable |
+| 59 | Searchable country selector / bottom sheets | ✅ | `ui/Select` with search and keyboard support (session 6) |
 | 62–63 | Folder structure and component library | ↔ | Same shape; dictionaries per language rather than per locale |
 | 64 | Performance budget | ❌ | None set; see issue 17 |
-| 66 | CI: lint, types, tests, build | 🟡 | Workflow written, never run (👤 push) |
-| 66 | CI: SEO checks, accessibility checks, preview deploy | ❌ | Not built |
-| 67 | Component tests / E2E flows / device & network tests | ❌ | Not started |
+| 66 | CI | ↔ | Removed at the owner's request: one environment |
+| 67 | Component tests / E2E flows / device & network tests | ↔ | Not wanted unless the owner asks |
 | 76 | Scales by configuration | ✅ | Adding a calculator = definition + keys + registry line |
 | 78 | Versioning with effective dates and sources | 🟡 | Version numbers yes; per-rule effective date/source only partly (`verifiedFor`) |
 | 79 | No fake "updated" dates | ✅ | Guides and legal pages carry real dates |
@@ -838,7 +922,7 @@ Where a spec item is covered by a tool or a broader calculator, that is noted ra
 | Country selector works | ✅ |
 | Language selector works | ✅ (only English locales live) |
 | Breakdown works | ✅ |
-| Export works where planned | 🟡 CSV/print yes; share-link restore broken (issue 18) |
+| Export works where planned | ✅ CSV, print and share links (restore fixed) |
 | **SEO** | |
 | Unique titles, metadata, canonical, hreflang, sitemap, robots, breadcrumbs, internal links | ✅ |
 | Structured data validated | 👤 needs deployment |
@@ -846,7 +930,7 @@ Where a spec item is covered by a tool or a broader calculator, that is noted ra
 | Search Console configured | 👤 |
 | **Performance** | |
 | LCP / INP / CLS targets | ❌ not measured |
-| Mobile test | 🟡 spot-checked, not systematic |
+| Mobile test | ✅ responsive sweep: 20 page types × 375/768/1024/1440px, every task |
 | Third-party scripts audited | ✅ AdSense only |
 | Ads tested for CLS | ❌ needs a live publisher id |
 | **Ads** | |
@@ -864,23 +948,23 @@ Where a spec item is covered by a tool or a broader calculator, that is noted ra
 
 **👤 Needs you (blocks launch)**
 1. Operator details — entity, email, jurisdiction (issue 15).
-2. Push to GitHub so CI runs (issue 11).
+2. Commit the session 6 work.
 3. Choose hosting; set `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_ADSENSE_CLIENT`.
 4. Get the tax figures verified (issue 3, `docs/tax-rules-to-verify.md`).
 5. After deploy: Search Console, Rich Results validation, AdSense review.
 
 **❌ Code — highest value first**
-1. **Ship only the active language's dictionary** (issue 17) — ~109 KB gzipped wasted on every page today.
-2. **Fix share links** so they restore inputs (issue 18).
-3. Security headers + CSP (§43).
+1. ~~Ship only the active language's dictionary (issue 17)~~ ✅ session 6.
+2. ~~Fix share links (issue 18)~~ ✅ session 6.
+3. ~~Security headers + CSP (§43)~~ ✅ session 6.
 4. Measure Core Web Vitals; set a performance budget (§29, §64).
-5. Calculator → guide links (§15, §25). *(Homepage guides section done in the redesign.)*
-6. Pluralisation (issue 14), then translate de/fr/es, then hi/gu/mr/ar.
+5. ~~Calculator → guide links (§15, §25)~~ ✅ session 6.
+6. ~~Pluralisation (issue 14)~~ ✅ session 6. Then translate de/fr/es, then hi/gu/mr/ar.
 7. Missing calculators: compound interest, simple interest (logic already written), commission, revenue, brick, probability, scientific, fraction arithmetic, CGPA, cycling pace.
 8. Missing guides: CAGR, BMI, profit margin, what is EMI/CAGR/BMI.
 9. Missing tables: shoe/clothing sizes, calendar. Frequency converter. Study planner. Even/odd in factor-finder.
-10. Inline validation messages (§52); lazy-load below-fold ads (§34); searchable country selector (§59); WhatsApp/email share (§56); PDF/XLSX export (§55).
-11. Component and E2E tests (§67); SEO/accessibility checks in CI (§66).
+10. Inline validation messages (§52); lazy-load below-fold ads (§34); WhatsApp/email share (§56); PDF/XLSX export (§55). *(Searchable country selector done in session 6.)*
+11. ~~Component and E2E tests (§67); CI checks (§66)~~ - not wanted by the owner.
 12. GA4 + events — **update privacy and cookies pages first** (§36).
 
 **⏸ Deferred by design**

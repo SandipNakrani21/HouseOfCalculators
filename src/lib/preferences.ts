@@ -19,10 +19,12 @@ export type ConsentChoice = "granted" | "denied";
 function write(name: string, value: string): void {
   try {
     document.cookie = [
-      `${name}=${value}`,
+      `${name}=${encodeURIComponent(value)}`,
       "path=/",
       `max-age=${COOKIE_MAX_AGE}`,
       "samesite=lax",
+      // Sent only over HTTPS in production; plain-http localhost still works.
+      ...(window.location.protocol === "https:" ? ["secure"] : []),
     ].join("; ");
   } catch {
     // Cookies can be blocked; the site still works from the URL alone.

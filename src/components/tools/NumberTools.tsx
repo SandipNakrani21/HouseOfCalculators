@@ -60,7 +60,7 @@ export function PercentageTool() {
             type="button"
             aria-selected={mode === option}
             onClick={() => setMode(option)}
-            className={`rounded-lg border px-3 py-2 text-sm transition-colors ${
+            className={`rounded-sm border px-3 py-2 text-sm transition-colors ${
               mode === option
                 ? "border-primary bg-primary-soft font-medium text-primary"
                 : "border-border text-muted hover:border-border-strong"

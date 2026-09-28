@@ -9,7 +9,9 @@ import {
   ToolFields,
   ToolResult,
   inputClass,
+  selectClass,
 } from "@/components/tools/ToolShell";
+import { plural } from "@/lib/i18n/core";
 import { useLocale } from "@/lib/locale-context";
 import {
   flipCoins,
@@ -61,7 +63,7 @@ export function DiceRollerTool() {
               id={id}
               value={sides}
               onChange={(event) => setSides(Number(event.target.value))}
-              className={inputClass}
+              className={selectClass}
             >
               {DICE_SIDES.map((option) => (
                 <option key={option} value={option}>
@@ -76,7 +78,7 @@ export function DiceRollerTool() {
       <button
         type="button"
         onClick={() => setRolls(rollDice(count, sides))}
-        className="mt-4 w-full btn-primary px-4 py-2.5 text-sm font-medium text-primary-contrast sm:w-auto"
+        className="mt-4 w-full btn btn-primary btn-md sm:w-auto"
       >
         {t("tool.action.roll")}
       </button>
@@ -131,7 +133,7 @@ export function CoinFlipTool() {
       <button
         type="button"
         onClick={() => setResult(flipCoins(count))}
-        className="mt-4 w-full btn-primary px-4 py-2.5 text-sm font-medium text-primary-contrast sm:w-auto"
+        className="mt-4 w-full btn btn-primary btn-md sm:w-auto"
       >
         {t("tool.action.flip")}
       </button>
@@ -210,7 +212,7 @@ export function RandomPickerTool() {
             setOrder([]);
             setGroups([]);
           }}
-          className="btn-primary px-4 py-2.5 text-sm font-medium text-primary-contrast disabled:opacity-50"
+          className="btn btn-primary btn-md disabled:opacity-50"
         >
           {t("tool.action.pickOne")}
         </button>
@@ -222,7 +224,7 @@ export function RandomPickerTool() {
             setPicked(null);
             setGroups([]);
           }}
-          className="btn-secondary px-4 py-2.5 text-sm font-medium disabled:opacity-50"
+          className="btn btn-outline btn-md disabled:opacity-50"
         >
           {t("tool.action.shuffle")}
         </button>
@@ -234,7 +236,7 @@ export function RandomPickerTool() {
             setPicked(null);
             setOrder([]);
           }}
-          className="btn-secondary px-4 py-2.5 text-sm font-medium disabled:opacity-50"
+          className="btn btn-outline btn-md disabled:opacity-50"
         >
           {t("tool.action.makeTeams")}
         </button>
@@ -281,7 +283,7 @@ export function RandomPickerTool() {
       ) : null}
 
       <p className="mt-4 text-xs text-muted">
-        {t("tool.hint.entryCount", { count: fmt.number(entries.length) })}
+        {plural(t, fmt.locale, "tool.hint.entryCount", entries.length, { display: fmt.number(entries.length) })}
       </p>
     </ToolCard>
   );

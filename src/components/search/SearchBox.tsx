@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useId, useMemo, useRef, useState } from "react";
 
-import { IconTile } from "@/components/shared/Icon";
+import { IconTile } from "@/components/ui/Icon";
 import type { CalcContext } from "@/config/calculators/types";
 import { SECTIONS, sectionKey, type Section } from "@/config/categories";
 import { useLocale } from "@/lib/locale-context";
@@ -78,9 +78,10 @@ export function SearchBox({
   };
 
   const inputClass = {
-    compact: "rounded-xl py-2 ps-9 pe-3 text-sm",
-    default: "rounded-xl py-3 ps-11 pe-4 text-base",
-    hero: "rounded-2xl py-4 ps-12 pe-32 text-[15px] sm:pe-36",
+    compact: "rounded-sm py-2.5 ps-9 pe-3 text-sm",
+    default: "rounded-sm py-3.5 ps-11 pe-4 text-base",
+    // Room for the button: icon-only on phones, labelled from sm up.
+    hero: "rounded-md py-4 ps-12 pe-16 text-base sm:py-5 sm:ps-14 sm:pe-40 sm:text-lg lg:py-6 lg:text-xl",
   }[size];
 
   return (
@@ -96,11 +97,12 @@ export function SearchBox({
         <Search
           aria-hidden
           className={`pointer-events-none absolute top-1/2 -translate-y-1/2 text-muted ${
-            size === "compact" ? "start-3 h-4 w-4" : "start-4 h-5 w-5"
+            size === "compact" ? "start-3 h-4 w-4" : size === "hero" ? "start-4 h-5 w-5 sm:start-5" : "start-4 h-5 w-5"
           }`}
         />
         <input
           type="search"
+          maxLength={100}
           value={query}
           autoFocus={autoFocus}
           onChange={(event) => {
@@ -140,10 +142,11 @@ export function SearchBox({
         {size === "hero" ? (
           <button
             type="submit"
-            className="btn-primary absolute end-2 top-1/2 -translate-y-1/2 px-4 py-2.5 text-sm sm:px-5"
+            aria-label={t("common.search")}
+            className="btn btn-primary btn-md absolute end-2 top-1/2 -translate-y-1/2 max-sm:w-11 max-sm:px-0 sm:end-2.5 sm:h-12 sm:px-6 sm:text-base lg:h-14 lg:px-8 lg:text-lg"
           >
             <Search aria-hidden className="h-4 w-4" />
-            {t("common.search")}
+            <span className="max-sm:sr-only">{t("common.search")}</span>
           </button>
         ) : null}
       </form>
@@ -152,7 +155,7 @@ export function SearchBox({
         <div
           id={listId}
           role="listbox"
-          className="animate-pop absolute z-50 mt-2 max-h-[70vh] w-full min-w-72 origin-top overflow-y-auto rounded-2xl border border-border bg-surface p-2 shadow-[var(--shadow-lift)]"
+          className="animate-pop absolute z-50 mt-2 max-h-[70vh] w-full min-w-72 origin-top overflow-y-auto rounded-lg border border-border bg-surface p-2 shadow-[var(--shadow-lift)]"
           onPointerDown={() => {
             if (blurTimer.current) clearTimeout(blurTimer.current);
           }}
@@ -164,7 +167,7 @@ export function SearchBox({
           ) : (
             grouped.map(([section, sectionResults]) => (
               <section key={section} className="mb-1 last:mb-0">
-                <h3 className="px-3 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wider text-muted">
+                <h3 className="px-3 pb-1 pt-2 text-[0.6875rem] font-semibold uppercase tracking-wider text-muted">
                   {t(sectionKey(section))}
                 </h3>
                 <ul>
@@ -184,7 +187,7 @@ export function SearchBox({
                             setQuery("");
                             onNavigate?.();
                           }}
-                          className={`flex items-center gap-3 rounded-xl px-3 py-2 transition-colors ${
+                          className={`flex items-center gap-3 rounded-md px-3 py-2 transition-colors ${
                             highlighted ? "bg-primary-soft" : "hover:bg-surface-muted"
                           }`}
                         >

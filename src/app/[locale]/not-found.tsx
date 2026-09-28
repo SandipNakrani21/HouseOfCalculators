@@ -1,26 +1,27 @@
-import Link from "next/link";
+"use client";
+
+import { ArrowRight, SearchX } from "lucide-react";
+
+import { ButtonLink } from "@/components/ui/Button";
+import { useLocale } from "@/lib/locale-context";
 
 /**
- * Locale-scoped 404. It cannot read params, so the copy is English; the links
- * go to the site root and let the proxy send the visitor to their own locale.
+ * Locale-scoped 404. It cannot read params, but it renders inside the locale
+ * layout, so the page's own dictionary is available through `useLocale` and
+ * the copy is in the visitor's language. The link goes to that locale's home.
  */
 export default function NotFound() {
+  const { t, base } = useLocale();
   return (
-    <div className="mx-auto max-w-xl px-4 py-24 text-center sm:px-6">
-      <p className="text-5xl" aria-hidden>
-        🔍
-      </p>
-      <h1 className="mt-4 text-xl font-semibold">We couldn&apos;t find that page</h1>
-      <p className="mt-2 text-sm text-muted">
-        The page you&apos;re looking for may have moved, or isn&apos;t offered in
-        this country.
-      </p>
-      <Link
-        href="/"
-        className="mt-6 inline-block btn-primary px-4 py-2.5 text-sm font-medium text-primary-contrast hover:bg-primary-hover"
-      >
-        Go to the home page
-      </Link>
+    <div className="container-prose py-24 text-center">
+      <span aria-hidden className="tile tone-blue animate-pop mx-auto h-20 w-20 rounded-full">
+        <SearchX className="h-9 w-9" />
+      </span>
+      <h1 className="animate-rise mt-6 text-h1">{t("error.notFound")}</h1>
+      <p className="animate-fade-up mx-auto mt-3 max-w-md text-muted">{t("error.notFoundBody")}</p>
+      <ButtonLink href={base} variant="primary" size="lg" iconEnd={<ArrowRight />} className="mt-8">
+        {t("nav.home")}
+      </ButtonLink>
     </div>
   );
 }

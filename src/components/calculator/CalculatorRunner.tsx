@@ -1,13 +1,14 @@
 "use client";
 
-import { RotateCcw } from "lucide-react";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 
 import { BreakdownPanel } from "@/components/calculator/BreakdownPanel";
 import { ResultActions } from "@/components/calculator/ResultActions";
 import { FieldControl, visibleFields } from "@/components/calculator/FieldControl";
 import { DonutChart } from "@/components/charts/DonutChart";
+import { FactList, ResultBox } from "@/components/ui/Form";
 import { CountrySelector } from "@/components/navigation/CountrySelector";
+import { CountryBadge } from "@/components/ui/CountryBadge";
 import { getCalculator } from "@/config/calculators";
 import { countryRelevanceOf } from "@/config/calculators/types";
 import type {
@@ -19,7 +20,9 @@ import type {
 } from "@/config/calculators/types";
 import { COUNTRIES, type CountryCode } from "@/config/countries";
 import { createFormatter } from "@/lib/format";
+import { plural } from "@/lib/i18n/core";
 import { useLocale } from "@/lib/locale-context";
+import { readShareQuery } from "@/lib/share-link";
 
 const TONE_VAR: Record<NonNullable<ResultRow["tone"]>, string> = {
   principal: "var(--tone-principal)",
@@ -50,6 +53,7 @@ export function CalculatorRunner({
     t: translate,
     fmt: preferredFmt,
     countryCode: preferredCountry,
+    setCountry,
     locale,
   } = useLocale();
   const calculator = getCalculator(slug);
@@ -61,9 +65,9 @@ export function CalculatorRunner({
   const localeFmt = useMemo(
     () =>
       lockedCountry
-        ? createFormatter(lockedCountry, locale.language)
+        ? createFormatter(lockedCountry, locale.language, translate)
         : preferredFmt,
-    [lockedCountry, locale.language, preferredFmt],
+    [lockedCountry, locale.language, translate, preferredFmt],
   );
 
   const ctx = useMemo<CalcContext>(
@@ -93,6 +97,36 @@ export function CalculatorRunner({
     setValues(initial);
   }
 
+  // A share link: the sender's inputs, and the country they calculated for.
+  // Read after hydration (the page is static, so the server sees no query);
+  // the defaults paint first and the shared values replace them at once.
+  const search = useSyncExternalStore(subscribeNever, readSearch, readNoSearch);
+  const shared = useMemo(() => readShareQuery(search, fields), [search, fields]);
+  const sharedCountry =
+    shared?.country &&
+    !lockedCountry &&
+    calculator && countryRelevanceOf(calculator) !== "none" &&
+    (!allowedCountries || allowedCountries.includes(shared.country))
+      ? shared.country
+      : null;
+
+  // Switch to the link's country once. Never again: the visitor may change
+  // it afterwards, and the link must not keep pulling it back.
+  const countrySwitched = useRef(false);
+  useEffect(() => {
+    if (!sharedCountry || countrySwitched.current) return;
+    countrySwitched.current = true;
+    if (sharedCountry !== countryCode) setCountry(sharedCountry);
+  }, [sharedCountry, countryCode, setCountry]);
+
+  // Then the values, once the fields are that country's. After the reset
+  // above, so a country switch in the same render does not wipe them.
+  const [restored, setRestored] = useState(false);
+  if (!restored && shared && (!sharedCountry || sharedCountry === countryCode)) {
+    setRestored(true);
+    setValues({ ...initial, ...shared.values });
+  }
+
   const shown = visibleFields(fields, values);
   const result = useMemo(
     () => calculator?.compute(values, ctx),
@@ -109,7 +143,10 @@ export function CalculatorRunner({
         case "percent":
           return fmt.percent(value, { decimals: decimals ?? 2 });
         case "years":
-          return `${fmt.number(value, { decimals })} ${t("units.years")}`;
+          return plural(t, fmt.locale, "units.yearsCount", value, {
+            display: fmt.number(value, { decimals }),
+            decimals,
+          });
         default:
           return fmt.number(value, { decimals });
       }
@@ -124,7 +161,7 @@ export function CalculatorRunner({
 
   return (
     <div className="space-y-6">
-      <section className="card animate-fade-up p-5 sm:p-8">
+      <section className="card animate-fade-up @container p-5 sm:p-8">
         {lockedCountry || countryRelevanceOf(calculator) === "none" ? null : (
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-5">
             <div>
@@ -140,8 +177,17 @@ export function CalculatorRunner({
           </div>
         )}
 
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_260px]">
-          <div className="space-y-7">
+        {/* Inputs left, results right once the card is wide enough; stacked
+            below that. A container query, so it adapts to the column the card
+            sits in (narrower beside an ad rail) rather than the window. */}
+        <div
+          className={
+            calculator.splitEarly
+              ? "grid gap-8 @xl:grid-cols-2 @xl:gap-8 @3xl:gap-10"
+              : "grid gap-8 @2xl:grid-cols-2 @2xl:gap-10"
+          }
+        >
+          <div className="space-y-9">
             <h2 className="sr-only">{t("calc.inputs")}</h2>
             {shown.map((field) => (
               <FieldControl
@@ -156,117 +202,90 @@ export function CalculatorRunner({
               />
             ))}
 
-            <button
-              type="button"
-              onClick={() => setValues(initial)}
-              className="group inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm font-semibold text-primary transition-colors hover:bg-primary-soft"
-            >
-              <RotateCcw aria-hidden className="h-3.5 w-3.5 transition-transform duration-500 group-hover:-rotate-180" />
-              {t("common.reset")}
-            </button>
+            <ResultActions
+              title={t(calculator.titleKey)}
+              values={values}
+              result={result}
+              format={format}
+              t={t}
+              country={lockedCountry || countryRelevanceOf(calculator) === "none" ? undefined : countryCode}
+              onReset={() => setValues(initial)}
+            />
           </div>
 
-          {result.chart?.length ? (
-            <div className="flex items-start justify-center lg:border-s lg:border-border lg:ps-8">
-              <DonutChart
-                slices={result.chart}
-                params={params}
-                fmt={fmt}
-                centerLabel={t(result.primary.labelKey)}
-                // Money is abbreviated so a long figure fits inside the ring.
-                // Anything else is formatted normally: rendering a 40% margin
-                // through the currency formatter produced "$40".
-                centerValue={
-                  result.primary.kind === "currency" &&
-                  typeof result.primary.value === "number"
-                    ? fmt.currencyShort(result.primary.value)
-                    : format(
-                        result.primary.value,
-                        result.primary.kind,
-                        result.primary.decimals,
-                      )
-                }
-              />
-            </div>
-          ) : null}
-        </div>
-
-        {/* The headline answer, announced to assistive technology when it changes. */}
-        <div
-          aria-live="polite"
-          className="relative mt-8 overflow-hidden rounded-2xl bg-gradient-to-br from-[#1d4ed8] via-[#2563eb] to-[#3b82f6] px-5 py-6 text-center text-white shadow-[var(--shadow-primary)]"
-        >
-          {/* Decorative rings, as on the landing page's call to action. */}
-          <span aria-hidden className="absolute -end-8 -top-10 h-32 w-32 rounded-full border-[18px] border-white/10" />
-          <span aria-hidden className="absolute -bottom-12 -start-6 h-28 w-28 rounded-full bg-white/10 blur-xl" />
-          <p className="relative text-sm font-semibold text-blue-100">
-            {t(result.primary.labelKey)}
-          </p>
-          {/* Keyed on the value so each new answer replays the flash. */}
-          <p
-            key={String(result.primary.value)}
-            className="value-flash tabular relative mt-1 text-3xl font-extrabold tracking-tight sm:text-4xl"
+          <div
+            className={`min-w-0 space-y-4 ${
+              calculator.splitEarly
+                ? "@xl:border-s @xl:border-border @xl:ps-8 @3xl:ps-10"
+                : "@2xl:border-s @2xl:border-border @2xl:ps-10"
+            }`}
           >
-            {format(result.primary.value, result.primary.kind, result.primary.decimals)}
-          </p>
+            <h2 className="sr-only">{t("calc.results")}</h2>
+            {/* The headline answer, announced to assistive technology when it changes. */}
+            <ResultBox
+              label={t(result.primary.labelKey)}
+              value={format(result.primary.value, result.primary.kind, result.primary.decimals)}
+            />
+
+            {emphasisRows.length ? (
+              <ul className="grid gap-3 sm:grid-cols-2">
+                {emphasisRows.map((row) => (
+                  <li
+                    key={row.labelKey}
+                    className="rounded-md border border-border bg-bg-soft px-4 py-3 transition-colors hover:border-primary/30"
+                  >
+                    <p className="text-xs font-medium text-muted">{t(row.labelKey)}</p>
+                    <p className="tabular mt-0.5 text-lg font-bold text-heading">
+                      {format(row.value, row.kind, row.decimals)}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
+            {result.chart?.length ? (
+              <div className="flex justify-center py-2">
+                <DonutChart
+                  slices={result.chart}
+                  params={params}
+                  fmt={fmt}
+                  centerLabel={t(result.primary.labelKey)}
+                  // Money is abbreviated so a long figure fits inside the ring.
+                  // Anything else is formatted normally: rendering a 40% margin
+                  // through the currency formatter produced "$40".
+                  centerValue={
+                    result.primary.kind === "currency" &&
+                    typeof result.primary.value === "number"
+                      ? fmt.currencyShort(result.primary.value)
+                      : format(
+                          result.primary.value,
+                          result.primary.kind,
+                          result.primary.decimals,
+                        )
+                  }
+                />
+              </div>
+            ) : null}
+
+            <FactList
+              items={summaryRows.map((row) => ({
+                label: t(row.labelKey),
+                value: format(row.value, row.kind, row.decimals),
+                marker: row.tone ? TONE_VAR[row.tone] : undefined,
+              }))}
+            />
+
+            {result.notes?.length ? (
+              <ul className="space-y-1.5">
+                {result.notes.map((note) => (
+                  <li key={note.key} className="text-xs leading-relaxed text-muted">
+                    {t(note.key, note.params)}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
         </div>
-
-        {emphasisRows.length ? (
-          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-            {emphasisRows.map((row) => (
-              <li
-                key={row.labelKey}
-                className="rounded-xl border border-border bg-surface-muted px-4 py-3 transition-colors hover:border-primary/30"
-              >
-                <p className="text-xs font-medium text-muted">{t(row.labelKey)}</p>
-                <p className="tabular mt-0.5 text-lg font-bold text-heading">
-                  {format(row.value, row.kind, row.decimals)}
-                </p>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-
-        <dl className="mt-6 divide-y divide-border border-t border-border">
-          {summaryRows.map((row) => (
-            <div
-              key={row.labelKey}
-              className="flex items-center justify-between gap-4 py-3"
-            >
-              <dt className="flex items-center gap-2 text-sm text-muted">
-                {row.tone ? (
-                  <span
-                    aria-hidden
-                    className="h-2.5 w-2.5 shrink-0 rounded-full"
-                    style={{ background: TONE_VAR[row.tone] }}
-                  />
-                ) : null}
-                {t(row.labelKey)}
-              </dt>
-              <dd className="tabular text-end text-sm font-bold text-heading">
-                {format(row.value, row.kind, row.decimals)}
-              </dd>
-            </div>
-          ))}
-        </dl>
-
-        {result.notes?.length ? (
-          <ul className="mt-4 space-y-1.5">
-            {result.notes.map((note) => (
-              <li key={note.key} className="text-xs leading-relaxed text-muted">
-                {t(note.key, note.params)}
-              </li>
-            ))}
-          </ul>
-        ) : null}
-
-        <ResultActions
-          title={t(calculator.titleKey)}
-          values={values}
-          result={result}
-          format={format}
-          t={t}
-        />
       </section>
 
       {result.table?.rows.length ? (
@@ -290,6 +309,37 @@ export function CalculatorRunner({
     </div>
   );
 }
+
+/**
+ * The line under the page title saying what the country changes here. It
+ * follows the country picked in the calculator (or the tool's fixed one), so
+ * it never says "USD" above a rupee result. The server renders the page's
+ * default country; the visitor's choice replaces it after hydration.
+ */
+export function CalculatorCountryNote({
+  relevance,
+  lockedCountry,
+}: {
+  relevance: Exclude<ReturnType<typeof countryRelevanceOf>, "none">;
+  lockedCountry?: CountryCode;
+}) {
+  const { t, countryCode: preferred } = useLocale();
+  const code = lockedCountry ?? preferred;
+  return (
+    <p className="badge badge-outline badge-md mt-4 !font-medium !text-muted">
+      <CountryBadge code={code} />
+      {t(`calc.countryNote.${relevance}`, {
+        country: t(`country.${code}`),
+        year: COUNTRIES[code].fiscalYear.label,
+        currency: COUNTRIES[code].currency.code,
+      })}
+    </p>
+  );
+}
+
+const subscribeNever = () => () => {};
+const readSearch = () => window.location.search;
+const readNoSearch = () => "";
 
 function defaultsOf(fields: ReturnType<CalculatorDef["fields"]>): FieldValues {
   return Object.fromEntries(fields.map((field) => [field.id, field.default]));

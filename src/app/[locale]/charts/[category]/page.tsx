@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/shared/PageHeader";
+import { ListingPage } from "@/components/layout/ListingPage";
 import { categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
-import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
-import { CardGrid, ContentCard } from "@/components/shared/ContentCard";
 import {
   CHART_CATEGORIES,
   categoryKey,
@@ -40,7 +38,7 @@ export async function generateMetadata({
   const resolved = resolve(category);
   if (!locale || !resolved) return {};
 
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   const name = t(categoryKey("charts", resolved));
   return buildMetadata({
     locale: locale.code,
@@ -60,40 +58,34 @@ export default async function ChartCategoryPage({
   const resolved = resolve(category);
   if (!locale || !resolved) notFound();
 
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   const code = locale.code;
   const name = t(categoryKey("charts", resolved));
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
-      <Breadcrumbs
-        label={t("a11y.breadcrumb")}
-        trail={[
-          { name: t("nav.home"), path: localeHome(code) },
-          { name: t("section.charts"), path: sectionPath(code, "charts") },
-          { name, path: categoryPath(code, "charts", resolved) },
-        ]}
-      />
-
-      <PageHeader
-        visual={categoryVisual("charts", resolved)}
-        eyebrow={t("section.charts")}
-        title={t("charts.category.title", { category: name })}
-        description={t(`category.charts.${resolved}.intro`)}
-      />
-
-      <CardGrid>
-        {chartsIn(resolved).map((chart) => (
-          <li key={chart.slug}>
-            <ContentCard
-              href={contentPath(code, "charts", resolved, chart.slug)}
-              visual={itemVisual("charts", resolved, chart.slug)}
-              title={t(chart.titleKey)}
-              description={t(chart.descKey)}
-            />
-          </li>
-        ))}
-      </CardGrid>
-    </div>
+    <ListingPage
+      locale={code}
+      breadcrumbLabel={t("a11y.breadcrumb")}
+      loadMoreLabel={t("common.loadMore")}
+      trail={[
+        { name: t("nav.home"), path: localeHome(code) },
+        { name: t("section.charts"), path: sectionPath(code, "charts") },
+        { name, path: categoryPath(code, "charts", resolved) },
+      ]}
+      header={{
+        visual: categoryVisual("charts", resolved),
+        eyebrow: t("section.charts"),
+        title: t("charts.category.title", { category: name }),
+        description: t(`category.charts.${resolved}.intro`),
+      }}
+      items={chartsIn(resolved).map((item) => ({
+        key: item.slug,
+        href: contentPath(code, "charts", resolved, item.slug),
+        visual: itemVisual("charts", resolved, item.slug),
+        title: t(item.titleKey),
+        description: t(item.descKey),
+      }))}
+      adSlot="charts-category-bottom"
+    />
   );
 }

@@ -326,7 +326,26 @@ export const personalLoanCalculator: CalculatorDef = {
   compute: (values) =>
     loanResult(num(values, "principal"), num(values, "rate"), num(values, "years")),
   explainerKeys: ["calc.loan.explain"],
-  faqKeys: ["calc.loan.faq.1", "calc.loan.faq.2"],
+  // What emi() computes; a zero rate falls back to amount ÷ months.
+  formula: {
+    expression: "P = A × i × (1 + i)ⁿ ÷ ((1 + i)ⁿ − 1)",
+    variables: [
+      { symbol: "P", key: "guide.loan-payment.var.payment" },
+      { symbol: "A", key: "guide.loan-payment.var.amount" },
+      { symbol: "i", key: "guide.loan-payment.var.rate" },
+      { symbol: "n", key: "guide.loan-payment.var.periods" },
+    ],
+  },
+  faqKeys: [
+    "calc.loan.faq.3",
+    "calc.loan.faq.4",
+    "calc.loan.faq.5",
+    "calc.loan.faq.6",
+    "calc.loan.faq.1",
+    "calc.loan.faq.2",
+  ],
+  relatedCalculators: ["mortgage", "auto-loan", "income-tax", "salary", "vat", "retirement"],
+  splitEarly: true,
 };
 
 export const studentLoanCalculator: CalculatorDef = {

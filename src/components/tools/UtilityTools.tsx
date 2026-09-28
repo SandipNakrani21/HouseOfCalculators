@@ -10,6 +10,8 @@ import {
   ToolResult,
   inputClass,
 } from "@/components/tools/ToolShell";
+import type { Formatter } from "@/lib/format";
+import { plural, type TranslateFn } from "@/lib/i18n/core";
 import { useLocale } from "@/lib/locale-context";
 import { debtPayoff, depositForGoal, savingsGoal } from "@/lib/tools/planning";
 import { randomInt } from "@/lib/tools/random";
@@ -93,7 +95,7 @@ export function RandomNumberTool() {
         type="button"
         onClick={draw}
         disabled={impossible}
-        className="mt-5 w-full btn-primary px-4 py-3 text-sm font-semibold text-primary-contrast transition-colors hover:bg-primary-hover disabled:opacity-50 sm:w-auto"
+        className="mt-5 w-full btn btn-primary btn-lg disabled:opacity-50 sm:w-auto"
       >
         {t("tool.action.generate")}
       </button>
@@ -202,7 +204,7 @@ export function PasswordGeneratorTool() {
         <button
           type="button"
           onClick={generate}
-          className="btn-primary px-4 py-3 text-sm font-semibold text-primary-contrast transition-colors hover:bg-primary-hover"
+          className="btn btn-primary btn-lg"
         >
           {t("tool.action.generate")}
         </button>
@@ -210,7 +212,7 @@ export function PasswordGeneratorTool() {
           type="button"
           onClick={copy}
           disabled={!password}
-          className="rounded-lg border border-border px-4 py-3 text-sm font-medium transition-colors hover:bg-surface-muted disabled:opacity-40"
+          className="rounded-sm border border-border px-4 py-3 text-sm font-medium transition-colors hover:bg-surface-muted disabled:opacity-40"
         >
           {copied ? t("common.copied") : t("common.copyLink")}
         </button>
@@ -287,10 +289,7 @@ export function SavingsGoalTool() {
         label={t("tool.result.timeToGoal")}
         value={
           result.reachable
-            ? t("tool.result.monthsValue", {
-                months: result.months,
-                years: fmt.number(result.months / 12, { decimals: 1 }),
-              })
+            ? t("tool.result.monthsValue", monthsParams(t, fmt, result.months))
             : t("tool.result.notReachable")
         }
         tone={result.reachable ? "primary" : "warning"}
@@ -301,7 +300,9 @@ export function SavingsGoalTool() {
           { label: t("tool.result.totalDeposited"), value: fmt.currency(result.totalDeposited) },
           { label: t("tool.result.interestEarned"), value: fmt.currency(result.interest) },
           {
-            label: t("tool.result.depositNeeded", { months: byMonths }),
+            label: t("tool.result.depositNeeded", {
+              months: plural(t, fmt.locale, "tool.duration.months", byMonths, { display: fmt.number(byMonths) }),
+            }),
             value: fmt.currency(needed),
           },
         ]}
@@ -349,10 +350,7 @@ export function DebtPayoffTool() {
         value={
           result.neverClears
             ? t("tool.result.neverClears")
-            : t("tool.result.monthsValue", {
-                months: result.months,
-                years: fmt.number(result.months / 12, { decimals: 1 }),
-              })
+            : t("tool.result.monthsValue", monthsParams(t, fmt, result.months))
         }
         tone={result.neverClears ? "warning" : "primary"}
         detail={result.neverClears ? t("tool.result.neverClearsDetail") : undefined}
@@ -375,4 +373,16 @@ export function DebtPayoffTool() {
       )}
     </ToolCard>
   );
+}
+
+/** "18 months" and "1.5 years", each in its plural form. */
+function monthsParams(t: TranslateFn, fmt: Formatter, months: number): Record<string, string> {
+  const years = Math.round((months / 12) * 10) / 10;
+  return {
+    months: plural(t, fmt.locale, "tool.duration.months", months, { display: fmt.number(months) }),
+    years: plural(t, fmt.locale, "tool.duration.years", years, {
+      display: fmt.number(years, { decimals: 1 }),
+      decimals: 1,
+    }),
+  };
 }

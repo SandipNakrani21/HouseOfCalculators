@@ -48,10 +48,13 @@ export function LogoMark({
 export function Logo({
   name,
   onDark = false,
+  large = false,
   className = "",
 }: {
   name: string;
   onDark?: boolean;
+  /** The header's bigger lock-up. */
+  large?: boolean;
   className?: string;
 }) {
   // "House of Calculators" splits into two lines at the last word, which is
@@ -61,11 +64,11 @@ export function Logo({
   const tail = split > 0 ? name.slice(split + 1) : "";
 
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <LogoMark onDark={onDark} />
+    <span className={`inline-flex items-center gap-2 sm:gap-2.5 ${className}`}>
+      <LogoMark onDark={onDark} className={large ? "h-11 w-11 sm:h-14 sm:w-14" : undefined} />
       <span className="flex flex-col leading-[1.05]">
         <span
-          className={`text-[15px] font-extrabold tracking-tight ${
+          className={`${large ? "text-[0.875rem] sm:text-[1.0625rem]" : "text-[0.8125rem] sm:text-[0.9375rem]"} font-extrabold tracking-tight ${
             onDark ? "text-white" : "text-heading"
           }`}
         >
@@ -73,7 +76,7 @@ export function Logo({
         </span>
         {tail ? (
           <span
-            className={`text-[17px] font-extrabold tracking-tight ${
+            className={`${large ? "text-[1rem] sm:text-[1.25rem]" : "text-[0.9375rem] sm:text-[1.0625rem]"} font-extrabold tracking-tight ${
               onDark ? "text-sky-300" : "text-primary"
             }`}
           >

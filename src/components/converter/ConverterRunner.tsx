@@ -12,6 +12,8 @@ import {
   findUnit,
   unitRatio,
 } from "@/config/converters/units";
+import { ActionBar } from "@/components/ui/ActionBar";
+import { downloadCsv } from "@/lib/csv";
 import { useLocale } from "@/lib/locale-context";
 
 /**
@@ -61,17 +63,29 @@ export function ConverterRunner({
   const show = (input: number) =>
     fmt.number(input, { decimals: trimDecimals(input, decimals) });
 
-  const selectClass =
-    "w-full cursor-pointer rounded-xl border border-border bg-surface px-3.5 py-2.5 text-sm font-medium text-heading outline-none transition-all hover:border-primary/40 focus:border-primary focus:ring-4 focus:ring-[var(--ring)] disabled:cursor-default disabled:opacity-80";
+  const selectClass = "select font-medium disabled:cursor-default disabled:opacity-80";
+
+  const reset = () => {
+    setValue(1);
+    setFrom(initialFrom ?? definition.defaultPair[0]);
+    setTo(initialTo ?? definition.defaultPair[1]);
+  };
+
+  /** The conversion table below, as a spreadsheet. */
+  const exportCsv = () =>
+    downloadCsv(`${fromUnit.symbol}-to-${toUnit.symbol}`, [
+      [`${t(fromUnit.labelKey)} (${fromUnit.symbol})`, `${t(toUnit.labelKey)} (${toUnit.symbol})`],
+      ...TABLE_STEPS.map((step) => [fmt.number(step), show(convert(definition, step, from, to))]),
+    ]);
 
   return (
     <div className="space-y-6">
       <section className="card animate-fade-up p-5 sm:p-7">
-        <div className="grid gap-4 sm:grid-cols-[1fr_auto_1fr] sm:items-end">
+        <div className="grid gap-5 sm:grid-cols-[1fr_auto_1fr] sm:items-end">
           <div className="space-y-2">
             <label
               htmlFor="converter-value"
-              className="block text-sm font-medium"
+              className="field-label"
             >
               {t("conv.from")}
             </label>
@@ -81,7 +95,7 @@ export function ConverterRunner({
               inputMode="decimal"
               value={Number.isFinite(value) ? value : ""}
               onChange={(event) => setValue(Number(event.target.value))}
-              className="tabular w-full rounded-xl border border-border bg-surface px-4 py-3 text-xl font-bold text-heading outline-none transition-all focus:border-primary focus:ring-4 focus:ring-[var(--ring)]"
+              className="input tabular !px-4 !py-3 !text-xl font-bold"
             />
             <select
               aria-label={t("conv.fromUnit")}
@@ -107,17 +121,17 @@ export function ConverterRunner({
                 setFrom(to);
                 setTo(from);
               }}
-              className="btn-primary group h-11 w-11 !rounded-full disabled:pointer-events-none disabled:opacity-40 disabled:shadow-none"
+              className="btn btn-primary btn-md btn-square disabled:opacity-40 disabled:shadow-none"
             >
               <ArrowLeftRight aria-hidden className="h-5 w-5 transition-transform duration-500 group-hover:rotate-180" />
             </button>
           </div>
 
           <div className="space-y-2">
-            <span className="block text-sm font-medium">{t("conv.to")}</span>
+            <span className="field-label">{t("conv.to")}</span>
             <output
               aria-live="polite"
-              className="tabular block overflow-hidden rounded-xl bg-gradient-to-br from-[#1d4ed8] to-[#3b82f6] px-4 py-3 text-xl font-extrabold text-white shadow-[var(--shadow-primary)]"
+              className="tabular block overflow-hidden rounded-md bg-gradient-result px-4 py-3 text-xl font-extrabold text-white shadow-primary"
             >
               <span key={show(result)} className="value-flash block truncate">
                 {show(result)}
@@ -145,6 +159,8 @@ export function ConverterRunner({
             to: `${show(ratio)} ${toUnit.symbol}`,
           })}
         </p>
+
+        <ActionBar className="mt-7" onReset={reset} onDownloadCsv={exportCsv} />
       </section>
 
       {/* Quick reference table: the thing people scan rather than type into. */}
@@ -156,22 +172,22 @@ export function ConverterRunner({
           })}
         </h2>
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="data-table">
             <thead>
-              <tr className="border-b border-border text-xs uppercase tracking-wide text-muted">
-                <th scope="col" className="py-2 text-start font-medium">
+              <tr>
+                <th scope="col">
                   {t(fromUnit.labelKey)} ({fromUnit.symbol})
                 </th>
-                <th scope="col" className="py-2 text-start font-medium">
+                <th scope="col">
                   {t(toUnit.labelKey)} ({toUnit.symbol})
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border">
+            <tbody>
               {TABLE_STEPS.map((step) => (
                 <tr key={step}>
-                  <td className="tabular py-2.5">{fmt.number(step)}</td>
-                  <td className="tabular py-2.5 font-medium">
+                  <td className="tabular">{fmt.number(step)}</td>
+                  <td className="tabular font-medium">
                     {show(convert(definition, step, from, to))}
                   </td>
                 </tr>

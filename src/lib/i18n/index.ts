@@ -1,5 +1,9 @@
-import { LANGUAGES, LANGUAGE_CODES, type LanguageCode } from "@/config/languages";
+import "server-only";
 
+import { LANGUAGE_CODES, type LanguageCode } from "@/config/languages";
+import type { LocaleCode } from "@/config/locales";
+
+import { translate, type Dictionary, type TranslateFn } from "./core";
 import ar from "./dictionaries/ar.json";
 import de from "./dictionaries/de.json";
 import en from "./dictionaries/en.json";
@@ -7,9 +11,25 @@ import es from "./dictionaries/es.json";
 import fr from "./dictionaries/fr.json";
 import gu from "./dictionaries/gu.json";
 import hi from "./dictionaries/hi.json";
+import it from "./dictionaries/it.json";
+import ja from "./dictionaries/ja.json";
 import mr from "./dictionaries/mr.json";
+import nl from "./dictionaries/nl.json";
+import pt from "./dictionaries/pt.json";
+import ru from "./dictionaries/ru.json";
+import tr from "./dictionaries/tr.json";
+import zh from "./dictionaries/zh.json";
+import enGB from "./dictionaries/regional/en-GB.json";
+import enUS from "./dictionaries/regional/en-US.json";
 
-export type Dictionary = Record<string, string>;
+export * from "./core";
+
+/**
+ * SERVER-ONLY. This module bundles every language's dictionary, so importing
+ * it (even indirectly) from a client component ships all of them to every
+ * page. Client code imports `@/lib/i18n/core` and receives the active
+ * dictionary through `LocaleProvider`.
+ */
 
 /**
  * English is the source of truth; other languages fall back to it key by key.
@@ -26,71 +46,73 @@ const RAW: Partial<Record<LanguageCode, Dictionary>> = {
   ar,
   de,
   fr,
+  pt,
+  it,
+  nl,
+  ru,
+  tr,
+  ja,
+  zh,
 };
 
+/**
+ * Each language over English, minus the English `*.plural` unit names the
+ * language does not define itself: `unitName` then uses the language's own
+ * singular rather than an English plural in the middle of a German sentence.
+ */
 const MERGED = LANGUAGE_CODES.reduce(
   (all, code) => {
-    all[code] = { ...en, ...(RAW[code] ?? {}) };
+    const own = RAW[code] ?? {};
+    const merged: Dictionary = { ...en, ...own };
+    if (code !== "en") {
+      for (const key of Object.keys(en)) {
+        if (key.endsWith(".plural") && !(key in own)) delete merged[key];
+      }
+    }
+    all[code] = merged;
     return all;
   },
   {} as Record<LanguageCode, Dictionary>,
 );
 
-export function getDictionary(lang: LanguageCode): Dictionary {
-  return MERGED[lang] ?? MERGED.en;
-}
-
 /**
- * Looks up `key` and fills `{placeholder}` slots from `params`.
- * An unknown key returns the key itself, which makes gaps obvious in the UI
- * rather than rendering an empty string.
- */
-export function translate(
-  dict: Dictionary,
-  key: string,
-  params?: Record<string, string | number>,
-): string {
-  const template = dict[key] ?? key;
-  if (!params) return template;
-  return template.replace(/\{(\w+)\}/g, (match, name: string) =>
-    name in params ? String(params[name]) : match,
-  );
-}
-
-export type TranslateFn = (
-  key: string,
-  params?: Record<string, string | number>,
-) => string;
-
-export function createTranslator(lang: LanguageCode): TranslateFn {
-  const dict = getDictionary(lang);
-  return (key, params) => translate(dict, key, params);
-}
-
-export function directionOf(lang: LanguageCode): "ltr" | "rtl" {
-  return LANGUAGES[lang]?.dir ?? "ltr";
-}
-
-/**
- * Country name in the forms a sentence might need.
+ * Regional wording on top of a language: the same English, spelt and worded
+ * for its market. en-US reads "Meters", "Amortization" and "installment";
+ * en-GB reads "Maths". Only keys that differ are listed, and they apply to
+ * that locale's pages alone - titles, descriptions, headings, FAQs and
+ * structured data all come from the same dictionary, so search and answer
+ * engines see each market's own spelling.
  *
- * Several languages attach postpositions directly to the noun and change its
- * ending doing so: Marathi turns भारत into भारताचे, and Gujarati writes
- * ભારતના with no space. A template therefore uses `{countryObl}` wherever a
- * postposition follows, and `{country}` where the bare name is right.
- * Languages that need no separate form simply fall back to the plain name.
+ * A regional file may only override keys English defines (`npm run i18n`
+ * reports any that do not).
  */
-export function countryParams(
-  t: TranslateFn,
-  code: string,
-): { country: string; countryObl: string } {
-  const country = t(`country.${code}`);
-  const obliqueKey = `country.${code}.obl`;
-  const oblique = t(obliqueKey);
-  return {
-    country,
-    countryObl: oblique === obliqueKey ? country : oblique,
-  };
+const REGIONAL: Partial<Record<LocaleCode, Dictionary>> = {
+  "en-US": enUS,
+  "en-GB": enGB,
+};
+
+const BY_LOCALE = new Map<LocaleCode, Dictionary>();
+
+export function getDictionary(lang: LanguageCode, locale?: LocaleCode): Dictionary {
+  const base = MERGED[lang] ?? MERGED.en;
+  const regional = locale ? REGIONAL[locale] : undefined;
+  if (!locale || !regional) return base;
+  let dict = BY_LOCALE.get(locale);
+  if (!dict) {
+    dict = { ...base, ...regional };
+    BY_LOCALE.set(locale, dict);
+  }
+  return dict;
+}
+
+/**
+ * A translator for a language, worded for `locale`'s market when given. Pages
+ * always pass their locale; only language-level code (the coverage gate)
+ * leaves it out.
+ */
+export function createTranslator(lang: LanguageCode, locale?: LocaleCode): TranslateFn {
+  const dict = getDictionary(lang, locale);
+  return (key, params) => translate(dict, key, params);
 }
 
 /**
@@ -118,29 +140,4 @@ export const LANGUAGE_COVERAGE = LANGUAGE_CODES.reduce(
 
 export function isLanguageReady(lang: LanguageCode): boolean {
   return lang === "en" || LANGUAGE_COVERAGE[lang] >= READINESS_THRESHOLD;
-}
-
-/**
- * Whether a language defines a key itself, ignoring the English fallback.
- *
- * Needed for optional variants such as a unit's plural form: falling back to
- * the English plural in a German sentence would be worse than using the
- * German singular, so the caller needs to know which it is getting.
- */
-export function hasOwnKey(lang: LanguageCode, key: string): boolean {
-  return Boolean(RAW[lang] && key in RAW[lang]);
-}
-
-/**
- * A unit's name, plural where the language provides one and singular where it
- * does not. `Metres to Feet` is what people search for; `Metre to Foot` is not.
- */
-export function unitName(
-  lang: LanguageCode,
-  t: TranslateFn,
-  labelKey: string,
-  plural = false,
-): string {
-  const pluralKey = `${labelKey}.plural`;
-  return plural && hasOwnKey(lang, pluralKey) ? t(pluralKey) : t(labelKey);
 }

@@ -2,7 +2,7 @@ import type { ChartCategory, Section } from "@/config/categories";
 import { getConverter } from "@/config/converters/definitions";
 import { convert, findUnit } from "@/config/converters/units";
 import type { Formatter } from "@/lib/format";
-import type { TranslateFn } from "@/lib/i18n";
+import type { TranslateFn } from "@/lib/i18n/core";
 import { compoundFutureValue, amortisationSchedule, emi } from "@/lib/finance";
 import { toRoman } from "@/lib/tools/numbers";
 
@@ -587,14 +587,5 @@ export function getChart(slug: string): ChartDefinition | undefined {
 
 export function chartsIn(category: ChartCategory): ChartDefinition[] {
   return CHARTS.filter((chart) => chart.category === category);
-}
-
-/** Tables that reference a given converter category, for cross-linking. */
-export function chartsForConverter(category: string): ChartDefinition[] {
-  return CHARTS.filter((chart) =>
-    chart.related.some(
-      (link) => link.section === "converters" && link.category === category,
-    ),
-  );
 }
 

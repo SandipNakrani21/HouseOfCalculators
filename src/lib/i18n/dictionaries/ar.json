@@ -24,6 +24,7 @@
   "gate.note": "يمكنك تغيير كليهما في أي وقت من الشريط العلوي.",
   "gate.step": "الخطوة {current} من {total}",
   "header.country": "البلد",
+  "header.exploreAll": "استكشف الكل",
   "header.language": "اللغة",
   "header.switcher": "البلد واللغة",
   "header.menu": "القائمة",

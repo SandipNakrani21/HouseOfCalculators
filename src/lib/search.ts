@@ -6,13 +6,35 @@ import type { ContentItem } from "@/lib/content";
  * both faster than shipping an index and easier to reason about.
  */
 
+/**
+ * British and American spellings of the same word, folded to one form on both
+ * sides of the match. The en-US pages say "meters" and the en-GB pages
+ * "metres", but a visitor types whichever they learnt, on either site.
+ */
+const SPELLING: [RegExp, string][] = [
+  [/metre/g, "meter"],
+  [/litre/g, "liter"],
+  [/colour/g, "color"],
+  [/amortis/g, "amortiz"],
+  [/centre/g, "center"],
+  [/cheque/g, "check"],
+  [/\bmaths\b/g, "math"],
+  [/tyre/g, "tire"],
+  [/annualis/g, "annualiz"],
+  [/itemis/g, "itemiz"],
+  [/instalment/g, "installment"],
+  [/\btonne(s?)\b/g, "metric ton$1"],
+];
+
 function normalise(text: string): string {
-  return text
+  let out = text
     .toLocaleLowerCase()
     .normalize("NFD")
     // Strip accents so "prêt" matches "pret".
     .replace(/[̀-ͯ]/g, "")
     .trim();
+  for (const [pattern, replacement] of SPELLING) out = out.replace(pattern, replacement);
+  return out;
 }
 
 /**
@@ -103,11 +125,15 @@ export function search(
   const terms = normalise(query).split(/\s+/).filter(Boolean);
   if (!terms.length) return [];
 
-  const results: SearchResult[] = [];
+  // One result per page: a country tool is indexed both as a calculator and
+  // under its country, with the same URL. The better-scoring entry stays.
+  const best = new Map<string, SearchResult>();
   for (const item of items) {
     const score = scoreItem(item, terms);
-    if (score > 0) results.push({ ...item, score });
+    if (score <= 0) continue;
+    const current = best.get(item.href);
+    if (!current || score > current.score) best.set(item.href, { ...item, score });
   }
 
-  return results.sort((a, b) => b.score - a.score).slice(0, limit);
+  return [...best.values()].sort((a, b) => b.score - a.score).slice(0, limit);
 }

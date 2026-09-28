@@ -14,7 +14,7 @@ import { LANGUAGES, type Language } from "@/config/languages";
 import { LOCALES, type Locale, type LocaleCode } from "@/config/locales";
 import { createFormatter, type Formatter } from "@/lib/format";
 import { readStoredCountry, storeCountry } from "@/lib/preferences";
-import { translate, type Dictionary, type TranslateFn } from "@/lib/i18n";
+import { translate, type Dictionary, type TranslateFn } from "@/lib/i18n/core";
 
 export type LocaleValue = {
   locale: Locale;
@@ -103,7 +103,7 @@ export function LocaleProvider({
       countryCode,
       setCountry,
       countryIsExplicit: forcedCountry !== undefined || stored !== null,
-      fmt: createFormatter(countryCode, locale.language),
+      fmt: createFormatter(countryCode, locale.language, t),
     };
   }, [locale, localeCode, dictionary, countryCode, setCountry, forcedCountry, stored]);
 

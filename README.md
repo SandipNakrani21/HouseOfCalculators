@@ -1,126 +1,116 @@
-# Calcora
+# House of Calculators
 
-Financial calculators that follow the visitor's country. The site asks for a
-country and a language on the first visit, stores the choice, and serves every
-page under `/{country}/{lang}` — so the currency, the statutory rules and all
-of the copy change together.
+*Every Calculation. One Global Home.*
 
-The UI takes its shape from Groww's calculator pages: a card of sliders on the
-left, a donut split on the right, the result rows underneath, and a searchable
-grid of every calculator on the home page.
+A global, multilingual, mobile-first site of calculators, converters, tools,
+reference tables, guides and country-specific utilities. Every page is
+statically generated; every calculation runs in the browser, with no round
+trip between moving a slider and seeing the answer. Revenue comes from
+organic search and Google AdSense.
 
 ```bash
-npm run dev        # http://localhost:3000
-npm run build
-npm run lint
-npm run i18n       # dictionary coverage report
+npm run dev        # http://localhost:3000 (the only environment)
+npm run check      # lint + types + i18n coverage
+npm run build      # static build, ~713 pages
 ```
 
-## Scope
+Project status, decisions and the pending list live in
+[`PROJECT_STATE.md`](PROJECT_STATE.md). The UI rules live in
+[`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md); the working rules in
+[`CLAUDE.md`](CLAUDE.md).
 
-**20 countries** — 🇮🇳 India · 🇺🇸 United States · 🇬🇧 United Kingdom ·
-🇨🇦 Canada · 🇦🇺 Australia · 🇩🇪 Germany · 🇦🇹 Austria · 🇨🇭 Switzerland ·
-🇫🇷 France · 🇧🇪 Belgium · 🇳🇱 Netherlands · 🇯🇵 Japan · 🇪🇸 Spain ·
-🇲🇽 Mexico · 🇮🇹 Italy · 🇵🇹 Portugal · 🇧🇷 Brazil · 🇵🇱 Poland ·
-🇹🇷 Türkiye · 🇦🇪 United Arab Emirates
+## What is in it
 
-**14 languages** — English, हिन्दी, ગુજરાતી, मराठी, Español, العربية (RTL),
-Deutsch, Français, and registered-but-untranslated Nederlands, 日本語, Italiano,
-Português, Polski, Türkçe.
+| Section | Contents |
+|---|---|
+| Calculators | 60, across finance, business, health, education, maths and construction (19 of them country-specific tax and payroll tools) |
+| Converters | 13 unit categories and 61 "metres to feet" style pair pages |
+| Tools | 23 date, number, planning and random tools |
+| Charts | 19 reference tables, each generated from code |
+| Guides | 12 formula guides: formula, variables, steps, worked example, calculator, FAQ |
+| Countries | 22 countries, each with its own tax, currency and formatting |
 
-**27 calculator definitions**, which produce a country-specific page each time
-a country offers one. Multilingual countries get a page per language too:
-Switzerland runs in German, French, Italian and English; Belgium in Dutch,
-French and English; Canada in English and French.
+## Stack
 
-## How the locale works
+- **Next.js 16** (App Router, Turbopack, `proxy.ts` rather than middleware),
+  **React 19.2**, **TypeScript** strict.
+- **Tailwind CSS v4**. Design tokens in `src/styles/tokens.css`, components in
+  `src/components/ui`. One light theme on a white page.
+- **Custom i18n**: flat JSON dictionaries, English fallback, readiness gate.
+- **lucide-react** icons plus the brand icon pack in `public/landing`; charts
+  are hand-written SVG.
+- No backend and no database: content is configuration.
 
-- `src/proxy.ts` puts every request under a valid `/{country}/{lang}` prefix,
-  choosing from the saved cookie, then the CDN geo header, then
-  `Accept-Language`. A language a country does not offer redirects to one it
-  does, so a shared link always lands somewhere.
-- `src/app/[country]/[lang]/layout.tsx` is the root layout. It sets
-  `html[lang]` and `html[dir]` and hands the dictionary to `LocaleProvider`.
-- `LocaleGate` opens the country → language picker when no choice has been
-  stored. It reads the cookie through `useSyncExternalStore`, so pages stay
-  statically rendered.
-- Every page is prerendered for every country and language pair it exists in.
+## URLs
 
-### Languages switch themselves on
+```
+/{locale}                                   /en-us
+/{locale}/{section}/{category}/{slug}       /en-us/calculators/finance/mortgage
+/{locale}/countries/{country}/{slug}        /en-us/countries/gb/stamp-duty
+```
 
-A missing key falls back to English at runtime, which is the right behaviour
-but the wrong promise to make in the picker — choosing 日本語 and getting an
-English page is worse than not being offered it. So `isLanguageReady` measures
-each dictionary against English and a language only appears once it clears 75%.
-Fill in `dictionaries/ja.json`, add it to `RAW` in `src/lib/i18n/index.ts`, and
-Japanese appears in Japan's picker with no other change.
+**Locale ≠ country.** The locale (language + market) is in the URL. The country
+is a separate setting, kept in a cookie, that drives currency, number
+formatting and statutory rules: you can read in English while calculating for
+Germany. A calculator whose rules differ by country lives under
+`/countries/{country}/`; one where the country only sets the currency has a
+single URL under `/calculators/`.
 
-Run `npm run i18n` to see where each language stands.
+## Languages switch themselves on
+
+A missing key falls back to English, which is right at runtime but the wrong
+promise in a language picker. `isLanguageReady` measures each dictionary
+against English and a language is offered only past 75% coverage. Today only
+English (US and UK) is live; German, French, Spanish, Hindi, Gujarati, Marathi
+and Arabic are 16-19% translated. `npm run i18n` shows where each stands.
+
+`src/lib/i18n/index.ts` holds every dictionary and is **server-only**. Client
+components import `src/lib/i18n/core.ts` and receive the active dictionary
+from `LocaleProvider`, so a page ships one language, not all of them.
+
+Counted phrases use `plural()` from `core.ts` with CLDR keys (`key.one`,
+`key.other`, and `few`/`many`/... where a language has them).
+
+### One language, several markets
+
+A locale is a language *and* a market, and each is optimised for its own
+readers and search engines. `dictionaries/regional/<locale>.json` rewords
+only the keys that differ for that market, on top of the language:
+
+- `en.json` is written in **British English**; `regional/en-GB.json` adds
+  the few words the base spells the American way ("Maths").
+- `regional/en-US.json` is **generated** (`npm run i18n:en-us`, rules in
+  `scripts/en-us-spelling.mjs`): meters, liters, amortization, installment,
+  wrench, metric ton. `npm run i18n` fails if English copy changed and the
+  file was not regenerated, so rerun it after editing `en.json`.
+
+Titles, descriptions, headings, FAQs, structured data (`inLanguage`, offer
+currency, one `WebSite` per locale linked as translations), Open Graph
+locales, hreflang (per locale, plus a language-only `en` and `x-default`),
+dates and `/{locale}/llms.txt` all follow the page's locale. Site search
+folds British and American spellings together, so "metres" finds "Meters".
+A future language with several markets (pt-BR / pt-PT, es-ES / es-MX) gets
+its own regional files the same way; call `createTranslator(language, locale)`
+from pages so the market's wording applies.
 
 ## Adding a calculator
 
-1. Write a definition in `src/config/calculators/definitions/`. A definition
-   declares which countries offer it, what fields to show, and how to compute
-   the result:
+1. Pure logic in `src/lib/<area>/`.
+2. A definition in `src/config/calculators/definitions/`: fields, `compute`,
+   and an honest `countryRelevance`.
+3. Register it in `src/config/calculators/index.ts`.
+4. English copy in `src/lib/i18n/dictionaries/en.json`; reuse the shared
+   `field.*` and `result.*` keys.
 
-   ```ts
-   export const fdCalculator: CalculatorDef = {
-     slug: "fd",
-     icon: "🏛️",
-     category: "savings",
-     titleKey: "calc.fd.title",
-     descKey: "calc.fd.desc",
-     countries: ["in", "ae"],
-     fields: ({ countryCode }) => [...],
-     compute: (values, { country, fmt, t }) => ({ primary, rows, chart }),
-   };
-   ```
+Search, grids, the sitemap, the page, its structured data and share links all
+follow from the definition. A guide that lists the calculator in its `related`
+links shows up on the calculator page automatically.
 
-2. Register it in `src/config/calculators/index.ts`.
-3. Add its `title` and `desc` keys to `dictionaries/en.json`. Reuse the shared
-   `field.*` and `result.*` vocabulary wherever you can — that is what keeps
-   27 calculators from meaning 27× the translation work.
+## Before launch
 
-Nothing else needs touching: the home grid, search, the calculator page, the
-chart, the breakdown table and the metadata are all driven by the definition.
-
-Fields and results can differ per country from inside a single definition —
-slider ranges come from `src/config/calculators/scale.ts`, and copy such as
-`"{tax} Calculator"` resolves to GST, VAT, HST or Sales Tax through the
-definition's `params`.
-
-## Adding a country
-
-Add an entry to `src/config/countries.ts` (currency, number grouping, the
-languages it offers, its consumption tax and fiscal year), the rough currency
-scale in `src/config/calculators/scale.ts`, a `country.<code>` key in every
-dictionary, and list the code on each calculator that should appear there.
-Income tax needs a rule set in `src/lib/finance/tax/rules.ts`.
-
-## Adding a language
-
-Add it to `src/config/languages.ts`, copy `dictionaries/en.json` and translate
-it, then import it into `RAW` in `src/lib/i18n/index.ts` and list the code on
-the countries that should offer it. Right-to-left is handled by the `dir`
-field — Arabic is already wired end to end, and the layout uses logical
-properties (`ps-*`, `text-start`) throughout.
-
-## Country-specific logic
-
-`src/lib/finance/` holds the pure maths, which is the same everywhere. The
-country-specific parts live beside it:
-
-- `tax/define.ts` — a declarative description of a personal income tax system:
-  allowances, bands, credits that phase out, surtaxes on the tax itself,
-  payroll contributions, or a closed-form formula where a country uses one
-  instead of bands (Germany).
-- `tax/rules.ts` — one rule set per country built on that.
-- `config/countries.ts` — the consumption tax each country charges, at what
-  rates, and under what name.
-
-**Statutory rates have not been verified.** Every figure was written from
-general knowledge, not from a primary source.
-[`docs/tax-rules-to-verify.md`](docs/tax-rules-to-verify.md) lists every number
-that needs confirming and every place the model is knowingly incomplete —
-Swiss cantonal tax, US state tax, the French quotient familial and the rest.
-Read it before launch.
+- **Statutory tax figures are unverified.** Every number is listed in
+  [`docs/tax-rules-to-verify.md`](docs/tax-rules-to-verify.md).
+- **Operator details are unset** (`OPERATOR` in
+  `src/config/legal/definitions.ts`); legal pages show a "not ready" notice
+  until they are filled in.
+- Set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_ADSENSE_CLIENT`.

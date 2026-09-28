@@ -157,51 +157,6 @@ export function cagr(
   return (Math.pow(final / initial, 1 / years) - 1) * 100;
 }
 
-/**
- * Recurring deposit maturity. Each instalment is deposited at the start of a
- * month and compounds at the deposit's frequency for the months it stays in.
- */
-export function recurringDepositMaturity(
-  monthly: number,
-  annualRate: number,
-  months: number,
-  compoundsPerYear = 4,
-): number {
-  const i = pct(annualRate) / compoundsPerYear;
-  const monthsPerPeriod = 12 / compoundsPerYear;
-  let maturity = 0;
-
-  for (let k = 1; k <= months; k += 1) {
-    const monthsInvested = months - k + 1;
-    maturity += monthly * Math.pow(1 + i, monthsInvested / monthsPerPeriod);
-  }
-  return maturity;
-}
-
-/** Systematic withdrawal: balance left after withdrawing a fixed amount monthly. */
-export function swpFinalValue(
-  principal: number,
-  monthlyWithdrawal: number,
-  annualRate: number,
-  years: number,
-): { finalValue: number; totalWithdrawn: number; monthsLasted: number } {
-  const i = pct(annualRate) / 12;
-  const totalMonths = Math.round(years * 12);
-  let balance = principal;
-  let totalWithdrawn = 0;
-  let monthsLasted = 0;
-
-  for (let month = 1; month <= totalMonths; month += 1) {
-    if (balance <= 0) break;
-    const withdrawal = Math.min(monthlyWithdrawal, balance);
-    balance -= withdrawal;
-    totalWithdrawn += withdrawal;
-    balance *= 1 + i;
-    monthsLasted = month;
-  }
-  return { finalValue: Math.max(balance, 0), totalWithdrawn, monthsLasted };
-}
-
 /** Value of `amount` after `years` of inflation, and what it buys in today's money. */
 export function inflationAdjusted(
   amount: number,
@@ -210,11 +165,6 @@ export function inflationAdjusted(
 ): { futureCost: number; presentValue: number } {
   const factor = Math.pow(1 + pct(inflationRate), years);
   return { futureCost: amount * factor, presentValue: amount / factor };
-}
-
-/** Rounds to whole minor units so display and totals never disagree. */
-export function round2(value: number): number {
-  return Math.round((value + Number.EPSILON) * 100) / 100;
 }
 
 export type AmortisationMonth = {

@@ -1,0 +1,238 @@
+/*
+ * Design tokens: the ONLY place colours, radii, shadows, type sizes and
+ * motion timings are defined. Everything else - component classes, Tailwind
+ * utilities, inline styles - reads from these.
+ *
+ *   Raw tokens live on :root. The site has one theme: light, on white.
+ *   `@theme inline` at the bottom exposes them to Tailwind, so `bg-primary`,
+ *   `text-heading`, `rounded-lg`, `shadow-card`, `text-h2` and friends all
+ *   resolve here.
+ *
+ * Reference: docs/DESIGN_SYSTEM.md.
+ */
+
+:root {
+  /* ------------------------------------------------------------ brand */
+  --primary: #2563eb;          /* buttons, links, active nav */
+  --primary-dark: #1d4ed8;     /* hover */
+  --primary-light: #eff6ff;    /* tints, badges, hero glow */
+  --primary-contrast: #ffffff;
+  --brand-sky: #3b82f6;        /* the lighter end of every blue gradient */
+
+  --navy: #0f1b3d;             /* top bar and footer */
+  --navy-soft: #182a57;
+  --on-navy: #e6ecf8;
+  --on-navy-muted: #a3b0cc;
+
+  /* ------------------------------------------------------------- text */
+  --heading: #0f172a;
+  --text: #475569;
+  /*
+   * The spec's muted grey (#94a3b8) is 2.6:1 on white, below WCAG AA for
+   * text. It is kept as --subtle for placeholders, icons and dividers; small
+   * secondary copy uses --muted, the nearest slate that passes AA (4.8:1).
+   */
+  --muted: #64748b;
+  --subtle: #94a3b8;
+  --alert: #dc2626;            /* required-field style asterisks, errors */
+  --alert-on-navy: #f87171;    /* the same, readable on the navy bar */
+  --primary-on-navy: #60a5fa;  /* brand blue for text on navy (the brand blue itself is ~3:1 there) */
+
+  /* ------------------------------------------------------- surfaces */
+  --bg: #f5f8ff;               /* page: a soft blue tint, so white cards stand out */
+  --bg-soft: #f8fafc;          /* alternate sections */
+  --bg-tint: #eaf1ff;          /* blue-cast alternate sections */
+  --surface: #ffffff;          /* cards */
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --border-control: #94a3b8;   /* dropdown triggers: clearly a control, not a card */
+
+  --gradient-cta: linear-gradient(90deg, #1d4ed8, #3b82f6);
+  --gradient-result: linear-gradient(135deg, #1d4ed8, #2563eb 55%, #3b82f6);
+
+  /* --------------------------------------- category accent pairs (fg/bg) */
+  --tone-blue-fg: #2563eb;   --tone-blue-bg: #dbeafe;
+  --tone-green-fg: #16a34a;  --tone-green-bg: #dcfce7;
+  --tone-violet-fg: #7c3aed; --tone-violet-bg: #ede9fe;  /* "purple" */
+  --tone-orange-fg: #ea580c; --tone-orange-bg: #ffedd5;
+  --tone-pink-fg: #db2777;   --tone-pink-bg: #fce7f3;
+  --tone-teal-fg: #0d9488;   --tone-teal-bg: #ccfbf1;
+  --tone-rose-fg: #e11d48;   --tone-rose-bg: #ffe4e6;    /* "red" */
+  --tone-amber-fg: #ca8a04;  --tone-amber-bg: #fef9c3;   /* "yellow" */
+  --tone-sky-fg: #0284c7;    --tone-sky-bg: #e0f2fe;
+  --tone-indigo-fg: #4f46e5; --tone-indigo-bg: #e0e7ff;
+
+  /* Chart series. `principal` is money put in, `returns` what it grew by. */
+  --tone-principal: #93c5fd;
+  --tone-returns: #14b8a6;
+  --tone-tax: #f97316;
+  --tone-neutral: #94a3b8;
+
+  /* --------------------------------------------------------- effects */
+  --ring: #2563eb33;
+  --shadow-card: 0 4px 20px rgba(15, 23, 42, 0.06);
+  --shadow-lift: 0 16px 36px -10px rgba(37, 99, 235, 0.22), 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-primary: 0 10px 24px -10px rgba(37, 99, 235, 0.65);
+  --shadow-header: 0 8px 30px -18px rgba(15, 23, 42, 0.35);
+
+  /* ---------------------------------------------------------- motion */
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 200ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+  --stagger-step: 90ms;
+
+  /* ---------------------------------------------------------- layout */
+  --container: 1120px;
+  --gutter: 16px;
+  --container-wide: 1360px;    /* the header, which carries more than a page row */
+  --container-xwide: 1560px;   /* the header on very wide screens (1680px+) */
+  --header-height: 5.75rem;
+  --header-height-compact: 4.75rem;
+
+  /* --------------------------------------------------------- spacing */
+  /* The 4-based scale. Tailwind's p-1/2/3/4/6/8/12/16/24 are the same steps. */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px;
+  --space-4: 16px; --space-5: 24px; --space-6: 32px;
+  --space-7: 48px; --space-8: 64px; --space-9: 96px;
+
+  /* ----------------------------------------------------------- fonts */
+  /*
+   * Plus Jakarta Sans (self-hosted by next/font, Latin only) leads. Every
+   * other script the site ships falls through to system faces every target
+   * OS already has.
+   */
+  --font-app-sans: var(--font-jakarta), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Nirmala UI", "Noto Sans", "Noto Sans Devanagari",
+    "Noto Sans Gujarati", "Noto Sans Arabic", "Segoe UI Arabic",
+    "Microsoft YaHei", "Hiragino Sans", "Yu Gothic UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-app-script: var(--font-caveat), "Segoe Print", "Bradley Hand", cursive;
+
+  /* Legacy names, kept so older markup keeps resolving. Prefer the above. */
+  --background: var(--bg);
+  --foreground: var(--text);
+  --surface-muted: var(--bg-soft);
+  --primary-hover: var(--primary-dark);
+  --primary-soft: var(--primary-light);
+  --accent: var(--tone-teal-fg);
+  --accent-soft: var(--tone-teal-bg);
+
+  color-scheme: light;
+}
+
+/*
+ * Han characters are shared by Japanese and Chinese but drawn differently, so
+ * each gets its own system faces ahead of the other's. Jakarta still leads for
+ * Latin letters and digits. Caveat has no CJK glyphs, so the handwritten line
+ * uses the page face instead of an arbitrary system "cursive".
+ */
+:root:lang(ja) {
+  --font-app-sans: var(--font-jakarta), "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", Meiryo,
+    "Noto Sans JP", "Noto Sans CJK JP", sans-serif;
+  --font-app-script: var(--font-app-sans);
+}
+
+:root:lang(zh) {
+  --font-app-sans: var(--font-jakarta), "PingFang SC", "Microsoft YaHei",
+    "Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
+  --font-app-script: var(--font-app-sans);
+}
+
+/*
+ * Tailwind's view of the tokens. `inline` makes utilities use var(...) directly.
+ */
+@theme inline {
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-primary-contrast: var(--primary-contrast);
+  --color-navy: var(--navy);
+  --color-navy-soft: var(--navy-soft);
+  --color-on-navy: var(--on-navy);
+  --color-on-navy-muted: var(--on-navy-muted);
+  --color-heading: var(--heading);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-alert: var(--alert);
+  --color-alert-on-navy: var(--alert-on-navy);
+  --color-primary-on-navy: var(--primary-on-navy);
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-bg-tint: var(--bg-tint);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-border-control: var(--border-control);
+  --color-tone-principal: var(--tone-principal);
+  --color-tone-returns: var(--tone-returns);
+  --color-tone-tax: var(--tone-tax);
+  --color-tone-neutral: var(--tone-neutral);
+
+  /* Legacy utility names (bg-background, text-foreground, ...). */
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-surface-muted: var(--bg-soft);
+  --color-primary-hover: var(--primary-dark);
+  --color-primary-soft: var(--primary-light);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-sans: var(--font-app-sans);
+  --font-script: var(--font-app-script);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-lift: var(--shadow-lift);
+  --shadow-primary: var(--shadow-primary);
+
+  --ease-premium: var(--ease-premium);
+  --ease-spring: var(--ease-spring);
+}
+
+/*
+ * Scales Tailwind generates utilities from. Not `inline`: these are fixed
+ * values.
+ */
+@theme {
+  /* Radius: sm 8 / md 12 / lg 16 / xl 24 / pill. */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* Breakpoints: 480 / 640 / 768 / 1024 / 1280 / 1536 / 1600. `xs` is the
+     extra phone step; `3xl` is where the header has room for a search field
+     beside the menu (its container stops growing there). */
+  --breakpoint-xs: 30rem;
+  --breakpoint-3xl: 100rem;
+
+  /* Fluid type. Size, line height and weight travel together. */
+  /* The homepage hero heading only: the one place type is this large. */
+  --text-hero: clamp(2.5rem, 1.1rem + 5.6vw, 6.25rem);
+  --text-hero--line-height: 1.05;
+  --text-hero--letter-spacing: -0.03em;
+  --text-hero--font-weight: 800;
+  --text-display: clamp(2rem, 1.5rem + 1.9vw, 3rem);
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.025em;
+  --text-display--font-weight: 800;
+  --text-h1: clamp(1.75rem, 1.45rem + 1vw, 2.25rem);
+  --text-h1--line-height: 1.2;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 800;
+  --text-h2: clamp(1.4rem, 1.25rem + 0.55vw, 1.875rem);
+  --text-h2--line-height: 1.25;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 700;
+  --text-h3: 1.0625rem;
+  --text-h3--line-height: 1.35;
+  --text-h3--font-weight: 600;
+  --text-body: clamp(0.9375rem, 0.9rem + 0.12vw, 1rem);
+  --text-body--line-height: 1.65;
+  --text-small: 0.8125rem;
+  --text-small--line-height: 1.5;
+}

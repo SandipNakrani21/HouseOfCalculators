@@ -1,0 +1,79 @@
+/*
+ * Element defaults. Layered, so any Tailwind utility on an element still wins:
+ * unlayered CSS beats utilities regardless of specificity, which once made
+ * `text-white` on footer headings silently lose to the h2 colour.
+ */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    /*
+     * 18px instead of the browser's 16px: every rem-based size - type,
+     * spacing, buttons, fields - grows together, so the whole site reads
+     * a step larger. Media queries are unaffected (they use the browser's
+     * default size).
+     */
+    font-size: 112.5%;
+    scroll-behavior: smooth;
+    /* Anchor targets land below the sticky header, not under it. */
+    scroll-padding-top: calc(var(--header-height) + 16px);
+  }
+
+  body {
+    /*
+     * Elements that slide in from the side sit off-screen until revealed, and
+     * decorative glows bleed past their sections by design. Clip rather than
+     * hide: clip does not create a scroll container, so the sticky header keeps
+     * working.
+     */
+    overflow-x: clip;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-app-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--heading);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: #2563eb33;
+  }
+
+  ::placeholder {
+    color: var(--subtle);
+  }
+
+  /* Arabic reads better with a touch more line height at the same size. */
+  [dir="rtl"] body {
+    line-height: 1.75;
+  }
+
+  /* Keyboard focus must always be visible, including on custom controls. */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  img,
+  svg,
+  video {
+    max-width: 100%;
+  }
+}

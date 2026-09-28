@@ -1,92 +1,74 @@
 "use client";
 
+import { Globe } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
-import { Globe } from "lucide-react";
-
-import { Dropdown } from "@/components/shared/Dropdown";
+import { Select, type SelectOption } from "@/components/ui/Select";
 import { LOCALES, type LocaleCode } from "@/config/locales";
 import { useLocale } from "@/lib/locale-context";
 import { storeLocale } from "@/lib/preferences";
 import { swapLocale } from "@/lib/routes";
+
+/** Every ready language as a dropdown option, in its own script. */
+export function localeOptions(ready: LocaleCode[]): SelectOption<LocaleCode>[] {
+  return ready.map((code) => ({
+    value: code,
+    label: LOCALES[code].native,
+    hint: LOCALES[code].code,
+    lang: LOCALES[code].language,
+    dir: LOCALES[code].dir,
+  }));
+}
 
 /**
  * Language selector. Deliberately separate from the country selector: reading
  * in English while calculating for Germany is a supported combination, so
  * collapsing the two into one control would misrepresent what they do.
  */
-export function LocaleSelector({ ready }: { ready: LocaleCode[] }) {
+export function LocaleSelector({
+  ready,
+  size = "md",
+  compact = false,
+}: {
+  ready: LocaleCode[];
+  size?: "sm" | "md" | "lg" | "xl";
+  /** In the header: icon only from xl, where the sections share the row. */
+  compact?: boolean;
+}) {
   const { t, localeCode } = useLocale();
   const router = useRouter();
   const pathname = usePathname();
 
-  const launch = ready.filter((code) => LOCALES[code].launch);
-  const additional = ready.filter((code) => !LOCALES[code].launch);
-
-  const choose = (next: LocaleCode, close: () => void) => {
+  const choose = (next: LocaleCode) => {
+    if (next === localeCode) return;
     storeLocale(next);
-    close();
     // Same logical page, different locale prefix - a client navigation, so
-    // the visitor keeps their scroll position and the app shell is not reloaded.
+    // the visitor keeps their place and the app shell is not reloaded.
     router.push(swapLocale(pathname, next));
   };
 
-  const option = (code: LocaleCode, close: () => void) => {
-    const locale = LOCALES[code];
-    const active = code === localeCode;
-    return (
-      <li key={code}>
-        <button
-          type="button"
-          lang={locale.language}
-          dir={locale.dir}
-          onClick={() => choose(code, close)}
-          aria-current={active ? "true" : undefined}
-          className={`flex w-full flex-col rounded-lg px-3 py-2 text-start transition-colors ${
-            active
-              ? "bg-primary-soft text-primary"
-              : "text-foreground hover:bg-surface-muted"
-          }`}
-        >
-          <span className="text-sm font-medium">{locale.native}</span>
-          <span className="text-xs text-muted" dir="ltr">
-            {locale.code}
-          </span>
-        </button>
-      </li>
-    );
-  };
-
   return (
-    <Dropdown
+    <Select
+      variant="pill"
+      size={size}
+      align="end"
+      menuWidth={220}
       label={t("header.language")}
-      trigger={
+      value={localeCode}
+      onChange={choose}
+      options={localeOptions(ready)}
+      trigger={(selected) => (
         <>
-          <Globe aria-hidden className="h-4 w-4 text-primary" strokeWidth={2} />
-          {/* Icon only on phones, where the name would wrap and push the
-              menu button off-screen; the trigger's aria-label names it. */}
-          <span className="hidden whitespace-nowrap font-medium text-foreground sm:inline">
-            {LOCALES[localeCode].native}
+          <Globe aria-hidden className={`h-4 w-4 shrink-0 text-primary ${size === "xl" ? "xl:h-5 xl:w-5" : ""}`} />
+          {/* Icon only on phones, where the name would push the menu button
+              off-screen; the trigger's aria-label names it. */}
+          <span
+            className={`hidden whitespace-nowrap font-semibold text-heading sm:inline ${compact ? "xl:hidden!" : ""}`}
+          >
+            {selected?.label}
           </span>
-        </>
-      }
-    >
-      {(close) => (
-        <>
-          <p className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wide text-muted">
-            {t("header.language")}
-          </p>
-          <ul>{launch.map((code) => option(code, close))}</ul>
-          {additional.length ? (
-            <>
-              <p className="mt-1 border-t border-border px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wide text-muted">
-                {t("header.moreLanguages")}
-              </p>
-              <ul>{additional.map((code) => option(code, close))}</ul>
-            </>
-          ) : null}
         </>
       )}
-    </Dropdown>
+    />
   );
 }

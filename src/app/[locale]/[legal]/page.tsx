@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/shared/PageHeader";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { legalVisual } from "@/lib/visuals";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { AdSlot } from "@/components/ads/AdSlot";
-import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { AdSlot } from "@/components/ui/AdSlot";
 import {
   LEGAL_PAGES,
   getLegalPage,
@@ -15,7 +15,7 @@ import {
 import { LOCALES, localeFromPath } from "@/config/locales";
 import { createTranslator, type TranslateFn } from "@/lib/i18n";
 import { localeHome } from "@/lib/routes";
-import { buildMetadata, readyLocales } from "@/lib/seo";
+import { buildMetadata, readyLocales, webPageSchema } from "@/lib/seo";
 
 type Params = { locale: string; legal: string };
 
@@ -42,7 +42,7 @@ export async function generateMetadata({
   const page = getLegalPage(legal);
   if (!locale || !page) return {};
 
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   const app = t("app.name");
 
   return buildMetadata({
@@ -115,22 +115,20 @@ export default async function LegalPage({
   const page = getLegalPage(legal);
   if (!locale || !page) notFound();
 
-  const t = createTranslator(locale.language);
+  const t = createTranslator(locale.language, locale.code);
   const code = locale.code;
   const substitutions = { ...legalParams(), app: t("app.name") };
   const missing = missingOperatorDetails();
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
-      <Breadcrumbs
-        label={t("a11y.breadcrumb")}
+    <>
+      <PageHeader
+        width="prose"
+        breadcrumbLabel={t("a11y.breadcrumb")}
         trail={[
           { name: t("nav.home"), path: localeHome(code) },
           { name: t(page.titleKey), path: legalPath(LOCALES[code].path, page.slug) },
         ]}
-      />
-
-      <PageHeader
         visual={legalVisual(page.slug)}
         title={t(page.titleKey)}
         description={t(page.introKey, substitutions)}
@@ -139,56 +137,67 @@ export default async function LegalPage({
           {t("legal.updated", { date: page.updated })}
         </p>
       </PageHeader>
+      <div className="container-prose pb-12 sm:pb-16">
+        {missing.length > 0 ? (
+          // A placeholder that reads like a real company is the kind of thing
+          // that ships by accident, so an unfilled page says so on its face.
+          <aside
+            role="note"
+            className="mb-8 rounded-sm border border-border bg-surface-muted p-4"
+          >
+            <p className="text-sm font-semibold text-heading">
+              {t("legal.unconfigured.title")}
+            </p>
+            <p className="mt-2 text-sm text-muted">{t("legal.unconfigured.body")}</p>
+            <ul className="mt-2 ml-5 list-disc space-y-1">
+              {missing.map((field) => (
+                <li key={field} className="text-sm text-muted">
+                  {t(`legal.unconfigured.${field}`)}
+                </li>
+              ))}
+            </ul>
+          </aside>
+        ) : null}
 
-      {missing.length > 0 ? (
-        // A placeholder that reads like a real company is the kind of thing
-        // that ships by accident, so an unfilled page says so on its face.
-        <aside
-          role="note"
-          className="mb-8 rounded-lg border border-border bg-surface-muted p-4"
-        >
-          <p className="text-sm font-semibold text-heading">
-            {t("legal.unconfigured.title")}
-          </p>
-          <p className="mt-2 text-sm text-muted">{t("legal.unconfigured.body")}</p>
-          <ul className="mt-2 ml-5 list-disc space-y-1">
-            {missing.map((field) => (
-              <li key={field} className="text-sm text-muted">
-                {t(`legal.unconfigured.${field}`)}
+        {page.sections.map((section) => (
+          <Section
+            key={section.titleKey}
+            section={section}
+            t={t}
+            params={substitutions}
+          />
+        ))}
+
+        <nav aria-labelledby="legal-see-also" className="mt-10 border-t border-border pt-6">
+          <h2 id="legal-see-also" className="text-sm font-semibold text-heading">
+            {t("legal.seeAlso")}
+          </h2>
+          <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+            {LEGAL_PAGES.filter((other) => other.slug !== page.slug).map((other) => (
+              <li key={other.slug}>
+                <Link
+                  href={legalPath(LOCALES[code].path, other.slug)}
+                  className="text-sm text-muted hover:text-primary"
+                >
+                  {t(other.titleKey)}
+                </Link>
               </li>
             ))}
           </ul>
-        </aside>
-      ) : null}
+        </nav>
 
-      {page.sections.map((section) => (
-        <Section
-          key={section.titleKey}
-          section={section}
-          t={t}
-          params={substitutions}
+        <AdSlot slot="legal-bottom" placement="leaderboard" />
+
+        <JsonLd
+          data={webPageSchema({
+            type: page.slug === "about" ? "AboutPage" : page.slug === "contact" ? "ContactPage" : "WebPage",
+            name: t(page.titleKey),
+            description: t(page.descKey, { app: t("app.name") }),
+            path: legalPath(LOCALES[code].path, page.slug),
+            locale: code,
+          })}
         />
-      ))}
-
-      <nav aria-labelledby="legal-see-also" className="mt-10 border-t border-border pt-6">
-        <h2 id="legal-see-also" className="text-sm font-semibold text-heading">
-          {t("legal.seeAlso")}
-        </h2>
-        <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
-          {LEGAL_PAGES.filter((other) => other.slug !== page.slug).map((other) => (
-            <li key={other.slug}>
-              <Link
-                href={legalPath(LOCALES[code].path, other.slug)}
-                className="text-sm text-muted hover:text-primary"
-              >
-                {t(other.titleKey)}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      <AdSlot slot="legal-bottom" placement="leaderboard" />
-    </div>
+      </div>
+    </>
   );
 }
