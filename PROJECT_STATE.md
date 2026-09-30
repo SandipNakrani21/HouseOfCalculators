@@ -15,7 +15,7 @@
 
 | | |
 |---|---|
-| **Name** | House of Calculators |
+| **Name** | The Calculators House |
 | **Positioning** | "Every Calculation. One Global Home." |
 | **Purpose** | Global, multilingual, mobile-first platform for calculators, converters, tools, reference tables, guides and country-specific utilities |
 | **Target users** | Anyone searching for a calculation ("mortgage payment", "meters to feet", "UK stamp duty"), across 16 locales and 22 countries |
@@ -45,7 +45,7 @@
 **Key config files:** `next.config.ts` (default), `tsconfig.json` (`@/*` → `./src/*`), `eslint.config.mjs`, `postcss.config.mjs`, `.gitattributes` (LF normalisation), `.claude/launch.json` (dev server for the browser pane).
 
 **Env vars (names only, none set):**
-- `NEXT_PUBLIC_SITE_URL` — canonical origin. Falls back to `https://houseofcalculators.com`.
+- `NEXT_PUBLIC_SITE_URL` — optional override of the canonical origin. Default `https://thecalculatorshouse.com` (`SITE_ORIGIN` in config/site.ts); on the production deployment every `*.vercel.app` address 308-redirects to it (proxy.ts).
 - `NEXT_PUBLIC_ADSENSE_CLIENT` — when absent, `AdSlot` renders nothing at all.
 
 ---
@@ -175,7 +175,7 @@ docs/tax-rules-to-verify.md  every statutory number that needs checking
 - **Bug fixes:** Marathi rendering Devanagari digits; `style:"currency"` dropping Indian lakh grouping in `mr-IN`; `{tax}` placeholders unresolved in field/result labels; flag emoji not rendering on Windows (replaced with `CountryBadge`); locked-country formatter leaking the visitor's currency.
 
 ### Session part 2 — re-architecture to spec (commit `9c012f4`)
-- Rebranded to House of Calculators; spec §18 palette.
+- Rebranded to The Calculators House; spec §18 palette.
 - **Locale model rewritten**: 16 locales, locale ≠ country, `proxy.ts` resolution order = cookie → `Accept-Language` → geo header → default.
 - **URL/IA restructure** to `/{locale}/{section}/{category}/{slug}` + country tools.
 - **SEO layer**: canonical, bidirectional hreflang with `x-default`, OG/Twitter, Organization + WebSite + BreadcrumbList JSON-LD, sitemap with per-entry language alternates, robots.txt.
@@ -195,7 +195,7 @@ docs/tax-rules-to-verify.md  every statutory number that needs checking
 ### Session 4 — tests, bugs, legal (commits `0c4953a` → `c5b429e`)
 - Test suite finished: converters, tools, i18n integrity, hreflang (172 → 487, then 509 with the legal pages). Five real bugs found and fixed.
 - Legal pages (privacy, terms, cookies, contact, about) written from the site's real behaviour.
-- Brand set to "House of Calculators" in every language.
+- Brand set to "The Calculators House" in every language.
 
 ### Session 5 — spec completion, redesign, rebuild (commits `38ae10f` → `2c08073`)
 - Spec audit → 33 new calculators (all 8 categories populated), 9 new tools, cookie consent, CI, icon + share card.
@@ -307,7 +307,7 @@ The owner asked to complete the pending tasks in this file. Done, each verified 
 | **Issue 14 - no pluralisation** | `plural()` in `i18n/core.ts` on `Intl.PluralRules`, keys `key.one` / `key.other` (plus `zero/two/few/many` where a language has them; `.other` covers any missing). Date difference, age, countdown-day, savings/debt planner, random picker counts and the "Years to retirement" row now read "1 month and 1 day", "1 Yr". `npm run i18n` accepts a base key whose `.other` exists |
 | **Calculator → guide links (§15, §25)** | `lib/guide-links.ts` reverses each guide's `related` list; `DetailPage` gains a "Learn how it works" block (calculator, country-tool and tool pages) and chart pages list their guides |
 | **Issue 19** | `CalculatorGrid.tsx` deleted (unused) |
-| **Issue 20** | `README.md` rewritten for House of Calculators |
+| **Issue 20** | `README.md` rewritten for The Calculators House |
 
 **Session 4: the test suite was finished (spec §53, §67) at 487 tests. It is now 912 — see the session 5 blocks below.**
 
@@ -330,7 +330,7 @@ The owner asked to complete the pending tasks in this file. Done, each verified 
 | 2 | `numberToWords` dropped the leading zero: 12.05 and 12.5 both spelled "twelve point five" | On a tool whose stated purpose is writing an amount on a cheque |
 | 3 | `field.taxRate` / `result.taxAmount` carried a `{tax}` slot in ar/es/gu/hi/mr | Those keys render through `labelKey`, which every call site translates **with no params** → a literal `{tax} दर` on the page. English had been fixed for this before; the translations had not |
 | 4 | `gate.language.subtitle` carried `{app}` in all 7 translations | The welcome dialog passes no params → a literal `{app}` in the first dialog a non-English visitor sees |
-| 5 | `footer.disclaimer` spelled the **pre-rebrand name** into the sentence in all 7 languages instead of using the `{app}` slot | The rename to House of Calculators never reached the translations |
+| 5 | `footer.disclaimer` spelled the **pre-rebrand name** into the sentence in all 7 languages instead of using the `{app}` slot | The rename to The Calculators House never reached the translations |
 
 Both the date and the number fix were verified in the running app, not only in tests.
 
@@ -348,7 +348,7 @@ The copy describes **what this site actually does**, not a template:
 
 **⚠️ Before launch:** `OPERATOR` in `src/config/legal/definitions.ts` holds `entity`, `email` and `jurisdiction`, all still `null`. While any is unset **every legal page renders a visible "not ready to publish" notice**. Fill them in and the notice disappears — that is the whole remaining work on these pages.
 
-`app.name` is now `House of Calculators` in all seven translated dictionaries (was the pre-rebrand name). Decision: **one brand in Latin script across every locale**, so it stays searchable and matches the domain.
+`app.name` is now `The Calculators House` in all seven translated dictionaries (was the pre-rebrand name). Decision: **one brand in Latin script across every locale**, so it stays searchable and matches the domain.
 
 ### Then: the spec completion pass (session 5, commits `38ae10f` → `a19a94b`)
 
@@ -453,7 +453,7 @@ The user asked for a rebuild and re-run. Done from scratch (`.next` deleted, dev
 | Share links restore values only after validating them, and switch the country once | The query is untrusted input; rupee amounts must not open in a dollar form; a link must not keep overriding the visitor's later choice | |
 | Kept hi/gu/mr/ar beyond the spec's 12 locales | Already translated; wasteful to discard | |
 | Brand name in a dictionary key (`app.name`) | Renaming is a one-line change | |
-| **Brand stays "House of Calculators" in Latin script in every language** | User's decision (session 4). Keeps it searchable and matching the domain | Don't transliterate or translate it |
+| **Brand stays "The Calculators House" in Latin script in every language** | User's decision (session 4). Keeps it searchable and matching the domain | Don't transliterate or translate it |
 | `countryRelevance` on every calculator; `none` hides the country badge and selector | Claiming a BMI follows a country's tax-year rules was simply untrue | New calculators must set it honestly |
 | Construction/fuel calculators work in the units given, never convert silently | A trade calculator that turned feet into metres behind the user's back would be worse than useless | |
 | Maths calculators do **not** duplicate percentage / primes / fractions / Roman numerals | Those exist as tools; a second URL would compete for the same query (spec §40) | |
@@ -483,7 +483,7 @@ The user asked for a rebuild and re-run. Done from scratch (`.next` deleted, dev
 | 10 | ~~`MODULE_TYPELESS_PACKAGE_JSON` warnings when running tests~~ | **Obsolete** | The test suite was removed (session 6) |
 | 11 | CI pipeline | **Removed on request** (session 6) | The owner wants one environment and no CI; `.github/workflows/ci.yml` was deleted |
 | 12 | ~~`npx tsc --noEmit` failed on the test files (`TS5097`)~~ | **Fixed** (`0c4953a`) | `"allowImportingTsExtensions": true` added to `tsconfig.json`, valid because `noEmit` is already set. The tests stay type-checked |
-| 13 | ~~`app.name` was still the pre-rebrand brand in all 7 translated dictionaries~~ | **Fixed** (`94c5488`) | Set to `House of Calculators` in every language. Decided: one brand in Latin script everywhere, so it stays searchable and matches the domain |
+| 13 | ~~`app.name` was still the pre-rebrand brand in all 7 translated dictionaries~~ | **Fixed** (`94c5488`) | Set to `The Calculators House` in every language. Decided: one brand in Latin script everywhere, so it stays searchable and matches the domain |
 | 15 | **`OPERATOR` details are unset** — entity, contact email and governing-law jurisdiction are all `null` in `src/config/legal/definitions.ts` | Open, **blocks launch and AdSense review** | Every legal page shows a "not ready to publish" notice until they are filled in. This is a one-object edit; the notice disappears on its own |
 | 16 | Health pages carry disclaimers in notes/explainers but no dedicated medical-disclaimer block | Open, low | Spec §2.1 asks for "appropriate disclaimers"; current wording is careful but worth a review before launch |
 | 17 | ~~**Every page ships all 8 language dictionaries to the browser**~~ **Fixed (session 6)**, see §6. — one client chunk of ~383 KB (~109 KB gzipped) containing de/fr/es/hi/gu/mr/ar alongside English, referenced by every built page including the home page. Violates spec §29 and §64 | **Fixed** | Was: client modules import `@/lib/i18n` (`locale-context.tsx` imports `translate`; `format.ts` imports `getDictionary`), and that module statically imports every JSON file. Fix: keep dictionary loading server-side and pass only the active dictionary (already done via `LocaleProvider`'s `dictionary` prop), and make the client-reachable helpers dictionary-free — e.g. split `translate` and the formatter's unit lookup into a module with no JSON imports |
@@ -596,7 +596,7 @@ The user asked for a rebuild and re-run. Done from scratch (`.next` deleted, dev
 | `src/lib/format.ts` | Manual currency composition; Latin digits |
 | `src/lib/locale-context.tsx` | Rewritten for locale/country split |
 | `src/lib/i18n/dictionaries/*.json` | English **2,205** keys; 7 others migrated to shared vocabulary (17–19% coverage) |
-| `README.md` | Rewritten for House of Calculators (session 6) |
+| `README.md` | Rewritten for The Calculators House (session 6) |
 | `package.json` | Renamed; added `i18n`, `test`, `check` scripts |
 
 ### Deleted / renamed

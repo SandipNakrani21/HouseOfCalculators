@@ -1,4 +1,4 @@
-# House of Calculators design system
+# The Calculators House design system
 
 The whole site is built from one set of tokens and one component library.
 **Every new page, calculator or feature uses them.** If something new is truly

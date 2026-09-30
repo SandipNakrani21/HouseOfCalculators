@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { CountryCode } from "@/config/countries";
 
 /**
- * Icons and flags from the House of Calculators icon pack (public/landing),
+ * Icons and flags from the The Calculators House icon pack (public/landing),
  * the artwork the landing page is designed around. Each icon SVG carries its
  * own pastel circle and colour, so it is shown as-is.
  *

@@ -5,6 +5,14 @@
  * to a profile that does not exist or a form that goes nowhere.
  */
 
+/**
+ * The site's one public address. Canonical links, the sitemap, hreflang and
+ * structured data use it, and the production deployment's *.vercel.app alias
+ * redirects to it (proxy.ts). NEXT_PUBLIC_SITE_URL overrides it, e.g. for a
+ * staging copy.
+ */
+export const SITE_ORIGIN = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://thecalculatorshouse.com").replace(/\/$/, "");
+
 export type SocialNetwork = "x" | "facebook" | "instagram" | "linkedin" | "youtube";
 
 /**

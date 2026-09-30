@@ -1,89 +1,50 @@
+/* eslint-disable @next/next/no-img-element -- pre-sized, pre-compressed brand files; the image optimiser adds nothing */
+
 /**
- * The brand mark: a house whose body is a calculator, beside a two-line
- * wordmark with "Calculators" in brand blue. Drawn as SVG so it stays sharp
- * at any size and costs nothing to load.
+ * The brand logo: the owner's artwork (a house whose body is a calculator,
+ * in a blue swoosh, beside "The Calculators House"), prepared in public/brand
+ * with a transparent background:
  *
- * `onDark` switches the wordmark to light text for the navy footer.
+ *   logo.webp          for light backgrounds
+ *   logo-on-dark.webp  the same with white lettering, for the navy footer
+ *   mark.png           the house and calculator alone, for small spots
+ *
+ * The files are 3× the size they are shown at, so they stay sharp on high-
+ * density screens. Width and height are set so nothing shifts while loading.
  */
-export function LogoMark({
-  className = "h-10 w-10",
-  onDark = false,
-}: {
-  className?: string;
-  /** Lifts the calculator body, which is navy, off a navy background. */
-  onDark?: boolean;
-}) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <defs>
-        <linearGradient id={onDark ? "logo-roof-dark" : "logo-roof"} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#3b82f6" />
-          <stop offset="1" stopColor="#1d4ed8" />
-        </linearGradient>
-        <linearGradient id={onDark ? "logo-body-dark" : "logo-body"} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor={onDark ? "#3b82f6" : "#1e3a8a"} />
-          <stop offset="1" stopColor={onDark ? "#1d4ed8" : "#0b1a3c"} />
-        </linearGradient>
-      </defs>
-      {/* Roof */}
-      <path d="M24 3 3 20.5h6.5L24 9.2l14.5 11.3H45Z" fill={onDark ? "url(#logo-roof-dark)" : "url(#logo-roof)"} />
-      {/* Chimney */}
-      <rect x="33" y="7" width="5" height="8" rx="1" fill={onDark ? "url(#logo-roof-dark)" : "url(#logo-roof)"} />
-      {/* Body: the calculator */}
-      <rect className="logo-body" x="10" y="19" width="28" height="26" rx="4" fill={onDark ? "url(#logo-body-dark)" : "url(#logo-body)"} />
-      {/* Display */}
-      <rect x="14" y="23" width="20" height="6" rx="1.5" fill={onDark ? "#dbeafe" : "#60a5fa"} />
-      {/* Keys */}
-      <g fill="#dbeafe">
-        <rect x="14" y="32" width="5" height="4" rx="1" />
-        <rect x="21.5" y="32" width="5" height="4" rx="1" />
-        <rect x="14" y="38" width="5" height="4" rx="1" />
-        <rect x="21.5" y="38" width="5" height="4" rx="1" />
-      </g>
-      <rect x="29" y="32" width="5" height="10" rx="1" fill="#facc15" />
-    </svg>
-  );
+
+const LOGO = { width: 836, height: 240 };
+
+export function LogoMark({ className = "h-10 w-10" }: { className?: string }) {
+  return <img src="/brand/mark.png" alt="" width={96} height={96} className={`shrink-0 ${className}`} />;
 }
 
 export function Logo({
   name,
   onDark = false,
   large = false,
+  priority = false,
   className = "",
 }: {
+  /** The site name, used as the image's text alternative. */
   name: string;
   onDark?: boolean;
-  /** The header's bigger lock-up. */
+  /** The header's and footer's bigger lock-up. */
   large?: boolean;
+  /** Above the fold: load it first instead of lazily. */
+  priority?: boolean;
   className?: string;
 }) {
-  // "House of Calculators" splits into two lines at the last word, which is
-  // how the design sets it. Any other name simply sits on one line.
-  const split = name.lastIndexOf(" ");
-  const lead = split > 0 ? name.slice(0, split) : name;
-  const tail = split > 0 ? name.slice(split + 1) : "";
-
   return (
-    <span className={`inline-flex items-center gap-2 sm:gap-2.5 ${className}`}>
-      <LogoMark onDark={onDark} className={large ? "h-11 w-11 sm:h-14 sm:w-14" : undefined} />
-      <span className="flex flex-col leading-[1.05]">
-        <span
-          className={`${large ? "text-[0.875rem] sm:text-[1.0625rem]" : "text-[0.8125rem] sm:text-[0.9375rem]"} font-extrabold tracking-tight ${
-            onDark ? "text-white" : "text-heading"
-          }`}
-        >
-          {lead}
-        </span>
-        {tail ? (
-          <span
-            className={`${large ? "text-[1rem] sm:text-[1.25rem]" : "text-[0.9375rem] sm:text-[1.0625rem]"} font-extrabold tracking-tight ${
-              onDark ? "text-sky-300" : "text-primary"
-            }`}
-          >
-            {tail}
-          </span>
-        ) : null}
-      </span>
-    </span>
+    <img
+      src={onDark ? "/brand/logo-on-dark.webp" : "/brand/logo.webp"}
+      alt={name}
+      width={LOGO.width}
+      height={LOGO.height}
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
+      decoding="async"
+      className={`block w-auto ${large ? "h-12 sm:h-[4.25rem]" : "h-10"} ${className}`}
+    />
   );
 }

@@ -1,6 +1,7 @@
 import type { Section } from "@/config/categories";
 import type { CountryCode } from "@/config/countries";
 import { LOCALES, type LocaleCode } from "@/config/locales";
+import { SITE_ORIGIN } from "@/config/site";
 
 /**
  * Every internal URL is built here so the shape stays in one place. Slugs are
@@ -79,15 +80,7 @@ export function absoluteUrl(path: string): string {
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-/**
- * Site origin with no trailing slash. Configured per environment so preview
- * deployments do not emit production canonicals.
- */
+/** Site origin with no trailing slash: the custom domain (config/site). */
 export function siteUrl(): string {
-  const configured =
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : undefined);
-  return (configured ?? "https://houseofcalculators.com").replace(/\/$/, "");
+  return SITE_ORIGIN;
 }

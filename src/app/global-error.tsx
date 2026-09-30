@@ -21,7 +21,7 @@ export default function GlobalError({
   return (
     <html lang="en">
       <body style={{ margin: 0, minHeight: "100vh", display: "grid", placeItems: "center", padding: 24, textAlign: "center", fontFamily: "system-ui, sans-serif" }}>
-        <title>Something went wrong | House of Calculators</title>
+        <title>Something went wrong | The Calculators House</title>
         <main style={{ maxWidth: 448 }}>
           <h1>Something went wrong</h1>
           <p>An unexpected problem stopped the site from loading. Nothing you entered has left your device.</p>

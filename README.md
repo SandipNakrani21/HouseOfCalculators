@@ -1,4 +1,4 @@
-# House of Calculators
+# The Calculators House
 
 *Every Calculation. One Global Home.*
 

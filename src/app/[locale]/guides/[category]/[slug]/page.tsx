@@ -84,7 +84,7 @@ export default async function GuidePage({
     dateModified: guide.reviewed,
     mainEntityOfPage: absoluteUrl(url),
     author: publisherRef(),
-    publisher: { ...publisherRef(), logo: { "@type": "ImageObject", url: absoluteUrl("/icon.svg") } },
+    publisher: { ...publisherRef(), logo: { "@type": "ImageObject", url: absoluteUrl("/logo.png"), width: 512, height: 512 } },
   };
 
   return (

@@ -1,3 +1,6 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+
 import { ImageResponse } from "next/og";
 
 import { SITE_NAME } from "@/lib/seo";
@@ -13,7 +16,9 @@ export const alt = `${SITE_NAME} — Every Calculation. One Global Home.`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  // The brand mark (public/logo.png, cut from the logo artwork).
+  const logo = `data:image/png;base64,${(await readFile(join(process.cwd(), "public/logo.png"))).toString("base64")}`;
   return new ImageResponse(
     (
       <div
@@ -39,13 +44,11 @@ export default function OpengraphImage() {
               alignItems: "center",
               justifyContent: "center",
               borderRadius: 22,
-              background: "#2563EB",
-              color: "#FFFFFF",
-              fontSize: 60,
-              fontWeight: 700,
+              background: "#FFFFFF",
             }}
           >
-            H
+            {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse renders plain img */}
+            <img src={logo} width={84} height={84} alt="" />
           </div>
           <div style={{ fontSize: 58, fontWeight: 700, letterSpacing: -1 }}>
             {SITE_NAME}

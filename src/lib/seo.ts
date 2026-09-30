@@ -25,7 +25,7 @@ export function readyLocales(): LocaleCode[] {
   return LOCALE_CODES.filter(isLocaleReady);
 }
 
-export const SITE_NAME = "House of Calculators";
+export const SITE_NAME = "The Calculators House";
 
 /** What the layout's title template adds, and the longest title worth showing. */
 const BRAND_SUFFIX = ` | ${SITE_NAME}`;
@@ -77,7 +77,7 @@ export function buildMetadata({
       : description;
 
   return {
-    // The layout appends " | House of Calculators". Search results cut titles
+    // The layout appends " | The Calculators House". Search results cut titles
     // at roughly 60-65 characters, so where the brand would push a title past
     // that, the page's own words win and the brand is left off.
     title: title.length + BRAND_SUFFIX.length > MAX_TITLE ? { absolute: title } : title,
@@ -175,7 +175,7 @@ export function organizationSchema(): Record<string, unknown> {
     name: SITE_NAME,
     ...(OPERATOR.entity ? { legalName: OPERATOR.entity } : {}),
     url: absoluteUrl("/"),
-    logo: { "@type": "ImageObject", url: absoluteUrl("/icon.svg") },
+    logo: { "@type": "ImageObject", url: absoluteUrl("/logo.png"), width: 512, height: 512 },
     slogan: "Every Calculation. One Global Home.",
     knowsLanguage: readyLocales(),
     description:

@@ -10,6 +10,7 @@ import {
   matchAcceptLanguage,
   type LocaleCode,
 } from "@/config/locales";
+import { SITE_ORIGIN } from "@/config/site";
 import { LOCALE_COOKIE } from "@/lib/preferences";
 import { isLocaleReady } from "@/lib/seo";
 
@@ -35,6 +36,23 @@ export function proxy(request: NextRequest) {
     secure.protocol = "https:";
     secure.port = "";
     return NextResponse.redirect(secure, 308);
+  }
+
+  // One public address: on the production deployment, any *.vercel.app
+  // address sends visitors and crawlers to the same page on the custom
+  // domain, permanently, so the site is not indexed twice. Preview
+  // deployments (VERCEL_ENV=preview) keep their own URLs for review.
+  const canonical = new URL(SITE_ORIGIN);
+  if (
+    process.env.VERCEL_ENV === "production" &&
+    request.nextUrl.hostname.endsWith(".vercel.app") &&
+    request.nextUrl.hostname !== canonical.hostname
+  ) {
+    const moved = request.nextUrl.clone();
+    moved.protocol = canonical.protocol;
+    moved.host = canonical.host;
+    moved.port = "";
+    return NextResponse.redirect(moved, 308);
   }
 
   // Every page is static and read-only: nothing here accepts a submission
@@ -72,7 +90,6 @@ export function proxy(request: NextRequest) {
 }
 
 const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "[::1]"]);
-
 function pickLocale(request: NextRequest): LocaleCode {
   const saved = request.cookies.get(LOCALE_COOKIE)?.value;
   if (saved && (LOCALE_CODES as string[]).includes(saved) && isLocaleReady(saved as LocaleCode)) {

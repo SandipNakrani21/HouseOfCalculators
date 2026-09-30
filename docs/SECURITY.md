@@ -7,7 +7,7 @@ does not apply to a site of this shape (and why).
 
 ## The attack surface
 
-House of Calculators is a **static, read-only site**.
+The Calculators House is a **static, read-only site**.
 
 - Every page is prerendered at build time. Every calculation runs in the
   visitor's browser; their figures are never sent to the server.
