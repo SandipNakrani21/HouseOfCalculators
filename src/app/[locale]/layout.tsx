@@ -16,6 +16,7 @@ import { ToastProvider } from "@/components/ui/Toast";
 import { calculatorsFor } from "@/config/calculators";
 import { COUNTRIES } from "@/config/countries";
 import { LOCALES, localeFromPath } from "@/config/locales";
+import { ADSENSE_CLIENT } from "@/lib/ads";
 import { createFormatter } from "@/lib/format";
 import { createTranslator, getDictionary } from "@/lib/i18n";
 import { LocaleProvider } from "@/lib/locale-context";
@@ -90,6 +91,8 @@ export async function generateMetadata({
       template: `%s | ${SITE_NAME}`,
     },
     applicationName: SITE_NAME,
+    // AdSense's "verify site" step looks for this tag on the home page.
+    ...(ADSENSE_CLIENT ? { other: { "google-adsense-account": ADSENSE_CLIENT } } : {}),
   };
 }
 
