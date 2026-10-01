@@ -11,7 +11,7 @@
  * Layouts read ADS_ENABLED to give an ad rail's column back to the content
  * when there is nothing to show, instead of leaving an empty gutter.
  */
-import { ADSENSE_PUBLISHER_ID } from "@/config/adsense";
+import { ADSENSE_PUBLISHER_ID, ADSENSE_UNITS } from "@/config/adsense";
 
 export const ADSENSE_CLIENT = ADSENSE_PUBLISHER_ID;
 
@@ -19,17 +19,8 @@ export const ADS_LIVE = Boolean(ADSENSE_CLIENT);
 
 export type AdPlacement = "leaderboard" | "rectangle" | "rail";
 
-/**
- * One AdSense display unit per shape, created in AdSense (Ads → By ad unit)
- * and set as environment variables. Every slot of a shape uses its unit; a
- * shape without a unit renders nothing rather than an empty box. Written out
- * one by one because Next.js only inlines literal process.env.NEXT_PUBLIC_*.
- */
-export const AD_UNITS: Record<AdPlacement, string> = {
-  leaderboard: process.env.NEXT_PUBLIC_ADSENSE_SLOT_LEADERBOARD ?? "",
-  rectangle: process.env.NEXT_PUBLIC_ADSENSE_SLOT_RECTANGLE ?? "",
-  rail: process.env.NEXT_PUBLIC_ADSENSE_SLOT_RAIL ?? "",
-};
+/** The AdSense unit for each shape (config/adsense.ts). A shape without a numeric unit renders nothing. */
+export const AD_UNITS: Record<AdPlacement, string> = ADSENSE_UNITS;
 
 const ANY_UNIT = Object.values(AD_UNITS).some((id) => /^\d+$/.test(id));
 

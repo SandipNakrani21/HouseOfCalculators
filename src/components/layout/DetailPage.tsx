@@ -95,7 +95,7 @@ export function DetailPage({
         {header.note}
       </PageHeader>
       <div className="container-page pb-12 sm:pb-16">
-        <div className={ADS_ENABLED && rail ? "grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]" : ""}>
+        <div className={ADS_ENABLED && rail ? "ad-rail-layout grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]" : ""}>
           <div className="min-w-0 space-y-6">
             {children}
 
@@ -129,7 +129,7 @@ export function DetailPage({
           </div>
 
           {ADS_ENABLED && rail ? (
-            <aside className="min-w-0">
+            <aside className="ad-rail-col min-w-0">
               {/* Desktop: a sticky rail. Phones: a rectangle below the content. */}
               <div className="hidden lg:sticky lg:top-[calc(var(--header-height-compact)+1.25rem)] lg:block">
                 <AdSlot slot={`${adPrefix}-rail`} placement="rail" className="!mt-0" />

@@ -513,6 +513,22 @@
     /* Phones get the mobile banner size in the leaderboard position. */
     .ad-leaderboard { max-width: 320px; min-height: 100px; }
   }
+  /*
+   * When AdSense has no ad for a slot (always the case before the site is
+   * approved, and sometimes after) it marks the unit "unfilled". The whole
+   * position, label included, then collapses instead of leaving an empty box.
+   */
+  /* !important: the wrapper's `flex` utility outranks this components layer. */
+  .ad-wrap:has(ins.adsbygoogle[data-ad-status="unfilled"]) { display: none !important; }
+  /* An empty sidebar ad also gives its 300px column back to the content. */
+  @media (min-width: 1024px) {
+    .ad-rail-layout:has(.ad-rail ins.adsbygoogle[data-ad-status="unfilled"]) {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+    .ad-rail-layout:has(.ad-rail ins.adsbygoogle[data-ad-status="unfilled"]) > .ad-rail-col {
+      display: none !important;
+    }
+  }
   .ad-placeholder {
     border: 1px dashed var(--border-strong);
     background:
