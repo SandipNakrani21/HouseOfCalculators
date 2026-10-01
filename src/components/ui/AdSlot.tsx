@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-import { ADSENSE_CLIENT, ADS_LIVE, AD_PLACEHOLDERS } from "@/lib/ads";
+import { ADSENSE_CLIENT, ADS_LIVE, AD_PLACEHOLDERS, AD_UNITS, type AdPlacement } from "@/lib/ads";
 import { useLocale } from "@/lib/locale-context";
 
 /**
@@ -20,7 +20,7 @@ import { useLocale } from "@/lib/locale-context";
  * development and nothing at all in production (see lib/ads.ts).
  */
 
-type Placement = "leaderboard" | "rectangle" | "rail";
+type Placement = AdPlacement;
 
 const SIZE_LABEL: Record<Placement, string> = {
   leaderboard: "728 × 90",
@@ -39,36 +39,38 @@ export function AdSlot({
   placement = "rectangle",
   className = "",
 }: {
-  /** AdSense ad unit id. */
+  /** Where on the site this is (shown on placeholders). The AdSense unit comes from the placement. */
   slot: string;
   placement?: Placement;
   className?: string;
 }) {
   const { t } = useLocale();
   const pushed = useRef(false);
+  const unit = AD_UNITS[placement];
+  const live = ADS_LIVE && /^\d+$/.test(unit);
 
   useEffect(() => {
-    if (!ADS_LIVE || pushed.current) return;
+    if (!live || pushed.current) return;
     pushed.current = true;
     try {
       (window.adsbygoogle = window.adsbygoogle ?? []).push({});
     } catch {
       // A blocked or failed ad script must never break the page.
     }
-  }, []);
+  }, [live]);
 
-  if (!ADS_LIVE && !AD_PLACEHOLDERS) return null;
+  if (!live && !AD_PLACEHOLDERS) return null;
 
   return (
     <aside aria-label={t("ads.label")} className={`my-8 flex flex-col items-center gap-1 ${className}`}>
       <span className="text-[0.625rem] font-semibold uppercase tracking-widest text-subtle">{t("ads.label")}</span>
-      {ADS_LIVE ? (
+      {live ? (
         <div className={`ad-slot ad-${placement}`}>
           <ins
             className="adsbygoogle block w-full"
             style={{ display: "block" }}
             data-ad-client={ADSENSE_CLIENT}
-            data-ad-slot={slot}
+            data-ad-slot={unit}
             data-ad-format="auto"
             data-full-width-responsive="true"
           />
