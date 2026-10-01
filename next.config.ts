@@ -97,11 +97,15 @@ const securityHeaders = [
 ];
 
 /** Meant to be shown on other sites: link previews, bookmarks, tabs. */
-const EMBEDDABLE = ["/opengraph-image", "/icon.svg", "/favicon.ico"];
+const EMBEDDABLE = ["/opengraph-image", "/icon.png", "/apple-icon.png", "/favicon.ico", "/logo.png"];
 
 const nextConfig: NextConfig = {
   // Do not advertise the framework and version to scanners.
   poweredByHeader: false,
+  // Shared hosting (Hostinger) limits how many processes an account may run,
+  // and static generation starts one worker per CPU by default. Two workers
+  // stay inside the limit and still build every page in a few minutes.
+  experimental: { cpus: process.env.VERCEL ? undefined : 2 },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
