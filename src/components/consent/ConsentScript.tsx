@@ -1,4 +1,5 @@
 import { ADSENSE_PUBLISHER_ID } from "@/config/adsense";
+import { ANALYTICS_ON } from "@/config/analytics";
 import { CONSENT_COOKIE } from "@/lib/preferences";
 
 const CLIENT_ID = ADSENSE_PUBLISHER_ID;
@@ -15,11 +16,11 @@ const CLIENT_ID = ADSENSE_PUBLISHER_ID;
  * the server without making the whole site dynamic. The script therefore reads
  * the cookie itself, which it can do synchronously.
  *
- * Renders nothing when there is no publisher id: with no advertising there are
- * no advertising cookies, and nothing to consent to.
+ * Renders nothing when neither advertising nor analytics is configured: then
+ * there are no such cookies, and nothing to consent to.
  */
 export function ConsentScript() {
-  if (!CLIENT_ID) return null;
+  if (!CLIENT_ID && !ANALYTICS_ON) return null;
 
   const source = `
 (function () {

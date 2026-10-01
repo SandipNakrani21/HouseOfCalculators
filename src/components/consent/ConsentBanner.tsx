@@ -4,10 +4,16 @@ import Link from "next/link";
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 
 import { ADSENSE_PUBLISHER_ID } from "@/config/adsense";
+import { ANALYTICS_ON } from "@/config/analytics";
 import { useLocale } from "@/lib/locale-context";
 import { readConsent, storeConsent, type ConsentChoice } from "@/lib/preferences";
 
 const CLIENT_ID = ADSENSE_PUBLISHER_ID;
+
+/** With visitor statistics on, the banner asks about both, in words that say so. */
+const COPY = ANALYTICS_ON
+  ? { title: "consent.titleWithStats", body: "consent.bodyWithStats", accept: "consent.acceptWithStats", reject: "consent.rejectWithStats" }
+  : { title: "consent.title", body: "consent.body", accept: "consent.accept", reject: "consent.reject" };
 
 declare global {
   interface Window {
@@ -112,7 +118,7 @@ export function ConsentBanner() {
     setAnswered(true);
   }, []);
 
-  if (!CLIENT_ID || stored || answered || googleApplies !== false) return null;
+  if ((!CLIENT_ID && !ANALYTICS_ON) || stored || answered || googleApplies !== false) return null;
 
   return (
     <div
@@ -124,10 +130,10 @@ export function ConsentBanner() {
       <div className="mx-auto flex max-w-4xl flex-col gap-4 px-4 py-4 sm:px-6 sm:py-5">
         <div>
           <h2 id="consent-title" className="text-sm font-semibold text-heading">
-            {t("consent.title")}
+            {t(COPY.title)}
           </h2>
           <p className="mt-1 text-sm leading-relaxed text-muted">
-            {t("consent.body")}{" "}
+            {t(COPY.body)}{" "}
             <Link href={`${base}/cookies`} className="text-primary underline underline-offset-2">
               {t("consent.learnMore")}
             </Link>
@@ -142,14 +148,14 @@ export function ConsentBanner() {
             onClick={() => choose("denied")}
             className="btn btn-outline btn-md"
           >
-            {t("consent.reject")}
+            {t(COPY.reject)}
           </button>
           <button
             type="button"
             onClick={() => choose("granted")}
             className="btn btn-primary btn-md"
           >
-            {t("consent.accept")}
+            {t(COPY.accept)}
           </button>
         </div>
       </div>

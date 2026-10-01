@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
 import { AdScript } from "@/components/ui/AdSlot";
+import { Analytics } from "@/components/consent/Analytics";
 import { ConsentBanner } from "@/components/consent/ConsentBanner";
 import { ConsentScript } from "@/components/consent/ConsentScript";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -179,6 +180,7 @@ export default async function LocaleLayout({
         {/* Organization and WebSite structured data live on the homepage. */}
         <ConsentScript />
         <AdScript />
+        <Analytics />
       </body>
     </html>
   );

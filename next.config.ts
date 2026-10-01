@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 import { ADSENSE_PUBLISHER_ID } from "./src/config/adsense";
+import { ANALYTICS_ON } from "./src/config/analytics";
 
 /*
  * Security headers for every response.
@@ -39,17 +40,26 @@ const ADS = adsEnabled
     }
   : { script: "", frame: "", img: "", connect: "" };
 
+// Google Analytics 4 (config/analytics): the gtag loader and its collection endpoints.
+const GA = ANALYTICS_ON
+  ? {
+      script: "https://www.googletagmanager.com",
+      img: "https://www.googletagmanager.com https://*.google-analytics.com",
+      connect: "https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com",
+    }
+  : { script: "", img: "", connect: "" };
+
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} ${ADS.script}`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} ${ADS.script} ${GA.script}`,
   // No inline event-handler attributes (onclick="..."): React never writes
   // them, so this only blocks injected markup. Left off once AdSense is on,
   // since its script is not ours to vouch for.
   ...(adsEnabled ? [] : ["script-src-attr 'none'"]),
   "style-src 'self' 'unsafe-inline'",
-  `img-src 'self' blob: data: ${ADS.img}`,
+  `img-src 'self' blob: data: ${ADS.img} ${GA.img}`,
   "font-src 'self'",
-  `connect-src 'self'${isDev ? " ws: wss:" : ""} ${ADS.connect}`,
+  `connect-src 'self'${isDev ? " ws: wss:" : ""} ${ADS.connect} ${GA.connect}`,
   `frame-src ${ADS.frame || "'none'"}`,
   "worker-src 'self' blob:",
   "manifest-src 'self'",

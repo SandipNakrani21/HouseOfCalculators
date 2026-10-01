@@ -123,6 +123,7 @@
   "calc.torque.faq.1.a": "Because the component along the lever just pushes toward the pivot and does no turning at all. At 90° all of your effort turns the fastener; at 45° only about 71% of it does.",
   "calc.torque.faq.2.a": "One newton-meter is about 0.738 pound-feet, so a 100 N·m spec is roughly 74 lb·ft. Torque wrenches are sold calibrated in one or the other, and the conversion is shown above.",
   "consent.body": "This site is free because it carries advertising. Google may set cookies to choose and measure those ads. Your language and country preferences are stored either way — they are needed for the site to work and identify nobody.",
+  "consent.bodyWithStats": "This site is free because it carries advertising. With your permission, Google sets cookies to choose and measure those ads and to count visits, so we can see which calculators are used. Your language and country preferences are stored either way — they are needed for the site to work and identify nobody.",
   "tool.coin-flip.explain": "Each flip is drawn independently from the same cryptographic generator the dice use. Over many flips the split drifts toward half and half, but it very rarely lands exactly there — which is what a fair coin actually looks like.",
   "seo.descriptionSuffix": "Free and private, set up for US users by default."
 }

@@ -1,3 +1,4 @@
+import { ANALYTICS_ON, GA_SESSION_COOKIE } from "@/config/analytics";
 import { CONSENT_COOKIE, COUNTRY_COOKIE, LOCALE_COOKIE } from "@/lib/preferences";
 
 /**
@@ -78,6 +79,7 @@ export function legalParams(): Record<string, string> {
     localeCookie: LOCALE_COOKIE,
     countryCookie: COUNTRY_COOKIE,
     consentCookie: CONSENT_COOKIE,
+    analyticsCookie: GA_SESSION_COOKIE,
     entity: OPERATOR.entity ?? "[ENTITY NAME]",
     email: OPERATOR.email ?? "[CONTACT EMAIL]",
     jurisdiction: OPERATOR.jurisdiction ?? "[JURISDICTION]",
@@ -88,6 +90,14 @@ const GOOGLE_ADS_POLICY = "https://policies.google.com/technologies/ads";
 const GOOGLE_PRIVACY = "https://policies.google.com/privacy";
 const ADS_SETTINGS = "https://adssettings.google.com";
 const ALL_ABOUT_COOKIES = "https://www.allaboutcookies.org";
+const GA_OPTOUT = "https://tools.google.com/dlpage/gaoptout";
+
+/**
+ * Sections that exist only while Google Analytics is on (config/analytics), so
+ * the pages describe exactly what the site does: no analytics section while
+ * there is no analytics, and no "there are no analytics cookies" once there are.
+ */
+const whenAnalytics = (section: LegalSection): LegalSection[] => (ANALYTICS_ON ? [section] : []);
 
 const privacy: LegalPage = {
   slug: "privacy",
@@ -135,6 +145,14 @@ const privacy: LegalPage = {
         { labelKey: "legal.link.adsSettings", href: ADS_SETTINGS },
       ],
     },
+    ...whenAnalytics({
+      titleKey: "legal.privacy.analytics.title",
+      body: ["legal.privacy.analytics.1", "legal.privacy.analytics.2", "legal.privacy.analytics.3"],
+      links: [
+        { labelKey: "legal.link.googlePrivacy", href: GOOGLE_PRIVACY },
+        { labelKey: "legal.link.gaOptout", href: GA_OPTOUT },
+      ],
+    }),
     {
       titleKey: "legal.privacy.hosting.title",
       body: ["legal.privacy.hosting.1", "legal.privacy.hosting.2"],
@@ -154,7 +172,7 @@ const privacy: LegalPage = {
     },
     {
       titleKey: "legal.privacy.changes.title",
-      body: ["legal.privacy.changes.1"],
+      body: [ANALYTICS_ON ? "legal.privacy.changes.withAnalytics" : "legal.privacy.changes.1"],
     },
     {
       titleKey: "legal.privacy.contact.title",
@@ -184,9 +202,15 @@ const cookies: LegalPage = {
         { labelKey: "legal.link.adsSettings", href: ADS_SETTINGS },
       ],
     },
+    ...whenAnalytics({
+      titleKey: "legal.cookies.analytics.title",
+      body: ["legal.cookies.analytics.1"],
+      bullets: ["legal.cookies.analytics.b1", "legal.cookies.analytics.b2"],
+      links: [{ labelKey: "legal.link.gaOptout", href: GA_OPTOUT }],
+    }),
     {
       titleKey: "legal.cookies.noTracking.title",
-      body: ["legal.cookies.noTracking.1"],
+      body: [ANALYTICS_ON ? "legal.cookies.noTracking.withAnalytics" : "legal.cookies.noTracking.1"],
     },
     {
       titleKey: "legal.cookies.control.title",
