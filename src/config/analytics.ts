@@ -7,7 +7,7 @@
  * privacy and cookie pages' analytics sections (config/legal), the cookie
  * banner's wording, and the Content-Security-Policy allow-list.
  */
-const MEASUREMENT_ID = "";
+const MEASUREMENT_ID = "G-LB0LPMFZXJ";
 
 export const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_ID ?? (process.env.NODE_ENV === "production" ? MEASUREMENT_ID : "");
