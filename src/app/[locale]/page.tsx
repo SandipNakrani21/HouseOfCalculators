@@ -171,7 +171,7 @@ export default async function HomePage({
         line1={t("home.hero.line1")}
         line2={t("home.hero.line2")}
         lead={t("home.hero.subtitle")}
-        video="/videos/global-calculations-hero.mp4"
+        video={{ src: "/videos/hero-720.mp4", mobileSrc: "/videos/hero-360.mp4", poster: "/videos/hero-poster.webp" }}
       >
         <SearchBar popularLabel={t("home.hero.popular")} chips={chips} centered />
       </Hero>

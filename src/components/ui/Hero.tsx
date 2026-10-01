@@ -1,4 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
+import { preload } from "react-dom";
+
+import { HeroVideo } from "@/components/ui/HeroVideo";
 
 /**
  * The homepage hero: a full-width background video behind centred content -
@@ -27,28 +30,17 @@ export function Hero({
   /** The second line, in the brand gradient ("One Global Home."). */
   line2: string;
   lead?: string;
-  /** Background video, from /public. */
-  video?: string;
+  /** Background video, from /public: a still poster, the desktop file and an optional phone file. */
+  video?: { src: string; mobileSrc?: string; poster: string };
   /** Under the text: the search bar. */
   children?: ReactNode;
 }) {
+  // The poster is the hero's largest image: fetch it with the page, first.
+  if (video) preload(video.poster, { as: "image", fetchPriority: "high" });
   const delay = (ms: number) => ({ "--delay": `${ms}ms` }) as CSSProperties;
   return (
     <section className="relative isolate flex min-h-[28rem] items-center overflow-hidden sm:min-h-[32rem] lg:min-h-[36rem]">
-      {video ? (
-        <video
-          aria-hidden
-          tabIndex={-1}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover motion-reduce:hidden"
-        >
-          <source src={video} type="video/mp4" />
-        </video>
-      ) : null}
+      {video ? <HeroVideo src={video.src} mobileSrc={video.mobileSrc} poster={video.poster} /> : null}
       {/* Light wash over the video: readable text, still a light hero. */}
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-b from-bg/80 via-bg/65 to-bg" />
 

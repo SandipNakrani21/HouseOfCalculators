@@ -18,7 +18,7 @@ import { COUNTRIES } from "@/config/countries";
 import { LOCALES, localeFromPath } from "@/config/locales";
 import { ADSENSE_CLIENT } from "@/lib/ads";
 import { createFormatter } from "@/lib/format";
-import { createTranslator, getDictionary } from "@/lib/i18n";
+import { createTranslator, getClientDictionary } from "@/lib/i18n";
 import { LocaleProvider } from "@/lib/locale-context";
 import { buildNavMenu } from "@/lib/nav-menu";
 import { calculatorPath, siteUrl } from "@/lib/routes";
@@ -107,7 +107,7 @@ export default async function LocaleLayout({
   const locale = localeFromPath(path);
   if (!locale) notFound();
 
-  const dictionary = getDictionary(locale.language, locale.code);
+  const dictionary = getClientDictionary(locale.language, locale.code);
   const t = createTranslator(locale.language, locale.code);
   const ready = readyLocales();
 

@@ -106,6 +106,36 @@ export function getDictionary(lang: LanguageCode, locale?: LocaleCode): Dictiona
 }
 
 /**
+ * Long reading text that only server components render: calculator and tool
+ * explanations and FAQs, guide bodies, and the legal pages. It reaches the
+ * browser already in the HTML, so the browser's copy of the dictionary leaves
+ * it out. Titles, descriptions (the search index), labels, hints, notes and
+ * results stay. A key matched here that a client component needs would show
+ * as the raw key, which the QA pass looks for.
+ */
+const SERVER_ONLY_KEY =
+  /^(?:(?:calc|tool|chart|conv)\.[^.]+\.(?:faq|explain)(?:\.|$)|guide\.[^.]+\.(?!(?:title|desc)$)[^.]+|legal\.)/;
+
+const CLIENT_DICTIONARIES = new Map<string, Dictionary>();
+
+/**
+ * The part of a dictionary the browser needs (see SERVER_ONLY_KEY). Every page
+ * embeds this for the client-side translator, so trimming it shrinks every
+ * page in every language.
+ */
+export function getClientDictionary(lang: LanguageCode, locale?: LocaleCode): Dictionary {
+  const cacheKey = `${lang}|${locale ?? ""}`;
+  let dict = CLIENT_DICTIONARIES.get(cacheKey);
+  if (!dict) {
+    dict = Object.fromEntries(
+      Object.entries(getDictionary(lang, locale)).filter(([key]) => !SERVER_ONLY_KEY.test(key)),
+    );
+    CLIENT_DICTIONARIES.set(cacheKey, dict);
+  }
+  return dict;
+}
+
+/**
  * A translator for a language, worded for `locale`'s market when given. Pages
  * always pass their locale; only language-level code (the coverage gate)
  * leaves it out.
