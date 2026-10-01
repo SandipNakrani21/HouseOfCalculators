@@ -109,6 +109,15 @@ const nextConfig: NextConfig = {
   // and static generation starts one worker per CPU by default. Two workers
   // stay inside the limit and still build every page in a few minutes.
   experimental: { cpus: process.env.VERCEL ? undefined : 2 },
+  // The same policy again as a <meta> tag in every page (app/[locale]/layout),
+  // because Hostinger's CDN replaces the response header with its own.
+  // frame-ancestors is not allowed in a meta policy; X-Frame-Options covers it.
+  env: {
+    CSP_META: csp
+      .split("; ")
+      .filter((directive) => !directive.startsWith("frame-ancestors"))
+      .join("; "),
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },

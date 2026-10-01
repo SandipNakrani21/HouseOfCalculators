@@ -142,6 +142,12 @@ export default async function LocaleLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
+      <head>
+        {/* The Content-Security-Policy from next.config.ts, also kept in the
+            page itself: Hostinger's CDN replaces the response header with its
+            own one-line policy. */}
+        <meta httpEquiv="Content-Security-Policy" content={process.env.CSP_META} />
+      </head>
       <body className="flex min-h-full flex-col">
         <a
           href="#main"
