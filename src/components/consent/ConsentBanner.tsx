@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { useCallback, useState, useSyncExternalStore } from "react";
 
+import { ADSENSE_PUBLISHER_ID } from "@/config/adsense";
 import { useLocale } from "@/lib/locale-context";
 import { readConsent, storeConsent, type ConsentChoice } from "@/lib/preferences";
 
-const CLIENT_ID = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+const CLIENT_ID = ADSENSE_PUBLISHER_ID;
 
 declare global {
   interface Window {

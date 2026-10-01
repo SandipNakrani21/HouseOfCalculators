@@ -3,8 +3,7 @@ import { ADSENSE_CLIENT } from "@/lib/ads";
 /**
  * /ads.txt: declares Google as an authorised seller of this site's ad space.
  * AdSense asks for it before serving ads, and buyers skip inventory without
- * it. Built from NEXT_PUBLIC_ADSENSE_CLIENT ("ca-pub-…"); until that is set
- * there is no publisher to name, so the file does not exist.
+ * it. Built from the publisher id in config/adsense.ts (production builds).
  */
 export const dynamic = "force-static";
 

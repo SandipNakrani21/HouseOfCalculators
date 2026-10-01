@@ -1,6 +1,7 @@
+import { ADSENSE_PUBLISHER_ID } from "@/config/adsense";
 import { CONSENT_COOKIE } from "@/lib/preferences";
 
-const CLIENT_ID = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+const CLIENT_ID = ADSENSE_PUBLISHER_ID;
 
 /**
  * Google Consent Mode v2 defaults, set before the advertising script loads.

@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+import { ADSENSE_PUBLISHER_ID } from "./src/config/adsense";
+
 /*
  * Security headers for every response.
  *
@@ -13,7 +15,7 @@ import type { NextConfig } from "next";
  */
 
 const isDev = process.env.NODE_ENV === "development";
-const adsEnabled = Boolean(process.env.NEXT_PUBLIC_ADSENSE_CLIENT);
+const adsEnabled = Boolean(ADSENSE_PUBLISHER_ID);
 
 /** The newsletter form may post to its provider, and nowhere else. */
 function newsletterOrigin(): string {

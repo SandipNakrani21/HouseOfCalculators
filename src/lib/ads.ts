@@ -11,7 +11,9 @@
  * Layouts read ADS_ENABLED to give an ad rail's column back to the content
  * when there is nothing to show, instead of leaving an empty gutter.
  */
-export const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
+import { ADSENSE_PUBLISHER_ID } from "@/config/adsense";
+
+export const ADSENSE_CLIENT = ADSENSE_PUBLISHER_ID;
 
 export const ADS_LIVE = Boolean(ADSENSE_CLIENT);
 
