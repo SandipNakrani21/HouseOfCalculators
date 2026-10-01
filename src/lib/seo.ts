@@ -45,6 +45,8 @@ type MetaInput = {
   /** Search should not index thin or duplicated states. */
   noindex?: boolean;
   type?: "website" | "article";
+  /** The page's own share image (absolute URL and size); defaults to the site card. */
+  image?: { url: string; width: number; height: number };
 };
 
 /**
@@ -62,6 +64,7 @@ export function buildMetadata({
   availableIn,
   noindex,
   type = "website",
+  image,
 }: MetaInput): Metadata {
   const alternates = (availableIn ?? readyLocales()).filter(isLocaleReady);
   const languages = hreflangAlternates(path, alternates);
@@ -96,13 +99,13 @@ export function buildMetadata({
       // Named explicitly rather than left to the file convention: setting
       // `openGraph` here replaces it wholesale, so without this every page
       // would be shared with no preview image at all.
-      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
+      images: [image ? { ...image, alt: title } : { url: OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [OG_IMAGE],
+      images: [image?.url ?? OG_IMAGE],
     },
   };
 }

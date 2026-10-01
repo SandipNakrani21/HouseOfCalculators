@@ -43,6 +43,12 @@ export type GuideDefinition = {
    * not a freshness badge to bump for its own sake.
    */
   reviewed: string;
+  /**
+   * When the guide was first published, if different from `reviewed`. The
+   * first guides went live on the day they were first reviewed, so this is
+   * only set for a guide re-reviewed after publication.
+   */
+  published?: string;
 };
 
 export const GUIDES: GuideDefinition[] = [

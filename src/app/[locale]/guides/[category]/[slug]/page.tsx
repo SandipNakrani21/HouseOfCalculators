@@ -54,6 +54,11 @@ export async function generateMetadata({
     title: t(guide.titleKey),
     description: t(guide.descKey),
     type: "article",
+    image: {
+      url: absoluteUrl(`${contentPath(locale.code, "guides", category, slug)}/opengraph-image`),
+      width: 1200,
+      height: 675,
+    },
   });
 }
 
@@ -81,7 +86,10 @@ export default async function GuidePage({
     headline: title,
     description: t(guide.descKey),
     inLanguage: code,
+    datePublished: guide.published ?? guide.reviewed,
     dateModified: guide.reviewed,
+    // The guide's generated share image (opengraph-image.tsx beside this page).
+    image: absoluteUrl(`${url}/opengraph-image`),
     mainEntityOfPage: absoluteUrl(url),
     author: publisherRef(),
     publisher: { ...publisherRef(), logo: { "@type": "ImageObject", url: absoluteUrl("/logo.png"), width: 512, height: 512 } },
