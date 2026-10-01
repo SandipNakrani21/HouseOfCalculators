@@ -57,9 +57,9 @@ export const OPERATOR: {
   /** Country or state whose law governs the terms. */
   jurisdiction: string | null;
 } = {
-  entity: null,
-  email: null,
-  jurisdiction: null,
+  entity: "Sandip Patel",
+  email: "sandipdpatel2189@gmail.com",
+  jurisdiction: "Gujarat, India",
 };
 
 export function missingOperatorDetails(): (keyof typeof OPERATOR)[] {
@@ -95,7 +95,7 @@ const privacy: LegalPage = {
   titleKey: "legal.privacy.title",
   descKey: "legal.privacy.desc",
   introKey: "legal.privacy.intro",
-  updated: "2026-09-21",
+  updated: "2026-10-01",
   sections: [
     {
       titleKey: "legal.privacy.summary.title",
@@ -169,7 +169,7 @@ const cookies: LegalPage = {
   titleKey: "legal.cookies.title",
   descKey: "legal.cookies.desc",
   introKey: "legal.cookies.intro",
-  updated: "2026-09-21",
+  updated: "2026-10-01",
   sections: [
     {
       titleKey: "legal.cookies.own.title",
@@ -206,7 +206,7 @@ const terms: LegalPage = {
   titleKey: "legal.terms.title",
   descKey: "legal.terms.desc",
   introKey: "legal.terms.intro",
-  updated: "2026-09-21",
+  updated: "2026-10-01",
   sections: [
     {
       titleKey: "legal.terms.accept.title",
@@ -270,7 +270,7 @@ const contact: LegalPage = {
   titleKey: "legal.contact.title",
   descKey: "legal.contact.desc",
   introKey: "legal.contact.intro",
-  updated: "2026-09-21",
+  updated: "2026-10-01",
   sections: [
     {
       titleKey: "legal.contact.reach.title",
@@ -302,7 +302,7 @@ const about: LegalPage = {
   titleKey: "legal.about.title",
   descKey: "legal.about.desc",
   introKey: "legal.about.intro",
-  updated: "2026-09-21",
+  updated: "2026-10-01",
   sections: [
     {
       titleKey: "legal.about.what.title",
