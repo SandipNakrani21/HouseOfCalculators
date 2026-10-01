@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 
 import { ADSENSE_PUBLISHER_ID } from "@/config/adsense";
 import { useLocale } from "@/lib/locale-context";
@@ -12,7 +12,56 @@ const CLIENT_ID = ADSENSE_PUBLISHER_ID;
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    /** IAB TCF v2 API, installed by Google's consent message (AdSense Privacy & messaging). */
+    __tcfapi?: (
+      command: string,
+      version: number,
+      callback: (data: { gdprApplies?: boolean } | null, success: boolean) => void,
+    ) => void;
   }
+}
+
+/** How long to wait for Google's consent tool before deciding it is not there. */
+const TCF_WAIT_MS = 4000;
+
+/**
+ * Whether Google's certified consent message covers this visitor. Google
+ * shows it to visitors in the EEA, the UK and Switzerland and reports that
+ * through the TCF API as gdprApplies. "pending" until it answers.
+ */
+function useGoogleConsentApplies(enabled: boolean): "pending" | boolean {
+  // Always starts pending: during hydration `enabled` is still false (the
+  // consent cookie is only read on the client), and starting at false would
+  // flash the banner up before Google has answered.
+  const [applies, setApplies] = useState<"pending" | boolean>("pending");
+
+  useEffect(() => {
+    if (!enabled) return;
+    let done = false;
+    const settle = (value: boolean) => {
+      if (done) return;
+      done = true;
+      setApplies(value);
+    };
+    const ask = () => {
+      window.__tcfapi?.("ping", 2, (data) => {
+        if (typeof data?.gdprApplies === "boolean") settle(data.gdprApplies);
+      });
+    };
+    const started = Date.now();
+    const timer = window.setInterval(() => {
+      if (done) return window.clearInterval(timer);
+      if (window.__tcfapi) ask();
+      // No consent tool (ad blocker, script not loaded): our banner is the fallback.
+      if (Date.now() - started > TCF_WAIT_MS) settle(false);
+    }, 250);
+    return () => {
+      done = true;
+      window.clearInterval(timer);
+    };
+  }, [enabled]);
+
+  return applies;
 }
 
 /** The cookie only changes when this component writes it, so nothing to subscribe to. */
@@ -29,6 +78,10 @@ const subscribe = () => () => {};
  * Shown only when advertising is actually configured. With no publisher id
  * there are no advertising cookies, so there is nothing to ask about and a
  * banner would be a lie.
+ *
+ * Not shown where Google's certified consent message applies (EEA, UK,
+ * Switzerland): Google asks there, as its ad policy requires, and this banner
+ * covers everyone else.
  */
 export function ConsentBanner() {
   const { t, base } = useLocale();
@@ -43,6 +96,9 @@ export function ConsentBanner() {
     () => true,
   );
   const [answered, setAnswered] = useState(false);
+  // Visitors covered by Google's certified message (EEA, UK, Switzerland)
+  // answer there; showing this banner too would ask them twice.
+  const googleApplies = useGoogleConsentApplies(Boolean(CLIENT_ID) && !stored);
 
   const choose = useCallback((choice: ConsentChoice) => {
     storeConsent(choice);
@@ -56,7 +112,7 @@ export function ConsentBanner() {
     setAnswered(true);
   }, []);
 
-  if (!CLIENT_ID || stored || answered) return null;
+  if (!CLIENT_ID || stored || answered || googleApplies !== false) return null;
 
   return (
     <div

@@ -29,12 +29,13 @@ function newsletterOrigin(): string {
   }
 }
 
+// adtrafficquality.google is AdSense's invalid-traffic detection (Sodar).
 const ADS = adsEnabled
   ? {
-      script: "https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com",
-      frame: "https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com",
-      img: "https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com",
-      connect: "https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com",
+      script: "https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google",
+      frame: "https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google",
+      img: "https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google",
+      connect: "https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google",
     }
   : { script: "", frame: "", img: "", connect: "" };
 
