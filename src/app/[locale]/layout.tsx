@@ -92,8 +92,12 @@ export async function generateMetadata({
       template: `%s | ${SITE_NAME}`,
     },
     applicationName: SITE_NAME,
-    // AdSense's "verify site" step looks for this tag on the home page.
-    ...(ADSENSE_CLIENT ? { other: { "google-adsense-account": ADSENSE_CLIENT } } : {}),
+    other: {
+      // AdSense's "verify site" step looks for this tag on the home page.
+      ...(ADSENSE_CLIENT ? { "google-adsense-account": ADSENSE_CLIENT } : {}),
+      // Ahrefs Webmaster Tools ownership (free site audit and backlink data).
+      "ahrefs-site-verification": "91753911f878be9114f279f406c0715f49b40029228f683a2cf8bb7818985e3b",
+    },
   };
 }
 

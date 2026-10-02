@@ -6,7 +6,7 @@ import {
   LOCALE_CODES,
   type LocaleCode,
 } from "@/config/locales";
-import { COUNTRIES } from "@/config/countries";
+import { COUNTRIES, type CountryCode } from "@/config/countries";
 import { LANGUAGES, type LanguageCode } from "@/config/languages";
 import { OPERATOR } from "@/config/legal/definitions";
 import { createTranslator, isLanguageReady } from "@/lib/i18n";
@@ -25,11 +25,65 @@ export function readyLocales(): LocaleCode[] {
   return LOCALE_CODES.filter(isLocaleReady);
 }
 
+/**
+ * The locales a subject calculator is offered in: those whose home country it
+ * covers, the same rule the listings follow. A tip calculator is set up for
+ * the countries that tip, so the German site neither lists nor indexes it.
+ */
+export function calculatorLocales(calculator: { countries: readonly CountryCode[] }): LocaleCode[] {
+  return readyLocales().filter((code) => calculator.countries.includes(LOCALES[code].defaultCountry));
+}
+
 export const SITE_NAME = "The Calculators House";
 
 /** What the layout's title template adds, and the longest title worth showing. */
 const BRAND_SUFFIX = ` | ${SITE_NAME}`;
 const MAX_TITLE = 65;
+
+/**
+ * Meta description length, in characters. Under 100 leaves the snippet half
+ * empty; over 160 is cut off in results. Japanese and Chinese characters are
+ * about twice as wide, so results cut them sooner.
+ */
+const DESCRIPTION_MIN = 100;
+const DESCRIPTION_MAX = 160;
+const DESCRIPTION_MAX_CJK = 140;
+
+/**
+ * The page's own description, topped up with the site's promise in the page's
+ * language until it fills a search snippet without running past it. The
+ * candidates are tried in order of preference; the first that fits wins.
+ */
+function fitDescription(description: string, locale: LocaleCode): string {
+  const language = LOCALES[locale].language;
+  const t = createTranslator(language, locale);
+  const cjk = language === "ja" || language === "zh";
+  const max = cjk ? DESCRIPTION_MAX_CJK : DESCRIPTION_MAX;
+  const length = (text: string) => [...text].length;
+  const fits = (text: string) => length(text) >= DESCRIPTION_MIN && length(text) <= max;
+
+  // Sentences run on without a space in Japanese and Chinese. A description
+  // that stops without a full stop gets one before anything is added after it.
+  const join = (...parts: string[]) => parts.join(cjk ? "" : " ");
+  const base = /[.!?。！？…]$/.test(description) ? description : `${description}${cjk ? "。" : "."}`;
+  const suffix = t("seo.descriptionSuffix");
+  const more = t("seo.descriptionMore");
+  const short = t("seo.descriptionSuffixShort");
+  const candidates = [
+    description,
+    join(base, suffix),
+    join(base, suffix, more),
+    join(base, more),
+    join(base, short, more),
+    join(base, short),
+  ];
+  return (
+    candidates.find(fits) ??
+    // Nothing lands in range: the longest that still fits in a snippet.
+    candidates.filter((text) => length(text) <= max).sort((a, b) => length(b) - length(a))[0] ??
+    description
+  );
+}
 
 /** The generated share card. Next serves it from this root-level route. */
 const OG_IMAGE = absoluteUrl("/opengraph-image");
@@ -71,13 +125,7 @@ export function buildMetadata({
 
   const canonical = absoluteUrl(path);
 
-  // Search results show about 150 characters. A short one (under 95) gets the
-  // site's promise added, in the page's language, so snippets are not left
-  // half empty.
-  const fullDescription =
-    description.length < 95
-      ? `${description} ${createTranslator(LOCALES[locale].language, locale)("seo.descriptionSuffix")}`
-      : description;
+  const fullDescription = fitDescription(description, locale);
 
   return {
     // The layout appends " | The Calculators House". Search results cut titles

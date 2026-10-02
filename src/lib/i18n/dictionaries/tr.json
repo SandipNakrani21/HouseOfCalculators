@@ -47,6 +47,7 @@
   "calc.formula": "Formül",
   "calc.faq": "Sıkça sorulan sorular",
   "calc.related": "İlgili hesaplayıcılar",
+  "calc.elsewhere": "Bu hesaplayıcı diğer ülkeler için",
   "calc.guides": "Nasıl çalıştığını öğrenin",
   "calc.notAvailable": "Bu hesaplayıcı {country} için kullanılamıyor.",
   "calc.seeAvailable": "{country} için hesaplayıcıları gör",
@@ -2263,5 +2264,7 @@
   "llms.languages": "Diğer dil sürümleri",
   "llms.optional": "İsteğe bağlı",
   "llms.sitemap": "Site haritası",
-  "seo.descriptionSuffix": "Ücretsiz ve gizli; ülkenizin para biriminde, birimlerinde ve biçiminde."
+  "seo.descriptionSuffix": "Ücretsiz ve gizli; ülkenizin para biriminde, birimlerinde ve biçiminde.",
+  "seo.descriptionSuffixShort": "Ücretsiz ve gizli.",
+  "seo.descriptionMore": "Kayıt ve kurulum gerekmez: tüm hesaplamalar kendi cihazınızda yapılır."
 }

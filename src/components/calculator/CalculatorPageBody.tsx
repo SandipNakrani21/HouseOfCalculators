@@ -12,7 +12,7 @@ import { calculatorCopy } from "@/lib/calculator-copy";
 import { createFormatter } from "@/lib/format";
 import { guideLinksFor } from "@/lib/guide-links";
 import { createTranslator } from "@/lib/i18n";
-import { calculatorPath, categoryPath } from "@/lib/routes";
+import { calculatorPath, categoryPath, countryToolPath } from "@/lib/routes";
 import { itemVisual } from "@/lib/visuals";
 import { calculatorsCta } from "@/lib/cta";
 
@@ -52,7 +52,7 @@ export function CalculatorPageBody({
   const params = calculator.params?.(ctx);
   const relevance = countryRelevanceOf(calculator);
 
-  const related = relatedTo(calculator, country)
+  const related = relatedTo(calculator, country, lockCountry)
     .slice(0, 6)
     .map((item) => ({
       key: item.slug,
@@ -60,6 +60,20 @@ export function CalculatorPageBody({
       visual: itemVisual("calculators", item.category, item.slug),
       ...calculatorCopy(item, t, country, language),
     }));
+
+  // A country tool links its versions for the other countries that have it,
+  // so each one is reachable from more than its own country page.
+  const elsewhere = lockCountry
+    ? calculator.countries
+        .filter((other) => other !== country)
+        .map((other) => ({
+          key: other,
+          href: countryToolPath(locale, other, calculator.slug),
+          label: t(`country.${other}`),
+          country: other,
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label, language))
+    : [];
 
   return (
     <DetailPage
@@ -132,6 +146,7 @@ export function CalculatorPageBody({
         // Guides link a country tool as "countries", a subject calculator as "calculators".
         items: guideLinksFor(locale, t, lockCountry ? "countries" : "calculators", calculator.slug),
       }}
+      elsewhere={{ title: t("calc.elsewhere"), items: elsewhere }}
       related={{
         title: t("calc.related"),
         items: related,
@@ -152,20 +167,27 @@ export function CalculatorPageBody({
 }
 
 /**
- * Related tools: the ones the definition names first, then others in the same
- * category, then anything else the country offers. Ordering this way keeps the
- * most relevant links at the top where they are actually followed.
+ * Related tools: the ones the definition names first, then (on a country tool)
+ * that country's other tools, then others in the same category, then anything
+ * else the country offers. Ordering this way keeps the most relevant links at
+ * the top where they are actually followed.
  */
-function relatedTo(calculator: CalculatorDef, country: CountryCode) {
+function relatedTo(calculator: CalculatorDef, country: CountryCode, countryTool: boolean) {
   const available = calculatorsFor(country).filter((item) => item.slug !== calculator.slug);
   const named = (calculator.relatedCalculators ?? [])
     .map((slug) => available.find((item) => item.slug === slug))
     .filter((item): item is CalculatorDef => Boolean(item));
 
+  const sameCountry = countryTool
+    ? available.filter((item) => item.isCountrySpecific && !named.includes(item))
+    : [];
   const sameCategory = available.filter(
-    (item) => item.category === calculator.category && !named.includes(item),
+    (item) =>
+      item.category === calculator.category && !named.includes(item) && !sameCountry.includes(item),
   );
-  const rest = available.filter((item) => !named.includes(item) && !sameCategory.includes(item));
+  const rest = available.filter(
+    (item) => !named.includes(item) && !sameCountry.includes(item) && !sameCategory.includes(item),
+  );
 
-  return [...named, ...sameCategory, ...rest];
+  return [...named, ...sameCountry, ...sameCategory, ...rest];
 }

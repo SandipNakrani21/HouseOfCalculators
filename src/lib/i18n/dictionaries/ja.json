@@ -47,6 +47,7 @@
   "calc.formula": "計算式",
   "calc.faq": "よくある質問",
   "calc.related": "関連する計算ツール",
+  "calc.elsewhere": "他の国のこの計算ツール",
   "calc.guides": "しくみを学ぶ",
   "calc.notAvailable": "この計算ツールは{country}では利用できません。",
   "calc.seeAvailable": "{country}の計算ツールを見る",
@@ -2263,5 +2264,7 @@
   "llms.languages": "ほかの言語版",
   "llms.optional": "任意",
   "llms.sitemap": "サイトマップ",
-  "seo.descriptionSuffix": "無料・プライベート。お住まいの国の通貨、単位、書式で計算できます。"
+  "seo.descriptionSuffix": "無料・プライベート。お住まいの国の通貨、単位、書式で計算できます。",
+  "seo.descriptionSuffixShort": "無料・プライベート。",
+  "seo.descriptionMore": "登録もインストールも不要です。計算はすべてお使いの端末上で行われ、入力した数値が外部に送信されたり、保存・共有されたりすることはありません。"
 }

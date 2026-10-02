@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ListingPage } from "@/components/layout/ListingPage";
+import { ViewAllLink } from "@/components/ui/SectionHeader";
 import { sectionVisual, categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
@@ -7,7 +8,7 @@ import { GUIDE_CATEGORIES, categoryKey } from "@/config/categories";
 import { guidesIn } from "@/config/guides/definitions";
 import { localeFromPath } from "@/config/locales";
 import { createTranslator } from "@/lib/i18n";
-import { contentPath, localeHome, sectionPath } from "@/lib/routes";
+import { categoryPath, contentPath, localeHome, sectionPath } from "@/lib/routes";
 import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -55,6 +56,7 @@ export default async function GuidesPage({
         key: category,
         title: t(categoryKey("guides", category)),
         visual: categoryVisual("guides", category),
+        action: <ViewAllLink href={categoryPath(code, "guides", category)} label={t("common.viewAll")} />,
         items: guidesIn(category).map((item) => ({
           key: item.slug,
           href: contentPath(code, "guides", category, item.slug),

@@ -21,7 +21,7 @@ import {
   sectionPath,
 } from "@/lib/routes";
 import { LOCALES, type LocaleCode } from "@/config/locales";
-import { hreflangAlternates, readyLocales } from "@/lib/seo";
+import { calculatorLocales, hreflangAlternates, readyLocales } from "@/lib/seo";
 
 export type SitemapEntry = {
   url: string;
@@ -52,13 +52,15 @@ export function sitemapEntries(locale: LocaleCode): SitemapEntry[] {
     priority: number,
     frequency: "daily" | "weekly" | "monthly",
     lastModified?: string,
+    /** The locales this page is offered in, when not all of them. */
+    offeredIn: LocaleCode[] = locales,
   ) => {
     entries.push({
       url: absoluteUrl(path),
       ...(lastModified ? { lastModified } : {}),
       changeFrequency: frequency,
       priority,
-      languages: hreflangAlternates(path, locales),
+      languages: hreflangAlternates(path, offeredIn),
     });
   };
 
@@ -82,7 +84,9 @@ export function sitemapEntries(locale: LocaleCode): SitemapEntry[] {
 
   for (const calc of CALCULATORS) {
     if (calc.isCountrySpecific) continue;
-    add(contentPath(locale, "calculators", calc.category, calc.slug), 0.9, "monthly");
+    const offeredIn = calculatorLocales(calc);
+    if (!offeredIn.includes(locale)) continue;
+    add(contentPath(locale, "calculators", calc.category, calc.slug), 0.9, "monthly", undefined, offeredIn);
   }
 
   for (const converter of CONVERTERS) {

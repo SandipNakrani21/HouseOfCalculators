@@ -47,6 +47,7 @@
   "calc.formula": "Fórmula",
   "calc.faq": "Preguntas frecuentes",
   "calc.related": "Calculadoras relacionadas",
+  "calc.elsewhere": "Esta calculadora en otros países",
   "calc.guides": "Aprende cómo funciona",
   "calc.notAvailable": "{country}: esta calculadora no está disponible aquí.",
   "calc.seeAvailable": "Ver las calculadoras de este país",
@@ -2232,6 +2233,11 @@
   "home.world.subtitle": "Moneda, formatos numéricos, unidades y normas legales para {count} países, y el idioma en el que lees se elige por separado.",
   "home.world.button": "Busca herramientas para tu país",
   "home.world.more": "Más",
+  "home.world.currency": "Moneda",
+  "home.world.toolsLabel": "Herramientas del país",
+  "home.world.tools.one": "{count} herramienta del país",
+  "home.world.tools.other": "{count} herramientas del país",
+  "home.world.view": "Ver herramientas",
   "home.guides.title": "Guías y consejos",
   "home.guides.viewAll": "Ver todas las guías",
   "home.guides.read": "Leer más",
@@ -2258,5 +2264,7 @@
   "llms.languages": "Otras versiones de idioma",
   "llms.optional": "Opcional",
   "llms.sitemap": "Mapa del sitio",
-  "seo.descriptionSuffix": "Gratis y privado, con la moneda y el formato de tu país."
+  "seo.descriptionSuffix": "Gratis y privado, con la moneda y el formato de tu país.",
+  "seo.descriptionSuffixShort": "Gratis y privado.",
+  "seo.descriptionMore": "Sin registro ni instalación: cada cálculo se hace en tu propio dispositivo."
 }

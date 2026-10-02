@@ -47,6 +47,7 @@
   "calc.formula": "公式",
   "calc.faq": "常见问题",
   "calc.related": "相关计算器",
+  "calc.elsewhere": "其他国家的此计算器",
   "calc.guides": "了解原理",
   "calc.notAvailable": "此计算器不适用于{country}。",
   "calc.seeAvailable": "查看{country}的计算器",
@@ -2263,5 +2264,7 @@
   "llms.languages": "其他语言版本",
   "llms.optional": "可选",
   "llms.sitemap": "网站地图",
-  "seo.descriptionSuffix": "免费且私密，使用您所在国家的货币、单位和格式。"
+  "seo.descriptionSuffix": "免费且私密，使用您所在国家的货币、单位和格式。",
+  "seo.descriptionSuffixShort": "免费且私密。",
+  "seo.descriptionMore": "无需注册，也无需安装任何软件或插件；所有计算都直接在您自己的设备上完成，您输入的数字不会被发送到任何服务器，也不会被保存或与任何人共享。"
 }

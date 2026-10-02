@@ -9,7 +9,7 @@ import { LOCALES, localeFromPath } from "@/config/locales";
 import { createFormatter } from "@/lib/format";
 import { createTranslator } from "@/lib/i18n";
 import { categoryPath, contentPath, localeHome, sectionPath } from "@/lib/routes";
-import { buildMetadata, readyLocales } from "@/lib/seo";
+import { buildMetadata, calculatorLocales, readyLocales } from "@/lib/seo";
 
 type Params = { locale: string; category: string; slug: string };
 
@@ -45,11 +45,16 @@ export async function generateMetadata({
     fmt,
   });
 
+  // Offered only where the locale's home country is covered (see
+  // calculatorLocales); elsewhere the page still works but stays out of search.
+  const offeredIn = calculatorLocales(calculator);
   return buildMetadata({
     locale: locale.code,
     path: contentPath(locale.code, "calculators", category, slug),
     title: t(calculator.titleKey, values),
     description: t(calculator.descKey, values),
+    availableIn: offeredIn,
+    noindex: !offeredIn.includes(locale.code),
   });
 }
 

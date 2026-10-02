@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ListingPage } from "@/components/layout/ListingPage";
+import { ViewAllLink } from "@/components/ui/SectionHeader";
 import { sectionVisual, categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
@@ -7,7 +8,7 @@ import { TOOL_CATEGORIES, categoryKey } from "@/config/categories";
 import { toolsIn } from "@/config/tools/definitions";
 import { localeFromPath } from "@/config/locales";
 import { createTranslator } from "@/lib/i18n";
-import { contentPath, localeHome, sectionPath } from "@/lib/routes";
+import { categoryPath, contentPath, localeHome, sectionPath } from "@/lib/routes";
 import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -55,6 +56,7 @@ export default async function ToolsPage({
         key: category,
         title: t(categoryKey("tools", category)),
         visual: categoryVisual("tools", category),
+        action: <ViewAllLink href={categoryPath(code, "tools", category)} label={t("common.viewAll")} />,
         items: toolsIn(category).map((item) => ({
           key: item.slug,
           href: contentPath(code, "tools", category, item.slug),

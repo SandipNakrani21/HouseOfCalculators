@@ -47,6 +47,7 @@
   "calc.formula": "Formule",
   "calc.faq": "Veelgestelde vragen",
   "calc.related": "Gerelateerde rekenhulpen",
+  "calc.elsewhere": "Deze rekenhulp in andere landen",
   "calc.guides": "Leer hoe het werkt",
   "calc.notAvailable": "Deze rekenhulp is niet beschikbaar voor {country}.",
   "calc.seeAvailable": "Bekijk rekenhulpen voor {country}",
@@ -2263,5 +2264,7 @@
   "llms.languages": "Versies in andere talen",
   "llms.optional": "Optioneel",
   "llms.sitemap": "Sitemap",
-  "seo.descriptionSuffix": "Gratis en privé, in de valuta, eenheden en notatie van jouw land."
+  "seo.descriptionSuffix": "Gratis en privé, in de valuta, eenheden en notatie van jouw land.",
+  "seo.descriptionSuffixShort": "Gratis en privé.",
+  "seo.descriptionMore": "Zonder account en zonder installatie: elke berekening draait op je eigen apparaat."
 }

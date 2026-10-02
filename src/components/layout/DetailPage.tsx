@@ -1,13 +1,16 @@
-import { BookOpen, CircleHelp, Lightbulb } from "lucide-react";
+import { BookOpen, CircleHelp, Globe2, Lightbulb } from "lucide-react";
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { Accordion } from "@/components/ui/Accordion";
 import { AdSlot } from "@/components/ui/AdSlot";
 import type { Crumb } from "@/components/ui/Breadcrumbs";
 import { CalculatorCard, CardGrid } from "@/components/ui/ContentCard";
+import { CountryBadge } from "@/components/ui/CountryBadge";
 import { CTABanner } from "@/components/ui/CTABanner";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeader, ViewAllLink } from "@/components/ui/SectionHeader";
+import type { CountryCode } from "@/config/countries";
 import type { LocaleCode } from "@/config/locales";
 import { ADS_ENABLED } from "@/lib/ads";
 import { faqSchema, jsonLd, webApplicationSchema, webPageSchema } from "@/lib/seo";
@@ -17,7 +20,8 @@ import type { Visual } from "@/lib/visuals";
  * The template every calculator, converter and tool page follows:
  *
  *   Breadcrumb → title and intro → the calculator card → ad →
- *   How it works / formula → FAQ → guides → related grid → call to action
+ *   How it works / formula → FAQ → guides → other countries → related grid →
+ *   call to action
  *
  * with an ad rail beside the content on desktop that moves below it on
  * phones. New tool-like pages should use this rather than laying out their
@@ -41,6 +45,7 @@ export function DetailPage({
   howItWorks,
   faq,
   guides,
+  elsewhere,
   related,
   cta,
   locale,
@@ -78,6 +83,8 @@ export function DetailPage({
   faq?: { title: string; items: { id: string; question: string; answer: string }[] };
   /** The guides that explain this page (see lib/guide-links). */
   guides?: { title: string; items: RelatedItem[] };
+  /** A country tool: the same tool for the other countries that have it. */
+  elsewhere?: { title: string; items: { key: string; href: string; label: string; country: CountryCode }[] };
   related?: { title: string; items: RelatedItem[]; viewAll?: { href: string; label: string } };
   cta: { title: string; body: string; cta: string; href: string };
 }) {
@@ -121,6 +128,21 @@ export function DetailPage({
                   {guides.items.map((item) => (
                     <li key={item.key}>
                       <CalculatorCard href={item.href} visual={item.visual} title={item.title} description={item.description} />
+                    </li>
+                  ))}
+                </ul>
+              </ContentSection>
+            ) : null}
+
+            {elsewhere?.items.length ? (
+              <ContentSection icon={<Globe2 className="h-5 w-5" />} tone="blue" title={elsewhere.title}>
+                <ul className="flex flex-wrap gap-2">
+                  {elsewhere.items.map((item) => (
+                    <li key={item.key}>
+                      <Link href={item.href} className="chip chip-outline">
+                        <CountryBadge code={item.country} />
+                        {item.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>

@@ -47,6 +47,7 @@
   "calc.formula": "Formula",
   "calc.faq": "Frequently asked questions",
   "calc.related": "Related calculators",
+  "calc.elsewhere": "This calculator in other countries",
   "calc.guides": "Learn how it works",
   "calc.notAvailable": "This calculator is not available for {country}.",
   "calc.seeAvailable": "See calculators for {country}",
@@ -2263,5 +2264,7 @@
   "llms.languages": "Other language versions",
   "llms.optional": "Optional",
   "llms.sitemap": "Sitemap",
-  "seo.descriptionSuffix": "Free and private, in your country's currency, units and format."
+  "seo.descriptionSuffix": "Free and private, in your country's currency, units and format.",
+  "seo.descriptionSuffixShort": "Free and private.",
+  "seo.descriptionMore": "No sign-up and nothing to install: every calculation runs on your own device."
 }

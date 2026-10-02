@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ListingPage } from "@/components/layout/ListingPage";
+import { ViewAllLink } from "@/components/ui/SectionHeader";
 import { sectionVisual, categoryVisual, itemVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
@@ -7,7 +8,7 @@ import { CHART_CATEGORIES, categoryKey } from "@/config/categories";
 import { chartsIn } from "@/config/charts/definitions";
 import { localeFromPath } from "@/config/locales";
 import { createTranslator } from "@/lib/i18n";
-import { contentPath, localeHome, sectionPath } from "@/lib/routes";
+import { categoryPath, contentPath, localeHome, sectionPath } from "@/lib/routes";
 import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -55,6 +56,7 @@ export default async function ChartsPage({
         key: category,
         title: t(categoryKey("charts", category)),
         visual: categoryVisual("charts", category),
+        action: <ViewAllLink href={categoryPath(code, "charts", category)} label={t("common.viewAll")} />,
         items: chartsIn(category).map((item) => ({
           key: item.slug,
           href: contentPath(code, "charts", category, item.slug),
