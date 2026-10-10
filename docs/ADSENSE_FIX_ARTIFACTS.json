@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-10-09T22:16:38.681Z",
+  "pairPages": 732,
+  "legalPages": 60,
+  "homePages": 12,
+  "locales": [
+    "en-us",
+    "en-gb",
+    "de-de",
+    "fr-fr",
+    "es-es",
+    "pt-br",
+    "ru-ru",
+    "tr-tr",
+    "ja-jp",
+    "zh-cn",
+    "it-it",
+    "nl-nl"
+  ],
+  "checks": [
+    "732 localized pair pages include worked examples, accessible tables, precision notes and source links",
+    "60 legal pages include direct support links and privacy choices, without manual ad-slot wrappers",
+    "12 home pages include the corrected sharing disclosure"
+  ]
+}

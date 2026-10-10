@@ -11,8 +11,8 @@ import type { ChartTable } from "@/config/charts/definitions";
 export function ReferenceTable({ table, caption }: { table: ChartTable; caption: string }) {
   return (
     <figure data-reveal="up" className="card p-5 sm:p-7">
-      <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
-        <table className="data-table">
+      <div tabIndex={0} role="region" aria-label={caption} className="max-h-[65dvh] overflow-auto overscroll-contain rounded-md border border-border focus-visible:outline-2 focus-visible:outline-primary">
+        <table className="data-table reference-table">
           <caption className="sr-only">{caption}</caption>
           <thead>
             <tr>

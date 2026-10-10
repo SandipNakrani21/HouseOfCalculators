@@ -35,6 +35,7 @@ export function countryOptions(
 export function CountrySelector({
   /** Restrict the list, e.g. to the countries a calculator supports. */
   only,
+  value,
   /** Flag only until 2xl, where the header has room for the name. */
   compact = false,
   /** Never show the name. */
@@ -43,6 +44,7 @@ export function CountrySelector({
   size = "md",
 }: {
   only?: CountryCode[];
+  value?: CountryCode;
   compact?: boolean;
   flagOnly?: boolean;
   align?: "start" | "end";
@@ -56,7 +58,7 @@ export function CountrySelector({
       size={size}
       align={align}
       label={t("header.country")}
-      value={countryCode}
+      value={value ?? countryCode}
       onChange={setCountry}
       options={countryOptions(t, only)}
       searchable

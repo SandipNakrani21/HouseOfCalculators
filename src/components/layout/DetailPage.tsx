@@ -19,8 +19,8 @@ import type { Visual } from "@/lib/visuals";
 /**
  * The template every calculator, converter and tool page follows:
  *
- *   Breadcrumb → title and intro → the calculator card → ad →
- *   How it works / formula → FAQ → guides → other countries → related grid →
+ *   Breadcrumb → title and intro → the calculator card →
+ *   How it works / formula → FAQ → ad → guides → other countries → related grid →
  *   call to action
  *
  * with an ad rail beside the content on desktop that moves below it on
@@ -52,6 +52,7 @@ export function DetailPage({
   appCategory,
   schema = "application",
   rail = true,
+  ads = true,
 }: {
   trail: Crumb[];
   /** For the structured data: the page's locale. */
@@ -66,6 +67,8 @@ export function DetailPage({
    * horizontal banner below the content instead.
    */
   rail?: boolean;
+  /** Exclude models without source coverage and avoid reserving an empty rail. */
+  ads?: boolean;
   breadcrumbLabel: string;
   header: {
     title: string;
@@ -102,11 +105,9 @@ export function DetailPage({
         {header.note}
       </PageHeader>
       <div className="container-page pb-12 sm:pb-16">
-        <div className={ADS_ENABLED && rail ? "ad-rail-layout grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]" : ""}>
+        <div className={ADS_ENABLED && ads && rail ? "ad-rail-layout grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]" : ""}>
           <div className="min-w-0 space-y-6">
             {children}
-
-            <AdSlot slot={`${adPrefix}-mid`} placement="leaderboard" />
 
             {howItWorks ? (
               <ContentSection icon={<Lightbulb className="h-5 w-5" />} tone="amber" title={howItWorks.title}>
@@ -121,6 +122,8 @@ export function DetailPage({
                 />
               </ContentSection>
             ) : null}
+
+            {ads ? <AdSlot slot={`${adPrefix}-mid`} placement="leaderboard" /> : null}
 
             {guides?.items.length ? (
               <ContentSection icon={<BookOpen className="h-5 w-5" />} tone="teal" title={guides.title}>
@@ -150,7 +153,7 @@ export function DetailPage({
             ) : null}
           </div>
 
-          {ADS_ENABLED && rail ? (
+          {ADS_ENABLED && ads && rail ? (
             <aside className="ad-rail-col min-w-0">
               {/* Desktop: a sticky rail. Phones: a rectangle below the content. */}
               <div className="hidden lg:sticky lg:top-[calc(var(--header-height-compact)+1.25rem)] lg:block">
@@ -161,7 +164,7 @@ export function DetailPage({
           ) : null}
         </div>
 
-        {ADS_ENABLED && !rail ? <AdSlot slot={`${adPrefix}-rail`} placement="leaderboard" /> : null}
+        {ADS_ENABLED && ads && !rail ? <AdSlot slot={`${adPrefix}-rail`} placement="leaderboard" /> : null}
 
         {related?.items.length ? (
           <section className="section-gap">

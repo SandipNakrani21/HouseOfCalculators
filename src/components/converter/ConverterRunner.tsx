@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowLeftRight } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import {
   getConverter,
@@ -15,6 +15,7 @@ import {
 import { ActionBar } from "@/components/ui/ActionBar";
 import { downloadCsv } from "@/lib/csv";
 import { useLocale } from "@/lib/locale-context";
+import { integerDigits, numberError, normalizeNumericInput } from "@/lib/validation";
 
 /**
  * The converter UI. Like the calculators, the conversion is deterministic and
@@ -41,17 +42,13 @@ export function ConverterRunner({
     initialFrom ?? definition?.defaultPair[0] ?? "",
   );
   const [to, setTo] = useState(initialTo ?? definition?.defaultPair[1] ?? "");
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState("1");
+  const min = definition?.category === "temperature" ? from === "kelvin" ? 0 : from === "fahrenheit" ? -459.67 : -273.15 : definition?.category === "angle" ? -1e12 : 0;
+  const rules = { min, max: 1e12, decimals: 6 };
+  const inputError = numberError(value, rules);
 
-  const result = useMemo(
-    () => (definition ? convert(definition, value, from, to) : 0),
-    [definition, value, from, to],
-  );
-
-  const ratio = useMemo(
-    () => (definition ? unitRatio(definition, from, to) : 0),
-    [definition, from, to],
-  );
+  const result = definition && !inputError ? convert(definition, Number(value), from, to) : NaN;
+  const ratio = definition ? unitRatio(definition, from, to) : NaN;
 
   if (!definition) return null;
 
@@ -60,13 +57,14 @@ export function ConverterRunner({
   if (!fromUnit || !toUnit) return null;
 
   const decimals = toUnit.decimals ?? 4;
+  const error = inputError ? t(`validation.${inputError}`, { min: fmt.number(min, { decimals: min % 1 ? 2 : 0 }), max: fmt.number(rules.max), digits: integerDigits(rules), decimals: rules.decimals }) : !Number.isFinite(result) ? t("validation.undefined") : null;
   const show = (input: number) =>
     fmt.number(input, { decimals: trimDecimals(input, decimals) });
 
   const selectClass = "select font-medium disabled:cursor-default disabled:opacity-80";
 
   const reset = () => {
-    setValue(1);
+    setValue("1");
     setFrom(initialFrom ?? definition.defaultPair[0]);
     setTo(initialTo ?? definition.defaultPair[1]);
   };
@@ -81,8 +79,8 @@ export function ConverterRunner({
   return (
     <div className="space-y-6">
       <section className="card animate-fade-up p-5 sm:p-7">
-        <div className="grid gap-5 sm:grid-cols-[1fr_auto_1fr] sm:items-end">
-          <div className="space-y-2">
+        <div className="grid min-w-0 gap-5 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:items-end">
+          <div className="min-w-0 space-y-2">
             <label
               htmlFor="converter-value"
               className="field-label"
@@ -91,12 +89,17 @@ export function ConverterRunner({
             </label>
             <input
               id="converter-value"
-              type="number"
+              type="text"
+              maxLength={32}
               inputMode="decimal"
-              value={Number.isFinite(value) ? value : ""}
-              onChange={(event) => setValue(Number(event.target.value))}
-              className="input tabular !px-4 !py-3 !text-xl font-bold"
+              value={value}
+              aria-invalid={!!error}
+              aria-describedby={`converter-bounds${error ? " converter-error" : ""}`}
+              onChange={(event) => setValue(normalizeNumericInput(event.target.value, fmt.locale))}
+              className="input tabular min-w-0 !px-4 !py-3 !text-xl font-bold"
             />
+            <p id="converter-bounds" className="field-hint">{t("validation.bounds", { min: fmt.number(min, { decimals: min % 1 ? 2 : 0 }), max: fmt.number(rules.max), digits: integerDigits(rules), decimals: rules.decimals })}</p>
+            {error ? <p id="converter-error" role="status" className="text-sm text-alert">{error}</p> : null}
             <select
               aria-label={t("conv.fromUnit")}
               value={from}
@@ -127,13 +130,13 @@ export function ConverterRunner({
             </button>
           </div>
 
-          <div className="space-y-2">
+          <div className="min-w-0 space-y-2">
             <span className="field-label">{t("conv.to")}</span>
             <output
               aria-live="polite"
               className="tabular block overflow-hidden rounded-md bg-gradient-result px-4 py-3 text-xl font-extrabold text-white shadow-primary"
             >
-              <span key={show(result)} className="value-flash block truncate">
+              <span key={show(result)} className="value-flash block [overflow-wrap:anywhere]">
                 {show(result)}
               </span>
             </output>

@@ -1,4 +1,5 @@
 /** Number utilities for the number and maths tools. */
+import { MAX_FACTOR_NUMBER, MAX_WORD_NUMBER } from "@/lib/validation";
 
 const ONES = [
   "zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
@@ -37,10 +38,11 @@ function underThousand(value: number): string {
  * would be worse than no answer.
  */
 export function numberToWords(value: number): string {
-  if (!Number.isFinite(value)) return "";
+  if (!Number.isFinite(value) || Math.abs(value) > MAX_WORD_NUMBER) return "";
   const negative = value < 0;
-  const whole = Math.floor(Math.abs(value));
-  const cents = Math.round((Math.abs(value) - whole) * 100);
+  const rounded = Math.round((Math.abs(value) + Number.EPSILON) * 100);
+  const whole = Math.floor(rounded / 100);
+  const cents = rounded % 100;
 
   let remaining = whole;
   const parts: string[] = [];
@@ -111,7 +113,7 @@ export function fromRoman(input: string): number | null {
 }
 
 export function isPrime(value: number): boolean {
-  if (!Number.isInteger(value) || value < 2) return false;
+  if (!Number.isSafeInteger(value) || value < 2 || value > MAX_FACTOR_NUMBER) return false;
   if (value % 2 === 0) return value === 2;
   for (let divisor = 3; divisor * divisor <= value; divisor += 2) {
     if (value % divisor === 0) return false;
@@ -120,6 +122,7 @@ export function isPrime(value: number): boolean {
 }
 
 export function primeFactors(value: number): number[] {
+  if (!Number.isSafeInteger(value) || Math.abs(value) > MAX_FACTOR_NUMBER) return [];
   let remaining = Math.floor(Math.abs(value));
   const factors: number[] = [];
 
@@ -134,6 +137,7 @@ export function primeFactors(value: number): number[] {
 }
 
 export function divisorsOf(value: number): number[] {
+  if (!Number.isSafeInteger(value) || Math.abs(value) > MAX_FACTOR_NUMBER) return [];
   const whole = Math.floor(Math.abs(value));
   if (whole < 1) return [];
 
@@ -154,9 +158,13 @@ export function gcd(a: number, b: number): number {
   return x;
 }
 
-export function lcm(a: number, b: number): number {
+export function lcm(a: number, b: number): number | bigint {
+  if (!Number.isSafeInteger(a) || !Number.isSafeInteger(b)) return NaN;
   const divisor = gcd(a, b);
-  return divisor === 0 ? 0 : Math.abs(a * b) / divisor;
+  if (divisor === 0) return 0;
+  const product = (BigInt(a) / BigInt(divisor)) * BigInt(b);
+  const result = product < BigInt(0) ? -product : product;
+  return result <= BigInt(Number.MAX_SAFE_INTEGER) ? Number(result) : result;
 }
 
 export function simplifyFraction(
@@ -179,9 +187,9 @@ export const percentage = {
   /** What is A% of B? */
   of: (percent: number, value: number) => (value * percent) / 100,
   /** A is what percent of B? */
-  share: (part: number, whole: number) => (whole === 0 ? 0 : (part / whole) * 100),
+  share: (part: number, whole: number) => (whole === 0 ? NaN : (part / whole) * 100),
   /** Percentage change from A to B. */
-  change: (from: number, to: number) => (from === 0 ? 0 : ((to - from) / from) * 100),
+  change: (from: number, to: number) => (from === 0 ? NaN : ((to - from) / from) * 100),
   /** Increase or decrease a value by a percentage. */
   apply: (value: number, percent: number) => value * (1 + percent / 100),
 };
@@ -211,6 +219,23 @@ const WORD_SCALES: Record<string, number> = {
  * that said it did not understand.
  */
 export function wordsToNumber(input: string): number | null {
+  if (/\bpoint\b/i.test(input)) {
+    const parts = input.toLowerCase().split(/\bpoint\b/);
+    if (parts.length !== 2) return null;
+    const whole = wordsToNumber(parts[0]);
+    if (whole === null) return null;
+    const fraction = parts[1].trim().split(/\s+/);
+    let decimal: number;
+    if (fraction.every(word => ONES.slice(0, 10).includes(word)) && fraction.length <= 2) {
+      decimal = Number(fraction.map(word => ONES.indexOf(word)).join("")) / 10 ** fraction.length;
+    } else {
+      const cents = wordsToNumber(parts[1]);
+      if (cents === null || cents < 10 || cents > 99) return null;
+      decimal = cents / 100;
+    }
+    const result = Math.abs(whole) + decimal;
+    return result <= MAX_WORD_NUMBER ? (/^\s*(minus|negative)\b/i.test(input) ? -result : result) : null;
+  }
   const words = input
     .toLowerCase()
     .replace(/[,]/g, " ")
@@ -253,5 +278,8 @@ export function wordsToNumber(input: string): number | null {
 
   if (!seen) return null;
   const value = total + current;
+  if (!Number.isSafeInteger(value) || value > MAX_WORD_NUMBER) return null;
+  const canonical = numberToWords(value).replace(/-/g, " ").split(/\s+/).filter(word => word !== "and").join(" ");
+  if (words.join(" ") !== canonical) return null;
   return negative ? -value : value;
 }

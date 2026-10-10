@@ -4,6 +4,8 @@ import { useState, useSyncExternalStore } from "react";
 
 import {
   Field,
+  NumberInput,
+  EntryInput,
   ToolCard,
   ToolFacts,
   ToolFields,
@@ -17,6 +19,7 @@ import {
   dayOfWeek,
   isoWeek,
   parseDate,
+  startOfYear,
   toInputValue,
 } from "@/lib/tools/dates";
 import {
@@ -68,11 +71,12 @@ export function DayOfWeekTool() {
   return (
     <ToolCard>
       <ToolFields>
-        <Field label={t("tool.field.date")}>
+        <Field label={t("tool.field.date")} error={!date ? t("tool.invalidDate") : undefined}>
           {(id) => (
             <input
               id={id}
               type="date"
+              min="0001-01-01" max="9999-12-31"
               value={value}
               onChange={(event) => setValue(event.target.value)}
               className={inputClass}
@@ -98,7 +102,7 @@ export function DayOfWeekTool() {
                 label: t("tool.result.dayOfYear"),
                 value: fmt.number(
                   daysBetween(
-                    new Date(Date.UTC(date.getUTCFullYear(), 0, 1)),
+                    startOfYear(date),
                     date,
                   ) + 1,
                 ),
@@ -151,11 +155,12 @@ export function CountdownTool() {
   return (
     <ToolCard>
       <ToolFields>
-        <Field label={t("tool.field.targetDate")} hint={t("tool.hint.countdownUtc")}>
+        <Field label={t("tool.field.targetDate")} hint={t("tool.hint.countdownUtc")} error={!date ? t("tool.invalidDate") : undefined}>
           {(id) => (
             <input
               id={id}
               type="date"
+              min="0001-01-01" max="9999-12-31"
               value={target}
               onChange={(event) => setTarget(event.target.value)}
               className={inputClass}
@@ -164,10 +169,15 @@ export function CountdownTool() {
         </Field>
       </ToolFields>
 
+      <span role="status" aria-live="polite" className="sr-only">
+        {date && remaining !== null ? (past ? t("tool.result.timeSince") : t("tool.result.timeUntil")) : ""}
+      </span>
+
       {date && remaining !== null ? (
         <>
           <ToolResult
             label={past ? t("tool.result.timeSince") : t("tool.result.timeUntil")}
+            live="off"
             value={t("tool.result.countdownValue", {
               days: fmt.number(days),
               hours: String(hours).padStart(2, "0"),
@@ -206,14 +216,15 @@ export function WordsToNumberTool() {
         <label htmlFor="words-input" className="block text-sm font-medium">
           {t("tool.field.numberWords")}
         </label>
-        <input
+        <EntryInput
           id="words-input"
-          type="text"
+          error={value === null ? t("tool.result.wordsUnreadable") : undefined}
+          aria-describedby="words-hint"
           value={text}
           onChange={(event) => setText(event.target.value)}
           className={inputClass}
         />
-        <p className="text-xs text-muted">{t("tool.hint.numberWords")}</p>
+        <p id="words-hint" className="text-xs text-muted">{t("tool.hint.numberWords")}</p>
       </div>
 
       <ToolResult
@@ -243,24 +254,24 @@ export function FactorFinderTool() {
       <ToolFields>
         <Field label={t("tool.field.number")}>
           {(id) => (
-            <input
+            <NumberInput rule="factor"
               id={id}
               type="number"
               min={1}
               value={value}
-              onChange={(event) => setValue(Math.max(Math.floor(Number(event.target.value)) || 0, 0))}
+              onValueChange={(next) => setValue(Math.max(Math.floor(next) || 0, 0))}
               className={`tabular ${inputClass}`}
             />
           )}
         </Field>
         <Field label={t("tool.field.secondNumber")} hint={t("tool.hint.secondNumber")}>
           {(id) => (
-            <input
+            <NumberInput rule="factor"
               id={id}
               type="number"
               min={1}
               value={other}
-              onChange={(event) => setOther(Math.max(Math.floor(Number(event.target.value)) || 0, 0))}
+              onValueChange={(next) => setOther(Math.max(Math.floor(next) || 0, 0))}
               className={`tabular ${inputClass}`}
             />
           )}
@@ -305,25 +316,25 @@ export function NumberFormatterTool() {
       <ToolFields>
         <Field label={t("tool.field.number")}>
           {(id) => (
-            <input
+            <NumberInput rule="number"
               id={id}
               type="number"
               value={value}
-              onChange={(event) => setValue(Number(event.target.value) || 0)}
+              onValueChange={(next) => setValue(next || 0)}
               className={`tabular ${inputClass}`}
             />
           )}
         </Field>
         <Field label={t("tool.field.decimals")}>
           {(id) => (
-            <input
+            <NumberInput rule="decimals"
               id={id}
               type="number"
               min={0}
               max={10}
               value={decimals}
-              onChange={(event) =>
-                setDecimals(Math.min(Math.max(Math.floor(Number(event.target.value)) || 0, 0), 10))
+              onValueChange={(next) =>
+                setDecimals(Math.min(Math.max(Math.floor(next) || 0, 0), 10))
               }
               className={`tabular ${inputClass}`}
             />
@@ -368,12 +379,12 @@ export function BudgetPlannerTool() {
       <ToolFields>
         <Field label={t("tool.field.monthlyIncome")} hint={t("tool.hint.afterTax")}>
           {(id) => (
-            <input
+            <NumberInput rule="monthlyIncome"
               id={id}
               type="number"
               min={0}
               value={income}
-              onChange={(event) => setIncome(Math.max(Number(event.target.value) || 0, 0))}
+              onValueChange={(next) => setIncome(Math.max(next || 0, 0))}
               className={`tabular ${inputClass}`}
             />
           )}
@@ -381,15 +392,15 @@ export function BudgetPlannerTool() {
         {CATEGORY_KEYS.map((key, index) => (
           <Field key={key} label={`${t(key)} (%)`}>
             {(id) => (
-              <input
+              <NumberInput rule="budgetPercent"
                 id={id}
                 type="number"
                 min={0}
                 max={100}
                 value={split[index]}
-                onChange={(event) => {
+                onValueChange={(inputValue) => {
                   const next = [...split] as [number, number, number];
-                  next[index] = Math.min(Math.max(Number(event.target.value) || 0, 0), 100);
+                  next[index] = inputValue;
                   setSplit(next);
                 }}
                 className={`tabular ${inputClass}`}

@@ -1,7 +1,7 @@
 import type { CountryCode } from "@/config/countries";
 
 import { contribution, defineRules, type IncomeTaxRules } from "./define";
-import type { Slab } from "./slabs";
+import { applySlabs, type Slab } from "./slabs";
 
 /**
  * Personal income tax, one rule set per country.
@@ -56,13 +56,21 @@ const india = defineRules({
   credit: ({ taxable, tax, regime }) => {
     const ceiling = regime === "new" ? 1_200_000 : 500_000;
     const cap = regime === "new" ? 60_000 : 12_500;
-    return taxable <= ceiling ? Math.min(tax, cap) : 0;
+    if (taxable <= ceiling) return Math.min(tax, cap);
+    return regime === "new" ? Math.max(tax - (taxable - ceiling), 0) : 0;
   },
   surtax: ({ taxable, tax, regime }) => {
     // The new regime caps surcharge at 25 percent.
     const bands = regime === "new" ? IN_SURCHARGE.filter((b) => b.rate <= 25) : IN_SURCHARGE;
     const band = bands.find((entry) => taxable > entry.threshold);
-    const surcharge = band ? (tax * band.rate) / 100 : 0;
+    let surcharge = band ? (tax * band.rate) / 100 : 0;
+    if (band) {
+      const slabs = regime === "new" ? IN_NEW_SLABS : IN_OLD_SLABS;
+      const thresholdTax = applySlabs(band.threshold, slabs).tax;
+      const lowerBand = bands.find(entry => band.threshold > entry.threshold);
+      const thresholdTotal = thresholdTax * (1 + (lowerBand?.rate ?? 0) / 100);
+      surcharge = Math.max(0, Math.min(surcharge, thresholdTotal + taxable - band.threshold - tax));
+    }
     return [
       { labelKey: "levy.surcharge", amount: surcharge },
       { labelKey: "levy.cess", amount: (tax + surcharge) * 0.04 },
@@ -166,7 +174,7 @@ const unitedKingdom = defineRules({
 /* ----------------------------------------------------------------- Canada */
 
 const CA_FEDERAL: Slab[] = [
-  { from: 0, rate: 15 },
+  { from: 0, rate: 14.5 },
   { from: 57_375, rate: 20.5 },
   { from: 114_750, rate: 26 },
   { from: 177_882, rate: 29 },
@@ -177,7 +185,10 @@ const canada = defineRules({
   taxYear: "2025",
   verifiedFor: "Tax year 2025, federal only - provincial tax not included",
   noteKey: "calc.income-tax.note.ca",
-  allowance: 16_129, // Basic personal amount.
+  credit: ({ gross }) => {
+    const phaseOut = Math.min(Math.max((gross - 177_882) / (253_414 - 177_882), 0), 1);
+    return (16_129 - 1_591 * phaseOut) * 0.145;
+  },
   slabs: CA_FEDERAL,
   social: ({ gross }) => [
     {

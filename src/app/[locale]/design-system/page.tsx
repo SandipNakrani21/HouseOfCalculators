@@ -305,9 +305,9 @@ export default async function DesignSystemPage({
         </Block>
 
         <Block id="ads" title="Ad slots" note="Placeholders show in development only; live units need NEXT_PUBLIC_ADSENSE_CLIENT.">
-          <AdSlot slot="design-leaderboard" placement="leaderboard" />
+          <AdSlot slot="design-leaderboard" placement="leaderboard" preview />
           <div className="flex flex-wrap justify-center gap-6">
-            <AdSlot slot="design-rectangle" placement="rectangle" className="!my-0" />
+            <AdSlot slot="design-rectangle" placement="rectangle" className="!my-0" preview />
           </div>
         </Block>
       </div>

@@ -19,7 +19,7 @@ const ALL: CountryCode[] = [
 export const incomeTaxCalculator: CalculatorDef = {
   slug: "income-tax",
   icon: "🧾",
-  version: 1,
+  version: 2,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.income-tax.title",

@@ -1,0 +1,98 @@
+
+> calculator-hub@0.1.0 check
+> node scripts/calculator-metadata.cjs --check && npm run lint && npx tsc --noEmit && npm run i18n && npm test
+
+Calculator metadata: 60 entries
+
+> calculator-hub@0.1.0 lint
+> eslint
+
+
+> calculator-hub@0.1.0 i18n
+> node scripts/i18n-coverage.mjs
+
+English defines 2324 keys.
+Source references 1156 static keys.
+Every statically referenced key is defined in English.
+
+Coverage against English:
+  ar  ███·················  16%  367/2324
+  de  ████████████████████ 100%  2324/2324
+  es  ████████████████████ 100%  2324/2324
+  fr  ████████████████████ 100%  2324/2324
+  gu  ███·················  16%  368/2324
+  hi  ███·················  16%  370/2324
+  it  ████████████████████ 100%  2324/2324
+  ja  ████████████████████ 100%  2324/2324
+  mr  ███·················  16%  368/2324
+  nl  ████████████████████ 100%  2324/2324
+  pt  ████████████████████ 100%  2324/2324
+  ru  ████████████████████ 100%  2324/2324
+  tr  ████████████████████ 100%  2324/2324
+  zh  ████████████████████ 100%  2324/2324
+
+Regional overrides:
+  en-GB  4 keys reworded
+  en-US  125 keys reworded
+
+> calculator-hub@0.1.0 test
+> node --test tests/*.test.cjs
+
+✔ Stored grant cookies cannot make the startup script grant any purpose (30.3921ms)
+✔ Consent records reject legacy, expired, future, wrong-version and wrong-scope grants (6.6108ms)
+✔ Shared inputs stay out of HTTP query parameters, round-trip and retain legacy compatibility (7.8696ms)
+✔ Non-content routes do not qualify for manually requested ads (1.1582ms)
+✔ Every featured pair has three finite meaningful examples, including offset and reciprocal known answers (28.2824ms)
+✔ Password configuration edits invalidate old password, entropy and copy availability (287.7232ms)
+✔ Picker team settings do not disable pick/shuffle after list shrinks; old result clears (46.7734ms)
+✔ Cosmetic zero edits cannot clear a persistent domain validation error (21.0072ms)
+✔ Changing dice count clears the previous draw (27.6072ms)
+✔ Dialog traps focus from initial and panel positions and restores background state (19.927ms)
+✔ Clipboard denial shows password-specific feedback rather than a false success (25.5029ms)
+✔ French numeric edits use the locale separator and recover from invalid input (38.9919ms)
+✔ India rebate marginal relief prevents the one-rupee cliff; surcharge thresholds remain continuous (4.7401ms)
+✔ Canada 2025 federal slabs and non-refundable BPA are independently correct (20.055ms)
+✔ 401k match follows actual deferrals and verified year-specific limits (90.1211ms)
+✔ Social Security uses the tiered monthly early-claim reductions (2.8312ms)
+✔ HELP includes whole-income final tier and zero-payment projection years (3.1299ms)
+✔ Monthly salary bounds and shared links follow every country and currency precision (53.3677ms)
+✔ Measurement fractions are allowed while explicit counts stay integers (6.9074ms)
+✔ Geometry does not invent general perimeters; valid rectangular/circular results remain correct (2.9327ms)
+✔ Undefined aggregate/domain answers remain unavailable rather than zero (9.156ms)
+✔ CAGR total loss and small quadratic roots remain meaningful (2.5646ms)
+✔ Converter formulas match affine/reciprocal behavior and tiny results retain magnitude (137.7491ms)
+✔ Number words reject malformed grammar and round-trip signed decimals (2.2513ms)
+✔ Leap-day anniversaries agree; unsupported next year is explicitly detected (2.8922ms)
+✔ Paint result labels and numerical units agree in US and metric modes (1.8493ms)
+✔ Discovery metadata and split engine groups cover the complete calculator registry (8.5296ms)
+✔ Health donut labels use quantity units, and invalid cross-field combinations have an explanation (554.8174ms)
+✔ Every registered tool renders defaults in every available language without missing keys or invalid numeric fields (2066.9292ms)
+✔ Numeric field markup preserves blank input and exposes its error and range (9.3246ms)
+✔ Currency fields render the correct precision and reject excessive digits (11.8871ms)
+✔ Percentage modes use the shared radio pattern and English-word help is associated (9.3485ms)
+✔ Missing and delayed CMP never expose an Accept button after the old four-second timeout (4753.8011ms)
+✔ A stored outside-region grant is not restored in a TCF region, and management uses Google revocation (7.4458ms)
+✔ Verified outside-region choices restore, reopen, revoke and persist the replacement choice (19.8213ms)
+✔ All calculator defaults validate in every supported country (395.6308ms)
+✔ All calculator country and field boundaries produce finite or explicitly unavailable results (1251.463ms)
+✔ Blank, exponent, excess digits, fractional counts and precision are rejected (0.5135ms)
+✔ Currency precision and ranges follow all 22 countries (3.1231ms)
+✔ Localized decimal input supports commas without accepting mixed separators (0.9746ms)
+✔ Number lists validate all tokens and enforce the item limit (1.7026ms)
+✔ Unsupported random ranges fail promptly and valid draws stay in range (16.6274ms)
+✔ Large factor inputs cannot enter the expensive loops (3.6867ms)
+✔ Number spelling carries rounding and rejects unsupported scales (0.7835ms)
+✔ Dates preserve early years, reject impossible dates and bound formatting (3.2195ms)
+✔ Truncated debt schedules report an outstanding balance (0.9189ms)
+✔ Undefined ratios and powers are explicit, while known answers still work (1.9385ms)
+✔ Converters reject undefined reciprocals; non-finite values never format as zero (2.5948ms)
+✔ Share URLs preserve valid defaults and reject invalid inputs instead of clamping (53.5474ms)
+✔ All available non-English languages contain shared validation and action messages (58.9333ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 50
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8820.8521

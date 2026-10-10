@@ -7,6 +7,7 @@ import {
 } from "@/config/calculators/types";
 import type { CountryCode } from "@/config/countries";
 import { INCOME_TAX_RULES, contribution } from "@/lib/finance/tax";
+import { currencyDecimals } from "@/lib/validation";
 
 const ALL: CountryCode[] = [
   "in", "us", "gb", "ae", "ca", "au", "de", "at", "ch", "fr",
@@ -19,7 +20,7 @@ const ALL: CountryCode[] = [
 export const salaryCalculator: CalculatorDef = {
   slug: "salary",
   icon: "💼",
-  version: 1,
+  version: 2,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.salary.title",
@@ -37,6 +38,9 @@ export const salaryCalculator: CalculatorDef = {
         max: scale.incomeMax,
         step: scale.incomeStep,
         default: scale.defaults.income,
+        resolve: (values) => str(values, "period", "year") === "month"
+          ? { min: Math.ceil(scale.incomeMin / 12 * 10 ** currencyDecimals(countryCode)) / 10 ** currencyDecimals(countryCode), max: Math.floor(scale.incomeMax / 12 * 10 ** currencyDecimals(countryCode)) / 10 ** currencyDecimals(countryCode), step: Math.max(1, Math.floor(scale.incomeStep / 12)) }
+          : {},
       },
       {
         id: "period",
@@ -334,7 +338,7 @@ export const thirtyPercentRulingCalculator: CalculatorDef = {
 export const payrollCalculator: CalculatorDef = {
   slug: "payroll",
   icon: "🧾",
-  version: 1,
+  version: 2,
   category: "business",
   isCountrySpecific: true,
   titleKey: "calc.payroll.title",
@@ -518,7 +522,7 @@ export const tipCalculator: CalculatorDef = {
       kind: "number",
       min: 1,
       max: 20,
-      step: 1,
+      integer: true, step: 1,
       default: 2,
     },
   ],

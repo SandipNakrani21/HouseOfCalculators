@@ -65,6 +65,8 @@ export function depositForGoal({
 }
 
 export type PayoffResult = {
+  limitReached: boolean;
+  remainingBalance: number;
   months: number;
   totalInterest: number;
   totalPaid: number;
@@ -103,6 +105,8 @@ export function debtPayoff({
       totalInterest: 0,
       totalPaid: 0,
       neverClears: true,
+      limitReached: false,
+      remainingBalance: balance,
       schedule: [],
     };
   }
@@ -129,6 +133,8 @@ export function debtPayoff({
     totalInterest,
     totalPaid,
     neverClears: false,
+    limitReached: remaining > 0.000001,
+    remainingBalance: remaining,
     schedule,
   };
 }

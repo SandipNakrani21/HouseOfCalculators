@@ -45,9 +45,21 @@ export function Modal({
     const previous = document.activeElement as HTMLElement | null;
     const { overflow } = document.body.style;
     document.body.style.overflow = "hidden";
+    const isolated: { element: HTMLElement; inert: boolean }[] = [];
+    let branch: HTMLElement | null = panel.current?.parentElement ?? null;
+    while (branch?.parentElement) {
+      for (const sibling of branch.parentElement.children) {
+        if (sibling !== branch && sibling instanceof HTMLElement && !["SCRIPT", "STYLE", "LINK"].includes(sibling.tagName)) {
+          isolated.push({ element: sibling, inert: sibling.inert });
+          sibling.inert = true;
+        }
+      }
+      branch = branch.parentElement;
+      if (branch === document.body) break;
+    }
 
     // Focus the first field if there is one (search), else the panel itself.
-    const first = panel.current?.querySelector<HTMLElement>("input, [autofocus]");
+    const first = panel.current?.querySelector<HTMLElement>('input:not([disabled]), [autofocus], button:not([disabled]), a[href]');
     (first ?? panel.current)?.focus();
 
     const onKey = (event: KeyboardEvent) => {
@@ -58,12 +70,15 @@ export function Modal({
       }
       if (event.key !== "Tab" || !panel.current) return;
       const focusable = [...panel.current.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
       )].filter((element) => element.offsetParent !== null);
-      if (!focusable.length) return;
+      if (!focusable.length) { event.preventDefault(); panel.current.focus(); return; }
       const firstItem = focusable[0]!;
       const lastItem = focusable[focusable.length - 1]!;
-      if (event.shiftKey && document.activeElement === firstItem) {
+      if (!focusable.includes(document.activeElement as HTMLElement)) {
+        event.preventDefault();
+        (event.shiftKey ? lastItem : firstItem).focus();
+      } else if (event.shiftKey && document.activeElement === firstItem) {
         event.preventDefault();
         lastItem.focus();
       } else if (!event.shiftKey && document.activeElement === lastItem) {
@@ -76,6 +91,7 @@ export function Modal({
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = overflow;
+      isolated.forEach(({ element, inert }) => { element.inert = inert; });
       previous?.focus?.();
     };
   }, [open]);
@@ -103,7 +119,7 @@ export function Modal({
         className={`bg-surface shadow-lift outline-none ${
           drawer
             ? "animate-drawer-end flex h-full w-[min(88vw,360px)] flex-col overflow-y-auto border-s border-border p-5"
-            : "animate-pop w-full max-w-2xl rounded-xl border border-border p-4 sm:p-5"
+            : "animate-pop max-h-[88dvh] w-full min-w-0 max-w-2xl overflow-y-auto rounded-xl border border-border p-4 sm:p-5"
         } ${className}`}
       >
         <div className="mb-3 flex items-center justify-between gap-3">

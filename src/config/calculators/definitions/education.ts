@@ -36,7 +36,7 @@ const POINTS_BY_VALUE = new Map(FOUR_POINT.map((entry) => [entry.value, entry.po
 export const gpaCalculator: CalculatorDef = {
   slug: "gpa",
   icon: "🎓",
-  version: 1,
+  version: 2,
   category: "education",
   titleKey: "calc.gpa.title",
   descKey: "calc.gpa.desc",
@@ -79,7 +79,7 @@ export const gpaCalculator: CalculatorDef = {
     return {
       primary: {
         labelKey: "result.gpa",
-        value: average,
+        value: credits > 0 ? average : NaN,
         kind: "number",
         decimals: 2,
         emphasis: true,
@@ -107,7 +107,7 @@ const ASSESSMENT_SLOTS = [1, 2, 3, 4, 5];
 export const weightedGradeCalculator: CalculatorDef = {
   slug: "weighted-grade",
   icon: "📝",
-  version: 1,
+  version: 2,
   category: "education",
   titleKey: "calc.weightedGrade.title",
   descKey: "calc.weightedGrade.desc",
@@ -146,7 +146,7 @@ export const weightedGradeCalculator: CalculatorDef = {
     return {
       primary: {
         labelKey: "result.weightedScore",
-        value: score,
+        value: weightUsed > 0 ? score : NaN,
         kind: "percent",
         decimals: 2,
         emphasis: true,

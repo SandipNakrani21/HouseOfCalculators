@@ -13,15 +13,25 @@ export function parseDate(value: string): Date | null {
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
   if (!match) return null;
   const [, year, month, day] = match;
-  const date = new Date(
-    Date.UTC(Number(year), Number(month) - 1, Number(day)),
-  );
+  const date = utcDate(Number(year), Number(month) - 1, Number(day));
   // Rejects impossible dates such as 2025-02-30, which Date would roll over.
-  return date.getUTCMonth() === Number(month) - 1 ? date : null;
+  return isSupportedDate(date) && date.getUTCFullYear() === Number(year) && date.getUTCMonth() === Number(month) - 1 && date.getUTCDate() === Number(day) ? date : null;
+}
+
+function utcDate(year: number, month: number, day: number): Date {
+  const date = new Date(0);
+  date.setUTCFullYear(year, month, day);
+  return date;
+}
+export function isSupportedDate(date: Date): boolean {
+  return Number.isFinite(date.getTime()) && date.getUTCFullYear() >= 1 && date.getUTCFullYear() <= 9999;
+}
+export function startOfYear(date: Date): Date {
+  return utcDate(date.getUTCFullYear(), 0, 1);
 }
 
 export function toInputValue(date: Date): string {
-  return date.toISOString().slice(0, 10);
+  return isSupportedDate(date) ? date.toISOString().slice(0, 10) : "";
 }
 
 export function daysBetween(from: Date, to: Date): number {
@@ -40,8 +50,8 @@ export function addMonths(date: Date, months: number): Date {
   const year = date.getUTCFullYear();
   const month = date.getUTCMonth() + months;
   const day = date.getUTCDate();
-  const lastDay = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
-  return new Date(Date.UTC(year, month, Math.min(day, lastDay)));
+  const lastDay = utcDate(year, month + 1, 0).getUTCDate();
+  return utcDate(year, month, Math.min(day, lastDay));
 }
 
 /**
@@ -100,7 +110,7 @@ export function isoWeek(date: Date): { week: number; year: number } {
   target.setUTCDate(target.getUTCDate() - dayOfWeek + 3);
 
   const isoYear = target.getUTCFullYear();
-  const firstThursday = new Date(Date.UTC(isoYear, 0, 4));
+  const firstThursday = utcDate(isoYear, 0, 4);
   const firstDayOfWeek = (firstThursday.getUTCDay() + 6) % 7;
   firstThursday.setUTCDate(firstThursday.getUTCDate() - firstDayOfWeek + 3);
 
@@ -119,6 +129,7 @@ export function ageOn(
   birth: Date,
   on: Date,
 ): { years: number; months: number; days: number; totalDays: number } {
+  if (birth > on) return { years: 0, months: 0, days: 0, totalDays: 0 };
   return {
     ...calendarDifference(birth, on),
     totalDays: Math.max(daysBetween(birth, on), 0),
@@ -127,12 +138,9 @@ export function ageOn(
 
 /** The next anniversary of `birth` on or after `on`. */
 export function nextBirthday(birth: Date, on: Date): Date {
-  const candidate = new Date(
-    Date.UTC(on.getUTCFullYear(), birth.getUTCMonth(), birth.getUTCDate()),
-  );
+  const anniversary = (year: number) => addMonths(birth, (year - birth.getUTCFullYear()) * 12);
+  const candidate = anniversary(on.getUTCFullYear());
   return candidate >= on
     ? candidate
-    : new Date(
-        Date.UTC(on.getUTCFullYear() + 1, birth.getUTCMonth(), birth.getUTCDate()),
-      );
+    : anniversary(on.getUTCFullYear() + 1);
 }

@@ -1,0 +1,90 @@
+{
+  "in": {
+    "taxYear": "2025-26",
+    "verifiedFor": "FY 2025-26 (AY 2026-27), salaried resident individual"
+  },
+  "us": {
+    "taxYear": "2025",
+    "verifiedFor": "Tax year 2025, federal only - no state or local income tax"
+  },
+  "gb": {
+    "taxYear": "2025/26",
+    "verifiedFor": "Tax year 2025/26, England, Wales and Northern Ireland"
+  },
+  "ca": {
+    "taxYear": "2025",
+    "verifiedFor": "Tax year 2025, federal only - provincial tax not included"
+  },
+  "au": {
+    "taxYear": "2025-26",
+    "verifiedFor": "Tax year 2025-26, resident individual, excluding offsets"
+  },
+  "de": {
+    "taxYear": "2025",
+    "verifiedFor": "2025, tax class I, EStG §32a basic schedule"
+  },
+  "at": {
+    "taxYear": "2025",
+    "verifiedFor": "2025, employee, excluding Absetzbeträge"
+  },
+  "ch": {
+    "taxYear": "2025",
+    "verifiedFor": "2025, federal direct tax only, single taxpayer"
+  },
+  "fr": {
+    "taxYear": "2025",
+    "verifiedFor": "2025 barème, single share (one part), salaried"
+  },
+  "be": {
+    "taxYear": "2025",
+    "verifiedFor": "2025, single taxpayer, excluding regional differences"
+  },
+  "nl": {
+    "taxYear": "2025",
+    "verifiedFor": "2025, box 1, below state pension age"
+  },
+  "jp": {
+    "taxYear": "2025",
+    "verifiedFor": "2025, employee, national tax plus flat-rate resident tax"
+  },
+  "es": {
+    "taxYear": "2025",
+    "verifiedFor": "2025, state plus indicative regional scale, single taxpayer"
+  },
+  "mx": {
+    "taxYear": "2025",
+    "verifiedFor": "2025 annual ISR tariff, excluding subsidio para el empleo"
+  },
+  "it": {
+    "taxYear": "2025",
+    "verifiedFor": "2025 IRPEF, employee, indicative regional and municipal rates"
+  },
+  "pt": {
+    "taxYear": "2025",
+    "verifiedFor": "2025 IRS, mainland Portugal, single taxpayer without dependants"
+  },
+  "br": {
+    "taxYear": "2025",
+    "verifiedFor": "2025 IRPF annualised from the monthly table, simplified deduction"
+  },
+  "pl": {
+    "taxYear": "2025",
+    "verifiedFor": "2025 PIT scale, employment contract"
+  },
+  "tr": {
+    "taxYear": "2025",
+    "verifiedFor": "2025 gelir vergisi tarifesi, employee"
+  },
+  "ae": {
+    "taxYear": "2025",
+    "verifiedFor": "2025 - the UAE levies no personal income tax on salaries"
+  },
+  "ru": {
+    "taxYear": "2025",
+    "verifiedFor": "2025 progressive NDFL scale, resident"
+  },
+  "cn": {
+    "taxYear": "2025",
+    "verifiedFor": "2025 annual IIT scale, resident employee"
+  }
+}

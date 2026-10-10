@@ -7,7 +7,9 @@
  */
 
 /** Parses the free-text list a statistics calculator is given. */
+import { numberListError } from "@/lib/validation";
 export function parseNumberList(input: string): number[] {
+  if (numberListError(input)) return [];
   return input
     .split(/[\s,;]+/)
     .filter(Boolean)
@@ -73,8 +75,8 @@ export function statistics(values: number[]): Statistics | null {
     max: sorted[count - 1],
     variance,
     populationStdDev: Math.sqrt(variance),
-    // Bessel's correction; undefined for a single observation, reported as 0.
-    sampleStdDev: count > 1 ? Math.sqrt(squaredError / (count - 1)) : 0,
+    // Bessel's correction; a single observation has no sample deviation.
+    sampleStdDev: count > 1 ? Math.sqrt(squaredError / (count - 1)) : NaN,
   };
 }
 
@@ -108,7 +110,7 @@ function decimalPlaces(value: number): number {
 
 /** Solves `a : b = c : x` for the missing fourth term. */
 export function solveProportion(a: number, b: number, c: number): number {
-  return a === 0 ? 0 : (b * c) / a;
+  return a === 0 ? NaN : (b * c) / a;
 }
 
 export type QuadraticSolution =
@@ -130,10 +132,11 @@ export function solveQuadratic(a: number, b: number, c: number): QuadraticSoluti
 
   if (discriminant > 0) {
     const root = Math.sqrt(discriminant);
+    const q = -0.5 * (b + (b >= 0 ? root : -root));
     return {
       kind: "two",
-      x1: (-b + root) / (2 * a),
-      x2: (-b - root) / (2 * a),
+      x1: b >= 0 ? c / q : q / a,
+      x2: b >= 0 ? q / a : c / q,
       discriminant,
     };
   }
@@ -180,17 +183,17 @@ export function area2D(
     case "rectangle":
       return { area: a * b, perimeter: 2 * (a + b) };
     case "triangle":
-      // a and b are base and height; c is the third side for the perimeter.
+      // Base and perpendicular height determine area, not a general perimeter.
       return {
         area: (a * b) / 2,
-        perimeter: a + b + (c || hypotenuse(a, b)),
+        perimeter: NaN,
       };
     case "circle":
       // a is the radius.
       return { area: Math.PI * a * a, perimeter: 2 * Math.PI * a };
     case "trapezoid":
-      // a and b are the parallel sides, c the height.
-      return { area: ((a + b) / 2) * c, perimeter: a + b + 2 * c };
+      // Parallel sides and height determine area; both legs are still unknown.
+      return { area: ((a + b) / 2) * c, perimeter: NaN };
     case "parallelogram":
       return { area: a * b, perimeter: 2 * (a + (c || b)) };
   }

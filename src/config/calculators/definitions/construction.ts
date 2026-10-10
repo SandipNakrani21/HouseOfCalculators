@@ -114,7 +114,7 @@ export const concreteCalculator: CalculatorDef = {
 export const paintCalculator: CalculatorDef = {
   slug: "paint",
   icon: "🎨",
-  version: 1,
+  version: 2,
   category: "construction",
   titleKey: "calc.paint.title",
   descKey: "calc.paint.desc",
@@ -127,11 +127,11 @@ export const paintCalculator: CalculatorDef = {
       { id: "perimeter", labelKey: "field.roomPerimeter", hintKey: "calc.paint.perimeterHint", kind: "number", min: 1, max: 200, step: 0.5, slider: false, default: metric ? 18 : 60 },
       { id: "height", labelKey: "field.wallHeight", kind: "number", min: 1, max: 10, step: 0.1, slider: false, default: metric ? 2.4 : 8 },
       { id: "openings", labelKey: "field.openingsArea", hintKey: "calc.paint.openingsHint", kind: "number", min: 0, max: 100, step: 0.5, slider: false, default: metric ? 5 : 54 },
-      { id: "coats", labelKey: "field.coats", kind: "number", min: 1, max: 5, step: 1, default: 2 },
+      { id: "coats", labelKey: "field.coats", kind: "number", min: 1, max: 5, integer: true, step: 1, default: 2 },
       {
         id: "coverage",
-        labelKey: "field.coveragePerLitre",
-        hintKey: "calc.paint.coverageHint",
+        labelKey: metric ? "field.coveragePerLitre" : "field.coveragePerGallon",
+        hintKey: metric ? "calc.paint.coverageHint" : "calc.paint.coverageGallonHint",
         kind: "number",
         min: 1,
         max: 500,
@@ -141,7 +141,8 @@ export const paintCalculator: CalculatorDef = {
       },
     ];
   },
-  compute: (values) => {
+  compute: (values, { country }) => {
+    const metric = country.measurementSystem !== "us-customary";
     const result = paint({
       perimeter: num(values, "perimeter"),
       height: num(values, "height"),
@@ -157,10 +158,11 @@ export const paintCalculator: CalculatorDef = {
         kind: "number",
         decimals: 2,
         emphasis: true,
+        hintKey: metric ? "units.litres" : "units.gallons",
       },
       rows: [
         { labelKey: "result.paintableArea", value: result.paintableArea, kind: "number", decimals: 2, tone: "principal", hintKey: "units.squared" },
-        { labelKey: "result.perCoat", value: result.litresPerCoat, kind: "number", decimals: 2, tone: "returns" },
+        { labelKey: "result.perCoat", value: result.litresPerCoat, kind: "number", decimals: 2, tone: "returns", hintKey: metric ? "units.litres" : "units.gallons" },
         { labelKey: "result.wallAreaTotal", value: result.totalArea, kind: "number", decimals: 2, tone: "neutral" },
       ],
       notes: [{ key: "calc.paint.note" }],
@@ -188,7 +190,7 @@ export const tileCalculator: CalculatorDef = {
       { id: "tileLength", labelKey: "field.tileLength", hintKey: "calc.tile.tileHint", kind: "number", min: 0.01, max: 5, step: 0.01, slider: false, default: metric ? 0.6 : 2 },
       { id: "tileWidth", labelKey: "field.tileWidth", kind: "number", min: 0.01, max: 5, step: 0.01, slider: false, default: metric ? 0.6 : 2 },
       { id: "waste", labelKey: "field.wasteAllowance", hintKey: "calc.tile.wasteHint", kind: "percent", min: 0, max: 30, step: 1, default: 10 },
-      { id: "perBox", labelKey: "field.tilesPerBox", kind: "number", min: 0, max: 100, step: 1, default: 6 },
+      { id: "perBox", labelKey: "field.tilesPerBox", kind: "number", min: 0, max: 100, integer: true, step: 1, default: 6 },
     ];
   },
   compute: (values) => {
@@ -277,7 +279,7 @@ export const roofAreaCalculator: CalculatorDef = {
 export const ohmsLawCalculator: CalculatorDef = {
   slug: "ohms-law",
   icon: "⚡",
-  version: 1,
+  version: 2,
   category: "engineering",
   titleKey: "calc.ohms.title",
   descKey: "calc.ohms.desc",
@@ -309,7 +311,7 @@ export const ohmsLawCalculator: CalculatorDef = {
       num(values, "b"),
     );
 
-    const finite = (value: number) => (Number.isFinite(value) ? value : 0);
+    const finite = (value: number) => (Number.isFinite(value) ? value : NaN);
 
     return {
       primary: {
@@ -375,7 +377,7 @@ export const forceCalculator: CalculatorDef = {
 export const torqueCalculator: CalculatorDef = {
   slug: "torque",
   icon: "🔧",
-  version: 1,
+  version: 2,
   category: "engineering",
   titleKey: "calc.torque.title",
   descKey: "calc.torque.desc",

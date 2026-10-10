@@ -267,7 +267,7 @@ export const breakEvenCalculator: CalculatorDef = {
 export const roiCalculator: CalculatorDef = {
   slug: "roi",
   icon: "📈",
-  version: 1,
+  version: 2,
   category: "business",
   titleKey: "calc.roi.title",
   descKey: "calc.roi.desc",
@@ -316,7 +316,7 @@ export const roiCalculator: CalculatorDef = {
     // Annualised so a 40% return over three years is not compared with a 40%
     // return over one.
     const annualised =
-      cost > 0 && gain > 0 ? ((gain / cost) ** (1 / years) - 1) * 100 : 0;
+      cost > 0 && gain >= 0 ? ((gain / cost) ** (1 / years) - 1) * 100 : NaN;
 
     return {
       primary: {
@@ -397,7 +397,7 @@ export const roasCalculator: CalculatorDef = {
     return {
       primary: {
         labelKey: "result.roas",
-        value: `${ratio.toFixed(2)}×`,
+        value: Number.isFinite(ratio) ? `${ratio.toFixed(2)}×` : "—",
         kind: "text",
         emphasis: true,
       },
@@ -418,7 +418,7 @@ export const roasCalculator: CalculatorDef = {
 export const growthRateCalculator: CalculatorDef = {
   slug: "growth-rate",
   icon: "📊",
-  version: 1,
+  version: 2,
   category: "business",
   titleKey: "calc.growth.title",
   descKey: "calc.growth.desc",
@@ -464,7 +464,7 @@ export const growthRateCalculator: CalculatorDef = {
     const periods = Math.max(num(values, "periods", 1), 1);
 
     const total = growthRate(from, to);
-    const compound = from > 0 && to > 0 ? ((to / from) ** (1 / periods) - 1) * 100 : 0;
+    const compound = from > 0 && to >= 0 ? ((to / from) ** (1 / periods) - 1) * 100 : NaN;
 
     return {
       primary: {
@@ -701,7 +701,7 @@ export const electricityCostCalculator: CalculatorDef = {
         kind: "number",
         min: 1,
         max: 365,
-        step: 1,
+        integer: true, step: 1,
         default: 30,
       },
     ];

@@ -1,4 +1,5 @@
 import type { CountryCode } from "@/config/countries";
+import { prepareCalculator } from "@/lib/validation";
 
 import {
   cppCalculator,
@@ -85,7 +86,7 @@ export const CALCULATORS: CalculatorDef[] = [
   ...EDUCATION_CALCULATORS,
   ...CONSTRUCTION_CALCULATORS,
   ...ENGINEERING_CALCULATORS,
-];
+].map(prepareCalculator);
 
 export function calculatorsFor(country: CountryCode): CalculatorDef[] {
   return CALCULATORS.filter((calc) => calc.countries.includes(country));

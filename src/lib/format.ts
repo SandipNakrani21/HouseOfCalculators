@@ -20,7 +20,7 @@ export type Formatter = {
   /** ₹12.35 L / $1.23 M - for chart labels and tight spaces. */
   currencyShort: (value: number) => string;
   /** 12,34,567 with no currency mark. */
-  number: (value: number, opts?: { decimals?: number }) => string;
+  number: (value: number | bigint, opts?: { decimals?: number }) => string;
   /** 12.5% */
   percent: (value: number, opts?: { decimals?: number }) => string;
   /** The bare currency symbol, for input prefixes. */
@@ -75,16 +75,20 @@ export function createFormatter(
   // kind of wrong a money calculator cannot afford.
   const shape = currencyShape(locale, currency.code, currency.symbol);
 
-  const number = (value: number, opts?: { decimals?: number }) => {
+  const number = (value: number | bigint, opts?: { decimals?: number }) => {
+    if (typeof value === "number" && !Number.isFinite(value)) return "—";
     const decimals = opts?.decimals ?? 0;
+    if (typeof value === "number" && value !== 0 && Math.abs(value) < 0.5 * 10 ** -decimals) {
+      return new Intl.NumberFormat(locale, { notation: "scientific", maximumSignificantDigits: 8 }).format(value);
+    }
     return new Intl.NumberFormat(locale, {
       minimumFractionDigits: decimals,
       maximumFractionDigits: decimals,
-    }).format(safe(value));
+    }).format(typeof value === "bigint" ? value : safe(value));
   };
 
   const withSymbol = (body: string) =>
-    shape.before
+    body === "—" ? body : shape.before
       ? `${shape.symbol}${shape.gap}${body}`
       : `${body}${shape.gap}${shape.symbol}`;
 
@@ -92,9 +96,13 @@ export function createFormatter(
     locale,
     symbol: shape.symbol,
     number,
-    currency: (value, opts) =>
-      withSymbol(number(value, { decimals: opts?.decimals ?? currency.decimals })),
+    currency: (value, opts) => {
+      if (!Number.isFinite(value)) return "—";
+      const decimals = opts?.decimals ?? currency.decimals;
+      return withSymbol(new Intl.NumberFormat(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(value));
+    },
     currencyShort: (value) => {
+      if (!Number.isFinite(value)) return "—";
       const { amount, unitKey } = abbreviate(safe(value), country);
       const body = new Intl.NumberFormat(locale, {
         minimumFractionDigits: 0,
@@ -106,7 +114,7 @@ export function createFormatter(
       return withSymbol(`${body}${unit}`);
     },
     percent: (value, opts) =>
-      `${number(value, { decimals: opts?.decimals ?? 2 })}%`,
+      Number.isFinite(value) ? `${number(value, { decimals: opts?.decimals ?? 2 })}%` : "—",
   };
 }
 

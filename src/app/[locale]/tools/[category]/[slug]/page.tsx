@@ -12,6 +12,8 @@ import { categoryPath, contentPath, localeHome, sectionPath } from "@/lib/routes
 import { buildMetadata, readyLocales } from "@/lib/seo";
 import { itemVisual } from "@/lib/visuals";
 import { calculatorsCta } from "@/lib/cta";
+import { toolExamples, toolSources } from "@/config/tools/examples";
+import { createFormatter } from "@/lib/format";
 
 type Params = { locale: string; category: string; slug: string };
 
@@ -57,6 +59,8 @@ export default async function ToolPage({
   const t = createTranslator(locale.language, locale.code);
   const code = locale.code;
   const related = toolsIn(tool.category).filter((item) => item.slug !== slug);
+  const examples = toolExamples(slug, t, createFormatter(locale.defaultCountry, locale.language, t));
+  const sources = toolSources(tool.category, slug);
 
   return (
     <DetailPage
@@ -81,7 +85,14 @@ export default async function ToolPage({
       rail={false}
       howItWorks={{
         title: t("calc.howItWorks"),
-        body: <p className="text-sm leading-relaxed text-muted">{t(tool.explainerKey)}</p>,
+        body: <div className="space-y-4" data-tool-examples={slug}>
+          <p className="text-sm leading-relaxed text-muted">{t(tool.explainerKey)}</p>
+          <h3 className="font-semibold">{t("quality.example")}</h3>
+          <p className="text-sm text-muted">{t(["random-number", "dice-roller", "coin-flip", "random-picker", "password-generator"].includes(slug) ? "quality.randomExamples" : "quality.toolExamples")}</p>
+          <div className="overflow-x-auto"><table className="w-full text-sm"><caption className="sr-only">{t("quality.example")}</caption><thead><tr><th scope="col" className="p-3 text-start">{t("quality.inputs")}</th><th scope="col" className="p-3 text-start">{t("quality.outputs")}</th></tr></thead><tbody>{examples.map((example, index) => <tr key={index} className="border-t border-border"><th scope="row" className="tabular p-3 text-start font-normal">{example.input}</th><td className="tabular p-3">{example.output}</td></tr>)}</tbody></table></div>
+          <h3 className="font-semibold">{t("quality.limits")}</h3><p className="text-sm leading-relaxed text-muted">{t(`quality.toolLimit.${tool.category}`)}</p>
+          {sources.length ? <div><h3 className="font-semibold">{t("calc.sources")}</h3><ul className="mt-2 space-y-2 text-sm">{sources.map(source => <li key={source.href}><a className="text-primary underline" href={source.href} target="_blank" rel="noreferrer">{source.name}</a></li>)}</ul></div> : null}
+        </div>,
       }}
       guides={{ title: t("calc.guides"), items: guideLinksFor(code, t, "tools", slug) }}
       related={{

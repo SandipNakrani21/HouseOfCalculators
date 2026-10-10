@@ -58,6 +58,7 @@ export function RevealObserver() {
         intersection.observe(element);
       });
     watch();
+    document.documentElement.classList.add("reveal-ready");
 
     const mutations = new MutationObserver(watch);
     mutations.observe(document.body, { childList: true, subtree: true });
@@ -65,6 +66,7 @@ export function RevealObserver() {
     return () => {
       intersection.disconnect();
       mutations.disconnect();
+      document.documentElement.classList.remove("reveal-ready");
     };
   }, [pathname]);
 

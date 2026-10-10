@@ -7,12 +7,12 @@
 
 /** Profit as a share of the selling price. */
 export function profitMargin(revenue: number, cost: number): number {
-  return revenue === 0 ? 0 : ((revenue - cost) / revenue) * 100;
+  return revenue === 0 ? NaN : ((revenue - cost) / revenue) * 100;
 }
 
 /** Profit as a share of what it cost you. */
 export function markup(revenue: number, cost: number): number {
-  return cost === 0 ? 0 : ((revenue - cost) / cost) * 100;
+  return cost === 0 ? NaN : ((revenue - cost) / cost) * 100;
 }
 
 /**
@@ -21,18 +21,18 @@ export function markup(revenue: number, cost: number): number {
  */
 export function markupToMargin(markupPercent: number): number {
   const ratio = markupPercent / 100;
-  return ratio === -1 ? 0 : (ratio / (1 + ratio)) * 100;
+  return ratio === -1 ? NaN : (ratio / (1 + ratio)) * 100;
 }
 
 export function marginToMarkup(marginPercent: number): number {
   const ratio = marginPercent / 100;
-  return ratio === 1 ? 0 : (ratio / (1 - ratio)) * 100;
+  return ratio === 1 ? NaN : (ratio / (1 - ratio)) * 100;
 }
 
 /** Selling price that achieves a target margin on a given cost. */
 export function priceForMargin(cost: number, marginPercent: number): number {
   const ratio = marginPercent / 100;
-  return ratio >= 1 ? 0 : cost / (1 - ratio);
+  return ratio >= 1 ? NaN : cost / (1 - ratio);
 }
 
 /** Selling price that achieves a target markup on a given cost. */
@@ -94,17 +94,17 @@ export function breakEven({
 
 /** Return on investment as a percentage of what was put in. */
 export function roi(gain: number, cost: number): number {
-  return cost === 0 ? 0 : ((gain - cost) / cost) * 100;
+  return cost === 0 ? NaN : ((gain - cost) / cost) * 100;
 }
 
 /** Revenue produced per unit of advertising spend. */
 export function roas(revenue: number, adSpend: number): number {
-  return adSpend === 0 ? 0 : revenue / adSpend;
+  return adSpend === 0 ? NaN : revenue / adSpend;
 }
 
 /** Simple percentage growth between two figures. */
 export function growthRate(from: number, to: number): number {
-  return from === 0 ? 0 : ((to - from) / from) * 100;
+  return from === 0 ? NaN : ((to - from) / from) * 100;
 }
 
 /** Price after a discount, and what it saves. */

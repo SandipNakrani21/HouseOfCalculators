@@ -4,6 +4,9 @@ import { useState } from "react";
 
 import {
   Field,
+  NumberInput,
+  ToolButton,
+  EntryInput,
   ToolCard,
   ToolFacts,
   ToolFields,
@@ -36,6 +39,8 @@ export function DiceRollerTool() {
   const [count, setCount] = useState(2);
   const [sides, setSides] = useState(6);
   const [rolls, setRolls] = useState<number[]>([]);
+  const [settings, setSettings] = useState(`${count}:${sides}`);
+  if (settings !== `${count}:${sides}`) { setSettings(`${count}:${sides}`); setRolls([]); }
 
   const total = rolls.reduce((sum, roll) => sum + roll, 0);
 
@@ -44,14 +49,14 @@ export function DiceRollerTool() {
       <ToolFields>
         <Field label={t("tool.field.diceCount")}>
           {(id) => (
-            <input
+            <NumberInput rule="diceCount"
               id={id}
               type="number"
               min={1}
               max={100}
               value={count}
-              onChange={(event) =>
-                setCount(Math.min(Math.max(Math.floor(Number(event.target.value)) || 1, 1), 100))
+              onValueChange={(next) =>
+                setCount(Math.min(Math.max(Math.floor(next) || 1, 1), 100))
               }
               className={`tabular ${inputClass}`}
             />
@@ -75,13 +80,13 @@ export function DiceRollerTool() {
         </Field>
       </ToolFields>
 
-      <button
+      <ToolButton
         type="button"
         onClick={() => setRolls(rollDice(count, sides))}
         className="mt-4 w-full btn btn-primary btn-md sm:w-auto"
       >
         {t("tool.action.roll")}
-      </button>
+      </ToolButton>
 
       {rolls.length ? (
         <>
@@ -109,20 +114,22 @@ export function CoinFlipTool() {
   const { t, fmt } = useLocale();
   const [count, setCount] = useState(1);
   const [result, setResult] = useState<ReturnType<typeof flipCoins> | null>(null);
+  const [drawCount, setDrawCount] = useState(count);
+  if (drawCount !== count) { setDrawCount(count); setResult(null); }
 
   return (
     <ToolCard>
       <ToolFields>
         <Field label={t("tool.field.flipCount")}>
           {(id) => (
-            <input
+            <NumberInput rule="flipCount"
               id={id}
               type="number"
               min={1}
               max={1000}
               value={count}
-              onChange={(event) =>
-                setCount(Math.min(Math.max(Math.floor(Number(event.target.value)) || 1, 1), 1000))
+              onValueChange={(next) =>
+                setCount(Math.min(Math.max(Math.floor(next) || 1, 1), 1000))
               }
               className={`tabular ${inputClass}`}
             />
@@ -130,13 +137,13 @@ export function CoinFlipTool() {
         </Field>
       </ToolFields>
 
-      <button
+      <ToolButton
         type="button"
         onClick={() => setResult(flipCoins(count))}
         className="mt-4 w-full btn btn-primary btn-md sm:w-auto"
       >
         {t("tool.action.flip")}
-      </button>
+      </ToolButton>
 
       {result ? (
         <>
@@ -184,6 +191,8 @@ export function RandomPickerTool() {
   const [picked, setPicked] = useState<string | null>(null);
   const [order, setOrder] = useState<string[]>([]);
   const [groups, setGroups] = useState<string[][]>([]);
+  const [drawSettings, setDrawSettings] = useState(`${names}:${teams}`);
+  if (drawSettings !== `${names}:${teams}`) { setDrawSettings(`${names}:${teams}`); setPicked(null); setOrder([]); setGroups([]); }
 
   const entries = parseEntries(names);
 
@@ -193,18 +202,19 @@ export function RandomPickerTool() {
         <label htmlFor="picker-names" className="block text-sm font-medium">
           {t("tool.field.names")}
         </label>
-        <textarea
+        <EntryInput multiline
           id="picker-names"
+          aria-describedby="picker-hint"
           rows={6}
           value={names}
           onChange={(event) => setNames(event.target.value)}
           className={inputClass}
         />
-        <p className="text-xs text-muted">{t("tool.hint.names")}</p>
+        <p id="picker-hint" className="text-xs text-muted">{t("tool.hint.names")}</p>
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        <button
+        <ToolButton
           type="button"
           disabled={entries.length === 0}
           onClick={() => {
@@ -215,8 +225,8 @@ export function RandomPickerTool() {
           className="btn btn-primary btn-md disabled:opacity-50"
         >
           {t("tool.action.pickOne")}
-        </button>
-        <button
+        </ToolButton>
+        <ToolButton
           type="button"
           disabled={entries.length === 0}
           onClick={() => {
@@ -227,10 +237,10 @@ export function RandomPickerTool() {
           className="btn btn-outline btn-md disabled:opacity-50"
         >
           {t("tool.action.shuffle")}
-        </button>
-        <button
+        </ToolButton>
+        <ToolButton
           type="button"
-          disabled={entries.length === 0}
+          disabled={entries.length < 2 || teams > entries.length}
           onClick={() => {
             setGroups(splitTeams(entries, teams));
             setPicked(null);
@@ -239,20 +249,20 @@ export function RandomPickerTool() {
           className="btn btn-outline btn-md disabled:opacity-50"
         >
           {t("tool.action.makeTeams")}
-        </button>
+        </ToolButton>
       </div>
 
       <div className="mt-4 max-w-40">
         <Field label={t("tool.field.teamCount")}>
           {(id) => (
-            <input
+            <NumberInput rule="teamCount"
               id={id}
               type="number"
               min={2}
               max={20}
               value={teams}
-              onChange={(event) =>
-                setTeams(Math.min(Math.max(Math.floor(Number(event.target.value)) || 2, 2), 20))
+              onValueChange={(next) =>
+                setTeams(Math.min(Math.max(Math.floor(next) || 2, 2), 20))
               }
               className={`tabular ${inputClass}`}
             />

@@ -15,7 +15,7 @@ import type { TranslateFn } from "@/lib/i18n/core";
  * through here instead.
  */
 export function calculatorCopy(
-  calculator: CalculatorDef,
+  calculator: Pick<CalculatorDef, "titleKey" | "descKey" | "params">,
   t: TranslateFn,
   country: CountryCode,
   language: LanguageCode,

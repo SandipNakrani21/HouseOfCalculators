@@ -15,6 +15,9 @@ export const CONSENT_COOKIE = "hoc_consent";
 export const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
 export type ConsentChoice = "granted" | "denied";
+export const CONSENT_VERSION = 2;
+export const CONSENT_LIFETIME_MS = 180 * 24 * 60 * 60 * 1000;
+export type ConsentRecord = { version: number; choice: ConsentChoice; at: number; scope: "outside-tcf" };
 
 function write(name: string, value: string): void {
   try {
@@ -59,10 +62,23 @@ export function hasStoredLocale(): boolean {
 }
 
 export function storeConsent(choice: ConsentChoice): void {
-  write(CONSENT_COOKIE, choice);
+  write(CONSENT_COOKIE, JSON.stringify({ version: CONSENT_VERSION, choice, at: Date.now(), scope: "outside-tcf" }));
 }
 
 export function readConsent(): ConsentChoice | null {
-  const value = read(CONSENT_COOKIE);
-  return value === "granted" || value === "denied" ? value : null;
+  return readConsentRecord()?.choice ?? null;
+}
+
+export function readConsentRecord(): ConsentRecord | null {
+  try {
+    const record = JSON.parse(read(CONSENT_COOKIE) ?? "null");
+    if (!record || record.version !== CONSENT_VERSION || record.scope !== "outside-tcf" ||
+      !["granted", "denied"].includes(record.choice) || !Number.isFinite(record.at) ||
+      record.at > Date.now() || Date.now() - record.at > CONSENT_LIFETIME_MS) return null;
+    return record;
+  } catch { return null; }
+}
+
+export function clearConsent(): void {
+  document.cookie = `${CONSENT_COOKIE}=; path=/; max-age=0; samesite=lax`;
 }

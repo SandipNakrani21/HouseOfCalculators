@@ -44,7 +44,7 @@ export function LocaleSelector({
     storeLocale(next);
     // Same logical page, different locale prefix - a client navigation, so
     // the visitor keeps their place and the app shell is not reloaded.
-    router.push(swapLocale(pathname, next));
+    router.push(swapLocale(pathname, next) + window.location.search + window.location.hash);
   };
 
   return (

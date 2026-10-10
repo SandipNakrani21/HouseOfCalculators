@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-10",
+  "method": "Read-only code review, local VM simulation, official Google policy pages and limited public web retrieval",
+  "inventory": {
+    "calculators": 60,
+    "converterCategories": 13,
+    "featuredPairsPerLocale": 61,
+    "availableLocales": 12,
+    "localizedPairRoutes": 732,
+    "guides": 12
+  },
+  "pairEditorialContent": [
+    {
+      "category": "length",
+      "pairs": 8,
+      "sharedExplanationWords": 31
+    },
+    {
+      "category": "weight",
+      "pairs": 7,
+      "sharedExplanationWords": 30
+    },
+    {
+      "category": "temperature",
+      "pairs": 4,
+      "sharedExplanationWords": 33
+    },
+    {
+      "category": "area",
+      "pairs": 5,
+      "sharedExplanationWords": 33
+    },
+    {
+      "category": "volume",
+      "pairs": 5,
+      "sharedExplanationWords": 32
+    },
+    {
+      "category": "speed",
+      "pairs": 4,
+      "sharedExplanationWords": 23
+    },
+    {
+      "category": "data",
+      "pairs": 4,
+      "sharedExplanationWords": 35
+    },
+    {
+      "category": "time",
+      "pairs": 5,
+      "sharedExplanationWords": 24
+    },
+    {
+      "category": "energy",
+      "pairs": 4,
+      "sharedExplanationWords": 28
+    },
+    {
+      "category": "pressure",
+      "pairs": 4,
+      "sharedExplanationWords": 27
+    },
+    {
+      "category": "power",
+      "pairs": 4,
+      "sharedExplanationWords": 24
+    },
+    {
+      "category": "angle",
+      "pairs": 3,
+      "sharedExplanationWords": 29
+    },
+    {
+      "category": "fuel-economy",
+      "pairs": 4,
+      "sharedExplanationWords": 34
+    }
+  ],
+  "dummyShareUrl": "https://thecalculatorshouse.com/en-us/calculators/finance/salary?income=80000&period=annual&country=us",
+  "storedConsentSimulation": {
+    "cookie": "hoc_consent=granted",
+    "regionAndTcfApi": "Not supplied; the generated script does not check them",
+    "calls": [
+      [
+        "consent",
+        "default",
+        {
+          "ad_storage": "denied",
+          "ad_user_data": "denied",
+          "ad_personalization": "denied",
+          "analytics_storage": "denied",
+          "wait_for_update": 500
+        }
+      ],
+      [
+        "consent",
+        "update",
+        {
+          "ad_storage": "granted",
+          "ad_user_data": "granted",
+          "ad_personalization": "granted",
+          "analytics_storage": "granted"
+        }
+      ]
+    ]
+  },
+  "publicRetrieval": {
+    "readable": [
+      "/en-us",
+      "/en-us/privacy",
+      "/en-us/calculators/finance/mortgage"
+    ],
+    "unverified": [
+      "/",
+      "/ads.txt",
+      "/robots.txt",
+      "/en-us/about",
+      "/en-us/contact",
+      "/en-us/converters/length/meters-to-feet"
+    ],
+    "note": "Web-tool retrieval failures do not prove 404s, crawler blocking or site outages."
+  },
+  "limits": [
+    "No AdSense account access or exact rejection notice",
+    "No CMP network or regional browser verification",
+    "No deployed HTTP-header, ads.txt seller authorization or crawler-log verification",
+    "No fresh live ad-placement screenshots"
+  ]
+}

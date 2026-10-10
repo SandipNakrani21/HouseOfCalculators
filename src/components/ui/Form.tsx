@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, type ComponentProps, type ReactNode } from "react";
+import { cloneElement, isValidElement, useId, type ComponentProps, type ReactNode } from "react";
 
 /**
  * Form elements every calculator, converter and tool is built from.
@@ -22,23 +22,29 @@ export const selectClass = "select";
 export function Field({
   label,
   hint,
+  error,
   children,
   className = "",
 }: {
   label: ReactNode;
   hint?: ReactNode;
+  error?: ReactNode;
   /** Receives the id to put on the control. */
   children: (id: string) => ReactNode;
   className?: string;
 }) {
   const id = useId();
+  const control = children(id);
   return (
     <div className={`space-y-2 ${className}`}>
       <label htmlFor={id} className="field-label">
         {label}
       </label>
-      {children(id)}
-      {hint ? <p className="field-hint">{hint}</p> : null}
+      {(hint || error) && isValidElement<{ "aria-describedby"?: string; "aria-invalid"?: boolean }>(control)
+        ? cloneElement(control, { "aria-invalid": !!error, "aria-describedby": [control.props["aria-describedby"], hint ? `${id}-hint` : "", error ? `${id}-error` : ""].filter(Boolean).join(" ") })
+        : control}
+      {hint ? <p id={`${id}-hint`} className="field-hint">{hint}</p> : null}
+      {error ? <p id={`${id}-error`} role="status" className="text-sm text-alert">{error}</p> : null}
     </div>
   );
 }
@@ -71,7 +77,7 @@ export function SegmentedControl<T extends string>({
       <p id={id} className="field-label">
         {label}
       </p>
-      <div role="radiogroup" aria-labelledby={id} className="flex flex-wrap gap-2">
+      <div role="radiogroup" aria-labelledby={id} aria-describedby={hint ? `${id}-hint` : undefined} className="flex flex-wrap gap-2">
         {options.map((option) => {
           const checked = option.value === value;
           return (
@@ -103,7 +109,7 @@ export function SegmentedControl<T extends string>({
           );
         })}
       </div>
-      {hint ? <p className="field-hint">{hint}</p> : null}
+      {hint ? <p id={`${id}-hint`} className="field-hint">{hint}</p> : null}
     </div>
   );
 }
@@ -175,6 +181,7 @@ export function ResultBox({
   tone = "primary",
   size = "lg",
   className = "",
+  live = "polite",
 }: {
   label: ReactNode;
   value: string;
@@ -184,10 +191,11 @@ export function ResultBox({
   /** "quiet" is the neutral box, for warnings and empty states. */
   tone?: "primary" | "quiet";
   className?: string;
+  live?: "polite" | "off";
 }) {
   const quiet = tone === "quiet";
   return (
-    <div aria-live="polite" className={`result-box ${quiet ? "result-box-quiet" : ""} ${className}`}>
+    <div aria-live={live} className={`result-box ${quiet ? "result-box-quiet" : ""} ${className}`}>
       <p className={`text-sm font-semibold ${quiet ? "text-muted" : "text-white/80"}`}>{label}</p>
       <p
         key={value}
@@ -222,13 +230,13 @@ export function FactList({
           key={index}
           className="-mx-2 flex items-center justify-between gap-4 rounded-sm px-2 py-2.5 transition-colors duration-200 hover:bg-primary-light"
         >
-          <dt className="flex items-center gap-2 text-sm text-muted">
+          <dt className="min-w-0 flex items-center gap-2 text-sm text-muted [overflow-wrap:anywhere]">
             {item.marker ? (
               <span aria-hidden className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: item.marker }} />
             ) : null}
             {item.label}
           </dt>
-          <dd className="tabular text-end text-sm font-bold text-heading">{item.value}</dd>
+          <dd className="tabular min-w-0 text-end text-sm font-bold text-heading [overflow-wrap:anywhere]">{item.value}</dd>
         </div>
       ))}
     </dl>

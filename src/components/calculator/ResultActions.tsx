@@ -15,7 +15,7 @@ import { buildShareUrl } from "@/lib/share-link";
  * the calculator's own CSV (headline, rows, breakdown tables) and a share
  * link that carries its inputs.
  *
- * The share link carries the inputs as query parameters, which are the
+ * The share link carries the inputs in its URL fragment, which are the
  * visitor's own numbers - so the link is only created when they ask for it,
  * and the parameters are deliberately not part of any canonical URL.
  */
@@ -41,10 +41,10 @@ export function ResultActions({
     const rows: string[][] = [[t("export.item"), t("export.value")]];
     rows.push([
       t(result.primary.labelKey),
-      format(result.primary.value, result.primary.kind, result.primary.decimals),
+      format(result.primary.value, result.primary.kind, result.primary.decimals) + (result.primary.hintKey ? ` (${t(result.primary.hintKey)})` : ""),
     ]);
     for (const row of result.rows) {
-      rows.push([t(row.labelKey), format(row.value, row.kind, row.decimals)]);
+      rows.push([t(row.labelKey), format(row.value, row.kind, row.decimals) + (row.hintKey ? ` (${t(row.hintKey)})` : "")]);
     }
 
     for (const view of result.breakdown ?? []) {
@@ -62,10 +62,13 @@ export function ResultActions({
 
   return (
     <ActionBar
+      className="mt-6"
+      layout="row"
       onReset={onReset}
       onDownloadCsv={exportCsv}
       shareUrl={() => buildShareUrl(window.location.href, values, country)}
       shareTitle={title}
+      shareNotice={t("actions.sharePrivacy")}
     />
   );
 }

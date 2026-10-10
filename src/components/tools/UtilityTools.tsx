@@ -4,6 +4,8 @@ import { useState } from "react";
 
 import {
   Field,
+  NumberInput,
+  ToolButton,
   ToolCard,
   ToolFacts,
   ToolFields,
@@ -23,9 +25,12 @@ export function RandomNumberTool() {
   const [count, setCount] = useState(1);
   const [unique, setUnique] = useState(false);
   const [results, setResults] = useState<number[]>([]);
+  const [settings, setSettings] = useState(`${min}:${max}:${count}:${unique}`);
+  if (settings !== `${min}:${max}:${count}:${unique}`) { setSettings(`${min}:${max}:${count}:${unique}`); setResults([]); }
 
   const span = max - min + 1;
-  const impossible = unique && count > span;
+  const invalidRange = min > max || span > 0x100000000;
+  const impossible = invalidRange || (unique && count > span);
 
   const draw = () => {
     if (impossible) return;
@@ -43,36 +48,36 @@ export function RandomNumberTool() {
       <ToolFields>
         <Field label={t("tool.field.min")}>
           {(id) => (
-            <input
+            <NumberInput rule="min"
               id={id}
               type="number"
               value={min}
-              onChange={(event) => setMin(Math.floor(Number(event.target.value)))}
+              onValueChange={(next) => setMin(Math.floor(next))}
               className={`tabular ${inputClass}`}
             />
           )}
         </Field>
         <Field label={t("tool.field.max")}>
           {(id) => (
-            <input
+            <NumberInput rule="max"
               id={id}
               type="number"
               value={max}
-              onChange={(event) => setMax(Math.floor(Number(event.target.value)))}
+              onValueChange={(next) => setMax(Math.floor(next))}
               className={`tabular ${inputClass}`}
             />
           )}
         </Field>
         <Field label={t("tool.field.howMany")}>
           {(id) => (
-            <input
+            <NumberInput rule="howMany"
               id={id}
               type="number"
               min={1}
               max={100}
               value={count}
-              onChange={(event) =>
-                setCount(Math.min(Math.max(Number(event.target.value), 1), 100))
+              onValueChange={(next) =>
+                setCount(Math.min(Math.max(next, 1), 100))
               }
               className={`tabular ${inputClass}`}
             />
@@ -91,20 +96,20 @@ export function RandomNumberTool() {
         </div>
       </ToolFields>
 
-      <button
+      <ToolButton
         type="button"
         onClick={draw}
         disabled={impossible}
         className="mt-5 w-full btn btn-primary btn-lg disabled:opacity-50 sm:w-auto"
       >
         {t("tool.action.generate")}
-      </button>
+      </ToolButton>
 
       <ToolResult
         label={t("tool.result.random")}
         value={
           impossible
-            ? t("tool.result.notEnoughNumbers")
+            ? t(invalidRange ? "validation.rangeOrder" : "tool.result.notEnoughNumbers")
             : results.length
               ? results.map((value) => fmt.number(value)).join(", ")
               : "—"
@@ -130,6 +135,10 @@ export function PasswordGeneratorTool() {
   const [useSymbols, setUseSymbols] = useState(true);
   const [password, setPassword] = useState("");
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
+  const signature = `${length}:${useUpper}:${useDigits}:${useSymbols}`;
+  const [generatedSettings, setGeneratedSettings] = useState(signature);
+  if (generatedSettings !== signature) { setGeneratedSettings(signature); setPassword(""); setCopied(false); setCopyError(false); }
 
   const alphabet =
     SETS.lower +
@@ -143,6 +152,7 @@ export function PasswordGeneratorTool() {
     );
     setPassword(chars.join(""));
     setCopied(false);
+    setCopyError(false);
   };
 
   const copy = async () => {
@@ -152,7 +162,7 @@ export function PasswordGeneratorTool() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard access can be denied; the password stays on screen.
+      setCopyError(true);
     }
   };
 
@@ -180,14 +190,14 @@ export function PasswordGeneratorTool() {
       <ToolFields>
         <Field label={t("tool.field.length")}>
           {(id) => (
-            <input
+            <NumberInput rule="length"
               id={id}
               type="number"
               min={8}
               max={64}
               value={length}
-              onChange={(event) =>
-                setLength(Math.min(Math.max(Number(event.target.value), 8), 64))
+              onValueChange={(next) =>
+                setLength(Math.min(Math.max(next, 8), 64))
               }
               className={`tabular ${inputClass}`}
             />
@@ -201,29 +211,30 @@ export function PasswordGeneratorTool() {
       </ToolFields>
 
       <div className="mt-5 flex flex-wrap gap-2">
-        <button
+        <ToolButton
           type="button"
           onClick={generate}
           className="btn btn-primary btn-lg"
         >
           {t("tool.action.generate")}
-        </button>
-        <button
+        </ToolButton>
+        <ToolButton
           type="button"
           onClick={copy}
           disabled={!password}
           className="rounded-sm border border-border px-4 py-3 text-sm font-medium transition-colors hover:bg-surface-muted disabled:opacity-40"
         >
-          {copied ? t("common.copied") : t("common.copyLink")}
-        </button>
+          {copied ? t("common.copied") : t("tool.action.copyPassword")}
+        </ToolButton>
       </div>
 
       <ToolResult
         label={t("tool.result.password")}
         value={password || "—"}
-        detail={t("tool.result.entropy", { bits })}
+        detail={password ? t("tool.result.entropy", { bits }) : undefined}
       />
 
+      {copyError ? <p role="status" className="text-sm text-alert">{t("common.copyFailed")}</p> : null}
       <p className="mt-3 text-xs text-muted">{t("tool.note.passwordPrivacy")}</p>
     </ToolCard>
   );
@@ -250,36 +261,36 @@ export function SavingsGoalTool() {
       <ToolFields>
         <Field label={t("tool.field.target")}>
           {(id) => (
-            <input id={id} type="number" min={0} value={target}
-              onChange={(e) => setTarget(Number(e.target.value))}
+            <NumberInput rule="target" id={id} type="number" min={0} value={target}
+              onValueChange={(next) => setTarget(next)}
               className={`tabular ${inputClass}`} />
           )}
         </Field>
         <Field label={t("tool.field.currentSavings")}>
           {(id) => (
-            <input id={id} type="number" min={0} value={current}
-              onChange={(e) => setCurrent(Number(e.target.value))}
+            <NumberInput rule="currentSavings" id={id} type="number" min={0} value={current}
+              onValueChange={(next) => setCurrent(next)}
               className={`tabular ${inputClass}`} />
           )}
         </Field>
         <Field label={t("tool.field.monthlyDeposit")}>
           {(id) => (
-            <input id={id} type="number" min={0} value={monthly}
-              onChange={(e) => setMonthly(Number(e.target.value))}
+            <NumberInput rule="monthlyDeposit" id={id} type="number" min={0} value={monthly}
+              onValueChange={(next) => setMonthly(next)}
               className={`tabular ${inputClass}`} />
           )}
         </Field>
         <Field label={t("tool.field.interestRate")}>
           {(id) => (
-            <input id={id} type="number" min={0} step={0.1} value={rate}
-              onChange={(e) => setRate(Number(e.target.value))}
+            <NumberInput rule="interestRate" id={id} type="number" min={0} step={0.1} value={rate}
+              onValueChange={(next) => setRate(next)}
               className={`tabular ${inputClass}`} />
           )}
         </Field>
         <Field label={t("tool.field.byMonths")} hint={t("tool.hint.byMonths")}>
           {(id) => (
-            <input id={id} type="number" min={1} value={byMonths}
-              onChange={(e) => setByMonths(Math.max(Number(e.target.value), 1))}
+            <NumberInput rule="byMonths" id={id} type="number" min={1} value={byMonths}
+              onValueChange={(next) => setByMonths(Math.max(next, 1))}
               className={`tabular ${inputClass}`} />
           )}
         </Field>
@@ -324,22 +335,22 @@ export function DebtPayoffTool() {
       <ToolFields>
         <Field label={t("tool.field.balance")}>
           {(id) => (
-            <input id={id} type="number" min={0} value={balance}
-              onChange={(e) => setBalance(Number(e.target.value))}
+            <NumberInput rule="balance" id={id} type="number" min={0} value={balance}
+              onValueChange={(next) => setBalance(next)}
               className={`tabular ${inputClass}`} />
           )}
         </Field>
         <Field label={t("tool.field.interestRate")}>
           {(id) => (
-            <input id={id} type="number" min={0} step={0.1} value={rate}
-              onChange={(e) => setRate(Number(e.target.value))}
+            <NumberInput rule="interestRate" id={id} type="number" min={0} step={0.1} value={rate}
+              onValueChange={(next) => setRate(next)}
               className={`tabular ${inputClass}`} />
           )}
         </Field>
         <Field label={t("tool.field.monthlyPayment")}>
           {(id) => (
-            <input id={id} type="number" min={0} value={payment}
-              onChange={(e) => setPayment(Number(e.target.value))}
+            <NumberInput rule="monthlyPayment" id={id} type="number" min={0} value={payment}
+              onValueChange={(next) => setPayment(next)}
               className={`tabular ${inputClass}`} />
           )}
         </Field>
@@ -350,13 +361,13 @@ export function DebtPayoffTool() {
         value={
           result.neverClears
             ? t("tool.result.neverClears")
-            : t("tool.result.monthsValue", monthsParams(t, fmt, result.months))
+            : result.limitReached ? t("validation.payoffLimit", { balance: fmt.currency(result.remainingBalance) }) : t("tool.result.monthsValue", monthsParams(t, fmt, result.months))
         }
-        tone={result.neverClears ? "warning" : "primary"}
+        tone={result.neverClears || result.limitReached ? "warning" : "primary"}
         detail={result.neverClears ? t("tool.result.neverClearsDetail") : undefined}
       />
 
-      {result.neverClears ? null : (
+      {result.neverClears || result.limitReached ? null : (
         <ToolFacts
           items={[
             { label: t("tool.result.totalInterest"), value: fmt.currency(result.totalInterest) },

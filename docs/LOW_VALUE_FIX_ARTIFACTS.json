@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-10-09T22:31:22.520Z",
+  "calculatorPages": 2010,
+  "toolPages": 276,
+  "guidesWithSources": 132,
+  "unreviewedCountryPagesWithoutManualSlots": 1464,
+  "navigationPagesWithoutManualSlots": 84,
+  "models": 60,
+  "tools": 23,
+  "locales": 12,
+  "adInventoryPaths": 176,
+  "sourceCoveredCountryPaths": [
+    "/countries/au/hecs",
+    "/countries/ca/income-tax",
+    "/countries/ca/salary",
+    "/countries/in/income-tax",
+    "/countries/in/salary",
+    "/countries/us/401k",
+    "/countries/us/social-security-benefit"
+  ],
+  "checks": [
+    "All published calculator routes include actual model inputs and computed results",
+    "All 23 tools include localized teaching examples and limitations",
+    "11 financial guides per locale contain relevant official references",
+    "Country models lacking published source coverage and navigation routes exclude manual ad slots"
+  ]
+}

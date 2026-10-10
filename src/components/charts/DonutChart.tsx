@@ -30,6 +30,7 @@ export function DonutChart({
   centerValue,
   params,
   fmt: override,
+  formatValue,
 }: {
   slices: ChartSlice[];
   centerLabel?: string;
@@ -38,9 +39,11 @@ export function DonutChart({
   params?: Record<string, string | number>;
   /** Formatter for the page's country, which may differ from the visitor's. */
   fmt?: Formatter;
+  formatValue?: (slice: ChartSlice) => string;
 }) {
   const { t: translate, fmt: localeFmt } = useLocale();
   const fmt = override ?? localeFmt;
+  const show = formatValue ?? ((slice: ChartSlice) => fmt.currency(slice.value));
   const t = (key: string) => translate(key, params);
   const positive = slices.filter((slice) => slice.value > 0);
   const total = positive.reduce((sum, slice) => sum + slice.value, 0);
@@ -79,7 +82,7 @@ export function DonutChart({
           aria-label={positive
             .map(
               (slice) =>
-                `${t(slice.labelKey)}: ${fmt.currency(slice.value)}`,
+                `${t(slice.labelKey)}: ${show(slice)}`,
             )
             .join(", ")}
         >
@@ -149,7 +152,7 @@ export function DonutChart({
               {t(current.slice.labelKey)}
             </span>
             <span className="tabular block text-sm font-bold text-white">
-              {fmt.currency(current.slice.value)}
+              {show(current.slice)}
               <span className="ms-1.5 font-medium text-white/70">
                 {fmt.percent((current.slice.value / total) * 100, { decimals: 1 })}
               </span>
@@ -177,7 +180,7 @@ export function DonutChart({
               style={{ background: TONE_VAR[slice.tone] }}
             />
             {t(slice.labelKey)}
-            <span className="sr-only">: {fmt.currency(slice.value)}</span>
+            <span className="sr-only">: {show(slice)}</span>
           </button>
         ))}
       </figcaption>

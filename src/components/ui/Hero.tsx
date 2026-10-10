@@ -39,17 +39,17 @@ export function Hero({
   if (video) preload(video.poster, { as: "image", fetchPriority: "high" });
   const delay = (ms: number) => ({ "--delay": `${ms}ms` }) as CSSProperties;
   return (
-    <section className="relative isolate flex min-h-[28rem] items-center overflow-hidden sm:min-h-[32rem] lg:min-h-[36rem]">
+    <section className="relative isolate z-10 flex items-center">
       {video ? <HeroVideo src={video.src} mobileSrc={video.mobileSrc} poster={video.poster} /> : null}
       {/* Light wash over the video: readable text, still a light hero. */}
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-b from-bg/80 via-bg/65 to-bg" />
 
       {/* The wider container: less empty space either side of the text. */}
-      <div className="container-page py-10 text-center [--container:var(--container-wide)] sm:py-12 lg:py-14">
+      <div className="container-page py-6 text-center [--container:var(--container-wide)] sm:py-8 lg:py-10">
         <div className="mx-auto max-w-6xl">
           {badge ? <div className="animate-fade-up flex justify-center">{badge}</div> : null}
 
-          <h1 className="mt-5 text-hero sm:mt-6" style={{ "--step": `${TYPE_STEP_MS}ms` } as CSSProperties}>
+          <h1 className="mt-4 text-[clamp(1.5rem,5.5vw,4.5rem)] font-extrabold leading-[1.1] tracking-tight sm:mt-5" style={{ "--step": `${TYPE_STEP_MS}ms` } as CSSProperties}>
             {typed(line1, 0, { last: false })}
             {/* The brand gradient: per letter when typed (a clipped
                 background would ignore the letters' own visibility), as a
@@ -61,7 +61,7 @@ export function Hero({
 
           {lead ? (
             <p
-              className="animate-fade-up mx-auto mt-5 max-w-4xl text-lg leading-relaxed text-text sm:text-xl lg:text-2xl"
+              className="animate-fade-up mx-auto mt-4 max-w-4xl text-sm leading-relaxed text-text sm:text-lg lg:text-xl"
               style={delay(180)}
             >
               {lead}
@@ -69,7 +69,7 @@ export function Hero({
           ) : null}
 
           {children ? (
-            <div className="animate-fade-up relative z-10 mt-8 sm:mt-9" style={delay(240)}>
+            <div className="animate-fade-up relative z-10 mt-5 sm:mt-6" style={delay(240)}>
               {children}
             </div>
           ) : null}

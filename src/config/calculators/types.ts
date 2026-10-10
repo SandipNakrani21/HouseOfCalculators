@@ -40,6 +40,9 @@ export type CalculatorField = {
   min?: number;
   max?: number;
   step?: number;
+  integer?: boolean;
+  /** Input labels and constraints dependent on other fields. */
+  resolve?: (values: FieldValues) => Partial<CalculatorField>;
   /** Slider is hidden when false - used for free-form amounts. */
   slider?: boolean;
   default: number | string | boolean;
@@ -162,6 +165,7 @@ export type CalculatorDef = {
   /** Fields can differ per country - caps, slab names, currency ranges. */
   fields: (ctx: CalcContext) => CalculatorField[];
   compute: (values: FieldValues, ctx: CalcContext) => CalculatorResult;
+  validate?: (values: FieldValues, ctx: CalcContext) => string | null;
   /** Dictionary keys rendered in the "how this is calculated" panel. */
   explainerKeys?: string[];
   /**

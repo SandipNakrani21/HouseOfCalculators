@@ -8,14 +8,14 @@ import { ANALYTICS_ON, GA_MEASUREMENT_ID } from "@/config/analytics";
 /**
  * Google Analytics 4, under Google Consent Mode.
  *
- * ConsentScript has already set every consent type to "denied" (or restored
- * the visitor's earlier answer) before this loads, so no analytics cookie is
+ * ConsentScript has already set every consent type to "denied"
+ * before this loads, so no analytics cookie is
  * written until the visitor accepts on the banner or in Google's EU message;
  * until then Google receives only cookieless signals.
  *
  * Page views are sent by hand with the address minus its query string and
- * hash: a shared calculator link carries the visitor's inputs in the query,
- * and the privacy page promises that what people type is never sent.
+ * hash: shared calculator inputs stay out of this analytics page address.
+ * Legacy query links remain readable and may be recorded by hosting systems.
  */
 declare global {
   interface Window {

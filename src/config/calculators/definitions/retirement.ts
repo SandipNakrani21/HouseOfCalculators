@@ -27,16 +27,17 @@ function projectPot(
 export const retirementCalculator: CalculatorDef = {
   slug: "retirement",
   icon: "🌴",
-  version: 1,
+  version: 2,
   category: "finance",
   titleKey: "calc.retirement.title",
   descKey: "calc.retirement.desc",
   countries: ALL,
+  validate: values => num(values, "retireAge") < num(values, "age") ? "validation.retirementAge" : null,
   fields: ({ countryCode }) => {
     const scale = MONEY_SCALE[countryCode];
     return [
-      { id: "age", labelKey: "field.currentAge", kind: "number", min: 18, max: 70, step: 1, default: 30 },
-      { id: "retireAge", labelKey: "field.retirementAge", kind: "number", min: 45, max: 80, step: 1, default: 60 },
+      { id: "age", labelKey: "field.currentAge", kind: "number", min: 18, max: 70, integer: true, step: 1, default: 30 },
+      { id: "retireAge", labelKey: "field.retirementAge", kind: "number", min: 45, max: 80, integer: true, step: 1, default: 60 },
       {
         id: "current",
         labelKey: "field.currentSavings",
@@ -167,13 +168,14 @@ export const pensionCalculator: CalculatorDef = {
 export const fourOhOneKCalculator: CalculatorDef = {
   slug: "401k",
   icon: "🥚",
-  version: 1,
+  version: 2,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.401k.title",
   descKey: "calc.401k.desc",
   countries: ["us"],
   fields: () => [
+    { id: "taxYear", labelKey: "calc.taxYearLabel", kind: "select", default: "2026", options: [{ value: "2025", labelKey: "", label: "2025" }, { value: "2026", labelKey: "", label: "2026" }] },
     { id: "salary", labelKey: "field.annualSalary", kind: "currency", min: 20_000, max: 1_000_000, step: 1_000, default: 85_000 },
     { id: "contribution", labelKey: "field.contributionPercent", kind: "percent", min: 0, max: 30, step: 0.5, default: 6 },
     { id: "match", labelKey: "field.employerMatch", kind: "percent", min: 0, max: 100, step: 5, default: 50 },
@@ -186,11 +188,12 @@ export const fourOhOneKCalculator: CalculatorDef = {
     const salary = num(values, "salary");
     const ownRate = num(values, "contribution");
 
-    // 2025 elective deferral limit.
-    const ownAnnual = Math.min((salary * ownRate) / 100, 23_500);
-    // The employer matches a share of your contribution, up to a cap.
-    const matchedShare = Math.min(ownRate, num(values, "matchLimit"));
-    const employerAnnual = (salary * matchedShare * (num(values, "match") / 100)) / 100;
+    const limits = str(values, "taxYear", "2026") === "2025"
+      ? { elective: 23_500, combined: 70_000, compensation: 350_000 }
+      : { elective: 24_500, combined: 72_000, compensation: 360_000 };
+    const ownAnnual = Math.min((salary * ownRate) / 100, limits.elective);
+    const matchedAmount = Math.min(ownAnnual, Math.min(salary, limits.compensation) * num(values, "matchLimit") / 100);
+    const employerAnnual = Math.min(matchedAmount * num(values, "match") / 100, limits.combined - ownAnnual, salary - ownAnnual);
 
     const years = num(values, "years");
     const { corpus, contributed, growth } = projectPot(
@@ -212,7 +215,7 @@ export const fourOhOneKCalculator: CalculatorDef = {
         { labelKey: "result.totalContributed", value: contributed, tone: "principal" },
         { labelKey: "result.investmentGrowth", value: growth, tone: "returns" },
       ],
-      notes: [{ key: "calc.401k.note" }],
+      notes: [{ key: "calc.401k.limits", params: { year: str(values, "taxYear", "2026"), elective: limits.elective, combined: limits.combined, compensation: limits.compensation } }],
     };
   },
   explainerKeys: ["calc.401k.explain"],
@@ -230,7 +233,7 @@ const PIA_BENDS: Slab[] = [
 export const socialSecurityBenefitCalculator: CalculatorDef = {
   slug: "social-security-benefit",
   icon: "🇺🇸",
-  version: 1,
+  version: 2,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.social-security-benefit.title",
@@ -259,8 +262,9 @@ export const socialSecurityBenefitCalculator: CalculatorDef = {
     // Claiming early cuts the benefit; delaying past full retirement age adds
     // delayed retirement credits.
     const claimAge = num(values, "claimAge", 67);
-    const adjustment =
-      claimAge >= 67 ? 1 + (claimAge - 67) * 0.08 : 1 - (67 - claimAge) * 0.0625;
+    const earlyMonths = Math.max((67 - claimAge) * 12, 0);
+    const adjustment = claimAge >= 67 ? 1 + Math.min(claimAge - 67, 3) * 0.08
+      : 1 - Math.min(earlyMonths, 36) * (5 / 9) / 100 - Math.max(earlyMonths - 36, 0) * (5 / 12) / 100;
     const monthly = pia * adjustment;
 
     return {
@@ -338,10 +342,14 @@ const HELP_SLABS: Slab[] = [
   { from: 125_000, rate: 17 },
 ];
 
+export function helpRepayment(income: number): number {
+  return income >= 179_286 ? income * 0.1 : applySlabs(income, HELP_SLABS).tax;
+}
+
 export const hecsCalculator: CalculatorDef = {
   slug: "hecs",
   icon: "🎓",
-  version: 1,
+  version: 2,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.hecs.title",
@@ -361,14 +369,13 @@ export const hecsCalculator: CalculatorDef = {
     let income = num(values, "income");
     let years = 0;
     let totalRepaid = 0;
-    const firstRepayment = applySlabs(income, HELP_SLABS).tax;
+    const firstRepayment = Math.min(helpRepayment(income), debt * (1 + indexation));
 
     // Walk forward a year at a time: indexation is applied, then the
     // compulsory repayment for that year's income.
     while (debt > 0 && years < 40) {
       debt *= 1 + indexation;
-      const repayment = Math.min(applySlabs(income, HELP_SLABS).tax, debt);
-      if (repayment <= 0) break;
+      const repayment = Math.min(helpRepayment(income), debt);
       debt -= repayment;
       totalRepaid += repayment;
       income *= 1 + growth;
@@ -395,7 +402,7 @@ export const hecsCalculator: CalculatorDef = {
           tone: "neutral",
         },
       ],
-      notes: [{ key: "calc.hecs.note" }],
+      notes: [{ key: "calc.hecs.note" }, ...(!cleared ? [{ key: "calc.hecs.horizon", params: { years: 40 } }] : [])],
     };
   },
   explainerKeys: ["calc.hecs.explain"],

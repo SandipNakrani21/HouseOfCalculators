@@ -24,6 +24,10 @@ import {
 import { buildMetadata, faqSchema, jsonLd, publisherRef, readyLocales } from "@/lib/seo";
 import { itemVisual, sectionVisual } from "@/lib/visuals";
 import { calculatorsCta } from "@/lib/cta";
+import { allContent } from "@/lib/content";
+import { COUNTRIES } from "@/config/countries";
+import { guideSources } from "@/config/guides/sources";
+import { createFormatter } from "@/lib/format";
 
 type Params = { locale: string; category: string; slug: string };
 
@@ -77,6 +81,10 @@ export default async function GuidePage({
   const title = t(guide.titleKey);
   const url = contentPath(code, "guides", category, slug);
   const related = guidesIn(guide.category).filter((item) => item.slug !== slug);
+  const sources = guideSources(slug);
+  const countryCode = locale.defaultCountry;
+  const destinations = allContent({ locale: code, country: countryCode, t,
+    calcContext: { countryCode, country: COUNTRIES[countryCode], t, fmt: createFormatter(countryCode, locale.language, t) } });
 
   // Article markup describes what is actually on the page: a dated, titled
   // explanation. Nothing is claimed here that a reader cannot see.
@@ -200,6 +208,8 @@ export default async function GuidePage({
             </section>
           ) : null}
 
+          {sources.length ? <section className="mt-10" data-guide-sources={slug}><h2 className="mb-3 text-xl font-bold">{t("calc.sources")}</h2><ul className="space-y-2 text-sm">{sources.map(source => <li key={source.href}><a className="text-primary underline" href={source.href} target="_blank" rel="noreferrer">{source.name}</a></li>)}</ul></section> : null}
+
           <AdSlot slot="guide-mid" placement="rectangle" />
 
           {guide.notesKeys?.length ? (
@@ -228,7 +238,7 @@ export default async function GuidePage({
                   >
                     <span className="flex items-center gap-3">
                       <IconTile visual={sectionVisual(link.section)} size="sm" shape="rounded" />
-                      {t(`section.${link.section}`)}
+                      {link.slug ? destinations.find((item) => item.section === link.section && item.slug === link.slug)?.title ?? t(`section.${link.section}`) : t(categoryKey(link.section, link.category))}
                     </span>
                     <ArrowRight aria-hidden className="card-arrow h-4 w-4" />
                   </Link>

@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import {
   Field,
+  NumberInput,
   ToolCard,
   ToolFacts,
   ToolFields,
@@ -21,8 +22,10 @@ import {
   calendarDifference,
   daysBetween,
   isoWeek,
+  isSupportedDate,
   nextBirthday,
   parseDate,
+  startOfYear,
   toInputValue,
   workingDaysBetween,
 } from "@/lib/tools/dates";
@@ -31,17 +34,17 @@ import {
 function today(): Date {
   const now = new Date();
   return new Date(
-    Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()),
+    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()),
   );
 }
 
 function useDateFormatter() {
   const { fmt } = useLocale();
   return (date: Date) =>
-    new Intl.DateTimeFormat(fmt.locale, {
+    isSupportedDate(date) ? new Intl.DateTimeFormat(fmt.locale, {
       dateStyle: "long",
       timeZone: "UTC",
-    }).format(date);
+    }).format(date) : "—";
 }
 
 export function DateDifferenceTool() {
@@ -51,9 +54,9 @@ export function DateDifferenceTool() {
   const [from, setFrom] = useState(toInputValue(today()));
   const [to, setTo] = useState(toInputValue(addDays(today(), 30)));
 
-  const start = parseDate(from);
-  const end = parseDate(to);
-  if (!start || !end) return <ToolCard>{t("tool.invalidDate")}</ToolCard>;
+  const valid = !!parseDate(from) && !!parseDate(to);
+  const start = parseDate(from) ?? today();
+  const end = parseDate(to) ?? today();
 
   const days = Math.abs(daysBetween(start, end));
   const calendar = calendarDifference(start, end);
@@ -61,22 +64,24 @@ export function DateDifferenceTool() {
   return (
     <ToolCard>
       <ToolFields>
-        <Field label={t("tool.field.startDate")}>
+        <Field label={t("tool.field.startDate")} error={!parseDate(from) ? t("tool.invalidDate") : undefined}>
           {(id) => (
             <input
               id={id}
               type="date"
+              min="0001-01-01" max="9999-12-31"
               value={from}
               onChange={(event) => setFrom(event.target.value)}
               className={inputClass}
             />
           )}
         </Field>
-        <Field label={t("tool.field.endDate")}>
+        <Field label={t("tool.field.endDate")} error={!parseDate(to) ? t("tool.invalidDate") : undefined}>
           {(id) => (
             <input
               id={id}
               type="date"
+              min="0001-01-01" max="9999-12-31"
               value={to}
               onChange={(event) => setTo(event.target.value)}
               className={inputClass}
@@ -85,26 +90,32 @@ export function DateDifferenceTool() {
         </Field>
       </ToolFields>
 
-      <ToolResult
-        label={t("tool.result.daysBetween")}
-        value={plural(t, fmt.locale, "tool.result.days", days, { display: fmt.number(days) })}
-        detail={t("tool.result.calendarSpan", spanParams(t, fmt, calendar))}
-      />
+      {valid ? (
+        <>
+          <ToolResult
+            label={t("tool.result.daysBetween")}
+            value={plural(t, fmt.locale, "tool.result.days", days, { display: fmt.number(days) })}
+            detail={t("tool.result.calendarSpan", spanParams(t, fmt, calendar))}
+          />
 
-      <ToolFacts
-        items={[
-          { label: t("tool.result.weeks"), value: fmt.number(days / 7, { decimals: 1 }) },
-          { label: t("tool.result.workingDays"), value: fmt.number(workingDaysBetween(start, end)) },
-          { label: t("tool.field.startDate"), value: formatDate(start) },
-          { label: t("tool.field.endDate"), value: formatDate(end) },
-        ]}
-      />
+          <ToolFacts
+            items={[
+              { label: t("tool.result.weeks"), value: fmt.number(days / 7, { decimals: 1 }) },
+              { label: t("tool.result.workingDays"), value: fmt.number(workingDaysBetween(start, end)) },
+              { label: t("tool.field.startDate"), value: formatDate(start) },
+              { label: t("tool.field.endDate"), value: formatDate(end) },
+            ]}
+          />
+        </>
+      ) : (
+        <p role="status" className="mt-6 rounded-md bg-bg-soft p-4 text-alert">{t("tool.invalidDate")}</p>
+      )}
     </ToolCard>
   );
 }
 
 export function AddDaysTool() {
-  const { t } = useLocale();
+  const { t, fmt } = useLocale();
   const formatDate = useDateFormatter();
 
   const [start, setStart] = useState(toInputValue(today()));
@@ -112,37 +123,39 @@ export function AddDaysTool() {
   const [unit, setUnit] = useState<"days" | "weeks" | "months">("days");
   const [direction, setDirection] = useState<1 | -1>(1);
 
-  const date = parseDate(start);
-  if (!date) return <ToolCard>{t("tool.invalidDate")}</ToolCard>;
+  const validStart = !!parseDate(start);
+  const date = parseDate(start) ?? today();
 
   const offset = amount * direction;
   const result =
     unit === "months"
       ? addMonths(date, offset)
       : addDays(date, unit === "weeks" ? offset * 7 : offset);
+  const valid = validStart && isSupportedDate(result);
 
   return (
     <ToolCard>
       <ToolFields>
-        <Field label={t("tool.field.startDate")}>
+        <Field label={t("tool.field.startDate")} error={!parseDate(start) ? t("tool.invalidDate") : undefined}>
           {(id) => (
             <input
               id={id}
               type="date"
+              min="0001-01-01" max="9999-12-31"
               value={start}
               onChange={(event) => setStart(event.target.value)}
               className={inputClass}
             />
           )}
         </Field>
-        <Field label={t("tool.field.amount")}>
+        <Field label={t("tool.field.amount")} error={validStart && !isSupportedDate(result) ? t("validation.dateRange") : undefined}>
           {(id) => (
-            <input
+            <NumberInput rule="amount"
               id={id}
               type="number"
               min={0}
               value={amount}
-              onChange={(event) => setAmount(Math.max(Number(event.target.value), 0))}
+              onValueChange={(next) => setAmount(Math.max(next, 0))}
               className={`tabular ${inputClass}`}
             />
           )}
@@ -176,20 +189,26 @@ export function AddDaysTool() {
         </Field>
       </ToolFields>
 
-      <ToolResult label={t("tool.result.resultingDate")} value={formatDate(result)} />
+      {valid ? (
+        <>
+          <ToolResult label={t("tool.result.resultingDate")} value={formatDate(result)} />
 
-      <ToolFacts
-        items={[
-          {
-            label: t("tool.result.dayOfWeek"),
-            value: new Intl.DateTimeFormat(undefined, {
-              weekday: "long",
-              timeZone: "UTC",
-            }).format(result),
-          },
-          { label: t("tool.result.isoDate"), value: toInputValue(result) },
-        ]}
-      />
+          <ToolFacts
+            items={[
+              {
+                label: t("tool.result.dayOfWeek"),
+                value: new Intl.DateTimeFormat(fmt.locale, {
+                  weekday: "long",
+                  timeZone: "UTC",
+                }).format(result),
+              },
+              { label: t("tool.result.isoDate"), value: toInputValue(result) },
+            ]}
+          />
+        </>
+      ) : (
+        <p role="status" className="mt-6 rounded-md bg-bg-soft p-4 text-alert">{t(validStart ? "validation.dateRange" : "tool.invalidDate")}</p>
+      )}
     </ToolCard>
   );
 }
@@ -201,9 +220,9 @@ export function WorkingDaysTool() {
   const [to, setTo] = useState(toInputValue(addDays(today(), 30)));
   const [holidays, setHolidays] = useState(0);
 
-  const start = parseDate(from);
-  const end = parseDate(to);
-  if (!start || !end) return <ToolCard>{t("tool.invalidDate")}</ToolCard>;
+  const valid = !!parseDate(from) && !!parseDate(to);
+  const start = parseDate(from) ?? today();
+  const end = parseDate(to) ?? today();
 
   const working = Math.max(workingDaysBetween(start, end) - holidays, 0);
   const total = Math.abs(daysBetween(start, end)) + 1;
@@ -211,22 +230,24 @@ export function WorkingDaysTool() {
   return (
     <ToolCard>
       <ToolFields>
-        <Field label={t("tool.field.startDate")}>
+        <Field label={t("tool.field.startDate")} error={!parseDate(from) ? t("tool.invalidDate") : undefined}>
           {(id) => (
             <input
               id={id}
               type="date"
+              min="0001-01-01" max="9999-12-31"
               value={from}
               onChange={(event) => setFrom(event.target.value)}
               className={inputClass}
             />
           )}
         </Field>
-        <Field label={t("tool.field.endDate")}>
+        <Field label={t("tool.field.endDate")} error={!parseDate(to) ? t("tool.invalidDate") : undefined}>
           {(id) => (
             <input
               id={id}
               type="date"
+              min="0001-01-01" max="9999-12-31"
               value={to}
               onChange={(event) => setTo(event.target.value)}
               className={inputClass}
@@ -235,29 +256,36 @@ export function WorkingDaysTool() {
         </Field>
         <Field label={t("tool.field.holidays")} hint={t("tool.hint.holidays")}>
           {(id) => (
-            <input
+            <NumberInput rule="holidays"
               id={id}
               type="number"
               min={0}
+              max={workingDaysBetween(start, end)}
               value={holidays}
-              onChange={(event) => setHolidays(Math.max(Number(event.target.value), 0))}
+              onValueChange={(next) => setHolidays(Math.max(next, 0))}
               className={`tabular ${inputClass}`}
             />
           )}
         </Field>
       </ToolFields>
 
-      <ToolResult
-        label={t("tool.result.workingDays")}
-        value={fmt.number(working)}
-      />
+      {valid ? (
+        <>
+          <ToolResult
+            label={t("tool.result.workingDays")}
+            value={fmt.number(working)}
+          />
 
-      <ToolFacts
-        items={[
-          { label: t("tool.result.totalDays"), value: fmt.number(total) },
-          { label: t("tool.result.weekendDays"), value: fmt.number(total - workingDaysBetween(start, end)) },
-        ]}
-      />
+          <ToolFacts
+            items={[
+              { label: t("tool.result.totalDays"), value: fmt.number(total) },
+              { label: t("tool.result.weekendDays"), value: fmt.number(total - workingDaysBetween(start, end)) },
+            ]}
+          />
+        </>
+      ) : (
+        <p role="status" className="mt-6 rounded-md bg-bg-soft p-4 text-alert">{t("tool.invalidDate")}</p>
+      )}
     </ToolCard>
   );
 }
@@ -269,9 +297,10 @@ export function AgeTool() {
   const [birth, setBirth] = useState("1990-01-01");
   const [on, setOn] = useState(toInputValue(today()));
 
-  const born = parseDate(birth);
-  const at = parseDate(on);
-  if (!born || !at) return <ToolCard>{t("tool.invalidDate")}</ToolCard>;
+  const future = !!parseDate(birth) && !!parseDate(on) && parseDate(birth)! > parseDate(on)!;
+  const valid = !!parseDate(birth) && !!parseDate(on) && !future;
+  const born = parseDate(birth) ?? today();
+  const at = parseDate(on) ?? today();
 
   const age = ageOn(born, at);
   const next = nextBirthday(born, at);
@@ -279,22 +308,24 @@ export function AgeTool() {
   return (
     <ToolCard>
       <ToolFields>
-        <Field label={t("tool.field.birthDate")}>
+        <Field label={t("tool.field.birthDate")} error={future ? t("validation.futureBirth") : !parseDate(birth) ? t("tool.invalidDate") : undefined}>
           {(id) => (
             <input
               id={id}
               type="date"
+              min="0001-01-01" max="9999-12-31"
               value={birth}
               onChange={(event) => setBirth(event.target.value)}
               className={inputClass}
             />
           )}
         </Field>
-        <Field label={t("tool.field.onDate")}>
+        <Field label={t("tool.field.onDate")} error={!parseDate(on) ? t("tool.invalidDate") : undefined}>
           {(id) => (
             <input
               id={id}
               type="date"
+              min="0001-01-01" max="9999-12-31"
               value={on}
               onChange={(event) => setOn(event.target.value)}
               className={inputClass}
@@ -303,22 +334,28 @@ export function AgeTool() {
         </Field>
       </ToolFields>
 
-      <ToolResult
-        label={t("tool.result.age")}
-        value={t("tool.result.ageValue", spanParams(t, fmt, age))}
-      />
+      {valid ? (
+        <>
+          <ToolResult
+            label={t("tool.result.age")}
+            value={t("tool.result.ageValue", spanParams(t, fmt, age))}
+          />
 
-      <ToolFacts
-        items={[
-          { label: t("tool.result.totalDays"), value: fmt.number(age.totalDays) },
-          { label: t("tool.result.totalWeeks"), value: fmt.number(Math.floor(age.totalDays / 7)) },
-          { label: t("tool.result.nextBirthday"), value: formatDate(next) },
-          {
-            label: t("tool.result.daysToBirthday"),
-            value: fmt.number(daysBetween(at, next)),
-          },
-        ]}
-      />
+          <ToolFacts
+            items={[
+              { label: t("tool.result.totalDays"), value: fmt.number(age.totalDays) },
+              { label: t("tool.result.totalWeeks"), value: fmt.number(Math.floor(age.totalDays / 7)) },
+              { label: t("tool.result.nextBirthday"), value: isSupportedDate(next) ? formatDate(next) : t("tool.nextBirthdayOutOfRange") },
+              {
+                label: t("tool.result.daysToBirthday"),
+                value: isSupportedDate(next) ? fmt.number(daysBetween(at, next)) : "—",
+              },
+            ]}
+          />
+        </>
+      ) : (
+        <p role="status" className="mt-6 rounded-md bg-bg-soft p-4 text-alert">{t(future ? "validation.futureBirth" : "tool.invalidDate")}</p>
+      )}
     </ToolCard>
   );
 }
@@ -328,21 +365,22 @@ export function WeekNumberTool() {
   const formatDate = useDateFormatter();
   const [value, setValue] = useState(toInputValue(today()));
 
-  const date = parseDate(value);
-  if (!date) return <ToolCard>{t("tool.invalidDate")}</ToolCard>;
+  const valid = !!parseDate(value);
+  const date = parseDate(value) ?? today();
 
   const { week, year } = isoWeek(date);
   const dayOfYear =
-    daysBetween(new Date(Date.UTC(date.getUTCFullYear(), 0, 1)), date) + 1;
+    daysBetween(startOfYear(date), date) + 1;
 
   return (
     <ToolCard>
       <ToolFields>
-        <Field label={t("tool.field.date")}>
+        <Field label={t("tool.field.date")} error={!parseDate(value) ? t("tool.invalidDate") : undefined}>
           {(id) => (
             <input
               id={id}
               type="date"
+              min="0001-01-01" max="9999-12-31"
               value={value}
               onChange={(event) => setValue(event.target.value)}
               className={inputClass}
@@ -351,24 +389,30 @@ export function WeekNumberTool() {
         </Field>
       </ToolFields>
 
-      <ToolResult
-        label={t("tool.result.weekNumber")}
-        value={t("tool.result.weekValue", { week, year })}
-      />
+      {valid ? (
+        <>
+          <ToolResult
+            label={t("tool.result.weekNumber")}
+            value={t("tool.result.weekValue", { week, year })}
+          />
 
-      <ToolFacts
-        items={[
-          {
-            label: t("tool.result.dayOfWeek"),
-            value: new Intl.DateTimeFormat(undefined, {
-              weekday: "long",
-              timeZone: "UTC",
-            }).format(date),
-          },
-          { label: t("tool.result.dayOfYear"), value: fmt.number(dayOfYear) },
-          { label: t("tool.field.date"), value: formatDate(date) },
-        ]}
-      />
+          <ToolFacts
+            items={[
+              {
+                label: t("tool.result.dayOfWeek"),
+                value: new Intl.DateTimeFormat(fmt.locale, {
+                  weekday: "long",
+                  timeZone: "UTC",
+                }).format(date),
+              },
+              { label: t("tool.result.dayOfYear"), value: fmt.number(dayOfYear) },
+              { label: t("tool.field.date"), value: formatDate(date) },
+            ]}
+          />
+        </>
+      ) : (
+        <p role="status" className="mt-6 rounded-md bg-bg-soft p-4 text-alert">{t("tool.invalidDate")}</p>
+      )}
     </ToolCard>
   );
 }

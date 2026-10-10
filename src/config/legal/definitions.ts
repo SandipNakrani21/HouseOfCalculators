@@ -105,7 +105,7 @@ const privacy: LegalPage = {
   titleKey: "legal.privacy.title",
   descKey: "legal.privacy.desc",
   introKey: "legal.privacy.intro",
-  updated: "2026-10-01",
+  updated: "2026-10-10",
   sections: [
     {
       titleKey: "legal.privacy.summary.title",
@@ -187,7 +187,7 @@ const cookies: LegalPage = {
   titleKey: "legal.cookies.title",
   descKey: "legal.cookies.desc",
   introKey: "legal.cookies.intro",
-  updated: "2026-10-01",
+  updated: "2026-10-10",
   sections: [
     {
       titleKey: "legal.cookies.own.title",
@@ -294,7 +294,7 @@ const contact: LegalPage = {
   titleKey: "legal.contact.title",
   descKey: "legal.contact.desc",
   introKey: "legal.contact.intro",
-  updated: "2026-10-01",
+  updated: "2026-10-10",
   sections: [
     {
       titleKey: "legal.contact.reach.title",
@@ -326,7 +326,7 @@ const about: LegalPage = {
   titleKey: "legal.about.title",
   descKey: "legal.about.desc",
   introKey: "legal.about.intro",
-  updated: "2026-10-01",
+  updated: "2026-10-10",
   sections: [
     {
       titleKey: "legal.about.what.title",

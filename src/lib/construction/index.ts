@@ -198,12 +198,12 @@ export function ohmsLaw(
     case "vi":
       volts = a;
       amps = b;
-      ohms = amps === 0 ? 0 : volts / amps;
+      ohms = amps === 0 ? NaN : volts / amps;
       break;
     case "vr":
       volts = a;
       ohms = b;
-      amps = ohms === 0 ? 0 : volts / ohms;
+      amps = ohms === 0 ? NaN : volts / ohms;
       break;
     case "ir":
       amps = a;
@@ -213,12 +213,12 @@ export function ohmsLaw(
     case "pv":
       volts = b;
       amps = volts === 0 ? 0 : a / volts;
-      ohms = amps === 0 ? 0 : volts / amps;
+      ohms = amps === 0 ? NaN : volts / amps;
       break;
     case "pi":
       amps = b;
-      volts = amps === 0 ? 0 : a / amps;
-      ohms = amps === 0 ? 0 : volts / amps;
+      volts = amps === 0 ? NaN : a / amps;
+      ohms = amps === 0 ? NaN : volts / amps;
       break;
     case "pr":
       ohms = b;

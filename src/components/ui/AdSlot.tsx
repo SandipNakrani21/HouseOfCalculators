@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { isAdEligiblePath } from "@/config/ad-inventory";
 
 import { ADSENSE_CLIENT, ADS_LIVE, AD_PLACEHOLDERS, AD_UNITS, type AdPlacement } from "@/lib/ads";
 import { useLocale } from "@/lib/locale-context";
@@ -49,18 +51,22 @@ export function AdSlot({
   slot,
   placement = "rectangle",
   className = "",
+  preview = false,
 }: {
   /** Where on the site this is (shown on placeholders). The AdSense unit comes from the placement. */
   slot: string;
   placement?: Placement;
   className?: string;
+  /** Component demonstrations always stay inert, including production. */
+  preview?: boolean;
 }) {
   const { t } = useLocale();
+  const pathname = usePathname();
   const pushed = useRef(false);
   const slotRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const unit = AD_UNITS[placement];
-  const live = ADS_LIVE && /^\d+$/.test(unit);
+  const live = !preview && isAdEligiblePath(pathname) && ADS_LIVE && /^\d+$/.test(unit);
 
   // Some positions are for one screen size only (the sidebar on desktop, the
   // rectangle under a calculator on phones). adsbygoogle.push() fills the
@@ -82,16 +88,16 @@ export function AdSlot({
 
   // With the <ins> now in the page, this request can only fill it.
   useEffect(() => {
-    if (!visible || pushed.current) return;
+    if (!live || !visible || pushed.current) return;
     pushed.current = true;
     try {
       (window.adsbygoogle = window.adsbygoogle ?? []).push({});
     } catch {
       // A blocked or failed ad script must never break the page.
     }
-  }, [visible]);
+  }, [visible, live]);
 
-  if (!live && !AD_PLACEHOLDERS) return null;
+  if (!preview && (!isAdEligiblePath(pathname) || (!live && !AD_PLACEHOLDERS))) return null;
 
   return (
     <aside aria-label={t("ads.label")} className={`ad-wrap my-8 flex flex-col items-center gap-1 ${className}`}>
@@ -127,6 +133,8 @@ export function AdSlot({
  * so the calculator is usable before any advertising script is fetched.
  */
 export function AdScript() {
+  // Google's published consent message is delivered by this tag, including
+  // on policy pages. Slots are separately gated; exclude these pages in Auto ads too.
   if (!ADS_LIVE) return null;
   return (
     <script

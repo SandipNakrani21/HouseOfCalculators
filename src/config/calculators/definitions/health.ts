@@ -144,7 +144,7 @@ function metricBody(values: Record<string, number | string | boolean>): {
 export const bmiCalculator: CalculatorDef = {
   slug: "bmi",
   icon: "⚖️",
-  version: 1,
+  version: 2,
   category: "health",
   titleKey: "calc.bmi.title",
   descKey: "calc.bmi.desc",
@@ -204,7 +204,7 @@ const ageSexFields = (ctx: CalcContext): CalculatorField[] => [
     kind: "number",
     min: 15,
     max: 100,
-    step: 1,
+    integer: true, step: 1,
     default: 30,
   },
   {
@@ -222,7 +222,7 @@ const ageSexFields = (ctx: CalcContext): CalculatorField[] => [
 export const bmrCalculator: CalculatorDef = {
   slug: "bmr",
   icon: "🔥",
-  version: 1,
+  version: 2,
   category: "health",
   titleKey: "calc.bmr.title",
   descKey: "calc.bmr.desc",
@@ -258,7 +258,7 @@ export const bmrCalculator: CalculatorDef = {
 export const tdeeCalculator: CalculatorDef = {
   slug: "tdee",
   icon: "🍽️",
-  version: 1,
+  version: 2,
   category: "health",
   titleKey: "calc.tdee.title",
   descKey: "calc.tdee.desc",
@@ -334,12 +334,13 @@ export const tdeeCalculator: CalculatorDef = {
 export const bodyFatCalculator: CalculatorDef = {
   slug: "body-fat",
   icon: "📏",
-  version: 1,
+  version: 2,
   category: "health",
   titleKey: "calc.bodyFat.title",
   descKey: "calc.bodyFat.desc",
   countries: EVERYWHERE,
   countryRelevance: "units",
+  validate: values => (str(values, "sex", "male") === "male" ? num(values, "waist") - num(values, "neck") : num(values, "waist") + num(values, "hip") - num(values, "neck")) <= 0 ? "validation.bodyFatDomain" : null,
   relatedCalculators: ["bmi", "bmr"],
   fields: (ctx) => [
     ...bodyFields(ctx),
@@ -408,12 +409,12 @@ export const bodyFatCalculator: CalculatorDef = {
         emphasis: true,
       },
       rows: [
-        { labelKey: "result.fatMass", value: show(fat), kind: "number", decimals: 1, tone: "tax" },
-        { labelKey: "result.leanMass", value: show(lean), kind: "number", decimals: 1, tone: "principal" },
+        { labelKey: "result.fatMass", value: show(fat), kind: "number", decimals: 1, tone: "tax", hintKey: imperial ? "units.pounds" : "units.kilograms" },
+        { labelKey: "result.leanMass", value: show(lean), kind: "number", decimals: 1, tone: "principal", hintKey: imperial ? "units.pounds" : "units.kilograms" },
       ],
       chart: [
-        { labelKey: "result.fatMass", value: fat, tone: "tax" },
-        { labelKey: "result.leanMass", value: lean, tone: "principal" },
+        { labelKey: "result.fatMass", value: show(fat), tone: "tax" },
+        { labelKey: "result.leanMass", value: show(lean), tone: "principal" },
       ],
       notes: [{ key: "calc.bodyFat.note" }],
     };
@@ -425,7 +426,7 @@ export const bodyFatCalculator: CalculatorDef = {
 export const waterIntakeCalculator: CalculatorDef = {
   slug: "water-intake",
   icon: "💧",
-  version: 1,
+  version: 2,
   category: "health",
   titleKey: "calc.water.title",
   descKey: "calc.water.desc",

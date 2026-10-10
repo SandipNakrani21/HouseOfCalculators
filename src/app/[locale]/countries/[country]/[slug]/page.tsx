@@ -102,7 +102,7 @@ export default async function CountryToolPage({
         { name: t("section.countries"), path: sectionPath(code, "countries") },
         { name: countryName, path: countryPath(code, country) },
         {
-          name: t(calculator.titleKey),
+          name: t(calculator.titleKey, calculator.params?.({ countryCode: country, country: COUNTRIES[country], t, fmt: createFormatter(country, locale.language, t) })),
           path: countryToolPath(code, country, slug),
         },
       ]}

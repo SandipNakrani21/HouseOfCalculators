@@ -3,7 +3,7 @@
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { IconTile } from "@/components/ui/Icon";
 import type { CalcContext } from "@/config/calculators/types";
@@ -19,8 +19,8 @@ import { search } from "@/lib/search";
  *
  * Three sizes: `compact` for the header and menus, `default`, and `hero` for
  * the landing page, which adds the blue Search button from the design.
- * Arrow keys move through the results and Enter opens the highlighted one -
- * or the best match, when nothing is highlighted yet.
+ * Arrow keys move through the results and Enter opens a selected result.
+ * Submitting a broad query keeps its results available for a deliberate choice.
  */
 export function SearchBox({
   variant = "default",
@@ -43,6 +43,10 @@ export function SearchBox({
   const [active, setActive] = useState(-1);
   const blurTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const listId = useId();
+  const root = useRef<HTMLDivElement>(null);
+  const list = useRef<HTMLDivElement>(null);
+  const input = useRef<HTMLInputElement>(null);
+  const [panelHeight, setPanelHeight] = useState(280);
 
   const items = useMemo(() => {
     const calcContext: CalcContext = { countryCode, country, t, fmt };
@@ -68,6 +72,35 @@ export function SearchBox({
 
   const showPanel = open && query.trim().length > 0;
 
+  useEffect(() => {
+    if (!showPanel) return;
+    const measure = () => {
+      const bottom = root.current?.querySelector("form")?.getBoundingClientRect().bottom ?? 0;
+      const viewport = window.visualViewport;
+      setPanelHeight(Math.max(64, Math.min(420, (viewport?.height ?? window.innerHeight) + (viewport?.offsetTop ?? 0) - bottom - (onNavigate ? 72 : 24))));
+    };
+    const frame = requestAnimationFrame(measure);
+    window.addEventListener("resize", measure);
+    window.visualViewport?.addEventListener("resize", measure);
+    window.visualViewport?.addEventListener("scroll", measure);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", measure);
+      window.visualViewport?.removeEventListener("resize", measure);
+      window.visualViewport?.removeEventListener("scroll", measure);
+    };
+  }, [showPanel, onNavigate]);
+
+  useEffect(() => {
+    const panel = list.current;
+    const option = document.getElementById(`${listId}-${active}`);
+    if (!panel || !option) return;
+    const top = option.offsetTop;
+    const bottom = top + option.offsetHeight;
+    if (top < panel.scrollTop) panel.scrollTop = top;
+    else if (bottom > panel.scrollTop + panel.clientHeight) panel.scrollTop = bottom - panel.clientHeight;
+  }, [active, listId]);
+
   const go = (item: ContentItem | undefined) => {
     if (!item) return;
     setOpen(false);
@@ -85,13 +118,18 @@ export function SearchBox({
   }[size];
 
   return (
-    <div className="relative">
+    <div ref={root} className="relative min-w-0">
       <form
         role="search"
         className="relative"
         onSubmit={(event) => {
           event.preventDefault();
-          go(flat[active] ?? flat[0]);
+          if (active >= 0) go(flat[active]);
+          else {
+            setOpen(true);
+            if (blurTimer.current) clearTimeout(blurTimer.current);
+            input.current?.focus();
+          }
         }}
       >
         <Search
@@ -101,6 +139,7 @@ export function SearchBox({
           }`}
         />
         <input
+          ref={input}
           type="search"
           maxLength={100}
           value={query}
@@ -126,6 +165,12 @@ export function SearchBox({
             } else if (event.key === "ArrowUp") {
               event.preventDefault();
               setActive((index) => Math.max(index - 1, -1));
+            } else if (event.key === "Home" && showPanel) {
+              event.preventDefault();
+              setActive(0);
+            } else if (event.key === "End" && showPanel) {
+              event.preventDefault();
+              setActive(flat.length - 1);
             }
           }}
           placeholder={t("common.searchPlaceholder")}
@@ -134,7 +179,7 @@ export function SearchBox({
           aria-expanded={showPanel}
           aria-controls={listId}
           aria-autocomplete="list"
-          aria-activedescendant={active >= 0 ? `${listId}-${active}` : undefined}
+          aria-activedescendant={showPanel && active >= 0 ? `${listId}-${active}` : undefined}
           className={`w-full border border-border bg-surface text-foreground outline-none transition-all placeholder:text-muted focus:border-primary focus:ring-4 focus:ring-[var(--ring)] ${inputClass} ${
             size === "hero" ? "shadow-[var(--shadow-card)]" : ""
           }`}
@@ -153,9 +198,11 @@ export function SearchBox({
 
       {showPanel ? (
         <div
+          ref={list}
           id={listId}
           role="listbox"
-          className="animate-pop absolute z-50 mt-2 max-h-[70vh] w-full min-w-72 origin-top overflow-y-auto rounded-lg border border-border bg-surface p-2 shadow-[var(--shadow-lift)]"
+          style={{ maxHeight: panelHeight }}
+          className={`animate-pop ${onNavigate ? "relative" : "absolute"} z-50 mt-2 w-full min-w-0 origin-top overflow-y-auto overscroll-contain rounded-lg border border-border bg-surface p-2 shadow-[var(--shadow-lift)]`}
           onPointerDown={() => {
             if (blurTimer.current) clearTimeout(blurTimer.current);
           }}
@@ -193,7 +240,7 @@ export function SearchBox({
                         >
                           <IconTile visual={result.visual} size="sm" shape="rounded" />
                           <span className="min-w-0">
-                            <span className="block truncate text-sm font-semibold text-heading">
+                            <span className="block text-sm font-semibold text-heading [overflow-wrap:anywhere]">
                               {result.title}
                             </span>
                             <span className="block truncate text-xs text-muted">

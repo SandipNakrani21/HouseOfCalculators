@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-10",
+  "scope": "Read-only; no application changes",
+  "rejectionReason": "Not supplied",
+  "findings": [
+    {
+      "id": "AS-01",
+      "priority": "P1",
+      "title": "Limited page-specific editorial content on converter pairs",
+      "status": "Confirmed template pattern; likely approval risk, not a confirmed Google violation",
+      "url": "/en-us/converters/length/meters-to-feet",
+      "source": "src/app/[locale]/converters/[category]/[slug]/page.tsx:129",
+      "description": "61 featured pairs generate 732 localized pair pages. Their How it works section reuses the category explanation (23–35 English words) and displays the correct pair formula. The converter and reference table are useful; those word counts describe only the shared explanation, not the entire page. There is no pair-specific worked-example or editorial explanation field in this route.",
+      "impact": "If AdSense reports low-value content, this is the strongest code-supported candidate. Similar templates and translations are not automatically prohibited; Google evaluates the value and curation of the actual pages.",
+      "action": "Prioritize the useful pages visitors need. Add pair-specific worked examples, interpretation, practical use cases, precision pitfalls and relevant sources, with an editorial review record. Consolidate pages whose only meaningful difference is unit names. Improve substantive value rather than targeting an invented word-count quota.",
+      "refs": [
+        "inventory",
+        "quality"
+      ]
+    },
+    {
+      "id": "AS-02",
+      "priority": "P1",
+      "title": "Consent timeout treats an unknown region as outside the CMP region",
+      "status": "Source-confirmed logic defect; actual ad-serving consequences need regional verification",
+      "url": "/en-us",
+      "source": "src/components/consent/ConsentBanner.tsx:62",
+      "description": "After four seconds without an authoritative TCF response, useGoogleConsentApplies settles false. The hook stops accepting later answers, and the custom Accept/Reject banner becomes available. A delayed or blocked CMP does not establish that the visitor is outside the EEA, UK or Switzerland. Accept sets all Google consent flags but does not create a valid TCF consent string.",
+      "impact": "The fallback can bypass the intended certified consent path. A custom consent-mode banner cannot establish eligibility for personalized ads in the covered regions. This may affect consent compliance or ad serving; it is not proof of the site-approval rejection.",
+      "action": "Keep unknown geography/CMP status unknown. Let the configured certified CMP own covered-region decisions; fail safely when it is unavailable. Verify published European messages and regional behavior in the account and browser. Non-personalized or limited-ad support must follow Google requirements rather than treating a timeout as consent.",
+      "refs": [
+        "cmp",
+        "mode"
+      ]
+    },
+    {
+      "id": "AS-03",
+      "priority": "P1",
+      "title": "Saved generic acceptance is restored before any region or TCF check",
+      "status": "Reproduced in a local simulation of the generated script",
+      "url": "/en-us",
+      "source": "src/components/consent/ConsentScript.tsx:43",
+      "description": "A hoc_consent=granted cookie immediately sets ad_storage, ad_user_data, ad_personalization and analytics_storage to granted. No region, consent-policy version, permitted purposes or TCF state is checked. ConsentBanner also suppresses the local prompt whenever that cookie exists. A previous choice made outside Europe can therefore restore grant signals during a later visit in a covered region.",
+      "impact": "The site treats a generic first-party preference as consent for every Google purpose. Google’s CMP may subsequently correct signals, but the ordering and cross-region behavior are not verified. The local simulation proves the grant operation, not that a remote ad request or unlawful cookie occurred.",
+      "action": "Restore only consent that is valid for the applicable region and purposes. Keep defaults denied until the authoritative CMP resolves the visitor’s status; do not let the generic cookie override TCF decisions. Test travel, consent expiry and changed policy versions.",
+      "refs": [
+        "eu",
+        "cmp"
+      ]
+    },
+    {
+      "id": "AS-04",
+      "priority": "P1",
+      "title": "The claim that calculator inputs never leave the device is too broad",
+      "status": "Confirmed mismatch between sharing behavior and privacy copy",
+      "url": "/en-us/privacy",
+      "source": "src/lib/share-link.ts:23; src/lib/i18n/dictionaries/en.json:1296",
+      "description": "buildShareUrl writes calculator inputs into URL query parameters. Opening a shared salary, health or loan link sends those parameters in the HTTP request to the site and its hosting/CDN infrastructure. The URL can also be shared with other people and platforms. The privacy policy says inputs are never transmitted anywhere. GA deliberately removes query parameters from page_location, which is helpful, but does not stop the original website request or govern AdSense’s URL processing.",
+      "impact": "The disclosure is inaccurate even though the calculation itself runs locally. There is also an exposure risk for sensitive values in shared URLs. This is a privacy and trust issue; numeric inputs alone do not establish a violation of Google’s separate PII rule.",
+      "action": "Describe the sharing exception accurately. Prefer a URL fragment or another reviewed sharing design if inputs should not reach the hosting request. Explain the recipient/platform implications before sharing and inspect actual ad/analytics requests using dummy inputs.",
+      "refs": [
+        "publisher",
+        "privacy"
+      ]
+    },
+    {
+      "id": "AS-05",
+      "priority": "P2",
+      "title": "No site-controlled consent withdrawal or durable consent details",
+      "status": "Source-confirmed omission; a configured Google CMP may supply controls independently",
+      "url": "/en-us/cookies",
+      "source": "src/lib/preferences.ts:61; src/components/consent/ConsentBanner.tsx:110",
+      "description": "The custom consent record is one granted/denied cookie for a year. It contains no purpose, policy-version or consent-time information. No native privacy-choice/reopen control was found. Cookie and privacy pages tell visitors to clear site data to be asked again. If Google’s CMP already provides a revocation control and records, that must be checked rather than assumed absent.",
+      "impact": "The EU user consent policy calls for retained consent records and clear revocation instructions. The current custom path is difficult to manage and cannot by itself demonstrate an appropriate covered-region consent record.",
+      "action": "Provide an accessible Privacy choices control linked to the authoritative CMP. Verify the records it retains. Apply appropriate purpose/version/time handling to any custom consent record that is actually relied upon; do not claim a generic cookie replaces TCF.",
+      "refs": [
+        "eu"
+      ]
+    },
+    {
+      "id": "AS-06",
+      "priority": "P2",
+      "title": "Privacy summaries conflict with the enabled analytics configuration",
+      "status": "Confirmed wording inconsistency; account-specific assertions remain unverified",
+      "url": "/en-us/privacy",
+      "source": "src/lib/i18n/dictionaries/en.json:1298; src/config/analytics.ts:10",
+      "description": "Production has a GA4 measurement ID. Privacy/cookie summaries describe just three first-party cookies and no identifiers, while their analytics sections describe two GA cookies holding random identifiers. The rights and children sections also use absolute no-data statements despite analytics and hosting-log disclosures. The two-month retention statement and CMP-to-analytics consent integration are account settings, not enforced by this code.",
+      "impact": "Readers receive inconsistent descriptions of the site’s data handling. Google’s privacy requirements depend on accurate disclosure of actual advertising/data practices. A published CMP message alone does not prove the optional consent-mode analytics integration is enabled.",
+      "action": "Reconcile the summaries, hosting and analytics disclosures; distinguish preference cookies from first-party analytics cookies. Confirm GA retention, enhanced measurement and consent-mode settings in the Google accounts before asserting their behavior.",
+      "refs": [
+        "privacy",
+        "mode"
+      ]
+    },
+    {
+      "id": "AS-07",
+      "priority": "P2",
+      "title": "Advertising is enabled by configuration without page-level inventory review",
+      "status": "Confirmed ad configuration; individual pages need a content/placement decision",
+      "url": "/en-us/design-system",
+      "source": "src/app/[locale]/design-system/page.tsx:308; src/components/ui/AdSlot.tsx:61",
+      "description": "The public noindex design-system page uses the real AdSlot component for its advertising demos. The locale layout loads the AdSense script across routes, while slots render when a publisher ID and numeric slot ID are configured. Legal, listing and detail layouts also include slots. There is no reviewed page-eligibility flag. noindex does not disable advertising. Loading a verification script alone is not a policy violation.",
+      "impact": "Unreviewed demonstration or navigation-only screens can enter the ad inventory, and short pages can inherit the same placements as richer pages. A legal page, directory, tool or design reference is not automatically prohibited: its content and ad experience must be evaluated.",
+      "action": "Introduce explicit page-level inventory decisions. Render demonstrations as inert placeholders; review listing/legal/detail pages individually. Keep verification separate from ad-slot requests and review Auto ads exclusions in the account. Check real mobile ad density and spacing before alleging an ads-to-content violation.",
+      "refs": [
+        "inventory",
+        "placement"
+      ]
+    },
+    {
+      "id": "AS-08",
+      "priority": "P2",
+      "title": "Publisher and privacy-management pages are harder to discover",
+      "status": "Confirmed navigation weakness; quality recommendation, not a mandatory-page violation",
+      "url": "/en-us",
+      "source": "src/components/layout/SiteFooter.tsx:17",
+      "description": "The footer links directly only to Privacy Policy and Terms. About, Contact and Cookies exist and are cross-linked inside legal pages, but the main navigation does not expose them directly. The operator name and email are present; they are not missing. Reviewed source coverage is also limited to selected financial models, and guide author markup points to the publisher organization.",
+      "impact": "People reviewing the site must take extra steps to find the operator, contact route and cookie management. This weakens transparency and navigation. AdSense does not universally require a physical address, a contact form, named experts on every page or a particular number of articles.",
+      "action": "Add direct About, Contact, Cookies and Privacy choices links in a consistent support area. Make actual editorial responsibility and review scope clear for finance/health material; add qualified reviewer details only if those people really performed the review.",
+      "refs": [
+        "quality",
+        "eligibility"
+      ]
+    }
+  ],
+  "policySources": {
+    "eligibility": "https://support.google.com/adsense/answer/9724?hl=en",
+    "quality": "https://support.google.com/adsense/answer/7299563?hl=en",
+    "inventory": "https://support.google.com/publisherpolicies/answer/11112688?hl=en",
+    "publisher": "https://support.google.com/adsense/answer/10502938?hl=en",
+    "cmp": "https://support.google.com/adsense/answer/13554116?hl=en",
+    "eu": "https://www.google.com/about/company/user-consent-policy/",
+    "privacy": "https://support.google.com/adsense/answer/1348695?hl=en",
+    "mode": "https://support.google.com/adsense/answer/16053245?hl=en",
+    "placement": "https://support.google.com/adsense/answer/1346295?hl=en",
+    "crawler": "https://support.google.com/adsense/answer/2381908?hl=en",
+    "seller": "https://support.google.com/adsense/answer/7679060?hl=en",
+    "status": "https://support.google.com/adsense/answer/12170222?hl=en"
+  },
+  "inventory": {
+    "calculators": 60,
+    "converterCategories": 13,
+    "featuredPairsPerLocale": 61,
+    "availableLocales": 12,
+    "localizedPairRoutes": 732,
+    "guides": 12
+  }
+}

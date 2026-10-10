@@ -4,12 +4,11 @@ import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore
 
 import { BreakdownPanel } from "@/components/calculator/BreakdownPanel";
 import { ResultActions } from "@/components/calculator/ResultActions";
-import { FieldControl, visibleFields } from "@/components/calculator/FieldControl";
+import { FieldControl, numericFieldError, visibleFields } from "@/components/calculator/FieldControl";
 import { DonutChart } from "@/components/charts/DonutChart";
 import { FactList, ResultBox } from "@/components/ui/Form";
 import { CountrySelector } from "@/components/navigation/CountrySelector";
 import { CountryBadge } from "@/components/ui/CountryBadge";
-import { getCalculator } from "@/config/calculators";
 import { countryRelevanceOf } from "@/config/calculators/types";
 import type {
   CalcContext,
@@ -23,6 +22,8 @@ import { createFormatter } from "@/lib/format";
 import { plural } from "@/lib/i18n/core";
 import { useLocale } from "@/lib/locale-context";
 import { readShareQuery } from "@/lib/share-link";
+import INCOME_TAX_RULES from "@/config/calculators/tax-metadata.json";
+import { currencyDecimals, resolveFields } from "@/lib/validation";
 
 const TONE_VAR: Record<NonNullable<ResultRow["tone"]>, string> = {
   principal: "var(--tone-principal)",
@@ -32,20 +33,21 @@ const TONE_VAR: Record<NonNullable<ResultRow["tone"]>, string> = {
 };
 
 /**
- * Renders any calculator from its definition. The page passes only the slug:
- * a definition holds functions, which cannot cross the server/client boundary,
- * so the client looks it up in the registry itself.
+ * Renders a calculator definition supplied by its client engine group. The
+ * server passes a slug to CalculatorEntry, which loads the relevant group.
  *
  * Calculation is deterministic and runs here, in the browser. There is no
  * round trip between moving a slider and seeing the answer.
  */
 export function CalculatorRunner({
   slug,
+  calculator,
   /** Country tools are about one country and ignore the visitor's preference. */
   lockedCountry,
   allowedCountries,
 }: {
   slug: string;
+  calculator: CalculatorDef;
   lockedCountry?: CountryCode;
   allowedCountries?: CountryCode[];
 }) {
@@ -56,18 +58,19 @@ export function CalculatorRunner({
     setCountry,
     locale,
   } = useLocale();
-  const calculator = getCalculator(slug);
 
-  const countryCode = lockedCountry ?? preferredCountry;
+  const supported = calculator?.countries ?? allowedCountries ?? [preferredCountry];
+  const requestedCountry = lockedCountry ?? preferredCountry;
+  const countryCode = supported.includes(requestedCountry) ? requestedCountry : supported[0];
   const country = COUNTRIES[countryCode];
   // A locked country needs its own formatter: the provider's one follows the
   // visitor's preference, which a country tool deliberately ignores.
   const localeFmt = useMemo(
     () =>
-      lockedCountry
-        ? createFormatter(lockedCountry, locale.language, translate)
+      countryCode !== preferredCountry
+        ? createFormatter(countryCode, locale.language, translate)
         : preferredFmt,
-    [lockedCountry, locale.language, translate, preferredFmt],
+    [countryCode, preferredCountry, locale.language, translate, preferredFmt],
   );
 
   const ctx = useMemo<CalcContext>(
@@ -85,28 +88,28 @@ export function CalculatorRunner({
   );
   const fmt = localeFmt;
 
-  const fields = useMemo(() => calculator?.fields(ctx) ?? [], [calculator, ctx]);
-  const initial = useMemo(() => defaultsOf(fields), [fields]);
+  const baseFields = useMemo(() => calculator?.fields(ctx) ?? [], [calculator, ctx]);
+  const initial = useMemo(() => defaultsOf(baseFields), [baseFields]);
   const [values, setValues] = useState<FieldValues>(initial);
+  const fields = useMemo(() => resolveFields(baseFields, values), [baseFields, values]);
 
-  // A country switch reshapes the fields, so the form resets to that
-  // country's defaults rather than carrying rupee amounts into a dollar form.
+  // Formatting-only country changes preserve the entered scenario.
   const [signature, setSignature] = useState(countryCode);
   if (signature !== countryCode) {
     setSignature(countryCode);
-    setValues(initial);
+    if (calculator && ["rules", "units"].includes(countryRelevanceOf(calculator))) setValues(initial);
   }
 
   // A share link: the sender's inputs, and the country they calculated for.
   // Read after hydration (the page is static, so the server sees no query);
   // the defaults paint first and the shared values replace them at once.
   const search = useSyncExternalStore(subscribeNever, readSearch, readNoSearch);
-  const shared = useMemo(() => readShareQuery(search, fields), [search, fields]);
+  const shared = useMemo(() => readShareQuery(search, baseFields), [search, baseFields]);
   const sharedCountry =
     shared?.country &&
     !lockedCountry &&
     calculator && countryRelevanceOf(calculator) !== "none" &&
-    (!allowedCountries || allowedCountries.includes(shared.country))
+    supported.includes(shared.country)
       ? shared.country
       : null;
 
@@ -128,9 +131,13 @@ export function CalculatorRunner({
   }
 
   const shown = visibleFields(fields, values);
+  const domainError = calculator?.validate?.(values, ctx);
   const result = useMemo(
-    () => calculator?.compute(values, ctx),
-    [calculator, values, ctx],
+    () => {
+      const valid = visibleFields(fields, values).every((field) => !numericFieldError(field, values[field.id] ?? field.default, countryCode));
+      return valid && !domainError ? calculator?.compute(values, ctx) : undefined;
+    },
+    [calculator, fields, values, ctx, countryCode, domainError],
   );
 
   const format = useCallback(
@@ -154,14 +161,19 @@ export function CalculatorRunner({
     [fmt, t],
   );
 
-  if (!calculator || !result) return null;
+  if (!calculator) return null;
 
-  const summaryRows = result.rows.filter((row) => !row.emphasis);
-  const emphasisRows = result.rows.filter((row) => row.emphasis);
+  const summaryRows = result?.rows.filter((row) => !row.emphasis) ?? [];
+  const emphasisRows = result?.rows.filter((row) => row.emphasis) ?? [];
 
   return (
     <div className="space-y-6">
       <section className="card animate-fade-up @container p-5 sm:p-8">
+        {slug === "income-tax" ? <div className="mb-6 rounded-md border border-border bg-bg-soft p-4">
+          <p className="font-bold text-heading">{t("calc.taxYear", { year: INCOME_TAX_RULES[countryCode].taxYear })}</p>
+          <p className="mt-1 text-sm text-muted">{t("calc.taxCoverage")}</p>
+          <p className="mt-2 text-xs text-muted">{t("calc.taxDataset", { scope: INCOME_TAX_RULES[countryCode].verifiedFor })}</p>
+        </div> : null}
         {lockedCountry || countryRelevanceOf(calculator) === "none" ? null : (
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-5">
             <div>
@@ -172,8 +184,9 @@ export function CalculatorRunner({
               <p className="text-xs text-muted">
                 {t(`calc.countryContextHint.${countryRelevanceOf(calculator)}`)}
               </p>
+              <p className="mt-1 text-xs text-muted">{t(["rules", "units"].includes(countryRelevanceOf(calculator)) ? "calc.countryResetHint" : "calc.countryPreserveHint")}</p>
             </div>
-            <CountrySelector only={allowedCountries} />
+            <CountrySelector only={supported} value={countryCode} />
           </div>
         )}
 
@@ -184,11 +197,13 @@ export function CalculatorRunner({
           className={
             calculator.splitEarly
               ? "grid gap-8 @xl:grid-cols-2 @xl:gap-8 @3xl:gap-10"
-              : "grid gap-8 @2xl:grid-cols-2 @2xl:gap-10"
+              : "grid gap-6 @xl:grid-cols-2 @xl:gap-6"
           }
         >
-          <div className="space-y-9">
+          <div className="min-w-0 space-y-6">
             <h2 className="sr-only">{t("calc.inputs")}</h2>
+            {countryCode !== requestedCountry ? <p role="status" className="field-hint">{t("validation.countryFallback", { country: t(`country.${countryCode}`) })}</p> : null}
+            {domainError ? <p role="status" className="text-sm text-alert">{t(domainError)}</p> : null}
             {shown.map((field) => (
               <FieldControl
                 key={field.id}
@@ -196,35 +211,34 @@ export function CalculatorRunner({
                 value={values[field.id] ?? field.default}
                 params={params}
                 fmt={fmt}
-                onChange={(next) =>
-                  setValues((current) => ({ ...current, [field.id]: next }))
-                }
+                countryCode={countryCode}
+                onChange={(next) => setValues(current => {
+                  const updated = { ...current, [field.id]: next };
+                  if (slug === "salary" && field.id === "period" && next !== current.period) {
+                    const amount = Number(current.salary);
+                    if (Number.isFinite(amount)) updated.salary = Number((next === "month" ? amount / 12 : amount * 12).toFixed(currencyDecimals(countryCode)));
+                  }
+                  return updated;
+                })}
               />
             ))}
 
-            <ResultActions
-              title={t(calculator.titleKey)}
-              values={values}
-              result={result}
-              format={format}
-              t={t}
-              country={lockedCountry || countryRelevanceOf(calculator) === "none" ? undefined : countryCode}
-              onReset={() => setValues(initial)}
-            />
           </div>
 
           <div
             className={`min-w-0 space-y-4 ${
               calculator.splitEarly
                 ? "@xl:border-s @xl:border-border @xl:ps-8 @3xl:ps-10"
-                : "@2xl:border-s @2xl:border-border @2xl:ps-10"
+                : "@xl:border-s @xl:border-border @xl:ps-6"
             }`}
           >
             <h2 className="sr-only">{t("calc.results")}</h2>
             {/* The headline answer, announced to assistive technology when it changes. */}
             <ResultBox
-              label={t(result.primary.labelKey)}
-              value={format(result.primary.value, result.primary.kind, result.primary.decimals)}
+              label={result ? t(result.primary.labelKey) : t("calc.results")}
+              value={result ? format(result.primary.value, result.primary.kind, result.primary.decimals) : t("calc.validation.incomplete")}
+              detail={result?.primary.hintKey ? t(result.primary.hintKey) : undefined}
+              tone={result ? "primary" : "quiet"}
             />
 
             {emphasisRows.length ? (
@@ -238,17 +252,23 @@ export function CalculatorRunner({
                     <p className="tabular mt-0.5 text-lg font-bold text-heading">
                       {format(row.value, row.kind, row.decimals)}
                     </p>
+                    {row.hintKey ? <p className="field-hint">{t(row.hintKey)}</p> : null}
                   </li>
                 ))}
               </ul>
             ) : null}
 
-            {result.chart?.length ? (
+            {result?.chart?.length ? (
               <div className="flex justify-center py-2">
                 <DonutChart
                   slices={result.chart}
                   params={params}
                   fmt={fmt}
+                  formatValue={slice => {
+                    const row = [result.primary, ...result.rows].find(row => row.labelKey === slice.labelKey);
+                    const kind = row?.kind ?? (result.primary.kind === "currency" ? "currency" : "number");
+                    return format(slice.value, kind, row?.decimals ?? 2) + (row?.hintKey ? ` (${t(row.hintKey)})` : "");
+                  }}
                   centerLabel={t(result.primary.labelKey)}
                   // Money is abbreviated so a long figure fits inside the ring.
                   // Anything else is formatted normally: rendering a 40% margin
@@ -270,12 +290,12 @@ export function CalculatorRunner({
             <FactList
               items={summaryRows.map((row) => ({
                 label: t(row.labelKey),
-                value: format(row.value, row.kind, row.decimals),
+                value: format(row.value, row.kind, row.decimals) + (row.hintKey ? ` (${t(row.hintKey)})` : ""),
                 marker: row.tone ? TONE_VAR[row.tone] : undefined,
               }))}
             />
 
-            {result.notes?.length ? (
+            {result?.notes?.length ? (
               <ul className="space-y-1.5">
                 {result.notes.map((note) => (
                   <li key={note.key} className="text-xs leading-relaxed text-muted">
@@ -286,9 +306,12 @@ export function CalculatorRunner({
             ) : null}
           </div>
         </div>
+        {result ? <ResultActions title={t(calculator.titleKey)} values={values} result={result} format={format} t={t}
+          country={lockedCountry || countryRelevanceOf(calculator) === "none" ? undefined : countryCode}
+          onReset={() => setValues(initial)} /> : <button type="button" className="btn btn-outline btn-md mt-6" onClick={() => setValues(initial)}>{t("common.reset")}</button>}
       </section>
 
-      {result.table?.rows.length ? (
+      {result?.table?.rows.length ? (
         <BreakdownPanel
           views={[
             {
@@ -303,7 +326,7 @@ export function CalculatorRunner({
         />
       ) : null}
 
-      {result.breakdown?.length ? (
+      {result?.breakdown?.length ? (
         <BreakdownPanel views={result.breakdown} format={format} t={t} />
       ) : null}
     </div>
@@ -319,18 +342,23 @@ export function CalculatorRunner({
 export function CalculatorCountryNote({
   relevance,
   lockedCountry,
+  supportedCountries,
+  year,
 }: {
   relevance: Exclude<ReturnType<typeof countryRelevanceOf>, "none">;
   lockedCountry?: CountryCode;
+  supportedCountries?: CountryCode[];
+  year?: string;
 }) {
   const { t, countryCode: preferred } = useLocale();
-  const code = lockedCountry ?? preferred;
+  const requested = lockedCountry ?? preferred;
+  const code = supportedCountries && !supportedCountries.includes(requested) ? supportedCountries[0] : requested;
   return (
     <p className="badge badge-outline badge-md mt-4 !font-medium !text-muted">
       <CountryBadge code={code} />
       {t(`calc.countryNote.${relevance}`, {
         country: t(`country.${code}`),
-        year: COUNTRIES[code].fiscalYear.label,
+        year: year ?? COUNTRIES[code].fiscalYear.label,
         currency: COUNTRIES[code].currency.code,
       })}
     </p>
@@ -338,7 +366,7 @@ export function CalculatorCountryNote({
 }
 
 const subscribeNever = () => () => {};
-const readSearch = () => window.location.search;
+const readSearch = () => window.location.hash.startsWith("#calc=") ? window.location.hash : window.location.search;
 const readNoSearch = () => "";
 
 function defaultsOf(fields: ReturnType<CalculatorDef["fields"]>): FieldValues {

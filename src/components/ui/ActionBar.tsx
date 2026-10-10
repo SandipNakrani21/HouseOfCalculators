@@ -23,6 +23,7 @@ export function ActionBar({
   onDownloadCsv,
   shareUrl,
   shareTitle,
+  shareNotice,
   layout = "grid",
   className = "",
 }: {
@@ -30,6 +31,7 @@ export function ActionBar({
   onDownloadCsv?: () => void;
   shareUrl?: () => string;
   shareTitle?: string;
+  shareNotice?: string;
   layout?: "grid" | "row";
   className?: string;
 }) {
@@ -107,12 +109,13 @@ export function ActionBar({
         ) : (
           <Link2 aria-hidden className={iconClass} />
         )}
-        {copied ? t("common.copied") : t("common.copyLink")}
+        {copied ? t("common.copied") : t(shareUrl ? "common.copyLink" : "actions.copyToolLink")}
       </button>
       <button type="button" onClick={share} className={buttonClass}>
         <Share2 aria-hidden className={iconClass} />
-        {t("actions.share")}
+        {t(shareUrl ? "actions.share" : "actions.shareTool")}
       </button>
+      {shareNotice ? <p className="col-span-full text-xs leading-relaxed text-muted">{shareNotice}</p> : null}
     </div>
   );
 }

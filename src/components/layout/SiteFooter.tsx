@@ -11,10 +11,11 @@ import type { LegalSlug } from "@/config/legal/definitions";
 import { LOCALES, type LocaleCode } from "@/config/locales";
 import { NEWSLETTER_ACTION, SOCIAL_LINKS } from "@/config/site";
 import { useLocale } from "@/lib/locale-context";
+import { PrivacyChoices } from "@/components/consent/ConsentBanner";
 import { sectionPath, swapLocale } from "@/lib/routes";
 
 /** The legal pages the footer lists; the rest are linked from within them. */
-const SUPPORT_PAGES: LegalSlug[] = ["privacy", "terms"];
+const SUPPORT_PAGES: LegalSlug[] = ["about", "contact", "privacy", "terms", "cookies"];
 
 /** Languages listed in the footer; the header picker offers every one. */
 const FOOTER_LANGUAGES = 5;
@@ -172,6 +173,7 @@ export function SiteFooter({
                   </Link>
                 </li>
               ))}
+              <li><PrivacyChoices className={link} /></li>
             </ul>
           </nav>
         </div>

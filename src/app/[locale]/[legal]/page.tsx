@@ -5,7 +5,7 @@ import { legalVisual } from "@/lib/visuals";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { AdSlot } from "@/components/ui/AdSlot";
+import { PrivacyChoices } from "@/components/consent/ConsentBanner";
 import {
   LEGAL_PAGES,
   getLegalPage,
@@ -186,7 +186,7 @@ export default async function LegalPage({
           </ul>
         </nav>
 
-        <AdSlot slot="legal-bottom" placement="leaderboard" />
+        {page.slug === "cookies" || page.slug === "privacy" ? <PrivacyChoices className="btn btn-outline btn-md mt-6" /> : null}
 
         <JsonLd
           data={webPageSchema({

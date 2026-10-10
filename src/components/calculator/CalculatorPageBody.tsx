@@ -1,4 +1,5 @@
-import { CalculatorCountryNote, CalculatorRunner } from "@/components/calculator/CalculatorRunner";
+import { CalculatorCountryNote } from "@/components/calculator/CalculatorRunner";
+import { CalculatorEntry } from "@/components/calculator/CalculatorEntry";
 import { DetailPage } from "@/components/layout/DetailPage";
 import type { Crumb } from "@/components/ui/Breadcrumbs";
 import { calculatorsFor } from "@/config/calculators";
@@ -15,6 +16,8 @@ import { createTranslator } from "@/lib/i18n";
 import { calculatorPath, categoryPath, countryToolPath } from "@/lib/routes";
 import { itemVisual } from "@/lib/visuals";
 import { calculatorsCta } from "@/lib/cta";
+import { ruleReview } from "@/config/calculators/provenance";
+import { WorkedExample } from "@/components/calculator/WorkedExample";
 
 /** schema.org application categories for the calculator subjects. */
 const APP_CATEGORY: Record<string, string> = {
@@ -51,6 +54,7 @@ export function CalculatorPageBody({
   const ctx: CalcContext = { countryCode: country, country: COUNTRIES[country], t, fmt };
   const params = calculator.params?.(ctx);
   const relevance = countryRelevanceOf(calculator);
+  const review = ruleReview(calculator.slug, country);
 
   const related = relatedTo(calculator, country, lockCountry)
     .slice(0, 6)
@@ -90,10 +94,11 @@ export function CalculatorPageBody({
           relevance === "none" ? null : (
             // Say what the country actually changes here. Claiming a BMI
             // follows a country's rules for a tax year would be simply untrue.
-            <CalculatorCountryNote relevance={relevance} lockedCountry={lockCountry ? country : undefined} />
+            <CalculatorCountryNote relevance={relevance} lockedCountry={lockCountry ? country : undefined} supportedCountries={calculator.countries} year={calculator.slug === "401k" ? "2025 / 2026" : undefined} />
           ),
       }}
       adPrefix="calculator"
+      ads={relevance !== "rules" || Boolean(review)}
       howItWorks={
         calculator.explainerKeys?.length || calculator.formula
           ? {
@@ -124,6 +129,13 @@ export function CalculatorPageBody({
                       </dl>
                     </div>
                   ) : null}
+                  <WorkedExample calculator={calculator} ctx={ctx} />
+                  {relevance === "rules" && !review ? <p className="rounded-md border border-border p-4 text-sm text-muted">{t("quality.unreviewed")}</p> : null}
+                  {review ? <aside className="rounded-md border border-border p-4">
+                    <h3 className="font-semibold">{t("calc.sources")}</h3>
+                    <p className="mt-1 text-sm text-muted">{t("calc.ruleReview", { period: review.period, revision: review.revision, date: review.reviewed })}</p>
+                    <ul className="mt-3 space-y-2 text-sm">{review.sources.map(source => <li key={source}><a className="text-primary underline underline-offset-4" href={source} target="_blank" rel="noreferrer">{new URL(source).hostname}</a></li>)}</ul>
+                  </aside> : null}
                 </div>
               ),
             }
@@ -157,7 +169,7 @@ export function CalculatorPageBody({
       }}
       cta={calculatorsCta(t, locale)}
     >
-      <CalculatorRunner
+      <CalculatorEntry
         slug={calculator.slug}
         lockedCountry={lockCountry ? country : undefined}
         allowedCountries={calculator.countries}

@@ -102,23 +102,23 @@ export function navyBodyFat({
   neck: number;
   hip?: number;
 }): number {
-  if (centimetres <= 0) return 0;
+  if (centimetres <= 0 || (sex === "male" ? waist - neck : waist + hip - neck) <= 0) return NaN;
 
   const value =
     sex === "male"
       ? 495 /
           (1.0324 -
-            0.19077 * Math.log10(Math.max(waist - neck, 1)) +
+            0.19077 * Math.log10(waist - neck) +
             0.15456 * Math.log10(centimetres)) -
         450
       : 495 /
           (1.29579 -
-            0.35004 * Math.log10(Math.max(waist + hip - neck, 1)) +
+            0.35004 * Math.log10(waist + hip - neck) +
             0.221 * Math.log10(centimetres)) -
         450;
 
-  // The equation is unbounded and goes nonsensical outside plausible inputs.
-  return Math.min(Math.max(value, 0), 75);
+  // An estimate outside the physical percentage domain is not a measured zero.
+  return Number.isFinite(value) && value >= 0 && value <= 100 ? value : NaN;
 }
 
 /** Fat mass and lean mass implied by a body-fat percentage. */

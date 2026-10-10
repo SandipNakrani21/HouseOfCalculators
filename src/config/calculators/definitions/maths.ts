@@ -35,7 +35,7 @@ const EVERYWHERE = COUNTRY_CODES;
 export const statisticsCalculator: CalculatorDef = {
   slug: "statistics",
   icon: "📊",
-  version: 1,
+  version: 2,
   category: "math",
   titleKey: "calc.statistics.title",
   descKey: "calc.statistics.desc",
@@ -58,7 +58,7 @@ export const statisticsCalculator: CalculatorDef = {
 
     if (!stats) {
       return {
-        primary: { labelKey: "result.mean", value: 0, kind: "number", emphasis: true },
+        primary: { labelKey: "result.mean", value: "—", kind: "text", emphasis: true },
         rows: [],
         notes: [{ key: "calc.statistics.empty" }],
       };
@@ -111,7 +111,7 @@ export const statisticsCalculator: CalculatorDef = {
 export const ratioCalculator: CalculatorDef = {
   slug: "ratio",
   icon: "⚖️",
-  version: 1,
+  version: 2,
   category: "math",
   titleKey: "calc.ratio.title",
   descKey: "calc.ratio.desc",
@@ -149,14 +149,14 @@ export const ratioCalculator: CalculatorDef = {
       rows: [
         {
           labelKey: "result.decimalRatio",
-          value: b === 0 ? 0 : a / b,
+          value: b === 0 ? NaN : a / b,
           kind: "number",
           decimals: 4,
           tone: "principal",
         },
         {
           labelKey: "result.percentOfTotal",
-          value: a + b === 0 ? 0 : (a / (a + b)) * 100,
+          value: a + b === 0 ? NaN : (a / (a + b)) * 100,
           kind: "percent",
           decimals: 2,
           tone: "returns",
@@ -194,7 +194,7 @@ export const exponentCalculator: CalculatorDef = {
   fields: () => [
     { id: "base", labelKey: "field.base", kind: "number", min: -100, max: 100, step: 0.5, slider: false, default: 2 },
     { id: "exponent", labelKey: "field.exponent", kind: "number", min: -20, max: 20, step: 0.5, slider: false, default: 10 },
-    { id: "root", labelKey: "field.rootDegree", kind: "number", min: 2, max: 20, step: 1, slider: false, default: 2 },
+    { id: "root", labelKey: "field.rootDegree", kind: "number", min: 2, max: 20, integer: true, step: 1, slider: false, default: 2 },
   ],
   compute: (values) => {
     const base = num(values, "base");
@@ -205,7 +205,7 @@ export const exponentCalculator: CalculatorDef = {
     const root = nthRoot(base, degree);
     const log = logarithm(Math.abs(result), Math.abs(base));
 
-    const finite = (value: number) => (Number.isFinite(value) ? value : 0);
+    const finite = (value: number) => (Number.isFinite(value) ? value : NaN);
 
     return {
       primary: {
@@ -237,7 +237,7 @@ export const exponentCalculator: CalculatorDef = {
 export const quadraticCalculator: CalculatorDef = {
   slug: "quadratic-equation",
   icon: "📐",
-  version: 1,
+  version: 2,
   category: "math",
   titleKey: "calc.quadratic.title",
   descKey: "calc.quadratic.desc",
@@ -288,7 +288,7 @@ export const quadraticCalculator: CalculatorDef = {
 };
 
 function round(value: number): number {
-  return Math.round(value * 10_000) / 10_000;
+  return Number(value.toPrecision(12));
 }
 
 export const triangleCalculator: CalculatorDef = {
@@ -337,7 +337,7 @@ const SHAPES_3D: Shape3D[] = ["box", "cylinder", "sphere", "cone"];
 export const areaCalculator: CalculatorDef = {
   slug: "area",
   icon: "🟦",
-  version: 1,
+  version: 2,
   category: "math",
   titleKey: "calc.area.title",
   descKey: "calc.area.desc",
@@ -352,7 +352,8 @@ export const areaCalculator: CalculatorDef = {
       default: "rectangle",
       options: SHAPES_2D.map((shape) => ({ value: shape, labelKey: `shape.${shape}` })),
     },
-    { id: "a", labelKey: "field.dimensionA", kind: "number", min: 0.1, max: 1000, step: 0.1, slider: false, default: 10 },
+    { id: "a", labelKey: "field.dimensionA", kind: "number", min: 0.1, max: 1000, step: 0.1, slider: false, default: 10,
+      resolve: values => ({ labelKey: str(values, "shape") === "circle" ? "field.geometry.radius" : str(values, "shape") === "triangle" ? "field.base" : "field.sideA" }) },
     {
       id: "b",
       labelKey: "field.dimensionB",
@@ -363,6 +364,7 @@ export const areaCalculator: CalculatorDef = {
       slider: false,
       default: 6,
       // A circle is defined by its radius alone.
+      resolve: values => ({ labelKey: str(values, "shape") === "triangle" ? "field.geometry.height" : "field.sideB" }),
       visibleWhen: (values) => str(values, "shape", "rectangle") !== "circle",
     },
     {
@@ -374,9 +376,10 @@ export const areaCalculator: CalculatorDef = {
       step: 0.1,
       slider: false,
       default: 5,
+      resolve: values => ({ labelKey: str(values, "shape") === "trapezoid" ? "field.geometry.height" : "field.dimensionC" }),
       visibleWhen: (values) => {
         const shape = str(values, "shape", "rectangle");
-        return shape === "trapezoid" || shape === "parallelogram" || shape === "triangle";
+        return shape === "trapezoid" || shape === "parallelogram";
       },
     },
   ],
@@ -394,7 +397,7 @@ export const areaCalculator: CalculatorDef = {
         { labelKey: "result.perimeter", value: perimeter, kind: "number", decimals: 4, tone: "principal" },
         { labelKey: "result.shape", value: `shape.${shape}`, kind: "label", tone: "neutral" },
       ],
-      notes: [{ key: "calc.area.note" }],
+      notes: [{ key: "calc.area.note" }, ...(["triangle", "trapezoid"].includes(shape) ? [{ key: "calc.area.perimeterNote" }] : [])],
     };
   },
   explainerKeys: ["calc.area.explain.1", "calc.area.explain.2"],

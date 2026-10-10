@@ -1,4 +1,4 @@
-import { CALCULATORS, calculatorsFor } from "@/config/calculators";
+import { CALCULATOR_METADATA as CALCULATORS } from "@/config/calculators/metadata";
 import type { CalcContext } from "@/config/calculators/types";
 import { categoryKey, type Section } from "@/config/categories";
 import { CONVERTERS, pairSlug } from "@/config/converters/definitions";
@@ -52,7 +52,7 @@ function calculatorItems({
   t,
   calcContext,
 }: BuildContext): ContentItem[] {
-  return calculatorsFor(country).map((calc) => {
+  return CALCULATORS.filter(calc => calc.countries.includes(country)).map((calc) => {
     const params = calc.params?.(calcContext);
     return {
       id: `calculator:${calc.slug}`,

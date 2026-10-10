@@ -9,7 +9,9 @@ import {
   pairSlug,
   parsePairSlug,
 } from "@/config/converters/definitions";
-import { findUnit, unitRatio } from "@/config/converters/units";
+import { findUnit, conversionFormula, convert } from "@/config/converters/units";
+import { conversionExamples, CONVERSION_SOURCES } from "@/config/converters/examples";
+import { createFormatter } from "@/lib/format";
 import { LOCALES, localeFromPath } from "@/config/locales";
 import { createTranslator, unitName } from "@/lib/i18n";
 import { categoryPath, contentPath, localeHome, sectionPath } from "@/lib/routes";
@@ -92,6 +94,9 @@ export default async function ConverterPage({
   };
   const title = t("conv.pair.title", names);
   const description = t("conv.pair.desc", names);
+  const fmt = createFormatter(locale.defaultCountry, locale.language, t);
+  const examples = conversionExamples(converter, pair[0], pair[1]);
+  const example = { input: fmt.number(examples[1], { decimals: 6 }), output: fmt.number(convert(converter, examples[1], pair[0], pair[1]), { decimals: 6 }), from: fromUnit.symbol, to: toUnit.symbol };
 
   const related = converter.featuredPairs
     .filter(([from, to]) => pairSlug(converter, from, to) !== slug)
@@ -133,12 +138,25 @@ export default async function ConverterPage({
             <p className="text-sm leading-relaxed text-muted">{t(converter.explainerKey)}</p>
             <p className="tabular mt-4 rounded-md bg-bg-soft px-4 py-3 text-sm font-semibold text-heading">
               <span className="me-2 text-primary">{t("calc.formula")}:</span>
-              {t("conv.formula", {
-                from: fromUnit.symbol,
-                to: toUnit.symbol,
-                factor: unitRatio(converter, pair[0], pair[1]).toPrecision(8),
-              })}
+              {conversionFormula(converter, pair[0], pair[1])}
             </p>
+            <h3 className="mt-6 text-base font-semibold">{t("conv.pair.examples")}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{t("conv.pair.example", example)}</p>
+            <ol className="mt-3 list-decimal space-y-2 ps-5 text-sm leading-relaxed text-muted">
+              <li>{t("conv.pair.stepInput", example)}</li>
+              <li>{t("conv.pair.stepFormula")}</li>
+              <li>{t("conv.pair.stepOutput", example)}</li>
+            </ol>
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full text-sm"><caption className="sr-only">{t("conv.pair.examples")}</caption>
+                <thead><tr><th scope="col" className="p-3 text-start">{names.from} ({fromUnit.symbol})</th><th scope="col" className="p-3 text-start">{names.to} ({toUnit.symbol})</th></tr></thead>
+                <tbody>{examples.map(input => <tr key={input} className="border-t border-border"><th scope="row" className="p-3 text-start font-normal">{fmt.number(input, { decimals: 6 })}</th><td className="p-3">{fmt.number(convert(converter, input, pair[0], pair[1]), { decimals: 6 })}</td></tr>)}</tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-muted">{t("conv.pair.precision")}</p>
+            <p className="mt-3 text-sm leading-relaxed text-muted">{t("conv.pair.unitsCaution")}</p>
+            <h3 className="mt-5 font-semibold">{t("calc.sources")}</h3>
+            <ul className="mt-2 space-y-2 text-sm">{CONVERSION_SOURCES.map(source => <li key={source.href}><a className="text-primary underline" href={source.href} target="_blank" rel="noreferrer">{source.name}</a></li>)}</ul>
           </>
         ),
       }}

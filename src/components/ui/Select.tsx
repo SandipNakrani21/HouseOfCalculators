@@ -63,6 +63,7 @@ export function Select<T extends string>({
   trigger,
   menuWidth = 280,
   className = "",
+  portalContainer,
 }: {
   value: T;
   options: SelectOption<T>[];
@@ -83,6 +84,8 @@ export function Select<T extends string>({
   /** Minimum list width for the pill variant. */
   menuWidth?: number;
   className?: string;
+  /** Keep dropdowns in a native dialog's top layer when used inside one. */
+  portalContainer?: () => HTMLElement | null;
 }) {
   const id = useId();
   const listId = `${id}-list`;
@@ -218,7 +221,9 @@ export function Select<T extends string>({
         close(true);
         break;
       case "Tab":
-        close(false);
+        // Let native Tab navigation continue from the trigger, not a menu
+        // element that is about to be removed from the document.
+        close(true);
         break;
       default:
         // Type-ahead when there is no search box.
@@ -246,7 +251,8 @@ export function Select<T extends string>({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={open ? listId : undefined}
-        aria-label={showLabel ? undefined : label}
+        aria-label={showLabel ? undefined : `${label}: ${selected?.label ?? value}`}
+        title={showLabel ? undefined : `${label}: ${selected?.label ?? value}`}
         aria-labelledby={showLabel ? `${labelId} ${id}-value` : undefined}
         onClick={() => (open ? close(false) : openMenu())}
         onKeyDown={onTriggerKey}
@@ -382,7 +388,7 @@ export function Select<T extends string>({
                 )}
               </ul>
             </div>,
-            document.body,
+            portalContainer?.() ?? document.body,
           )
         : null}
     </div>

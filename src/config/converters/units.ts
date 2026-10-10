@@ -57,7 +57,8 @@ export function convert(
 ): number {
   const from = definition.units.find((unit) => unit.id === fromId);
   const to = definition.units.find((unit) => unit.id === toId);
-  if (!from || !to || !Number.isFinite(value)) return 0;
+  if (!from || !to || !Number.isFinite(value)) return NaN;
+  if (fromId === toId) return value;
 
   const base = from.toBase ? from.toBase(value) : value * (from.factor ?? 1);
   return to.fromBase ? to.fromBase(base) : base / (to.factor ?? 1);
@@ -80,4 +81,15 @@ export function findUnit(
 }
 
 /** Steps used to build the quick-reference table on every converter page. */
+export function conversionFormula(definition: ConverterDefinition, from: string, to: string): string {
+  const fromUnit = findUnit(definition, from)!;
+  const toUnit = findUnit(definition, to)!;
+  const number = (n: number) => Number(n.toPrecision(12)).toString();
+  if (definition.category === "fuel-economy" && (from === "liters-per-100km" || to === "liters-per-100km") && from !== to) {
+    return `${toUnit.symbol} = ${number(convert(definition, 1, from, to))} / ${fromUnit.symbol} (${fromUnit.symbol} > 0)`;
+  }
+  const offset = convert(definition, 0, from, to);
+  const scale = convert(definition, 1, from, to) - offset;
+  return `${toUnit.symbol} = ${fromUnit.symbol} × ${number(scale)}${offset ? ` ${offset >= 0 ? "+" : "−"} ${number(Math.abs(offset))}` : ""}`;
+}
 export const TABLE_STEPS = [1, 2, 5, 10, 20, 50, 100, 250, 500, 1000];

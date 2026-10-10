@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useState, type ComponentType } from "react";
 
 import { ToolResetContext } from "@/components/tools/ToolShell";
+import { ToolValidationProvider } from "@/components/tools/ValidatedInput";
 import { Skeleton, SkeletonText } from "@/components/ui/Skeleton";
 
 /**
@@ -78,7 +79,7 @@ export function ToolRunner({ slug }: { slug: string }) {
   if (!Tool) return null;
   return (
     <ToolResetContext.Provider value={() => setVersion((current) => current + 1)}>
-      <Tool key={version} />
+      <ToolValidationProvider key={version}><Tool /></ToolValidationProvider>
     </ToolResetContext.Provider>
   );
 }

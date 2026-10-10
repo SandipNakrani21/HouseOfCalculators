@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import {
   Field,
+  NumberInput,
   ToolCard,
   ToolFacts,
   ToolFields,
@@ -11,6 +12,7 @@ import {
   inputClass,
 } from "@/components/tools/ToolShell";
 import { useLocale } from "@/lib/locale-context";
+import { SegmentedControl } from "@/components/ui/Form";
 import {
   divisorsOf,
   fromRoman,
@@ -52,44 +54,30 @@ export function PercentageTool() {
 
   return (
     <ToolCard>
-      <div role="tablist" aria-label={t("tool.pct.mode")} className="mb-5 flex flex-wrap gap-2">
-        {(["of", "share", "change", "apply"] as const).map((option) => (
-          <button
-            key={option}
-            role="tab"
-            type="button"
-            aria-selected={mode === option}
-            onClick={() => setMode(option)}
-            className={`rounded-sm border px-3 py-2 text-sm transition-colors ${
-              mode === option
-                ? "border-primary bg-primary-soft font-medium text-primary"
-                : "border-border text-muted hover:border-border-strong"
-            }`}
-          >
-            {t(`tool.pct.mode.${option}`)}
-          </button>
-        ))}
-      </div>
+      <div className="mb-5"><SegmentedControl label={t("tool.pct.mode")} value={mode} onChange={setMode}
+        options={(["of", "share", "change", "apply"] as const).map(value => ({ value, label: t(`tool.pct.mode.${value}`) }))} /></div>
 
       <ToolFields>
         <Field label={labels[mode].a}>
           {(id) => (
-            <input
+            <NumberInput rule={mode === "of" ? "percentage" : "number"}
               id={id}
               type="number"
               value={a}
-              onChange={(event) => setA(Number(event.target.value))}
+              errorKey={mode === "change" && a === 0 ? "validation.zeroDenominator" : undefined}
+              onValueChange={(next) => setA(next)}
               className={`tabular ${inputClass}`}
             />
           )}
         </Field>
         <Field label={labels[mode].b}>
           {(id) => (
-            <input
+            <NumberInput rule={mode === "apply" ? "percentage" : "number"}
               id={id}
               type="number"
               value={b}
-              onChange={(event) => setB(Number(event.target.value))}
+              errorKey={mode === "share" && b === 0 ? "validation.zeroDenominator" : undefined}
+              onValueChange={(next) => setB(next)}
               className={`tabular ${inputClass}`}
             />
           )}
@@ -99,10 +87,12 @@ export function PercentageTool() {
       <ToolResult
         label={labels[mode].result}
         value={
-          isPercentAnswer
+          !Number.isFinite(answer) ? "—" : isPercentAnswer
             ? fmt.percent(answer, { decimals: 2 })
             : fmt.number(answer, { decimals: 2 })
         }
+        detail={!Number.isFinite(answer) ? t("validation.zeroDenominator") : undefined}
+        tone={Number.isFinite(answer) ? "primary" : "warning"}
       />
     </ToolCard>
   );
@@ -117,11 +107,11 @@ export function NumberToWordsTool() {
       <ToolFields>
         <Field label={t("tool.field.number")}>
           {(id) => (
-            <input
+            <NumberInput rule="words"
               id={id}
               type="number"
               value={value}
-              onChange={(event) => setValue(Number(event.target.value))}
+              onValueChange={(next) => setValue(next)}
               className={`tabular ${inputClass}`}
             />
           )}
@@ -156,22 +146,23 @@ export function RomanNumeralsTool() {
       <ToolFields>
         <Field label={t("tool.field.number")} hint={t("tool.hint.romanRange")}>
           {(id) => (
-            <input
+            <NumberInput rule="roman"
               id={id}
               type="number"
               min={1}
               max={3999}
               value={arabic}
-              onChange={(event) => setArabic(Number(event.target.value))}
+              onValueChange={(next) => setArabic(next)}
               className={`tabular ${inputClass}`}
             />
           )}
         </Field>
-        <Field label={t("tool.field.romanNumeral")}>
+        <Field label={t("tool.field.romanNumeral")} error={parsed === null ? t("tool.result.invalidNumeral") : undefined}>
           {(id) => (
             <input
               id={id}
               type="text"
+              maxLength={15}
               value={roman}
               onChange={(event) => setRoman(event.target.value.toUpperCase())}
               className={`tabular uppercase ${inputClass}`}
@@ -211,12 +202,12 @@ export function PrimeCheckerTool() {
       <ToolFields>
         <Field label={t("tool.field.number")}>
           {(id) => (
-            <input
+            <NumberInput rule="factor"
               id={id}
               type="number"
               min={1}
               value={value}
-              onChange={(event) => setValue(Math.floor(Number(event.target.value)))}
+              onValueChange={(next) => setValue(Math.floor(next))}
               className={`tabular ${inputClass}`}
             />
           )}
@@ -264,22 +255,23 @@ export function FractionSimplifierTool() {
       <ToolFields>
         <Field label={t("tool.field.numerator")}>
           {(id) => (
-            <input
+            <NumberInput rule="numerator"
               id={id}
               type="number"
               value={numerator}
-              onChange={(event) => setNumerator(Math.floor(Number(event.target.value)))}
+              onValueChange={(next) => setNumerator(Math.floor(next))}
               className={`tabular ${inputClass}`}
             />
           )}
         </Field>
         <Field label={t("tool.field.denominator")}>
           {(id) => (
-            <input
+            <NumberInput rule="denominator"
+              errorKey={denominator === 0 ? "tool.result.divideByZero" : undefined}
               id={id}
               type="number"
               value={denominator}
-              onChange={(event) => setDenominator(Math.floor(Number(event.target.value)))}
+              onValueChange={(next) => setDenominator(Math.floor(next))}
               className={`tabular ${inputClass}`}
             />
           )}

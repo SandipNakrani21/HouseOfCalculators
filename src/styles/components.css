@@ -454,6 +454,9 @@
   .data-table td { padding-inline: 0.75rem; }
   .data-table tbody tr { transition: background-color var(--duration-fast) ease; }
   .data-table tbody tr:hover { background: color-mix(in srgb, var(--primary) 10%, transparent); }
+  .reference-table thead th { position: sticky; top: 0; z-index: 2; background: var(--bg-tint); }
+  .reference-table tbody th { position: sticky; inset-inline-start: 0; z-index: 1; background: var(--surface); box-shadow: 1px 0 var(--border); }
+  .reference-table thead th:first-child { inset-inline-start: 0; z-index: 3; }
 
   /* A small dark popup over a chart, e.g. a donut segment's amount. */
   .chart-tooltip {

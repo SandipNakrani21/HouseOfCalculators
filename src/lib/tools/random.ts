@@ -10,11 +10,11 @@
 /** Uniform integer in [min, max]. */
 export function randomInt(min: number, max: number): number {
   const span = max - min + 1;
-  if (span <= 0) return min;
+  if (!Number.isSafeInteger(min) || !Number.isSafeInteger(max) || span <= 0 || span > 0x100000000) throw new RangeError("Unsupported random range");
 
   // Rejection sampling: taking a modulus of a 32-bit draw would make the
   // lowest values very slightly more likely.
-  const limit = Math.floor(0xffffffff / span) * span;
+  const limit = Math.floor(0x100000000 / span) * span;
   const buffer = new Uint32Array(1);
   let draw = limit;
   while (draw >= limit) {

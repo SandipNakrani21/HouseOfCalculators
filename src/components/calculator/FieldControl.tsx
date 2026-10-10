@@ -5,7 +5,9 @@ import { useId } from "react";
 import type { CalculatorField, FieldValues } from "@/config/calculators/types";
 import type { Formatter } from "@/lib/format";
 import { useLocale } from "@/lib/locale-context";
-import { MAX_TEXT } from "@/lib/share-link";
+import { SegmentedControl } from "@/components/ui/Form";
+import { calculatorFieldError, calculatorRules, integerDigits, normalizeNumericInput, MAX_LIST_CHARACTERS } from "@/lib/validation";
+import type { CountryCode } from "@/config/countries";
 
 type Props = {
   field: CalculatorField;
@@ -15,6 +17,7 @@ type Props = {
   params?: Record<string, string | number>;
   /** Formatter for the page's country, which may differ from the visitor's. */
   fmt?: Formatter;
+  countryCode?: CountryCode;
 };
 
 /**
@@ -22,41 +25,23 @@ type Props = {
  * the way a finance calculator is usually driven: type an exact figure, or
  * drag to explore.
  */
-export function FieldControl({ field, value, onChange, params, fmt: override }: Props) {
-  const { t: translate, fmt: localeFmt } = useLocale();
+export function FieldControl({ field, value, onChange, params, fmt: override, countryCode: overrideCountry }: Props) {
+  const { t: translate, fmt: localeFmt, countryCode: preferredCountry } = useLocale();
+  const countryCode = overrideCountry ?? preferredCountry;
   const fmt = override ?? localeFmt;
   const t = (key: string) => translate(key, params);
   const id = useId();
+  const hintId = `${id}-hint`;
+  const errorId = `${id}-error`;
+  const error = numericFieldError(field, value, countryCode);
+  const rules = calculatorRules(field, countryCode);
+  const errorParams = { min: field.kind === "currency" ? fmt.currency(rules.min) : fmt.number(rules.min), max: field.kind === "currency" ? fmt.currency(rules.max) : fmt.number(rules.max), digits: integerDigits(rules), decimals: rules.decimals, count: 100 };
 
   if (field.kind === "select") {
     return (
-      <div className="space-y-2">
-        <label
-          htmlFor={id}
-          className="field-label"
-        >
-          {t(field.labelKey)}
-        </label>
-        <div className="flex flex-wrap gap-2">
-          {field.options?.map((option) => {
-            const active = String(value) === option.value;
-            return (
-              <button
-                key={option.value}
-                type="button"
-                onClick={() => onChange(option.value)}
-                aria-pressed={active}
-                className="segment"
-              >
-                {option.label ?? t(option.labelKey)}
-              </button>
-            );
-          })}
-        </div>
-        {field.hintKey ? (
-          <p className="field-hint">{t(field.hintKey)}</p>
-        ) : null}
-      </div>
+      <SegmentedControl label={t(field.labelKey)} value={String(value)}
+        onChange={onChange} hint={field.hintKey ? t(field.hintKey) : undefined}
+        options={(field.options ?? []).map((option) => ({ value: option.value, label: option.label ?? t(option.labelKey) }))} />
     );
   }
 
@@ -71,15 +56,18 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
         <input
           id={id}
           type="text"
-          // The same cap a share link is held to (lib/share-link).
-          maxLength={MAX_TEXT}
+          aria-invalid={!!error}
+          aria-describedby={[field.hintKey ? hintId : "", error ? errorId : ""].filter(Boolean).join(" ") || undefined}
+          // Bound list size consistently with validation and shared links.
+          maxLength={MAX_LIST_CHARACTERS}
           value={String(value ?? "")}
           onChange={(event) => onChange(event.target.value)}
           className="input"
         />
         {field.hintKey ? (
-          <p className="field-hint">{t(field.hintKey)}</p>
+          <p id={hintId} className="field-hint">{t(field.hintKey)}</p>
         ) : null}
+        {error ? <p id={errorId} role="status" className="text-sm text-alert">{translate(`validation.${error}`, errorParams)}</p> : null}
       </div>
     );
   }
@@ -91,13 +79,14 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
         <span className="field-label">
           {t(field.labelKey)}
           {field.hintKey ? (
-            <span className="mt-1 block text-xs font-normal text-muted">
+            <span id={hintId} className="mt-1 block text-xs font-normal text-muted">
               {t(field.hintKey)}
             </span>
           ) : null}
         </span>
         <input
           type="checkbox"
+          aria-describedby={field.hintKey ? hintId : undefined}
           checked={checked}
           onChange={(event) => onChange(event.target.checked)}
           className="switch mt-1"
@@ -111,6 +100,7 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
   const max = field.max ?? 100;
   const step = field.step ?? 1;
   const fill = max > min ? ((numeric - min) / (max - min)) * 100 : 0;
+  const description = [field.hintKey ? hintId : "", `${id}-bounds`, error ? errorId : ""].filter(Boolean).join(" ") || undefined;
 
   const suffix =
     field.kind === "percent"
@@ -123,7 +113,7 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <label htmlFor={id} className="field-label">
           {t(field.labelKey)}
         </label>
@@ -134,23 +124,19 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
           ) : null}
           <input
             id={id}
-            type="number"
+            type="text"
+            maxLength={32}
             inputMode="decimal"
-            value={Number.isFinite(numeric) ? numeric : ""}
+            value={value === "" ? "" : Number.isFinite(numeric) ? value as number | string : ""}
+            aria-invalid={!!error}
+            aria-describedby={description}
             min={field.min}
             max={field.max}
             step={step}
             onChange={(event) => {
-              const next = event.target.value === "" ? 0 : Number(event.target.value);
-              onChange(Number.isFinite(next) ? next : 0);
+              onChange(normalizeNumericInput(event.target.value, fmt.locale));
             }}
-            onBlur={(event) => {
-              // Clamp only on blur so typing an intermediate value is not fought.
-              const next = Number(event.target.value);
-              if (!Number.isFinite(next)) return onChange(min);
-              onChange(Math.min(Math.max(next, min), max));
-            }}
-            className="tabular h-full w-24 bg-transparent text-end text-sm font-semibold outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="tabular h-full w-36 max-w-full bg-transparent text-end text-sm font-semibold outline-none sm:w-44 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
           {suffix ? <span className="text-sm font-medium">{suffix}</span> : null}
         </div>
@@ -161,12 +147,13 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
           <input
             type="range"
             aria-label={t(field.labelKey)}
+            aria-describedby={description}
             value={Math.min(Math.max(numeric, min), max)}
             min={min}
             max={max}
             step={step}
             onChange={(event) => onChange(Number(event.target.value))}
-            style={{ "--fill": `${fill}%` } as React.CSSProperties}
+            style={{ "--fill": `${Math.max(0, Math.min(100, fill))}%` } as React.CSSProperties}
           />
           <div className="flex justify-between text-[0.6875rem] text-muted">
             <span className="tabular">{edgeLabel(min, field, fmt.currencyShort)}</span>
@@ -176,11 +163,15 @@ export function FieldControl({ field, value, onChange, params, fmt: override }: 
       )}
 
       {field.hintKey ? (
-        <p className="field-hint">{t(field.hintKey)}</p>
+        <p id={hintId} className="field-hint">{t(field.hintKey)}</p>
       ) : null}
+      <p id={`${id}-bounds`} className="field-hint">{translate("validation.bounds", errorParams)}</p>
+      {error ? <p id={errorId} role="status" className="text-sm font-medium text-alert">{translate(`validation.${error}`, errorParams)}</p> : null}
     </div>
   );
 }
+
+export const numericFieldError = calculatorFieldError;
 
 function edgeLabel(
   value: number,

@@ -1,6 +1,5 @@
 import { ADSENSE_PUBLISHER_ID } from "@/config/adsense";
 import { ANALYTICS_ON } from "@/config/analytics";
-import { CONSENT_COOKIE } from "@/lib/preferences";
 
 const CLIENT_ID = ADSENSE_PUBLISHER_ID;
 
@@ -12,9 +11,8 @@ const CLIENT_ID = ADSENSE_PUBLISHER_ID;
  * the default state is set it may store an advertising cookie the visitor has
  * not agreed to. Running here, in document order ahead of it, closes that gap.
  *
- * Every page is statically generated, so the stored choice cannot be read on
- * the server without making the whole site dynamic. The script therefore reads
- * the cookie itself, which it can do synchronously.
+ * Stored preferences never grant consent here. The CMP or a verified
+ * outside-TCF choice must resolve the visitor's current context first.
  *
  * Renders nothing when neither advertising nor analytics is configured: then
  * there are no such cookies, and nothing to consent to.
@@ -38,19 +36,6 @@ export function ConsentScript() {
     wait_for_update: 500
   });
 
-  try {
-    var match = document.cookie.match(/(?:^|; )${CONSENT_COOKIE}=([^;]*)/);
-    if (match && decodeURIComponent(match[1]) === 'granted') {
-      gtag('consent', 'update', {
-        ad_storage: 'granted',
-        ad_user_data: 'granted',
-        ad_personalization: 'granted',
-        analytics_storage: 'granted'
-      });
-    }
-  } catch (error) {
-    // Blocked cookies leave the denied default in place, which is correct.
-  }
 })();
 `.trim();
 

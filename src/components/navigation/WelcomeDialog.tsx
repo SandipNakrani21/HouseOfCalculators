@@ -2,7 +2,7 @@
 
 import { ArrowRight, Globe2 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties, type KeyboardEvent } from "react";
 
 import { countryOptions } from "@/components/navigation/CountrySelector";
 import { localeOptions } from "@/components/navigation/LocaleSelector";
@@ -36,20 +36,27 @@ export function WelcomeDialog({ ready }: { ready: LocaleCode[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const panel = useRef<HTMLDivElement>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
 
   const [draftLocale, setDraftLocale] = useState<LocaleCode>(localeCode);
   const [draftCountry, setDraftCountry] = useState<CountryCode>(countryCode);
 
   const open = !stored && !dismissed;
 
-  // Focus moves into the dialog and the page behind stops scrolling.
+  // The native modal keeps focus inside and makes the background inert.
+  // Dropdown portals stay inside its top layer as well.
   useEffect(() => {
     if (!open) return;
+    const modal = dialog.current;
+    const previous = document.activeElement as HTMLElement | null;
+    modal?.showModal();
     panel.current?.focus();
     const { overflow } = document.body.style;
     document.body.style.overflow = "hidden";
     return () => {
+      modal?.close();
       document.body.style.overflow = overflow;
+      if (previous?.isConnected) previous.focus();
     };
   }, [open]);
 
@@ -65,14 +72,39 @@ export function WelcomeDialog({ ready }: { ready: LocaleCode[] }) {
     }
   };
 
+  const keepFocus = (event: KeyboardEvent<HTMLDialogElement>) => {
+    if (event.key !== "Tab" || !panel.current) return;
+    // Select closes its portal and focuses its trigger before Tab bubbles
+    // here, so navigation continues through the form in its visual order.
+    const controls = [...panel.current.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex="0"]',
+    )].filter((element) => element.getClientRects().length > 0);
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (!first || !last) return;
+    if (document.activeElement === panel.current) {
+      event.preventDefault();
+      (event.shiftKey ? last : first).focus();
+    } else if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
+
   return (
-    <div className="animate-fade-in fixed inset-0 z-50 flex items-center justify-center bg-navy/55 p-4 backdrop-blur-md">
+    <dialog
+      ref={dialog}
+      aria-labelledby="welcome-title"
+      onCancel={(event) => event.preventDefault()}
+      onKeyDown={keepFocus}
+      className="animate-fade-in fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none items-center justify-center border-0 bg-transparent p-4 backdrop:bg-navy/55 backdrop:backdrop-blur-md [&:open]:flex"
+    >
       <div
         ref={panel}
         tabIndex={-1}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="welcome-title"
         className="animate-dialog relative max-h-[calc(100dvh-2rem)] w-full min-w-0 max-w-[36rem] overflow-y-auto rounded-xl bg-surface shadow-[0_40px_80px_-24px_rgba(15,27,61,0.55)] outline-none"
       >
         {/* Header: a soft blue band with a slowly breathing glow behind the mark. */}
@@ -96,6 +128,7 @@ export function WelcomeDialog({ ready }: { ready: LocaleCode[] }) {
         <div className="grid grid-cols-1 gap-5 px-6 py-7 sm:grid-cols-2 sm:px-8">
           <div className="animate-fade-up min-w-0" style={delay(200)}>
             <Select
+              portalContainer={() => dialog.current}
               showLabel
               label={t("header.language")}
               value={draftLocale}
@@ -108,6 +141,7 @@ export function WelcomeDialog({ ready }: { ready: LocaleCode[] }) {
           </div>
           <div className="animate-fade-up min-w-0" style={delay(280)}>
             <Select
+              portalContainer={() => dialog.current}
               showLabel
               label={t("header.country")}
               value={draftCountry}
@@ -133,6 +167,6 @@ export function WelcomeDialog({ ready }: { ready: LocaleCode[] }) {
           </Button>
         </footer>
       </div>
-    </div>
+    </dialog>
   );
 }

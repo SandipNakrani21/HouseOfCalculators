@@ -371,8 +371,8 @@ const fuelEconomy: ConverterDefinition = {
       symbol: "L/100 km",
       // Consumption is the reciprocal of economy, so more is worse - which is
       // why this one cannot be a factor like the others.
-      toBase: (value) => (value === 0 ? 0 : 100 / value),
-      fromBase: (value) => (value === 0 ? 0 : 100 / value),
+      toBase: (value) => (value <= 0 ? NaN : 100 / value),
+      fromBase: (value) => (value <= 0 ? NaN : 100 / value),
       decimals: 2,
     },
   ],

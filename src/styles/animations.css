@@ -140,12 +140,11 @@
  * you scroll in either direction. `data-reveal-once` keeps it visible after
  * the first time.
  *
- * The hidden state applies only under `@media (scripting: enabled)`: with
- * scripting off, in an old browser, or for a crawler that does not run
- * script, everything is simply visible. No script is needed to decide.
+ * Hidden states additionally require the observer's `reveal-ready` marker.
+ * Disabled JavaScript or failed client initialization leaves content visible.
  */
 @media (scripting: enabled) {
-[data-reveal] {
+:where(html.reveal-ready) [data-reveal] {
   opacity: 0;
   transition:
     opacity var(--duration-slow) var(--ease-premium),
@@ -180,7 +179,7 @@
   opacity: 1;
   transform: none;
 }
-[data-reveal="stagger"] > * {
+:where(html.reveal-ready) [data-reveal="stagger"] > * {
   opacity: 0;
   transform: translateY(22px);
   transition:
