@@ -6,7 +6,8 @@
  *
  * Placeholders show in development, so layouts can be designed around the ad
  * positions, and in production only with NEXT_PUBLIC_AD_PLACEHOLDERS=1 (for a
- * staging review). A public page never shows an empty "Ad" box.
+ * staging review). Unfilled live positions retain their space without a label
+ * or creative so controls do not move after the auction.
  *
  * Layouts read ADS_ENABLED to give an ad rail's column back to the content
  * when there is nothing to show, instead of leaving an empty gutter.

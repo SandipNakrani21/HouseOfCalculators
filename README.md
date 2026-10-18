@@ -60,9 +60,10 @@ single URL under `/calculators/`.
 
 A missing key falls back to English, which is right at runtime but the wrong
 promise in a language picker. `isLanguageReady` measures each dictionary
-against English and a language is offered only past 75% coverage. Today only
-English (US and UK) is live; German, French, Spanish, Hindi, Gujarati, Marathi
-and Arabic are 16-19% translated. `npm run i18n` shows where each stands.
+against English and applies the launch-language gate. Twelve locales currently
+ship: English (US and UK), German, French, Spanish, Portuguese, Russian,
+Turkish, Japanese, Chinese, Italian and Dutch. `npm run i18n` shows current
+coverage; key coverage does not certify translation accuracy.
 
 `src/lib/i18n/index.ts` holds every dictionary and is **server-only**. Client
 components import `src/lib/i18n/core.ts` and receive the active dictionary
@@ -108,9 +109,18 @@ links shows up on the calculator page automatically.
 
 ## Before launch
 
-- **Statutory tax figures are unverified.** Every number is listed in
-  [`docs/tax-rules-to-verify.md`](docs/tax-rules-to-verify.md).
-- **Operator details are unset** (`OPERATOR` in
-  `src/config/legal/definitions.ts`); legal pages show a "not ready" notice
-  until they are filled in.
-- Set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_ADSENSE_CLIENT`.
+- Statutory source-review coverage is recorded in
+  `src/config/calculators/provenance.ts`. Unreviewed country models are
+  temporarily withdrawn from public tool routes and discovery; internal
+  engines remain available for review. The tax checklist
+  in [`docs/tax-rules-to-verify.md`](docs/tax-rules-to-verify.md) remains useful
+  for further independent review.
+- Operator details are populated in `OPERATOR` in
+  `src/config/legal/definitions.ts`; verify them before changing ownership.
+- Verify deployment values for `NEXT_PUBLIC_SITE_URL` and
+  `NEXT_PUBLIC_ADSENSE_CLIENT`, consent delivery and account settings.
+- See [current policy audit and remaining checks](docs/policy-audit-2026-10-18/SETUP-STATUS.md).
+- Hostinger deploys GitHub `main`. Verify the deployed release at
+  `/.well-known/release.json`; a successful push alone is not deployment proof.
+- See [media provenance](docs/MEDIA-PROVENANCE.md) and
+  [six-point implementation status](docs/policy-audit-2026-10-18/SIX-POINTS-STATUS.md).

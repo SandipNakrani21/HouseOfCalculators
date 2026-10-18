@@ -82,6 +82,9 @@
   --duration-base: 300ms;
   --duration-slow: 600ms;
   --stagger-step: 90ms;
+  --reveal-duration: 1100ms;
+  --reveal-ease: cubic-bezier(0.25, 0.75, 0.25, 1);
+  --reveal-stagger: 160ms;
 
   /* ---------------------------------------------------------- layout */
   --container: 1120px;

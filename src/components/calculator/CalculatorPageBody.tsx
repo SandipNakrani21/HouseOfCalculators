@@ -16,8 +16,10 @@ import { createTranslator } from "@/lib/i18n";
 import { calculatorPath, categoryPath, countryToolPath } from "@/lib/routes";
 import { itemVisual } from "@/lib/visuals";
 import { calculatorsCta } from "@/lib/cta";
-import { ruleReview } from "@/config/calculators/provenance";
+import { healthReferences, reviewScopeKey, ruleReview } from "@/config/calculators/provenance";
 import { WorkedExample } from "@/components/calculator/WorkedExample";
+import { isCalculatorPublished } from "@/config/calculators/publication";
+import { LoanComparison } from "@/components/calculator/LoanComparison";
 
 /** schema.org application categories for the calculator subjects. */
 const APP_CATEGORY: Record<string, string> = {
@@ -55,6 +57,7 @@ export function CalculatorPageBody({
   const params = calculator.params?.(ctx);
   const relevance = countryRelevanceOf(calculator);
   const review = ruleReview(calculator.slug, country);
+  const health = healthReferences(calculator.slug);
 
   const related = relatedTo(calculator, country, lockCountry)
     .slice(0, 6)
@@ -69,7 +72,7 @@ export function CalculatorPageBody({
   // so each one is reachable from more than its own country page.
   const elsewhere = lockCountry
     ? calculator.countries
-        .filter((other) => other !== country)
+        .filter((other) => other !== country && isCalculatorPublished(calculator, other))
         .map((other) => ({
           key: other,
           href: countryToolPath(locale, other, calculator.slug),
@@ -130,11 +133,18 @@ export function CalculatorPageBody({
                     </div>
                   ) : null}
                   <WorkedExample calculator={calculator} ctx={ctx} />
+                  <LoanComparison calculator={calculator} ctx={ctx} />
                   {relevance === "rules" && !review ? <p className="rounded-md border border-border p-4 text-sm text-muted">{t("quality.unreviewed")}</p> : null}
                   {review ? <aside className="rounded-md border border-border p-4">
                     <h3 className="font-semibold">{t("calc.sources")}</h3>
                     <p className="mt-1 text-sm text-muted">{t("calc.ruleReview", { period: review.period, revision: review.revision, date: review.reviewed })}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted">{t(reviewScopeKey(calculator.slug, country))}</p>
                     <ul className="mt-3 space-y-2 text-sm">{review.sources.map(source => <li key={source}><a className="text-primary underline underline-offset-4" href={source} target="_blank" rel="noreferrer">{new URL(source).hostname}</a></li>)}</ul>
+                  </aside> : null}
+                  {health ? <aside className="rounded-md border border-border p-4">
+                    <h3 className="font-semibold">{t("calc.sources")}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">{t(health.scopeKey)}</p>
+                    <ul className="mt-3 space-y-2 text-sm">{health.sources.map(source => <li key={source}><a className="text-primary underline underline-offset-4" href={source} target="_blank" rel="noreferrer">{new URL(source).hostname}</a></li>)}</ul>
                   </aside> : null}
                 </div>
               ),

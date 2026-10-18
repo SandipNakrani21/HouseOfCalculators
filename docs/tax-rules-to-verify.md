@@ -1,10 +1,13 @@
 # Statutory figures to verify
 
-Every number below is hard-coded in the repo and changes at least once a year.
-None of it has been checked against a primary source — it was written from
-general knowledge and needs confirming against the tax authority before the
-site goes live. Each rule set carries a `verifiedFor` field naming the tax year
-it was written against; update that field as you confirm each one.
+This is the original verification backlog, not a certificate of current values.
+Narrow source checks are now recorded in `src/config/calculators/provenance.ts`.
+On 19 October 2026, the 122 country/model combinations without those records
+were withdrawn from public calculator routes and discovery pending review.
+Their engines remain in the repository for correction and independent testing.
+See `docs/policy-audit-2026-10-18/withdrawn-models.json` for the exact list.
+The remaining published reviews apply only to their displayed scope and period.
+Each rule set's `verifiedFor` field is a dataset-year label, not independent proof.
 
 All income tax rules live in [`src/lib/finance/tax/rules.ts`](../src/lib/finance/tax/rules.ts).
 Consumption tax rates live in [`src/config/countries.ts`](../src/config/countries.ts).

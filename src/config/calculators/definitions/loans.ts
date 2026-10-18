@@ -100,7 +100,7 @@ function loanResult(
   };
 }
 
-/** Typical headline rate per country, used as the slider's starting point. */
+/** Illustrative defaults, not current rates, lender offers or survey data. */
 const DEFAULT_MORTGAGE_RATE: Record<string, number> = {
   in: 8.5,
   us: 6.5,
@@ -222,7 +222,18 @@ export const mortgageCalculator: CalculatorDef = {
       notes: [{ key: "calc.mortgage.note" }],
     };
   },
-  explainerKeys: ["calc.mortgage.explain"],
+  explainerKeys: ["calc.mortgage.explain", "calc.mortgage.costs", "calc.loan.rateAssumption"],
+  formula: {
+    expression: "A = V × (1 − d ÷ 100); P = A × i × (1 + i)ⁿ ÷ ((1 + i)ⁿ − 1)",
+    variables: [
+      { symbol: "V", key: "field.propertyPrice" },
+      { symbol: "d", key: "field.downPayment" },
+      { symbol: "P", key: "guide.loan-payment.var.payment" },
+      { symbol: "A", key: "guide.loan-payment.var.amount" },
+      { symbol: "i", key: "guide.loan-payment.var.rate" },
+      { symbol: "n", key: "guide.loan-payment.var.periods" },
+    ],
+  },
 };
 
 export const autoLoanCalculator: CalculatorDef = {
@@ -280,7 +291,7 @@ export const autoLoanCalculator: CalculatorDef = {
       num(values, "rate"),
       num(values, "years"),
     ),
-  explainerKeys: ["calc.auto-loan.explain"],
+  explainerKeys: ["calc.auto-loan.explain", "calc.loan.rateAssumption"],
 };
 
 export const personalLoanCalculator: CalculatorDef = {
@@ -325,7 +336,7 @@ export const personalLoanCalculator: CalculatorDef = {
   },
   compute: (values) =>
     loanResult(num(values, "principal"), num(values, "rate"), num(values, "years")),
-  explainerKeys: ["calc.loan.explain"],
+  explainerKeys: ["calc.loan.explain", "calc.loan.rateAssumption"],
   // What emi() computes; a zero rate falls back to amount ÷ months.
   formula: {
     expression: "P = A × i × (1 + i)ⁿ ÷ ((1 + i)ⁿ − 1)",
@@ -399,5 +410,5 @@ export const studentLoanCalculator: CalculatorDef = {
         ? [{ key: "calc.student-loan.note.incomeContingent" }]
         : [{ key: "calc.student-loan.note.generic" }],
   }),
-  explainerKeys: ["calc.student-loan.explain"],
+  explainerKeys: ["calc.student-loan.explain", "calc.loan.rateAssumption"],
 };

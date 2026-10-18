@@ -36,9 +36,29 @@ test('Missing and delayed CMP never expose an Accept button after the old four-s
 test('A stored outside-region grant is not restored in a TCF region, and management uses Google revocation',async()=>{
  storeConsent('granted');let revoked=0;
  window.__tcfapi=(command,version,callback)=>{if(command==='addEventListener')callback({gdprApplies:true,listenerId:2},true);};
- window.googlefc={showRevocationMessage(){revoked++;}};
+ window.googlefc={callbackQueue:{push(entry){entry.CONSENT_API_READY?.();}},showRevocationMessage(){revoked++;}};
  const app=await mount();
- try{assert.equal(calls.length,0);await click(app.host,en['consent.manage']);assert.equal(revoked,1);assert.equal(app.host.querySelector('[role="dialog"]'),null);}finally{await app.close();}
+ try{assert.equal(calls.length,0);await click(app.host,en['consent.manage']);assert.equal(revoked,1);assert.equal(calls.at(-1)[2].analytics_storage,'denied');assert.equal(app.host.querySelector('[role="dialog"]'),null);}finally{await app.close();}
+});
+
+test('Google callback queue connects explicit purpose choices and never grants unknown or unconfigured purposes',async()=>{
+ const {useConsentState}=require('../src/lib/consent-state.ts');
+ let modeCallback,tcCallback;
+ let values={adStoragePurposeConsentStatus:4,adUserDataPurposeConsentStatus:0,adPersonalizationPurposeConsentStatus:3,analyticsStoragePurposeConsentStatus:4};
+ window.googlefc={callbackQueue:{push(entry){if(entry.CONSENT_API_READY)entry.CONSENT_API_READY();if(entry.CONSENT_MODE_DATA_READY)modeCallback=entry.CONSENT_MODE_DATA_READY;}},getGoogleConsentModeValues(){return values;}};
+ window.__tcfapi=(command,version,callback)=>{if(command==='addEventListener')tcCallback=callback;};
+ const app=await mount();
+ try{
+  await act(()=>tcCallback({gdprApplies:true,listenerId:5},true));
+  await act(()=>modeCallback());assert.equal(calls.at(-1)[2].analytics_storage,'denied');
+  document.cookie='_ga=old-id; path=/';
+  values={adStoragePurposeConsentStatus:1,adUserDataPurposeConsentStatus:2,adPersonalizationPurposeConsentStatus:0,analyticsStoragePurposeConsentStatus:2};
+  await act(()=>modeCallback());
+  assert.deepEqual(calls.at(-1)[2],{ad_storage:'granted',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+  assert(!document.cookie.includes('_ga='));assert.equal(typeof useConsentState,'function');
+  values={...values,analyticsStoragePurposeConsentStatus:1};
+  await act(()=>modeCallback());assert.equal(calls.at(-1)[2].analytics_storage,'granted');
+ }finally{await app.close();}
 });
 test('Verified outside-region choices restore, reopen, revoke and persist the replacement choice',async()=>{
  storeConsent('granted');window.__tcfapi=(command,version,callback)=>{if(command==='addEventListener')callback({gdprApplies:false,listenerId:3},true);};
@@ -48,5 +68,29 @@ test('Verified outside-region choices restore, reopen, revoke and persist the re
   await click(app.host,en['consent.manage']);assert(app.host.querySelector('[role="dialog"]'));
   await click(app.host,en['consent.reject']);assert.equal(calls.at(-1)[2].ad_storage,'denied');assert.equal(readConsent(),'denied');
   await click(app.host,en['consent.manage']);await click(app.host,en['consent.accept']);assert.equal(readConsent(),'granted');
+ }finally{await app.close();}
+});
+
+test('An open tab revokes an expired local grant on return and asks for a new choice',async()=>{
+ const {CONSENT_LIFETIME_MS}=require('../src/lib/preferences.ts');
+ storeConsent('granted');
+ window.__tcfapi=(command,version,callback)=>{if(command==='addEventListener')callback({gdprApplies:false,listenerId:9},true);};
+ const app=await mount(),originalNow=Date.now;
+ try{
+  assert.equal(calls.at(-1)[2].analytics_storage,'granted');
+  Date.now=()=>originalNow()+CONSENT_LIFETIME_MS+1000;
+  await act(()=>window.dispatchEvent(new Event('focus')));
+  assert.equal(calls.at(-1)[2].analytics_storage,'denied');
+  assert(app.host.querySelector('[role="dialog"]'));
+ }finally{Date.now=originalNow;await app.close();}
+});
+
+test('A failing CMP purpose API withdraws an earlier analytics grant without breaking the page',async()=>{
+ let callback,fail=false;
+ window.googlefc={callbackQueue:{push(entry){if(entry.CONSENT_MODE_DATA_READY)callback=entry.CONSENT_MODE_DATA_READY;}},getGoogleConsentModeValues(){if(fail)throw new Error('CMP unavailable');return{analyticsStoragePurposeConsentStatus:1};}};
+ const app=await mount();
+ try{
+  await act(()=>callback());assert.equal(calls.at(-1)[2].analytics_storage,'granted');
+  fail=true;await act(()=>callback());assert.equal(calls.at(-1)[2].analytics_storage,'denied');
  }finally{await app.close();}
 });

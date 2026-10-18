@@ -60,15 +60,14 @@ export function healthyWeightRange(centimetres: number): { min: number; max: num
 export type Sex = "male" | "female";
 
 /**
- * Basal metabolic rate, Mifflin-St Jeor. Chosen over Harris-Benedict because
- * it is the more accurate of the two against modern measured data.
+ * Simplified Mifflin-St Jeor resting-energy equation, not a measurement.
  */
 export function bmr(kilograms: number, centimetres: number, age: number, sex: Sex): number {
   const base = 10 * kilograms + 6.25 * centimetres - 5 * age;
   return sex === "male" ? base + 5 : base - 161;
 }
 
-/** Activity multipliers as published with the equation. */
+/** Common planning multipliers; not measured or validated by the REE study. */
 export const ACTIVITY_FACTORS = {
   sedentary: 1.2,
   light: 1.375,

@@ -155,8 +155,8 @@ export function DetailPage({
 
           {ADS_ENABLED && ads && rail ? (
             <aside className="ad-rail-col min-w-0">
-              {/* Desktop: a sticky rail. Phones: a rectangle below the content. */}
-              <div className="hidden lg:sticky lg:top-[calc(var(--header-height-compact)+1.25rem)] lg:block">
+              {/* Scroll with the page so the full creative remains reachable on short screens. */}
+              <div className="hidden lg:block">
                 <AdSlot slot={`${adPrefix}-rail`} placement="rail" className="!mt-0" />
               </div>
               <AdSlot slot={`${adPrefix}-rail`} placement="rectangle" className="lg:hidden" />

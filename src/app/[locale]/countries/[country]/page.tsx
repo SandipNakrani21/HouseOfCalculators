@@ -21,7 +21,7 @@ type Params = { locale: string; country: string };
 
 export function generateStaticParams() {
   return readyLocales().flatMap((code) =>
-    COUNTRY_CODES.map((country) => ({ locale: LOCALES[code].path, country })),
+    COUNTRY_CODES.filter(country => calculatorsFor(country).some(calc => calc.isCountrySpecific)).map((country) => ({ locale: LOCALES[code].path, country })),
   );
 }
 
@@ -41,6 +41,7 @@ export async function generateMetadata({
     path: countryPath(locale.code, country),
     title: t("country.page.title", { country: name }),
     description: t("country.page.desc", { country: name }),
+    noindex: !calculatorsFor(country).some(calc => calc.isCountrySpecific),
   });
 }
 
@@ -58,6 +59,7 @@ export default async function CountryPage({
   const name = t(`country.${country}`);
   const config = COUNTRIES[country];
   const tools = calculatorsFor(country).filter((calc) => calc.isCountrySpecific);
+  if (!tools.length) notFound();
 
   return (
     <ListingPage
@@ -81,16 +83,6 @@ export default async function CountryPage({
               <dd className="text-sm font-bold text-heading">
                 {config.currency.symbol} {config.currency.code}
               </dd>
-            </div>
-            <div>
-              <dt className="text-xs font-medium text-muted">{t("country.consumptionTax")}</dt>
-              <dd className="text-sm font-bold text-heading">
-                {t(config.consumptionTax.labelKey)} · {config.consumptionTax.standardRate}%
-              </dd>
-            </div>
-            <div>
-              <dt className="text-xs font-medium text-muted">{t("country.taxYear")}</dt>
-              <dd className="tabular text-sm font-bold text-heading">{config.fiscalYear.label}</dd>
             </div>
             <div>
               <dt className="text-xs font-medium text-muted">{t("country.numberFormat")}</dt>

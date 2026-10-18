@@ -19,12 +19,12 @@ export const CONSENT_VERSION = 2;
 export const CONSENT_LIFETIME_MS = 180 * 24 * 60 * 60 * 1000;
 export type ConsentRecord = { version: number; choice: ConsentChoice; at: number; scope: "outside-tcf" };
 
-function write(name: string, value: string): void {
+function write(name: string, value: string, maxAge = COOKIE_MAX_AGE): void {
   try {
     document.cookie = [
       `${name}=${encodeURIComponent(value)}`,
       "path=/",
-      `max-age=${COOKIE_MAX_AGE}`,
+      `max-age=${maxAge}`,
       "samesite=lax",
       // Sent only over HTTPS in production; plain-http localhost still works.
       ...(window.location.protocol === "https:" ? ["secure"] : []),
@@ -62,7 +62,7 @@ export function hasStoredLocale(): boolean {
 }
 
 export function storeConsent(choice: ConsentChoice): void {
-  write(CONSENT_COOKIE, JSON.stringify({ version: CONSENT_VERSION, choice, at: Date.now(), scope: "outside-tcf" }));
+  write(CONSENT_COOKIE, JSON.stringify({ version: CONSENT_VERSION, choice, at: Date.now(), scope: "outside-tcf" }), CONSENT_LIFETIME_MS / 1000);
 }
 
 export function readConsent(): ConsentChoice | null {

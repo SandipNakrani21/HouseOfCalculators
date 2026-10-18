@@ -52,7 +52,7 @@ export default async function CountriesPage({
         title: t("section.countries"),
         description: t("section.countries.intro"),
       }}
-      items={COUNTRY_CODES.map((country) => ({
+      items={COUNTRY_CODES.filter(country => calculatorsFor(country).some(calc => calc.isCountrySpecific)).map((country) => ({
         key: country,
         href: countryPath(code, country),
         media: <CountryBadge code={country} size="lg" />,

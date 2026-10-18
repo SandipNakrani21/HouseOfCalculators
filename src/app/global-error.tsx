@@ -24,7 +24,7 @@ export default function GlobalError({
         <title>Something went wrong | The Calculators House</title>
         <main style={{ maxWidth: 448 }}>
           <h1>Something went wrong</h1>
-          <p>An unexpected problem stopped the site from loading. Nothing you entered has left your device.</p>
+          <p>An unexpected problem stopped the site from loading. Try again, or return to the home page.</p>
           <p style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
             <button type="button" onClick={() => retry()}>
               Try again

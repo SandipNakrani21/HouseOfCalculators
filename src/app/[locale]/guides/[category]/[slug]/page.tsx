@@ -85,6 +85,10 @@ export default async function GuidePage({
   const countryCode = locale.defaultCountry;
   const destinations = allContent({ locale: code, country: countryCode, t,
     calcContext: { countryCode, country: COUNTRIES[countryCode], t, fmt: createFormatter(countryCode, locale.language, t) } });
+  const relatedHref = (link: (typeof guide.related)[number]) => link.slug
+    ? contentPath(code, link.section, link.category, link.slug)
+    : categoryPath(code, link.section, link.category);
+  const publishedRelated = guide.related.filter(link => !link.slug || destinations.some(item => item.href === relatedHref(link)));
 
   // Article markup describes what is actually on the page: a dated, titled
   // explanation. Nothing is claimed here that a reader cannot see.
@@ -223,29 +227,25 @@ export default async function GuidePage({
             </section>
           ) : null}
 
-          <section data-reveal="up" className="mt-10">
+          {publishedRelated.length ? <section data-reveal="up" className="mt-10">
             <h2 className="mb-3 text-xl font-bold">{t("guide.useTheTool")}</h2>
             <ul className="grid gap-2 sm:grid-cols-2">
-              {guide.related.map((link) => (
+              {publishedRelated.map((link) => (
                 <li key={`${link.section}-${link.category}-${link.slug ?? ""}`}>
                   <Link
-                    href={
-                      link.slug
-                        ? contentPath(code, link.section, link.category, link.slug)
-                        : categoryPath(code, link.section, link.category)
-                    }
+                    href={relatedHref(link)}
                     className="card card-link group flex items-center justify-between gap-3 px-4 py-3.5 text-sm font-semibold text-heading hover:text-primary"
                   >
                     <span className="flex items-center gap-3">
                       <IconTile visual={sectionVisual(link.section)} size="sm" shape="rounded" />
-                      {link.slug ? destinations.find((item) => item.section === link.section && item.slug === link.slug)?.title ?? t(`section.${link.section}`) : t(categoryKey(link.section, link.category))}
+                      {link.slug ? destinations.find((item) => item.href === relatedHref(link))?.title ?? t(`section.${link.section}`) : t(categoryKey(link.section, link.category))}
                     </span>
                     <ArrowRight aria-hidden className="card-arrow h-4 w-4" />
                   </Link>
                 </li>
               ))}
             </ul>
-          </section>
+          </section> : null}
 
           <section data-reveal="up" className="mt-10">
             <h2 className="mb-3 text-xl font-bold">{t("calc.faq")}</h2>

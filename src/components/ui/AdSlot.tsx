@@ -16,24 +16,12 @@ import { useLocale } from "@/lib/locale-context";
  * `rail` 300x600 for sidebars.
  *
  * Three things here are structural rather than cosmetic: the slot reserves its
- * height before an ad arrives, so filling it can never shift the page; it is
- * labelled and set apart, so it can never be mistaken for a calculator
- * control; and without a publisher id it renders a labelled placeholder in
+ * dimensions before an ad arrives to reduce layout movement; it is
+ * labelled and set apart from calculator controls; without a publisher id it renders a labelled placeholder in
  * development and nothing at all in production (see lib/ads.ts).
  */
 
 type Placement = AdPlacement;
-
-/**
- * The shape AdSense may fill each position with. "auto" lets it put a
- * near-square 728×280 in a banner position; naming the shape keeps banners
- * wide and the rail tall.
- */
-const AD_FORMAT: Record<Placement, string> = {
-  leaderboard: "horizontal",
-  rectangle: "rectangle",
-  rail: "vertical",
-};
 
 const SIZE_LABEL: Record<Placement, string> = {
   leaderboard: "728 × 90",
@@ -47,24 +35,31 @@ declare global {
   }
 }
 
-export function AdSlot({
+type AdSlotProps = {
+  slot: string;
+  placement?: Placement;
+  className?: string;
+  preview?: boolean;
+};
+
+export function AdSlot(props: AdSlotProps) {
+  const pathname = usePathname();
+  // A new page owns new ad nodes; never reuse a filled node across routes.
+  return <AdPosition key={pathname} {...props} pathname={pathname} />;
+}
+
+function AdPosition({
   slot,
   placement = "rectangle",
   className = "",
   preview = false,
-}: {
-  /** Where on the site this is (shown on placeholders). The AdSense unit comes from the placement. */
-  slot: string;
-  placement?: Placement;
-  className?: string;
-  /** Component demonstrations always stay inert, including production. */
-  preview?: boolean;
-}) {
+  pathname,
+}: AdSlotProps & { pathname: string | null }) {
   const { t } = useLocale();
-  const pathname = usePathname();
   const pushed = useRef(false);
   const slotRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [height, setHeight] = useState(0);
+  const [active, setActive] = useState(false);
   const unit = AD_UNITS[placement];
   const live = !preview && isAdEligiblePath(pathname) && ADS_LIVE && /^\d+$/.test(unit);
 
@@ -78,24 +73,27 @@ export function AdSlot({
     const el = slotRef.current;
     if (!live || !el) return;
     const check = () => {
-      if (el.offsetWidth > 0) setVisible(true);
+      const usable = document.visibilityState !== "hidden" && el.offsetWidth >= 250;
+      setActive(usable);
+      if (usable) setHeight(el.clientHeight);
     };
     check();
     const observer = new ResizeObserver(check);
     observer.observe(el);
-    return () => observer.disconnect();
+    document.addEventListener("visibilitychange", check);
+    return () => { observer.disconnect(); document.removeEventListener("visibilitychange", check); };
   }, [live]);
 
   // With the <ins> now in the page, this request can only fill it.
   useEffect(() => {
-    if (!live || !visible || pushed.current) return;
+    if (!live || !height || !active || pushed.current || document.visibilityState === "hidden") return;
     pushed.current = true;
     try {
       (window.adsbygoogle = window.adsbygoogle ?? []).push({});
     } catch {
       // A blocked or failed ad script must never break the page.
     }
-  }, [visible, live]);
+  }, [height, live, active]);
 
   if (!preview && (!isAdEligiblePath(pathname) || (!live && !AD_PLACEHOLDERS))) return null;
 
@@ -104,16 +102,15 @@ export function AdSlot({
       <span className="text-[0.625rem] font-semibold uppercase tracking-widest text-subtle">{t("ads.label")}</span>
       {live ? (
         <div ref={slotRef} className={`ad-slot ad-${placement}`}>
-          {visible ? (
+          {height > 0 ? (
           <ins
             className="adsbygoogle block w-full"
-            style={{ display: "block" }}
+            style={{ display: "block", width: "100%", height }}
             data-ad-client={ADSENSE_CLIENT}
             data-ad-slot={unit}
-            data-ad-format={AD_FORMAT[placement]}
-            // Full-width mode would stretch a phone banner into a 390×390 square;
-            // only the rectangle may grow to the screen width.
-            data-full-width-responsive={placement === "rectangle" ? "true" : "false"}
+            // Google documents expandable width + fixed height via CSS.
+            // No auto format/full-width expansion that can cover controls.
+            data-full-width-responsive="false"
           />
           ) : null}
         </div>
@@ -139,6 +136,9 @@ export function AdScript() {
   return (
     <script
       async
+      // React hoists async scripts unless a load handler opts out. Preserve
+      // document order: ConsentScript must execute before this tag can run.
+      onLoad={() => { /* Intentionally retain this script's document position. */ }}
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
       crossOrigin="anonymous"
     />

@@ -1,0 +1,616 @@
+{
+  "date": "2026-10-19",
+  "count": 122,
+  "models": [
+    {
+      "slug": "income-tax",
+      "country": "us",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "gb",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "ae",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "au",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "de",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "at",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "ch",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "fr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "be",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "nl",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "jp",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "es",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "mx",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "it",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "pt",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "br",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "pl",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "tr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "ru",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "income-tax",
+      "country": "cn",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "us",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "gb",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "ae",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "au",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "de",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "at",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "ch",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "fr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "be",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "nl",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "jp",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "es",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "mx",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "it",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "pt",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "br",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "pl",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "tr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "ru",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "salary",
+      "country": "cn",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "in",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "us",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "gb",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "ae",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "ca",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "au",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "de",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "at",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "ch",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "fr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "be",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "nl",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "jp",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "es",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "mx",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "it",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "pt",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "br",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "pl",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "tr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "ru",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "vat",
+      "country": "cn",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "gb",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "de",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "at",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "ch",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "fr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "be",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "nl",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "jp",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "es",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "it",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "pt",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "pl",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "tr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "br",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "ca",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "ru",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "pension",
+      "country": "cn",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "capital-gains",
+      "country": "us",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "capital-gains",
+      "country": "gb",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "capital-gains",
+      "country": "ca",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "capital-gains",
+      "country": "au",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "capital-gains",
+      "country": "de",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "capital-gains",
+      "country": "fr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "capital-gains",
+      "country": "es",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "capital-gains",
+      "country": "it",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "capital-gains",
+      "country": "in",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "de",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "at",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "ch",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "fr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "be",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "es",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "it",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "pt",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "pl",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "jp",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "tr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "us",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "mx",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "br",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "social-security",
+      "country": "cn",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "national-insurance",
+      "country": "gb",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "superannuation",
+      "country": "au",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "cpp",
+      "country": "ca",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "ei",
+      "country": "ca",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "stamp-duty",
+      "country": "gb",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "church-tax",
+      "country": "de",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "church-tax",
+      "country": "at",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "church-tax",
+      "country": "ch",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "property-tax",
+      "country": "fr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "property-tax",
+      "country": "it",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "property-tax",
+      "country": "us",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "property-tax",
+      "country": "es",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "property-tax",
+      "country": "pt",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "30-percent-ruling",
+      "country": "nl",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "payroll",
+      "country": "nl",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "payroll",
+      "country": "de",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "payroll",
+      "country": "be",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "payroll",
+      "country": "fr",
+      "status": "withdrawn-pending-authority-review"
+    },
+    {
+      "slug": "severance-pay",
+      "country": "tr",
+      "status": "withdrawn-pending-authority-review"
+    }
+  ]
+}

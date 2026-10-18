@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Preserve unverified media locally without republishing it in release commits.
+/assets-pending-review/*.mp4
+/assets-pending-review/*.webp

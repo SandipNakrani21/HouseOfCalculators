@@ -1,4 +1,5 @@
 import { CALCULATORS } from "@/config/calculators";
+import { ruleReview } from "@/config/calculators/provenance";
 import {
   CALCULATOR_CATEGORIES,
   SECTIONS,
@@ -125,7 +126,9 @@ export function sitemapEntries(locale: LocaleCode): SitemapEntry[] {
   }
 
   for (const country of COUNTRY_CODES) {
-    add(countryPath(locale, country), 0.7, "monthly");
+    if (CALCULATORS.some(calc => calc.isCountrySpecific && calc.countries.includes(country) && ruleReview(calc.slug, country))) {
+      add(countryPath(locale, country), 0.7, "monthly");
+    }
   }
 
   // Listed so they are indexable and discoverable, but low priority: they
@@ -137,6 +140,8 @@ export function sitemapEntries(locale: LocaleCode): SitemapEntry[] {
   for (const calc of CALCULATORS) {
     if (!calc.isCountrySpecific) continue;
     for (const country of calc.countries) {
+      // Editorial publication gate, not a claim that Google requires citations.
+      if (!ruleReview(calc.slug, country)) continue;
       add(countryToolPath(locale, country, calc.slug), 0.9, "monthly");
     }
   }

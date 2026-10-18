@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 
 import { CalculatorPageBody } from "@/components/calculator/CalculatorPageBody";
 import { CALCULATORS, getCalculator } from "@/config/calculators";
+import { ruleReview } from "@/config/calculators/provenance";
+import { isCalculatorPublished } from "@/config/calculators/publication";
 import { COUNTRIES, isCountryCode, type CountryCode } from "@/config/countries";
 import { LOCALES, localeFromPath } from "@/config/locales";
 import { createFormatter } from "@/lib/format";
@@ -18,7 +20,7 @@ const COUNTRY_TOOLS = CALCULATORS.filter((calc) => calc.isCountrySpecific);
 export function generateStaticParams() {
   return readyLocales().flatMap((code) =>
     COUNTRY_TOOLS.flatMap((calc) =>
-      calc.countries.map((country) => ({
+      calc.countries.filter(country => isCalculatorPublished(calc, country)).map((country) => ({
         locale: LOCALES[code].path,
         country,
         slug: calc.slug,
@@ -64,6 +66,7 @@ export async function generateMetadata({
       year: COUNTRIES[country].fiscalYear.label,
       currency: COUNTRIES[country].currency.code,
     }),
+    noindex: !ruleReview(slug, country),
   });
 }
 
@@ -81,7 +84,8 @@ export default async function CountryToolPage({
     !calculator ||
     !calculator.isCountrySpecific ||
     !isCountryCode(country) ||
-    !calculator.countries.includes(country as CountryCode)
+    !calculator.countries.includes(country as CountryCode) ||
+    !isCalculatorPublished(calculator, country)
   ) {
     notFound();
   }

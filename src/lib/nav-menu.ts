@@ -1,4 +1,6 @@
 import type { CalcContext } from "@/config/calculators/types";
+import { isCalculatorPublished } from "@/config/calculators/publication";
+import { CALCULATOR_METADATA } from "@/config/calculators/metadata";
 import type { Section } from "@/config/categories";
 import { COUNTRIES, type CountryCode } from "@/config/countries";
 import type { LocaleCode } from "@/config/locales";
@@ -24,7 +26,7 @@ const TOP: Record<Exclude<Section, "countries">, string[]> = {
   ],
 };
 
-const TOP_COUNTRIES: CountryCode[] = ["us", "gb", "in"];
+const TOP_COUNTRIES: CountryCode[] = ["us", "in", "ca"];
 
 export function buildNavMenu(context: {
   locale: LocaleCode;
@@ -40,7 +42,7 @@ export function buildNavMenu(context: {
       return item ? [{ title: item.title, href: item.href, visual: item.visual }] : [];
     });
   }
-  menu.countries = TOP_COUNTRIES.filter((code) => code in COUNTRIES).map((code) => ({
+  menu.countries = TOP_COUNTRIES.filter((code) => code in COUNTRIES && CALCULATOR_METADATA.some(calc => calc.isCountrySpecific && calc.countries.includes(code) && isCalculatorPublished(calc, code))).map((code) => ({
     title: context.t(`country.${code}`),
     href: countryPath(context.locale, code),
     visual: sectionVisual("countries"),

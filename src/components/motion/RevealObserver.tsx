@@ -37,10 +37,10 @@ export function RevealObserver() {
       (entries) => {
         for (const entry of entries) {
           const element = entry.target as HTMLElement;
-          if (entry.isIntersecting && entry.intersectionRatio >= ENTER_RATIO) {
+          if (entry.isIntersecting && (entry.intersectionRatio >= ENTER_RATIO || entry.boundingClientRect.height > window.innerHeight)) {
             element.classList.add("is-visible");
             if (element.hasAttribute("data-reveal-once")) intersection.unobserve(element);
-          } else if (!entry.isIntersecting) {
+          } else if (!entry.isIntersecting && !element.contains(document.activeElement)) {
             // Fully out of view: reset, so it fades in again next time.
             element.classList.remove("is-visible");
           }
@@ -60,12 +60,24 @@ export function RevealObserver() {
     watch();
     document.documentElement.classList.add("reveal-ready");
 
+    // Keyboard focus must never land in a visually hidden animated section.
+    const revealFocused = (event: FocusEvent) => {
+      if (!(event.target instanceof Element)) return;
+      let element: Element | null = event.target;
+      while (element) {
+        if (element.hasAttribute("data-reveal")) element.classList.add("is-visible");
+        element = element.parentElement;
+      }
+    };
+    document.addEventListener("focusin", revealFocused);
+
     const mutations = new MutationObserver(watch);
     mutations.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       intersection.disconnect();
       mutations.disconnect();
+      document.removeEventListener("focusin", revealFocused);
       document.documentElement.classList.remove("reveal-ready");
     };
   }, [pathname]);

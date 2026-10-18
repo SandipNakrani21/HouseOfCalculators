@@ -42,6 +42,7 @@ import {
   stampDutyCalculator,
 } from "./definitions/tax";
 import type { CalculatorDef } from "./types";
+import { isCalculatorPublished } from "./publication";
 
 /**
  * The registry. Adding a calculator is: write a definition, add its keys to
@@ -89,7 +90,7 @@ export const CALCULATORS: CalculatorDef[] = [
 ].map(prepareCalculator);
 
 export function calculatorsFor(country: CountryCode): CalculatorDef[] {
-  return CALCULATORS.filter((calc) => calc.countries.includes(country));
+  return CALCULATORS.filter((calc) => calc.countries.includes(country) && isCalculatorPublished(calc, country));
 }
 
 export function getCalculator(slug: string): CalculatorDef | undefined {

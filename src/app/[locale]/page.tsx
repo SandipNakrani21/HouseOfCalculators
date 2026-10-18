@@ -19,7 +19,7 @@ import { PackIcon, type PackIconName } from "@/components/ui/PackIcon";
 import { SearchBar } from "@/components/ui/SearchBar";
 import { SectionHeader, ViewAllLink } from "@/components/ui/SectionHeader";
 import { StatsStrip } from "@/components/ui/StatCard";
-import { CALCULATORS, calculatorsFor } from "@/config/calculators";
+import { calculatorsFor } from "@/config/calculators";
 import { categoryKey, sectionKey, type CalculatorCategory, type Section } from "@/config/categories";
 import { CONVERTERS } from "@/config/converters/definitions";
 import { COUNTRIES, COUNTRY_CODES } from "@/config/countries";
@@ -48,11 +48,11 @@ import { calculatorsCta } from "@/lib/cta";
  */
 const GRID_REVEAL: { from: string; delay: number }[] = [
   { from: "top-left", delay: 0 },
-  { from: "top", delay: 80 },
-  { from: "top-right", delay: 160 },
-  { from: "bottom-left", delay: 100 },
-  { from: "bottom", delay: 180 },
-  { from: "bottom-right", delay: 260 },
+  { from: "top", delay: 160 },
+  { from: "top-right", delay: 320 },
+  { from: "bottom-left", delay: 160 },
+  { from: "bottom", delay: 320 },
+  { from: "bottom-right", delay: 480 },
 ];
 
 const POPULAR: { id: string; pack: PackIconName }[] = [
@@ -141,7 +141,7 @@ export default async function HomePage({
   // Every figure is counted from the registries, so none can drift from the truth.
   // Every country, for the floating flag rows: in the locale's alphabetical
   // order, split into two rows that drift in opposite directions.
-  const countryChips: CountryChip[] = COUNTRY_CODES.map((each) => {
+  const countryChips: CountryChip[] = COUNTRY_CODES.filter(each => calculatorsFor(each).some(calc => calc.isCountrySpecific)).map((each) => {
     const tools = calculatorsFor(each).filter((calc) => calc.isCountrySpecific).length;
     const { symbol, code: iso } = COUNTRIES[each].currency;
     return {
@@ -155,7 +155,7 @@ export default async function HomePage({
   const countryRows = [countryChips];
 
   const counts = {
-    calculators: CALCULATORS.length,
+    calculators: new Set(COUNTRY_CODES.flatMap(country => calculatorsFor(country).map(calc => calc.slug))).size,
     tools: TOOLS.length + CONVERTERS.length,
     countries: COUNTRY_CODES.length,
   };
@@ -171,7 +171,6 @@ export default async function HomePage({
         line1={t("home.hero.line1")}
         line2={t("home.hero.line2")}
         lead={t("home.hero.subtitle")}
-        video={{ src: "/videos/hero-720.mp4", mobileSrc: "/videos/hero-360.mp4", poster: "/videos/hero-poster.webp" }}
       >
         <SearchBar popularLabel={t("home.hero.popular")} chips={chips} centered />
       </Hero>
@@ -247,7 +246,7 @@ export default async function HomePage({
                 data-reveal="right"
                 data-reveal-once
                 className="grid-reveal"
-                style={{ "--delay": `${index * 80}ms` } as CSSProperties}
+                style={{ "--delay": `${index * 160}ms` } as CSSProperties}
               >
                 <ContentCard
                   layout="stack"
@@ -347,7 +346,7 @@ export default async function HomePage({
                   data-reveal="left"
                   data-reveal-once
                   className="grid-reveal"
-                  style={{ "--delay": `${index * 100}ms` } as CSSProperties}
+                  style={{ "--delay": `${index * 180}ms` } as CSSProperties}
                 >
                   <BlogCard
                     href={guide.href}

@@ -3,6 +3,7 @@ const test=require('node:test'),assert=require('node:assert/strict'),vm=require(
 const React=require('react'),{renderToStaticMarkup}=require('react-dom/server');
 process.env.NEXT_PUBLIC_ADSENSE_CLIENT='ca-pub-6814796122648657';
 const {ConsentScript}=require('../src/components/consent/ConsentScript.tsx');
+const {AdScript}=require('../src/components/ui/AdSlot.tsx');
 const {readConsentRecord,storeConsent,CONSENT_LIFETIME_MS}=require('../src/lib/preferences.ts');
 const {buildShareUrl,readShareQuery}=require('../src/lib/share-link.ts');
 const {isAdEligiblePath}=require('../src/config/ad-inventory.ts');
@@ -18,6 +19,12 @@ test('Stored grant cookies cannot make the startup script grant any purpose',()=
   for(const key of ['ad_storage','ad_user_data','ad_personalization','analytics_storage'])assert.equal(window.dataLayer[0][2][key],'denied');
  }
 });
+
+test('React cannot hoist the AdSense loader ahead of denied consent defaults',()=>{
+ const html=renderToStaticMarkup(React.createElement('html',null,React.createElement('head'),React.createElement('body',null,React.createElement(ConsentScript),React.createElement(AdScript))));
+ const defaultAt=html.indexOf("gtag('consent', 'default'"),adAt=html.indexOf('pagead/js/adsbygoogle.js');
+ assert(defaultAt>=0 && adAt>defaultAt,'Consent defaults must precede executable AdSense tag');
+});
 test('Consent records reject legacy, expired, future, wrong-version and wrong-scope grants',()=>{
  global.document={cookie:''};
  global.window={location:{protocol:'https:'}};
@@ -25,7 +32,7 @@ test('Consent records reject legacy, expired, future, wrong-version and wrong-sc
  for(const value of ['granted',{...record,at:Date.now()-CONSENT_LIFETIME_MS-1},{...record,at:Date.now()+10000},{...record,version:1},{...record,scope:'tcf'}]){
   document.cookie='hoc_consent='+encodeURIComponent(typeof value==='string'?value:JSON.stringify(value));assert.equal(readConsentRecord(),null);
  }
- storeConsent('denied');assert.equal(readConsentRecord().choice,'denied');assert(readConsentRecord().at>0);delete global.document;delete global.window;
+ storeConsent('denied');assert.equal(readConsentRecord().choice,'denied');assert(readConsentRecord().at>0);assert(document.cookie.includes('max-age='+CONSENT_LIFETIME_MS/1000));delete global.document;delete global.window;
 });
 test('Shared inputs stay out of HTTP query parameters, round-trip and retain legacy compatibility',()=>{
  const fields=[{id:'income',kind:'number',default:1,min:1,max:1000000},{id:'period',kind:'select',default:'annual',options:[{value:'annual'},{value:'monthly'}]}];
