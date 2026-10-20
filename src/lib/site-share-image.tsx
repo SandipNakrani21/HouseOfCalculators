@@ -8,6 +8,8 @@ import { SITE_NAME } from "@/lib/seo";
 /**
  * The card that appears when a page is shared.
  *
+ * Served by an explicit route rather than inherited file metadata, so root
+ * error documents do not resolve an image against a missing metadataBase.
  * Generated rather than shipped as a file so it cannot drift from the brand
  * colours, and deliberately plain: no screenshot, no stock photography, and
  * nothing that would need redrawing when a calculator changes.

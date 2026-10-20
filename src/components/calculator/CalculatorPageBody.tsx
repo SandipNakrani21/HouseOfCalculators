@@ -18,8 +18,9 @@ import { itemVisual } from "@/lib/visuals";
 import { calculatorsCta } from "@/lib/cta";
 import { healthReferences, reviewScopeKey, ruleReview } from "@/config/calculators/provenance";
 import { WorkedExample } from "@/components/calculator/WorkedExample";
-import { isCalculatorPublished } from "@/config/calculators/publication";
+import { canonicalCountryToolSlug, isCalculatorPublished } from "@/config/calculators/publication";
 import { LoanComparison } from "@/components/calculator/LoanComparison";
+import { reviewedCalculator } from "@/config/calculators/reviewed";
 
 /** schema.org application categories for the calculator subjects. */
 const APP_CATEGORY: Record<string, string> = {
@@ -57,6 +58,11 @@ export function CalculatorPageBody({
   const params = calculator.params?.(ctx);
   const relevance = countryRelevanceOf(calculator);
   const review = ruleReview(calculator.slug, country);
+  const replacement = reviewedCalculator(calculator.slug, country);
+  // The reviewed scope already appears beside the inputs/results and in the
+  // source panel. Use this section for worked arithmetic, not another copy.
+  const explanationKeys = replacement ? [] : calculator.explainerKeys;
+  const explanationFormula = replacement ? undefined : calculator.formula;
   const health = healthReferences(calculator.slug);
 
   const related = relatedTo(calculator, country, lockCountry)
@@ -86,6 +92,7 @@ export function CalculatorPageBody({
     <DetailPage
       trail={trail}
       locale={locale}
+      canonicalPath={lockCountry ? countryToolPath(locale, country, canonicalCountryToolSlug(calculator.slug, country)) : undefined}
       appCategory={APP_CATEGORY[calculator.category] ?? "UtilitiesApplication"}
       breadcrumbLabel={t("a11y.breadcrumb")}
       header={{
@@ -97,31 +104,34 @@ export function CalculatorPageBody({
           relevance === "none" ? null : (
             // Say what the country actually changes here. Claiming a BMI
             // follows a country's rules for a tax year would be simply untrue.
-            <CalculatorCountryNote relevance={relevance} lockedCountry={lockCountry ? country : undefined} supportedCountries={calculator.countries} year={calculator.slug === "401k" ? "2025 / 2026" : undefined} />
+            <>
+              <CalculatorCountryNote relevance={relevance} lockedCountry={lockCountry ? country : undefined} supportedCountries={calculator.countries} year={review?.kind !== "formula" ? review?.period : undefined} />
+              {review && review.kind !== "formula" ? <p className="mt-3 max-w-3xl text-sm leading-relaxed text-on-navy-muted">{t(reviewScopeKey(calculator.slug, country))}</p> : null}
+            </>
           ),
       }}
       adPrefix="calculator"
       ads={relevance !== "rules" || Boolean(review)}
       howItWorks={
-        calculator.explainerKeys?.length || calculator.formula
+        replacement || explanationKeys?.length || explanationFormula
           ? {
               title: t("calc.howItWorks"),
               body: (
                 <div className="space-y-3">
-                  {calculator.explainerKeys?.map((key) => (
+                  {explanationKeys?.map((key) => (
                     <p key={key} className="text-sm leading-relaxed text-muted">
                       {t(key, params)}
                     </p>
                   ))}
-                  {calculator.formula ? (
+                  {explanationFormula ? (
                     // The same presentation as a guide's formula block.
                     <div className="pt-2">
                       <h3 className="mb-3 text-base font-bold">{t("calc.formula")}</h3>
                       <p className="result-box tabular text-base font-bold sm:text-lg">
-                        {calculator.formula.expression}
+                        {explanationFormula.expression}
                       </p>
                       <dl className="mt-4 divide-y divide-border border-t border-border">
-                        {calculator.formula.variables.map((variable) => (
+                        {explanationFormula.variables.map((variable) => (
                           <div key={variable.symbol} className="flex gap-4 py-2.5">
                             <dt className="tabular w-8 shrink-0 font-semibold text-primary">
                               {variable.symbol}
@@ -132,12 +142,12 @@ export function CalculatorPageBody({
                       </dl>
                     </div>
                   ) : null}
-                  <WorkedExample calculator={calculator} ctx={ctx} />
+                  <WorkedExample calculator={calculator} ctx={ctx} omitNoteKey={replacement?.scopeKey ?? (review ? reviewScopeKey(calculator.slug, country) : undefined)} />
                   <LoanComparison calculator={calculator} ctx={ctx} />
                   {relevance === "rules" && !review ? <p className="rounded-md border border-border p-4 text-sm text-muted">{t("quality.unreviewed")}</p> : null}
                   {review ? <aside className="rounded-md border border-border p-4">
                     <h3 className="font-semibold">{t("calc.sources")}</h3>
-                    <p className="mt-1 text-sm text-muted">{t("calc.ruleReview", { period: review.period, revision: review.revision, date: review.reviewed })}</p>
+                    {review.kind !== "formula" ? <p className="mt-1 text-sm text-muted">{t("calc.ruleReview", { period: review.period, revision: review.revision, date: review.reviewed })}</p> : null}
                     <p className="mt-3 text-sm leading-relaxed text-muted">{t(reviewScopeKey(calculator.slug, country))}</p>
                     <ul className="mt-3 space-y-2 text-sm">{review.sources.map(source => <li key={source}><a className="text-primary underline underline-offset-4" href={source} target="_blank" rel="noreferrer">{new URL(source).hostname}</a></li>)}</ul>
                   </aside> : null}

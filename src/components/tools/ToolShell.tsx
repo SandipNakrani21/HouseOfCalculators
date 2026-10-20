@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, type ReactNode } from "react";
+import { createContext, useContext, useSyncExternalStore, type ReactNode } from "react";
 
 import { ActionBar } from "@/components/ui/ActionBar";
 import { FactList, ResultBox } from "@/components/ui/Form";
@@ -25,14 +25,22 @@ export function ToolCard({ children }: { children: ReactNode }) {
   const reset = useContext(ToolResetContext);
   const { invalid } = useContext(ToolValidationContext);
   const { t } = useLocale();
+  const interactive = useSyncExternalStore(subscribeNever, readInteractive, readNotInteractive);
   return (
     <section className="card animate-fade-up p-5 sm:p-8">
+      <fieldset disabled={!interactive} aria-busy={!interactive} className="min-w-0">
+      <legend className="sr-only">{t("calc.inputs")}</legend>
       {children}
       {invalid ? <p role="status" className="mt-6 rounded-md bg-bg-soft p-4 text-alert">{t("calc.validation.incomplete")}</p> : null}
       {reset ? invalid ? <button type="button" onClick={reset} className="btn btn-outline btn-md mt-7">{t("common.reset")}</button> : <ActionBar className="mt-7" layout="row" onReset={reset} /> : null}
+      </fieldset>
     </section>
   );
 }
+
+const subscribeNever = () => () => {};
+const readInteractive = () => true;
+const readNotInteractive = () => false;
 
 /** Leave space for translated labels, currency values and validation hints. */
 export function ToolFields({ children }: { children: ReactNode }) {

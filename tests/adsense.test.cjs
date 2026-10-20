@@ -42,8 +42,8 @@ test('Shared inputs stay out of HTTP query parameters, round-trip and retain leg
  assert.equal(readShareQuery('#calc=income=1e300',fields),null);
 });
 test('Non-content routes do not qualify for manually requested ads',()=>{
- for(const route of ['/en-us','/en-us/privacy','/fr-fr/contact','/en-us/design-system','/en-us/calculators','/en-us/tools/date-time','/en-us/countries/us','/en-us/countries/gb/income-tax','/en-us/tools/utility/nonexistent','/_not-found',null])assert.equal(isAdEligiblePath(route),false,route);
- for(const route of ['/en-us/calculators/finance/mortgage','/en-us/converters/temperature','/en-us/converters/temperature/celsius-to-fahrenheit','/en-us/countries/in/income-tax'])assert.equal(isAdEligiblePath(route),true,route);
+ for(const route of ['/en-us','/en-us/privacy','/fr-fr/contact','/en-us/design-system','/en-us/calculators','/en-us/tools/date-time','/en-us/countries/us','/en-us/countries/de/nonexistent','/en-us/tools/utility/nonexistent','/_not-found',null])assert.equal(isAdEligiblePath(route),false,route);
+ for(const route of ['/en-us/calculators/finance/mortgage','/en-us/converters/temperature','/en-us/converters/temperature/celsius-to-fahrenheit','/en-us/countries/in/income-tax','/en-us/countries/de/income-tax'])assert.equal(isAdEligiblePath(route),true,route);
 });
 test('Every featured pair has three finite meaningful examples, including offset and reciprocal known answers',()=>{
  let pairs=0;

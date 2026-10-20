@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowLeftRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 import {
   getConverter,
@@ -36,6 +36,7 @@ export function ConverterRunner({
   lockUnits?: boolean;
 }) {
   const { t, fmt } = useLocale();
+  const interactive = useSyncExternalStore(subscribeNever, readInteractive, readNotInteractive);
   const definition = getConverter(slug);
 
   const [from, setFrom] = useState(
@@ -77,7 +78,8 @@ export function ConverterRunner({
     ]);
 
   return (
-    <div className="space-y-6">
+    <fieldset disabled={!interactive} aria-busy={!interactive} className="min-w-0 space-y-6">
+      <legend className="sr-only">{t("calc.inputs")}</legend>
       <section className="card animate-fade-up p-5 sm:p-7">
         <div className="grid min-w-0 gap-5 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:items-end">
           <div className="min-w-0 space-y-2">
@@ -199,9 +201,13 @@ export function ConverterRunner({
           </table>
         </div>
       </section>
-    </div>
+    </fieldset>
   );
 }
+
+const subscribeNever = () => () => {};
+const readInteractive = () => true;
+const readNotInteractive = () => false;
 
 /**
  * Small results need their decimals, large ones do not: showing

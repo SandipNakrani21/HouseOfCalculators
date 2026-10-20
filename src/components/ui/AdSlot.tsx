@@ -31,7 +31,7 @@ const SIZE_LABEL: Record<Placement, string> = {
 
 declare global {
   interface Window {
-    adsbygoogle?: unknown[];
+    adsbygoogle?: unknown[] & { pauseAdRequests?: number; requestNonPersonalizedAds?: number };
   }
 }
 

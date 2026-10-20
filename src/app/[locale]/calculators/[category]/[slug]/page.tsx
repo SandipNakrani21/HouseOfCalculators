@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { CalculatorPageBody } from "@/components/calculator/CalculatorPageBody";
 import { CALCULATORS, getCalculator } from "@/config/calculators";
 import { categoryKey } from "@/config/categories";
+import { calculatorCopy } from "@/lib/calculator-copy";
 import { COUNTRIES } from "@/config/countries";
 import { LOCALES, localeFromPath } from "@/config/locales";
 import { createFormatter } from "@/lib/format";
@@ -95,7 +96,7 @@ export default async function CalculatorPage({
           path: categoryPath(code, "calculators", calculator.category),
         },
         {
-          name: t(calculator.titleKey),
+          name: calculatorCopy(calculator, t, locale.defaultCountry, locale.language).title,
           path: contentPath(code, "calculators", category, slug),
         },
       ]}

@@ -22,6 +22,13 @@ const subscribe = (listener: () => void) => {
 
 /** A verified CMP response or an explicit outside-TCF choice, never a timeout. */
 export function publishConsent(purposes: ConsentPurposes, ready = true) {
+  // Also controls Auto ads: a missing CMP, rejection or revocation keeps
+  // future requests paused. This does not erase already served impressions.
+  if (typeof window !== "undefined") {
+    const ads = window.adsbygoogle = window.adsbygoogle ?? [];
+    ads.requestNonPersonalizedAds = purposes.ad_personalization === "granted" ? 0 : 1;
+    ads.pauseAdRequests = ready && purposes.ad_storage === "granted" ? 0 : 1;
+  }
   if (current.ready === ready && Object.keys(denied).every(key =>
     current.purposes[key as keyof ConsentPurposes] === purposes[key as keyof ConsentPurposes])) return;
   current = { ready, purposes };

@@ -2,6 +2,7 @@ import type { CountryCode } from "@/config/countries";
 
 import { contribution, defineRules, type IncomeTaxRules } from "./define";
 import { applySlabs, type Slab } from "./slabs";
+import { polishEmployeeContributions } from "./poland";
 
 /**
  * Personal income tax, one rule set per country.
@@ -82,44 +83,45 @@ const india = defineRules({
 
 const US_SINGLE: Slab[] = [
   { from: 0, rate: 10 },
-  { from: 11_925, rate: 12 },
-  { from: 48_475, rate: 22 },
-  { from: 103_350, rate: 24 },
-  { from: 197_300, rate: 32 },
-  { from: 250_525, rate: 35 },
-  { from: 626_350, rate: 37 },
+  { from: 12_400, rate: 12 },
+  { from: 50_400, rate: 22 },
+  { from: 105_700, rate: 24 },
+  { from: 201_775, rate: 32 },
+  { from: 256_225, rate: 35 },
+  { from: 640_600, rate: 37 },
 ];
 
 const US_JOINT: Slab[] = [
   { from: 0, rate: 10 },
-  { from: 23_850, rate: 12 },
-  { from: 96_950, rate: 22 },
-  { from: 206_700, rate: 24 },
-  { from: 394_600, rate: 32 },
-  { from: 501_050, rate: 35 },
-  { from: 751_600, rate: 37 },
+  { from: 24_800, rate: 12 },
+  { from: 100_800, rate: 22 },
+  { from: 211_400, rate: 24 },
+  { from: 403_550, rate: 32 },
+  { from: 512_450, rate: 35 },
+  { from: 768_700, rate: 37 },
 ];
 
 const US_HEAD: Slab[] = [
   { from: 0, rate: 10 },
-  { from: 17_000, rate: 12 },
-  { from: 64_850, rate: 22 },
-  { from: 103_350, rate: 24 },
-  { from: 197_300, rate: 32 },
-  { from: 250_500, rate: 35 },
-  { from: 626_350, rate: 37 },
+  { from: 17_700, rate: 12 },
+  { from: 67_450, rate: 22 },
+  { from: 105_700, rate: 24 },
+  { from: 201_750, rate: 32 },
+  { from: 256_200, rate: 35 },
+  { from: 640_600, rate: 37 },
 ];
 
 const US_STANDARD_DEDUCTION: Record<string, number> = {
-  single: 15_750,
-  joint: 31_500,
-  head: 23_625,
+  single: 16_100,
+  joint: 32_200,
+  head: 24_150,
 };
 
 const unitedStates = defineRules({
-  taxYear: "2025",
-  verifiedFor: "Tax year 2025, federal only - no state or local income tax",
+  taxYear: "2026",
+  verifiedFor: "Tax year 2026, federal only - no state or local income tax",
   noteKey: "calc.income-tax.note.us",
+  deductionMode: "replace-allowance",
   regimes: [
     { value: "single", labelKey: "calc.income-tax.status.single" },
     { value: "joint", labelKey: "calc.income-tax.status.joint" },
@@ -128,13 +130,13 @@ const unitedStates = defineRules({
   allowance: (_gross, regime) => US_STANDARD_DEDUCTION[regime] ?? US_STANDARD_DEDUCTION.single,
   slabs: (regime) =>
     regime === "joint" ? US_JOINT : regime === "head" ? US_HEAD : US_SINGLE,
-  social: ({ gross }) => [
-    // Social Security stops at the wage base; Medicare does not, and adds
-    // 0.9 percent above the high-earner threshold.
-    { labelKey: "levy.socialSecurity", amount: contribution(gross, 6.2, { ceiling: 176_100 }) },
+  social: ({ gross, regime }) => [
+    // Annual Additional Medicare liability follows filing status; employer
+    // withholding's universal $200,000 threshold is a different calculation.
+    { labelKey: "levy.socialSecurity", amount: contribution(gross, 6.2, { ceiling: 184_500 }) },
     {
       labelKey: "levy.medicare",
-      amount: contribution(gross, 1.45) + contribution(gross, 0.9, { floor: 200_000 }),
+      amount: contribution(gross, 1.45) + contribution(gross, 0.9, { floor: regime === "joint" ? 250_000 : 200_000 }),
     },
   ],
 });
@@ -145,13 +147,16 @@ const unitedStates = defineRules({
 const GB_SLABS: Slab[] = [
   { from: 0, rate: 20 },
   { from: 37_700, rate: 40 },
-  { from: 112_570, rate: 45 },
+  { from: 125_140, rate: 45 },
 ];
 
 const unitedKingdom = defineRules({
-  taxYear: "2025/26",
-  verifiedFor: "Tax year 2025/26, England, Wales and Northern Ireland",
+  taxYear: "2026/27",
+  verifiedFor: "Tax year 2026/27, England, Wales and Northern Ireland",
   noteKey: "calc.income-tax.note.gb",
+  // Pension/Gift Aid relief changes adjusted net income and band widths;
+  // a generic subtraction would misstate those rules. No such relief is modelled.
+  deductions: false,
   regimes: [
     { value: "employee", labelKey: "calc.income-tax.status.employee" },
     { value: "selfEmployed", labelKey: "calc.income-tax.status.selfEmployed" },
@@ -174,30 +179,30 @@ const unitedKingdom = defineRules({
 /* ----------------------------------------------------------------- Canada */
 
 const CA_FEDERAL: Slab[] = [
-  { from: 0, rate: 14.5 },
-  { from: 57_375, rate: 20.5 },
-  { from: 114_750, rate: 26 },
-  { from: 177_882, rate: 29 },
-  { from: 253_414, rate: 33 },
+  { from: 0, rate: 14 },
+  { from: 58_523, rate: 20.5 },
+  { from: 117_045, rate: 26 },
+  { from: 181_440, rate: 29 },
+  { from: 258_482, rate: 33 },
 ];
 
 const canada = defineRules({
-  taxYear: "2025",
-  verifiedFor: "Tax year 2025, federal only - provincial tax not included",
+  taxYear: "2026",
+  verifiedFor: "Tax year 2026, federal only - provincial tax not included",
   noteKey: "calc.income-tax.note.ca",
   credit: ({ gross }) => {
-    const phaseOut = Math.min(Math.max((gross - 177_882) / (253_414 - 177_882), 0), 1);
-    return (16_129 - 1_591 * phaseOut) * 0.145;
+    const phaseOut = Math.min(Math.max((gross - 181_440) / (258_482 - 181_440), 0), 1);
+    return (16_452 - 1_623 * phaseOut) * 0.14;
   },
   slabs: CA_FEDERAL,
   social: ({ gross }) => [
     {
       labelKey: "levy.cpp",
       amount:
-        contribution(gross, 5.95, { floor: 3_500, ceiling: 71_300 }) +
-        contribution(gross, 4, { floor: 71_300, ceiling: 81_200 }),
+        contribution(gross, 5.95, { floor: 3_500, ceiling: 74_600 }) +
+        contribution(gross, 4, { floor: 74_600, ceiling: 85_000 }),
     },
-    { labelKey: "levy.ei", amount: contribution(gross, 1.64, { ceiling: 65_700 }) },
+    { labelKey: "levy.ei", amount: contribution(gross, 1.63, { ceiling: 68_900 }) },
   ],
 });
 
@@ -213,12 +218,17 @@ const AU_SLABS: Slab[] = [
 
 const australia = defineRules({
   taxYear: "2025-26",
-  verifiedFor: "Tax year 2025-26, resident individual, excluding offsets",
+  verifiedFor: "2025-26 adult full-year resident, single without dependants; LITO and ordinary Medicare reduction",
   noteKey: "calc.income-tax.note.au",
   slabs: AU_SLABS,
-  surtax: ({ gross }) => [
-    // Medicare levy, ignoring the low-income reduction and the surcharge.
-    { labelKey: "levy.medicareLevy", amount: gross > 27_222 ? gross * 0.02 : 0 },
+  credit: ({ taxable }) => Math.max(0, taxable <= 37_500 ? 700
+    : taxable <= 45_000 ? 700 - (taxable - 37_500) * 0.05
+    : 325 - (taxable - 45_000) * 0.015),
+  surtax: ({ taxable }) => [
+    // Medicare Levy Act ss 3, 6–7; the 2026 amendment applies to 2025–26.
+    // Ordinary single-person reduction only, not SAPTO/family/exemptions/MLS.
+    { labelKey: "levy.medicareLevy", amount: taxable <= 28_011 ? 0
+      : taxable <= 35_013 ? (taxable - 28_011) * 0.1 : taxable * 0.02 },
   ],
 });
 
@@ -361,23 +371,25 @@ const belgium = defineRules({
 /* ------------------------------------------------------------ Netherlands */
 
 const NL_SLABS: Slab[] = [
-  { from: 0, rate: 35.82 },
-  { from: 38_441, rate: 37.48 },
-  { from: 76_817, rate: 49.5 },
+  { from: 0, rate: 35.75 },
+  { from: 38_883, rate: 37.56 },
+  { from: 78_426, rate: 49.5 },
 ];
-
 const netherlands = defineRules({
-  taxYear: "2025",
-  verifiedFor: "2025, box 1, below state pension age",
+  taxYear: "2026",
+  verifiedFor: "2026 wage-only Box1, below AOW age, full national insurance",
   noteKey: "calc.income-tax.note.nl",
+  deductions: false,
   slabs: NL_SLABS,
-  // The general and labour tax credits both taper away with income.
-  credit: ({ taxable }) => {
-    const general = Math.max(3_068 - Math.max(taxable - 28_406, 0) * 0.06337, 0);
-    const labour =
-      taxable <= 43_071
-        ? Math.min(taxable * 0.13, 5_599)
-        : Math.max(5_599 - (taxable - 43_071) * 0.0651, 0);
+  // Annual table estimate before payslip/assessment rounding. Aggregate income
+  // equals wages; no other Box1/2/3 income. Current web table resolves the PDF's
+  // transposed132290 cutoff: the employment credit ends at132920.
+  credit: ({ gross }) => {
+    const general = gross >= 78_426 ? 0 : Math.max(3_115 - Math.max(gross - 29_736, 0) * 0.06398, 0);
+    const labour = gross >= 132_920 ? 0 : gross <= 11_965 ? Math.min(gross * 0.08324, 996)
+      : gross <= 25_845 ? Math.min(996 + (gross - 11_965) * 0.31009, 5_300)
+      : gross <= 45_592 ? Math.min(5_300 + (gross - 25_845) * 0.01950, 5_685)
+      : Math.max(5_685 - (gross - 45_592) * 0.0651, 0);
     return general + labour;
   },
 });
@@ -560,18 +572,24 @@ const PL_SLABS: Slab[] = [
 ];
 
 const poland = defineRules({
-  taxYear: "2025",
-  verifiedFor: "2025 PIT scale, employment contract",
+  taxYear: "2026",
+  verifiedFor: "2026 ordinary full-year resident employment, single, local employment costs",
   noteKey: "calc.income-tax.note.pl",
-  allowance: 30_000, // Kwota wolna, applied as a zero-rate band.
+  deductions: false,
+  allowance: (gross) => polishEmployeeContributions(gross).social + 3_000,
+  roundTaxable: Math.round,
   slabs: PL_SLABS,
-  surtax: ({ gross }) => [
-    { labelKey: "levy.solidarityLevy", amount: Math.max(gross - 1_000_000, 0) * 0.04 },
-  ],
-  social: ({ gross }) => [
-    { labelKey: "levy.zus", amount: contribution(gross, 13.71) },
-    { labelKey: "levy.healthInsurance", amount: contribution(gross * 0.8629, 9) },
-  ],
+  // Rounding the tax before subtracting an integer credit gives the same
+  // final whole-zloty liability. Public wage scope is capped at PLN1m gross.
+  formula: (taxable) => Math.round(applySlabs(taxable, PL_SLABS).tax),
+  credit: () => 3_600,
+  social: ({ gross }) => {
+    const amounts = polishEmployeeContributions(gross);
+    return [
+      { labelKey: "levy.zus", amount: amounts.social },
+      { labelKey: "levy.healthInsurance", amount: amounts.health },
+    ];
+  },
 });
 
 /* ---------------------------------------------------------------- Türkiye */
@@ -598,8 +616,8 @@ const turkiye = defineRules({
 /* -------------------------------------------------------------------- UAE */
 
 const uae = defineRules({
-  taxYear: "2025",
-  verifiedFor: "2025 - the UAE levies no personal income tax on salaries",
+  taxYear: "2026",
+  verifiedFor: "2026 - the UAE levies no personal income tax on salaries",
   noteKey: "calc.income-tax.note.ae",
   deductions: false,
   slabs: [{ from: 0, rate: 0 }],
@@ -617,10 +635,11 @@ const RU_SLABS: Slab[] = [
 ];
 
 const russia = defineRules({
-  taxYear: "2025",
-  verifiedFor: "2025 progressive NDFL scale, resident",
+  taxYear: "2026",
+  verifiedFor: "2026 ordinary resident wage NDFL; annual whole-ruble rounding",
   noteKey: "calc.income-tax.note.ru",
   slabs: RU_SLABS,
+  roundTax: (tax) => Math.round(tax + 1e-9),
   // Social contributions in Russia are paid by the employer, not withheld
   // from the employee, so nothing is deducted here.
 });

@@ -35,7 +35,8 @@ export function FieldControl({ field, value, onChange, params, fmt: override, co
   const errorId = `${id}-error`;
   const error = numericFieldError(field, value, countryCode);
   const rules = calculatorRules(field, countryCode);
-  const errorParams = { min: field.kind === "currency" ? fmt.currency(rules.min) : fmt.number(rules.min), max: field.kind === "currency" ? fmt.currency(rules.max) : fmt.number(rules.max), digits: integerDigits(rules), decimals: rules.decimals, count: 100 };
+  const bound = (value: number) => field.kind === "currency" ? fmt.currency(value) : fmt.number(value, { decimals: Math.min(rules.decimals, (String(value).split(".")[1] ?? "").length) });
+  const errorParams = { min: bound(rules.min), max: bound(rules.max), digits: integerDigits(rules), decimals: rules.decimals, count: 100 };
 
   if (field.kind === "select") {
     return (

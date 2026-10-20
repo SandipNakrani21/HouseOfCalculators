@@ -1,8 +1,9 @@
+import { applyReviewedCountry } from "../reviewed";
 import { MONEY_SCALE } from "@/config/calculators/scale";
 import { num, str, type CalculatorDef } from "@/config/calculators/types";
 import type { CountryCode } from "@/config/countries";
 import { applySlabs, type Slab } from "@/lib/finance/tax";
-import { inflationAdjusted, lumpsumFutureValue, sipFutureValue } from "@/lib/finance";
+import { inflationAdjusted, sipFutureValue } from "@/lib/finance";
 
 const ALL: CountryCode[] = [
   "in", "us", "gb", "ae", "ca", "au", "de", "at", "ch", "fr",
@@ -17,7 +18,9 @@ function projectPot(
   rate: number,
   years: number,
 ): { corpus: number; contributed: number; growth: number } {
-  const corpus = lumpsumFutureValue(current, rate, years) + sipFutureValue(monthly, rate, years);
+  // Existing money and monthly deposits must use the same monthly rate.
+  // Deposits follow sipFutureValue's beginning-of-month convention.
+  const corpus = current * Math.pow(1 + rate / 1200, Math.round(years * 12)) + sipFutureValue(monthly, rate, years);
   const contributed = current + monthly * Math.round(years * 12);
   return { corpus, contributed, growth: Math.max(corpus - contributed, 0) };
 }
@@ -27,7 +30,7 @@ function projectPot(
 export const retirementCalculator: CalculatorDef = {
   slug: "retirement",
   icon: "🌴",
-  version: 2,
+  version: 3,
   category: "finance",
   titleKey: "calc.retirement.title",
   descKey: "calc.retirement.desc",
@@ -90,6 +93,7 @@ export const retirementCalculator: CalculatorDef = {
         { labelKey: "result.totalContributed", value: contributed, tone: "principal" },
         { labelKey: "result.investmentGrowth", value: growth, tone: "returns" },
       ],
+      notes: [{ key: "calc.projection.timing" }],
     };
   },
   explainerKeys: ["calc.retirement.explain"],
@@ -100,12 +104,12 @@ export const retirementCalculator: CalculatorDef = {
 export const pensionCalculator: CalculatorDef = {
   slug: "pension",
   icon: "👴",
-  version: 1,
+  version: 2,
   category: "finance",
-  isCountrySpecific: true,
+  countryRelevance: "currency",
   titleKey: "calc.pension.title",
   descKey: "calc.pension.desc",
-  countries: ["gb", "de", "at", "ch", "fr", "be", "nl", "jp", "es", "it", "pt", "pl", "tr", "br", "ca", "ru", "cn"],
+  countries: ALL,
   fields: ({ countryCode }) => {
     const scale = MONEY_SCALE[countryCode];
     return [
@@ -130,7 +134,7 @@ export const pensionCalculator: CalculatorDef = {
         default: scale.defaults.lump,
       },
       { id: "years", labelKey: "field.yearsToRetirement", kind: "years", min: 1, max: 45, step: 1, default: 25 },
-      { id: "rate", labelKey: "field.expectedReturn", kind: "percent", min: 1, max: 15, step: 0.5, default: 5 },
+      { id: "rate", labelKey: "field.expectedReturn", kind: "percent", min: 0, max: 15, step: 0.5, default: 5 },
     ];
   },
   compute: (values) => {
@@ -157,10 +161,19 @@ export const pensionCalculator: CalculatorDef = {
         { labelKey: "result.totalContributed", value: contributed, tone: "principal" },
         { labelKey: "result.investmentGrowth", value: growth, tone: "returns" },
       ],
-      notes: [{ key: "calc.pension.note" }],
+      notes: [{ key: "calc.pension.scope" }, { key: "calc.projection.timing" }],
     };
   },
   explainerKeys: ["calc.pension.explain"],
+  formula: {
+    expression: "i = r / 1200; n = 12t; FV = P(1+i)^n + C × ((1+i)^n − 1) / i × (1+i); i = 0: FV = P + Cn",
+    variables: [
+      { symbol: "P", key: "field.currentPot" },
+      { symbol: "C", key: "result.monthlyContribution" },
+      { symbol: "r", key: "field.expectedReturn" },
+      { symbol: "t", key: "field.yearsToRetirement" },
+    ],
+  },
 };
 
 /* ------------------------------------------------------------- US 401(k) */
@@ -168,7 +181,7 @@ export const pensionCalculator: CalculatorDef = {
 export const fourOhOneKCalculator: CalculatorDef = {
   slug: "401k",
   icon: "🥚",
-  version: 2,
+  version: 3,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.401k.title",
@@ -215,7 +228,7 @@ export const fourOhOneKCalculator: CalculatorDef = {
         { labelKey: "result.totalContributed", value: contributed, tone: "principal" },
         { labelKey: "result.investmentGrowth", value: growth, tone: "returns" },
       ],
-      notes: [{ key: "calc.401k.limits", params: { year: str(values, "taxYear", "2026"), elective: limits.elective, combined: limits.combined, compensation: limits.compensation } }],
+      notes: [{ key: "calc.401k.limits", params: { year: str(values, "taxYear", "2026"), elective: limits.elective, combined: limits.combined, compensation: limits.compensation } }, { key: "calc.projection.timing" }],
     };
   },
   explainerKeys: ["calc.401k.explain"],
@@ -223,17 +236,17 @@ export const fourOhOneKCalculator: CalculatorDef = {
 
 /* ------------------------------------------ US Social Security estimate */
 
-// 2025 PIA bend points, applied to average indexed monthly earnings.
+// 2026 first-eligibility cohort. Input is annualised indexed earnings, not wages.
 const PIA_BENDS: Slab[] = [
   { from: 0, rate: 90 },
-  { from: 1_226, rate: 32 },
-  { from: 7_391, rate: 15 },
+  { from: 1_286, rate: 32 },
+  { from: 7_749, rate: 15 },
 ];
 
 export const socialSecurityBenefitCalculator: CalculatorDef = {
   slug: "social-security-benefit",
   icon: "🇺🇸",
-  version: 2,
+  version: 3,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.social-security-benefit.title",
@@ -256,8 +269,8 @@ export const socialSecurityBenefitCalculator: CalculatorDef = {
   ],
   compute: (values) => {
     // Benefits are built from average indexed *monthly* earnings.
-    const aime = Math.min(num(values, "earnings"), 176_100) / 12;
-    const pia = applySlabs(aime, PIA_BENDS).tax;
+    const aime = Math.floor(num(values, "earnings") / 12);
+    const pia = Math.floor((applySlabs(aime, PIA_BENDS).tax + 1e-9) * 10) / 10;
 
     // Claiming early cuts the benefit; delaying past full retirement age adds
     // delayed retirement credits.
@@ -265,7 +278,7 @@ export const socialSecurityBenefitCalculator: CalculatorDef = {
     const earlyMonths = Math.max((67 - claimAge) * 12, 0);
     const adjustment = claimAge >= 67 ? 1 + Math.min(claimAge - 67, 3) * 0.08
       : 1 - Math.min(earlyMonths, 36) * (5 / 9) / 100 - Math.max(earlyMonths - 36, 0) * (5 / 12) / 100;
-    const monthly = pia * adjustment;
+    const monthly = Math.floor(pia * adjustment + 1e-9);
 
     return {
       primary: { labelKey: "result.monthlyBenefit", value: monthly, kind: "currency", emphasis: true },
@@ -285,7 +298,7 @@ export const socialSecurityBenefitCalculator: CalculatorDef = {
 export const superannuationCalculator: CalculatorDef = {
   slug: "superannuation",
   icon: "🦘",
-  version: 1,
+  version: 2,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.superannuation.title",
@@ -326,7 +339,7 @@ export const superannuationCalculator: CalculatorDef = {
         { labelKey: "result.totalContributed", value: contributed, tone: "principal" },
         { labelKey: "result.investmentGrowth", value: growth, tone: "returns" },
       ],
-      notes: [{ key: "calc.superannuation.note" }],
+      notes: [{ key: "calc.superannuation.note" }, { key: "calc.projection.timing" }],
     };
   },
   explainerKeys: ["calc.superannuation.explain"],
@@ -493,3 +506,6 @@ export const inflationCalculator: CalculatorDef = {
   },
   explainerKeys: ["calc.inflation.explain"],
 };
+
+// Apply only independently source-reviewed country replacements.
+applyReviewedCountry(superannuationCalculator);

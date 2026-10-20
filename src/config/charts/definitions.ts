@@ -230,7 +230,7 @@ const MATH_TABLES: ChartDefinition[] = [
     titleKey: "chart.primes.title",
     descKey: "chart.primes.desc",
     explainerKey: "chart.primes.explain",
-    keywords: "prime numbers list first 100 primes",
+    keywords: "prime numbers below 500 first 95 primes",
     related: [{ section: "tools", category: "number-math", slug: "prime-checker" }],
     build: ({ t }) => {
       // Sieve of Eratosthenes up to 500, which covers the first 95 primes.
@@ -270,7 +270,7 @@ const MATH_TABLES: ChartDefinition[] = [
     titleKey: "chart.roman.title",
     descKey: "chart.roman.desc",
     explainerKey: "chart.roman.explain",
-    keywords: "roman numerals chart 1 to 100 years",
+    keywords: "common roman numerals and years subtractive notation",
     related: [{ section: "tools", category: "number-math", slug: "roman-numerals" }],
     build: ({ t }) => {
       const values = [

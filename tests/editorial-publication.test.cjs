@@ -18,7 +18,9 @@ test('Unreviewed statutory engines are retained internally but never appear in d
   assert.equal(available,isCalculatorPublished(calc,country));
   if(available)published++;else withdrawn++;
  }
- assert.equal(withdrawn,122);assert.equal(published,7);
+ // 44 old VAT/pension/property variants share three input-driven tools.
+ // Restored statutory models have explicit period and scope sources.
+ assert.equal(withdrawn,0);assert.equal(published,85);
  for(const locale of Object.values(LOCALES).filter(l=>l.launch)){
   const items=allContent({locale:locale.code,country:locale.defaultCountry,t,calcContext:context(locale.defaultCountry)});
   for(const item of items){

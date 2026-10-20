@@ -7,12 +7,26 @@ import type { BreakdownView, ResultKind } from "@/config/calculators/types";
 
 const PAGE_SIZE = 24;
 const mobileQuery = "(max-width: 639px)";
+// Printing uses the paper's width. Keep the last screen pagination so a phone's
+// selected six-row page does not silently become a different 24-row page.
+let screenMobile = false;
 const subscribeSize = (callback: () => void) => {
   const query = window.matchMedia(mobileQuery);
-  query.addEventListener("change", callback);
-  return () => query.removeEventListener("change", callback);
+  const print = window.matchMedia("print");
+  const refresh = () => {
+    if (print.matches) return;
+    screenMobile = query.matches;
+    callback();
+  };
+  query.addEventListener("change", refresh);
+  print.addEventListener("change", refresh);
+  refresh();
+  return () => {
+    query.removeEventListener("change", refresh);
+    print.removeEventListener("change", refresh);
+  };
 };
-const isMobile = () => window.matchMedia(mobileQuery).matches;
+const isMobile = () => screenMobile;
 
 /**
  * Tabbed breakdown. The tab strip and table are shared by every calculator;
@@ -101,9 +115,9 @@ export function BreakdownPanel({
       <div className="mb-4">{pagination}</div>
 
       {/* Table for tablet and up */}
-      <div className="hidden overflow-x-auto sm:block">
+      <div data-print-table className="hidden overflow-x-auto sm:block">
         <table className="data-table">
-          <caption className="sr-only">{t(active.labelKey)}</caption>
+          <caption className="sr-only">{t(active.labelKey)}{pageCount > 1 ? ` — ${t("common.pageOf", { current: currentPage + 1, total: pageCount })}` : ""}</caption>
           <thead>
             <tr>
               {active.columns.map((column) => (
@@ -131,7 +145,7 @@ export function BreakdownPanel({
       </div>
 
       {/* Stacked cards on phones */}
-      <ul className="space-y-3 sm:hidden">
+      <ul data-print-exclude className="space-y-3 sm:hidden">
         {rows.map((row, index) => (
           <li
             key={index}

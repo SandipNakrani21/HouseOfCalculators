@@ -82,7 +82,7 @@ export function PageHeader({
                 {eyebrow}
               </p>
             ) : null}
-            <h1 className="animate-rise text-h1 !text-white">{title}</h1>
+            <h1 className="animate-rise text-h1 text-white">{title}</h1>
             {description ? (
               <p
                 className="animate-fade-up mt-3 max-w-2xl text-sm leading-relaxed text-on-navy-muted sm:text-[0.9375rem]"

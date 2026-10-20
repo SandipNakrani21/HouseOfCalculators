@@ -48,7 +48,7 @@
   --border-control: #94a3b8;   /* dropdown triggers: clearly a control, not a card */
 
   --gradient-cta: linear-gradient(90deg, #1d4ed8, #3b82f6);
-  --gradient-result: linear-gradient(135deg, #1d4ed8, #2563eb 55%, #3b82f6);
+  --gradient-result: linear-gradient(135deg, var(--navy), var(--primary-dark));
 
   /* --------------------------------------- category accent pairs (fg/bg) */
   --tone-blue-fg: #2563eb;   --tone-blue-bg: #dbeafe;

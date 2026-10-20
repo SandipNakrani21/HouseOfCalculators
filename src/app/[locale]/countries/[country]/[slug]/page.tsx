@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 
 import { CalculatorPageBody } from "@/components/calculator/CalculatorPageBody";
 import { CALCULATORS, getCalculator } from "@/config/calculators";
 import { ruleReview } from "@/config/calculators/provenance";
-import { isCalculatorPublished } from "@/config/calculators/publication";
+import { canonicalCountryToolSlug, isCalculatorPublished } from "@/config/calculators/publication";
 import { COUNTRIES, isCountryCode, type CountryCode } from "@/config/countries";
 import { LOCALES, localeFromPath } from "@/config/locales";
 import { createFormatter } from "@/lib/format";
 import { createTranslator } from "@/lib/i18n";
-import { countryPath, countryToolPath, localeHome, sectionPath } from "@/lib/routes";
+import { contentPath, countryPath, countryToolPath, localeHome, sectionPath } from "@/lib/routes";
 import { buildMetadata, readyLocales } from "@/lib/seo";
 
 type Params = { locale: string; country: string; slug: string };
@@ -51,7 +51,7 @@ export async function generateMetadata({
   const countryName = t(`country.${country}`);
   return buildMetadata({
     locale: locale.code,
-    path: countryToolPath(locale.code, country, slug),
+    path: countryToolPath(locale.code, country, canonicalCountryToolSlug(slug, country)),
     // The country belongs in the title: this page answers a country-specific
     // question, and that is what people search for.
     title: t("country.tool.title", {
@@ -63,7 +63,7 @@ export async function generateMetadata({
     description: t("country.tool.metaDesc", {
       description: t(calculator.descKey, values),
       country: countryName,
-      year: COUNTRIES[country].fiscalYear.label,
+      year: ruleReview(slug, country)?.period ?? COUNTRIES[country].fiscalYear.label,
       currency: COUNTRIES[country].currency.code,
     }),
     noindex: !ruleReview(slug, country),
@@ -78,6 +78,12 @@ export default async function CountryToolPage({
   const { locale: path, country, slug } = await params;
   const locale = localeFromPath(path);
   const calculator = getCalculator(slug);
+
+  // These are now shared input-driven arithmetic tools, not duplicated
+  // national rule models. Keep incoming country links useful and canonical.
+  if (locale && calculator && isCountryCode(country) && ["vat", "pension", "property-tax"].includes(slug)) {
+    permanentRedirect(contentPath(locale.code, "calculators", calculator.category, slug));
+  }
 
   if (
     !locale ||

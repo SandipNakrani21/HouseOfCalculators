@@ -21,11 +21,17 @@ test('Every calculator publishes valid worked inputs and finite results for ever
   for (const calculator of CALCULATORS) for (const countryCode of calculator.countries) {
     const ctx = { t, countryCode, country: COUNTRIES[countryCode], fmt: createFormatter(countryCode, 'en', t) };
     const values = Object.fromEntries(calculator.fields(ctx).map(field => [field.id, field.default]));
-    assert.equal(calculator.validate?.(values, ctx) ?? null, null, calculator.slug + ':' + countryCode);
+    const needsActualCosts = calculator.slug === 'payroll' && ['nl', 'fr', 'be'].includes(countryCode);
+    assert.equal(calculator.validate?.(values, ctx) ?? null, needsActualCosts ? 'error.romanceActualCosts' : null, calculator.slug + ':' + countryCode);
     const result = calculator.compute(values, ctx);
     for (const row of [result.primary, ...result.rows]) if (typeof row.value === 'number') assert(Number.isFinite(row.value), calculator.slug + ':' + countryCode + ':' + row.labelKey);
     const html = renderToStaticMarkup(React.createElement(WorkedExample, { calculator, ctx }));
     assert(html.includes('data-worked-example='));
+    if (needsActualCosts) {
+      assert.equal(result.primary.value, '—');
+      assert(html.includes(t('error.romanceActualCosts')));
+      assert(!html.includes('quality.outputs'));
+    }
     assert(!/NaN|Infinity|quality\.|\{country\}|\{version\}/.test(html), calculator.slug + ':' + countryCode);
     cases++;
   }

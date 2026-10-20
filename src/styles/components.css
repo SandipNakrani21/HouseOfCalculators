@@ -630,3 +630,91 @@ input[type="range"]::-moz-range-thumb {
   cursor: grab;
 }
 input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px var(--ring); }
+
+/* A paper copy keeps entered values, results and source context. Paginated
+   breakdowns identify the selected page; CSV remains the full-data export. */
+@media print {
+  @page { margin: 15mm; }
+
+  html, body, #main {
+    height: auto !important;
+    overflow: visible !important;
+    background: #fff !important;
+    color: #111827 !important;
+  }
+
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  header:not(.page-hero), footer, nav, dialog, dialog::backdrop, [role="dialog"], [role="listbox"],
+  [role="tablist"], [data-print-exclude], .ad-wrap, .ad-rail-col,
+  button:not([role="radio"]), input[type="range"], [role="radio"][aria-checked="false"] {
+    display: none !important;
+  }
+
+  [data-reveal], [data-detail-page], [data-detail-page] fieldset {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    translate: none !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+
+  [data-detail-page] .container-page { width: 100%; padding-inline: 0; }
+  [data-detail-page] .grid { display: block !important; }
+  [data-detail-page] fieldset > section, [data-detail-content] > section {
+    margin-block: 1rem;
+    padding: 1rem;
+    break-inside: auto;
+  }
+
+  .page-hero, .result-box {
+    background: #fff !important;
+    color: #111827 !important;
+    border: 1px solid var(--border-strong);
+  }
+  .page-hero { margin-block: 0 1rem !important; }
+  .page-hero > .container-page { padding-block: 1rem !important; }
+  .page-hero *, .result-box * { color: #111827 !important; }
+  .page-hero > [aria-hidden], .result-box::before, .result-box::after {
+    display: none !important;
+  }
+
+  [data-detail-page] h1, [data-detail-page] h2,
+  [data-detail-page] h3, [data-detail-page] h4 { break-after: avoid; }
+  [data-detail-page] tr, [data-detail-page] dl > div { break-inside: avoid; }
+  [data-print-table] { display: block !important; overflow: visible !important; }
+  [data-detail-page] caption {
+    position: static; width: auto; height: auto; clip: auto;
+    clip-path: none; overflow: visible;
+    white-space: normal; margin-block: 0 0.5rem;
+  }
+  [data-detail-page] table { width: 100%; min-width: 0 !important; }
+  [data-detail-page] thead { display: table-header-group; break-inside: avoid; break-after: avoid; }
+  [data-detail-page] th, [data-detail-page] td { overflow-wrap: anywhere; }
+  [data-detail-page] .data-table th, [data-detail-page] .data-table td,
+  [data-loan-comparison] th, [data-loan-comparison] td { padding: 0.3rem !important; }
+  [data-detail-page] td.tabular, [data-detail-page] .reference-table tbody th,
+  [data-detail-page] .reference-table tbody td { white-space: nowrap !important; overflow-wrap: normal; }
+  [data-detail-page] [role="region"] {
+    max-height: none !important; overflow: visible !important;
+  }
+  [data-detail-page] .reference-table th, [data-detail-page] .reference-table td {
+    position: static !important; white-space: normal !important;
+    background: var(--bg) !important;
+  }
+  [data-detail-page] input { color: var(--heading); background: var(--bg); }
+  [data-detail-page] input[type="checkbox"] {
+    appearance: auto; width: auto; height: auto; background: none;
+  }
+  [role="radio"][aria-checked="true"] {
+    color: var(--heading) !important;
+    background: var(--bg) !important;
+    border: 1px solid var(--border-strong);
+  }
+}

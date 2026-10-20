@@ -53,6 +53,7 @@ export function DetailPage({
   schema = "application",
   rail = true,
   ads = true,
+  canonicalPath,
 }: {
   trail: Crumb[];
   /** For the structured data: the page's locale. */
@@ -69,6 +70,8 @@ export function DetailPage({
   rail?: boolean;
   /** Exclude models without source coverage and avoid reserving an empty rail. */
   ads?: boolean;
+  /** Search identity for a usable alias of an otherwise identical tool. */
+  canonicalPath?: string;
   breadcrumbLabel: string;
   header: {
     title: string;
@@ -91,8 +94,12 @@ export function DetailPage({
   related?: { title: string; items: RelatedItem[]; viewAll?: { href: string; label: string } };
   cta: { title: string; body: string; cta: string; href: string };
 }) {
+  // Compact references and converters use one position after their content.
+  // Their utility does not justify the full calculator rail + inline layout.
+  const singleAd = adPrefix === "chart" || adPrefix.startsWith("converter");
+  const showRail = ADS_ENABLED && ads && rail && !singleAd;
   return (
-    <>
+    <div data-detail-page>
       <PageHeader
         width="page"
         trail={trail}
@@ -105,8 +112,8 @@ export function DetailPage({
         {header.note}
       </PageHeader>
       <div className="container-page pb-12 sm:pb-16">
-        <div className={ADS_ENABLED && ads && rail ? "ad-rail-layout grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]" : ""}>
-          <div className="min-w-0 space-y-6">
+        <div className={showRail ? "ad-rail-layout grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]" : ""}>
+          <div data-detail-content className="min-w-0 space-y-6">
             {children}
 
             {howItWorks ? (
@@ -126,6 +133,7 @@ export function DetailPage({
             {ads ? <AdSlot slot={`${adPrefix}-mid`} placement="leaderboard" /> : null}
 
             {guides?.items.length ? (
+              <div data-print-exclude>
               <ContentSection icon={<BookOpen className="h-5 w-5" />} tone="teal" title={guides.title}>
                 <ul className="grid gap-4 sm:grid-cols-2">
                   {guides.items.map((item) => (
@@ -135,9 +143,11 @@ export function DetailPage({
                   ))}
                 </ul>
               </ContentSection>
+              </div>
             ) : null}
 
             {elsewhere?.items.length ? (
+              <div data-print-exclude>
               <ContentSection icon={<Globe2 className="h-5 w-5" />} tone="blue" title={elsewhere.title}>
                 <ul className="flex flex-wrap gap-2">
                   {elsewhere.items.map((item) => (
@@ -150,10 +160,11 @@ export function DetailPage({
                   ))}
                 </ul>
               </ContentSection>
+              </div>
             ) : null}
           </div>
 
-          {ADS_ENABLED && ads && rail ? (
+          {showRail ? (
             <aside className="ad-rail-col min-w-0">
               {/* Scroll with the page so the full creative remains reachable on short screens. */}
               <div className="hidden lg:block">
@@ -164,10 +175,10 @@ export function DetailPage({
           ) : null}
         </div>
 
-        {ADS_ENABLED && ads && !rail ? <AdSlot slot={`${adPrefix}-rail`} placement="leaderboard" /> : null}
+        {ADS_ENABLED && ads && !rail && !singleAd ? <AdSlot slot={`${adPrefix}-rail`} placement="leaderboard" /> : null}
 
         {related?.items.length ? (
-          <section className="section-gap">
+          <section data-print-exclude className="section-gap">
             <SectionHeader
               title={related.title}
               action={related.viewAll ? <ViewAllLink href={related.viewAll.href} label={related.viewAll.label} /> : undefined}
@@ -182,7 +193,7 @@ export function DetailPage({
           </section>
         ) : null}
 
-        <CTABanner className="mt-16 lg:mt-20" {...cta} />
+        <div data-print-exclude><CTABanner className="mt-16 lg:mt-20" {...cta} /></div>
 
         {/* What the page is, and the questions it answers, for search and answer engines. */}
         <script
@@ -193,13 +204,13 @@ export function DetailPage({
                 ? webPageSchema({
                     name: header.title,
                     description: header.description ?? header.title,
-                    path: trail[trail.length - 1]?.path ?? "/",
+                    path: canonicalPath ?? trail[trail.length - 1]?.path ?? "/",
                     locale,
                   })
                 : webApplicationSchema({
                     name: header.title,
                     description: header.description ?? header.title,
-                    path: trail[trail.length - 1]?.path ?? "/",
+                    path: canonicalPath ?? trail[trail.length - 1]?.path ?? "/",
                     locale,
                     category: appCategory,
                   }),
@@ -213,7 +224,7 @@ export function DetailPage({
           />
         ) : null}
       </div>
-    </>
+    </div>
   );
 }
 

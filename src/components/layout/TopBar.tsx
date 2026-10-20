@@ -14,7 +14,7 @@ export function TopBar({ ready }: { ready: LocaleCode[] }) {
   const text = t("footer.disclaimer", { app: t("app.name") });
 
   return (
-    <div className="relative bg-navy text-white">
+    <div data-print-exclude className="relative bg-navy text-white">
       {/* The header's own container, so the pickers' right edge lines up
           with the header's search field at every width. */}
       <div className="container-page flex items-center [--container:var(--container-xwide)]">

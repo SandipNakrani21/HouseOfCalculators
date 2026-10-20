@@ -24,6 +24,7 @@ import { useLocale } from "@/lib/locale-context";
 import { readShareQuery } from "@/lib/share-link";
 import INCOME_TAX_RULES from "@/config/calculators/tax-metadata.json";
 import { currencyDecimals, resolveFields } from "@/lib/validation";
+import { reviewedCalculator } from "@/config/calculators/reviewed";
 
 const TONE_VAR: Record<NonNullable<ResultRow["tone"]>, string> = {
   principal: "var(--tone-principal)",
@@ -87,6 +88,9 @@ export function CalculatorRunner({
     [translate, params],
   );
   const fmt = localeFmt;
+  // Static HTML arrives before handlers are attached. Keep controls disabled
+  // until hydration so an early edit cannot be overwritten by initial state.
+  const interactive = useSyncExternalStore(subscribeNever, readInteractive, readNotInteractive);
 
   const baseFields = useMemo(() => calculator?.fields(ctx) ?? [], [calculator, ctx]);
   const initial = useMemo(() => defaultsOf(baseFields), [baseFields]);
@@ -104,7 +108,12 @@ export function CalculatorRunner({
   // Read after hydration (the page is static, so the server sees no query);
   // the defaults paint first and the shared values replace them at once.
   const search = useSyncExternalStore(subscribeNever, readSearch, readNoSearch);
-  const shared = useMemo(() => readShareQuery(search, baseFields), [search, baseFields]);
+  const changedEarlier = (slug === "capital-gains" && countryCode === "fr")
+    || (["income-tax", "salary", "social-security"].includes(slug) && countryCode === "pl")
+    || (slug === "30-percent-ruling" && countryCode === "nl");
+  const shareVersion = reviewedCalculator(slug, countryCode) || changedEarlier ? calculator.version : undefined;
+  const shared = useMemo(() => readShareQuery(search, baseFields, shareVersion), [search, baseFields, shareVersion]);
+  const [oldLinkDismissed, setOldLinkDismissed] = useState(false);
   const sharedCountry =
     shared?.country &&
     !lockedCountry &&
@@ -131,7 +140,7 @@ export function CalculatorRunner({
   }
 
   const shown = visibleFields(fields, values);
-  const domainError = calculator?.validate?.(values, ctx);
+  const domainError = shared?.obsolete && !oldLinkDismissed ? "review.shareChanged" : calculator?.validate?.(values, ctx);
   const result = useMemo(
     () => {
       const valid = visibleFields(fields, values).every((field) => !numericFieldError(field, values[field.id] ?? field.default, countryCode));
@@ -167,12 +176,12 @@ export function CalculatorRunner({
   const emphasisRows = result?.rows.filter((row) => row.emphasis) ?? [];
 
   return (
-    <div className="space-y-6">
+    <fieldset disabled={!interactive} aria-busy={!interactive} className="min-w-0 space-y-6">
+      <legend className="sr-only">{t("calc.inputs")}</legend>
       <section className="card animate-fade-up @container p-5 sm:p-8">
         {slug === "income-tax" ? <div className="mb-6 rounded-md border border-border bg-bg-soft p-4">
-          <p className="font-bold text-heading">{t("calc.taxYear", { year: INCOME_TAX_RULES[countryCode].taxYear })}</p>
+          <p className="font-bold text-heading">{t("calc.taxYear", { year: reviewedCalculator(slug, countryCode)?.review.period.match(/^\d{4}(?:[–/]\d{2,4})?/)?.[0] ?? INCOME_TAX_RULES[countryCode].taxYear })}</p>
           <p className="mt-1 text-sm text-muted">{t("calc.taxCoverage")}</p>
-          <p className="mt-2 text-xs text-muted">{t("calc.taxDataset", { scope: INCOME_TAX_RULES[countryCode].verifiedFor })}</p>
         </div> : null}
         {lockedCountry || countryRelevanceOf(calculator) === "none" ? null : (
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-5">
@@ -267,7 +276,8 @@ export function CalculatorRunner({
                   formatValue={slice => {
                     const row = [result.primary, ...result.rows].find(row => row.labelKey === slice.labelKey);
                     const kind = row?.kind ?? (result.primary.kind === "currency" ? "currency" : "number");
-                    return format(slice.value, kind, row?.decimals ?? 2) + (row?.hintKey ? ` (${t(row.hintKey)})` : "");
+                    const unit = slice.hintKey ?? row?.hintKey;
+                    return format(slice.value, kind, row?.decimals ?? 2) + (unit ? ` (${t(unit)})` : "");
                   }}
                   centerLabel={t(result.primary.labelKey)}
                   // Money is abbreviated so a long figure fits inside the ring.
@@ -307,8 +317,8 @@ export function CalculatorRunner({
           </div>
         </div>
         {result ? <ResultActions title={t(calculator.titleKey)} values={values} result={result} format={format} t={t}
-          country={lockedCountry || countryRelevanceOf(calculator) === "none" ? undefined : countryCode}
-          onReset={() => setValues(initial)} /> : <button type="button" className="btn btn-outline btn-md mt-6" onClick={() => setValues(initial)}>{t("common.reset")}</button>}
+          country={lockedCountry || countryRelevanceOf(calculator) === "none" ? undefined : countryCode} version={shareVersion}
+          onReset={() => { setValues(initial); setOldLinkDismissed(true); }} /> : <button type="button" className="btn btn-outline btn-md mt-6" onClick={() => { setValues(initial); setOldLinkDismissed(true); }}>{t("common.reset")}</button>}
       </section>
 
       {result?.table?.rows.length ? (
@@ -329,7 +339,7 @@ export function CalculatorRunner({
       {result?.breakdown?.length ? (
         <BreakdownPanel views={result.breakdown} format={format} t={t} />
       ) : null}
-    </div>
+    </fieldset>
   );
 }
 
@@ -366,6 +376,8 @@ export function CalculatorCountryNote({
 }
 
 const subscribeNever = () => () => {};
+const readInteractive = () => true;
+const readNotInteractive = () => false;
 const readSearch = () => window.location.hash.startsWith("#calc=") ? window.location.hash : window.location.search;
 const readNoSearch = () => "";
 

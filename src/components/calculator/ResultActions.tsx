@@ -26,6 +26,7 @@ export function ResultActions({
   format,
   t,
   country,
+  version,
   onReset,
 }: {
   title: string;
@@ -35,6 +36,7 @@ export function ResultActions({
   t: (key: string, params?: Record<string, string | number>) => string;
   /** Carried in the link when the answer depends on the country. */
   country?: CountryCode;
+  version?: number;
   onReset: () => void;
 }) {
   const exportCsv = () => {
@@ -66,7 +68,7 @@ export function ResultActions({
       layout="row"
       onReset={onReset}
       onDownloadCsv={exportCsv}
-      shareUrl={() => buildShareUrl(window.location.href, values, country)}
+      shareUrl={() => buildShareUrl(window.location.href, values, country, version)}
       shareTitle={title}
       shareNotice={t("actions.sharePrivacy")}
     />

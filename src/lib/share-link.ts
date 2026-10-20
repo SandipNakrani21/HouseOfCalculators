@@ -21,7 +21,7 @@ export const SHARE_COUNTRY_PARAM = "country";
 /** Free-text fields are lists of numbers; nothing legitimate is this long. */
 export const MAX_TEXT = MAX_LIST_CHARACTERS;
 
-export function buildShareUrl(href: string, values: FieldValues, country?: CountryCode): string {
+export function buildShareUrl(href: string, values: FieldValues, country?: CountryCode, version?: number): string {
   const url = new URL(href);
   url.search = "";
   url.hash = "";
@@ -30,6 +30,7 @@ export function buildShareUrl(href: string, values: FieldValues, country?: Count
     inputs.set(key, String(value));
   }
   if (country) inputs.set(SHARE_COUNTRY_PARAM, country);
+  if (version !== undefined) inputs.set("modelVersion", String(version));
   url.hash = `calc=${inputs.toString()}`;
   return url.toString();
 }
@@ -38,13 +39,19 @@ export type SharedInputs = {
   /** Only the fields present and valid in the link. */
   values: FieldValues;
   country: CountryCode | null;
+  obsolete?: boolean;
 };
 
-export function readShareQuery(search: string, fields: CalculatorField[]): SharedInputs | null {
+export function readShareQuery(search: string, fields: CalculatorField[], version?: number): SharedInputs | null {
   if (!search || search === "?") return null;
   const query = new URLSearchParams(search.startsWith("#calc=") ? search.slice(6) : search);
   const requestedCountry = query.get(SHARE_COUNTRY_PARAM);
   const countryCode = requestedCountry && isCountryCode(requestedCountry) ? requestedCountry : "us";
+  const oldFieldNames = ["income", "salary", "period", "purchase", "sale", "holding", "balance", "extra", "years", "rate"];
+  const hasCalculatorInputs = [...query.keys()].some(key => fields.some(field => field.id === key) || oldFieldNames.includes(key));
+  if (version !== undefined && hasCalculatorInputs && query.get("modelVersion") !== String(version)) {
+    return { values: {}, country: requestedCountry && isCountryCode(requestedCountry) ? requestedCountry : null, obsolete: true };
+  }
 
   const values: FieldValues = {};
   const selection = Object.fromEntries(fields.filter(f => f.kind === "select").map(f => [f.id, query.get(f.id) ?? f.default]));

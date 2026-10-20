@@ -1,5 +1,6 @@
 import { CALCULATORS } from "@/config/calculators";
 import { ruleReview } from "@/config/calculators/provenance";
+import { canonicalCountryToolSlug } from "@/config/calculators/publication";
 import {
   CALCULATOR_CATEGORIES,
   SECTIONS,
@@ -142,6 +143,7 @@ export function sitemapEntries(locale: LocaleCode): SitemapEntry[] {
     for (const country of calc.countries) {
       // Editorial publication gate, not a claim that Google requires citations.
       if (!ruleReview(calc.slug, country)) continue;
+      if (canonicalCountryToolSlug(calc.slug, country) !== calc.slug) continue;
       add(countryToolPath(locale, country, calc.slug), 0.9, "monthly");
     }
   }

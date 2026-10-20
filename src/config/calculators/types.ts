@@ -78,6 +78,8 @@ export type ResultRow = {
 export type ChartSlice = {
   labelKey: string;
   value: number;
+  /** Explicit unit when a slice uses a different quantity than its matching result row. */
+  hintKey?: string;
   tone: "principal" | "returns" | "tax" | "neutral";
 };
 

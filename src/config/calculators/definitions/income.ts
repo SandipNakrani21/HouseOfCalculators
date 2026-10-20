@@ -1,3 +1,4 @@
+import { applyReviewedCountry } from "../reviewed";
 import { MONEY_SCALE } from "@/config/calculators/scale";
 import {
   num,
@@ -8,6 +9,8 @@ import {
 import type { CountryCode } from "@/config/countries";
 import { INCOME_TAX_RULES, contribution } from "@/lib/finance/tax";
 import { currencyDecimals } from "@/lib/validation";
+import { reviewScopeKey } from "@/config/calculators/provenance";
+import { polishEmployeeContributions } from "@/lib/finance/tax/poland";
 
 const ALL: CountryCode[] = [
   "in", "us", "gb", "ae", "ca", "au", "de", "at", "ch", "fr",
@@ -20,7 +23,7 @@ const ALL: CountryCode[] = [
 export const salaryCalculator: CalculatorDef = {
   slug: "salary",
   icon: "💼",
-  version: 2,
+  version: 12,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.salary.title",
@@ -28,18 +31,20 @@ export const salaryCalculator: CalculatorDef = {
   countries: ALL,
   fields: ({ countryCode }) => {
     const scale = MONEY_SCALE[countryCode];
+    const minimum = countryCode === "pl" ? 57_672 : scale.incomeMin;
+    const maximum = countryCode === "pl" ? 1_000_000 : scale.incomeMax;
     const rules = INCOME_TAX_RULES[countryCode];
     return [
       {
         id: "salary",
         labelKey: "field.grossSalary",
         kind: "currency",
-        min: scale.incomeMin,
-        max: scale.incomeMax,
-        step: scale.incomeStep,
+        min: minimum,
+        max: maximum,
+        step: countryCode === "pl" ? 1 : scale.incomeStep,
         default: scale.defaults.income,
         resolve: (values) => str(values, "period", "year") === "month"
-          ? { min: Math.ceil(scale.incomeMin / 12 * 10 ** currencyDecimals(countryCode)) / 10 ** currencyDecimals(countryCode), max: Math.floor(scale.incomeMax / 12 * 10 ** currencyDecimals(countryCode)) / 10 ** currencyDecimals(countryCode), step: Math.max(1, Math.floor(scale.incomeStep / 12)) }
+          ? { min: Math.ceil(minimum / 12 * 10 ** currencyDecimals(countryCode)) / 10 ** currencyDecimals(countryCode), max: Math.floor(maximum / 12 * 10 ** currencyDecimals(countryCode)) / 10 ** currencyDecimals(countryCode), step: 10 ** -currencyDecimals(countryCode) }
           : {},
       },
       {
@@ -98,7 +103,7 @@ export const salaryCalculator: CalculatorDef = {
         tone: "tax",
       },
       {
-        labelKey: "result.monthlyTakeHome",
+        labelKey: "result.monthlyAfterModelledDeductions",
         value: result.netIncome / 12,
         kind: "currency",
         emphasis: true,
@@ -114,18 +119,18 @@ export const salaryCalculator: CalculatorDef = {
 
     return {
       primary: {
-        labelKey: "result.annualTakeHome",
+        labelKey: "result.annualAfterModelledDeductions",
         value: result.netIncome,
         kind: "currency",
         emphasis: true,
       },
       rows,
       chart: [
-        { labelKey: "result.annualTakeHome", value: result.netIncome, tone: "principal" },
+        { labelKey: "result.annualAfterModelledDeductions", value: result.netIncome, tone: "principal" },
         { labelKey: "result.incomeTax", value: result.incomeTax, tone: "tax" },
         { labelKey: "result.socialContributions", value: socialTotal, tone: "neutral" },
       ],
-      notes: [{ key: result.noteKey }],
+      notes: [{ key: result.noteKey }, { key: "calc.salary.scope" }],
     };
   },
   explainerKeys: ["calc.salary.explain"],
@@ -158,7 +163,7 @@ function contributionsCalculator({
   return {
     slug,
     icon,
-    version: 1,
+    version: 8,
     category: "finance",
     isCountrySpecific: true,
     titleKey,
@@ -169,21 +174,36 @@ function contributionsCalculator({
       return [
         {
           id: "salary",
-          labelKey: "field.grossSalary",
+          labelKey: slug === "social-security" && ["ch", "pt", "pl"].includes(countryCode)
+            ? "field.annualContributionBase" : "field.grossSalary",
           kind: "currency",
-          min: scale.incomeMin,
+          min: slug === "social-security" && countryCode === "pl" ? 57_672 : scale.incomeMin,
           max: scale.incomeMax,
-          step: scale.incomeStep,
+          step: slug === "social-security" && countryCode === "pl" ? 1 : scale.incomeStep,
           default: scale.defaults.income,
         },
       ];
     },
     compute: (values, { countryCode }) => {
       const salary = num(values, "salary");
-      const result = INCOME_TAX_RULES[countryCode].compute({ grossIncome: salary });
+      // These independently reviewed contribution models do not depend on the
+      // unreviewed Swiss/Portuguese income-tax calculations.
+      const social = slug === "social-security" && countryCode === "ch"
+        ? [
+            { labelKey: "levy.ahv", amount: contribution(salary, 5.3) },
+            { labelKey: "levy.unemploymentInsurance", amount: contribution(salary, 1.1, { ceiling: 148_200 }) },
+          ]
+        : slug === "social-security" && countryCode === "pt"
+          ? [{ labelKey: "levy.socialSecurity", amount: contribution(salary, 11) }]
+          : slug === "social-security" && countryCode === "pl"
+            ? (() => {
+                const amounts = polishEmployeeContributions(salary);
+                return [{ labelKey: "levy.zus", amount: amounts.social }, { labelKey: "levy.healthInsurance", amount: amounts.health }];
+              })()
+            : INCOME_TAX_RULES[countryCode].compute({ grossIncome: salary }).social;
       const levies = keep
-        ? result.social.filter((levy) => keep.includes(levy.labelKey))
-        : result.social;
+        ? social.filter((levy) => keep.includes(levy.labelKey))
+        : social;
       const total = levies.reduce((sum, levy) => sum + levy.amount, 0);
 
       return {
@@ -201,7 +221,8 @@ function contributionsCalculator({
             tone: "tax" as const,
           })),
           {
-            labelKey: "result.monthlyContribution",
+            labelKey: slug === "social-security" && ["ch", "pt", "pl"].includes(countryCode)
+              ? "result.averageMonthlyContribution" : "result.monthlyContribution",
             value: total / 12,
             kind: "currency",
             tone: "neutral",
@@ -214,10 +235,11 @@ function contributionsCalculator({
           },
         ],
         chart: [
-          { labelKey: "result.takeHome", value: salary - total, tone: "principal" },
+          { labelKey: "result.annualAfterModelledDeductions", value: salary - total, tone: "principal" },
           { labelKey: "result.annualContribution", value: total, tone: "tax" },
         ],
-        notes: [{ key: `calc.${slug}.note` }],
+        notes: [{ key: slug === "social-security" && ["us", "ch", "pt", "pl"].includes(countryCode)
+          ? reviewScopeKey(slug, countryCode) : `calc.${slug}.note` }],
       };
     },
     explainerKeys: [`calc.${slug}.explain`],
@@ -263,7 +285,7 @@ export const socialSecurityCalculator = contributionsCalculator({
 export const thirtyPercentRulingCalculator: CalculatorDef = {
   slug: "30-percent-ruling",
   icon: "🧳",
-  version: 1,
+  version: 4,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.30-percent-ruling.title",
@@ -274,32 +296,34 @@ export const thirtyPercentRulingCalculator: CalculatorDef = {
     return [
       {
         id: "salary",
-        labelKey: "field.grossSalary",
+        labelKey: "field.rulingPackage",
         kind: "currency",
-        min: 40_000,
+        min: 48_013.01,
         max: scale.incomeMax,
-        step: scale.incomeStep,
+        step: 0.01,
         default: 75_000,
+        resolve: (values) => ({ min: str(values, "qualification", "standard") === "masters" ? 36_497.01 : 48_013.01 }),
       },
       {
-        id: "rate",
-        labelKey: "field.exemptShare",
+        id: "qualification",
+        labelKey: "field.rulingSalaryCategory",
         kind: "select",
-        default: "30",
+        default: "standard",
         options: [
-          { value: "30", labelKey: "", label: "30%" },
-          { value: "27", labelKey: "", label: "27%" },
+          { value: "standard", labelKey: "option.rulingStandard" },
+          { value: "masters", labelKey: "option.rulingMasters" },
         ],
       },
     ];
   },
   compute: (values) => {
     const salary = num(values, "salary");
-    const share = num(values, "rate", 30) / 100;
-
-    // The exemption applies up to the capped salary only.
-    const CAP = 246_000;
-    const exempt = Math.min(salary, CAP) * share;
+    const norm = str(values, "qualification", "standard") === "masters" ? 36_497 : 48_013;
+    // 2026: at most30% of the package, WNT ceiling EUR262,000, and
+    // remaining taxable wages must be strictly greater than the salary norm.
+    // Work in cents so the boundary does not drift below the statutory norm.
+    const packageCents = Math.round(salary * 100);
+    const exempt = Math.max(0, Math.min(Math.floor(packageCents * 3 / 10), 7_860_000, packageCents - norm * 100 - 1)) / 100;
     const taxableSalary = salary - exempt;
 
     const rules = INCOME_TAX_RULES.nl;
@@ -327,7 +351,7 @@ export const thirtyPercentRulingCalculator: CalculatorDef = {
         { labelKey: "result.netWithoutRuling", value: without.netIncome, tone: "neutral" },
         { labelKey: "result.annualBenefit", value: Math.max(benefit, 0), tone: "returns" },
       ],
-      notes: [{ key: "calc.30-percent-ruling.note" }],
+      notes: [{ key: "review.scope.nlRuling" }],
     };
   },
   explainerKeys: ["calc.30-percent-ruling.explain"],
@@ -338,7 +362,7 @@ export const thirtyPercentRulingCalculator: CalculatorDef = {
 export const payrollCalculator: CalculatorDef = {
   slug: "payroll",
   icon: "🧾",
-  version: 2,
+  version: 3,
   category: "business",
   isCountrySpecific: true,
   titleKey: "calc.payroll.title",
@@ -415,7 +439,7 @@ export const payrollCalculator: CalculatorDef = {
 export const severancePayCalculator: CalculatorDef = {
   slug: "severance-pay",
   icon: "📤",
-  version: 1,
+  version: 3,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.severance-pay.title",
@@ -423,10 +447,19 @@ export const severancePayCalculator: CalculatorDef = {
   countries: ["tr"],
   fields: () => [
     {
+      id: "period", labelKey: "calc.taxYearLabel", kind: "select", default: "2026-h2",
+      options: [
+        { value: "2025-h1", labelKey: "", label: "2025-01-01 – 2025-06-30" },
+        { value: "2025-h2", labelKey: "", label: "2025-07-01 – 2025-12-31" },
+        { value: "2026-h1", labelKey: "", label: "2026-01-01 – 2026-06-30" },
+        { value: "2026-h2", labelKey: "", label: "2026-07-01 – 2026-12-31" },
+      ],
+    },
+    {
       id: "salary",
-      labelKey: "field.monthlyGrossSalary",
+      labelKey: "field.severanceMonthlyGross",
       kind: "currency",
-      min: 20_000,
+      min: 0,
       max: 500_000,
       step: 1_000,
       default: 50_000,
@@ -437,7 +470,7 @@ export const severancePayCalculator: CalculatorDef = {
       kind: "years",
       min: 1,
       max: 40,
-      step: 1,
+      step: 0.01,
       default: 5,
     },
   ],
@@ -446,16 +479,18 @@ export const severancePayCalculator: CalculatorDef = {
     const years = num(values, "years");
 
     // One month's gross pay per year of service, capped per year.
-    const CEILING = 53_919.68;
+    const ceilings: Record<string, number> = { "2025-h1": 46_655.43, "2025-h2": 53_919.68, "2026-h1": 64_948.77, "2026-h2": 73_729.87 };
+    const CEILING = ceilings[str(values, "period", "2026-h2")];
     const perYear = Math.min(salary, CEILING);
-    const severance = perYear * years;
+    const roundKurus = (amount: number) => Math.round((amount + Number.EPSILON * Math.max(1, Math.abs(amount))) * 100) / 100;
+    const severance = roundKurus(perYear * years);
 
     // Statutory notice pay rises in steps with tenure.
-    const noticeWeeks = years < 0.5 ? 2 : years < 1.5 ? 4 : years < 3 ? 6 : 8;
-    const notice = (salary / 4) * noticeWeeks;
+    const noticeWeeks = years <= 1.5 ? 4 : years <= 3 ? 6 : 8;
+    const notice = (salary / 30) * noticeWeeks * 7;
 
     // Severance pay is exempt from income tax but bears stamp duty.
-    const stampDuty = severance * 0.00759;
+    const stampDuty = roundKurus(severance * 0.00759);
 
     return {
       primary: {
@@ -467,7 +502,7 @@ export const severancePayCalculator: CalculatorDef = {
       rows: [
         { labelKey: "result.grossSeverance", value: severance, kind: "currency", tone: "principal" },
         { labelKey: "result.stampDuty", value: stampDuty, kind: "currency", tone: "tax" },
-        { labelKey: "result.noticePay", value: notice, kind: "currency", tone: "returns" },
+        { labelKey: "result.grossNoticeIllustration", value: notice, kind: "currency", tone: "neutral" },
         {
           labelKey: "result.cappedAt",
           value: perYear,
@@ -478,9 +513,9 @@ export const severancePayCalculator: CalculatorDef = {
       ],
       chart: [
         { labelKey: "result.severancePay", value: severance - stampDuty, tone: "principal" },
-        { labelKey: "result.noticePay", value: notice, tone: "returns" },
+        { labelKey: "result.stampDuty", value: stampDuty, tone: "tax" },
       ],
-      notes: [{ key: "calc.severance-pay.note" }],
+      notes: [{ key: "review.scope.trSeverance" }],
     };
   },
   explainerKeys: ["calc.severance-pay.explain"],
@@ -552,3 +587,8 @@ export const tipCalculator: CalculatorDef = {
   },
   explainerKeys: ["calc.tip.explain"],
 };
+
+// Apply only independently source-reviewed country replacements.
+applyReviewedCountry(salaryCalculator);
+applyReviewedCountry(socialSecurityCalculator);
+applyReviewedCountry(payrollCalculator);

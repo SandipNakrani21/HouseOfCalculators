@@ -4,20 +4,20 @@
     "verifiedFor": "FY 2025-26 (AY 2026-27), salaried resident individual"
   },
   "us": {
-    "taxYear": "2025",
-    "verifiedFor": "Tax year 2025, federal only - no state or local income tax"
+    "taxYear": "2026",
+    "verifiedFor": "Tax year 2026, federal only - no state or local income tax"
   },
   "gb": {
-    "taxYear": "2025/26",
-    "verifiedFor": "Tax year 2025/26, England, Wales and Northern Ireland"
+    "taxYear": "2026/27",
+    "verifiedFor": "Tax year 2026/27, England, Wales and Northern Ireland"
   },
   "ca": {
-    "taxYear": "2025",
-    "verifiedFor": "Tax year 2025, federal only - provincial tax not included"
+    "taxYear": "2026",
+    "verifiedFor": "Tax year 2026, federal only - provincial tax not included"
   },
   "au": {
     "taxYear": "2025-26",
-    "verifiedFor": "Tax year 2025-26, resident individual, excluding offsets"
+    "verifiedFor": "2025-26 adult full-year resident, single without dependants; LITO and ordinary Medicare reduction"
   },
   "de": {
     "taxYear": "2025",
@@ -40,8 +40,8 @@
     "verifiedFor": "2025, single taxpayer, excluding regional differences"
   },
   "nl": {
-    "taxYear": "2025",
-    "verifiedFor": "2025, box 1, below state pension age"
+    "taxYear": "2026",
+    "verifiedFor": "2026 wage-only Box1, below AOW age, full national insurance"
   },
   "jp": {
     "taxYear": "2025",
@@ -68,20 +68,20 @@
     "verifiedFor": "2025 IRPF annualised from the monthly table, simplified deduction"
   },
   "pl": {
-    "taxYear": "2025",
-    "verifiedFor": "2025 PIT scale, employment contract"
+    "taxYear": "2026",
+    "verifiedFor": "2026 ordinary full-year resident employment, single, local employment costs"
   },
   "tr": {
     "taxYear": "2025",
     "verifiedFor": "2025 gelir vergisi tarifesi, employee"
   },
   "ae": {
-    "taxYear": "2025",
-    "verifiedFor": "2025 - the UAE levies no personal income tax on salaries"
+    "taxYear": "2026",
+    "verifiedFor": "2026 - the UAE levies no personal income tax on salaries"
   },
   "ru": {
-    "taxYear": "2025",
-    "verifiedFor": "2025 progressive NDFL scale, resident"
+    "taxYear": "2026",
+    "verifiedFor": "2026 ordinary resident wage NDFL; annual whole-ruble rounding"
   },
   "cn": {
     "taxYear": "2025",

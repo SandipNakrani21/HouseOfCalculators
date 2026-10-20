@@ -202,7 +202,7 @@ const ageSexFields = (ctx: CalcContext): CalculatorField[] => [
     id: "age",
     labelKey: "field.age",
     kind: "number",
-    min: 15,
+    min: 18,
     max: 100,
     integer: true, step: 1,
     default: 30,
@@ -222,7 +222,7 @@ const ageSexFields = (ctx: CalcContext): CalculatorField[] => [
 export const bmrCalculator: CalculatorDef = {
   slug: "bmr",
   icon: "🔥",
-  version: 2,
+  version: 3,
   category: "health",
   titleKey: "calc.bmr.title",
   descKey: "calc.bmr.desc",
@@ -230,6 +230,7 @@ export const bmrCalculator: CalculatorDef = {
   countryRelevance: "units",
   relatedCalculators: ["tdee", "bmi"],
   fields: ageSexFields,
+  validate: values => num(values, "age") < 18 ? "validation.adultEnergy" : null,
   compute: (values) => {
     const { kilograms, centimetres } = metricBody(values);
     const basal = bmr(kilograms, centimetres, num(values, "age"), str(values, "sex", "male") as Sex);
@@ -258,13 +259,24 @@ export const bmrCalculator: CalculatorDef = {
 export const tdeeCalculator: CalculatorDef = {
   slug: "tdee",
   icon: "🍽️",
-  version: 2,
+  version: 3,
   category: "health",
   titleKey: "calc.tdee.title",
   descKey: "calc.tdee.desc",
   countries: EVERYWHERE,
   countryRelevance: "units",
   relatedCalculators: ["bmr", "bmi"],
+  validate: values => {
+    if (num(values, "age") < 18) return "validation.adultEnergy";
+    const { kilograms, centimetres } = metricBody(values);
+    const basal = bmr(kilograms, centimetres, num(values, "age"), str(values, "sex", "male") as Sex);
+    const maintenance = tdee(basal, str(values, "activity", "moderate") as ActivityLevel);
+    const goal = str(values, "goal", "maintain");
+    const target = goal === "lose" ? maintenance - 500 : goal === "gain" ? maintenance + 500 : maintenance;
+    // Withhold unsuitable targets; never turn the threshold into a prescribed minimum.
+    if (target < 1000 || (goal === "lose" && bmi(kilograms, centimetres) < 18.5)) return "validation.energyTarget";
+    return null;
+  },
   fields: (ctx) => [
     ...ageSexFields(ctx),
     {
@@ -297,8 +309,7 @@ export const tdeeCalculator: CalculatorDef = {
       0,
     );
 
-    // A 500 kcal daily shift is the usual starting point for about half a
-    // kilogram a week either way.
+    // A fixed shift is an illustration, not a predicted rate of weight change.
     const goal = str(values, "goal", "maintain");
     const target =
       goal === "lose" ? maintenance - 500 : goal === "gain" ? maintenance + 500 : maintenance;
@@ -320,9 +331,9 @@ export const tdeeCalculator: CalculatorDef = {
         { labelKey: "result.fat", value: split.fat, kind: "number", tone: "tax", hintKey: "units.grams" },
       ],
       chart: [
-        { labelKey: "result.protein", value: split.protein * 4, tone: "principal" },
-        { labelKey: "result.carbs", value: split.carbs * 4, tone: "returns" },
-        { labelKey: "result.fat", value: split.fat * 9, tone: "tax" },
+        { labelKey: "result.protein", value: split.protein * 4, tone: "principal", hintKey: "units.kcalPerDay" },
+        { labelKey: "result.carbs", value: split.carbs * 4, tone: "returns", hintKey: "units.kcalPerDay" },
+        { labelKey: "result.fat", value: split.fat * 9, tone: "tax", hintKey: "units.kcalPerDay" },
       ],
       notes: [{ key: "calc.tdee.note" }],
     };

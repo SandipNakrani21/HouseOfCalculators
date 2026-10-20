@@ -170,7 +170,7 @@ export function ConsentBanner() {
   return <div role="dialog" aria-modal="false" aria-labelledby="consent-title" className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface shadow-lg">
     <div className="mx-auto flex max-w-4xl flex-col gap-4 px-4 py-4 sm:px-6 sm:py-5">
       <div><h2 id="consent-title" className="text-sm font-semibold text-heading">{t(COPY.title)}</h2>
-        <p className="mt-1 text-sm leading-relaxed text-muted">{t(applies !== false ? "consent.unavailable" : COPY.body)}{" "}<Link href={`${base}/cookies`} className="text-primary underline underline-offset-2">{t("consent.learnMore")}</Link></p>
+        <p className="mt-1 text-sm leading-relaxed text-muted">{t(applies !== false ? "consent.unavailable" : COPY.body)}{" "}<Link href={`${base}/privacy`} className="text-primary underline underline-offset-2">{t("legal.privacy.title")}</Link>{" · "}<Link href={`${base}/cookies`} className="text-primary underline underline-offset-2">{t("consent.learnMore")}</Link>{" · "}<a href="https://business.safety.google/privacy/" className="text-primary underline underline-offset-2">{t("legal.link.googlePrivacy")}</a></p>
       </div>
       <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
         <button type="button" onClick={() => choose("denied")} className="btn btn-outline btn-md">{t(COPY.reject)}</button>

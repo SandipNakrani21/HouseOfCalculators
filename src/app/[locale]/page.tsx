@@ -141,18 +141,21 @@ export default async function HomePage({
   // Every figure is counted from the registries, so none can drift from the truth.
   // Every country, for the floating flag rows: in the locale's alphabetical
   // order, split into two rows that drift in opposite directions.
-  const countryChips: CountryChip[] = COUNTRY_CODES.filter(each => calculatorsFor(each).some(calc => calc.isCountrySpecific)).map((each) => {
-    const tools = calculatorsFor(each).filter((calc) => calc.isCountrySpecific).length;
+  const countryChips: CountryChip[] = COUNTRY_CODES.map((each) => {
+    const available = calculatorsFor(each);
+    const tools = available.filter((calc) => calc.isCountrySpecific).length;
     const { symbol, code: iso } = COUNTRIES[each].currency;
     return {
       code: each,
       name: t(`country.${each}`),
-      href: countryPath(code, each),
+      href: tools ? countryPath(code, each) : sectionPath(code, "calculators"),
       currency: symbol === iso ? iso : `${symbol} ${iso}`,
-      tools: plural(t, fmt.locale, "home.world.tools", tools, { display: fmt.number(tools) }),
+      tools: tools
+        ? plural(t, fmt.locale, "home.world.tools", tools, { display: fmt.number(tools) })
+        : `${fmt.number(available.length)} ${t("section.calculators")}`,
     };
   }).sort((a, b) => a.name.localeCompare(b.name, code));
-  const countryRows = [countryChips];
+  const countryRows = [countryChips.slice(0, Math.ceil(countryChips.length / 2)), countryChips.slice(Math.ceil(countryChips.length / 2))];
 
   const counts = {
     calculators: new Set(COUNTRY_CODES.flatMap(country => calculatorsFor(country).map(calc => calc.slug))).size,
@@ -306,7 +309,7 @@ export default async function HomePage({
           <Glow tone="green" className="-start-48 bottom-0" size={340} delay={12000} />
           <SectionHeader
             title={t("home.world.title")}
-            description={t("home.world.subtitle", { count: counts.countries })}
+            description={t("home.why.global.body")}
             action={
               <ButtonLink href={sectionPath(code, "countries")} variant="outline" size="md">
                 {t("home.world.button")}

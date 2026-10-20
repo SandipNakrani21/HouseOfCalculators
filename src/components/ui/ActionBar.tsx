@@ -57,10 +57,15 @@ export function ActionBar({
 
   const share = async () => {
     if (!navigator.share) return copyLink();
+    const data = { title: shareTitle ?? document.title, url: url() };
     try {
-      await navigator.share({ title: shareTitle ?? document.title, url: url() });
-    } catch {
-      // A cancelled share is not an error.
+      if (navigator.canShare && !navigator.canShare(data)) return copyLink();
+      await navigator.share(data);
+    } catch (error) {
+      // Closing the native sheet is intentional. Unsupported, blocked or
+      // failed sharing still gives the visitor a usable link.
+      if (error instanceof Error && error.name === "AbortError") return;
+      await copyLink();
     }
   };
 

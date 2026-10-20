@@ -87,7 +87,7 @@ export function legalParams(): Record<string, string> {
 }
 
 const GOOGLE_ADS_POLICY = "https://policies.google.com/technologies/ads";
-const GOOGLE_PRIVACY = "https://policies.google.com/privacy";
+const GOOGLE_PRIVACY = "https://business.safety.google/privacy/";
 const ADS_SETTINGS = "https://adssettings.google.com";
 const ALL_ABOUT_COOKIES = "https://www.allaboutcookies.org";
 const GA_OPTOUT = "https://tools.google.com/dlpage/gaoptout";
@@ -105,7 +105,7 @@ const privacy: LegalPage = {
   titleKey: "legal.privacy.title",
   descKey: "legal.privacy.desc",
   introKey: "legal.privacy.intro",
-  updated: "2026-10-18",
+  updated: "2026-10-19",
   sections: [
     {
       titleKey: "legal.privacy.summary.title",
@@ -143,6 +143,7 @@ const privacy: LegalPage = {
         { labelKey: "legal.link.googleAds", href: GOOGLE_ADS_POLICY },
         { labelKey: "legal.link.googlePrivacy", href: GOOGLE_PRIVACY },
         { labelKey: "legal.link.adsSettings", href: ADS_SETTINGS },
+        { labelKey: "legal.link.vendorOptout", href: "https://optout.aboutads.info/" },
       ],
     },
     ...whenAnalytics({
@@ -187,7 +188,7 @@ const cookies: LegalPage = {
   titleKey: "legal.cookies.title",
   descKey: "legal.cookies.desc",
   introKey: "legal.cookies.intro",
-  updated: "2026-10-18",
+  updated: "2026-10-19",
   sections: [
     {
       titleKey: "legal.cookies.own.title",
@@ -326,7 +327,7 @@ const about: LegalPage = {
   titleKey: "legal.about.title",
   descKey: "legal.about.desc",
   introKey: "legal.about.intro",
-  updated: "2026-10-18",
+  updated: "2026-10-19",
   sections: [
     {
       titleKey: "legal.about.what.title",

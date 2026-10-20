@@ -7,6 +7,7 @@ import { useEffect, useId, useState, useSyncExternalStore, type CSSProperties } 
 import { createPortal } from "react-dom";
 
 import type { CountryCode } from "@/config/countries";
+import { useLocale } from "@/lib/locale-context";
 
 export type CountryChip = {
   code: CountryCode;
@@ -40,6 +41,7 @@ export function CountryMarquee({
   rows: CountryChip[][];
   labels: { currency: string; tools: string; view: string };
 }) {
+  const { setCountry } = useLocale();
   const [active, setActive] = useState<Active | null>(null);
   const popupId = useId();
   // Portals need the document, which only exists after hydration.
@@ -89,6 +91,7 @@ export function CountryMarquee({
                 >
                   <Link
                     href={chip.href}
+                    onClick={() => setCountry(chip.code)}
                     tabIndex={copy ? -1 : undefined}
                     aria-describedby={active?.chip.code === chip.code && !copy ? popupId : undefined}
                     onMouseEnter={(event) => show(chip, event.currentTarget)}

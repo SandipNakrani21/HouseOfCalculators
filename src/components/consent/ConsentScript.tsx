@@ -25,6 +25,10 @@ export function ConsentScript() {
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
   window.gtag = gtag;
+  // Consent Mode alone does not pause AdSense. Keep requests paused until
+  // explicit storage consent resolves; the Google messaging loader still loads.
+  window.adsbygoogle = window.adsbygoogle || [];
+  window.adsbygoogle.pauseAdRequests = 1;
 
   // Denied until the visitor says otherwise. Defaulting the other way would
   // be the whole point of a consent banner missed.

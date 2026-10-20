@@ -3,11 +3,16 @@ import { resolveFields } from "@/lib/validation";
 import { plural } from "@/lib/i18n/core";
 
 /** The published illustration uses the same defaults and engine as the tool. */
-export function WorkedExample({ calculator, ctx }: { calculator: CalculatorDef; ctx: CalcContext }) {
+export function WorkedExample({ calculator, ctx, omitNoteKey }: { calculator: CalculatorDef; ctx: CalcContext; omitNoteKey?: string }) {
   const { t, fmt } = ctx;
   const baseFields = calculator.fields(ctx);
   const values = Object.fromEntries(baseFields.map(field => [field.id, field.default]));
   const fields = resolveFields(baseFields, values).filter(field => !field.visibleWhen || field.visibleWhen(values));
+  const validation = calculator.validate?.(values, ctx);
+  if (validation) return <section data-worked-example={calculator.slug} className="rounded-lg border border-border p-4 sm:p-6">
+    <h3 className="font-semibold text-heading">{t("quality.example")}</h3>
+    <p className="mt-2 text-sm leading-relaxed text-muted">{t(validation)}</p>
+  </section>;
   const result = calculator.compute(values, ctx);
   const format = (row: ResultRow): string => {
     if (row.kind === "label") return t(String(row.value));
@@ -29,7 +34,7 @@ export function WorkedExample({ calculator, ctx }: { calculator: CalculatorDef; 
       })}</dl></div>
       <div><h4 className="mb-2 font-semibold">{t("quality.outputs")}</h4><dl className="divide-y divide-border">{[result.primary, ...result.rows.filter(row => row.labelKey !== result.primary.labelKey)].map((row, index) => <div key={`${row.labelKey}-${index}`} className="flex justify-between gap-4 py-2 text-sm"><dt className="text-muted">{t(row.labelKey)}</dt><dd className="tabular max-w-[60%] break-words text-end">{format(row)}{row.hintKey ? ` (${t(row.hintKey)})` : ""}</dd></div>)}</dl></div>
     </div>
-    {result.notes?.map((note, index) => <p key={index} className="mt-3 text-sm text-muted">{t(note.key, note.params)}</p>)}
+    {result.notes?.filter(note => note.key !== omitNoteKey).map((note, index) => <p key={index} className="mt-3 text-sm text-muted">{t(note.key, note.params)}</p>)}
     <p className="mt-4 text-sm leading-relaxed text-muted">{t("quality.assumptions")}</p>
     <p className="mt-3 text-sm leading-relaxed text-muted">{t(`quality.limit.${calculator.category}`)}</p>
   </section>;

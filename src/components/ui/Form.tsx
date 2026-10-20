@@ -196,7 +196,7 @@ export function ResultBox({
   const quiet = tone === "quiet";
   return (
     <div aria-live={live} className={`result-box ${quiet ? "result-box-quiet" : ""} ${className}`}>
-      <p className={`text-sm font-semibold ${quiet ? "text-muted" : "text-white/80"}`}>{label}</p>
+      <p className={`text-sm font-semibold ${quiet ? "text-muted" : "text-primary-contrast"}`}>{label}</p>
       <p
         key={value}
         className={`value-flash tabular mt-1 break-words font-extrabold tracking-tight ${
@@ -208,7 +208,7 @@ export function ResultBox({
         {value}
       </p>
       {detail ? (
-        <div className={`mt-2 text-sm ${quiet ? "text-muted" : "text-white/80"}`}>{detail}</div>
+        <div className={`mt-2 text-sm ${quiet ? "text-muted" : "text-primary-contrast"}`}>{detail}</div>
       ) : null}
     </div>
   );
@@ -236,7 +236,7 @@ export function FactList({
             ) : null}
             {item.label}
           </dt>
-          <dd className="tabular min-w-0 text-end text-sm font-bold text-heading [overflow-wrap:anywhere]">{item.value}</dd>
+          <dd className="tabular min-w-0 max-w-[60%] shrink-0 text-end text-sm font-bold text-heading [overflow-wrap:anywhere]">{item.value}</dd>
         </div>
       ))}
     </dl>

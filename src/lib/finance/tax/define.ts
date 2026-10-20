@@ -74,12 +74,18 @@ export type RuleSpec = {
   defaultRegime?: string;
   /** Whether the form offers a deductions input. Defaults to true. */
   deductions?: boolean | ((regime: string) => boolean);
+  /** US itemised deductions replace the standard deduction, never add to it. */
+  deductionMode?: "additional" | "replace-allowance";
   /** Granted automatically and subtracted before the slabs. */
   allowance?: number | ((gross: number, regime: string) => number);
+  /** Statutory rounding of the taxable base, before applying rates. */
+  roundTaxable?: (taxable: number) => number;
   /** Progressive bands measured on income after the allowance. */
   slabs?: Slab[] | ((regime: string) => Slab[]);
   /** Replaces the slab engine for formula-based systems such as Germany. */
   formula?: (taxable: number, regime: string) => number;
+  /** Statutory rounding of the calculated tax, without changing marginal bands. */
+  roundTax?: (tax: number) => number;
   /** Non-refundable credits subtracted from the computed tax. */
   credit?: (ctx: Ctx) => number;
   /** Levies charged on the tax itself. */
@@ -108,16 +114,21 @@ export function defineRules(spec: RuleSpec): IncomeTaxRules {
     compute: ({ grossIncome, regime = defaultRegime, deductions = 0 }) => {
       const gross = Math.max(grossIncome, 0);
 
-      const allowance = Math.min(
+      const availableAllowance = Math.min(
         typeof spec.allowance === "function"
           ? spec.allowance(gross, regime)
           : (spec.allowance ?? 0),
         gross,
       );
 
+      const requested = allowsDeductions(regime) ? Math.max(deductions, 0) : 0;
+      const replaces = spec.deductionMode === "replace-allowance";
+      const useItemised = replaces && requested > availableAllowance;
+      const allowance = useItemised ? 0 : availableAllowance;
       const room = Math.max(gross - allowance, 0);
-      const claimed = allowsDeductions(regime) ? Math.min(deductions, room) : 0;
-      const taxable = Math.max(room - claimed, 0);
+      const claimed = replaces && !useItemised ? 0 : Math.min(requested, room);
+      const unroundedTaxable = Math.max(room - claimed, 0);
+      const taxable = spec.roundTaxable?.(unroundedTaxable) ?? unroundedTaxable;
 
       const slabs =
         typeof spec.slabs === "function"
@@ -125,7 +136,8 @@ export function defineRules(spec: RuleSpec): IncomeTaxRules {
           : (spec.slabs ?? EMPTY_SLABS);
 
       const banded = applySlabs(taxable, slabs);
-      const baseTax = spec.formula ? spec.formula(taxable, regime) : banded.tax;
+      const unroundedBaseTax = spec.formula ? spec.formula(taxable, regime) : banded.tax;
+      const baseTax = spec.roundTax?.(unroundedBaseTax) ?? unroundedBaseTax;
 
       const ctx: Ctx = { gross, taxable, tax: baseTax, regime };
       const credit = Math.min(spec.credit?.(ctx) ?? 0, baseTax);

@@ -98,8 +98,8 @@ export default async function ChartPage({
           <>
             <p className="text-sm leading-relaxed text-muted">{t(chart.explainerKey)}</p>
             {/* A table always points at the tool it belongs with, and vice versa. */}
-            <h3 className="mb-3 mt-5 text-sm font-semibold text-heading">{t("chart.useInstead")}</h3>
-            <ul className="flex flex-wrap gap-2.5">
+            <h3 data-print-exclude className="mb-3 mt-5 text-sm font-semibold text-heading">{t("chart.useInstead")}</h3>
+            <ul data-print-exclude className="flex flex-wrap gap-2.5">
               {chart.related.map((link) => (
                 <li key={`${link.section}-${link.category}-${link.slug ?? ""}`}>
                   <Link
@@ -134,7 +134,7 @@ export default async function ChartPage({
       }}
       cta={calculatorsCta(t, code)}
     >
-      <ReferenceTable table={table} caption={title} />
+      <ReferenceTable key={chart.slug} table={table} caption={title} />
     </DetailPage>
   );
 }

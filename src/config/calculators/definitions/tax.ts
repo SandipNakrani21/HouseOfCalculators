@@ -1,5 +1,7 @@
+import { applyReviewedCountry } from "../reviewed";
 import { MONEY_SCALE } from "@/config/calculators/scale";
 import {
+  bool,
   num,
   str,
   type CalculatorDef,
@@ -7,6 +9,7 @@ import {
 } from "@/config/calculators/types";
 import type { CountryCode } from "@/config/countries";
 import { applySlabs, INCOME_TAX_RULES, type Slab } from "@/lib/finance/tax";
+import { polishEmploymentMarginalRate } from "@/lib/finance/tax/poland";
 
 const ALL: CountryCode[] = [
   "in", "us", "gb", "ae", "ca", "au", "de", "at", "ch", "fr",
@@ -19,7 +22,7 @@ const ALL: CountryCode[] = [
 export const incomeTaxCalculator: CalculatorDef = {
   slug: "income-tax",
   icon: "🧾",
-  version: 2,
+  version: 14,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.income-tax.title",
@@ -34,9 +37,9 @@ export const incomeTaxCalculator: CalculatorDef = {
         id: "income",
         labelKey: "field.annualIncome",
         kind: "currency",
-        min: scale.incomeMin,
-        max: scale.incomeMax,
-        step: scale.incomeStep,
+        min: countryCode === "pl" ? 57_672 : scale.incomeMin,
+        max: countryCode === "pl" ? 1_000_000 : scale.incomeMax,
+        step: countryCode === "pl" ? 1 : scale.incomeStep,
         default: scale.defaults.income,
       },
       ...(rules.regimes.length > 1
@@ -71,6 +74,13 @@ export const incomeTaxCalculator: CalculatorDef = {
     const rules = INCOME_TAX_RULES[countryCode];
     const result = rules.compute({
       grossIncome: num(values, "income"),
+      regime: str(values, "regime", rules.defaultRegime),
+      deductions: num(values, "deductions"),
+    });
+    // A band rate omits allowance/credit withdrawal and contribution changes.
+    // Measure the next annual currency unit with every other input unchanged.
+    const nextUnit = rules.compute({
+      grossIncome: num(values, "income") + 1,
       regime: str(values, "regime", rules.defaultRegime),
       deductions: num(values, "deductions"),
     });
@@ -129,7 +139,10 @@ export const incomeTaxCalculator: CalculatorDef = {
       },
       {
         labelKey: "result.marginalRate",
-        value: result.marginalRate,
+        // Whole-ruble NDFL collection steps are not the statutory band rate.
+        value: countryCode === "ru" ? result.marginalRate : countryCode === "pl"
+          ? polishEmploymentMarginalRate(num(values, "income"))
+          : (nextUnit.totalTax - result.totalTax) * 100,
         kind: "percent",
         tone: "neutral",
       },
@@ -137,14 +150,14 @@ export const incomeTaxCalculator: CalculatorDef = {
 
     return {
       primary: {
-        labelKey: "result.takeHome",
+        labelKey: "result.annualAfterModelledDeductions",
         value: result.netIncome,
         kind: "currency",
         emphasis: true,
       },
       rows,
       chart: [
-        { labelKey: "result.takeHome", value: result.netIncome, tone: "principal" },
+        { labelKey: "result.annualAfterModelledDeductions", value: result.netIncome, tone: "principal" },
         { labelKey: "result.totalTax", value: result.totalTax, tone: "tax" },
       ],
       table: result.portions.some((portion) => portion.taxableInSlab > 0)
@@ -168,7 +181,7 @@ export const incomeTaxCalculator: CalculatorDef = {
               })),
           }
         : undefined,
-      notes: [{ key: result.noteKey }],
+      notes: [{ key: result.noteKey }, { key: "calc.salary.scope" }],
     };
   },
   explainerKeys: ["calc.income-tax.explain.1", "calc.income-tax.explain.2"],
@@ -180,14 +193,14 @@ export const incomeTaxCalculator: CalculatorDef = {
 export const consumptionTaxCalculator: CalculatorDef = {
   slug: "vat",
   icon: "🧮",
-  version: 1,
+  version: 2,
   category: "finance",
-  isCountrySpecific: true,
+  countryRelevance: "currency",
   titleKey: "calc.vat.title",
   descKey: "calc.vat.desc",
-  params: ({ country, t }) => ({ tax: t(country.consumptionTax.labelKey) }),
+  params: ({ t }) => ({ tax: t("field.taxRate") }),
   countries: ALL,
-  fields: ({ country, countryCode }) => [
+  fields: ({ countryCode }) => [
     {
       id: "amount",
       labelKey: "field.amount",
@@ -211,18 +224,19 @@ export const consumptionTaxCalculator: CalculatorDef = {
     {
       id: "rate",
       labelKey: "field.taxRate",
-      kind: "select",
-      default: String(country.consumptionTax.standardRate),
-      options: country.consumptionTax.rates.map((rate) => ({
-        value: String(rate),
-        labelKey: "",
-        label: `${rate}%`,
-      })),
+      hintKey: "calc.vat.rateHint",
+      kind: "percent",
+      min: 0,
+      max: 100,
+      step: 0.01,
+      slider: false,
+      // An illustrative starting value, never a claimed national/default rate.
+      default: 0,
     },
   ],
   compute: (values, { country, t }) => {
     const amount = num(values, "amount");
-    const rate = num(values, "rate", country.consumptionTax.standardRate);
+    const rate = num(values, "rate");
     const inclusive = str(values, "direction", "exclusive") === "inclusive";
 
     // Inclusive means the figure entered already contains the tax.
@@ -246,7 +260,7 @@ export const consumptionTaxCalculator: CalculatorDef = {
       ],
       notes: [
         {
-          key: `calc.vat.note.${country.code}`,
+          key: "calc.vat.scope",
           params: { tax: t(country.consumptionTax.labelKey) },
         },
       ],
@@ -286,7 +300,7 @@ const GAINS_RULES: Partial<Record<CountryCode, GainsRule>> = {
   },
   gb: {
     allowance: 3_000,
-    longTerm: [{ from: 0, rate: 24 }],
+    longTerm: [{ from: 0, rate: 18 }, { from: 37_700, rate: 24 }],
     longTermMonths: 0,
   },
   ca: {
@@ -308,7 +322,8 @@ const GAINS_RULES: Partial<Record<CountryCode, GainsRule>> = {
   },
   fr: {
     allowance: 0,
-    longTerm: [{ from: 0, rate: 30 }],
+    // Ordinary 2025 securities gains assessed in 2026: 12.8% IR +18.6% social.
+    longTerm: [{ from: 0, rate: 31.4 }],
     longTermMonths: 0,
   },
   es: {
@@ -318,7 +333,7 @@ const GAINS_RULES: Partial<Record<CountryCode, GainsRule>> = {
       { from: 6_000, rate: 21 },
       { from: 50_000, rate: 23 },
       { from: 200_000, rate: 27 },
-      { from: 300_000, rate: 28 },
+      { from: 300_000, rate: 30 },
     ],
     longTermMonths: 0,
   },
@@ -337,7 +352,7 @@ const GAINS_RULES: Partial<Record<CountryCode, GainsRule>> = {
 export const capitalGainsCalculator: CalculatorDef = {
   slug: "capital-gains",
   icon: "📊",
-  version: 1,
+  version: 4,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.capital-gains.title",
@@ -369,6 +384,7 @@ export const capitalGainsCalculator: CalculatorDef = {
         labelKey: "field.holdingPeriod",
         kind: "select",
         default: "long",
+        visibleWhen: () => !["gb", "de", "it", "es", "fr"].includes(countryCode),
         options: [
           { value: "long", labelKey: "option.longTerm" },
           { value: "short", labelKey: "option.shortTerm" },
@@ -376,15 +392,29 @@ export const capitalGainsCalculator: CalculatorDef = {
       },
       {
         id: "income",
-        labelKey: "field.otherIncome",
+        labelKey: countryCode === "gb" ? "field.taxableOtherIncome"
+          : countryCode === "es" ? "field.otherTaxableSavingsIncome"
+            : countryCode === "fr" ? "field.frReferenceIncome" : "field.otherIncome",
+        ...(countryCode === "gb" ? { hintKey: "calc.capital-gains.ukIncomeHint" } : {}),
+        ...(countryCode === "fr" ? { hintKey: "calc.capital-gains.frReferenceHint" } : {}),
+        visibleWhen: () => !["de", "it"].includes(countryCode),
         kind: "currency",
         min: 0,
-        max: scale.incomeMax,
+        max: countryCode === "fr" ? 250_000 : scale.incomeMax,
         step: scale.incomeStep,
-        default: scale.defaults.income,
+        default: countryCode === "es" ? 0 : scale.defaults.income,
       },
+      ...(countryCode === "de" ? [{
+        id: "remainingAllowance",
+        labelKey: "field.remainingSavingsAllowance",
+        kind: "currency" as const,
+        min: 0, max: 1_000, step: 1, default: 0, slider: false,
+      }] : []),
     ];
   },
+  validate: (values, { countryCode }) => countryCode === "fr"
+    && num(values, "income") < Math.max(num(values, "sale") - num(values, "purchase"), 0)
+    ? "calc.capital-gains.frReferenceError" : null,
   compute: (values, { countryCode }) => {
     const rule = GAINS_RULES[countryCode];
     const gain = Math.max(num(values, "sale") - num(values, "purchase"), 0);
@@ -399,10 +429,13 @@ export const capitalGainsCalculator: CalculatorDef = {
     }
 
     const included = gain * (rule.inclusion ?? 1);
-    const taxable = Math.max(included - rule.allowance, 0);
+    const allowance = countryCode === "de"
+      ? Math.min(Math.max(num(values, "remainingAllowance"), 0), 1_000)
+      : rule.allowance;
+    const taxable = Math.max(included - allowance, 0);
 
     let tax: number;
-    if (longTerm) {
+    if (longTerm || ["gb", "de", "it", "es", "fr"].includes(countryCode)) {
       // Rates that depend on total income are found by locating the gain on
       // the scale above the income already earned.
       const withIncome = applySlabs(income + taxable, rule.longTerm).tax;
@@ -410,7 +443,9 @@ export const capitalGainsCalculator: CalculatorDef = {
       tax =
         rule.longTerm.length > 1 ? withIncome - withoutGain : (taxable * rule.longTerm[0].rate) / 100;
     } else {
-      // Short-term gains are taxed as ordinary income almost everywhere.
+      // Retained unreviewed models use this branch; statutory publication is
+      // controlled independently. It is not valid for the reviewed securities
+      // regimes above, regardless of a stale saved holding-period selection.
       const rules = INCOME_TAX_RULES[countryCode];
       const withGain = rules.compute({ grossIncome: income + gain }).incomeTax;
       const withoutGain = rules.compute({ grossIncome: income }).incomeTax;
@@ -436,17 +471,21 @@ export const capitalGainsCalculator: CalculatorDef = {
               },
             ]
           : []),
-        ...(rule.allowance
+        ...(allowance
           ? [
               {
                 labelKey: "result.exemptAmount",
-                value: -Math.min(included, rule.allowance),
+                value: -Math.min(included, allowance),
                 kind: "currency" as const,
                 tone: "returns" as const,
               },
             ]
           : []),
         { labelKey: "result.taxableGain", value: taxable, kind: "currency", tone: "neutral" },
+        ...(countryCode === "fr" ? [
+          { labelKey: "result.incomeTax", value: taxable * 0.128, kind: "currency" as const, tone: "tax" as const },
+          { labelKey: "result.socialContributions", value: taxable * 0.186, kind: "currency" as const, tone: "tax" as const },
+        ] : []),
         { labelKey: "result.taxAmount", value: tax, kind: "currency", tone: "tax", emphasis: true },
         {
           labelKey: "result.effectiveRate",
@@ -459,7 +498,7 @@ export const capitalGainsCalculator: CalculatorDef = {
         { labelKey: "result.netGain", value: gain - tax, tone: "principal" },
         { labelKey: "result.taxAmount", value: tax, tone: "tax" },
       ],
-      notes: [{ key: `calc.capital-gains.note.${countryCode}` }],
+      notes: [{ key: countryCode === "gb" ? "review.scope.ukGains" : `calc.capital-gains.note.${countryCode}` }],
     };
   },
   explainerKeys: ["calc.capital-gains.explain"],
@@ -484,7 +523,7 @@ const SDLT_FIRST_TIME: Slab[] = [
 export const stampDutyCalculator: CalculatorDef = {
   slug: "stamp-duty",
   icon: "📜",
-  version: 1,
+  version: 2,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.stamp-duty.title",
@@ -511,6 +550,13 @@ export const stampDutyCalculator: CalculatorDef = {
         { value: "additional", labelKey: "option.additionalProperty" },
       ],
     },
+    {
+      id: "nonResident",
+      labelKey: "field.sdltNonResident",
+      hintKey: "calc.stamp-duty.residencyHint",
+      kind: "toggle",
+      default: false,
+    },
   ],
   compute: (values) => {
     const price = num(values, "price");
@@ -523,7 +569,7 @@ export const stampDutyCalculator: CalculatorDef = {
       useRelief ? SDLT_FIRST_TIME : SDLT_STANDARD,
     );
     // Additional properties pay a flat surcharge on the whole price.
-    const surcharge = buyer === "additional" ? price * 0.05 : 0;
+    const surcharge = (buyer === "additional" ? price * 0.05 : 0) + (bool(values, "nonResident") ? price * 0.02 : 0);
     const total = base + surcharge;
 
     return {
@@ -574,7 +620,7 @@ export const stampDutyCalculator: CalculatorDef = {
             tax: portion.tax,
           })),
       },
-      notes: [{ key: "calc.stamp-duty.note" }],
+      notes: [{ key: "review.scope.sdlt" }],
     };
   },
   explainerKeys: ["calc.stamp-duty.explain"],
@@ -641,30 +687,21 @@ export const churchTaxCalculator: CalculatorDef = {
 
 /* ---------------------------------------------------------- Property tax */
 
-/** Indicative annual property tax rate as a share of value, per country. */
-const PROPERTY_TAX_RATE: Partial<Record<CountryCode, number>> = {
-  fr: 1.1,
-  it: 0.86,
-  us: 1.1,
-  es: 0.6,
-  pt: 0.35,
-};
-
 export const propertyTaxCalculator: CalculatorDef = {
   slug: "property-tax",
   icon: "🏡",
-  version: 1,
+  version: 2,
   category: "finance",
-  isCountrySpecific: true,
+  countryRelevance: "currency",
   titleKey: "calc.property-tax.title",
   descKey: "calc.property-tax.desc",
-  countries: Object.keys(PROPERTY_TAX_RATE) as CountryCode[],
+  countries: ALL,
   fields: ({ countryCode }) => [
     {
       id: "value",
-      labelKey: "field.propertyValue",
+      labelKey: "field.taxablePropertyValue",
       kind: "currency",
-      min: MONEY_SCALE[countryCode].loanMin,
+      min: 0,
       max: MONEY_SCALE[countryCode].loanMax,
       step: MONEY_SCALE[countryCode].loanStep,
       default: MONEY_SCALE[countryCode].defaults.property,
@@ -672,11 +709,13 @@ export const propertyTaxCalculator: CalculatorDef = {
     {
       id: "rate",
       labelKey: "field.taxRate",
+      hintKey: "calc.property-tax.desc",
       kind: "percent",
       min: 0,
-      max: 4,
+      max: 100,
       step: 0.01,
-      default: PROPERTY_TAX_RATE[countryCode] ?? 1,
+      slider: false,
+      default: 0,
     },
   ],
   compute: (values) => {
@@ -692,8 +731,13 @@ export const propertyTaxCalculator: CalculatorDef = {
         { labelKey: "result.monthlyTax", value: annual / 12, kind: "currency", tone: "tax" },
         { labelKey: "result.tenYearTax", value: annual * 10, kind: "currency", tone: "neutral" },
       ],
-      notes: [{ key: "calc.property-tax.note" }],
+      notes: [{ key: "calc.property-tax.scope" }],
     };
   },
   explainerKeys: ["calc.property-tax.explain"],
 };
+
+// Apply only independently source-reviewed country replacements.
+applyReviewedCountry(incomeTaxCalculator);
+applyReviewedCountry(capitalGainsCalculator);
+applyReviewedCountry(churchTaxCalculator);

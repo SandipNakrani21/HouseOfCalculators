@@ -49,7 +49,7 @@ export function Hero({
         <div className="mx-auto max-w-6xl">
           {badge ? <div className="animate-fade-up flex justify-center">{badge}</div> : null}
 
-          <h1 className="mt-4 text-[clamp(1.5rem,5.5vw,4.5rem)] font-extrabold leading-[1.1] tracking-tight sm:mt-5" style={{ "--step": `${TYPE_STEP_MS}ms` } as CSSProperties}>
+          <h1 aria-label={`${line1} ${line2}`} className="mt-4 text-[clamp(1.5rem,5.5vw,4.5rem)] font-extrabold leading-[1.1] tracking-tight sm:mt-5" style={{ "--step": `${TYPE_STEP_MS}ms` } as CSSProperties}>
             {typed(line1, 0, { last: false })}
             {/* The brand gradient: per letter when typed (a clipped
                 background would ignore the letters' own visibility), as a

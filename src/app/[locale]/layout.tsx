@@ -76,7 +76,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale: path } = await params;
   const locale = localeFromPath(path);
-  if (!locale) return {};
+  if (!locale) return { metadataBase: new URL(siteUrl()) };
 
   const t = createTranslator(locale.language, locale.code);
   return {
