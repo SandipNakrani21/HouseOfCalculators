@@ -36,7 +36,7 @@
   {
     "slug": "income-tax",
     "icon": "🧾",
-    "version": 15,
+    "version": 16,
     "category": "finance",
     "titleKey": "calc.income-tax.title",
     "descKey": "calc.income-tax.desc",
@@ -71,7 +71,7 @@
   {
     "slug": "salary",
     "icon": "💼",
-    "version": 13,
+    "version": 14,
     "category": "finance",
     "titleKey": "calc.salary.title",
     "descKey": "calc.salary.desc",
@@ -286,7 +286,7 @@
   {
     "slug": "capital-gains",
     "icon": "📊",
-    "version": 5,
+    "version": 6,
     "category": "finance",
     "titleKey": "calc.capital-gains.title",
     "descKey": "calc.capital-gains.desc",
@@ -377,7 +377,7 @@
   {
     "slug": "social-security",
     "icon": "🛡️",
-    "version": 9,
+    "version": 10,
     "category": "finance",
     "titleKey": "calc.social-security.title",
     "descKey": "calc.social-security.desc",
@@ -405,7 +405,7 @@
   {
     "slug": "national-insurance",
     "icon": "🇬🇧",
-    "version": 8,
+    "version": 9,
     "category": "finance",
     "titleKey": "calc.national-insurance.title",
     "descKey": "calc.national-insurance.desc",
@@ -447,7 +447,7 @@
   {
     "slug": "superannuation",
     "icon": "🦘",
-    "version": 3,
+    "version": 4,
     "category": "finance",
     "titleKey": "calc.superannuation.title",
     "descKey": "calc.superannuation.desc",
@@ -461,7 +461,7 @@
   {
     "slug": "hecs",
     "icon": "🎓",
-    "version": 2,
+    "version": 3,
     "category": "finance",
     "titleKey": "calc.hecs.title",
     "descKey": "calc.hecs.desc",
@@ -475,7 +475,7 @@
   {
     "slug": "cpp",
     "icon": "🍁",
-    "version": 8,
+    "version": 9,
     "category": "finance",
     "titleKey": "calc.cpp.title",
     "descKey": "calc.cpp.desc",
@@ -489,7 +489,7 @@
   {
     "slug": "ei",
     "icon": "🧰",
-    "version": 8,
+    "version": 9,
     "category": "finance",
     "titleKey": "calc.ei.title",
     "descKey": "calc.ei.desc",
@@ -582,7 +582,7 @@
   {
     "slug": "payroll",
     "icon": "🧾",
-    "version": 4,
+    "version": 5,
     "category": "business",
     "titleKey": "calc.payroll.title",
     "descKey": "calc.payroll.desc",

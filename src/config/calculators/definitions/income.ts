@@ -23,7 +23,7 @@ const ALL: CountryCode[] = [
 export const salaryCalculator: CalculatorDef = {
   slug: "salary",
   icon: "💼",
-  version: 12,
+  version: 13,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.salary.title",
@@ -163,7 +163,7 @@ function contributionsCalculator({
   return {
     slug,
     icon,
-    version: 8,
+    version: 9,
     category: "finance",
     isCountrySpecific: true,
     titleKey,
@@ -362,7 +362,7 @@ export const thirtyPercentRulingCalculator: CalculatorDef = {
 export const payrollCalculator: CalculatorDef = {
   slug: "payroll",
   icon: "🧾",
-  version: 3,
+  version: 4,
   category: "business",
   isCountrySpecific: true,
   titleKey: "calc.payroll.title",

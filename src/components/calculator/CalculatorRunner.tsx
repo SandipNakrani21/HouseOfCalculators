@@ -95,6 +95,11 @@ export function CalculatorRunner({
   const baseFields = useMemo(() => calculator?.fields(ctx) ?? [], [calculator, ctx]);
   const initial = useMemo(() => defaultsOf(baseFields), [baseFields]);
   const [values, setValues] = useState<FieldValues>(initial);
+  const [resetGeneration, setResetGeneration] = useState(0);
+  const inputCard = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (resetGeneration > 0) inputCard.current?.querySelector<HTMLElement>('input:not([type="range"]), button[role="radio"][aria-checked="true"]')?.focus();
+  }, [resetGeneration]);
   const fields = useMemo(() => resolveFields(baseFields, values), [baseFields, values]);
 
   // Formatting-only country changes preserve the entered scenario.
@@ -108,9 +113,11 @@ export function CalculatorRunner({
   // Read after hydration (the page is static, so the server sees no query);
   // the defaults paint first and the shared values replace them at once.
   const search = useSyncExternalStore(subscribeNever, readSearch, readNoSearch);
-  const changedEarlier = (slug === "capital-gains" && countryCode === "fr")
+  const changedEarlier = (slug === "capital-gains" && ["fr", "de"].includes(countryCode))
     || (["income-tax", "salary", "social-security"].includes(slug) && countryCode === "pl")
-    || (slug === "30-percent-ruling" && countryCode === "nl");
+    || (slug === "30-percent-ruling" && countryCode === "nl")
+    || (["income-tax", "salary"].includes(slug) && ["au", "in"].includes(countryCode))
+    || slug === "hecs";
   const shareVersion = reviewedCalculator(slug, countryCode) || changedEarlier ? calculator.version : undefined;
   const shared = useMemo(() => readShareQuery(search, baseFields, shareVersion), [search, baseFields, shareVersion]);
   const [oldLinkDismissed, setOldLinkDismissed] = useState(false);
@@ -171,6 +178,13 @@ export function CalculatorRunner({
   );
 
   if (!calculator) return null;
+  const resetInputs = () => {
+    setValues(initial);
+    setOldLinkDismissed(true);
+    // Recreate the reset card to discard field-local state and stale layout
+    // after validation recovery, then return keyboard focus to its first input.
+    setResetGeneration(generation => generation + 1);
+  };
 
   const summaryRows = result?.rows.filter((row) => !row.emphasis) ?? [];
   const emphasisRows = result?.rows.filter((row) => row.emphasis) ?? [];
@@ -178,7 +192,7 @@ export function CalculatorRunner({
   return (
     <fieldset disabled={!interactive} aria-busy={!interactive} className="min-w-0 space-y-6">
       <legend className="sr-only">{t("calc.inputs")}</legend>
-      <section className="card animate-fade-up @container p-5 sm:p-8">
+      <section key={resetGeneration} ref={inputCard} className="card p-5 sm:p-8">
         {slug === "income-tax" ? <div className="mb-6 rounded-md border border-border bg-bg-soft p-4">
           <p className="font-bold text-heading">{t("calc.taxYear", { year: reviewedCalculator(slug, countryCode)?.review.period.match(/^\d{4}(?:[–/]\d{2,4})?/)?.[0] ?? INCOME_TAX_RULES[countryCode].taxYear })}</p>
           <p className="mt-1 text-sm text-muted">{t("calc.taxCoverage")}</p>
@@ -199,14 +213,13 @@ export function CalculatorRunner({
           </div>
         )}
 
-        {/* Inputs left, results right once the card is wide enough; stacked
-            below that. A container query, so it adapts to the column the card
-            sits in (narrower beside an ad rail) rather than the window. */}
+        {/* Intrinsic columns adapt to the card width without size containment,
+            which can leave this editable grid without layout after recovery. */}
         <div
           className={
             calculator.splitEarly
-              ? "grid gap-8 @xl:grid-cols-2 @xl:gap-8 @3xl:gap-10"
-              : "grid gap-6 @xl:grid-cols-2 @xl:gap-6"
+              ? "grid grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))] gap-8"
+              : "grid grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))] gap-6"
           }
         >
           <div className="min-w-0 space-y-6">
@@ -235,11 +248,7 @@ export function CalculatorRunner({
           </div>
 
           <div
-            className={`min-w-0 space-y-4 ${
-              calculator.splitEarly
-                ? "@xl:border-s @xl:border-border @xl:ps-8 @3xl:ps-10"
-                : "@xl:border-s @xl:border-border @xl:ps-6"
-            }`}
+            className="min-w-0 space-y-4"
           >
             <h2 className="sr-only">{t("calc.results")}</h2>
             {/* The headline answer, announced to assistive technology when it changes. */}
@@ -318,7 +327,7 @@ export function CalculatorRunner({
         </div>
         {result ? <ResultActions title={t(calculator.titleKey)} values={values} result={result} format={format} t={t}
           country={lockedCountry || countryRelevanceOf(calculator) === "none" ? undefined : countryCode} version={shareVersion}
-          onReset={() => { setValues(initial); setOldLinkDismissed(true); }} /> : <button type="button" className="btn btn-outline btn-md mt-6" onClick={() => { setValues(initial); setOldLinkDismissed(true); }}>{t("common.reset")}</button>}
+          onReset={resetInputs} /> : <button type="button" className="btn btn-outline btn-md mt-6" onClick={resetInputs}>{t("common.reset")}</button>}
       </section>
 
       {result?.table?.rows.length ? (

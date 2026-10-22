@@ -117,6 +117,8 @@ const SERVER_ONLY_KEY =
   /^(?:(?:calc|tool|chart|conv)\.[^.]+\.(?:faq|explain)(?:\.|$)|guide\.[^.]+\.(?!(?:title|desc)$)[^.]+|legal\.)/;
 
 const CLIENT_DICTIONARIES = new Map<string, Dictionary>();
+// The consent panel is client-rendered and reuses these two short legal labels.
+const CLIENT_LEGAL_LABELS = new Set(["legal.privacy.title", "legal.link.googlePrivacy"]);
 
 /**
  * The part of a dictionary the browser needs (see SERVER_ONLY_KEY). Every page
@@ -128,7 +130,7 @@ export function getClientDictionary(lang: LanguageCode, locale?: LocaleCode): Di
   let dict = CLIENT_DICTIONARIES.get(cacheKey);
   if (!dict) {
     dict = Object.fromEntries(
-      Object.entries(getDictionary(lang, locale)).filter(([key]) => !SERVER_ONLY_KEY.test(key)),
+      Object.entries(getDictionary(lang, locale)).filter(([key]) => CLIENT_LEGAL_LABELS.has(key) || !SERVER_ONLY_KEY.test(key)),
     );
     CLIENT_DICTIONARIES.set(cacheKey, dict);
   }

@@ -298,7 +298,7 @@ export const socialSecurityBenefitCalculator: CalculatorDef = {
 export const superannuationCalculator: CalculatorDef = {
   slug: "superannuation",
   icon: "🦘",
-  version: 2,
+  version: 3,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.superannuation.title",
@@ -349,32 +349,39 @@ export const superannuationCalculator: CalculatorDef = {
 
 // Repayment is marginal from 2025-26: nothing below the threshold, then a
 // rate on each slice of income above it.
-const HELP_SLABS: Slab[] = [
-  { from: 0, rate: 0 },
-  { from: 67_000, rate: 15 },
-  { from: 125_000, rate: 17 },
-];
-
-export function helpRepayment(income: number): number {
-  return income >= 179_286 ? income * 0.1 : applySlabs(income, HELP_SLABS).tax;
+export function helpRepayment(income: number, year = "2025–26"): number {
+  // The ATO publishes a fixed second-band base: do not derive it by
+  // integrating the first band (2026–27 publishes 9028, not 9028.35).
+  // Whole-dollar repayment income makes the published inclusive bands explicit.
+  const x = Math.floor(Math.max(0, income));
+  const current = year === "2026–27";
+  const floor = current ? 69_528 : 67_000;
+  const middle = current ? 129_717 : 125_000;
+  const top = current ? 186_051 : 179_286;
+  const amount = x >= top ? x * .1 : x > middle
+    ? (current ? 9_028 : 8_700) + (x - middle) * .17
+    : Math.max(0, x - floor) * .15;
+  return Math.round((amount + Number.EPSILON) * 100) / 100;
 }
 
 export const hecsCalculator: CalculatorDef = {
   slug: "hecs",
   icon: "🎓",
-  version: 2,
+  version: 3,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.hecs.title",
   descKey: "calc.hecs.desc",
   countries: ["au"],
   fields: () => [
+    { id: "taxYear", labelKey: "calc.taxYearLabel", kind: "select", default: "2026–27", options: [{ value: "2025–26", labelKey: "", label: "2025–26" }, { value: "2026–27", labelKey: "", label: "2026–27" }] },
     { id: "debt", labelKey: "field.helpDebt", kind: "currency", min: 0, max: 200_000, step: 1_000, default: 30_000 },
-    { id: "income", labelKey: "field.annualIncome", kind: "currency", min: 30_000, max: 300_000, step: 1_000, default: 85_000 },
+    { id: "income", labelKey: "review.hecs.repaymentIncome", kind: "currency", integer: true, min: 0, max: 300_000, step: 1_000, default: 85_000 },
     { id: "indexation", labelKey: "field.indexationRate", kind: "percent", min: 0, max: 10, step: 0.1, default: 3.2 },
-    { id: "growth", labelKey: "field.salaryGrowth", kind: "percent", min: 0, max: 10, step: 0.5, default: 3 },
+    { id: "growth", labelKey: "review.hecs.growth", kind: "percent", min: 0, max: 10, step: 0.5, default: 3 },
   ],
   compute: (values) => {
+    const year = str(values, "taxYear", "2026–27");
     const indexation = num(values, "indexation") / 100;
     const growth = num(values, "growth") / 100;
 
@@ -382,13 +389,13 @@ export const hecsCalculator: CalculatorDef = {
     let income = num(values, "income");
     let years = 0;
     let totalRepaid = 0;
-    const firstRepayment = Math.min(helpRepayment(income), debt * (1 + indexation));
+    const firstRepayment = Math.min(helpRepayment(income, year), debt * (1 + indexation));
 
     // Walk forward a year at a time: indexation is applied, then the
     // compulsory repayment for that year's income.
     while (debt > 0 && years < 40) {
       debt *= 1 + indexation;
-      const repayment = Math.min(helpRepayment(income), debt);
+      const repayment = Math.min(helpRepayment(income, year), debt);
       debt -= repayment;
       totalRepaid += repayment;
       income *= 1 + growth;
@@ -415,7 +422,7 @@ export const hecsCalculator: CalculatorDef = {
           tone: "neutral",
         },
       ],
-      notes: [{ key: "calc.hecs.note" }, ...(!cleared ? [{ key: "calc.hecs.horizon", params: { years: 40 } }] : [])],
+      notes: [{ key: "calc.hecs.note", params: { year } as Record<string, string | number> }, ...(!cleared ? [{ key: "calc.hecs.horizon", params: { years: 40 } }] : [])],
     };
   },
   explainerKeys: ["calc.hecs.explain"],

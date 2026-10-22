@@ -1,7 +1,7 @@
 {
   "in": {
-    "taxYear": "2025-26",
-    "verifiedFor": "FY 2025-26 (AY 2026-27), salaried resident individual"
+    "taxYear": "2026-27",
+    "verifiedFor": "Tax year 2026-27, salaried resident individual below60; Income-tax Act2025"
   },
   "us": {
     "taxYear": "2026",
@@ -16,8 +16,8 @@
     "verifiedFor": "Tax year 2026, federal only - provincial tax not included"
   },
   "au": {
-    "taxYear": "2025-26",
-    "verifiedFor": "2025-26 adult full-year resident, single without dependants; LITO and ordinary Medicare reduction"
+    "taxYear": "2026-27",
+    "verifiedFor": "2026-27 adult full-year resident, single without dependants; LITO and ordinary Medicare reduction"
   },
   "de": {
     "taxYear": "2025",

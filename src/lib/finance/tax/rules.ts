@@ -42,8 +42,8 @@ const IN_SURCHARGE = [
 ];
 
 const india = defineRules({
-  taxYear: "2025-26",
-  verifiedFor: "FY 2025-26 (AY 2026-27), salaried resident individual",
+  taxYear: "2026-27",
+  verifiedFor: "Tax year 2026-27, salaried resident individual below60; Income-tax Act2025",
   noteKey: "calc.income-tax.note.in",
   regimes: [
     { value: "new", labelKey: "calc.income-tax.regime.new" },
@@ -53,7 +53,7 @@ const india = defineRules({
   deductions: (regime) => regime === "old",
   allowance: (_gross, regime) => (regime === "new" ? 75_000 : 50_000),
   slabs: (regime) => (regime === "new" ? IN_NEW_SLABS : IN_OLD_SLABS),
-  // Section 87A: full relief up to the regime's threshold.
+  // Section156 of the Income-tax Act2025: full relief up to the regime's threshold.
   credit: ({ taxable, tax, regime }) => {
     const ceiling = regime === "new" ? 1_200_000 : 500_000;
     const cap = regime === "new" ? 60_000 : 12_500;
@@ -210,22 +210,22 @@ const canada = defineRules({
 
 const AU_SLABS: Slab[] = [
   { from: 0, rate: 0 },
-  { from: 18_200, rate: 16 },
+  { from: 18_200, rate: 15 },
   { from: 45_000, rate: 30 },
   { from: 135_000, rate: 37 },
   { from: 190_000, rate: 45 },
 ];
 
 const australia = defineRules({
-  taxYear: "2025-26",
-  verifiedFor: "2025-26 adult full-year resident, single without dependants; LITO and ordinary Medicare reduction",
+  taxYear: "2026-27",
+  verifiedFor: "2026-27 adult full-year resident, single without dependants; LITO and ordinary Medicare reduction",
   noteKey: "calc.income-tax.note.au",
   slabs: AU_SLABS,
   credit: ({ taxable }) => Math.max(0, taxable <= 37_500 ? 700
     : taxable <= 45_000 ? 700 - (taxable - 37_500) * 0.05
     : 325 - (taxable - 45_000) * 0.015),
   surtax: ({ taxable }) => [
-    // Medicare Levy Act ss 3, 6–7; the 2026 amendment applies to 2025–26.
+    // Medicare Levy Act ss 3, 6–7; current compilation1July2026 and s11 continuing levy.
     // Ordinary single-person reduction only, not SAPTO/family/exemptions/MLS.
     { labelKey: "levy.medicareLevy", amount: taxable <= 28_011 ? 0
       : taxable <= 35_013 ? (taxable - 28_011) * 0.1 : taxable * 0.02 },

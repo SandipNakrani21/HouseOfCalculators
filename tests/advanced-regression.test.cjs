@@ -16,6 +16,24 @@ const t=(k,p)=>translate(en,k,p);
 const context=code=>({countryCode:code,country:COUNTRIES[code],t,fmt:createFormatter(code,'en',t)});
 function run(slug,values={},country='us') { const c=CALCULATORS.find(c=>c.slug===slug),ctx=context(country);return c.compute({...Object.fromEntries(c.fields(ctx).map(f=>[f.id,f.default])),...values},ctx); }
 const row=(result,key)=>result.rows.find(r=>r.labelKey===key)?.value;
+test('Australian2026–27 super uses annual QE base and indexed cap, with scoped fund taxes',()=>{
+ const c=CALCULATORS.find(c=>c.slug==='superannuation'),ctx=context('au');
+ assert.equal(c.version,4);assert.equal(ruleReview('superannuation','au').period,'2026–27; accumulation illustration');
+ for(const [salary,sg,tax293,net]of [[45000,5400,0,4590],[95000,11400,0,9690],[230000,27600,1140,22320],[250000,30000,4500,21000],[270830,32499.6,4874.94,22749.72],[300000,32499.6,4874.94,22749.72]]){
+  const result=run('superannuation',{salary,balance:0,sacrifice:0,years:1,rate:0},'au');
+  close(row(result,'review.root.sg'),sg);close(row(result,'review.root.div293'),tax293);close(row(result,'review.root.annualNetFund'),net);close(result.primary.value,net);
+ }
+ const exact={salary:95000,sacrifice:21100,balance:0,years:1,rate:0};
+ assert.equal(c.validate(exact,ctx),null);close(row(run('superannuation',exact,'au'),'result.annualContribution'),32500);
+ close(row(run('superannuation',exact,'au'),'result.contributionsTax'),4875);
+ assert.equal(c.validate({...exact,sacrifice:21100.01},ctx),'review.root.superLimit');
+ assert.equal(c.validate({...exact,salary:270830,sacrifice:.40},ctx),null);
+ assert.equal(c.validate({...exact,salary:270830,sacrifice:.41},ctx),'review.root.superLimit');
+ close(row(run('superannuation',{salary:95000,sacrifice:1000},'au'),'review.root.sg'),11400);
+ const negative=run('superannuation',{salary:95000,sacrifice:0,balance:60000,years:1,rate:-10},'au');assert(negative.primary.value<69690);
+ assert.equal(readShareQuery('?salary=95000&modelVersion=3',c.fields(ctx),4).obsolete,true);
+ for(const l of ['en','de','es','fr','it','nl','pt','ru','tr','ja','zh']){const dictionary=require('../src/lib/i18n/dictionaries/'+l+'.json');assert(dictionary['review.root.auSuper'].includes('2026–27'));assert(dictionary['review.root.qe']);assert(!dictionary['review.root.superLimit'].includes('30,000'));}
+});
 function close(actual,expected,tolerance=1e-8){assert(Math.abs(actual-expected)<=tolerance,`${actual} ≠ ${expected}`);}
 test('India rebate marginal relief prevents the one-rupee cliff; surcharge thresholds remain continuous',()=>{
  const r=INCOME_TAX_RULES.in;
@@ -87,7 +105,7 @@ test('China 2026 wage-only annual IIT uses the national table and actual eligibl
  close(row(r,'result.taxableIncome'),120000);close(row(r,'result.incomeTax'),9480);
  close(r.primary.value,190520); // Other eligible deductions reduce tax, not cash twice.
  for(const slug of ['income-tax','salary'])assert.equal(ruleReview(slug,'cn').period,'2026');
- assert.equal(ruleReview('social-security','cn').period,'2025-07 to 2025-12, Beijing');
+ assert.equal(ruleReview('social-security','cn').period,'2026-07 to 2026-12, Beijing');
 });
 
 test('Netherlands 2026 wage credits, expat salary norms/cap and employer premiums match official tables',()=>{
@@ -127,7 +145,31 @@ test('Germany 2026 basic tariff, solidarity threshold and monthly contribution c
  close(p.primary.value,138632.16);
  for(const rate of ['8','9'])close(run('church-tax',{churchBase:10000,churchRegion:rate},'de').primary.value,Number(rate)*100);
  for(const slug of ['income-tax','salary','social-security','payroll','church-tax'])assert.match(ruleReview(slug,'de').period,/^2026/);
- assert.equal(ruleReview('capital-gains','de').period,'2025');
+ assert.equal(ruleReview('capital-gains','de').period,'2026');
+});
+
+test('Germany 2026 securities separate cent-truncated solidarity from the flat tax illustration',()=>{
+ for(const [gain,tax,solidarity]of [[0,0,0],[1,.26,.01],[2,.52,.02],[3,.79,.04],[4,1.05,.05],[100,26.37,1.37],[6000,1582.5,82.5]]){
+  const r=run('capital-gains',{purchase:0,sale:gain,remainingAllowance:0},'de');
+  close(row(r,'result.taxAmount'),tax);close(row(r,'levy.solidarity'),solidarity);close(r.primary.value,gain-tax);
+  close(row(r,'result.incomeTax')+row(r,'levy.solidarity'),tax);
+ }
+ close(row(run('capital-gains',{purchase:10000,sale:11000,remainingAllowance:1000},'de'),'result.taxAmount'),0);
+ close(row(run('capital-gains',{purchase:10000,sale:11002,remainingAllowance:1000},'de'),'result.taxAmount'),.52);
+ close(row(run('capital-gains',{purchase:10000,sale:9999,remainingAllowance:0},'de'),'result.taxAmount'),0);
+ // Fractional-cent income-tax treatment is an explicit illustration convention.
+ close(row(run('capital-gains',{purchase:0,sale:.02,remainingAllowance:0},'de'),'result.taxAmount'),.01);
+ close(row(run('capital-gains',{purchase:0,sale:2,income:100000,holding:'short',remainingAllowance:0},'de'),'result.taxAmount'),.52);
+ assert.equal(ruleReview('capital-gains','de').period,'2026');
+ assert(ruleReview('capital-gains','de').sources.some(s=>s.endsWith('/estg/__52.html')));
+ const fields=CALCULATORS.find(c=>c.slug==='capital-gains').fields(context('de'));
+ assert.equal(calculatorFieldError(fields.find(f=>f.id==='remainingAllowance'),'1000.01','de'),'max');
+ assert.equal(readShareQuery('?country=de&purchase=0&sale=2',fields,5).obsolete,true);
+ assert.equal(readShareQuery('?country=de&purchase=0&sale=2&modelVersion=5',fields,5).values.sale,2);
+ for(const lang of ['en','de','fr','es','it','nl','pt','tr','ru','ja','zh']){
+  const d=require(`../src/lib/i18n/dictionaries/${lang}.json`);
+  assert(d['review.scope.deGains'].includes('2026'));assert(!d['review.scope.deGains'].includes('2025'));
+ }
 });
 
 test('Brazil and Mexico 2026 contributions retain explicit historical INSS arithmetic',()=>{
@@ -324,6 +366,29 @@ test('HELP includes whole-income final tier and zero-payment projection years',(
  assert.equal(future.primary.labelKey,'result.yearsToClear');assert(future.primary.value>2);
  const horizon=run('hecs',{income:60000,debt:30000,indexation:5,growth:0},'au');
  close(horizon.primary.value,30000*1.05**40,1e-6);assert(horizon.notes.some(n=>n.key==='calc.hecs.horizon'));
+});
+
+test('HELP 2026–27 follows literal ATO table bases and preserves historical choice',()=>{
+ const {helpRepayment}=require('../src/config/calculators/definitions/retirement.ts');
+ for(const [income,expected] of [[0,0],[69528,0],[69529,.15],[85000,2320.8],[86380,2527.8],[129717,9028.35],[129718,9028.17],[137064,10276.99],[186050,18604.61],[186051,18605.1],[254780,25478]])close(helpRepayment(income,'2026–27'),expected);
+ // ATO's published second-band base is9028, despite the35-cent band discontinuity.
+ close(helpRepayment(85000,'2025–26'),2700);
+ close(helpRepayment(125001,'2025–26'),8700.17);
+ assert.equal(ruleReview('hecs','au').period,'2026–27 default; optional 2025–26');
+ const current=run('hecs',{income:85000,indexation:0,growth:0},'au');
+ close(row(current,'result.annualRepayment'),2320.8);
+ close(row(run('hecs',{taxYear:'2025–26',income:85000,indexation:0,growth:0},'au'),'result.annualRepayment'),2700);
+ close(row(run('hecs',{income:85000,debt:100,indexation:0,growth:0},'au'),'result.annualRepayment'),100);
+ assert.equal(run('hecs',{debt:0},'au').primary.value,0);
+ const c=CALCULATORS.find(c=>c.slug==='hecs'),ctx=context('au');
+ const income=c.fields(ctx).find(f=>f.id==='income');
+ assert.equal(calculatorFieldError(income,'85000.5','au'),'integer');
+ assert.equal(readShareQuery('?country=au&income=85000',c.fields(ctx),3).obsolete,true);
+ assert.equal(readShareQuery('?country=au&income=85000&taxYear=2025%E2%80%9326&modelVersion=3',c.fields(ctx),3).values.taxYear,'2025–26');
+ for(const lang of ['en','de','fr','es','it','nl','pt','tr','ru','ja','zh']){
+  const d=require(`../src/lib/i18n/dictionaries/${lang}.json`);
+  assert(d['review.hecs.repaymentIncome']);assert(d['review.hecs.growth']);assert(d['calc.hecs.note'].includes('{year}'));
+ }
 });
 test('Monthly salary bounds and shared links follow every country and currency precision',()=>{
  for(const country of Object.keys(COUNTRIES)){

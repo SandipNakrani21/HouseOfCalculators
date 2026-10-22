@@ -22,7 +22,7 @@ const ALL: CountryCode[] = [
 export const incomeTaxCalculator: CalculatorDef = {
   slug: "income-tax",
   icon: "🧾",
-  version: 14,
+  version: 15,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.income-tax.title",
@@ -352,7 +352,7 @@ const GAINS_RULES: Partial<Record<CountryCode, GainsRule>> = {
 export const capitalGainsCalculator: CalculatorDef = {
   slug: "capital-gains",
   icon: "📊",
-  version: 4,
+  version: 5,
   category: "finance",
   isCountrySpecific: true,
   titleKey: "calc.capital-gains.title",
@@ -433,9 +433,17 @@ export const capitalGainsCalculator: CalculatorDef = {
       ? Math.min(Math.max(num(values, "remainingAllowance"), 0), 1_000)
       : rule.allowance;
     const taxable = Math.max(included - allowance, 0);
+    // The German flat-rate illustration separates the25% component from
+    // SolzG §4's cent-truncated surcharge. Income-tax cent rounding here is
+    // a display convention, not a bank withholding or assessment calculation.
+    const germanTaxableCents = Math.round(taxable * 100);
+    const germanIncomeTax = Math.round(germanTaxableCents / 4) / 100;
+    const germanSolidarity = Math.floor(germanTaxableCents * 11 / 800) / 100;
 
     let tax: number;
-    if (longTerm || ["gb", "de", "it", "es", "fr"].includes(countryCode)) {
+    if (countryCode === "de") {
+      tax = Math.round((germanIncomeTax + germanSolidarity) * 100) / 100;
+    } else if (longTerm || ["gb", "it", "es", "fr"].includes(countryCode)) {
       // Rates that depend on total income are found by locating the gain on
       // the scale above the income already earned.
       const withIncome = applySlabs(income + taxable, rule.longTerm).tax;
@@ -482,6 +490,10 @@ export const capitalGainsCalculator: CalculatorDef = {
             ]
           : []),
         { labelKey: "result.taxableGain", value: taxable, kind: "currency", tone: "neutral" },
+        ...(countryCode === "de" ? [
+          { labelKey: "result.incomeTax", value: germanIncomeTax, kind: "currency" as const, tone: "tax" as const },
+          { labelKey: "levy.solidarity", value: germanSolidarity, kind: "currency" as const, tone: "tax" as const },
+        ] : []),
         ...(countryCode === "fr" ? [
           { labelKey: "result.incomeTax", value: taxable * 0.128, kind: "currency" as const, tone: "tax" as const },
           { labelKey: "result.socialContributions", value: taxable * 0.186, kind: "currency" as const, tone: "tax" as const },
