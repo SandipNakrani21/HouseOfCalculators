@@ -2,13 +2,13 @@
 
 import { ArrowRight, Menu, Search } from "lucide-react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Logo } from "@/components/layout/Logo";
 import { CountrySelector } from "@/components/navigation/CountrySelector";
 import { TopBar } from "@/components/layout/TopBar";
-import { SearchBox } from "@/components/search/SearchBox";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Modal } from "@/components/ui/Modal";
@@ -19,6 +19,9 @@ import { useLocale } from "@/lib/locale-context";
 import type { NavMenu } from "@/lib/nav-menu";
 import { sectionPath } from "@/lib/routes";
 import { sectionVisual } from "@/lib/visuals";
+
+// The full search catalogue is needed only after the header dialog opens.
+const SearchBox = dynamic(() => import("@/components/search/SearchBox").then(module => module.SearchBox));
 
 /**
  * The site header: the navy TopBar, then one sticky white bar - the logo,

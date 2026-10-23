@@ -59,7 +59,8 @@ export function Modal({
     }
 
     // Focus the first field if there is one (search), else the panel itself.
-    const first = panel.current?.querySelector<HTMLElement>('input:not([disabled]), [autofocus], button:not([disabled]), a[href]');
+    const first = panel.current?.querySelector<HTMLElement>('input:not([disabled]), [autofocus]')
+      ?? panel.current?.querySelector<HTMLElement>('button:not([disabled]), a[href]');
     (first ?? panel.current)?.focus();
 
     const onKey = (event: KeyboardEvent) => {

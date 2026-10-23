@@ -16,7 +16,20 @@ const {ToolValidationProvider,NumberInput,ToolButton}=require('../src/components
 const {PasswordGeneratorTool}=require('../src/components/tools/UtilityTools.tsx');
 const {RandomPickerTool,DiceRollerTool}=require('../src/components/tools/RandomTools.tsx');
 const {Modal}=require('../src/components/ui/Modal.tsx');
+const {FieldControl}=require('../src/components/calculator/FieldControl.tsx');
 const en=require('../src/lib/i18n/dictionaries/en.json');
+test('Calculator slider preserves off-step typed amounts and uses exact keyboard endpoints',async()=>{
+ function Harness(){const [value,set]=React.useState(500);return React.createElement(FieldControl,{field:{id:'monthly',labelKey:'field.monthlyContribution',kind:'currency',min:20,max:19999,step:100,default:500},value,onChange:set});}
+ const app=await mount(Harness);
+ try{
+  const slider=app.host.querySelector('input[type=range]'),box=app.host.querySelector('input[type=text]');
+  assert.equal(slider.value,'500');assert.equal(box.value,'500');
+  for(const [key,expected] of [['ArrowRight','600'],['PageUp','1600'],['End','19999'],['ArrowRight','19999'],['Home','20'],['ArrowLeft','20']]){
+   await act(()=>slider.dispatchEvent(new KeyboardEvent('keydown',{key,bubbles:true,cancelable:true})));
+   assert.equal(slider.value,expected);assert.equal(box.value,expected);
+  }
+ }finally{await app.close();}
+});
 async function mount(Component,locale='en-US',dictionary=en){
  const host=document.createElement('div');document.body.append(host);const root=createRoot(host);
  const render=element=>act(()=>root.render(React.createElement(LocaleProvider,{localeCode:locale,dictionary,forcedCountry:'us'},React.createElement(ToolValidationProvider,null,element))));

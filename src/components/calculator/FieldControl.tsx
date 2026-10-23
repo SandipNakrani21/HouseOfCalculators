@@ -152,8 +152,21 @@ export function FieldControl({ field, value, onChange, params, fmt: override, co
             value={Math.min(Math.max(numeric, min), max)}
             min={min}
             max={max}
-            step={step}
-            onChange={(event) => onChange(Number(event.target.value))}
+            // Native step snapping can display a different amount from a valid
+            // typed value (e.g. 500 with min=20 and step=100 becomes 520).
+            step="any"
+            onChange={(event) => onChange(Number(Number(event.target.value).toFixed(rules.decimals)))}
+            onKeyDown={(event) => {
+              const increments: Record<string, number> = {
+                ArrowRight: step, ArrowUp: step, ArrowLeft: -step, ArrowDown: -step,
+                PageUp: step * 10, PageDown: -step * 10,
+              };
+              const next = event.key === "Home" ? min : event.key === "End" ? max
+                : event.key in increments ? numeric + increments[event.key] : undefined;
+              if (next === undefined) return;
+              event.preventDefault();
+              onChange(Number(Math.min(max, Math.max(min, next)).toFixed(rules.decimals)));
+            }}
             style={{ "--fill": `${Math.max(0, Math.min(100, fill))}%` } as React.CSSProperties}
           />
           <div className="flex justify-between text-[0.6875rem] text-muted">

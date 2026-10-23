@@ -46,12 +46,20 @@ export function SearchBox({
   const root = useRef<HTMLDivElement>(null);
   const list = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLInputElement>(null);
+  // Let the dialog remember its opener before a lazily mounted field takes focus.
+  useEffect(() => {
+    if (!autoFocus) return;
+    const frame = requestAnimationFrame(() => input.current?.focus());
+    return () => cancelAnimationFrame(frame);
+  }, [autoFocus]);
   const [panelHeight, setPanelHeight] = useState(280);
 
+  const hasQuery = query.trim().length > 0;
   const items = useMemo(() => {
+    if (!hasQuery) return [];
     const calcContext: CalcContext = { countryCode, country, t, fmt };
     return allContent({ locale: localeCode, country: countryCode, t, calcContext });
-  }, [localeCode, countryCode, country, t, fmt]);
+  }, [hasQuery, localeCode, countryCode, country, t, fmt]);
 
   const results = useMemo(() => search(items, query, 18), [items, query]);
 
@@ -143,7 +151,6 @@ export function SearchBox({
           type="search"
           maxLength={100}
           value={query}
-          autoFocus={autoFocus}
           onChange={(event) => {
             setQuery(event.target.value);
             setOpen(true);

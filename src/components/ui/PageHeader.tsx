@@ -63,7 +63,7 @@ export function PageHeader({
         <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.09)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:linear-gradient(to_bottom,black,transparent_90%)]" />
       </div>
 
-      <div className={`${WIDTH[width]} flex flex-col gap-6 py-10 sm:py-14 lg:flex-row-reverse lg:items-start lg:justify-between lg:gap-10`}>
+      <div className={`${WIDTH[width]} flex flex-col gap-6 py-10 sm:py-14 ${width === "page" ? "lg:flex-row-reverse lg:items-start lg:justify-between lg:gap-10" : ""}`}>
         {trail ? (
           <div className="animate-fade-in shrink-0 lg:pt-1">
             <Breadcrumbs trail={trail} label={breadcrumbLabel} tone="dark" />
@@ -78,21 +78,20 @@ export function PageHeader({
           ) : null}
           <div className="min-w-0">
             {eyebrow ? (
-              <p className="animate-fade-up mb-3 inline-flex rounded-sm border border-white/15 bg-white/10 px-3 py-1 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-white">
+              <p className="mb-3 inline-flex rounded-sm border border-white/15 bg-white/10 px-3 py-1 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-white">
                 {eyebrow}
               </p>
             ) : null}
-            <h1 className="animate-rise text-h1 text-white">{title}</h1>
+            <h1 className="text-h1 text-white">{title}</h1>
             {description ? (
               <p
-                className="animate-fade-up mt-3 max-w-2xl text-sm leading-relaxed text-on-navy-muted sm:text-[0.9375rem]"
-                style={delay(120)}
+                className="mt-3 max-w-2xl text-sm leading-relaxed text-on-navy-muted sm:text-[0.9375rem]"
               >
                 {description}
               </p>
             ) : null}
             {children ? (
-              <div className="animate-fade-up" style={delay(180)}>
+              <div>
                 {children}
               </div>
             ) : null}
