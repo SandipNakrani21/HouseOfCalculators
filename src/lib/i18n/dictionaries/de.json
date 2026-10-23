@@ -1699,7 +1699,7 @@
   "calc.margin.faq.1.q": "Warum ist ein Aufschlag von 50 % keine Marge von 50 %?",
   "calc.margin.faq.1.a": "Weil durch Unterschiedliches geteilt wird. Kaufen Sie für 100 ein und schlagen 50 % auf, verkaufen Sie für 150; der Gewinn von 50 ist ein Drittel von 150, die Marge beträgt also 33,3 %. Beides gleichzusetzen, ist der klassische Kalkulationsfehler.",
   "calc.margin.faq.2.q": "Ist das die Brutto- oder Nettomarge?",
-  "calc.margin.faq.2.a": "Die Bruttomarge. Sie berücksichtigt nur die direkten Kosten der verkauften Ware. Die Nettomarge zieht zusätzlich Gemeinkosten, Löhne, Zinsen und Steuern ab und ist immer niedriger.",
+  "calc.margin.faq.2.a": "Die Bruttomarge. Sie berücksichtigt nur die direkten Kosten der verkauften Ware. Die Nettomarge berücksichtigt zusätzlich Gemeinkosten, Löhne, Zinsen, Steuern und sonstige Erträge oder Aufwendungen. Diese zusätzlichen Posten sind in diesem Rechner nicht enthalten.",
   "calc.markup.title": "Aufschlagsrechner",
   "calc.markup.desc": "Der Preis, den Sie verlangen müssen, um einen Zielaufschlag oder eine Zielmarge auf Ihre Kosten zu erreichen.",
   "calc.markup.note": "Der Wechsel zwischen Aufschlag und Marge ändert den Preis bei gleichem Prozentsatz – genau deshalb gibt es hier diese Option, statt es anzunehmen.",

@@ -1699,7 +1699,7 @@
   "calc.margin.faq.1.q": "Pourquoi une majoration de 50 % ne fait-elle pas une marge de 50 % ?",
   "calc.margin.faq.1.a": "Parce qu'on ne divise pas par la même chose. Achetez à 100, ajoutez 50 % de majoration et vous vendez à 150 ; le bénéfice de 50 représente un tiers de 150, soit une marge de 33,3 %. Confondre les deux est l'erreur de tarification classique.",
   "calc.margin.faq.2.q": "S'agit-il de la marge brute ou nette ?",
-  "calc.margin.faq.2.a": "Brute. Elle ne tient compte que du coût direct de ce que vous avez vendu. La marge nette déduit aussi les frais généraux, les salaires, les intérêts et les impôts, et elle est toujours plus faible.",
+  "calc.margin.faq.2.a": "Brute. Elle ne tient compte que du coût direct de ce que vous avez vendu. La marge nette tient aussi compte des frais généraux, salaires, intérêts, impôts et autres produits ou charges. Ces éléments supplémentaires ne sont pas inclus dans cette calculatrice.",
   "calc.markup.title": "Calculateur de majoration",
   "calc.markup.desc": "Le prix à pratiquer pour atteindre une majoration ou une marge cible sur votre coût.",
   "calc.markup.note": "Passer de la majoration à la marge change le prix pour un même pourcentage, et c'est précisément pour cela que l'option existe au lieu d'être supposée.",

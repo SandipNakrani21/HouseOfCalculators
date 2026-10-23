@@ -1699,7 +1699,7 @@
   "calc.margin.faq.1.q": "Waarom is 50% opslag geen 50% marge?",
   "calc.margin.faq.1.a": "Omdat ze door iets anders delen. Koop voor 100, reken 50% opslag en je verkoopt voor 150; de winst van 50 is een derde van 150, dus de marge is 33,3%. Die twee als hetzelfde behandelen is de klassieke prijsfout.",
   "calc.margin.faq.2.q": "Is dit bruto- of nettomarge?",
-  "calc.margin.faq.2.a": "Bruto. Het telt alleen de directe kosten van wat je verkocht. De nettomarge trekt daarnaast vaste lasten, lonen, rente en belasting af, en is altijd lager.",
+  "calc.margin.faq.2.a": "Bruto. Het telt alleen de directe kosten van wat je verkocht. De nettomarge houdt ook rekening met vaste lasten, lonen, rente, belastingen en overige inkomsten of uitgaven. Die aanvullende posten zijn niet in deze calculator opgenomen.",
   "calc.markup.title": "Opslag Calculator",
   "calc.markup.desc": "De prijs die je moet vragen om een gewenste opslag of marge op je kostprijs te halen.",
   "calc.markup.note": "Wisselen tussen opslag en marge verandert de prijs bij hetzelfde percentage — precies daarom is dit een keuze en geen aanname.",

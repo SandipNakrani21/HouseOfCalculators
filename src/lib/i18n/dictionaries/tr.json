@@ -1699,7 +1699,7 @@
   "calc.margin.faq.1.q": "%50 kâr oranı neden %50 marj değildir?",
   "calc.margin.faq.1.a": "Çünkü farklı şeylere bölerler. 100'e alıp %50 kâr oranı eklerseniz 150'ye satarsınız; 50'lik kâr 150'nin üçte biridir, yani marj %33,3'tür. İkisini aynı sanmak klasik fiyatlandırma hatasıdır.",
   "calc.margin.faq.2.q": "Bu brüt mü, net marj mı?",
-  "calc.margin.faq.2.a": "Brüt. Yalnızca sattığınız ürünün doğrudan maliyetini hesaba katar. Net marj ayrıca genel giderleri, maaşları, faizi ve vergiyi de düşer ve her zaman daha düşüktür.",
+  "calc.margin.faq.2.a": "Brüt. Yalnızca sattığınız ürünün doğrudan maliyetini hesaba katar. Net marj ayrıca genel giderleri, maaşları, faizi, vergileri ve diğer gelir veya giderleri dikkate alır. Bu ek kalemler bu hesaplayıcıya dahil değildir.",
   "calc.markup.title": "Kâr Oranı Hesaplayıcı",
   "calc.markup.desc": "Maliyetiniz üzerinden hedef kâr oranına veya marja ulaşmak için istemeniz gereken fiyat.",
   "calc.markup.note": "Kâr oranı ile marj arasında geçiş yapmak aynı yüzde için fiyatı değiştirir; seçeneğin varsayılmak yerine burada olmasının nedeni tam olarak budur.",

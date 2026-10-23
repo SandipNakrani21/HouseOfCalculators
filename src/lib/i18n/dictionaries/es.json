@@ -1699,7 +1699,7 @@
   "calc.margin.faq.1.q": "¿Por qué un recargo del 50 % no es un margen del 50 %?",
   "calc.margin.faq.1.a": "Porque se divide entre cosas distintas. Si compras a 100 y aplicas un 50 % de recargo, vendes a 150; los 50 de beneficio son un tercio de 150, así que el margen es del 33,3 %. Confundirlos es el error clásico al fijar precios.",
   "calc.margin.faq.2.q": "¿Es el margen bruto o el neto?",
-  "calc.margin.faq.2.a": "El bruto. Solo cuenta el coste directo de lo que vendiste. El margen neto resta además los gastos generales, los salarios, los intereses y los impuestos, y siempre es menor.",
+  "calc.margin.faq.2.a": "El margen bruto. Solo cuenta el coste directo de lo que vendiste. El margen neto también tiene en cuenta gastos generales, salarios, intereses, impuestos y otros ingresos o gastos. Esas partidas adicionales no se incluyen en esta calculadora.",
   "calc.markup.title": "Calculadora de recargo",
   "calc.markup.desc": "El precio que debes cobrar para alcanzar un recargo o un margen objetivo sobre tu coste.",
   "calc.markup.note": "Cambiar entre recargo y margen cambia el precio para el mismo porcentaje, y justo por eso la opción está aquí en lugar de darse por supuesta.",

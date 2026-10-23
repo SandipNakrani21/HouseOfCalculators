@@ -1699,7 +1699,7 @@
   "calc.margin.faq.1.q": "Perché un ricarico del 50% non è un margine del 50%?",
   "calc.margin.faq.1.a": "Perché dividono per cose diverse. Compri a 100, applichi un ricarico del 50% e vendi a 150; l'utile di 50 è un terzo di 150, quindi il margine è del 33,3%. Considerarli uguali è il classico errore di prezzo.",
   "calc.margin.faq.2.q": "È il margine lordo o netto?",
-  "calc.margin.faq.2.a": "Lordo. Conta solo il costo diretto di ciò che hai venduto. Il margine netto sottrae anche spese generali, stipendi, interessi e imposte, ed è sempre più basso.",
+  "calc.margin.faq.2.a": "Lordo. Conta solo il costo diretto di ciò che hai venduto. Il margine netto considera anche spese generali, stipendi, interessi, imposte e altri ricavi o costi. Queste voci aggiuntive non sono incluse in questo calcolatore.",
   "calc.markup.title": "Calcolatore del Ricarico",
   "calc.markup.desc": "Il prezzo da applicare per raggiungere un ricarico o un margine obiettivo sul tuo costo.",
   "calc.markup.note": "Passare da ricarico a margine cambia il prezzo a parità di percentuale, ed è proprio per questo che l'opzione è qui invece di essere data per scontata.",

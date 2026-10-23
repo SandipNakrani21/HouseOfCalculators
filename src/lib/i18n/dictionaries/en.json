@@ -1699,7 +1699,7 @@
   "calc.margin.faq.1.q": "Why is a 50% markup not a 50% margin?",
   "calc.margin.faq.1.a": "Because they divide by different things. Buy at 100 and add 50% markup and you sell at 150; the 50 profit is a third of 150, so the margin is 33.3%. Treating the two as the same is the classic pricing mistake.",
   "calc.margin.faq.2.q": "Is this gross or net margin?",
-  "calc.margin.faq.2.a": "Gross. It counts only the direct cost of the thing you sold. Net margin subtracts overheads, wages, interest and tax as well, and is always lower.",
+  "calc.margin.faq.2.a": "Gross. It counts only the direct cost of the thing you sold. Net margin also accounts for overheads, wages, interest, taxes and other income or expenses. Those additional items are not included in this calculator.",
   "calc.markup.title": "Markup Calculator",
   "calc.markup.desc": "The price to charge to hit a target markup or margin on your cost.",
   "calc.markup.note": "Switching between markup and margin changes the price for the same percentage, which is exactly why the option is here rather than assumed.",

@@ -1699,7 +1699,7 @@
   "calc.margin.faq.1.q": "Por que um markup de 50% não é uma margem de 50%?",
   "calc.margin.faq.1.a": "Porque dividem por coisas diferentes. Compre por 100, aplique 50% de markup e você vende por 150; o lucro de 50 é um terço de 150, então a margem é 33,3%. Tratar os dois como iguais é o erro clássico de precificação.",
   "calc.margin.faq.2.q": "Esta é a margem bruta ou líquida?",
-  "calc.margin.faq.2.a": "Bruta. Ela conta só o custo direto do que você vendeu. A margem líquida também desconta despesas gerais, salários, juros e impostos, e é sempre menor.",
+  "calc.margin.faq.2.a": "Bruta. Ela conta só o custo direto do que você vendeu. A margem líquida também considera despesas gerais, salários, juros, impostos e outras receitas ou despesas. Esses itens adicionais não estão incluídos nesta calculadora.",
   "calc.markup.title": "Calculadora de Markup",
   "calc.markup.desc": "O preço a cobrar para atingir um markup ou uma margem desejada sobre o seu custo.",
   "calc.markup.note": "Alternar entre markup e margem muda o preço para a mesma porcentagem — é exatamente por isso que a opção existe aqui, em vez de ser presumida.",
