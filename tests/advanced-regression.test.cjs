@@ -334,6 +334,20 @@ test('Portugal 2026 uses current practical IRS offsets, IAS deduction and solida
  for(const slug of ['income-tax','salary'])assert.match(ruleReview(slug,'pt').period,/^2026/);
 });
 
+test('Portugal solidarity cent rounding is stable across both thresholds and the practical tariff boundary',()=>{
+ // AT 2026 practical table and CIRS68-A; independently calculated in integer
+ // cents. At taxable80000.20 the solidarity component is exactly half a cent.
+ const cases=[[46500,41385,0,31151.57],[89887.63,79999.99,0,52761.47],[89887.64,80000,0,52761.48],
+  [89887.65,80000.01,0,52761.49],[89887.87,80000.20,.01,52761.58],
+  [97341.57,86634,165.85,56270.87],[97341.58,86634.01,165.85,56271.01],
+  [280898.87,249999.99,4250,137137.16],[280898.88,250000,4250,137137.17],
+  [280898.89,250000.01,4250,137137.18],[280899.10,250000.20,4250.01,137137.26]];
+ for(const slug of ['income-tax','salary'])for(const [gross,taxable,solidarity,net]of cases){
+  const result=run(slug,{[slug==='salary'?'salary':'income']:gross,period:'year',taxCredits:0},'pt');
+  close(row(result,'result.taxableIncome'),taxable);close(row(result,'result.romanceSolidarity'),solidarity);close(result.primary.value,net);
+ }
+});
+
 test('Mexico 2026 annual wage ISR selects Annex8 C.II, actual IMSS and subsidy-free bounds',()=>{
  const {asiaWageAmounts}=require('../src/config/calculators/reviewed/asia.ts');
  // Annual table:22282.14+(300000-210403.70)*21.36%=41419.91.

@@ -109,9 +109,13 @@ function wageTax(country:string,gross:number,v:FieldValues,s:Social):{tax:number
   return {tax:cent(national+num(v,"localTax")),taxable,extra:[row("result.romanceTaxCredit",credit+extraCredit),row("result.romanceLocalTax",num(v,"localTax"))]};
  }
  const taxable=cent(positive(gross-Math.max(4587.09,s.deductible)));
- const upper=[8342,12587,17838,23089,29397,43090,46566,86634,Infinity], rates=[12.5,15.7,21.2,24.1,31.1,34.9,43.1,44.6,48], offsets=[0,266.94,959.13,1476.45,3092.77,4209.94,7743.27,8441.48,11387.17];
- const index=upper.findIndex(limit=>taxable<=limit), ordinary=taxable*rates[index]/100-offsets[index];
- const solidarity=cent(positive(Math.min(taxable,250000)-80000)*.025+positive(taxable-250000)*.05);
+ const upper=[8342,12587,17838,23089,29397,43090,46566,86634,Infinity];
+ const ratesPerThousand=[125,157,212,241,311,349,431,446,480], offsetCents=[0,26694,95913,147645,309277,420994,774327,844148,1138717];
+ const taxableCents=Math.round(taxable*100),index=upper.findIndex(limit=>taxable<=limit);
+ const ordinary=(Math.round(taxableCents*ratesPerThousand[index]/1000)-offsetCents[index])/100;
+ // Keep threshold differences in cents: 80000.20 - 80000 can otherwise
+ // turn an exact half-cent component into 0.004999999999… and round down.
+ const solidarity=Math.round((Math.max(0,Math.min(taxableCents,25000000)-8000000)+2*Math.max(0,taxableCents-25000000))/40)/100;
  return {tax:cent(positive(cent(ordinary)+solidarity-num(v,"taxCredits"))),taxable,extra:[row("result.romanceSolidarity",solidarity),row("field.romanceTaxCredits",num(v,"taxCredits"))]};
 }
 function wageEntry(country:CountryCode,slug:string):ReviewedCountryCalculator {
