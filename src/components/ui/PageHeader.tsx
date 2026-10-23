@@ -56,10 +56,9 @@ export function PageHeader({
 
   return (
     <header className="page-hero relative isolate mb-10 overflow-hidden bg-navy text-on-navy sm:mb-14">
-      {/* Glows and a dot grid, fading downwards. */}
+      {/* Static gradients avoid animating large filtered layers on phones. */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="animate-drift absolute -end-24 -top-40 h-[26rem] w-[26rem] rounded-full bg-primary/35 blur-3xl" />
-        <div className="animate-drift absolute -bottom-40 -start-24 h-[22rem] w-[22rem] rounded-full bg-[var(--brand-sky)]/20 blur-3xl [animation-delay:-8s]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(37,99,235,0.35),transparent_60%),radial-gradient(ellipse_at_bottom_left,rgba(56,189,248,0.20),transparent_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.09)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:linear-gradient(to_bottom,black,transparent_90%)]" />
       </div>
 

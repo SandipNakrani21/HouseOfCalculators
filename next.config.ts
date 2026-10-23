@@ -113,6 +113,7 @@ const securityHeaders = [
 const EMBEDDABLE = ["/opengraph-image", "/icon.png", "/apple-icon.png", "/favicon.ico", "/logo.png"];
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   // Do not advertise the framework and version to scanners.
   poweredByHeader: false,
   // Shared hosting (Hostinger) limits how many processes an account may run,

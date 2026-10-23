@@ -9,8 +9,9 @@
     "lint": "eslint",
     "i18n": "node scripts/i18n-coverage.mjs",
     "test": "node --test tests/*.test.cjs",
-    "metadata": "node scripts/calculator-metadata.cjs",
-    "check": "node scripts/calculator-metadata.cjs --check && node scripts/ad-inventory.cjs --check && npm run lint && npx tsc --noEmit && npm run i18n && npm test",
+    "metadata": "node scripts/calculator-metadata.cjs && node scripts/client-dictionaries.cjs",
+    "package:deploy": "node scripts/package-deploy.cjs",
+    "check": "node scripts/calculator-metadata.cjs --check && node scripts/client-dictionaries.cjs --check && node scripts/ad-inventory.cjs --check && npm run lint && npx tsc --noEmit && npm run i18n && npm test",
     "i18n:en-us": "node scripts/en-us-spelling.mjs"
   },
   "dependencies": {

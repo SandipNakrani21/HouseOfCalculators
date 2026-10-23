@@ -122,8 +122,8 @@ const CLIENT_LEGAL_LABELS = new Set(["legal.privacy.title", "legal.link.googlePr
 
 /**
  * The part of a dictionary the browser needs (see SERVER_ONLY_KEY). Every page
- * embeds this for the client-side translator, so trimming it shrinks every
- * page in every language.
+ * uses this for its client-side translator. The metadata generator writes
+ * separate locale modules so the browser can cache it across pages.
  */
 export function getClientDictionary(lang: LanguageCode, locale?: LocaleCode): Dictionary {
   const cacheKey = `${lang}|${locale ?? ""}`;

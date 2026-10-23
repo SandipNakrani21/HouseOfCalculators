@@ -11,7 +11,8 @@ organic search and Google AdSense.
 ```bash
 npm run dev        # http://localhost:3000 (the only environment)
 npm run check      # lint + types + i18n coverage
-npm run build      # static build, ~713 pages
+npm run build      # pre-render routes and create the standalone runtime
+npm run package:deploy # copy only runtime files into dist/deploy-<build-id>
 ```
 
 Project status, decisions and the pending list live in
@@ -67,7 +68,10 @@ coverage; key coverage does not certify translation accuracy.
 
 `src/lib/i18n/index.ts` holds every dictionary and is **server-only**. Client
 components import `src/lib/i18n/core.ts` and receive the active dictionary
-from `LocaleProvider`, so a page ships one language, not all of them.
+from `LocaleProvider`. `npm run metadata` generates separately loaded locale
+modules, so the active language is cached as JavaScript rather than repeated
+in every page's HTML and RSC segments. Run it after dictionary/model changes;
+`npm run check` rejects stale generated files.
 
 Counted phrases use `plural()` from `core.ts` with CLDR keys (`key.one`,
 `key.other`, and `few`/`many`/... where a language has them).

@@ -24,7 +24,7 @@ import { useLocale } from "@/lib/locale-context";
 import { readShareQuery } from "@/lib/share-link";
 import INCOME_TAX_RULES from "@/config/calculators/tax-metadata.json";
 import { currencyDecimals, resolveFields } from "@/lib/validation";
-import { reviewedCalculator } from "@/config/calculators/reviewed";
+import REVIEW_METADATA from "@/config/calculators/review-metadata.json";
 
 const TONE_VAR: Record<NonNullable<ResultRow["tone"]>, string> = {
   principal: "var(--tone-principal)",
@@ -118,7 +118,8 @@ export function CalculatorRunner({
     || (slug === "30-percent-ruling" && countryCode === "nl")
     || (["income-tax", "salary"].includes(slug) && ["au", "in"].includes(countryCode))
     || slug === "hecs";
-  const shareVersion = reviewedCalculator(slug, countryCode) || changedEarlier ? calculator.version : undefined;
+  const review = (REVIEW_METADATA as Record<string, { period: string }>)[`${slug}:${countryCode}`];
+  const shareVersion = review || changedEarlier ? calculator.version : undefined;
   const shared = useMemo(() => readShareQuery(search, baseFields, shareVersion), [search, baseFields, shareVersion]);
   const [oldLinkDismissed, setOldLinkDismissed] = useState(false);
   const sharedCountry =
@@ -194,7 +195,7 @@ export function CalculatorRunner({
       <legend className="sr-only">{t("calc.inputs")}</legend>
       <section key={resetGeneration} ref={inputCard} className="card p-5 sm:p-8">
         {slug === "income-tax" ? <div className="mb-6 rounded-md border border-border bg-bg-soft p-4">
-          <p className="font-bold text-heading">{t("calc.taxYear", { year: reviewedCalculator(slug, countryCode)?.review.period.match(/^\d{4}(?:[–/]\d{2,4})?/)?.[0] ?? INCOME_TAX_RULES[countryCode].taxYear })}</p>
+          <p className="font-bold text-heading">{t("calc.taxYear", { year: review?.period.match(/^\d{4}(?:[–/]\d{2,4})?/)?.[0] ?? INCOME_TAX_RULES[countryCode].taxYear })}</p>
           <p className="mt-1 text-sm text-muted">{t("calc.taxCoverage")}</p>
         </div> : null}
         {lockedCountry || countryRelevanceOf(calculator) === "none" ? null : (

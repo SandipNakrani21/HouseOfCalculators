@@ -19,8 +19,8 @@ import { COUNTRIES } from "@/config/countries";
 import { LOCALES, localeFromPath } from "@/config/locales";
 import { ADSENSE_CLIENT } from "@/lib/ads";
 import { createFormatter } from "@/lib/format";
-import { createTranslator, getClientDictionary } from "@/lib/i18n";
-import { LocaleProvider } from "@/lib/locale-context";
+import { createTranslator } from "@/lib/i18n";
+import { LocaleDictionaryProvider } from "@/lib/i18n/LocaleDictionaryProvider";
 import { buildNavMenu } from "@/lib/nav-menu";
 import { calculatorPath, siteUrl } from "@/lib/routes";
 import { SITE_NAME, buildMetadata, readyLocales } from "@/lib/seo";
@@ -112,7 +112,6 @@ export default async function LocaleLayout({
   const locale = localeFromPath(path);
   if (!locale) notFound();
 
-  const dictionary = getClientDictionary(locale.language, locale.code);
   const t = createTranslator(locale.language, locale.code);
   const ready = readyLocales();
 
@@ -161,7 +160,7 @@ export default async function LocaleLayout({
           {t("a11y.skipToContent")}
         </a>
 
-        <LocaleProvider localeCode={locale.code} dictionary={dictionary}>
+        <LocaleDictionaryProvider localeCode={locale.code}>
           <ToastProvider closeLabel={t("common.close")}>
             <RouteProgress />
             <SiteHeader ready={ready} menu={navMenu} />
@@ -179,7 +178,7 @@ export default async function LocaleLayout({
             <RevealObserver />
             <Interactions />
           </ToastProvider>
-        </LocaleProvider>
+        </LocaleDictionaryProvider>
 
         {/* Organization and WebSite structured data live on the homepage. */}
         <ConsentScript />

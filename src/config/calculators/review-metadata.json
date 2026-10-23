@@ -1,0 +1,149 @@
+{
+  "capital-gains:us": {
+    "period": "2026; single resident"
+  },
+  "capital-gains:ca": {
+    "period": "2026; federal only"
+  },
+  "capital-gains:au": {
+    "period": "2026–27"
+  },
+  "capital-gains:in": {
+    "period": "Tax year2026–27"
+  },
+  "payroll:nl": {
+    "period": "2026; ordinary private employer"
+  },
+  "superannuation:au": {
+    "period": "2026–27; accumulation illustration"
+  },
+  "income-tax:de": {
+    "period": "2026 ordinary full-year employment"
+  },
+  "salary:de": {
+    "period": "2026 ordinary full-year employment"
+  },
+  "income-tax:at": {
+    "period": "2026 regular pay, 12 equal payments"
+  },
+  "salary:at": {
+    "period": "2026 regular pay, 12 equal payments"
+  },
+  "social-security:de": {
+    "period": "2026 ordinary full-year employment"
+  },
+  "social-security:at": {
+    "period": "2026 regular pay, 12 equal payments"
+  },
+  "income-tax:ch": {
+    "period": "2026 single-person federal assessment"
+  },
+  "salary:ch": {
+    "period": "2026 single-person federal assessment"
+  },
+  "church-tax:de": {
+    "period": "2026 ordinary assessed church-income-tax surcharge"
+  },
+  "church-tax:at": {
+    "period": "2026 Vienna Roman Catholic ordinary employee"
+  },
+  "church-tax:ch": {
+    "period": "2026 City of Zurich Reformed church"
+  },
+  "payroll:de": {
+    "period": "2026 ordinary German employer annual cost"
+  },
+  "income-tax:tr": {
+    "period": "2026"
+  },
+  "salary:tr": {
+    "period": "2026"
+  },
+  "income-tax:br": {
+    "period": "2026"
+  },
+  "salary:br": {
+    "period": "2026"
+  },
+  "income-tax:jp": {
+    "period": "2026"
+  },
+  "salary:jp": {
+    "period": "2026"
+  },
+  "income-tax:cn": {
+    "period": "2026"
+  },
+  "salary:cn": {
+    "period": "2026"
+  },
+  "income-tax:mx": {
+    "period": "2026"
+  },
+  "salary:mx": {
+    "period": "2026"
+  },
+  "social-security:tr": {
+    "period": "2026"
+  },
+  "social-security:br": {
+    "period": "2026"
+  },
+  "social-security:jp": {
+    "period": "2026-04 to 2026-12, Tokyo Kyokai Kenpo"
+  },
+  "social-security:cn": {
+    "period": "2026-07 to 2026-12, Beijing"
+  },
+  "social-security:mx": {
+    "period": "2026 ordinary IMSS employee"
+  },
+  "income-tax:fr": {
+    "period": "2025 wages / 2026 assessment"
+  },
+  "salary:fr": {
+    "period": "2025 wages / 2026 assessment"
+  },
+  "income-tax:be": {
+    "period": "2026 income / 2027 assessment"
+  },
+  "salary:be": {
+    "period": "2026 income / 2027 assessment"
+  },
+  "income-tax:es": {
+    "period": "2026 full-year ordinary employment"
+  },
+  "salary:es": {
+    "period": "2026 full-year ordinary employment"
+  },
+  "income-tax:it": {
+    "period": "2026 full-year ordinary employment"
+  },
+  "salary:it": {
+    "period": "2026 full-year ordinary employment"
+  },
+  "income-tax:pt": {
+    "period": "2026 full-year ordinary employment"
+  },
+  "salary:pt": {
+    "period": "2026 full-year ordinary employment"
+  },
+  "social-security:fr": {
+    "period": "2026 ordinary employee contributions"
+  },
+  "social-security:be": {
+    "period": "2026 ordinary employee contributions"
+  },
+  "social-security:es": {
+    "period": "2026 full-year ordinary employment"
+  },
+  "social-security:it": {
+    "period": "2026 full-year ordinary employment"
+  },
+  "payroll:fr": {
+    "period": "2026 ordinary employer wage cost"
+  },
+  "payroll:be": {
+    "period": "2026 ordinary employer wage cost"
+  }
+}

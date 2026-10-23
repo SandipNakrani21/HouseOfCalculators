@@ -23,3 +23,13 @@ const { INCOME_TAX_RULES } = require('../src/lib/finance/tax/index.ts');
 const taxOutput=JSON.stringify(Object.fromEntries(Object.entries(INCOME_TAX_RULES).map(([country,rule])=>[country,{taxYear:rule.taxYear,verifiedFor:rule.verifiedFor}])),null,2)+'\n';
 const taxTarget='src/config/calculators/tax-metadata.json';
 if(process.argv.includes('--check')){if(fs.readFileSync(taxTarget,'utf8')!==taxOutput)throw new Error('Tax metadata is stale.');}else fs.writeFileSync(taxTarget,taxOutput);
+
+// The runner needs review dates and version gates, never every country's engine.
+const { reviewedCountries } = require('../src/config/calculators/reviewed/index.ts');
+const reviewOutput = JSON.stringify(Object.fromEntries(reviewedCountries.map(entry =>
+  [entry.slug + ':' + entry.country, { period: entry.review.period }]
+)), null, 2) + '\n';
+const reviewTarget = 'src/config/calculators/review-metadata.json';
+if (process.argv.includes('--check')) {
+  if (fs.readFileSync(reviewTarget, 'utf8') !== reviewOutput) throw new Error('Review metadata is stale.');
+} else fs.writeFileSync(reviewTarget, reviewOutput);
