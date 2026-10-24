@@ -36,6 +36,7 @@ export function useGoogleConsentApplies(enabled: boolean): "pending" | boolean {
     if (!enabled) return;
     let stopped = false, registered = false;
     let listenerId: number | undefined;
+    let timer: number | undefined;
     const syncPurposes = () => {
       if (stopped) return;
       let values: GoogleConsentValues | undefined;
@@ -66,6 +67,9 @@ export function useGoogleConsentApplies(enabled: boolean): "pending" | boolean {
     const register = () => {
       if (registered || !window.__tcfapi) return;
       registered = true;
+      // The listener and callback queue handle later CMP changes. Poll only
+      // while waiting for the API, rather than waking every 250 ms forever.
+      window.clearInterval(timer);
       window.__tcfapi("addEventListener", 2, (data, success) => {
         if (stopped) return;
         listenerId = data?.listenerId;
@@ -90,7 +94,7 @@ export function useGoogleConsentApplies(enabled: boolean): "pending" | boolean {
     queue.push({ CONSENT_API_READY: register });
     queue.push({ CONSENT_MODE_DATA_READY: syncPurposes });
     register();
-    const timer = window.setInterval(register, 250);
+    if (!registered) timer = window.setInterval(register, 250);
     return () => {
       stopped = true;
       window.clearInterval(timer);

@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-24T16:50:46.909Z",
+  "method": "Actual React hook; simulated timer and CMP. No live traffic.",
+  "results": [
+    {
+      "timing": "immediate",
+      "pass": true
+    },
+    {
+      "timing": "poll",
+      "pass": true
+    },
+    {
+      "timing": "queue",
+      "pass": true
+    },
+    {
+      "timing": "unavailable",
+      "pass": true
+    }
+  ]
+}
