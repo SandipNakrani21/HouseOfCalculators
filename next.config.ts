@@ -75,6 +75,13 @@ const csp = [
 
 const securityHeaders = [
   { key: "Content-Security-Policy", value: csp },
+  // Trial the event-handler restriction with advertising enabled before
+  // enforcing it. Report-only leaves hydration and Google integrations intact;
+  // violations appear in the browser console, with no external report upload.
+  // Report-only policies require an HTTP header (a meta tag cannot supply one).
+  ...(!isDev && adsEnabled
+    ? [{ key: "Content-Security-Policy-Report-Only", value: "script-src-attr 'none'" }]
+    : []),
   // Browsers ignore HSTS over plain http, so this only takes effect in production.
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
   { key: "X-Content-Type-Options", value: "nosniff" },

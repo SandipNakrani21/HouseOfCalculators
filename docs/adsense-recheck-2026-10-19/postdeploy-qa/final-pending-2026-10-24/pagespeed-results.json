@@ -1,0 +1,686 @@
+[
+  {
+    "route": "/en-us",
+    "run": 1,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us/7imshdd4nq?form_factor=mobile",
+    "at": "2026-10-24T14:42:06.453Z",
+    "score": "65\nPerformance",
+    "metrics": {
+      "FCP": "1357",
+      "LCP": "7109",
+      "TBT": "272",
+      "CLS": "0",
+      "SI": "5904",
+      "TTI": "7356",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n65\nPerformance\n100\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n65\nFCP\n+10\nLCP\n+1\nTBT\n+25\nCLS\n+25\nSI\n+5\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.4 s\nLargest Contentful Paint\n7.1 s\nTotal Blocking Time\n270 ms\nCumulative Layout Shift\n0\nSpeed Index\n5.9 s\nCaptured at Oct 24, 2026, 8:10 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 1,230 ms\nRequests are blocking the page's initial render, which may delay LCP. Deferring or inlining can move these network requests out of the critical path.LCPFCPUnscored\nURL\n\t\nTransfer Size\n\t\nDuration\n\n\nthecalculatorshouse.com 1st Party\n31.1 KiB\t1,700 ms\n\n…css/ef03e46074b73bf1.css(thecalculatorshouse.com)\n\t\n28.1 KiB\n\t\n1,360 ms\n\n\n…css/6de4a41dbcd81f88.css(thecalculatorshouse.com)\n\t\n3.0 KiB\n\t\n350 ms\nUse efficient cache lifetimes Est savings of 131 KiB\nForced reflow\nLCP breakdown\nEach subpart has specific improvement strategies. Ideally, most of the LCP time should be spent on loading the resources, not within delays.LCPUnscored\nSubpart\n\t\nDuration\n\n\nTime to first byte\n\t\n340 ms\n\n\nElement render delay\n\t\n3,440 ms\nThis site is free because it carries advertising. With your permission, Google …\n<p class=\"mt-1 text-sm leading-relaxed text-muted\">\nNetwork dependency tree\nImprove image delivery Est savings of 44 KiB\nLegacy JavaScript Est savings of 17 KiB\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 2.9 s\nReduce unused JavaScript Est savings of 270 KiB\nAvoid long main-thread tasks 8 long tasks found\nAvoid non-composited animations 2 animated elements found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (13)\nShow\n100\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nHide\nInteractive controls are keyboard focusable\nInteractive elements indicate their purpose and state\nThe page has a logical tab order\nVisual order on the page follows DOM order\nUser focus is not accidentally trapped in a region\nThe user's focus is directed to new content added to the page\nHTML5 landmark elements are used to improve navigation\nOffscreen content is hidden from assistive technology\nCustom controls have associated labels\nCustom controls have ARIA roles\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (30)\nShow\nNOT APPLICABLE (33)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us",
+    "run": 1,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us/7imshdd4nq?form_factor=desktop",
+    "at": "2026-10-24T14:42:07.120Z",
+    "score": "76\nPerformance",
+    "metrics": {
+      "FCP": "407",
+      "LCP": "1687",
+      "TBT": "300",
+      "CLS": "0.01",
+      "SI": "2428",
+      "TTI": "1861",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n76\nPerformance\n100\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n76\nFCP\n+10\nLCP\n+19\nTBT\n+18\nCLS\n+25\nSI\n+5\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.4 s\nLargest Contentful Paint\n1.7 s\nTotal Blocking Time\n300 ms\nCumulative Layout Shift\n0.011\nSpeed Index\n2.4 s\nCaptured at Oct 24, 2026, 8:10 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 780 ms\nUse efficient cache lifetimes Est savings of 144 KiB\nImprove image delivery Est savings of 51 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 2.6 s\nReduce unused JavaScript Est savings of 270 KiB\nAvoid long main-thread tasks 7 long tasks found\nAvoid non-composited animations 8 animated elements found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (13)\nShow\n100\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nHide\nInteractive controls are keyboard focusable\nInteractive elements indicate their purpose and state\nThe page has a logical tab order\nVisual order on the page follows DOM order\nUser focus is not accidentally trapped in a region\nThe user's focus is directed to new content added to the page\nHTML5 landmark elements are used to improve navigation\nOffscreen content is hidden from assistive technology\nCustom controls have associated labels\nCustom controls have ARIA roles\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (30)\nShow\nNOT APPLICABLE (33)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/calculators/finance/loan",
+    "run": 1,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-calculators-finance-loan/k5lxfuna97?form_factor=mobile",
+    "at": "2026-10-24T14:43:36.239Z",
+    "score": "72\nPerformance",
+    "metrics": {
+      "FCP": "1363",
+      "LCP": "7056",
+      "TBT": "107",
+      "CLS": "0",
+      "SI": "5158",
+      "TTI": "7137",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n72\nPerformance\n97\nAccessibility\n81\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n72\nFCP\n+10\nLCP\n+2\nTBT\n+29\nCLS\n+25\nSI\n+6\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.4 s\nLargest Contentful Paint\n7.1 s\nTotal Blocking Time\n110 ms\nCumulative Layout Shift\n0\nSpeed Index\n5.2 s\nCaptured at Oct 24, 2026, 8:12 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 1,310 ms\nUse efficient cache lifetimes Est savings of 134 KiB\nImprove image delivery Est savings of 44 KiB\nLegacy JavaScript Est savings of 17 KiB\nLCP breakdown\nNetwork dependency tree\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 332 KiB\nAvoid long main-thread tasks 3 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (18)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (34)\nShow\nNOT APPLICABLE (28)\nShow\n81\nBest Practices\nGENERAL\nUses deprecated APIs 1 warning found\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (12)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/calculators/finance/loan",
+    "run": 1,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-calculators-finance-loan/k5lxfuna97?form_factor=desktop",
+    "at": "2026-10-24T14:43:36.618Z",
+    "score": "64\nPerformance",
+    "metrics": {
+      "FCP": "360",
+      "LCP": "2037",
+      "TBT": "537",
+      "CLS": "0.01",
+      "SI": "1904",
+      "TTI": "2252",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n64\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n64\nFCP\n+10\nLCP\n+15\nTBT\n+8\nCLS\n+25\nSI\n+7\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.4 s\nLargest Contentful Paint\n2.0 s\nTotal Blocking Time\n540 ms\nCumulative Layout Shift\n0.008\nSpeed Index\n1.9 s\nCaptured at Oct 24, 2026, 8:12 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 90 ms\nForced reflow\nLCP breakdown\nNetwork dependency tree\nUse efficient cache lifetimes Est savings of 77 KiB\nImprove image delivery Est savings of 46 KiB\nLegacy JavaScript Est savings of 17 KiB\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce JavaScript execution time 1.5 s\nMinimize main-thread work 2.6 s\nReduce unused JavaScript Est savings of 267 KiB\nAvoid long main-thread tasks 9 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (13)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (34)\nShow\nNOT APPLICABLE (28)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/charts/math/metric-prefixes",
+    "run": 1,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-charts-math-metric-prefixes/smvyoieyn8?form_factor=mobile",
+    "at": "2026-10-24T14:44:27.685Z",
+    "score": "69\nPerformance",
+    "metrics": {
+      "FCP": "1208",
+      "LCP": "6023",
+      "TBT": "273",
+      "CLS": "0",
+      "SI": "5110",
+      "TTI": "6023",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n69\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n69\nFCP\n+10\nLCP\n+3\nTBT\n+25\nCLS\n+25\nSI\n+6\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.2 s\nLargest Contentful Paint\n6.0 s\nTotal Blocking Time\n270 ms\nCumulative Layout Shift\n0\nSpeed Index\n5.1 s\nCaptured at Oct 24, 2026, 8:13 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 1,290 ms\nUse efficient cache lifetimes Est savings of 127 KiB\nImprove image delivery Est savings of 89 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 267 KiB\nAvoid long main-thread tasks 5 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (17)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (29)\nShow\nNOT APPLICABLE (33)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/charts/math/metric-prefixes",
+    "run": 1,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-charts-math-metric-prefixes/smvyoieyn8?form_factor=desktop",
+    "at": "2026-10-24T14:44:28.077Z",
+    "score": "80\nPerformance",
+    "metrics": {
+      "FCP": "320",
+      "LCP": "1748",
+      "TBT": "247",
+      "CLS": "0.01",
+      "SI": "1983",
+      "TTI": "1834",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n80\nPerformance\n97\nAccessibility\n96\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n80\nFCP\n+10\nLCP\n+18\nTBT\n+21\nCLS\n+25\nSI\n+6\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.3 s\nLargest Contentful Paint\n1.7 s\nTotal Blocking Time\n250 ms\nCumulative Layout Shift\n0.007\nSpeed Index\n2.0 s\nCaptured at Oct 24, 2026, 8:13 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 840 ms\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nUse efficient cache lifetimes Est savings of 117 KiB\nImprove image delivery Est savings of 93 KiB\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 267 KiB\nAvoid long main-thread tasks 5 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (15)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (29)\nShow\nNOT APPLICABLE (33)\nShow\n96\nBest Practices\nUSER EXPERIENCE\nDisplays images with incorrect aspect ratio\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (12)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/converters/length/meters-to-feet",
+    "run": 1,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-converters-length-meters-to-feet/i0taaae9g1?form_factor=mobile",
+    "at": "2026-10-24T14:46:14.495Z",
+    "score": "63\nPerformance",
+    "metrics": {
+      "FCP": "1205",
+      "LCP": "7419",
+      "TBT": "474",
+      "CLS": "0",
+      "SI": "3543",
+      "TTI": "7430",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n63\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n63\nFCP\n+10\nLCP\n+1\nTBT\n+18\nCLS\n+25\nSI\n+9\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.2 s\nLargest Contentful Paint\n7.4 s\nTotal Blocking Time\n470 ms\nCumulative Layout Shift\n0\nSpeed Index\n3.5 s\nCaptured at Oct 24, 2026, 8:14 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 560 ms\nUse efficient cache lifetimes Est savings of 67 KiB\nImprove image delivery Est savings of 48 KiB\nForced reflow\nNetwork dependency tree\nLegacy JavaScript Est savings of 17 KiB\nOptimize DOM size\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 2.3 s\nReduce unused JavaScript Est savings of 266 KiB\nAvoid long main-thread tasks 6 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (15)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (30)\nShow\nNOT APPLICABLE (32)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/converters/length/meters-to-feet",
+    "run": 1,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-converters-length-meters-to-feet/i0taaae9g1?form_factor=desktop",
+    "at": "2026-10-24T14:46:14.863Z",
+    "score": "91\nPerformance",
+    "metrics": {
+      "FCP": "288",
+      "LCP": "1633",
+      "TBT": "134",
+      "CLS": "0.01",
+      "SI": "1156",
+      "TTI": "1718",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n91\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n91\nFCP\n+10\nLCP\n+19\nTBT\n+28\nCLS\n+25\nSI\n+9\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.3 s\nLargest Contentful Paint\n1.6 s\nTotal Blocking Time\n130 ms\nCumulative Layout Shift\n0.008\nSpeed Index\n1.2 s\nCaptured at Oct 24, 2026, 8:14 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 120 ms\nUse efficient cache lifetimes Est savings of 90 KiB\nImprove image delivery Est savings of 46 KiB\nForced reflow\nNetwork dependency tree\nLegacy JavaScript Est savings of 17 KiB\nLayout shift culprits\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 266 KiB\nAvoid long main-thread tasks 2 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (16)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (30)\nShow\nNOT APPLICABLE (32)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/countries/us/income-tax",
+    "run": 1,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-countries-us-income-tax/tgbs18lhlm?form_factor=mobile",
+    "at": "2026-10-24T14:46:58.662Z",
+    "score": "64\nPerformance",
+    "metrics": {
+      "FCP": "1499",
+      "LCP": "7581",
+      "TBT": "315",
+      "CLS": "0",
+      "SI": "5348",
+      "TTI": "8226",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n64\nPerformance\n97\nAccessibility\n81\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n64\n+10\n+1\n+23\n+25\n+6\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.5 s\nLargest Contentful Paint\n7.6 s\nTotal Blocking Time\n320 ms\nCumulative Layout Shift\n0\nSpeed Index\n5.3 s\nCaptured at Oct 24, 2026, 8:16 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 680 ms\nUse efficient cache lifetimes Est savings of 134 KiB\nImprove image delivery Est savings of 44 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 333 KiB\nAvoid long main-thread tasks 6 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (16)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nBEST PRACTICES\nIdentical links have the same purpose.\nThese items highlight common accessibility best practices.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (31)\nShow\nNOT APPLICABLE (30)\nShow\n81\nBest Practices\nGENERAL\nUses deprecated APIs 1 warning found\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (12)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/countries/us/income-tax",
+    "run": 1,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-countries-us-income-tax/tgbs18lhlm?form_factor=desktop",
+    "at": "2026-10-24T14:46:59.066Z",
+    "score": "89\nPerformance",
+    "metrics": {
+      "FCP": "342",
+      "LCP": "1603",
+      "TBT": "112",
+      "CLS": "0.01",
+      "SI": "2118",
+      "TTI": "1661",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n89\nPerformance\n97\nAccessibility\n81\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n89\nFCP\n+10\nLCP\n+19\nTBT\n+29\nCLS\n+25\nSI\n+6\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.3 s\nLargest Contentful Paint\n1.6 s\nTotal Blocking Time\n110 ms\nCumulative Layout Shift\n0.008\nSpeed Index\n2.1 s\nCaptured at Oct 24, 2026, 8:16 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 850 ms\nUse efficient cache lifetimes Est savings of 134 KiB\nImprove image delivery Est savings of 46 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 332 KiB\nAvoid long main-thread tasks 4 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (15)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nBEST PRACTICES\nIdentical links have the same purpose.\nThese items highlight common accessibility best practices.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (32)\nShow\nNOT APPLICABLE (29)\nShow\n81\nBest Practices\nGENERAL\nUses deprecated APIs 1 warning found\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (12)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/guides/what-is/what-is-compound-interest",
+    "run": 1,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-guides-what-is-what-is-compound-interest/t4zl2djjwp?form_factor=mobile",
+    "at": "2026-10-24T14:47:39.517Z",
+    "score": "57\nPerformance",
+    "metrics": {
+      "FCP": "2186",
+      "LCP": "5949",
+      "TBT": "654",
+      "CLS": "0",
+      "SI": "4419",
+      "TTI": "6721",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n57\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n57\nFCP\n+8\nLCP\n+3\nTBT\n+14\nCLS\n+25\nSI\n+7\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n2.2 s\nLargest Contentful Paint\n5.9 s\nTotal Blocking Time\n650 ms\nCumulative Layout Shift\n0\nSpeed Index\n4.4 s\nCaptured at Oct 24, 2026, 8:17 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 530 ms\nUse efficient cache lifetimes Est savings of 117 KiB\nImprove image delivery Est savings of 89 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nNetwork dependency tree\nOptimize DOM size\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce JavaScript execution time 1.4 s\nMinimize main-thread work 2.5 s\nReduce unused JavaScript Est savings of 314 KiB\nAvoid long main-thread tasks 7 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (14)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (27)\nShow\nNOT APPLICABLE (35)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/guides/what-is/what-is-compound-interest",
+    "run": 1,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-guides-what-is-what-is-compound-interest/t4zl2djjwp?form_factor=desktop",
+    "at": "2026-10-24T14:47:39.907Z",
+    "score": "69\nPerformance",
+    "metrics": {
+      "FCP": "644",
+      "LCP": "979",
+      "TBT": "665",
+      "CLS": "0.01",
+      "SI": "2190",
+      "TTI": "2062",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n69\nPerformance\n97\nAccessibility\n96\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n69\nFCP\n+10\nLCP\n+24\nTBT\n+5\nCLS\n+25\nSI\n+5\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.6 s\nLargest Contentful Paint\n1.0 s\nTotal Blocking Time\n660 ms\nCumulative Layout Shift\n0.006\nSpeed Index\n2.2 s\nCaptured at Oct 24, 2026, 8:17 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 40 ms\nUse efficient cache lifetimes Est savings of 141 KiB\nImprove image delivery Est savings of 93 KiB\nForced reflow\nNetwork dependency tree\nLegacy JavaScript Est savings of 17 KiB\nLayout shift culprits\nOptimize DOM size\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 2.9 s\nReduce JavaScript execution time 1.5 s\nReduce unused JavaScript Est savings of 268 KiB\nAvoid long main-thread tasks 10 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (13)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (27)\nShow\nNOT APPLICABLE (35)\nShow\n96\nBest Practices\nUSER EXPERIENCE\nDisplays images with incorrect aspect ratio\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (12)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us",
+    "run": 2,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us/7qjecjb6pn?form_factor=mobile",
+    "at": "2026-10-24T14:48:27.944Z",
+    "score": "69\nPerformance",
+    "metrics": {
+      "FCP": "1357",
+      "LCP": "6246",
+      "TBT": "280",
+      "CLS": "0",
+      "SI": "4567",
+      "TTI": "6254",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n69\nPerformance\n100\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n69\nFCP\n+10\nLCP\n+3\nTBT\n+24\nCLS\n+25\nSI\n+7\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.4 s\nLargest Contentful Paint\n6.2 s\nTotal Blocking Time\n280 ms\nCumulative Layout Shift\n0\nSpeed Index\n4.6 s\nCaptured at Oct 24, 2026, 8:17 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 570 ms\nUse efficient cache lifetimes Est savings of 154 KiB\nImprove image delivery Est savings of 44 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nNetwork dependency tree\nLayout shift culprits\nOptimize DOM size\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 2.5 s\nReduce unused JavaScript Est savings of 269 KiB\nAvoid long main-thread tasks 7 long tasks found\nAvoid non-composited animations 2 animated elements found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (13)\nShow\n100\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nHide\nInteractive controls are keyboard focusable\nInteractive elements indicate their purpose and state\nThe page has a logical tab order\nVisual order on the page follows DOM order\nUser focus is not accidentally trapped in a region\nThe user's focus is directed to new content added to the page\nHTML5 landmark elements are used to improve navigation\nOffscreen content is hidden from assistive technology\nCustom controls have associated labels\nCustom controls have ARIA roles\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (30)\nShow\nNOT APPLICABLE (33)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us",
+    "run": 2,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us/7qjecjb6pn?form_factor=desktop",
+    "at": "2026-10-24T14:48:28.351Z",
+    "score": "72\nPerformance",
+    "metrics": {
+      "FCP": "392",
+      "LCP": "1611",
+      "TBT": "386",
+      "CLS": "0.01",
+      "SI": "2312",
+      "TTI": "1680",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n72\nPerformance\n100\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n72\nFCP\n+10\nLCP\n+19\nTBT\n+13\nCLS\n+25\nSI\n+5\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.4 s\nLargest Contentful Paint\n1.6 s\nTotal Blocking Time\n390 ms\nCumulative Layout Shift\n0.007\nSpeed Index\n2.3 s\nCaptured at Oct 24, 2026, 8:17 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nUse efficient cache lifetimes Est savings of 134 KiB\nImprove image delivery Est savings of 51 KiB\nRender-blocking requests Est savings of 50 ms\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 3.0 s\nReduce unused JavaScript Est savings of 270 KiB\nAvoid long main-thread tasks 9 long tasks found\nAvoid non-composited animations 10 animated elements found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (13)\nShow\n100\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nHide\nInteractive controls are keyboard focusable\nInteractive elements indicate their purpose and state\nThe page has a logical tab order\nVisual order on the page follows DOM order\nUser focus is not accidentally trapped in a region\nThe user's focus is directed to new content added to the page\nHTML5 landmark elements are used to improve navigation\nOffscreen content is hidden from assistive technology\nCustom controls have associated labels\nCustom controls have ARIA roles\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (30)\nShow\nNOT APPLICABLE (33)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/calculators/finance/loan",
+    "run": 2,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-calculators-finance-loan/3uia0s1q7m?form_factor=mobile",
+    "at": "2026-10-24T14:49:45.406Z",
+    "score": "60\nPerformance",
+    "metrics": {
+      "FCP": "1359",
+      "LCP": "6459",
+      "TBT": "534",
+      "CLS": "0",
+      "SI": "5180",
+      "TTI": "6459",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n60\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n60\nFCP\n+10\nLCP\n+2\nTBT\n+17\nCLS\n+25\nSI\n+6\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.4 s\nLargest Contentful Paint\n6.5 s\nTotal Blocking Time\n530 ms\nCumulative Layout Shift\n0\nSpeed Index\n5.2 s\nCaptured at Oct 24, 2026, 8:18 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 1,260 ms\nUse efficient cache lifetimes Est savings of 67 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nImprove image delivery Est savings of 44 KiB\nLegacy JavaScript Est savings of 17 KiB\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 2.1 s\nReduce unused JavaScript Est savings of 266 KiB\nAvoid long main-thread tasks 7 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (15)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (34)\nShow\nNOT APPLICABLE (28)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/calculators/finance/loan",
+    "run": 2,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-calculators-finance-loan/3uia0s1q7m?form_factor=desktop",
+    "at": "2026-10-24T14:49:45.827Z",
+    "score": "82\nPerformance",
+    "metrics": {
+      "FCP": "356",
+      "LCP": "1490",
+      "TBT": "290",
+      "CLS": "0.01",
+      "SI": "1574",
+      "TTI": "1502",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n82\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n82\nFCP\n+10\nLCP\n+20\nTBT\n+18\nCLS\n+25\nSI\n+8\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.4 s\nLargest Contentful Paint\n1.5 s\nTotal Blocking Time\n290 ms\nCumulative Layout Shift\n0.008\nSpeed Index\n1.6 s\nCaptured at Oct 24, 2026, 8:18 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 90 ms\nUse efficient cache lifetimes Est savings of 67 KiB\nImprove image delivery Est savings of 46 KiB\nForced reflow\nNetwork dependency tree\nLegacy JavaScript Est savings of 17 KiB\nLayout shift culprits\nOptimize DOM size\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 267 KiB\nAvoid long main-thread tasks 6 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (15)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (34)\nShow\nNOT APPLICABLE (28)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/charts/math/metric-prefixes",
+    "run": 2,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-charts-math-metric-prefixes/4phbyz1krc?form_factor=mobile",
+    "at": "2026-10-24T14:50:56.384Z",
+    "score": "66\nPerformance",
+    "metrics": {
+      "FCP": "1216",
+      "LCP": "5892",
+      "TBT": "402",
+      "CLS": "0",
+      "SI": "4244",
+      "TTI": "5892",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n66\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n66\nFCP\n+10\nLCP\n+4\nTBT\n+20\nCLS\n+25\nSI\n+8\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.2 s\nLargest Contentful Paint\n5.9 s\nTotal Blocking Time\n400 ms\nCumulative Layout Shift\n0\nSpeed Index\n4.2 s\nCaptured at Oct 24, 2026, 8:19 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 540 ms\nUse efficient cache lifetimes Est savings of 118 KiB\nImprove image delivery Est savings of 89 KiB\nForced reflow\nNetwork dependency tree\nLegacy JavaScript Est savings of 17 KiB\nOptimize DOM size\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 267 KiB\nAvoid long main-thread tasks 6 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (16)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (29)\nShow\nNOT APPLICABLE (33)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/charts/math/metric-prefixes",
+    "run": 2,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-charts-math-metric-prefixes/4phbyz1krc?form_factor=desktop",
+    "at": "2026-10-24T14:50:56.758Z",
+    "score": "89\nPerformance",
+    "metrics": {
+      "FCP": "291",
+      "LCP": "1607",
+      "TBT": "142",
+      "CLS": "0.01",
+      "SI": "1695",
+      "TTI": "1718",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n89\nPerformance\n97\nAccessibility\n96\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n89\nFCP\n+10\nLCP\n+19\nTBT\n+27\nCLS\n+25\nSI\n+8\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.3 s\nLargest Contentful Paint\n1.6 s\nTotal Blocking Time\n140 ms\nCumulative Layout Shift\n0.007\nSpeed Index\n1.7 s\nCaptured at Oct 24, 2026, 8:19 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 860 ms\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nUse efficient cache lifetimes Est savings of 118 KiB\nImprove image delivery Est savings of 46 KiB\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 267 KiB\nAvoid long main-thread tasks 3 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (15)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (29)\nShow\nNOT APPLICABLE (33)\nShow\n96\nBest Practices\nUSER EXPERIENCE\nDisplays images with incorrect aspect ratio\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (12)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/converters/length/meters-to-feet",
+    "run": 2,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-converters-length-meters-to-feet/a9g8ogw8g8?form_factor=mobile",
+    "at": "2026-10-24T14:52:13.319Z",
+    "score": "64\nPerformance",
+    "metrics": {
+      "FCP": "1214",
+      "LCP": "7131",
+      "TBT": "387",
+      "CLS": "0",
+      "SI": "4660",
+      "TTI": "7863",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n64\nPerformance\n97\nAccessibility\n81\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n64\nFCP\n+10\nLCP\n+1\nTBT\n+21\nCLS\n+25\nSI\n+7\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.2 s\nLargest Contentful Paint\n7.1 s\nTotal Blocking Time\n390 ms\nCumulative Layout Shift\n0\nSpeed Index\n4.7 s\nCaptured at Oct 24, 2026, 8:21 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 1,340 ms\nUse efficient cache lifetimes Est savings of 134 KiB\nImprove image delivery Est savings of 44 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 2.1 s\nReduce unused JavaScript Est savings of 332 KiB\nAvoid long main-thread tasks 8 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (15)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (30)\nShow\nNOT APPLICABLE (32)\nShow\n81\nBest Practices\nGENERAL\nUses deprecated APIs 1 warning found\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (12)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/converters/length/meters-to-feet",
+    "run": 2,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-converters-length-meters-to-feet/a9g8ogw8g8?form_factor=desktop",
+    "at": "2026-10-24T14:52:13.716Z",
+    "score": "81\nPerformance",
+    "metrics": {
+      "FCP": "328",
+      "LCP": "1496",
+      "TBT": "265",
+      "CLS": "0.01",
+      "SI": "1904",
+      "TTI": "1704",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n81\nPerformance\n97\nAccessibility\n81\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n81\nFCP\n+10\nLCP\n+20\nTBT\n+20\nCLS\n+25\nSI\n+7\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.3 s\nLargest Contentful Paint\n1.5 s\nTotal Blocking Time\n260 ms\nCumulative Layout Shift\n0.008\nSpeed Index\n1.9 s\nCaptured at Oct 24, 2026, 8:21 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 840 ms\nUse efficient cache lifetimes Est savings of 134 KiB\nLegacy JavaScript Est savings of 17 KiB\nImprove image delivery Est savings of 46 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 334 KiB\nAvoid long main-thread tasks 7 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (15)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (30)\nShow\nNOT APPLICABLE (32)\nShow\n81\nBest Practices\nGENERAL\nUses deprecated APIs 1 warning found\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (12)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/countries/us/income-tax",
+    "run": 2,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-countries-us-income-tax/r0x8q0aicd?form_factor=mobile",
+    "at": "2026-10-24T14:53:27.800Z",
+    "score": "45\nPerformance",
+    "metrics": {
+      "FCP": "1355",
+      "LCP": "8323",
+      "TBT": "1324",
+      "CLS": "0",
+      "SI": "6264",
+      "TTI": "8673",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n45\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n45\nFCP\n+10\nLCP\n+1\nTBT\n+5\nCLS\n+25\nSI\n+4\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.4 s\nLargest Contentful Paint\n8.3 s\nTotal Blocking Time\n1,320 ms\nCumulative Layout Shift\n0\nSpeed Index\n6.3 s\nCaptured at Oct 24, 2026, 8:22 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 1,170 ms\nUse efficient cache lifetimes Est savings of 76 KiB\nImprove image delivery Est savings of 44 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 4.6 s\nReduce JavaScript execution time 2.7 s\nReduce unused JavaScript Est savings of 266 KiB\nAvoid long main-thread tasks 14 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (14)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nBEST PRACTICES\nIdentical links have the same purpose.\nThese items highlight common accessibility best practices.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (31)\nShow\nNOT APPLICABLE (30)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/countries/us/income-tax",
+    "run": 2,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-countries-us-income-tax/r0x8q0aicd?form_factor=desktop",
+    "at": "2026-10-24T14:53:28.651Z",
+    "score": "84\nPerformance",
+    "metrics": {
+      "FCP": "357",
+      "LCP": "1670",
+      "TBT": "180",
+      "CLS": "0.01",
+      "SI": "2274",
+      "TTI": "1748",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n84\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n84\nFCP\n+10\nLCP\n+19\nTBT\n+25\nCLS\n+25\nSI\n+5\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.4 s\nLargest Contentful Paint\n1.7 s\nTotal Blocking Time\n180 ms\nCumulative Layout Shift\n0.008\nSpeed Index\n2.3 s\nCaptured at Oct 24, 2026, 8:22 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 840 ms\nUse efficient cache lifetimes Est savings of 67 KiB\nImprove image delivery Est savings of 46 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 313 KiB\nAvoid long main-thread tasks 5 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (15)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nBEST PRACTICES\nIdentical links have the same purpose.\nThese items highlight common accessibility best practices.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (32)\nShow\nNOT APPLICABLE (29)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/guides/what-is/what-is-compound-interest",
+    "run": 2,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-guides-what-is-what-is-compound-interest/bz5akl2sek?form_factor=mobile",
+    "at": "2026-10-24T14:54:47.728Z",
+    "score": "71\nPerformance",
+    "metrics": {
+      "FCP": "1214",
+      "LCP": "6029",
+      "TBT": "217",
+      "CLS": "0",
+      "SI": "4998",
+      "TTI": "6029",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n71\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n71\nFCP\n+10\nLCP\n+3\nTBT\n+26\nCLS\n+25\nSI\n+6\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.2 s\nLargest Contentful Paint\n6.0 s\nTotal Blocking Time\n220 ms\nCumulative Layout Shift\n0\nSpeed Index\n5.0 s\nCaptured at Oct 24, 2026, 8:23 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 1,310 ms\nUse efficient cache lifetimes Est savings of 117 KiB\nImprove image delivery Est savings of 89 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nLegacy JavaScript Est savings of 17 KiB\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 313 KiB\nAvoid long main-thread tasks 4 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (17)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (27)\nShow\nNOT APPLICABLE (35)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/guides/what-is/what-is-compound-interest",
+    "run": 2,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-guides-what-is-what-is-compound-interest/bz5akl2sek?form_factor=desktop",
+    "at": "2026-10-24T14:54:48.369Z",
+    "score": "93\nPerformance",
+    "metrics": {
+      "FCP": "742",
+      "LCP": "1237",
+      "TBT": "82",
+      "CLS": "0.01",
+      "SI": "1978",
+      "TTI": "1383",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n93\nPerformance\n97\nAccessibility\n96\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n93\nFCP\n+10\nLCP\n+22\nTBT\n+30\nCLS\n+25\nSI\n+6\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.7 s\nLargest Contentful Paint\n1.2 s\nTotal Blocking Time\n80 ms\nCumulative Layout Shift\n0.009\nSpeed Index\n2.0 s\nCaptured at Oct 24, 2026, 8:23 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 890 ms\nUse efficient cache lifetimes Est savings of 117 KiB\nForced reflow\nNetwork dependency tree\nImprove image delivery Est savings of 93 KiB\nLegacy JavaScript Est savings of 17 KiB\nLayout shift culprits\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 269 KiB\nAvoid long main-thread tasks 4 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (16)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (27)\nShow\nNOT APPLICABLE (35)\nShow\n96\nBest Practices\nUSER EXPERIENCE\nDisplays images with incorrect aspect ratio\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (12)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us",
+    "run": 3,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us/cnhjlyilto?form_factor=mobile",
+    "at": "2026-10-24T14:55:53.445Z",
+    "score": "61\nPerformance",
+    "metrics": {
+      "FCP": "1356",
+      "LCP": "7331",
+      "TBT": "393",
+      "CLS": "0",
+      "SI": "6155",
+      "TTI": "8051",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n61\nPerformance\n100\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n61\nFCP\n+10\nLCP\n+1\nTBT\n+20\nCLS\n+25\nSI\n+4\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.4 s\nLargest Contentful Paint\n7.3 s\nTotal Blocking Time\n390 ms\nCumulative Layout Shift\n0\nSpeed Index\n6.2 s\nCaptured at Oct 24, 2026, 8:24 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 1,230 ms\nUse efficient cache lifetimes Est savings of 130 KiB\nImprove image delivery Est savings of 44 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 2.9 s\nReduce unused JavaScript Est savings of 314 KiB\nAvoid long main-thread tasks 8 long tasks found\nAvoid non-composited animations 3 animated elements found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (13)\nShow\n100\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nHide\nInteractive controls are keyboard focusable\nInteractive elements indicate their purpose and state\nThe page has a logical tab order\nVisual order on the page follows DOM order\nUser focus is not accidentally trapped in a region\nThe user's focus is directed to new content added to the page\nHTML5 landmark elements are used to improve navigation\nOffscreen content is hidden from assistive technology\nCustom controls have associated labels\nCustom controls have ARIA roles\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (30)\nShow\nNOT APPLICABLE (33)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us",
+    "run": 3,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us/cnhjlyilto?form_factor=desktop",
+    "at": "2026-10-24T14:55:54.271Z",
+    "score": "76\nPerformance",
+    "metrics": {
+      "FCP": "387",
+      "LCP": "1648",
+      "TBT": "303",
+      "CLS": "0.01",
+      "SI": "2312",
+      "TTI": "1744",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n76\nPerformance\n100\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n76\nFCP\n+10\nLCP\n+19\nTBT\n+17\nCLS\n+25\nSI\n+5\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.4 s\nLargest Contentful Paint\n1.6 s\nTotal Blocking Time\n300 ms\nCumulative Layout Shift\n0.007\nSpeed Index\n2.3 s\nCaptured at Oct 24, 2026, 8:24 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 800 ms\nUse efficient cache lifetimes Est savings of 144 KiB\nImprove image delivery Est savings of 51 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 2.5 s\nReduce unused JavaScript Est savings of 269 KiB\nAvoid long main-thread tasks 8 long tasks found\nAvoid non-composited animations 4 animated elements found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (13)\nShow\n100\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nHide\nInteractive controls are keyboard focusable\nInteractive elements indicate their purpose and state\nThe page has a logical tab order\nVisual order on the page follows DOM order\nUser focus is not accidentally trapped in a region\nThe user's focus is directed to new content added to the page\nHTML5 landmark elements are used to improve navigation\nOffscreen content is hidden from assistive technology\nCustom controls have associated labels\nCustom controls have ARIA roles\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (30)\nShow\nNOT APPLICABLE (33)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/calculators/finance/loan",
+    "run": 3,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-calculators-finance-loan/6w5aigapuy?form_factor=mobile",
+    "at": "2026-10-24T14:57:09.015Z",
+    "score": "72\nPerformance",
+    "metrics": {
+      "FCP": "1372",
+      "LCP": "6982",
+      "TBT": "80",
+      "CLS": "0",
+      "SI": "4989",
+      "TTI": "7068",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n72\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n72\nFCP\n+10\nLCP\n+2\nTBT\n+30\nCLS\n+25\nSI\n+6\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.4 s\nLargest Contentful Paint\n7.0 s\nTotal Blocking Time\n80 ms\nCumulative Layout Shift\n0\nSpeed Index\n5.0 s\nCaptured at Oct 24, 2026, 8:26 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 1,380 ms\nUse efficient cache lifetimes Est savings of 67 KiB\nImprove image delivery Est savings of 44 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nLegacy JavaScript Est savings of 17 KiB\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 264 KiB\nAvoid long main-thread tasks 3 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (17)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (34)\nShow\nNOT APPLICABLE (28)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/calculators/finance/loan",
+    "run": 3,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-calculators-finance-loan/6w5aigapuy?form_factor=desktop",
+    "at": "2026-10-24T14:57:09.707Z",
+    "score": "53\nPerformance",
+    "metrics": {
+      "FCP": "317",
+      "LCP": "2188",
+      "TBT": "1404",
+      "CLS": "0.01",
+      "SI": "2787",
+      "TTI": "3555",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n53\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n53\nFCP\n+10\nLCP\n+14\nTBT\n+0\nCLS\n+25\nSI\n+3\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.3 s\nLargest Contentful Paint\n2.2 s\nTotal Blocking Time\n1,400 ms\nCumulative Layout Shift\n0.008\nSpeed Index\n2.8 s\nCaptured at Oct 24, 2026, 8:26 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 130 ms\nForced reflow\nLCP breakdown\nNetwork dependency tree\nUse efficient cache lifetimes Est savings of 76 KiB\nImprove image delivery Est savings of 46 KiB\nLegacy JavaScript Est savings of 17 KiB\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 5.1 s\nReduce JavaScript execution time 2.8 s\nReduce unused JavaScript Est savings of 267 KiB\nAvoid long main-thread tasks 17 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (13)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (34)\nShow\nNOT APPLICABLE (28)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/charts/math/metric-prefixes",
+    "run": 3,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-charts-math-metric-prefixes/3yj93eeojj?form_factor=mobile",
+    "at": "2026-10-24T14:58:08.702Z",
+    "score": "74\nPerformance",
+    "metrics": {
+      "FCP": "1210",
+      "LCP": "6023",
+      "TBT": "108",
+      "CLS": "0",
+      "SI": "4666",
+      "TTI": "6023",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n74\nPerformance\n97\nAccessibility\n81\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n74\nFCP\n+10\nLCP\n+3\nTBT\n+29\nCLS\n+25\nSI\n+7\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.2 s\nLargest Contentful Paint\n6.0 s\nTotal Blocking Time\n110 ms\nCumulative Layout Shift\n0\nSpeed Index\n4.7 s\nCaptured at Oct 24, 2026, 8:27 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 560 ms\nUse efficient cache lifetimes Est savings of 185 KiB\nImprove image delivery Est savings of 89 KiB\nForced reflow\nNetwork dependency tree\nLegacy JavaScript Est savings of 17 KiB\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 333 KiB\nAvoid long main-thread tasks 5 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (17)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (29)\nShow\nNOT APPLICABLE (33)\nShow\n81\nBest Practices\nGENERAL\nUses deprecated APIs 1 warning found\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (12)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/charts/math/metric-prefixes",
+    "run": 3,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-charts-math-metric-prefixes/3yj93eeojj?form_factor=desktop",
+    "at": "2026-10-24T14:58:09.437Z",
+    "score": "93\nPerformance",
+    "metrics": {
+      "FCP": "530",
+      "LCP": "1319",
+      "TBT": "73",
+      "CLS": "0.02",
+      "SI": "1770",
+      "TTI": "1355",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n93\nPerformance\n97\nAccessibility\n96\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n93\nFCP\n+10\nLCP\n+22\nTBT\n+30\nCLS\n+25\nSI\n+7\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.5 s\nLargest Contentful Paint\n1.3 s\nTotal Blocking Time\n70 ms\nCumulative Layout Shift\n0.016\nSpeed Index\n1.8 s\nCaptured at Oct 24, 2026, 8:27 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 880 ms\nUse efficient cache lifetimes Est savings of 127 KiB\nImprove image delivery Est savings of 93 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nNetwork dependency tree\nLayout shift culprits\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 267 KiB\nAvoid long main-thread tasks 3 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (16)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (29)\nShow\nNOT APPLICABLE (33)\nShow\n96\nBest Practices\nUSER EXPERIENCE\nDisplays images with incorrect aspect ratio\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (12)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/converters/length/meters-to-feet",
+    "run": 3,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-converters-length-meters-to-feet/xcxedoivrj?form_factor=mobile",
+    "at": "2026-10-24T14:59:33.769Z",
+    "score": "72\nPerformance",
+    "metrics": {
+      "FCP": "2033",
+      "LCP": "6160",
+      "TBT": "125",
+      "CLS": "0",
+      "SI": "4460",
+      "TTI": "6160",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n72\nPerformance\n97\nAccessibility\n81\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n72\nFCP\n+8\nLCP\n+3\nTBT\n+29\nCLS\n+25\nSI\n+7\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n2.0 s\nLargest Contentful Paint\n6.2 s\nTotal Blocking Time\n130 ms\nCumulative Layout Shift\n0\nSpeed Index\n4.5 s\nCaptured at Oct 24, 2026, 8:28 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 1,320 ms\nUse efficient cache lifetimes Est savings of 134 KiB\nImprove image delivery Est savings of 44 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nNetwork dependency tree\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 330 KiB\nAvoid long main-thread tasks 5 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (17)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (30)\nShow\nNOT APPLICABLE (32)\nShow\n81\nBest Practices\nGENERAL\nUses deprecated APIs 1 warning found\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (12)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/converters/length/meters-to-feet",
+    "run": 3,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-converters-length-meters-to-feet/xcxedoivrj?form_factor=desktop",
+    "at": "2026-10-24T14:59:34.737Z",
+    "score": "82\nPerformance",
+    "metrics": {
+      "FCP": "316",
+      "LCP": "1484",
+      "TBT": "280",
+      "CLS": "0.01",
+      "SI": "1641",
+      "TTI": "1484",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n82\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n82\nFCP\n+10\nLCP\n+20\nTBT\n+19\nCLS\n+25\nSI\n+8\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.3 s\nLargest Contentful Paint\n1.5 s\nTotal Blocking Time\n280 ms\nCumulative Layout Shift\n0.008\nSpeed Index\n1.6 s\nCaptured at Oct 24, 2026, 8:28 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 90 ms\nForced reflow\nNetwork dependency tree\nUse efficient cache lifetimes Est savings of 76 KiB\nImprove image delivery Est savings of 46 KiB\nLegacy JavaScript Est savings of 17 KiB\nLayout shift culprits\nOptimize DOM size\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 266 KiB\nAvoid long main-thread tasks 6 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (15)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (30)\nShow\nNOT APPLICABLE (32)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/countries/us/income-tax",
+    "run": 3,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-countries-us-income-tax/u7csy9rymj?form_factor=mobile",
+    "at": "2026-10-24T15:00:46.002Z",
+    "score": "63\nPerformance",
+    "metrics": {
+      "FCP": "1427",
+      "LCP": "7452",
+      "TBT": "355",
+      "CLS": "0",
+      "SI": "5592",
+      "TTI": "7456",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n63\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n63\nFCP\n+10\nLCP\n+1\nTBT\n+22\nCLS\n+25\nSI\n+5\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.4 s\nLargest Contentful Paint\n7.5 s\nTotal Blocking Time\n350 ms\nCumulative Layout Shift\n0\nSpeed Index\n5.6 s\nCaptured at Oct 24, 2026, 8:29 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 1,400 ms\nUse efficient cache lifetimes Est savings of 91 KiB\nImprove image delivery Est savings of 44 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nLegacy JavaScript Est savings of 17 KiB\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nMinimize main-thread work 2.0 s\nReduce unused JavaScript Est savings of 267 KiB\nAvoid long main-thread tasks 5 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (15)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nBEST PRACTICES\nIdentical links have the same purpose.\nThese items highlight common accessibility best practices.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (31)\nShow\nNOT APPLICABLE (30)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/countries/us/income-tax",
+    "run": 3,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-countries-us-income-tax/u7csy9rymj?form_factor=desktop",
+    "at": "2026-10-24T15:00:46.960Z",
+    "score": "82\nPerformance",
+    "metrics": {
+      "FCP": "345",
+      "LCP": "1468",
+      "TBT": "259",
+      "CLS": "0.01",
+      "SI": "2009",
+      "TTI": "1503",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n82\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n82\nFCP\n+10\nLCP\n+20\nTBT\n+20\nCLS\n+25\nSI\n+6\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.3 s\nLargest Contentful Paint\n1.5 s\nTotal Blocking Time\n260 ms\nCumulative Layout Shift\n0.008\nSpeed Index\n2.0 s\nCaptured at Oct 24, 2026, 8:29 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 840 ms\nUse efficient cache lifetimes Est savings of 76 KiB\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nLCP breakdown\nNetwork dependency tree\nImprove image delivery Est savings of 46 KiB\nLayout shift culprits\nOptimize DOM size\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 267 KiB\nAvoid long main-thread tasks 6 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (15)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nBEST PRACTICES\nIdentical links have the same purpose.\nThese items highlight common accessibility best practices.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (32)\nShow\nNOT APPLICABLE (29)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/guides/what-is/what-is-compound-interest",
+    "run": 3,
+    "device": "Mobile",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-guides-what-is-what-is-compound-interest/x9h1klstus?form_factor=mobile",
+    "at": "2026-10-24T15:02:33.381Z",
+    "score": "74\nPerformance",
+    "metrics": {
+      "FCP": "1223",
+      "LCP": "6248",
+      "TBT": "85",
+      "CLS": "0",
+      "SI": "4805",
+      "TTI": "6271",
+      "device": "mobile",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n74\nPerformance\n97\nAccessibility\n100\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n74\nFCP\n+10\nLCP\n+3\nTBT\n+30\nCLS\n+25\nSI\n+7\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n1.2 s\nLargest Contentful Paint\n6.2 s\nTotal Blocking Time\n90 ms\nCumulative Layout Shift\n0\nSpeed Index\n4.8 s\nCaptured at Oct 24, 2026, 8:30 PM GMT+5:30\nEmulated Moto G Power with Lighthouse 13.5.0\nSingle page session\nInitial page load\nSlow 4G throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nINSIGHTS\nRender-blocking requests Est savings of 1,330 ms\nUse efficient cache lifetimes Est savings of 141 KiB\nImprove image delivery Est savings of 89 KiB\nLegacy JavaScript Est savings of 17 KiB\nLCP breakdown\nNetwork dependency tree\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 268 KiB\nAvoid long main-thread tasks 3 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (18)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (27)\nShow\nNOT APPLICABLE (35)\nShow\n100\nBest Practices\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (13)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  },
+  {
+    "route": "/en-us/guides/what-is/what-is-compound-interest",
+    "run": 3,
+    "device": "Desktop",
+    "report": "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-guides-what-is-what-is-compound-interest/x9h1klstus?form_factor=desktop",
+    "at": "2026-10-24T15:02:34.242Z",
+    "score": "96\nPerformance",
+    "metrics": {
+      "FCP": "285",
+      "LCP": "613",
+      "TBT": "103",
+      "CLS": "0.01",
+      "SI": "1665",
+      "TTI": "1684",
+      "device": "desktop",
+      "version": "13.5.0"
+    },
+    "visibleText": "Discover what your real users are experiencing\nNo Data\nDiagnose performance issues\n96\nPerformance\n97\nAccessibility\n77\nBest Practices\n100\nSEO\n3/3\nAgentic Browsing\n96\nFCP\n+10\nLCP\n+25\nTBT\n+29\nCLS\n+25\nSI\n+8\nPerformance\nValues are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.\n0–49\n50–89\n90–100\nMETRICS\nExpand view\nFirst Contentful Paint\n0.3 s\nLargest Contentful Paint\n0.6 s\nTotal Blocking Time\n100 ms\nCumulative Layout Shift\n0.006\nSpeed Index\n1.7 s\nCaptured at Oct 24, 2026, 8:30 PM GMT+5:30\nEmulated Desktop with Lighthouse 13.5.0\nSingle page session\nInitial page load\nCustom throttling\nUsing HeadlessChromium 153.0.8010.36 with lr\nView Treemap\nShow audits relevant to:\nAll\nFCP\nLCP\nTBT\nCLS\nINSIGHTS\nRender-blocking requests Est savings of 880 ms\nLegacy JavaScript Est savings of 17 KiB\nForced reflow\nNetwork dependency tree\nUse efficient cache lifetimes Est savings of 185 KiB\nImprove image delivery Est savings of 46 KiB\nLayout shift culprits\nLCP breakdown\n3rd parties\nThese insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.\nDIAGNOSTICS\nReduce unused JavaScript Est savings of 334 KiB\nAvoid long main-thread tasks 3 long tasks found\nMore information about the performance of your application. These numbers don't directly affect the Performance score.\nPASSED AUDITS (16)\nShow\n97\nAccessibility\nThese checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.\nCONTRAST\nBackground and foreground colors do not have a sufficient contrast ratio.\nThese are opportunities to improve the legibility of your content.\nADDITIONAL ITEMS TO MANUALLY CHECK (10)\nShow\nThese items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.\nPASSED AUDITS (27)\nShow\nNOT APPLICABLE (35)\nShow\n77\nBest Practices\nGENERAL\nUses deprecated APIs 1 warning found\nUSER EXPERIENCE\nDisplays images with incorrect aspect ratio\nTRUST AND SAFETY\nEnsure CSP is effective against XSS attacks\nMitigate DOM-based XSS with Trusted Types\nBROWSER COMPATIBILITY\nBaseline Features\nPASSED AUDITS (11)\nShow\nNOT APPLICABLE (5)\nShow\n100\nSEO\nThese checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.\nADDITIONAL ITEMS TO MANUALLY CHECK (1)\nHide\nStructured data is valid\nRun these additional validators on your site to check additional SEO best practices.\nPASSED AUDITS (10)\nShow\n3/3\nAgentic Browsing\nThese checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.\nPASSED AUDITS (3)\nShow\nNOT APPLICABLE (4)\nShow"
+  }
+]

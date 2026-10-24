@@ -1,0 +1,284 @@
+Discover what your real users are experiencing
+No Data
+Diagnose performance issues
+61
+Performance
+100
+Accessibility
+100
+Best Practices
+100
+SEO
+3/3
+Agentic Browsing
+61
+FCP
++10
+LCP
++1
+TBT
++20
+CLS
++25
+SI
++4
+Performance
+Values are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.
+0–49
+50–89
+90–100
+METRICS
+Expand view
+First Contentful Paint
+1.4 s
+Largest Contentful Paint
+7.3 s
+Total Blocking Time
+390 ms
+Cumulative Layout Shift
+0
+Speed Index
+6.2 s
+Captured at Oct 24, 2026, 8:24 PM GMT+5:30
+Emulated Moto G Power with Lighthouse 13.5.0
+Single page session
+Initial page load
+Slow 4G throttling
+Using HeadlessChromium 153.0.8010.36 with lr
+View Treemap
+Show audits relevant to:
+All
+FCP
+LCP
+TBT
+CLS
+INSIGHTS
+Render-blocking requests Est savings of 1,230 ms
+Use efficient cache lifetimes Est savings of 130 KiB
+Improve image delivery Est savings of 44 KiB
+Legacy JavaScript Est savings of 17 KiB
+Forced reflow
+LCP breakdown
+Each subpart has specific improvement strategies. Ideally, most of the LCP time should be spent on loading the resources, not within delays.LCPUnscored
+Subpart
+
+Duration
+
+
+Time to first byte
+
+400 ms
+
+
+Element render delay
+
+3,320 ms
+This site is free because it carries advertising. With your permission, Google …
+<p class="mt-1 text-sm leading-relaxed text-muted">
+Network dependency tree
+Layout shift culprits
+Optimize DOM size
+3rd parties
+3rd party code can significantly impact load performance. Reduce and defer loading of 3rd party code to prioritize your page's content.Unscored
+3rd party
+
+Transfer size
+
+Main thread time
+
+
+Google/Doubleclick Ads Ad
+279 KiB	227 ms
+
+…m202…/show_ads_impl_fy2021.js(pagead2.googlesyndication.com)
+
+166 KiB
+
+96 ms
+
+
+…js/adsbygoogle.js?client=ca-pub-681…(pagead2.googlesyndication.com)
+
+57 KiB
+
+77 ms
+
+
+…js/adsbygoogle.js?fcd=true(pagead2.googlesyndication.com)
+
+57 KiB
+
+54 ms
+
+
+Google FundingChoices Consent-Provider
+106 KiB	61 ms
+
+/i/ca-pub-68…?href=https%3A%2F%2Fthecalc….com%2Fen-us&ers=2(fundingchoicesmessages.google.com)
+
+71 KiB
+
+56 ms
+
+
+/f/AGSKWxX7G…?fccs=W251bGwsb…(fundingchoicesmessages.google.com)
+
+5 KiB
+
+2 ms
+
+
+/el/AGSKWxU_T…(fundingchoicesmessages.google.com)
+
+18 KiB
+
+1 ms
+
+
+/f/AGSKWxXF7…?fccs=W251bGwsb…(fundingchoicesmessages.google.com)
+
+3 KiB
+
+1 ms
+
+
+/f/AGSKWxWLf…?fccs=W251bGwsb…(fundingchoicesmessages.google.com)
+
+3 KiB
+
+1 ms
+
+
+…leaderbox./adslug-(fundingchoicesmessages.google.com)
+
+2 KiB
+
+0 ms
+
+
+/el/AGSKWxW5k…(fundingchoicesmessages.google.com)
+
+2 KiB
+
+0 ms
+
+
+/el/AGSKWxXGp…(fundingchoicesmessages.google.com)
+
+2 KiB
+
+0 ms
+These insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.
+DIAGNOSTICS
+Minimize main-thread work 2.9 s
+Reduce unused JavaScript Est savings of 314 KiB
+Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.LCPFCPUnscored
+ Show 3rd-party resources (4)
+URL
+
+Transfer Size
+
+Est Savings
+
+
+Google/Doubleclick Ads Ad
+276.6 KiB	214.3 KiB
+
+…m202…/show_ads_impl_fy2021.js(pagead2.googlesyndication.com)
+
+165.1 KiB
+
+139.8 KiB
+
+
+…js/adsbygoogle.js?fcd=true(pagead2.googlesyndication.com)
+
+55.7 KiB
+
+44.9 KiB
+
+
+…js/adsbygoogle.js?client=ca-pub-681…(pagead2.googlesyndication.com)
+
+55.8 KiB
+
+29.6 KiB
+
+
+thecalculatorshouse.com 1st Party
+175.3 KiB	63.5 KiB
+
+…chunks/4bd1b696-8cd12253b448cc13.js(thecalculatorshouse.com)
+
+83.2 KiB
+
+32.0 KiB
+
+
+…chunks/3794-04350b0fcecd82e5.js(thecalculatorshouse.com)
+
+92.1 KiB
+
+31.5 KiB
+
+
+Google FundingChoices Consent-Provider
+69.3 KiB	36.5 KiB
+
+/i/ca-pub-68…?href=https%3A%2F%2Fthecalc….com%2Fen-us&ers=2(fundingchoicesmessages.google.com)
+
+69.3 KiB
+
+36.5 KiB
+Avoid long main-thread tasks 8 long tasks found
+Avoid non-composited animations 3 animated elements found
+More information about the performance of your application. These numbers don't directly affect the Performance score.
+PASSED AUDITS (13)
+Show
+100
+Accessibility
+These checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.
+ADDITIONAL ITEMS TO MANUALLY CHECK (10)
+Hide
+Interactive controls are keyboard focusable
+Interactive elements indicate their purpose and state
+The page has a logical tab order
+Visual order on the page follows DOM order
+User focus is not accidentally trapped in a region
+The user's focus is directed to new content added to the page
+HTML5 landmark elements are used to improve navigation
+Offscreen content is hidden from assistive technology
+Custom controls have associated labels
+Custom controls have ARIA roles
+These items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.
+PASSED AUDITS (30)
+Show
+NOT APPLICABLE (33)
+Show
+100
+Best Practices
+TRUST AND SAFETY
+Ensure CSP is effective against XSS attacks
+Mitigate DOM-based XSS with Trusted Types
+BROWSER COMPATIBILITY
+Baseline Features
+PASSED AUDITS (13)
+Show
+NOT APPLICABLE (5)
+Show
+100
+SEO
+These checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.
+ADDITIONAL ITEMS TO MANUALLY CHECK (1)
+Hide
+Structured data is valid
+Run these additional validators on your site to check additional SEO best practices.
+PASSED AUDITS (10)
+Show
+3/3
+Agentic Browsing
+These checks ensure high-quality, browsable websites for AI agents and validate the correctness of WebMCP integrations. This category is still under development and subject to change.
+PASSED AUDITS (3)
+Show
+NOT APPLICABLE (4)
+Show

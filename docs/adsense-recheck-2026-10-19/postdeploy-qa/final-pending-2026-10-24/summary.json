@@ -1,0 +1,523 @@
+{
+  "at": "2026-10-24T16:33:44.086Z",
+  "target": 2880,
+  "geometry": {
+    "attempts": 2880,
+    "validUnique": 2880,
+    "remaining": 0,
+    "candidates": 0,
+    "localOnly": true
+  },
+  "detailedInteractions": {
+    "attempts": 823,
+    "completedUnique": 816,
+    "automatedPasses": 816,
+    "candidates": [],
+    "incompleteAttempts": [
+      {
+        "locale": "en-US",
+        "route": "/en-us/calculators/finance/loan",
+        "viewport": {
+          "name": "large-desktop",
+          "width": 1920,
+          "height": 1080
+        },
+        "error": "Error: Requested viewport was not applied"
+      }
+    ],
+    "remainingWithoutThisProfile": 2064,
+    "profile": "Existing all-visible-controls helper: original-value input reachability; first-input blank/malformed/upper-bound states; checkboxes; radio choices; dropdown keyboard open/scroll/close; header menu/search; breakdown tabs; chart legend focus. Does not certify every action, value or physical print/native share."
+  },
+  "consent": {
+    "at": "2026-10-24T14:43:31.532Z",
+    "method": "Actual React consent/analytics source with jsdom and simulated CMP; no region/network/ad verification",
+    "results": [
+      {
+        "name": "Unknown CMP: no grant, reject/reopen available, analytics absent",
+        "pass": true
+      },
+      {
+        "name": "Outside TCF: accept then revoke/reject clears GA cookies and pauses requests",
+        "pass": true
+      },
+      {
+        "name": "Stored grant is ignored while CMP context is unknown",
+        "pass": true
+      },
+      {
+        "name": "Verified outside-TCF stored choice restores after mount",
+        "pass": true
+      },
+      {
+        "name": "TCF granular choice: analytics grant does not grant ads; revoke stops analytics",
+        "pass": true
+      },
+      {
+        "name": "TCF ad-only choice never enables analytics; unknown states fail closed",
+        "pass": true
+      }
+    ]
+  },
+  "performance": {
+    "at": "2026-10-24T15:07:29.320Z",
+    "scope": "Public PageSpeed UI; 3 independent analyses per page, each with mobile and desktop lab reports; not field INP",
+    "summary": [
+      {
+        "key": "/en-us|Mobile",
+        "runs": 3,
+        "reportUrls": [
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us/7imshdd4nq?form_factor=mobile",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us/7qjecjb6pn?form_factor=mobile",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us/cnhjlyilto?form_factor=mobile"
+        ],
+        "fieldData": "No Data",
+        "metrics": {
+          "LCP": {
+            "min": 6246,
+            "median": 7109,
+            "max": 7331
+          },
+          "TBT": {
+            "min": 272,
+            "median": 280,
+            "max": 393
+          },
+          "CLS": {
+            "min": 0,
+            "median": 0,
+            "max": 0
+          },
+          "FCP": {
+            "min": 1356,
+            "median": 1357,
+            "max": 1357
+          },
+          "SI": {
+            "min": 4567,
+            "median": 5904,
+            "max": 6155
+          }
+        },
+        "scoreMedian": 65
+      },
+      {
+        "key": "/en-us|Desktop",
+        "runs": 3,
+        "reportUrls": [
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us/7imshdd4nq?form_factor=desktop",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us/7qjecjb6pn?form_factor=desktop",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us/cnhjlyilto?form_factor=desktop"
+        ],
+        "fieldData": "No Data",
+        "metrics": {
+          "LCP": {
+            "min": 1611,
+            "median": 1648,
+            "max": 1687
+          },
+          "TBT": {
+            "min": 300,
+            "median": 303,
+            "max": 386
+          },
+          "CLS": {
+            "min": 0.01,
+            "median": 0.01,
+            "max": 0.01
+          },
+          "FCP": {
+            "min": 387,
+            "median": 392,
+            "max": 407
+          },
+          "SI": {
+            "min": 2312,
+            "median": 2312,
+            "max": 2428
+          }
+        },
+        "scoreMedian": 76
+      },
+      {
+        "key": "/en-us/calculators/finance/loan|Mobile",
+        "runs": 3,
+        "reportUrls": [
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-calculators-finance-loan/k5lxfuna97?form_factor=mobile",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-calculators-finance-loan/3uia0s1q7m?form_factor=mobile",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-calculators-finance-loan/6w5aigapuy?form_factor=mobile"
+        ],
+        "fieldData": "No Data",
+        "metrics": {
+          "LCP": {
+            "min": 6459,
+            "median": 6982,
+            "max": 7056
+          },
+          "TBT": {
+            "min": 80,
+            "median": 107,
+            "max": 534
+          },
+          "CLS": {
+            "min": 0,
+            "median": 0,
+            "max": 0
+          },
+          "FCP": {
+            "min": 1359,
+            "median": 1363,
+            "max": 1372
+          },
+          "SI": {
+            "min": 4989,
+            "median": 5158,
+            "max": 5180
+          }
+        },
+        "scoreMedian": 72
+      },
+      {
+        "key": "/en-us/calculators/finance/loan|Desktop",
+        "runs": 3,
+        "reportUrls": [
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-calculators-finance-loan/k5lxfuna97?form_factor=desktop",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-calculators-finance-loan/3uia0s1q7m?form_factor=desktop",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-calculators-finance-loan/6w5aigapuy?form_factor=desktop"
+        ],
+        "fieldData": "No Data",
+        "metrics": {
+          "LCP": {
+            "min": 1490,
+            "median": 2037,
+            "max": 2188
+          },
+          "TBT": {
+            "min": 290,
+            "median": 537,
+            "max": 1404
+          },
+          "CLS": {
+            "min": 0.01,
+            "median": 0.01,
+            "max": 0.01
+          },
+          "FCP": {
+            "min": 317,
+            "median": 356,
+            "max": 360
+          },
+          "SI": {
+            "min": 1574,
+            "median": 1904,
+            "max": 2787
+          }
+        },
+        "scoreMedian": 64
+      },
+      {
+        "key": "/en-us/charts/math/metric-prefixes|Mobile",
+        "runs": 3,
+        "reportUrls": [
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-charts-math-metric-prefixes/smvyoieyn8?form_factor=mobile",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-charts-math-metric-prefixes/4phbyz1krc?form_factor=mobile",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-charts-math-metric-prefixes/3yj93eeojj?form_factor=mobile"
+        ],
+        "fieldData": "No Data",
+        "metrics": {
+          "LCP": {
+            "min": 5892,
+            "median": 6023,
+            "max": 6023
+          },
+          "TBT": {
+            "min": 108,
+            "median": 273,
+            "max": 402
+          },
+          "CLS": {
+            "min": 0,
+            "median": 0,
+            "max": 0
+          },
+          "FCP": {
+            "min": 1208,
+            "median": 1210,
+            "max": 1216
+          },
+          "SI": {
+            "min": 4244,
+            "median": 4666,
+            "max": 5110
+          }
+        },
+        "scoreMedian": 69
+      },
+      {
+        "key": "/en-us/charts/math/metric-prefixes|Desktop",
+        "runs": 3,
+        "reportUrls": [
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-charts-math-metric-prefixes/smvyoieyn8?form_factor=desktop",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-charts-math-metric-prefixes/4phbyz1krc?form_factor=desktop",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-charts-math-metric-prefixes/3yj93eeojj?form_factor=desktop"
+        ],
+        "fieldData": "No Data",
+        "metrics": {
+          "LCP": {
+            "min": 1319,
+            "median": 1607,
+            "max": 1748
+          },
+          "TBT": {
+            "min": 73,
+            "median": 142,
+            "max": 247
+          },
+          "CLS": {
+            "min": 0.01,
+            "median": 0.01,
+            "max": 0.02
+          },
+          "FCP": {
+            "min": 291,
+            "median": 320,
+            "max": 530
+          },
+          "SI": {
+            "min": 1695,
+            "median": 1770,
+            "max": 1983
+          }
+        },
+        "scoreMedian": 89
+      },
+      {
+        "key": "/en-us/converters/length/meters-to-feet|Mobile",
+        "runs": 3,
+        "reportUrls": [
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-converters-length-meters-to-feet/i0taaae9g1?form_factor=mobile",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-converters-length-meters-to-feet/a9g8ogw8g8?form_factor=mobile",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-converters-length-meters-to-feet/xcxedoivrj?form_factor=mobile"
+        ],
+        "fieldData": "No Data",
+        "metrics": {
+          "LCP": {
+            "min": 6160,
+            "median": 7131,
+            "max": 7419
+          },
+          "TBT": {
+            "min": 125,
+            "median": 387,
+            "max": 474
+          },
+          "CLS": {
+            "min": 0,
+            "median": 0,
+            "max": 0
+          },
+          "FCP": {
+            "min": 1205,
+            "median": 1214,
+            "max": 2033
+          },
+          "SI": {
+            "min": 3543,
+            "median": 4460,
+            "max": 4660
+          }
+        },
+        "scoreMedian": 64
+      },
+      {
+        "key": "/en-us/converters/length/meters-to-feet|Desktop",
+        "runs": 3,
+        "reportUrls": [
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-converters-length-meters-to-feet/i0taaae9g1?form_factor=desktop",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-converters-length-meters-to-feet/a9g8ogw8g8?form_factor=desktop",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-converters-length-meters-to-feet/xcxedoivrj?form_factor=desktop"
+        ],
+        "fieldData": "No Data",
+        "metrics": {
+          "LCP": {
+            "min": 1484,
+            "median": 1496,
+            "max": 1633
+          },
+          "TBT": {
+            "min": 134,
+            "median": 265,
+            "max": 280
+          },
+          "CLS": {
+            "min": 0.01,
+            "median": 0.01,
+            "max": 0.01
+          },
+          "FCP": {
+            "min": 288,
+            "median": 316,
+            "max": 328
+          },
+          "SI": {
+            "min": 1156,
+            "median": 1641,
+            "max": 1904
+          }
+        },
+        "scoreMedian": 82
+      },
+      {
+        "key": "/en-us/countries/us/income-tax|Mobile",
+        "runs": 3,
+        "reportUrls": [
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-countries-us-income-tax/tgbs18lhlm?form_factor=mobile",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-countries-us-income-tax/r0x8q0aicd?form_factor=mobile",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-countries-us-income-tax/u7csy9rymj?form_factor=mobile"
+        ],
+        "fieldData": "No Data",
+        "metrics": {
+          "LCP": {
+            "min": 7452,
+            "median": 7581,
+            "max": 8323
+          },
+          "TBT": {
+            "min": 315,
+            "median": 355,
+            "max": 1324
+          },
+          "CLS": {
+            "min": 0,
+            "median": 0,
+            "max": 0
+          },
+          "FCP": {
+            "min": 1355,
+            "median": 1427,
+            "max": 1499
+          },
+          "SI": {
+            "min": 5348,
+            "median": 5592,
+            "max": 6264
+          }
+        },
+        "scoreMedian": 63
+      },
+      {
+        "key": "/en-us/countries/us/income-tax|Desktop",
+        "runs": 3,
+        "reportUrls": [
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-countries-us-income-tax/tgbs18lhlm?form_factor=desktop",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-countries-us-income-tax/r0x8q0aicd?form_factor=desktop",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-countries-us-income-tax/u7csy9rymj?form_factor=desktop"
+        ],
+        "fieldData": "No Data",
+        "metrics": {
+          "LCP": {
+            "min": 1468,
+            "median": 1603,
+            "max": 1670
+          },
+          "TBT": {
+            "min": 112,
+            "median": 180,
+            "max": 259
+          },
+          "CLS": {
+            "min": 0.01,
+            "median": 0.01,
+            "max": 0.01
+          },
+          "FCP": {
+            "min": 342,
+            "median": 345,
+            "max": 357
+          },
+          "SI": {
+            "min": 2009,
+            "median": 2118,
+            "max": 2274
+          }
+        },
+        "scoreMedian": 84
+      },
+      {
+        "key": "/en-us/guides/what-is/what-is-compound-interest|Mobile",
+        "runs": 3,
+        "reportUrls": [
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-guides-what-is-what-is-compound-interest/t4zl2djjwp?form_factor=mobile",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-guides-what-is-what-is-compound-interest/bz5akl2sek?form_factor=mobile",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-guides-what-is-what-is-compound-interest/x9h1klstus?form_factor=mobile"
+        ],
+        "fieldData": "No Data",
+        "metrics": {
+          "LCP": {
+            "min": 5949,
+            "median": 6029,
+            "max": 6248
+          },
+          "TBT": {
+            "min": 85,
+            "median": 217,
+            "max": 654
+          },
+          "CLS": {
+            "min": 0,
+            "median": 0,
+            "max": 0
+          },
+          "FCP": {
+            "min": 1214,
+            "median": 1223,
+            "max": 2186
+          },
+          "SI": {
+            "min": 4419,
+            "median": 4805,
+            "max": 4998
+          }
+        },
+        "scoreMedian": 71
+      },
+      {
+        "key": "/en-us/guides/what-is/what-is-compound-interest|Desktop",
+        "runs": 3,
+        "reportUrls": [
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-guides-what-is-what-is-compound-interest/t4zl2djjwp?form_factor=desktop",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-guides-what-is-what-is-compound-interest/bz5akl2sek?form_factor=desktop",
+          "https://pagespeed.web.dev/analysis/https-thecalculatorshouse-com-en-us-guides-what-is-what-is-compound-interest/x9h1klstus?form_factor=desktop"
+        ],
+        "fieldData": "No Data",
+        "metrics": {
+          "LCP": {
+            "min": 613,
+            "median": 979,
+            "max": 1237
+          },
+          "TBT": {
+            "min": 82,
+            "median": 103,
+            "max": 665
+          },
+          "CLS": {
+            "min": 0.01,
+            "median": 0.01,
+            "max": 0.01
+          },
+          "FCP": {
+            "min": 285,
+            "median": 644,
+            "max": 742
+          },
+          "SI": {
+            "min": 1665,
+            "median": 1978,
+            "max": 2190
+          }
+        },
+        "scoreMedian": 93
+      }
+    ]
+  }
+}

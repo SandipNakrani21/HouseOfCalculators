@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-24T14:43:31.532Z",
+  "method": "Actual React consent/analytics source with jsdom and simulated CMP; no region/network/ad verification",
+  "results": [
+    {
+      "name": "Unknown CMP: no grant, reject/reopen available, analytics absent",
+      "pass": true
+    },
+    {
+      "name": "Outside TCF: accept then revoke/reject clears GA cookies and pauses requests",
+      "pass": true
+    },
+    {
+      "name": "Stored grant is ignored while CMP context is unknown",
+      "pass": true
+    },
+    {
+      "name": "Verified outside-TCF stored choice restores after mount",
+      "pass": true
+    },
+    {
+      "name": "TCF granular choice: analytics grant does not grant ads; revoke stops analytics",
+      "pass": true
+    },
+    {
+      "name": "TCF ad-only choice never enables analytics; unknown states fail closed",
+      "pass": true
+    }
+  ]
+}
