@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-24T17:32:51.644Z",
+  "sourceFilesCompared": 274,
+  "changedSourceFiles": [],
+  "qaToolsLintExit": 0,
+  "browserAccessCheck": "Local browser use is disabled in Work settings",
+  "browserActionsResumed": false,
+  "next": {
+    "route": 329,
+    "size": 2,
+    "locale": "pt-BR",
+    "path": "/pt-br/calculators/health/tdee",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    }
+  },
+  "limitations": [
+    "No new live timing measurement",
+    "Regional access unavailable",
+    "No real filled creative verified",
+    "Strict CSP enforcement unverified"
+  ]
+}

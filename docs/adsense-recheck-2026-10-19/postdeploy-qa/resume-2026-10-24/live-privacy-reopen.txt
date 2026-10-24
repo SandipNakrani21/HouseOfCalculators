@@ -1,0 +1,404 @@
+- link "Skip to content":
+  - /url: "#main"
+- generic: "*"
+- generic "Read full notice"
+- 'button "Language: English (US)"':
+  - generic: English (US)
+- 'button "Country: United States"':
+- banner:
+  - link "The Calculators House":
+    - /url: /en-us
+    - img "The Calculators House"
+  - navigation "Main navigation":
+    - list:
+      - link "Home":
+        - /url: /en-us
+        - text: Home
+      - link "Calculators":
+        - /url: /en-us/calculators
+      - link "Converters":
+        - /url: /en-us/converters
+      - link "Tools":
+        - /url: /en-us/tools
+      - link "Charts & Tables":
+        - /url: /en-us/charts
+      - link "Country Tools":
+        - /url: /en-us/countries
+      - link "Guides":
+        - /url: /en-us/guides
+  - button "Search calculators… /":
+    - generic: Search calculators…
+    - generic: /
+- main:
+  - text: 60+ Calculators • 22 Countries • Free to Use
+  - heading "Every Calculation. One Global Home." [level=1]:
+    - text: E v e r y C a l c u l a t i o n .
+    - generic: O n e G l o b a l H o m e .
+  - paragraph: Calculate, convert and understand in your language. Country-specific rules and years are shown where available.
+  - search:
+    - combobox "Search"
+    - button "Search":
+      - generic: Search
+  - generic: "Popular:"
+  - link "Loan":
+    - /url: /en-us/calculators/finance/loan
+  - link "BMI":
+    - /url: /en-us/calculators/health/bmi
+  - link "Age":
+    - /url: /en-us/tools/date-time/age
+  - link "Percentage":
+    - /url: /en-us/tools/number-math/percentage
+  - link "SIP":
+    - /url: /en-us/calculators/finance/sip
+  - link "Mortgage":
+    - /url: /en-us/calculators/finance/mortgage
+  - region "What's here":
+    - generic: "60"
+    - generic: Calculators
+    - generic: "36"
+    - generic: Converters & tools
+    - generic: "22"
+    - generic: Countries supported
+    - generic: 100%
+    - generic: Free & private
+  - heading "Explore Calculators by Category" [level=2]
+  - link "View all categories":
+    - /url: /en-us/calculators
+    - text: View all categories
+  - list:
+    - link "Finance EMI, mortgage, SIP, tax and more":
+      - /url: /en-us/calculators/finance
+      - generic: Finance
+      - generic: EMI, mortgage, SIP, tax and more
+    - link "Math Statistics, ratio, equations and more":
+      - /url: /en-us/calculators/math
+      - generic: Math
+      - generic: Statistics, ratio, equations and more
+    - link "Health & Fitness BMI, BMR, calories and more":
+      - /url: /en-us/calculators/health
+      - generic: Health & Fitness
+      - generic: BMI, BMR, calories and more
+    - link "Business Profit, ROI, margin and more":
+      - /url: /en-us/calculators/business
+      - generic: Business
+      - generic: Profit, ROI, margin and more
+    - link "Education GPA, grades, final score and more":
+      - /url: /en-us/calculators/education
+      - generic: Education
+      - generic: GPA, grades, final score and more
+    - link "Engineering Ohm's law, force, torque and more":
+      - /url: /en-us/calculators/engineering
+      - generic: Engineering
+      - generic: Ohm's law, force, torque and more
+  - heading "Popular Calculators" [level=2]
+  - link "View all calculators":
+    - /url: /en-us/calculators
+    - text: View all calculators
+  - list:
+    - link "Loan Calculator Monthly payment, total interest and payoff schedule for any loan.":
+      - /url: /en-us/calculators/finance/loan
+      - generic: Loan Calculator
+      - generic: Monthly payment, total interest and payoff schedule for any loan.
+    - link "BMI Calculator Body mass index from your height and weight, with the healthy weight range for your height.":
+      - /url: /en-us/calculators/health/bmi
+      - generic: BMI Calculator
+      - generic: Body mass index from your height and weight, with the healthy weight range for your height.
+    - link "Age Calculator Work out an exact age in years, months and days.":
+      - /url: /en-us/tools/date-time/age
+      - generic: Age Calculator
+      - generic: Work out an exact age in years, months and days.
+    - link "Sales Tax Calculator Add or remove Sales Tax from any amount and see the split.":
+      - /url: /en-us/calculators/finance/vat
+      - generic: Sales Tax Calculator
+      - generic: Add or remove Sales Tax from any amount and see the split.
+    - link "SIP Calculator See what a fixed monthly investment could grow into over time.":
+      - /url: /en-us/calculators/finance/sip
+      - generic: SIP Calculator
+      - generic: See what a fixed monthly investment could grow into over time.
+    - link "Percentage Calculator Percentage of a value, share, change and increases.":
+      - /url: /en-us/tools/number-math/percentage
+      - generic: Percentage Calculator
+      - generic: Percentage of a value, share, change and increases.
+  - heading "More Ways to Calculate" [level=2]
+  - paragraph: Converters, everyday tools, reference tables and step-by-step guides — all linked to the calculators they support.
+  - list:
+    - link "Converters Convert between units with reference tables.":
+      - /url: /en-us/converters
+      - generic: Converters
+      - generic: Convert between units with reference tables.
+    - link "Tools Date, number and planning utilities.":
+      - /url: /en-us/tools
+      - generic: Tools
+      - generic: Date, number and planning utilities.
+    - link "Charts & Tables Reference tables you can scan at a glance.":
+      - /url: /en-us/charts
+      - generic: Charts & Tables
+      - generic: Reference tables you can scan at a glance.
+    - link "Country Tools Tools built around one country's rules.":
+      - /url: /en-us/countries
+      - generic: Country Tools
+      - generic: Tools built around one country's rules.
+  - paragraph: Why choose
+  - heading "The Calculators House?" [level=2]
+  - list:
+    - heading "Fast & accurate" [level=3]
+    - paragraph: Answers update as you type — no waiting, no page reloads.
+    - heading "100% free" [level=3]
+    - paragraph: Free tools with no sign-up. Calculations run on your device; shared links include your inputs.
+    - heading "Built for 22 countries" [level=3]
+    - paragraph: Currency, units and number formatting for 22 countries. Published tax-rule models cover only the countries listed in Country Tools.
+    - heading "Works on any device" [level=3]
+    - paragraph: Desktop, tablet or mobile — the same tools everywhere.
+  - generic: The Calculators House
+  - paragraph:
+    - text: Calculate
+    - generic: Without Limits
+  - generic: Search calculators…
+  - generic: The Calculators House
+  - paragraph: Loan amount
+  - paragraph: Interest rate
+  - paragraph: Loan tenure
+  - generic: Calculate
+  - heading "Built for Every Country" [level=2]
+  - paragraph: Currency, units and number formatting for 22 countries. Published tax-rule models cover only the countries listed in Country Tools.
+  - link "Find tools for your country":
+    - /url: /en-us/countries
+  - list:
+    - link "Australia":
+      - /url: /en-us/countries/au
+      - generic: Australia
+    - link "Austria":
+      - /url: /en-us/countries/at
+      - generic: Austria
+    - link "Belgium":
+      - /url: /en-us/countries/be
+      - generic: Belgium
+    - link "Brazil":
+      - /url: /en-us/countries/br
+      - generic: Brazil
+    - link "Canada":
+      - /url: /en-us/countries/ca
+      - generic: Canada
+    - link "China":
+      - /url: /en-us/countries/cn
+      - generic: China
+    - link "France":
+      - /url: /en-us/countries/fr
+      - generic: France
+    - link "Germany":
+      - /url: /en-us/countries/de
+      - generic: Germany
+    - link "India":
+      - /url: /en-us/countries/in
+      - generic: India
+    - link "Italy":
+      - /url: /en-us/countries/it
+      - generic: Italy
+    - link "Japan":
+      - /url: /en-us/countries/jp
+      - generic: Japan
+    - link:
+      - /url: /en-us/countries/au
+      - generic: Australia
+    - link:
+      - /url: /en-us/countries/at
+      - generic: Austria
+    - link:
+      - /url: /en-us/countries/be
+      - generic: Belgium
+    - link:
+      - /url: /en-us/countries/br
+      - generic: Brazil
+    - link:
+      - /url: /en-us/countries/ca
+      - generic: Canada
+    - link:
+      - /url: /en-us/countries/cn
+      - generic: China
+    - link:
+      - /url: /en-us/countries/fr
+      - generic: France
+    - link:
+      - /url: /en-us/countries/de
+      - generic: Germany
+    - link:
+      - /url: /en-us/countries/in
+      - generic: India
+    - link:
+      - /url: /en-us/countries/it
+      - generic: Italy
+    - link:
+      - /url: /en-us/countries/jp
+      - generic: Japan
+  - list:
+    - link "Mexico":
+      - /url: /en-us/countries/mx
+      - generic: Mexico
+    - link "Netherlands":
+      - /url: /en-us/countries/nl
+      - generic: Netherlands
+    - link "Poland":
+      - /url: /en-us/countries/pl
+      - generic: Poland
+    - link "Portugal":
+      - /url: /en-us/countries/pt
+      - generic: Portugal
+    - link "Russia":
+      - /url: /en-us/countries/ru
+      - generic: Russia
+    - link "Spain":
+      - /url: /en-us/countries/es
+      - generic: Spain
+    - link "Switzerland":
+      - /url: /en-us/countries/ch
+      - generic: Switzerland
+    - link "Türkiye":
+      - /url: /en-us/countries/tr
+      - generic: Türkiye
+    - link "United Arab Emirates":
+      - /url: /en-us/countries/ae
+      - generic: United Arab Emirates
+    - link "United Kingdom":
+      - /url: /en-us/countries/gb
+      - generic: United Kingdom
+    - link "United States":
+      - /url: /en-us/countries/us
+      - generic: United States
+    - link:
+      - /url: /en-us/countries/mx
+      - generic: Mexico
+    - link:
+      - /url: /en-us/countries/nl
+      - generic: Netherlands
+    - link:
+      - /url: /en-us/countries/pl
+      - generic: Poland
+    - link:
+      - /url: /en-us/countries/pt
+      - generic: Portugal
+    - link:
+      - /url: /en-us/countries/ru
+      - generic: Russia
+    - link:
+      - /url: /en-us/countries/es
+      - generic: Spain
+    - link:
+      - /url: /en-us/countries/ch
+      - generic: Switzerland
+    - link:
+      - /url: /en-us/countries/tr
+      - generic: Türkiye
+    - link:
+      - /url: /en-us/countries/ae
+      - generic: United Arab Emirates
+    - link:
+      - /url: /en-us/countries/gb
+      - generic: United Kingdom
+    - link:
+      - /url: /en-us/countries/us
+      - generic: United States
+  - heading "Guides & Tips" [level=2]
+  - link "View all guides":
+    - /url: /en-us/guides
+    - text: View all guides
+  - list:
+    - link "How to calculate How to Calculate a Loan Payment Read more":
+      - /url: /en-us/guides/how-to-calculate/how-to-calculate-loan-payment
+      - generic: EMI
+      - generic: How to calculate
+      - generic: How to Calculate a Loan Payment
+      - text: Read more
+    - link "What is What Is Compound Interest? Read more":
+      - /url: /en-us/guides/what-is/what-is-compound-interest
+      - generic: "%+"
+      - generic: What is
+      - generic: What Is Compound Interest?
+      - text: Read more
+    - link "How to calculate How to Calculate a Percentage Read more":
+      - /url: /en-us/guides/how-to-calculate/how-to-calculate-percentage
+      - generic: "%"
+      - generic: How to calculate
+      - generic: How to Calculate a Percentage
+      - text: Read more
+  - heading "Ready to start calculating?" [level=2]
+  - paragraph: Free tools with no sign-up. Calculations run on your device; shared links include your inputs.
+  - link "Explore all calculators":
+    - /url: /en-us/calculators
+    - text: Explore all calculators
+- contentinfo:
+  - link "The Calculators House":
+    - /url: /en-us
+    - img "The Calculators House"
+  - paragraph: Free calculators, converters and guides that follow your country's currency, units and rules. Every calculation runs on your device.
+  - navigation "Explore":
+    - heading "Explore" [level=2]
+    - list:
+      - link "Calculators":
+        - /url: /en-us/calculators
+      - link "Converters":
+        - /url: /en-us/converters
+      - link "Tools":
+        - /url: /en-us/tools
+      - link "Charts & Tables":
+        - /url: /en-us/charts
+      - link "Country Tools":
+        - /url: /en-us/countries
+      - link "Guides":
+        - /url: /en-us/guides
+  - navigation "Popular":
+    - heading "Popular" [level=2]
+    - list:
+      - link "Mortgage Calculator":
+        - /url: /en-us/calculators/finance/mortgage
+      - link "Income Tax Calculator":
+        - /url: /en-us/countries/us/income-tax
+      - link "Salary Calculator":
+        - /url: /en-us/countries/us/salary
+      - link "Loan Calculator":
+        - /url: /en-us/calculators/finance/loan
+      - link "Auto Loan Calculator":
+        - /url: /en-us/calculators/finance/auto-loan
+  - navigation "Language":
+    - heading "Language" [level=2]
+    - list:
+      - link "English (US)":
+        - /url: /en-us
+      - link "English (UK)":
+        - /url: /en-gb
+      - link "Deutsch":
+        - /url: /de-de
+      - link "Français":
+        - /url: /fr-fr
+      - link "Español":
+        - /url: /es-es
+  - navigation "Support":
+    - heading "Support" [level=2]
+    - list:
+      - link "About":
+        - /url: /en-us/about
+      - link "Contact":
+        - /url: /en-us/contact
+      - link "Privacy Policy":
+        - /url: /en-us/privacy
+      - link "Terms of Use":
+        - /url: /en-us/terms
+      - link "Cookies":
+        - /url: /en-us/cookies
+      - button "Privacy choices" [active]
+  - button "Back to top":
+  - paragraph: © 2026 The Calculators House. All rights reserved.
+- dialog "Advertising and statistics cookies":
+  - heading "Advertising and statistics cookies" [level=2]
+  - paragraph:
+    - text: The consent manager is not available yet. Optional storage stays denied until a verified choice is available. You can refuse optional storage or try Privacy choices again later.
+    - link "Privacy Policy":
+      - /url: /en-us/privacy
+    - text: ·
+    - link "Read about the cookies we use.":
+      - /url: /en-us/cookies
+    - text: ·
+    - link "Google Privacy Policy":
+      - /url: https://business.safety.google/privacy/
+  - button "Reject cookies"
+  - button "Close"
+- alert

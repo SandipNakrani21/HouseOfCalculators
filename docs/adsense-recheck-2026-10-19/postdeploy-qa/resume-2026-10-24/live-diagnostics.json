@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-24T16:53:42.718Z",
+  "scope": "One natural home visit, privacy reopen then Reject. No grant, reload or ad click.",
+  "dom": {
+    "ads": [
+      {
+        "adsbygoogleStatus": "done",
+        "frames": 0,
+        "height": 0,
+        "status": null,
+        "width": 0
+      }
+    ],
+    "csp": [
+      "default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+    ],
+    "lang": "en-US",
+    "url": "https://thecalculatorshouse.com/en-us"
+  },
+  "console": []
+}

@@ -1,0 +1,5850 @@
+{
+  "origin": "https://thecalculatorshouse.com",
+  "startedAt": "2026-10-23T18:40:29.008Z",
+  "sizes": [
+    {
+      "name": "large-desktop",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "desktop",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "routes": [
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/finance/mortgage",
+      "slug": "mortgage",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/us/income-tax",
+      "slug": "income-tax",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/us/salary",
+      "slug": "salary",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/finance/loan",
+      "slug": "loan",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/finance/auto-loan",
+      "slug": "auto-loan",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/finance/vat",
+      "slug": "vat",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/finance/retirement",
+      "slug": "retirement",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/finance/pension",
+      "slug": "pension",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/us/capital-gains",
+      "slug": "capital-gains",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/finance/sip",
+      "slug": "sip",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/finance/student-loan",
+      "slug": "student-loan",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/finance/inflation",
+      "slug": "inflation",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/us/social-security",
+      "slug": "social-security",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/gb/national-insurance",
+      "slug": "national-insurance",
+      "homeCountry": "us",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/us/401k",
+      "slug": "401k",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/us/social-security-benefit",
+      "slug": "social-security-benefit",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/au/superannuation",
+      "slug": "superannuation",
+      "homeCountry": "us",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/au/hecs",
+      "slug": "hecs",
+      "homeCountry": "us",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/ca/cpp",
+      "slug": "cpp",
+      "homeCountry": "us",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/ca/ei",
+      "slug": "ei",
+      "homeCountry": "us",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/gb/stamp-duty",
+      "slug": "stamp-duty",
+      "homeCountry": "us",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/de/church-tax",
+      "slug": "church-tax",
+      "homeCountry": "us",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/finance/property-tax",
+      "slug": "property-tax",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/nl/30-percent-ruling",
+      "slug": "30-percent-ruling",
+      "homeCountry": "us",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/nl/payroll",
+      "slug": "payroll",
+      "homeCountry": "us",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/countries/tr/severance-pay",
+      "slug": "severance-pay",
+      "homeCountry": "us",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/everyday/tip",
+      "slug": "tip",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/health/bmi",
+      "slug": "bmi",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/health/bmr",
+      "slug": "bmr",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/health/tdee",
+      "slug": "tdee",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/health/body-fat",
+      "slug": "body-fat",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/health/water-intake",
+      "slug": "water-intake",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/health/running-pace",
+      "slug": "running-pace",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/math/statistics",
+      "slug": "statistics",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/math/ratio",
+      "slug": "ratio",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/math/exponent",
+      "slug": "exponent",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/math/quadratic-equation",
+      "slug": "quadratic-equation",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/math/triangle",
+      "slug": "triangle",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/math/area",
+      "slug": "area",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/math/volume",
+      "slug": "volume",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/business/profit-margin",
+      "slug": "profit-margin",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/business/markup",
+      "slug": "markup",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/business/break-even",
+      "slug": "break-even",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/business/roi",
+      "slug": "roi",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/business/roas",
+      "slug": "roas",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/business/growth-rate",
+      "slug": "growth-rate",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/everyday/discount",
+      "slug": "discount",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/everyday/fuel-cost",
+      "slug": "fuel-cost",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/everyday/electricity-cost",
+      "slug": "electricity-cost",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/everyday/recipe-scaler",
+      "slug": "recipe-scaler",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/education/gpa",
+      "slug": "gpa",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/education/weighted-grade",
+      "slug": "weighted-grade",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/education/final-grade",
+      "slug": "final-grade",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/construction/concrete",
+      "slug": "concrete",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/construction/paint",
+      "slug": "paint",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/construction/tile",
+      "slug": "tile",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/construction/roof-area",
+      "slug": "roof-area",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/engineering/ohms-law",
+      "slug": "ohms-law",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/engineering/force",
+      "slug": "force",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-US",
+      "route": "/en-us/calculators/engineering/torque",
+      "slug": "torque",
+      "homeCountry": "us",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/finance/mortgage",
+      "slug": "mortgage",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/gb/income-tax",
+      "slug": "income-tax",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/gb/salary",
+      "slug": "salary",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/finance/loan",
+      "slug": "loan",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/finance/auto-loan",
+      "slug": "auto-loan",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/finance/vat",
+      "slug": "vat",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/finance/retirement",
+      "slug": "retirement",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/finance/pension",
+      "slug": "pension",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/gb/capital-gains",
+      "slug": "capital-gains",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/finance/sip",
+      "slug": "sip",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/finance/student-loan",
+      "slug": "student-loan",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/finance/inflation",
+      "slug": "inflation",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/de/social-security",
+      "slug": "social-security",
+      "homeCountry": "gb",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/gb/national-insurance",
+      "slug": "national-insurance",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/us/401k",
+      "slug": "401k",
+      "homeCountry": "gb",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/us/social-security-benefit",
+      "slug": "social-security-benefit",
+      "homeCountry": "gb",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/au/superannuation",
+      "slug": "superannuation",
+      "homeCountry": "gb",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/au/hecs",
+      "slug": "hecs",
+      "homeCountry": "gb",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/ca/cpp",
+      "slug": "cpp",
+      "homeCountry": "gb",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/ca/ei",
+      "slug": "ei",
+      "homeCountry": "gb",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/gb/stamp-duty",
+      "slug": "stamp-duty",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/de/church-tax",
+      "slug": "church-tax",
+      "homeCountry": "gb",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/finance/property-tax",
+      "slug": "property-tax",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/nl/30-percent-ruling",
+      "slug": "30-percent-ruling",
+      "homeCountry": "gb",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/nl/payroll",
+      "slug": "payroll",
+      "homeCountry": "gb",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/countries/tr/severance-pay",
+      "slug": "severance-pay",
+      "homeCountry": "gb",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/everyday/tip",
+      "slug": "tip",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/health/bmi",
+      "slug": "bmi",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/health/bmr",
+      "slug": "bmr",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/health/tdee",
+      "slug": "tdee",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/health/body-fat",
+      "slug": "body-fat",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/health/water-intake",
+      "slug": "water-intake",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/health/running-pace",
+      "slug": "running-pace",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/math/statistics",
+      "slug": "statistics",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/math/ratio",
+      "slug": "ratio",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/math/exponent",
+      "slug": "exponent",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/math/quadratic-equation",
+      "slug": "quadratic-equation",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/math/triangle",
+      "slug": "triangle",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/math/area",
+      "slug": "area",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/math/volume",
+      "slug": "volume",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/business/profit-margin",
+      "slug": "profit-margin",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/business/markup",
+      "slug": "markup",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/business/break-even",
+      "slug": "break-even",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/business/roi",
+      "slug": "roi",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/business/roas",
+      "slug": "roas",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/business/growth-rate",
+      "slug": "growth-rate",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/everyday/discount",
+      "slug": "discount",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/everyday/fuel-cost",
+      "slug": "fuel-cost",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/everyday/electricity-cost",
+      "slug": "electricity-cost",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/everyday/recipe-scaler",
+      "slug": "recipe-scaler",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/education/gpa",
+      "slug": "gpa",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/education/weighted-grade",
+      "slug": "weighted-grade",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/education/final-grade",
+      "slug": "final-grade",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/construction/concrete",
+      "slug": "concrete",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/construction/paint",
+      "slug": "paint",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/construction/tile",
+      "slug": "tile",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/construction/roof-area",
+      "slug": "roof-area",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/engineering/ohms-law",
+      "slug": "ohms-law",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/engineering/force",
+      "slug": "force",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "en-GB",
+      "route": "/en-gb/calculators/engineering/torque",
+      "slug": "torque",
+      "homeCountry": "gb",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/finance/mortgage",
+      "slug": "mortgage",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/de/income-tax",
+      "slug": "income-tax",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/de/salary",
+      "slug": "salary",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/finance/loan",
+      "slug": "loan",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/finance/auto-loan",
+      "slug": "auto-loan",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/finance/vat",
+      "slug": "vat",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/finance/retirement",
+      "slug": "retirement",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/finance/pension",
+      "slug": "pension",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/de/capital-gains",
+      "slug": "capital-gains",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/finance/sip",
+      "slug": "sip",
+      "homeCountry": "de",
+      "country": "in",
+      "currency": "INR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/finance/student-loan",
+      "slug": "student-loan",
+      "homeCountry": "de",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/finance/inflation",
+      "slug": "inflation",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/de/social-security",
+      "slug": "social-security",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/gb/national-insurance",
+      "slug": "national-insurance",
+      "homeCountry": "de",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/us/401k",
+      "slug": "401k",
+      "homeCountry": "de",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/us/social-security-benefit",
+      "slug": "social-security-benefit",
+      "homeCountry": "de",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/au/superannuation",
+      "slug": "superannuation",
+      "homeCountry": "de",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/au/hecs",
+      "slug": "hecs",
+      "homeCountry": "de",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/ca/cpp",
+      "slug": "cpp",
+      "homeCountry": "de",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/ca/ei",
+      "slug": "ei",
+      "homeCountry": "de",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/gb/stamp-duty",
+      "slug": "stamp-duty",
+      "homeCountry": "de",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/de/church-tax",
+      "slug": "church-tax",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/finance/property-tax",
+      "slug": "property-tax",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/nl/30-percent-ruling",
+      "slug": "30-percent-ruling",
+      "homeCountry": "de",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/de/payroll",
+      "slug": "payroll",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/countries/tr/severance-pay",
+      "slug": "severance-pay",
+      "homeCountry": "de",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/everyday/tip",
+      "slug": "tip",
+      "homeCountry": "de",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/health/bmi",
+      "slug": "bmi",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/health/bmr",
+      "slug": "bmr",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/health/tdee",
+      "slug": "tdee",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/health/body-fat",
+      "slug": "body-fat",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/health/water-intake",
+      "slug": "water-intake",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/health/running-pace",
+      "slug": "running-pace",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/math/statistics",
+      "slug": "statistics",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/math/ratio",
+      "slug": "ratio",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/math/exponent",
+      "slug": "exponent",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/math/quadratic-equation",
+      "slug": "quadratic-equation",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/math/triangle",
+      "slug": "triangle",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/math/area",
+      "slug": "area",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/math/volume",
+      "slug": "volume",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/business/profit-margin",
+      "slug": "profit-margin",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/business/markup",
+      "slug": "markup",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/business/break-even",
+      "slug": "break-even",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/business/roi",
+      "slug": "roi",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/business/roas",
+      "slug": "roas",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/business/growth-rate",
+      "slug": "growth-rate",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/everyday/discount",
+      "slug": "discount",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/everyday/fuel-cost",
+      "slug": "fuel-cost",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/everyday/electricity-cost",
+      "slug": "electricity-cost",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/everyday/recipe-scaler",
+      "slug": "recipe-scaler",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/education/gpa",
+      "slug": "gpa",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/education/weighted-grade",
+      "slug": "weighted-grade",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/education/final-grade",
+      "slug": "final-grade",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/construction/concrete",
+      "slug": "concrete",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/construction/paint",
+      "slug": "paint",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/construction/tile",
+      "slug": "tile",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/construction/roof-area",
+      "slug": "roof-area",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/engineering/ohms-law",
+      "slug": "ohms-law",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/engineering/force",
+      "slug": "force",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "de-DE",
+      "route": "/de-de/calculators/engineering/torque",
+      "slug": "torque",
+      "homeCountry": "de",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/finance/mortgage",
+      "slug": "mortgage",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/fr/income-tax",
+      "slug": "income-tax",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/fr/salary",
+      "slug": "salary",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/finance/loan",
+      "slug": "loan",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/finance/auto-loan",
+      "slug": "auto-loan",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/finance/vat",
+      "slug": "vat",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/finance/retirement",
+      "slug": "retirement",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/finance/pension",
+      "slug": "pension",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/fr/capital-gains",
+      "slug": "capital-gains",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/finance/sip",
+      "slug": "sip",
+      "homeCountry": "fr",
+      "country": "in",
+      "currency": "INR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/finance/student-loan",
+      "slug": "student-loan",
+      "homeCountry": "fr",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/finance/inflation",
+      "slug": "inflation",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/fr/social-security",
+      "slug": "social-security",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/gb/national-insurance",
+      "slug": "national-insurance",
+      "homeCountry": "fr",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/us/401k",
+      "slug": "401k",
+      "homeCountry": "fr",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/us/social-security-benefit",
+      "slug": "social-security-benefit",
+      "homeCountry": "fr",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/au/superannuation",
+      "slug": "superannuation",
+      "homeCountry": "fr",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/au/hecs",
+      "slug": "hecs",
+      "homeCountry": "fr",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/ca/cpp",
+      "slug": "cpp",
+      "homeCountry": "fr",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/ca/ei",
+      "slug": "ei",
+      "homeCountry": "fr",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/gb/stamp-duty",
+      "slug": "stamp-duty",
+      "homeCountry": "fr",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/de/church-tax",
+      "slug": "church-tax",
+      "homeCountry": "fr",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/finance/property-tax",
+      "slug": "property-tax",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/nl/30-percent-ruling",
+      "slug": "30-percent-ruling",
+      "homeCountry": "fr",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/fr/payroll",
+      "slug": "payroll",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/countries/tr/severance-pay",
+      "slug": "severance-pay",
+      "homeCountry": "fr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/everyday/tip",
+      "slug": "tip",
+      "homeCountry": "fr",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/health/bmi",
+      "slug": "bmi",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/health/bmr",
+      "slug": "bmr",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/health/tdee",
+      "slug": "tdee",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/health/body-fat",
+      "slug": "body-fat",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/health/water-intake",
+      "slug": "water-intake",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/health/running-pace",
+      "slug": "running-pace",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/math/statistics",
+      "slug": "statistics",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/math/ratio",
+      "slug": "ratio",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/math/exponent",
+      "slug": "exponent",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/math/quadratic-equation",
+      "slug": "quadratic-equation",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/math/triangle",
+      "slug": "triangle",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/math/area",
+      "slug": "area",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/math/volume",
+      "slug": "volume",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/business/profit-margin",
+      "slug": "profit-margin",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/business/markup",
+      "slug": "markup",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/business/break-even",
+      "slug": "break-even",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/business/roi",
+      "slug": "roi",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/business/roas",
+      "slug": "roas",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/business/growth-rate",
+      "slug": "growth-rate",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/everyday/discount",
+      "slug": "discount",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/everyday/fuel-cost",
+      "slug": "fuel-cost",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/everyday/electricity-cost",
+      "slug": "electricity-cost",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/everyday/recipe-scaler",
+      "slug": "recipe-scaler",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/education/gpa",
+      "slug": "gpa",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/education/weighted-grade",
+      "slug": "weighted-grade",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/education/final-grade",
+      "slug": "final-grade",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/construction/concrete",
+      "slug": "concrete",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/construction/paint",
+      "slug": "paint",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/construction/tile",
+      "slug": "tile",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/construction/roof-area",
+      "slug": "roof-area",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/engineering/ohms-law",
+      "slug": "ohms-law",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/engineering/force",
+      "slug": "force",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "fr-FR",
+      "route": "/fr-fr/calculators/engineering/torque",
+      "slug": "torque",
+      "homeCountry": "fr",
+      "country": "fr",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/finance/mortgage",
+      "slug": "mortgage",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/es/income-tax",
+      "slug": "income-tax",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/es/salary",
+      "slug": "salary",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/finance/loan",
+      "slug": "loan",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/finance/auto-loan",
+      "slug": "auto-loan",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/finance/vat",
+      "slug": "vat",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/finance/retirement",
+      "slug": "retirement",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/finance/pension",
+      "slug": "pension",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/es/capital-gains",
+      "slug": "capital-gains",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/finance/sip",
+      "slug": "sip",
+      "homeCountry": "es",
+      "country": "in",
+      "currency": "INR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/finance/student-loan",
+      "slug": "student-loan",
+      "homeCountry": "es",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/finance/inflation",
+      "slug": "inflation",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/es/social-security",
+      "slug": "social-security",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/gb/national-insurance",
+      "slug": "national-insurance",
+      "homeCountry": "es",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/us/401k",
+      "slug": "401k",
+      "homeCountry": "es",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/us/social-security-benefit",
+      "slug": "social-security-benefit",
+      "homeCountry": "es",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/au/superannuation",
+      "slug": "superannuation",
+      "homeCountry": "es",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/au/hecs",
+      "slug": "hecs",
+      "homeCountry": "es",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/ca/cpp",
+      "slug": "cpp",
+      "homeCountry": "es",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/ca/ei",
+      "slug": "ei",
+      "homeCountry": "es",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/gb/stamp-duty",
+      "slug": "stamp-duty",
+      "homeCountry": "es",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/de/church-tax",
+      "slug": "church-tax",
+      "homeCountry": "es",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/finance/property-tax",
+      "slug": "property-tax",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/nl/30-percent-ruling",
+      "slug": "30-percent-ruling",
+      "homeCountry": "es",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/nl/payroll",
+      "slug": "payroll",
+      "homeCountry": "es",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/countries/tr/severance-pay",
+      "slug": "severance-pay",
+      "homeCountry": "es",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/everyday/tip",
+      "slug": "tip",
+      "homeCountry": "es",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/health/bmi",
+      "slug": "bmi",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/health/bmr",
+      "slug": "bmr",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/health/tdee",
+      "slug": "tdee",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/health/body-fat",
+      "slug": "body-fat",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/health/water-intake",
+      "slug": "water-intake",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/health/running-pace",
+      "slug": "running-pace",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/math/statistics",
+      "slug": "statistics",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/math/ratio",
+      "slug": "ratio",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/math/exponent",
+      "slug": "exponent",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/math/quadratic-equation",
+      "slug": "quadratic-equation",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/math/triangle",
+      "slug": "triangle",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/math/area",
+      "slug": "area",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/math/volume",
+      "slug": "volume",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/business/profit-margin",
+      "slug": "profit-margin",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/business/markup",
+      "slug": "markup",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/business/break-even",
+      "slug": "break-even",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/business/roi",
+      "slug": "roi",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/business/roas",
+      "slug": "roas",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/business/growth-rate",
+      "slug": "growth-rate",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/everyday/discount",
+      "slug": "discount",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/everyday/fuel-cost",
+      "slug": "fuel-cost",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/everyday/electricity-cost",
+      "slug": "electricity-cost",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/everyday/recipe-scaler",
+      "slug": "recipe-scaler",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/education/gpa",
+      "slug": "gpa",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/education/weighted-grade",
+      "slug": "weighted-grade",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/education/final-grade",
+      "slug": "final-grade",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/construction/concrete",
+      "slug": "concrete",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/construction/paint",
+      "slug": "paint",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/construction/tile",
+      "slug": "tile",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/construction/roof-area",
+      "slug": "roof-area",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/engineering/ohms-law",
+      "slug": "ohms-law",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/engineering/force",
+      "slug": "force",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "es-ES",
+      "route": "/es-es/calculators/engineering/torque",
+      "slug": "torque",
+      "homeCountry": "es",
+      "country": "es",
+      "currency": "EUR"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/finance/mortgage",
+      "slug": "mortgage",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/br/income-tax",
+      "slug": "income-tax",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/br/salary",
+      "slug": "salary",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/finance/loan",
+      "slug": "loan",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/finance/auto-loan",
+      "slug": "auto-loan",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/finance/vat",
+      "slug": "vat",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/finance/retirement",
+      "slug": "retirement",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/finance/pension",
+      "slug": "pension",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/us/capital-gains",
+      "slug": "capital-gains",
+      "homeCountry": "br",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/finance/sip",
+      "slug": "sip",
+      "homeCountry": "br",
+      "country": "in",
+      "currency": "INR"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/finance/student-loan",
+      "slug": "student-loan",
+      "homeCountry": "br",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/finance/inflation",
+      "slug": "inflation",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/br/social-security",
+      "slug": "social-security",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/gb/national-insurance",
+      "slug": "national-insurance",
+      "homeCountry": "br",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/us/401k",
+      "slug": "401k",
+      "homeCountry": "br",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/us/social-security-benefit",
+      "slug": "social-security-benefit",
+      "homeCountry": "br",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/au/superannuation",
+      "slug": "superannuation",
+      "homeCountry": "br",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/au/hecs",
+      "slug": "hecs",
+      "homeCountry": "br",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/ca/cpp",
+      "slug": "cpp",
+      "homeCountry": "br",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/ca/ei",
+      "slug": "ei",
+      "homeCountry": "br",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/gb/stamp-duty",
+      "slug": "stamp-duty",
+      "homeCountry": "br",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/de/church-tax",
+      "slug": "church-tax",
+      "homeCountry": "br",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/finance/property-tax",
+      "slug": "property-tax",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/nl/30-percent-ruling",
+      "slug": "30-percent-ruling",
+      "homeCountry": "br",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/nl/payroll",
+      "slug": "payroll",
+      "homeCountry": "br",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/countries/tr/severance-pay",
+      "slug": "severance-pay",
+      "homeCountry": "br",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/everyday/tip",
+      "slug": "tip",
+      "homeCountry": "br",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/health/bmi",
+      "slug": "bmi",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/health/bmr",
+      "slug": "bmr",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/health/tdee",
+      "slug": "tdee",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/health/body-fat",
+      "slug": "body-fat",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/health/water-intake",
+      "slug": "water-intake",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/health/running-pace",
+      "slug": "running-pace",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/math/statistics",
+      "slug": "statistics",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/math/ratio",
+      "slug": "ratio",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/math/exponent",
+      "slug": "exponent",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/math/quadratic-equation",
+      "slug": "quadratic-equation",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/math/triangle",
+      "slug": "triangle",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/math/area",
+      "slug": "area",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/math/volume",
+      "slug": "volume",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/business/profit-margin",
+      "slug": "profit-margin",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/business/markup",
+      "slug": "markup",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/business/break-even",
+      "slug": "break-even",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/business/roi",
+      "slug": "roi",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/business/roas",
+      "slug": "roas",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/business/growth-rate",
+      "slug": "growth-rate",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/everyday/discount",
+      "slug": "discount",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/everyday/fuel-cost",
+      "slug": "fuel-cost",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/everyday/electricity-cost",
+      "slug": "electricity-cost",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/everyday/recipe-scaler",
+      "slug": "recipe-scaler",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/education/gpa",
+      "slug": "gpa",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/education/weighted-grade",
+      "slug": "weighted-grade",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/education/final-grade",
+      "slug": "final-grade",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/construction/concrete",
+      "slug": "concrete",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/construction/paint",
+      "slug": "paint",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/construction/tile",
+      "slug": "tile",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/construction/roof-area",
+      "slug": "roof-area",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/engineering/ohms-law",
+      "slug": "ohms-law",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/engineering/force",
+      "slug": "force",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "/pt-br/calculators/engineering/torque",
+      "slug": "torque",
+      "homeCountry": "br",
+      "country": "br",
+      "currency": "BRL"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/finance/mortgage",
+      "slug": "mortgage",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/ru/income-tax",
+      "slug": "income-tax",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/ru/salary",
+      "slug": "salary",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/finance/loan",
+      "slug": "loan",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/finance/auto-loan",
+      "slug": "auto-loan",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/finance/vat",
+      "slug": "vat",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/finance/retirement",
+      "slug": "retirement",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/finance/pension",
+      "slug": "pension",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/us/capital-gains",
+      "slug": "capital-gains",
+      "homeCountry": "ru",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/finance/sip",
+      "slug": "sip",
+      "homeCountry": "ru",
+      "country": "in",
+      "currency": "INR"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/finance/student-loan",
+      "slug": "student-loan",
+      "homeCountry": "ru",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/finance/inflation",
+      "slug": "inflation",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/de/social-security",
+      "slug": "social-security",
+      "homeCountry": "ru",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/gb/national-insurance",
+      "slug": "national-insurance",
+      "homeCountry": "ru",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/us/401k",
+      "slug": "401k",
+      "homeCountry": "ru",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/us/social-security-benefit",
+      "slug": "social-security-benefit",
+      "homeCountry": "ru",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/au/superannuation",
+      "slug": "superannuation",
+      "homeCountry": "ru",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/au/hecs",
+      "slug": "hecs",
+      "homeCountry": "ru",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/ca/cpp",
+      "slug": "cpp",
+      "homeCountry": "ru",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/ca/ei",
+      "slug": "ei",
+      "homeCountry": "ru",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/gb/stamp-duty",
+      "slug": "stamp-duty",
+      "homeCountry": "ru",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/de/church-tax",
+      "slug": "church-tax",
+      "homeCountry": "ru",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/finance/property-tax",
+      "slug": "property-tax",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/nl/30-percent-ruling",
+      "slug": "30-percent-ruling",
+      "homeCountry": "ru",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/nl/payroll",
+      "slug": "payroll",
+      "homeCountry": "ru",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/countries/tr/severance-pay",
+      "slug": "severance-pay",
+      "homeCountry": "ru",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/everyday/tip",
+      "slug": "tip",
+      "homeCountry": "ru",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/health/bmi",
+      "slug": "bmi",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/health/bmr",
+      "slug": "bmr",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/health/tdee",
+      "slug": "tdee",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/health/body-fat",
+      "slug": "body-fat",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/health/water-intake",
+      "slug": "water-intake",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/health/running-pace",
+      "slug": "running-pace",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/math/statistics",
+      "slug": "statistics",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/math/ratio",
+      "slug": "ratio",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/math/exponent",
+      "slug": "exponent",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/math/quadratic-equation",
+      "slug": "quadratic-equation",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/math/triangle",
+      "slug": "triangle",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/math/area",
+      "slug": "area",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/math/volume",
+      "slug": "volume",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/business/profit-margin",
+      "slug": "profit-margin",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/business/markup",
+      "slug": "markup",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/business/break-even",
+      "slug": "break-even",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/business/roi",
+      "slug": "roi",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/business/roas",
+      "slug": "roas",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/business/growth-rate",
+      "slug": "growth-rate",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/everyday/discount",
+      "slug": "discount",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/everyday/fuel-cost",
+      "slug": "fuel-cost",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/everyday/electricity-cost",
+      "slug": "electricity-cost",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/everyday/recipe-scaler",
+      "slug": "recipe-scaler",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/education/gpa",
+      "slug": "gpa",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/education/weighted-grade",
+      "slug": "weighted-grade",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/education/final-grade",
+      "slug": "final-grade",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/construction/concrete",
+      "slug": "concrete",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/construction/paint",
+      "slug": "paint",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/construction/tile",
+      "slug": "tile",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/construction/roof-area",
+      "slug": "roof-area",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/engineering/ohms-law",
+      "slug": "ohms-law",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/engineering/force",
+      "slug": "force",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "ru-RU",
+      "route": "/ru-ru/calculators/engineering/torque",
+      "slug": "torque",
+      "homeCountry": "ru",
+      "country": "ru",
+      "currency": "RUB"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/finance/mortgage",
+      "slug": "mortgage",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/tr/income-tax",
+      "slug": "income-tax",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/tr/salary",
+      "slug": "salary",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/finance/loan",
+      "slug": "loan",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/finance/auto-loan",
+      "slug": "auto-loan",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/finance/vat",
+      "slug": "vat",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/finance/retirement",
+      "slug": "retirement",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/finance/pension",
+      "slug": "pension",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/us/capital-gains",
+      "slug": "capital-gains",
+      "homeCountry": "tr",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/finance/sip",
+      "slug": "sip",
+      "homeCountry": "tr",
+      "country": "in",
+      "currency": "INR"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/finance/student-loan",
+      "slug": "student-loan",
+      "homeCountry": "tr",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/finance/inflation",
+      "slug": "inflation",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/tr/social-security",
+      "slug": "social-security",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/gb/national-insurance",
+      "slug": "national-insurance",
+      "homeCountry": "tr",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/us/401k",
+      "slug": "401k",
+      "homeCountry": "tr",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/us/social-security-benefit",
+      "slug": "social-security-benefit",
+      "homeCountry": "tr",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/au/superannuation",
+      "slug": "superannuation",
+      "homeCountry": "tr",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/au/hecs",
+      "slug": "hecs",
+      "homeCountry": "tr",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/ca/cpp",
+      "slug": "cpp",
+      "homeCountry": "tr",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/ca/ei",
+      "slug": "ei",
+      "homeCountry": "tr",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/gb/stamp-duty",
+      "slug": "stamp-duty",
+      "homeCountry": "tr",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/de/church-tax",
+      "slug": "church-tax",
+      "homeCountry": "tr",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/finance/property-tax",
+      "slug": "property-tax",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/nl/30-percent-ruling",
+      "slug": "30-percent-ruling",
+      "homeCountry": "tr",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/nl/payroll",
+      "slug": "payroll",
+      "homeCountry": "tr",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/countries/tr/severance-pay",
+      "slug": "severance-pay",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/everyday/tip",
+      "slug": "tip",
+      "homeCountry": "tr",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/health/bmi",
+      "slug": "bmi",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/health/bmr",
+      "slug": "bmr",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/health/tdee",
+      "slug": "tdee",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/health/body-fat",
+      "slug": "body-fat",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/health/water-intake",
+      "slug": "water-intake",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/health/running-pace",
+      "slug": "running-pace",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/math/statistics",
+      "slug": "statistics",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/math/ratio",
+      "slug": "ratio",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/math/exponent",
+      "slug": "exponent",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/math/quadratic-equation",
+      "slug": "quadratic-equation",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/math/triangle",
+      "slug": "triangle",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/math/area",
+      "slug": "area",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/math/volume",
+      "slug": "volume",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/business/profit-margin",
+      "slug": "profit-margin",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/business/markup",
+      "slug": "markup",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/business/break-even",
+      "slug": "break-even",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/business/roi",
+      "slug": "roi",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/business/roas",
+      "slug": "roas",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/business/growth-rate",
+      "slug": "growth-rate",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/everyday/discount",
+      "slug": "discount",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/everyday/fuel-cost",
+      "slug": "fuel-cost",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/everyday/electricity-cost",
+      "slug": "electricity-cost",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/everyday/recipe-scaler",
+      "slug": "recipe-scaler",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/education/gpa",
+      "slug": "gpa",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/education/weighted-grade",
+      "slug": "weighted-grade",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/education/final-grade",
+      "slug": "final-grade",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/construction/concrete",
+      "slug": "concrete",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/construction/paint",
+      "slug": "paint",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/construction/tile",
+      "slug": "tile",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/construction/roof-area",
+      "slug": "roof-area",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/engineering/ohms-law",
+      "slug": "ohms-law",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/engineering/force",
+      "slug": "force",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "tr-TR",
+      "route": "/tr-tr/calculators/engineering/torque",
+      "slug": "torque",
+      "homeCountry": "tr",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/finance/mortgage",
+      "slug": "mortgage",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/jp/income-tax",
+      "slug": "income-tax",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/jp/salary",
+      "slug": "salary",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/finance/loan",
+      "slug": "loan",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/finance/auto-loan",
+      "slug": "auto-loan",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/finance/vat",
+      "slug": "vat",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/finance/retirement",
+      "slug": "retirement",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/finance/pension",
+      "slug": "pension",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/us/capital-gains",
+      "slug": "capital-gains",
+      "homeCountry": "jp",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/finance/sip",
+      "slug": "sip",
+      "homeCountry": "jp",
+      "country": "in",
+      "currency": "INR"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/finance/student-loan",
+      "slug": "student-loan",
+      "homeCountry": "jp",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/finance/inflation",
+      "slug": "inflation",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/jp/social-security",
+      "slug": "social-security",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/gb/national-insurance",
+      "slug": "national-insurance",
+      "homeCountry": "jp",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/us/401k",
+      "slug": "401k",
+      "homeCountry": "jp",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/us/social-security-benefit",
+      "slug": "social-security-benefit",
+      "homeCountry": "jp",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/au/superannuation",
+      "slug": "superannuation",
+      "homeCountry": "jp",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/au/hecs",
+      "slug": "hecs",
+      "homeCountry": "jp",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/ca/cpp",
+      "slug": "cpp",
+      "homeCountry": "jp",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/ca/ei",
+      "slug": "ei",
+      "homeCountry": "jp",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/gb/stamp-duty",
+      "slug": "stamp-duty",
+      "homeCountry": "jp",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/de/church-tax",
+      "slug": "church-tax",
+      "homeCountry": "jp",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/finance/property-tax",
+      "slug": "property-tax",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/nl/30-percent-ruling",
+      "slug": "30-percent-ruling",
+      "homeCountry": "jp",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/nl/payroll",
+      "slug": "payroll",
+      "homeCountry": "jp",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/countries/tr/severance-pay",
+      "slug": "severance-pay",
+      "homeCountry": "jp",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/everyday/tip",
+      "slug": "tip",
+      "homeCountry": "jp",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/health/bmi",
+      "slug": "bmi",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/health/bmr",
+      "slug": "bmr",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/health/tdee",
+      "slug": "tdee",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/health/body-fat",
+      "slug": "body-fat",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/health/water-intake",
+      "slug": "water-intake",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/health/running-pace",
+      "slug": "running-pace",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/math/statistics",
+      "slug": "statistics",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/math/ratio",
+      "slug": "ratio",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/math/exponent",
+      "slug": "exponent",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/math/quadratic-equation",
+      "slug": "quadratic-equation",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/math/triangle",
+      "slug": "triangle",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/math/area",
+      "slug": "area",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/math/volume",
+      "slug": "volume",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/business/profit-margin",
+      "slug": "profit-margin",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/business/markup",
+      "slug": "markup",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/business/break-even",
+      "slug": "break-even",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/business/roi",
+      "slug": "roi",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/business/roas",
+      "slug": "roas",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/business/growth-rate",
+      "slug": "growth-rate",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/everyday/discount",
+      "slug": "discount",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/everyday/fuel-cost",
+      "slug": "fuel-cost",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/everyday/electricity-cost",
+      "slug": "electricity-cost",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/everyday/recipe-scaler",
+      "slug": "recipe-scaler",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/education/gpa",
+      "slug": "gpa",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/education/weighted-grade",
+      "slug": "weighted-grade",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/education/final-grade",
+      "slug": "final-grade",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/construction/concrete",
+      "slug": "concrete",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/construction/paint",
+      "slug": "paint",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/construction/tile",
+      "slug": "tile",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/construction/roof-area",
+      "slug": "roof-area",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/engineering/ohms-law",
+      "slug": "ohms-law",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/engineering/force",
+      "slug": "force",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "ja-JP",
+      "route": "/ja-jp/calculators/engineering/torque",
+      "slug": "torque",
+      "homeCountry": "jp",
+      "country": "jp",
+      "currency": "JPY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/finance/mortgage",
+      "slug": "mortgage",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/cn/income-tax",
+      "slug": "income-tax",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/cn/salary",
+      "slug": "salary",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/finance/loan",
+      "slug": "loan",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/finance/auto-loan",
+      "slug": "auto-loan",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/finance/vat",
+      "slug": "vat",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/finance/retirement",
+      "slug": "retirement",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/finance/pension",
+      "slug": "pension",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/us/capital-gains",
+      "slug": "capital-gains",
+      "homeCountry": "cn",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/finance/sip",
+      "slug": "sip",
+      "homeCountry": "cn",
+      "country": "in",
+      "currency": "INR"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/finance/student-loan",
+      "slug": "student-loan",
+      "homeCountry": "cn",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/finance/inflation",
+      "slug": "inflation",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/cn/social-security",
+      "slug": "social-security",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/gb/national-insurance",
+      "slug": "national-insurance",
+      "homeCountry": "cn",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/us/401k",
+      "slug": "401k",
+      "homeCountry": "cn",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/us/social-security-benefit",
+      "slug": "social-security-benefit",
+      "homeCountry": "cn",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/au/superannuation",
+      "slug": "superannuation",
+      "homeCountry": "cn",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/au/hecs",
+      "slug": "hecs",
+      "homeCountry": "cn",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/ca/cpp",
+      "slug": "cpp",
+      "homeCountry": "cn",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/ca/ei",
+      "slug": "ei",
+      "homeCountry": "cn",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/gb/stamp-duty",
+      "slug": "stamp-duty",
+      "homeCountry": "cn",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/de/church-tax",
+      "slug": "church-tax",
+      "homeCountry": "cn",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/finance/property-tax",
+      "slug": "property-tax",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/nl/30-percent-ruling",
+      "slug": "30-percent-ruling",
+      "homeCountry": "cn",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/nl/payroll",
+      "slug": "payroll",
+      "homeCountry": "cn",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/countries/tr/severance-pay",
+      "slug": "severance-pay",
+      "homeCountry": "cn",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/everyday/tip",
+      "slug": "tip",
+      "homeCountry": "cn",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/health/bmi",
+      "slug": "bmi",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/health/bmr",
+      "slug": "bmr",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/health/tdee",
+      "slug": "tdee",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/health/body-fat",
+      "slug": "body-fat",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/health/water-intake",
+      "slug": "water-intake",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/health/running-pace",
+      "slug": "running-pace",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/math/statistics",
+      "slug": "statistics",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/math/ratio",
+      "slug": "ratio",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/math/exponent",
+      "slug": "exponent",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/math/quadratic-equation",
+      "slug": "quadratic-equation",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/math/triangle",
+      "slug": "triangle",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/math/area",
+      "slug": "area",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/math/volume",
+      "slug": "volume",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/business/profit-margin",
+      "slug": "profit-margin",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/business/markup",
+      "slug": "markup",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/business/break-even",
+      "slug": "break-even",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/business/roi",
+      "slug": "roi",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/business/roas",
+      "slug": "roas",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/business/growth-rate",
+      "slug": "growth-rate",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/everyday/discount",
+      "slug": "discount",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/everyday/fuel-cost",
+      "slug": "fuel-cost",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/everyday/electricity-cost",
+      "slug": "electricity-cost",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/everyday/recipe-scaler",
+      "slug": "recipe-scaler",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/education/gpa",
+      "slug": "gpa",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/education/weighted-grade",
+      "slug": "weighted-grade",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/education/final-grade",
+      "slug": "final-grade",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/construction/concrete",
+      "slug": "concrete",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/construction/paint",
+      "slug": "paint",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/construction/tile",
+      "slug": "tile",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/construction/roof-area",
+      "slug": "roof-area",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/engineering/ohms-law",
+      "slug": "ohms-law",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/engineering/force",
+      "slug": "force",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "zh-CN",
+      "route": "/zh-cn/calculators/engineering/torque",
+      "slug": "torque",
+      "homeCountry": "cn",
+      "country": "cn",
+      "currency": "CNY"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/finance/mortgage",
+      "slug": "mortgage",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/it/income-tax",
+      "slug": "income-tax",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/it/salary",
+      "slug": "salary",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/finance/loan",
+      "slug": "loan",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/finance/auto-loan",
+      "slug": "auto-loan",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/finance/vat",
+      "slug": "vat",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/finance/retirement",
+      "slug": "retirement",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/finance/pension",
+      "slug": "pension",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/it/capital-gains",
+      "slug": "capital-gains",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/finance/sip",
+      "slug": "sip",
+      "homeCountry": "it",
+      "country": "in",
+      "currency": "INR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/finance/student-loan",
+      "slug": "student-loan",
+      "homeCountry": "it",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/finance/inflation",
+      "slug": "inflation",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/it/social-security",
+      "slug": "social-security",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/gb/national-insurance",
+      "slug": "national-insurance",
+      "homeCountry": "it",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/us/401k",
+      "slug": "401k",
+      "homeCountry": "it",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/us/social-security-benefit",
+      "slug": "social-security-benefit",
+      "homeCountry": "it",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/au/superannuation",
+      "slug": "superannuation",
+      "homeCountry": "it",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/au/hecs",
+      "slug": "hecs",
+      "homeCountry": "it",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/ca/cpp",
+      "slug": "cpp",
+      "homeCountry": "it",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/ca/ei",
+      "slug": "ei",
+      "homeCountry": "it",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/gb/stamp-duty",
+      "slug": "stamp-duty",
+      "homeCountry": "it",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/de/church-tax",
+      "slug": "church-tax",
+      "homeCountry": "it",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/finance/property-tax",
+      "slug": "property-tax",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/nl/30-percent-ruling",
+      "slug": "30-percent-ruling",
+      "homeCountry": "it",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/nl/payroll",
+      "slug": "payroll",
+      "homeCountry": "it",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/countries/tr/severance-pay",
+      "slug": "severance-pay",
+      "homeCountry": "it",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/everyday/tip",
+      "slug": "tip",
+      "homeCountry": "it",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/health/bmi",
+      "slug": "bmi",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/health/bmr",
+      "slug": "bmr",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/health/tdee",
+      "slug": "tdee",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/health/body-fat",
+      "slug": "body-fat",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/health/water-intake",
+      "slug": "water-intake",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/health/running-pace",
+      "slug": "running-pace",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/math/statistics",
+      "slug": "statistics",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/math/ratio",
+      "slug": "ratio",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/math/exponent",
+      "slug": "exponent",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/math/quadratic-equation",
+      "slug": "quadratic-equation",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/math/triangle",
+      "slug": "triangle",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/math/area",
+      "slug": "area",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/math/volume",
+      "slug": "volume",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/business/profit-margin",
+      "slug": "profit-margin",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/business/markup",
+      "slug": "markup",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/business/break-even",
+      "slug": "break-even",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/business/roi",
+      "slug": "roi",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/business/roas",
+      "slug": "roas",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/business/growth-rate",
+      "slug": "growth-rate",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/everyday/discount",
+      "slug": "discount",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/everyday/fuel-cost",
+      "slug": "fuel-cost",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/everyday/electricity-cost",
+      "slug": "electricity-cost",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/everyday/recipe-scaler",
+      "slug": "recipe-scaler",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/education/gpa",
+      "slug": "gpa",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/education/weighted-grade",
+      "slug": "weighted-grade",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/education/final-grade",
+      "slug": "final-grade",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/construction/concrete",
+      "slug": "concrete",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/construction/paint",
+      "slug": "paint",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/construction/tile",
+      "slug": "tile",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/construction/roof-area",
+      "slug": "roof-area",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/engineering/ohms-law",
+      "slug": "ohms-law",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/engineering/force",
+      "slug": "force",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "it-IT",
+      "route": "/it-it/calculators/engineering/torque",
+      "slug": "torque",
+      "homeCountry": "it",
+      "country": "it",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/finance/mortgage",
+      "slug": "mortgage",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/nl/income-tax",
+      "slug": "income-tax",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/nl/salary",
+      "slug": "salary",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/finance/loan",
+      "slug": "loan",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/finance/auto-loan",
+      "slug": "auto-loan",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/finance/vat",
+      "slug": "vat",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/finance/retirement",
+      "slug": "retirement",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/finance/pension",
+      "slug": "pension",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/us/capital-gains",
+      "slug": "capital-gains",
+      "homeCountry": "nl",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/finance/sip",
+      "slug": "sip",
+      "homeCountry": "nl",
+      "country": "in",
+      "currency": "INR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/finance/student-loan",
+      "slug": "student-loan",
+      "homeCountry": "nl",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/finance/inflation",
+      "slug": "inflation",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/de/social-security",
+      "slug": "social-security",
+      "homeCountry": "nl",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/gb/national-insurance",
+      "slug": "national-insurance",
+      "homeCountry": "nl",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/us/401k",
+      "slug": "401k",
+      "homeCountry": "nl",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/us/social-security-benefit",
+      "slug": "social-security-benefit",
+      "homeCountry": "nl",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/au/superannuation",
+      "slug": "superannuation",
+      "homeCountry": "nl",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/au/hecs",
+      "slug": "hecs",
+      "homeCountry": "nl",
+      "country": "au",
+      "currency": "AUD"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/ca/cpp",
+      "slug": "cpp",
+      "homeCountry": "nl",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/ca/ei",
+      "slug": "ei",
+      "homeCountry": "nl",
+      "country": "ca",
+      "currency": "CAD"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/gb/stamp-duty",
+      "slug": "stamp-duty",
+      "homeCountry": "nl",
+      "country": "gb",
+      "currency": "GBP"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/de/church-tax",
+      "slug": "church-tax",
+      "homeCountry": "nl",
+      "country": "de",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/finance/property-tax",
+      "slug": "property-tax",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/nl/30-percent-ruling",
+      "slug": "30-percent-ruling",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/nl/payroll",
+      "slug": "payroll",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/countries/tr/severance-pay",
+      "slug": "severance-pay",
+      "homeCountry": "nl",
+      "country": "tr",
+      "currency": "TRY"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/everyday/tip",
+      "slug": "tip",
+      "homeCountry": "nl",
+      "country": "us",
+      "currency": "USD"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/health/bmi",
+      "slug": "bmi",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/health/bmr",
+      "slug": "bmr",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/health/tdee",
+      "slug": "tdee",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/health/body-fat",
+      "slug": "body-fat",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/health/water-intake",
+      "slug": "water-intake",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/health/running-pace",
+      "slug": "running-pace",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/math/statistics",
+      "slug": "statistics",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/math/ratio",
+      "slug": "ratio",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/math/exponent",
+      "slug": "exponent",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/math/quadratic-equation",
+      "slug": "quadratic-equation",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/math/triangle",
+      "slug": "triangle",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/math/area",
+      "slug": "area",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/math/volume",
+      "slug": "volume",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/business/profit-margin",
+      "slug": "profit-margin",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/business/markup",
+      "slug": "markup",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/business/break-even",
+      "slug": "break-even",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/business/roi",
+      "slug": "roi",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/business/roas",
+      "slug": "roas",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/business/growth-rate",
+      "slug": "growth-rate",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/everyday/discount",
+      "slug": "discount",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/everyday/fuel-cost",
+      "slug": "fuel-cost",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/everyday/electricity-cost",
+      "slug": "electricity-cost",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/everyday/recipe-scaler",
+      "slug": "recipe-scaler",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/education/gpa",
+      "slug": "gpa",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/education/weighted-grade",
+      "slug": "weighted-grade",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/education/final-grade",
+      "slug": "final-grade",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/construction/concrete",
+      "slug": "concrete",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/construction/paint",
+      "slug": "paint",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/construction/tile",
+      "slug": "tile",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/construction/roof-area",
+      "slug": "roof-area",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/engineering/ohms-law",
+      "slug": "ohms-law",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/engineering/force",
+      "slug": "force",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    },
+    {
+      "locale": "nl-NL",
+      "route": "/nl-nl/calculators/engineering/torque",
+      "slug": "torque",
+      "homeCountry": "nl",
+      "country": "nl",
+      "currency": "EUR"
+    }
+  ],
+  "contexts": {
+    "en-US": {
+      "country": "us",
+      "countryName": "United States",
+      "label": "Country"
+    },
+    "en-GB": {
+      "country": "gb",
+      "countryName": "United Kingdom",
+      "label": "Country"
+    },
+    "de-DE": {
+      "country": "de",
+      "countryName": "Deutschland",
+      "label": "Land"
+    },
+    "fr-FR": {
+      "country": "fr",
+      "countryName": "France",
+      "label": "Pays"
+    },
+    "es-ES": {
+      "country": "es",
+      "countryName": "España",
+      "label": "País"
+    },
+    "pt-BR": {
+      "country": "br",
+      "countryName": "Brasil",
+      "label": "País"
+    },
+    "ru-RU": {
+      "country": "ru",
+      "countryName": "Россия",
+      "label": "Страна"
+    },
+    "tr-TR": {
+      "country": "tr",
+      "countryName": "Türkiye",
+      "label": "Ülke"
+    },
+    "ja-JP": {
+      "country": "jp",
+      "countryName": "日本",
+      "label": "国"
+    },
+    "zh-CN": {
+      "country": "cn",
+      "countryName": "中国",
+      "label": "国家"
+    },
+    "it-IT": {
+      "country": "it",
+      "countryName": "Italia",
+      "label": "Paese"
+    },
+    "nl-NL": {
+      "country": "nl",
+      "countryName": "Nederland",
+      "label": "Land"
+    }
+  }
+}

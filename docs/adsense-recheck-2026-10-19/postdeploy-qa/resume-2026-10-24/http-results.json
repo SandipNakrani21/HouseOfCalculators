@@ -1,0 +1,68 @@
+{
+  "at": "2026-10-24T17:01:33.734Z",
+  "buildId": "aiFMNmWUVMoWwueT8tj5W",
+  "scope": "HTTP/document source only. No browser timing, regional CMP or filled-ad certification.",
+  "local": [
+    {
+      "route": "/en-us",
+      "status": 200,
+      "cacheControl": "s-maxage=31536000",
+      "defaultsBeforeAdLoader": true,
+      "reportOnly": "script-src-attr 'none'",
+      "policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    },
+    {
+      "route": "/en-us/calculators/finance/loan",
+      "status": 200,
+      "cacheControl": "s-maxage=31536000",
+      "defaultsBeforeAdLoader": true,
+      "reportOnly": "script-src-attr 'none'",
+      "policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    },
+    {
+      "route": "/en-us/charts/math/metric-prefixes",
+      "status": 200,
+      "cacheControl": "s-maxage=31536000",
+      "defaultsBeforeAdLoader": true,
+      "reportOnly": "script-src-attr 'none'",
+      "policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    },
+    {
+      "route": "/en-us/converters/length/meters-to-feet",
+      "status": 200,
+      "cacheControl": "s-maxage=31536000",
+      "defaultsBeforeAdLoader": true,
+      "reportOnly": "script-src-attr 'none'",
+      "policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    },
+    {
+      "route": "/en-us/countries/us/income-tax",
+      "status": 200,
+      "cacheControl": "s-maxage=31536000",
+      "defaultsBeforeAdLoader": true,
+      "reportOnly": "script-src-attr 'none'",
+      "policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    },
+    {
+      "route": "/en-us/guides/what-is/what-is-compound-interest",
+      "status": 200,
+      "cacheControl": "s-maxage=31536000",
+      "defaultsBeforeAdLoader": true,
+      "reportOnly": "script-src-attr 'none'",
+      "policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    }
+  ],
+  "live": {
+    "at": "2026-10-24T17:01:33.732Z",
+    "status": 200,
+    "bundleStatus": 200,
+    "layoutPath": "/_next/static/chunks/app/%5Blocale%5D/layout-b3e5a68722e9a7c6.js",
+    "localLayoutPath": "/_next/static/chunks/app/%5Blocale%5D/layout-da5a5ed784276358.js",
+    "matchesLocalConsentBundle": false,
+    "liveBundleSHA256": "0e2fa91a659ff3fd2140ac82ab5031175e94fa79806b0fbc0c4cba294b6a564e",
+    "localBundleSHA256": "167424cb9d4de5edbea9aac86a6dfb5dfda413a0f795a244cd7e88dded2942b3",
+    "reportOnly": "script-src-attr 'none'",
+    "policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests, upgrade-insecure-requests",
+    "cacheControl": "s-maxage=31536000"
+  }
+}

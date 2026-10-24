@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-24T17:31:07.415Z",
+  "target": 2880,
+  "manifestCountryMappingsValidated": 720,
+  "inheritedInteractions": 816,
+  "carriedUnaffectedInteractions": 812,
+  "currentBuildInteractions": 510,
+  "uniqueCombinedInteractions": 1318,
+  "passingCombinedInteractions": 1318,
+  "remainingInteractions": 1562,
+  "interactionCandidates": [],
+  "currentBuildGeometry": 8,
+  "carriedUnaffectedGeometry": 2876,
+  "applicableCombinedGeometry": 2880,
+  "remainingApplicableGeometry": 0,
+  "geometryCandidates": [],
+  "incompleteCurrentAttempts": [
+    {
+      "key": "pt-BR|/pt-br/calculators/health/tdee|768|1024",
+      "error": "Error: Error: Browser Use rejected this action due to browser security policy. Reason: Auto-review denied this action; this was not a manual user rejection. Browser use could not acquire authority to act in a frame. The origin approval gate did not grant access for http://127.0.0.1:3001. Automatic approval review failed: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/settings/usage to purchase more credits or try again at Oct 25th, 2026 3:03 AM.\nThe action was not executed because automatic approval review could not be completed. This is a review failure, not a determination that the action is unsafe. Do not bypass the approval check; resolve the error or ask the user for guidance. The agent must not attempt to achieve the same outcome via workaround, indirect execution, raw CDP or browser commands, alternate browser surfaces, or policy circumvention. Proceed only with a materially safer alternative that does not require this blocked browser action; if none exists, stop and request user input.\nlocator.fill failed for selector [id=\"_r_29_\"]"
+    }
+  ],
+  "next": {
+    "locale": "pt-BR",
+    "route": "/pt-br/calculators/health/tdee",
+    "slug": "tdee",
+    "homeCountry": "br",
+    "country": "br",
+    "currency": "BRL",
+    "viewport": {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024
+    }
+  },
+  "nextCursor": {
+    "route": 329,
+    "size": 2
+  }
+}
