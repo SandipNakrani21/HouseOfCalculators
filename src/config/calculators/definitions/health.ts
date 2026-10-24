@@ -430,7 +430,7 @@ export const bodyFatCalculator: CalculatorDef = {
       notes: [{ key: "calc.bodyFat.note" }],
     };
   },
-  explainerKeys: ["calc.bodyFat.explain.1", "calc.bodyFat.explain.2"],
+  explainerKeys: ["calc.bodyFat.explain.1", "calc.bodyFat.explain.2", "calc.bodyFat.explain.measure"],
   faqKeys: ["calc.bodyFat.faq.1", "calc.bodyFat.faq.2"],
 };
 

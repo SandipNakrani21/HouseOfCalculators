@@ -28,9 +28,15 @@ than an assertion that the 122 models were independently verified.
 ## 3. Deployment
 
 Operator confirms Hostinger deploys this repository's `main` branch. Local
-`master` tracks `origin/main`; their pre-release commit is a7a711e. GitHub push
-access was checked successfully with a dry run. The final build and release
-verification are recorded below after completion. The new public read-only
+`master` tracks `origin/main`; their pre-release commit is a7a711e. Release
+commit **ea1bfd8** was successfully pushed to GitHub **main**. After the
+operator confirmed Hostinger's build was running, public verification passed
+on 19 October 2026 (Asia/Calcutta): release marker 200 with expected value,
+mortgage comparison present, consent defaults before the AdSense loader,
+withdrawn US income tax and empty UK directory 404, reviewed India model,
+privacy and ads.txt 200. All seven checks passed. Hostinger deployment is
+confirmed by public output, not assumed from the push.
+The new public read-only
 `/.well-known/release.json` marker allows checking what the CDN actually serves.
 
 ## 4. Consent
@@ -72,6 +78,17 @@ Initial full check: 63 tests passed, lint/TypeScript/translation and inventory
 checks passed. Final test run: **64 passed** including a new React-script-order
 regression. React's async-script hoisting previously placed AdSense before the
 inline consent defaults; opting out of hoisting preserves safe document order.
-Final build/output, deployment and browser checks are recorded
-as completed rather than assumed. Local visual browser inspection was blocked
-by the browser security policy; local HTTP/source validation remains available.
+Final production build passed. Generated output: **2,556 localized pages**,
+**84 reviewed country pages**, no withdrawn models published, and zero
+structural/consent-script-order issues. Final link scan: **2,593 unique internal
+destinations**, **218,978 references**, **zero issues**. Special-route metadataBase
+warnings remain in the log; localized metadata checks passed. Local visual
+inspection was blocked by browser security policy. Later browser use became
+disabled in Work settings, preventing further AdSense actions or live UI tests.
+No review request has been submitted.
+
+Continuation validation: complete `npm run check` passed with **64/64 tests**,
+lint, TypeScript, translation coverage and registry freshness. The post-push
+seven-URL release check now passes; `release-check.json` contains the response
+statuses. This is a passing release smoke test, not certification of all live
+consent flows, filled ads, translated content or Google's approval criteria.

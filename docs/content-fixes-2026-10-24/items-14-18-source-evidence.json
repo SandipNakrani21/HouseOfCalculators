@@ -1,0 +1,253 @@
+{
+  "scope": "Source inspection and authored examples, not independent full-engine or browser QA",
+  "localeChecks": [
+    {
+      "code": "en-US",
+      "country": "us",
+      "missing": [],
+      "longCopyExcludedFromClient": true
+    },
+    {
+      "code": "en-GB",
+      "country": "gb",
+      "missing": [],
+      "longCopyExcludedFromClient": true
+    },
+    {
+      "code": "de-DE",
+      "country": "de",
+      "missing": [],
+      "longCopyExcludedFromClient": true
+    },
+    {
+      "code": "fr-FR",
+      "country": "fr",
+      "missing": [],
+      "longCopyExcludedFromClient": true
+    },
+    {
+      "code": "es-ES",
+      "country": "es",
+      "missing": [],
+      "longCopyExcludedFromClient": true
+    },
+    {
+      "code": "pt-BR",
+      "country": "br",
+      "missing": [],
+      "longCopyExcludedFromClient": true
+    },
+    {
+      "code": "ru-RU",
+      "country": "ru",
+      "missing": [],
+      "longCopyExcludedFromClient": true
+    },
+    {
+      "code": "tr-TR",
+      "country": "tr",
+      "missing": [],
+      "longCopyExcludedFromClient": true
+    },
+    {
+      "code": "ja-JP",
+      "country": "jp",
+      "missing": [],
+      "longCopyExcludedFromClient": true
+    },
+    {
+      "code": "zh-CN",
+      "country": "cn",
+      "missing": [],
+      "longCopyExcludedFromClient": true
+    },
+    {
+      "code": "it-IT",
+      "country": "it",
+      "missing": [],
+      "longCopyExcludedFromClient": true
+    },
+    {
+      "code": "nl-NL",
+      "country": "nl",
+      "missing": [],
+      "longCopyExcludedFromClient": true
+    }
+  ],
+  "numeric": {
+    "roi": 20,
+    "annualised": 9.544511501033215,
+    "roas": {
+      "ratio": 4,
+      "at40": 600,
+      "at20": -200
+    },
+    "breakEven": 125,
+    "concrete": {
+      "volume": 2,
+      "volumeWithWaste": 2.2,
+      "bags": 110,
+      "cement": 0.48400000000000004,
+      "sand": 0.9680000000000001,
+      "aggregate": 1.9360000000000002,
+      "wholeBags": 110
+    },
+    "tile": {
+      "area": 12,
+      "tileArea": 0.09,
+      "tilesExact": 133.33333333333334,
+      "tiles": 147,
+      "boxes": 19
+    },
+    "roof": {
+      "footprint": 80,
+      "factor": 1.118033988749895,
+      "area": 89.44271909999159,
+      "pitchDegrees": 26.56505117707799
+    },
+    "statistics": {
+      "count": 3,
+      "sum": 12,
+      "mean": 4,
+      "median": 4,
+      "mode": [],
+      "range": 4,
+      "min": 2,
+      "max": 6,
+      "variance": 2.6666666666666665,
+      "populationStdDev": 1.632993161855452,
+      "sampleStdDev": 2
+    },
+    "zeroVariance": {
+      "count": 3,
+      "sum": 15,
+      "mean": 5,
+      "median": 5,
+      "mode": [
+        5
+      ],
+      "range": 0,
+      "min": 5,
+      "max": 5,
+      "variance": 0,
+      "populationStdDev": 0,
+      "sampleStdDev": 0
+    },
+    "gpa": 3.6666666666666665,
+    "pairs": [
+      {
+        "category": "volume",
+        "input": 10,
+        "from": "liter",
+        "to": "us-gallon",
+        "result": 2.6417205235814842
+      },
+      {
+        "category": "volume",
+        "input": 2,
+        "from": "us-gallon",
+        "to": "liter",
+        "result": 7.570823568
+      },
+      {
+        "category": "data",
+        "input": 2,
+        "from": "gigabyte",
+        "to": "megabyte",
+        "result": 2000
+      },
+      {
+        "category": "data",
+        "input": 1,
+        "from": "megabyte",
+        "to": "kilobyte",
+        "result": 1000
+      },
+      {
+        "category": "fuel-economy",
+        "input": 5,
+        "from": "liters-per-100km",
+        "to": "mpg-us",
+        "result": 47.04291671427704
+      },
+      {
+        "category": "fuel-economy",
+        "input": 10,
+        "from": "liters-per-100km",
+        "to": "mpg-us",
+        "result": 23.52145835713852
+      }
+    ]
+  },
+  "gradeMapping": [
+    {
+      "value": "a-plus",
+      "points": 4,
+      "labelKey": "grade.aPlus"
+    },
+    {
+      "value": "a",
+      "points": 4,
+      "labelKey": "grade.a"
+    },
+    {
+      "value": "a-minus",
+      "points": 3.7,
+      "labelKey": "grade.aMinus"
+    },
+    {
+      "value": "b-plus",
+      "points": 3.3,
+      "labelKey": "grade.bPlus"
+    },
+    {
+      "value": "b",
+      "points": 3,
+      "labelKey": "grade.b"
+    },
+    {
+      "value": "b-minus",
+      "points": 2.7,
+      "labelKey": "grade.bMinus"
+    },
+    {
+      "value": "c-plus",
+      "points": 2.3,
+      "labelKey": "grade.cPlus"
+    },
+    {
+      "value": "c",
+      "points": 2,
+      "labelKey": "grade.c"
+    },
+    {
+      "value": "c-minus",
+      "points": 1.7,
+      "labelKey": "grade.cMinus"
+    },
+    {
+      "value": "d",
+      "points": 1,
+      "labelKey": "grade.d"
+    },
+    {
+      "value": "f",
+      "points": 0,
+      "labelKey": "grade.f"
+    }
+  ],
+  "unresolvedExistingFinding": {
+    "route": "/en-us/calculators/construction/concrete",
+    "inputs": {
+      "length": 5,
+      "width": 4,
+      "thickness": 0.1,
+      "waste": 10,
+      "bagYield": 0.011
+    },
+    "rawBags": 200.00000000000003,
+    "displayWholeBags": 201,
+    "exactDecimalRatio": 200,
+    "status": "Recorded only; arithmetic not changed in this content batch"
+  }
+}

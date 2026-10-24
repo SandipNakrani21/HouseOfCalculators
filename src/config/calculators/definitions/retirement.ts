@@ -72,11 +72,14 @@ export const retirementCalculator: CalculatorDef = {
       years,
     );
     const { presentValue } = inflationAdjusted(corpus, num(values, "inflation"), years);
+    const existingFuture = num(values, "current") * Math.pow(1 + num(values, "rate") / 1200, Math.round(years * 12));
 
     return {
       primary: { labelKey: "result.corpusAtRetirement", value: corpus, kind: "currency", emphasis: true },
       rows: [
         { labelKey: "result.yearsToRetirement", value: years, kind: "years", tone: "neutral" },
+        { labelKey: "result.retirementExistingFuture", value: existingFuture, kind: "currency", tone: "neutral" },
+        { labelKey: "result.retirementDepositsFuture", value: corpus - existingFuture, kind: "currency", tone: "neutral" },
         { labelKey: "result.totalContributed", value: contributed, kind: "currency", tone: "principal" },
         { labelKey: "result.investmentGrowth", value: growth, kind: "currency", tone: "returns" },
         {
@@ -86,17 +89,28 @@ export const retirementCalculator: CalculatorDef = {
           tone: "neutral",
           hintKey: "calc.retirement.todayHint",
         },
-        // The 4% guideline: a rough sustainable first-year withdrawal.
-        { labelKey: "result.annualIncomeAt4", value: corpus * 0.04, kind: "currency", tone: "returns" },
+        // Arithmetic illustration only; not a sustainable-income determination.
+        { labelKey: "result.annualIncomeAt4", value: corpus * 0.04, kind: "currency", tone: "returns", hintKey: "calc.retirement.limits" },
       ],
       chart: [
         { labelKey: "result.totalContributed", value: contributed, tone: "principal" },
         { labelKey: "result.investmentGrowth", value: growth, tone: "returns" },
       ],
-      notes: [{ key: "calc.projection.timing" }],
+      notes: [{ key: "calc.projection.timing" }, { key: "calc.retirement.limits" }],
     };
   },
-  explainerKeys: ["calc.retirement.explain"],
+  explainerKeys: ["calc.retirement.explain", "calc.retirement.breakdown", "calc.retirement.limits"],
+  formula: {
+    expression: "t = R − A; n = 12t; i = r / 1200; FV = P(1+i)^n + C × ((1+i)^n − 1) / i × (1+i); PV = FV / (1+f/100)^t",
+    variables: [
+      { symbol: "P", key: "field.currentSavings" },
+      { symbol: "C", key: "field.monthlyContribution" },
+      { symbol: "r", key: "field.expectedReturn" },
+      { symbol: "f", key: "field.inflationRate" },
+      { symbol: "R", key: "field.retirementAge" },
+      { symbol: "A", key: "field.currentAge" },
+    ],
+  },
 };
 
 /* --------------------------------------------------------------- Pension */

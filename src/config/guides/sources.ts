@@ -11,7 +11,7 @@ const sources: Record<string, { name: string; href: string }[]> = {
   "what-is-a-marginal-tax-rate": [{ name: "IRS — Federal income tax brackets (US)", href: "https://www.irs.gov/filing/federal-income-tax-rates-and-brackets" }],
   "how-to-compare-loan-offers": [{ name: "CFPB — Interest rate and APR", href: "https://www.consumerfinance.gov/ask-cfpb/what-is-the-difference-between-a-loan-interest-rate-and-the-apr-en-733/" }],
   "how-to-read-an-amortisation-schedule": [amortisation],
-  "how-to-plan-monthly-savings": [compound],
+  "how-to-plan-monthly-savings": [compound, { name: "Investor.gov — Risk tolerance and time horizon", href: "https://www.investor.gov/introduction-investing/investing-basics/save-and-invest/gauge-your-risk-tolerance" }],
   "future-value-formula": [compound],
 };
 export function guideSources(slug: string) { return sources[slug] ?? []; }

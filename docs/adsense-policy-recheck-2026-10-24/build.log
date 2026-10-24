@@ -1,0 +1,164 @@
+
+> calculator-hub@0.1.0 build
+> next build --webpack
+
+▲ Next.js 16.4.2 (webpack)
+✓ Running next.config.ts took 60ms
+- Experiments (use with caution):
+  · cpus: 2
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 24.8s
+  Running TypeScript ...
+  Finished TypeScript in 5.2s ...
+  Collecting page data using 2 workers ...
+  Generating static pages using 2 workers (0/4067) ...
+  Generating static pages using 2 workers (1016/4067)
+  Generating static pages using 2 workers (2033/4067)
+  Generating static pages using 2 workers (3050/4067)
+✓ Generating static pages using 2 workers (4067/4067) in 2.9min
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /_not-found
+├ ○ /.well-known/release.json
+├ ○ /.well-known/security.txt
+├   /[locale]
+│ ├ ● /en-us
+│ ├ ● /en-gb
+│ ├ ● /de-de
+│ └ ● [+9 more paths]
+├   /[locale]/[legal]
+│ ├ ● /en-us/privacy
+│ ├ ● /en-us/terms
+│ ├ ● /en-us/cookies
+│ └ ● [+57 more paths]
+├   /[locale]/calculators
+│ ├ ● /en-us/calculators
+│ ├ ● /en-gb/calculators
+│ ├ ● /de-de/calculators
+│ └ ● [+9 more paths]
+├   /[locale]/calculators/[category]
+│ ├ ● /en-us/calculators/finance
+│ ├ ● /en-us/calculators/math
+│ ├ ● /en-us/calculators/health
+│ └ ● [+93 more paths]
+├   /[locale]/calculators/[category]/[slug]
+│ ├ ● /en-us/calculators/finance/mortgage
+│ ├ ● /en-us/calculators/finance/loan
+│ ├ ● /en-us/calculators/finance/auto-loan
+│ └ ● [+525 more paths]
+├   /[locale]/charts
+│ ├ ● /en-us/charts
+│ ├ ● /en-gb/charts
+│ ├ ● /de-de/charts
+│ └ ● [+9 more paths]
+├   /[locale]/charts/[category]
+│ ├ ● /en-us/charts/conversion
+│ ├ ● /en-us/charts/math
+│ ├ ● /en-us/charts/finance
+│ └ ● [+45 more paths]
+├   /[locale]/charts/[category]/[slug]
+│ ├ ● /en-us/charts/conversion/length-conversion-table
+│ ├ ● /en-us/charts/conversion/weight-conversion-table
+│ ├ ● /en-us/charts/conversion/temperature-conversion-table
+│ └ ● [+225 more paths]
+├   /[locale]/converters
+│ ├ ● /en-us/converters
+│ ├ ● /en-gb/converters
+│ ├ ● /de-de/converters
+│ └ ● [+9 more paths]
+├   /[locale]/converters/[category]
+│ ├ ● /en-us/converters/length
+│ ├ ● /en-us/converters/weight
+│ ├ ● /en-us/converters/temperature
+│ └ ● [+153 more paths]
+├   /[locale]/converters/[category]/[slug]
+│ ├ ● /en-us/converters/length/meters-to-feet
+│ ├ ● /en-us/converters/length/centimeters-to-inches
+│ ├ ● /en-us/converters/length/kilometers-to-miles
+│ └ ● [+729 more paths]
+├   /[locale]/countries
+│ ├ ● /en-us/countries
+│ ├ ● /en-gb/countries
+│ ├ ● /de-de/countries
+│ └ ● [+9 more paths]
+├   /[locale]/countries/[country]
+│ ├ ● /en-us/countries/in
+│ ├ ● /en-us/countries/us
+│ ├ ● /en-us/countries/gb
+│ └ ● [+261 more paths]
+├   /[locale]/countries/[country]/[slug]
+│ ├ ● /en-us/countries/in/income-tax
+│ ├ ● /en-us/countries/us/income-tax
+│ ├ ● /en-us/countries/gb/income-tax
+│ └ ● [+1017 more paths]
+├   /[locale]/design-system
+│ ├ ● /en-us/design-system
+│ ├ ● /en-gb/design-system
+│ ├ ● /de-de/design-system
+│ └ ● [+9 more paths]
+├   /[locale]/guides
+│ ├ ● /en-us/guides
+│ ├ ● /en-gb/guides
+│ ├ ● /de-de/guides
+│ └ ● [+9 more paths]
+├   /[locale]/guides/[category]
+│ ├ ● /en-us/guides/how-to-calculate
+│ ├ ● /en-us/guides/what-is
+│ ├ ● /en-us/guides/formulas
+│ └ ● [+45 more paths]
+├   /[locale]/guides/[category]/[slug]
+│ ├ ● /en-us/guides/how-to-calculate/how-to-calculate-loan-payment
+│ ├ ● /en-us/guides/how-to-calculate/how-to-calculate-compound-interest
+│ ├ ● /en-us/guides/how-to-calculate/how-to-calculate-percentage
+│ └ ● [+141 more paths]
+├   /[locale]/guides/[category]/[slug]/opengraph-image
+│ ├ ● /en-us/guides/how-to-calculate/how-to-calculate-loan-payment/opengraph-image
+│ ├ ● /en-us/guides/how-to-calculate/how-to-calculate-compound-interest/opengraph-image
+│ ├ ● /en-us/guides/how-to-calculate/how-to-calculate-percentage/opengraph-image
+│ └ ● [+141 more paths]
+├   /[locale]/guides/[category]/[slug]/twitter-image
+│ ├ ● /en-us/guides/how-to-calculate/how-to-calculate-loan-payment/twitter-image
+│ ├ ● /en-us/guides/how-to-calculate/how-to-calculate-compound-interest/twitter-image
+│ ├ ● /en-us/guides/how-to-calculate/how-to-calculate-percentage/twitter-image
+│ └ ● [+141 more paths]
+├   /[locale]/llms.txt
+│ ├ ● /en-us/llms.txt
+│ ├ ● /en-gb/llms.txt
+│ ├ ● /de-de/llms.txt
+│ └ ● [+9 more paths]
+├   /[locale]/tools
+│ ├ ● /en-us/tools
+│ ├ ● /en-gb/tools
+│ ├ ● /de-de/tools
+│ └ ● [+9 more paths]
+├   /[locale]/tools/[category]
+│ ├ ● /en-us/tools/date-time
+│ ├ ● /en-us/tools/number-math
+│ ├ ● /en-us/tools/utility
+│ └ ● [+45 more paths]
+├   /[locale]/tools/[category]/[slug]
+│ ├ ● /en-us/tools/date-time/date-difference
+│ ├ ● /en-us/tools/date-time/add-days
+│ ├ ● /en-us/tools/date-time/working-days
+│ └ ● [+273 more paths]
+├ ○ /ads.txt
+├ ○ /apple-icon.png
+├ ○ /icon.png
+├ ○ /llms.txt
+├ ○ /opengraph-image
+├ ○ /robots.txt
+├ ○ /sitemap.xml
+└   /sitemaps/[file]
+  ├ ● /sitemaps/en-us.xml
+  ├ ● /sitemaps/en-gb.xml
+  ├ ● /sitemaps/de-de.xml
+  └ ● [+9 more paths]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)

@@ -1,0 +1,2159 @@
+{
+  "buildId": "y0p8JDKNJFtX2i50_PdvY",
+  "coverage": "Generated HTML only, not browser visual or interactive QA",
+  "total": 180,
+  "target": 132,
+  "nearby": 48,
+  "passed": 180,
+  "failed": 0,
+  "pages": [
+    {
+      "route": "/en-us/tools/number-math/percentage",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-us/tools/number-math/number-to-words",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-us/tools/number-math/words-to-number",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-us/tools/utility/password-generator",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-us/tools/date-time/working-days",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-us/tools/date-time/age",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-us/tools/date-time/countdown",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-us/charts/conversion/length-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/en-us/charts/conversion/area-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/en-us/charts/conversion/volume-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/en-us/charts/conversion/pressure-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/en-us/tools/number-math/number-formatter",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/en-us/tools/date-time/date-difference",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/en-us/charts/conversion/weight-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/en-us/charts/conversion/temperature-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/en-gb/tools/number-math/percentage",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-gb/tools/number-math/number-to-words",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-gb/tools/number-math/words-to-number",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-gb/tools/utility/password-generator",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-gb/tools/date-time/working-days",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-gb/tools/date-time/age",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-gb/tools/date-time/countdown",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/en-gb/charts/conversion/length-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/en-gb/charts/conversion/area-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/en-gb/charts/conversion/volume-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/en-gb/charts/conversion/pressure-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/en-gb/tools/number-math/number-formatter",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/en-gb/tools/date-time/date-difference",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/en-gb/charts/conversion/weight-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/en-gb/charts/conversion/temperature-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/de-de/tools/number-math/percentage",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/de-de/tools/number-math/number-to-words",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/de-de/tools/number-math/words-to-number",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/de-de/tools/utility/password-generator",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/de-de/tools/date-time/working-days",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/de-de/tools/date-time/age",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/de-de/tools/date-time/countdown",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/de-de/charts/conversion/length-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/de-de/charts/conversion/area-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/de-de/charts/conversion/volume-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/de-de/charts/conversion/pressure-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/de-de/tools/number-math/number-formatter",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/de-de/tools/date-time/date-difference",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/de-de/charts/conversion/weight-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/de-de/charts/conversion/temperature-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/fr-fr/tools/number-math/percentage",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/fr-fr/tools/number-math/number-to-words",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/fr-fr/tools/number-math/words-to-number",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/fr-fr/tools/utility/password-generator",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/fr-fr/tools/date-time/working-days",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/fr-fr/tools/date-time/age",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/fr-fr/tools/date-time/countdown",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/fr-fr/charts/conversion/length-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/fr-fr/charts/conversion/area-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/fr-fr/charts/conversion/volume-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/fr-fr/charts/conversion/pressure-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/fr-fr/tools/number-math/number-formatter",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/fr-fr/tools/date-time/date-difference",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/fr-fr/charts/conversion/weight-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/fr-fr/charts/conversion/temperature-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/es-es/tools/number-math/percentage",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/es-es/tools/number-math/number-to-words",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/es-es/tools/number-math/words-to-number",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/es-es/tools/utility/password-generator",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/es-es/tools/date-time/working-days",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/es-es/tools/date-time/age",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/es-es/tools/date-time/countdown",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/es-es/charts/conversion/length-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/es-es/charts/conversion/area-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/es-es/charts/conversion/volume-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/es-es/charts/conversion/pressure-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/es-es/tools/number-math/number-formatter",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/es-es/tools/date-time/date-difference",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/es-es/charts/conversion/weight-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/es-es/charts/conversion/temperature-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/pt-br/tools/number-math/percentage",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/pt-br/tools/number-math/number-to-words",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/pt-br/tools/number-math/words-to-number",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/pt-br/tools/utility/password-generator",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/pt-br/tools/date-time/working-days",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/pt-br/tools/date-time/age",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/pt-br/tools/date-time/countdown",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/pt-br/charts/conversion/length-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/pt-br/charts/conversion/area-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/pt-br/charts/conversion/volume-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/pt-br/charts/conversion/pressure-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/pt-br/tools/number-math/number-formatter",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/pt-br/tools/date-time/date-difference",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/pt-br/charts/conversion/weight-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/pt-br/charts/conversion/temperature-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/ru-ru/tools/number-math/percentage",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ru-ru/tools/number-math/number-to-words",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ru-ru/tools/number-math/words-to-number",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ru-ru/tools/utility/password-generator",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ru-ru/tools/date-time/working-days",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ru-ru/tools/date-time/age",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ru-ru/tools/date-time/countdown",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ru-ru/charts/conversion/length-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/ru-ru/charts/conversion/area-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/ru-ru/charts/conversion/volume-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/ru-ru/charts/conversion/pressure-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/ru-ru/tools/number-math/number-formatter",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/ru-ru/tools/date-time/date-difference",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/ru-ru/charts/conversion/weight-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/ru-ru/charts/conversion/temperature-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/tr-tr/tools/number-math/percentage",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/tr-tr/tools/number-math/number-to-words",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/tr-tr/tools/number-math/words-to-number",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/tr-tr/tools/utility/password-generator",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/tr-tr/tools/date-time/working-days",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/tr-tr/tools/date-time/age",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/tr-tr/tools/date-time/countdown",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/tr-tr/charts/conversion/length-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/tr-tr/charts/conversion/area-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/tr-tr/charts/conversion/volume-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/tr-tr/charts/conversion/pressure-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/tr-tr/tools/number-math/number-formatter",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/tr-tr/tools/date-time/date-difference",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/tr-tr/charts/conversion/weight-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/tr-tr/charts/conversion/temperature-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/ja-jp/tools/number-math/percentage",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ja-jp/tools/number-math/number-to-words",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ja-jp/tools/number-math/words-to-number",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ja-jp/tools/utility/password-generator",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ja-jp/tools/date-time/working-days",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ja-jp/tools/date-time/age",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ja-jp/tools/date-time/countdown",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/ja-jp/charts/conversion/length-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/ja-jp/charts/conversion/area-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/ja-jp/charts/conversion/volume-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/ja-jp/charts/conversion/pressure-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/ja-jp/tools/number-math/number-formatter",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/ja-jp/tools/date-time/date-difference",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/ja-jp/charts/conversion/weight-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/ja-jp/charts/conversion/temperature-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/zh-cn/tools/number-math/percentage",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/zh-cn/tools/number-math/number-to-words",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/zh-cn/tools/number-math/words-to-number",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/zh-cn/tools/utility/password-generator",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/zh-cn/tools/date-time/working-days",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/zh-cn/tools/date-time/age",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/zh-cn/tools/date-time/countdown",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/zh-cn/charts/conversion/length-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/zh-cn/charts/conversion/area-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/zh-cn/charts/conversion/volume-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/zh-cn/charts/conversion/pressure-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/zh-cn/tools/number-math/number-formatter",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/zh-cn/tools/date-time/date-difference",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/zh-cn/charts/conversion/weight-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/zh-cn/charts/conversion/temperature-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/it-it/tools/number-math/percentage",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/it-it/tools/number-math/number-to-words",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/it-it/tools/number-math/words-to-number",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/it-it/tools/utility/password-generator",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/it-it/tools/date-time/working-days",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/it-it/tools/date-time/age",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/it-it/tools/date-time/countdown",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/it-it/charts/conversion/length-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/it-it/charts/conversion/area-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/it-it/charts/conversion/volume-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/it-it/charts/conversion/pressure-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/it-it/tools/number-math/number-formatter",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/it-it/tools/date-time/date-difference",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/it-it/charts/conversion/weight-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/it-it/charts/conversion/temperature-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/nl-nl/tools/number-math/percentage",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/nl-nl/tools/number-math/number-to-words",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/nl-nl/tools/number-math/words-to-number",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/nl-nl/tools/utility/password-generator",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/nl-nl/tools/date-time/working-days",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/nl-nl/tools/date-time/age",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/nl-nl/tools/date-time/countdown",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "translatedCopy": true,
+        "specificLimitReplacesGeneric": true,
+        "examples": true,
+        "twoDecimalExample": true,
+        "passwordSets": true
+      }
+    },
+    {
+      "route": "/nl-nl/charts/conversion/length-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/nl-nl/charts/conversion/area-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/nl-nl/charts/conversion/volume-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/nl-nl/charts/conversion/pressure-conversion-table",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "lookupCopy": true,
+        "namedUnits": true,
+        "firstRow": true,
+        "specificCopy": true,
+        "source": true
+      }
+    },
+    {
+      "route": "/nl-nl/tools/number-math/number-formatter",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/nl-nl/tools/date-time/date-difference",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/nl-nl/charts/conversion/weight-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    },
+    {
+      "route": "/nl-nl/charts/conversion/temperature-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "existingContent": true,
+        "noNewContext": true
+      }
+    }
+  ]
+}

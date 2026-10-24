@@ -1,0 +1,24 @@
+
+> calculator-hub@0.1.0 check
+> node scripts/calculator-metadata.cjs --check && node scripts/client-dictionaries.cjs --check && node scripts/ad-inventory.cjs --check && npm run lint && npx tsc --noEmit && npm run i18n
+
+Calculator metadata: 60 entries
+Client dictionaries: 16 separate locale modules
+Ad inventory: 257 known content paths; 12 locales.
+
+> calculator-hub@0.1.0 lint
+> eslint
+
+
+D:\Calculator\docs\adsense-recheck-2026-10-19\postdeploy-qa\internal-rational.cjs
+  1:1  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-require-imports')
+
+D:\Calculator\docs\adsense-recheck-2026-10-19\postdeploy-qa\verify-all-languages-prerender.cjs
+  14:22  warning  'currencyDecimals' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  24:8   warning  'dict' is assigned a value but never used              @typescript-eslint/no-unused-vars
+
+✖ 3 problems (0 errors, 3 warnings)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+
+src/components/calculator/Interpretation.tsx(2,10): error TS2459: Module '"@/config/calculators/definitions/education"' declares 'FOUR_POINT' locally, but it is not exported.
+src/components/calculator/Interpretation.tsx(22,348): error TS7006: Parameter 'entry' implicitly has an 'any' type.

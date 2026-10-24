@@ -1,0 +1,2519 @@
+{
+  "buildId": "6p3j94UkVg7oYrTFjGN-d",
+  "coverage": "Generated HTML, not visual browser or interactive QA",
+  "total": 240,
+  "target": 180,
+  "nearby": 60,
+  "passed": 240,
+  "failed": 0,
+  "pages": [
+    {
+      "route": "/en-us/charts/math/metric-prefixes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-us/converters/volume/liters-to-us-gallons",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-us/converters/volume/us-gallons-to-liters",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-us/converters/data/gigabytes-to-megabytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-us/converters/data/megabytes-to-kilobytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-us/converters/fuel-economy/liters-per-100km-to-mpg-us",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-us/converters/fuel-economy/mpg-us-to-liters-per-100km",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-us/calculators/business/roi",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-us/calculators/business/roas",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-us/calculators/business/break-even",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-us/calculators/construction/concrete",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-us/calculators/construction/tile",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-us/calculators/construction/roof-area",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-us/calculators/math/statistics",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-us/calculators/education/gpa",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-us/calculators/finance/retirement",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/en-us/tools/number-math/percentage",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/en-us/charts/conversion/volume-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/en-us/calculators/health/body-fat",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/en-us/converters/length/meters-to-feet",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/en-gb/charts/math/metric-prefixes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-gb/converters/volume/liters-to-us-gallons",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-gb/converters/volume/us-gallons-to-liters",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-gb/converters/data/gigabytes-to-megabytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-gb/converters/data/megabytes-to-kilobytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-gb/converters/fuel-economy/liters-per-100km-to-mpg-us",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-gb/converters/fuel-economy/mpg-us-to-liters-per-100km",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/en-gb/calculators/business/roi",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-gb/calculators/business/roas",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-gb/calculators/business/break-even",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-gb/calculators/construction/concrete",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-gb/calculators/construction/tile",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-gb/calculators/construction/roof-area",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-gb/calculators/math/statistics",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-gb/calculators/education/gpa",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/en-gb/calculators/finance/retirement",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/en-gb/tools/number-math/percentage",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/en-gb/charts/conversion/volume-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/en-gb/calculators/health/body-fat",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/en-gb/converters/length/meters-to-feet",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/de-de/charts/math/metric-prefixes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/de-de/converters/volume/liters-to-us-gallons",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/de-de/converters/volume/us-gallons-to-liters",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/de-de/converters/data/gigabytes-to-megabytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/de-de/converters/data/megabytes-to-kilobytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/de-de/converters/fuel-economy/liters-per-100km-to-mpg-us",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/de-de/converters/fuel-economy/mpg-us-to-liters-per-100km",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/de-de/calculators/business/roi",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/de-de/calculators/business/roas",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/de-de/calculators/business/break-even",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/de-de/calculators/construction/concrete",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/de-de/calculators/construction/tile",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/de-de/calculators/construction/roof-area",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/de-de/calculators/math/statistics",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/de-de/calculators/education/gpa",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/de-de/calculators/finance/retirement",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/de-de/tools/number-math/percentage",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/de-de/charts/conversion/volume-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/de-de/calculators/health/body-fat",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/de-de/converters/length/meters-to-feet",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/fr-fr/charts/math/metric-prefixes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/fr-fr/converters/volume/liters-to-us-gallons",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/fr-fr/converters/volume/us-gallons-to-liters",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/fr-fr/converters/data/gigabytes-to-megabytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/fr-fr/converters/data/megabytes-to-kilobytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/fr-fr/converters/fuel-economy/liters-per-100km-to-mpg-us",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/fr-fr/converters/fuel-economy/mpg-us-to-liters-per-100km",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/fr-fr/calculators/business/roi",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/fr-fr/calculators/business/roas",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/fr-fr/calculators/business/break-even",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/fr-fr/calculators/construction/concrete",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/fr-fr/calculators/construction/tile",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/fr-fr/calculators/construction/roof-area",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/fr-fr/calculators/math/statistics",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/fr-fr/calculators/education/gpa",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/fr-fr/calculators/finance/retirement",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/fr-fr/tools/number-math/percentage",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/fr-fr/charts/conversion/volume-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/fr-fr/calculators/health/body-fat",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/fr-fr/converters/length/meters-to-feet",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/es-es/charts/math/metric-prefixes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/es-es/converters/volume/liters-to-us-gallons",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/es-es/converters/volume/us-gallons-to-liters",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/es-es/converters/data/gigabytes-to-megabytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/es-es/converters/data/megabytes-to-kilobytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/es-es/converters/fuel-economy/liters-per-100km-to-mpg-us",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/es-es/converters/fuel-economy/mpg-us-to-liters-per-100km",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/es-es/calculators/business/roi",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/es-es/calculators/business/roas",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/es-es/calculators/business/break-even",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/es-es/calculators/construction/concrete",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/es-es/calculators/construction/tile",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/es-es/calculators/construction/roof-area",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/es-es/calculators/math/statistics",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/es-es/calculators/education/gpa",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/es-es/calculators/finance/retirement",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/es-es/tools/number-math/percentage",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/es-es/charts/conversion/volume-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/es-es/calculators/health/body-fat",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/es-es/converters/length/meters-to-feet",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/pt-br/charts/math/metric-prefixes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/pt-br/converters/volume/liters-to-us-gallons",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/pt-br/converters/volume/us-gallons-to-liters",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/pt-br/converters/data/gigabytes-to-megabytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/pt-br/converters/data/megabytes-to-kilobytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/pt-br/converters/fuel-economy/liters-per-100km-to-mpg-us",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/pt-br/converters/fuel-economy/mpg-us-to-liters-per-100km",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/pt-br/calculators/business/roi",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/pt-br/calculators/business/roas",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/pt-br/calculators/business/break-even",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/pt-br/calculators/construction/concrete",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/pt-br/calculators/construction/tile",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/pt-br/calculators/construction/roof-area",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/pt-br/calculators/math/statistics",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/pt-br/calculators/education/gpa",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/pt-br/calculators/finance/retirement",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/pt-br/tools/number-math/percentage",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/pt-br/charts/conversion/volume-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/pt-br/calculators/health/body-fat",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/pt-br/converters/length/meters-to-feet",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/ru-ru/charts/math/metric-prefixes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ru-ru/converters/volume/liters-to-us-gallons",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ru-ru/converters/volume/us-gallons-to-liters",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ru-ru/converters/data/gigabytes-to-megabytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ru-ru/converters/data/megabytes-to-kilobytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ru-ru/converters/fuel-economy/liters-per-100km-to-mpg-us",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ru-ru/converters/fuel-economy/mpg-us-to-liters-per-100km",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ru-ru/calculators/business/roi",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ru-ru/calculators/business/roas",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ru-ru/calculators/business/break-even",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ru-ru/calculators/construction/concrete",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ru-ru/calculators/construction/tile",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ru-ru/calculators/construction/roof-area",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ru-ru/calculators/math/statistics",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ru-ru/calculators/education/gpa",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ru-ru/calculators/finance/retirement",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/ru-ru/tools/number-math/percentage",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/ru-ru/charts/conversion/volume-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/ru-ru/calculators/health/body-fat",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/ru-ru/converters/length/meters-to-feet",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/tr-tr/charts/math/metric-prefixes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/tr-tr/converters/volume/liters-to-us-gallons",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/tr-tr/converters/volume/us-gallons-to-liters",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/tr-tr/converters/data/gigabytes-to-megabytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/tr-tr/converters/data/megabytes-to-kilobytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/tr-tr/converters/fuel-economy/liters-per-100km-to-mpg-us",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/tr-tr/converters/fuel-economy/mpg-us-to-liters-per-100km",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/tr-tr/calculators/business/roi",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/tr-tr/calculators/business/roas",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/tr-tr/calculators/business/break-even",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/tr-tr/calculators/construction/concrete",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/tr-tr/calculators/construction/tile",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/tr-tr/calculators/construction/roof-area",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/tr-tr/calculators/math/statistics",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/tr-tr/calculators/education/gpa",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/tr-tr/calculators/finance/retirement",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/tr-tr/tools/number-math/percentage",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/tr-tr/charts/conversion/volume-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/tr-tr/calculators/health/body-fat",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/tr-tr/converters/length/meters-to-feet",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/ja-jp/charts/math/metric-prefixes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ja-jp/converters/volume/liters-to-us-gallons",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ja-jp/converters/volume/us-gallons-to-liters",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ja-jp/converters/data/gigabytes-to-megabytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ja-jp/converters/data/megabytes-to-kilobytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ja-jp/converters/fuel-economy/liters-per-100km-to-mpg-us",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ja-jp/converters/fuel-economy/mpg-us-to-liters-per-100km",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/ja-jp/calculators/business/roi",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ja-jp/calculators/business/roas",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ja-jp/calculators/business/break-even",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ja-jp/calculators/construction/concrete",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ja-jp/calculators/construction/tile",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ja-jp/calculators/construction/roof-area",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ja-jp/calculators/math/statistics",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ja-jp/calculators/education/gpa",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/ja-jp/calculators/finance/retirement",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/ja-jp/tools/number-math/percentage",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/ja-jp/charts/conversion/volume-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/ja-jp/calculators/health/body-fat",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/ja-jp/converters/length/meters-to-feet",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/zh-cn/charts/math/metric-prefixes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/zh-cn/converters/volume/liters-to-us-gallons",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/zh-cn/converters/volume/us-gallons-to-liters",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/zh-cn/converters/data/gigabytes-to-megabytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/zh-cn/converters/data/megabytes-to-kilobytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/zh-cn/converters/fuel-economy/liters-per-100km-to-mpg-us",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/zh-cn/converters/fuel-economy/mpg-us-to-liters-per-100km",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/zh-cn/calculators/business/roi",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/zh-cn/calculators/business/roas",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/zh-cn/calculators/business/break-even",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/zh-cn/calculators/construction/concrete",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/zh-cn/calculators/construction/tile",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/zh-cn/calculators/construction/roof-area",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/zh-cn/calculators/math/statistics",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/zh-cn/calculators/education/gpa",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/zh-cn/calculators/finance/retirement",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/zh-cn/tools/number-math/percentage",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/zh-cn/charts/conversion/volume-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/zh-cn/calculators/health/body-fat",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/zh-cn/converters/length/meters-to-feet",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/it-it/charts/math/metric-prefixes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/it-it/converters/volume/liters-to-us-gallons",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/it-it/converters/volume/us-gallons-to-liters",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/it-it/converters/data/gigabytes-to-megabytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/it-it/converters/data/megabytes-to-kilobytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/it-it/converters/fuel-economy/liters-per-100km-to-mpg-us",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/it-it/converters/fuel-economy/mpg-us-to-liters-per-100km",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/it-it/calculators/business/roi",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/it-it/calculators/business/roas",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/it-it/calculators/business/break-even",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/it-it/calculators/construction/concrete",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/it-it/calculators/construction/tile",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/it-it/calculators/construction/roof-area",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/it-it/calculators/math/statistics",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/it-it/calculators/education/gpa",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/it-it/calculators/finance/retirement",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/it-it/tools/number-math/percentage",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/it-it/charts/conversion/volume-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/it-it/calculators/health/body-fat",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/it-it/converters/length/meters-to-feet",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/nl-nl/charts/math/metric-prefixes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/nl-nl/converters/volume/liters-to-us-gallons",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/nl-nl/converters/volume/us-gallons-to-liters",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/nl-nl/converters/data/gigabytes-to-megabytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/nl-nl/converters/data/megabytes-to-kilobytes",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/nl-nl/converters/fuel-economy/liters-per-100km-to-mpg-us",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/nl-nl/converters/fuel-economy/mpg-us-to-liters-per-100km",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "oldExamples": true,
+        "sources": true
+      }
+    },
+    {
+      "route": "/nl-nl/calculators/business/roi",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/nl-nl/calculators/business/roas",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/nl-nl/calculators/business/break-even",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/nl-nl/calculators/construction/concrete",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/nl-nl/calculators/construction/tile",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/nl-nl/calculators/construction/roof-area",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/nl-nl/calculators/math/statistics",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/nl-nl/calculators/education/gpa",
+      "kind": "target",
+      "passed": true,
+      "checks": {
+        "context": true,
+        "copy": true,
+        "legacyProseReplaced": true,
+        "gradeMapping": true
+      }
+    },
+    {
+      "route": "/nl-nl/calculators/finance/retirement",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/nl-nl/tools/number-math/percentage",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/nl-nl/charts/conversion/volume-conversion-table",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/nl-nl/calculators/health/body-fat",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    },
+    {
+      "route": "/nl-nl/converters/length/meters-to-feet",
+      "kind": "nearby",
+      "passed": true,
+      "checks": {
+        "priorContent": true,
+        "noUnrequestedInterpretation": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,1732 @@
+{
+  "coverage": "Source and generated copy, not live browser checks or independent whole-engine certification",
+  "locales": 12,
+  "missing": [],
+  "longContextAbsentFromClient": true,
+  "passwordSets": {
+    "lower": "abcdefghijkmnopqrstuvwxyz",
+    "upper": "ABCDEFGHJKLMNPQRSTUVWXYZ",
+    "digits": "23456789",
+    "symbols": "!@#$%^&*-_=+?"
+  },
+  "poolSize": 70,
+  "results": [
+    {
+      "locale": "en-US",
+      "defaultCountry": "us",
+      "missing": [],
+      "longContextAbsentFromClient": true,
+      "examples": {
+        "percentage": [
+          {
+            "input": "% of a value: 15% × 200",
+            "output": "30"
+          },
+          {
+            "input": "A is what % of B: 30 / 200 × 100",
+            "output": "15.00%"
+          },
+          {
+            "input": "% change: (125 − 100) / 100 × 100",
+            "output": "25.00%"
+          },
+          {
+            "input": "Increase / decrease: 200 × (1 − 10 / 100)",
+            "output": "180"
+          },
+          {
+            "input": "0 → 100; 30 / 0",
+            "output": "A percentage cannot be calculated with a zero denominator."
+          },
+          {
+            "input": "100 × 1.10 × 0.90",
+            "output": "99.0000"
+          }
+        ],
+        "number-to-words": [
+          {
+            "input": "12.05",
+            "output": "twelve point zero five"
+          },
+          {
+            "input": "101",
+            "output": "one hundred and one"
+          }
+        ],
+        "words-to-number": [
+          {
+            "input": "one hundred and one",
+            "output": "101"
+          },
+          {
+            "input": "minus twelve point zero five",
+            "output": "-12.0500"
+          },
+          {
+            "input": "one two",
+            "output": "That is not a number this tool can read. Try words only, such as \"forty-two\"."
+          },
+          {
+            "input": "seventy dogs",
+            "output": "That is not a number this tool can read. Try words only, such as \"forty-two\"."
+          },
+          {
+            "input": "douze",
+            "output": "That is not a number this tool can read. Try words only, such as \"forty-two\"."
+          },
+          {
+            "input": "one point zero zero five",
+            "output": "That is not a number this tool can read. Try words only, such as \"forty-two\"."
+          }
+        ],
+        "password-generator": [
+          {
+            "input": "Length = 16; Digits",
+            "output": "Generate a fresh private password in the tool. Never use a published example as a password."
+          }
+        ],
+        "working-days": [
+          {
+            "input": "2026-10-05 → 2026-10-09; Public holidays = 1",
+            "output": "4"
+          },
+          {
+            "input": "2026-10-05 → 2026-10-09; Public holidays = 0",
+            "output": "5"
+          },
+          {
+            "input": "2026-10-10 → 2026-10-11",
+            "output": "0"
+          }
+        ],
+        "age": [
+          {
+            "input": "2000-02-29 → 2025-02-28",
+            "output": "25 × Yrs"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-14",
+            "output": "25 × Yrs"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-15",
+            "output": "26 × Yrs"
+          }
+        ],
+        "countdown": [
+          {
+            "input": "2026-10-09T12:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "12 × Hours"
+          },
+          {
+            "input": "2026-10-10T00:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "0"
+          }
+        ]
+      },
+      "firstRows": {
+        "length-conversion-table": {
+          "meter": "1",
+          "centimeter": "100.00",
+          "foot": "3.28",
+          "inch": "39.37",
+          "yard": "1.09"
+        },
+        "area-conversion-table": {
+          "square-meter": "1",
+          "square-foot": "10.76",
+          "square-yard": "1.20",
+          "acre": "0.0002",
+          "hectare": "0.0001"
+        },
+        "volume-conversion-table": {
+          "liter": "1",
+          "milliliter": "1,000",
+          "us-gallon": "0.2642",
+          "imperial-gallon": "0.2200",
+          "us-cup": "4.23"
+        },
+        "pressure-conversion-table": {
+          "bar": "1",
+          "psi": "14.50",
+          "kilopascal": "100.00",
+          "atmosphere": "0.9869"
+        }
+      }
+    },
+    {
+      "locale": "en-GB",
+      "defaultCountry": "gb",
+      "missing": [],
+      "longContextAbsentFromClient": true,
+      "examples": {
+        "percentage": [
+          {
+            "input": "% of a value: 15% × 200",
+            "output": "30"
+          },
+          {
+            "input": "A is what % of B: 30 / 200 × 100",
+            "output": "15.00%"
+          },
+          {
+            "input": "% change: (125 − 100) / 100 × 100",
+            "output": "25.00%"
+          },
+          {
+            "input": "Increase / decrease: 200 × (1 − 10 / 100)",
+            "output": "180"
+          },
+          {
+            "input": "0 → 100; 30 / 0",
+            "output": "A percentage cannot be calculated with a zero denominator."
+          },
+          {
+            "input": "100 × 1.10 × 0.90",
+            "output": "99.0000"
+          }
+        ],
+        "number-to-words": [
+          {
+            "input": "12.05",
+            "output": "twelve point zero five"
+          },
+          {
+            "input": "101",
+            "output": "one hundred and one"
+          }
+        ],
+        "words-to-number": [
+          {
+            "input": "one hundred and one",
+            "output": "101"
+          },
+          {
+            "input": "minus twelve point zero five",
+            "output": "-12.0500"
+          },
+          {
+            "input": "one two",
+            "output": "That is not a number this tool can read. Try words only, such as \"forty-two\"."
+          },
+          {
+            "input": "seventy dogs",
+            "output": "That is not a number this tool can read. Try words only, such as \"forty-two\"."
+          },
+          {
+            "input": "douze",
+            "output": "That is not a number this tool can read. Try words only, such as \"forty-two\"."
+          },
+          {
+            "input": "one point zero zero five",
+            "output": "That is not a number this tool can read. Try words only, such as \"forty-two\"."
+          }
+        ],
+        "password-generator": [
+          {
+            "input": "Length = 16; Digits",
+            "output": "Generate a fresh private password in the tool. Never use a published example as a password."
+          }
+        ],
+        "working-days": [
+          {
+            "input": "2026-10-05 → 2026-10-09; Public holidays = 1",
+            "output": "4"
+          },
+          {
+            "input": "2026-10-05 → 2026-10-09; Public holidays = 0",
+            "output": "5"
+          },
+          {
+            "input": "2026-10-10 → 2026-10-11",
+            "output": "0"
+          }
+        ],
+        "age": [
+          {
+            "input": "2000-02-29 → 2025-02-28",
+            "output": "25 × Yrs"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-14",
+            "output": "25 × Yrs"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-15",
+            "output": "26 × Yrs"
+          }
+        ],
+        "countdown": [
+          {
+            "input": "2026-10-09T12:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "12 × Hours"
+          },
+          {
+            "input": "2026-10-10T00:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "0"
+          }
+        ]
+      },
+      "firstRows": {
+        "length-conversion-table": {
+          "meter": "1",
+          "centimeter": "100.00",
+          "foot": "3.28",
+          "inch": "39.37",
+          "yard": "1.09"
+        },
+        "area-conversion-table": {
+          "square-meter": "1",
+          "square-foot": "10.76",
+          "square-yard": "1.20",
+          "acre": "0.0002",
+          "hectare": "0.0001"
+        },
+        "volume-conversion-table": {
+          "liter": "1",
+          "milliliter": "1,000",
+          "us-gallon": "0.2642",
+          "imperial-gallon": "0.2200",
+          "us-cup": "4.23"
+        },
+        "pressure-conversion-table": {
+          "bar": "1",
+          "psi": "14.50",
+          "kilopascal": "100.00",
+          "atmosphere": "0.9869"
+        }
+      }
+    },
+    {
+      "locale": "de-DE",
+      "defaultCountry": "de",
+      "missing": [],
+      "longContextAbsentFromClient": true,
+      "examples": {
+        "percentage": [
+          {
+            "input": "% von einem Wert: 15% × 200",
+            "output": "30"
+          },
+          {
+            "input": "A ist wie viel % von B: 30 / 200 × 100",
+            "output": "15,00%"
+          },
+          {
+            "input": "Veränderung in %: (125 − 100) / 100 × 100",
+            "output": "25,00%"
+          },
+          {
+            "input": "Aufschlag / Abschlag: 200 × (1 − 10 / 100)",
+            "output": "180"
+          },
+          {
+            "input": "0 → 100; 30 / 0",
+            "output": "Ein Prozentsatz kann nicht mit einem Nenner von null berechnet werden."
+          },
+          {
+            "input": "100 × 1.10 × 0.90",
+            "output": "99,0000"
+          }
+        ],
+        "number-to-words": [
+          {
+            "input": "12,05",
+            "output": "twelve point zero five"
+          },
+          {
+            "input": "101",
+            "output": "one hundred and one"
+          }
+        ],
+        "words-to-number": [
+          {
+            "input": "one hundred and one",
+            "output": "101"
+          },
+          {
+            "input": "minus twelve point zero five",
+            "output": "-12,0500"
+          },
+          {
+            "input": "one two",
+            "output": "Diese Zahl kann das Werkzeug nicht lesen. Versuchen Sie es nur mit englischen Wörtern, etwa „forty-two“."
+          },
+          {
+            "input": "seventy dogs",
+            "output": "Diese Zahl kann das Werkzeug nicht lesen. Versuchen Sie es nur mit englischen Wörtern, etwa „forty-two“."
+          },
+          {
+            "input": "douze",
+            "output": "Diese Zahl kann das Werkzeug nicht lesen. Versuchen Sie es nur mit englischen Wörtern, etwa „forty-two“."
+          },
+          {
+            "input": "one point zero zero five",
+            "output": "Diese Zahl kann das Werkzeug nicht lesen. Versuchen Sie es nur mit englischen Wörtern, etwa „forty-two“."
+          }
+        ],
+        "password-generator": [
+          {
+            "input": "Länge = 16; Ziffern",
+            "output": "Erzeugen Sie ein neues privates Passwort im Tool. Verwenden Sie niemals ein veröffentlichtes Beispiel als Passwort."
+          }
+        ],
+        "working-days": [
+          {
+            "input": "2026-10-05 → 2026-10-09; Feiertage = 1",
+            "output": "4"
+          },
+          {
+            "input": "2026-10-05 → 2026-10-09; Feiertage = 0",
+            "output": "5"
+          },
+          {
+            "input": "2026-10-10 → 2026-10-11",
+            "output": "0"
+          }
+        ],
+        "age": [
+          {
+            "input": "2000-02-29 → 2025-02-28",
+            "output": "25 × Jahre"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-14",
+            "output": "25 × Jahre"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-15",
+            "output": "26 × Jahre"
+          }
+        ],
+        "countdown": [
+          {
+            "input": "2026-10-09T12:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "12 × Stunden"
+          },
+          {
+            "input": "2026-10-10T00:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "0"
+          }
+        ]
+      },
+      "firstRows": {
+        "length-conversion-table": {
+          "meter": "1",
+          "centimeter": "100,00",
+          "foot": "3,28",
+          "inch": "39,37",
+          "yard": "1,09"
+        },
+        "area-conversion-table": {
+          "square-meter": "1",
+          "square-foot": "10,76",
+          "square-yard": "1,20",
+          "acre": "0,0002",
+          "hectare": "0,0001"
+        },
+        "volume-conversion-table": {
+          "liter": "1",
+          "milliliter": "1.000",
+          "us-gallon": "0,2642",
+          "imperial-gallon": "0,2200",
+          "us-cup": "4,23"
+        },
+        "pressure-conversion-table": {
+          "bar": "1",
+          "psi": "14,50",
+          "kilopascal": "100,00",
+          "atmosphere": "0,9869"
+        }
+      }
+    },
+    {
+      "locale": "fr-FR",
+      "defaultCountry": "fr",
+      "missing": [],
+      "longContextAbsentFromClient": true,
+      "examples": {
+        "percentage": [
+          {
+            "input": "% d'une valeur: 15% × 200",
+            "output": "30"
+          },
+          {
+            "input": "A représente quel % de B: 30 / 200 × 100",
+            "output": "15,00%"
+          },
+          {
+            "input": "Variation en %: (125 − 100) / 100 × 100",
+            "output": "25,00%"
+          },
+          {
+            "input": "Augmentation / diminution: 200 × (1 − 10 / 100)",
+            "output": "180"
+          },
+          {
+            "input": "0 → 100; 30 / 0",
+            "output": "Un pourcentage ne peut pas être calculé avec un dénominateur nul."
+          },
+          {
+            "input": "100 × 1.10 × 0.90",
+            "output": "99,0000"
+          }
+        ],
+        "number-to-words": [
+          {
+            "input": "12,05",
+            "output": "twelve point zero five"
+          },
+          {
+            "input": "101",
+            "output": "one hundred and one"
+          }
+        ],
+        "words-to-number": [
+          {
+            "input": "one hundred and one",
+            "output": "101"
+          },
+          {
+            "input": "minus twelve point zero five",
+            "output": "-12,0500"
+          },
+          {
+            "input": "one two",
+            "output": "Cet outil ne sait pas lire ce nombre. Essayez uniquement avec des mots anglais, comme « forty-two »."
+          },
+          {
+            "input": "seventy dogs",
+            "output": "Cet outil ne sait pas lire ce nombre. Essayez uniquement avec des mots anglais, comme « forty-two »."
+          },
+          {
+            "input": "douze",
+            "output": "Cet outil ne sait pas lire ce nombre. Essayez uniquement avec des mots anglais, comme « forty-two »."
+          },
+          {
+            "input": "one point zero zero five",
+            "output": "Cet outil ne sait pas lire ce nombre. Essayez uniquement avec des mots anglais, comme « forty-two »."
+          }
+        ],
+        "password-generator": [
+          {
+            "input": "Longueur = 16; Chiffres",
+            "output": "Générez un nouveau mot de passe privé dans l’outil. N’utilisez jamais un exemple publié comme mot de passe."
+          }
+        ],
+        "working-days": [
+          {
+            "input": "2026-10-05 → 2026-10-09; Jours fériés = 1",
+            "output": "4"
+          },
+          {
+            "input": "2026-10-05 → 2026-10-09; Jours fériés = 0",
+            "output": "5"
+          },
+          {
+            "input": "2026-10-10 → 2026-10-11",
+            "output": "0"
+          }
+        ],
+        "age": [
+          {
+            "input": "2000-02-29 → 2025-02-28",
+            "output": "25 × ans"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-14",
+            "output": "25 × ans"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-15",
+            "output": "26 × ans"
+          }
+        ],
+        "countdown": [
+          {
+            "input": "2026-10-09T12:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "12 × heures"
+          },
+          {
+            "input": "2026-10-10T00:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "0"
+          }
+        ]
+      },
+      "firstRows": {
+        "length-conversion-table": {
+          "meter": "1",
+          "centimeter": "100,00",
+          "foot": "3,28",
+          "inch": "39,37",
+          "yard": "1,09"
+        },
+        "area-conversion-table": {
+          "square-meter": "1",
+          "square-foot": "10,76",
+          "square-yard": "1,20",
+          "acre": "0,0002",
+          "hectare": "0,0001"
+        },
+        "volume-conversion-table": {
+          "liter": "1",
+          "milliliter": "1 000",
+          "us-gallon": "0,2642",
+          "imperial-gallon": "0,2200",
+          "us-cup": "4,23"
+        },
+        "pressure-conversion-table": {
+          "bar": "1",
+          "psi": "14,50",
+          "kilopascal": "100,00",
+          "atmosphere": "0,9869"
+        }
+      }
+    },
+    {
+      "locale": "es-ES",
+      "defaultCountry": "es",
+      "missing": [],
+      "longContextAbsentFromClient": true,
+      "examples": {
+        "percentage": [
+          {
+            "input": "% de un valor: 15% × 200",
+            "output": "30"
+          },
+          {
+            "input": "A es qué % de B: 30 / 200 × 100",
+            "output": "15,00%"
+          },
+          {
+            "input": "Variación en %: (125 − 100) / 100 × 100",
+            "output": "25,00%"
+          },
+          {
+            "input": "Aumento / disminución: 200 × (1 − 10 / 100)",
+            "output": "180"
+          },
+          {
+            "input": "0 → 100; 30 / 0",
+            "output": "No se puede calcular un porcentaje con denominador cero."
+          },
+          {
+            "input": "100 × 1.10 × 0.90",
+            "output": "99,0000"
+          }
+        ],
+        "number-to-words": [
+          {
+            "input": "12,05",
+            "output": "twelve point zero five"
+          },
+          {
+            "input": "101",
+            "output": "one hundred and one"
+          }
+        ],
+        "words-to-number": [
+          {
+            "input": "one hundred and one",
+            "output": "101"
+          },
+          {
+            "input": "minus twelve point zero five",
+            "output": "-12,0500"
+          },
+          {
+            "input": "one two",
+            "output": "Esta herramienta no puede leer ese número. Prueba solo con palabras en inglés, como «forty-two»."
+          },
+          {
+            "input": "seventy dogs",
+            "output": "Esta herramienta no puede leer ese número. Prueba solo con palabras en inglés, como «forty-two»."
+          },
+          {
+            "input": "douze",
+            "output": "Esta herramienta no puede leer ese número. Prueba solo con palabras en inglés, como «forty-two»."
+          },
+          {
+            "input": "one point zero zero five",
+            "output": "Esta herramienta no puede leer ese número. Prueba solo con palabras en inglés, como «forty-two»."
+          }
+        ],
+        "password-generator": [
+          {
+            "input": "Longitud = 16; Dígitos",
+            "output": "Genere una contraseña nueva y privada en la herramienta. Nunca use un ejemplo publicado como contraseña."
+          }
+        ],
+        "working-days": [
+          {
+            "input": "2026-10-05 → 2026-10-09; Festivos = 1",
+            "output": "4"
+          },
+          {
+            "input": "2026-10-05 → 2026-10-09; Festivos = 0",
+            "output": "5"
+          },
+          {
+            "input": "2026-10-10 → 2026-10-11",
+            "output": "0"
+          }
+        ],
+        "age": [
+          {
+            "input": "2000-02-29 → 2025-02-28",
+            "output": "25 × años"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-14",
+            "output": "25 × años"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-15",
+            "output": "26 × años"
+          }
+        ],
+        "countdown": [
+          {
+            "input": "2026-10-09T12:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "12 × horas"
+          },
+          {
+            "input": "2026-10-10T00:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "0"
+          }
+        ]
+      },
+      "firstRows": {
+        "length-conversion-table": {
+          "meter": "1",
+          "centimeter": "100,00",
+          "foot": "3,28",
+          "inch": "39,37",
+          "yard": "1,09"
+        },
+        "area-conversion-table": {
+          "square-meter": "1",
+          "square-foot": "10,76",
+          "square-yard": "1,20",
+          "acre": "0,0002",
+          "hectare": "0,0001"
+        },
+        "volume-conversion-table": {
+          "liter": "1",
+          "milliliter": "1000",
+          "us-gallon": "0,2642",
+          "imperial-gallon": "0,2200",
+          "us-cup": "4,23"
+        },
+        "pressure-conversion-table": {
+          "bar": "1",
+          "psi": "14,50",
+          "kilopascal": "100,00",
+          "atmosphere": "0,9869"
+        }
+      }
+    },
+    {
+      "locale": "pt-BR",
+      "defaultCountry": "br",
+      "missing": [],
+      "longContextAbsentFromClient": true,
+      "examples": {
+        "percentage": [
+          {
+            "input": "% de um valor: 15% × 200",
+            "output": "30"
+          },
+          {
+            "input": "A é quantos % de B: 30 / 200 × 100",
+            "output": "15,00%"
+          },
+          {
+            "input": "Variação %: (125 − 100) / 100 × 100",
+            "output": "25,00%"
+          },
+          {
+            "input": "Aumento / redução: 200 × (1 − 10 / 100)",
+            "output": "180"
+          },
+          {
+            "input": "0 → 100; 30 / 0",
+            "output": "Não é possível calcular uma porcentagem com denominador zero."
+          },
+          {
+            "input": "100 × 1.10 × 0.90",
+            "output": "99,0000"
+          }
+        ],
+        "number-to-words": [
+          {
+            "input": "12,05",
+            "output": "twelve point zero five"
+          },
+          {
+            "input": "101",
+            "output": "one hundred and one"
+          }
+        ],
+        "words-to-number": [
+          {
+            "input": "one hundred and one",
+            "output": "101"
+          },
+          {
+            "input": "minus twelve point zero five",
+            "output": "-12,0500"
+          },
+          {
+            "input": "one two",
+            "output": "Este não é um número que a ferramenta consegue ler. Tente só palavras, como \"forty-two\"."
+          },
+          {
+            "input": "seventy dogs",
+            "output": "Este não é um número que a ferramenta consegue ler. Tente só palavras, como \"forty-two\"."
+          },
+          {
+            "input": "douze",
+            "output": "Este não é um número que a ferramenta consegue ler. Tente só palavras, como \"forty-two\"."
+          },
+          {
+            "input": "one point zero zero five",
+            "output": "Este não é um número que a ferramenta consegue ler. Tente só palavras, como \"forty-two\"."
+          }
+        ],
+        "password-generator": [
+          {
+            "input": "Comprimento = 16; Dígitos",
+            "output": "Gere uma senha nova e privada na ferramenta. Nunca use um exemplo publicado como senha."
+          }
+        ],
+        "working-days": [
+          {
+            "input": "2026-10-05 → 2026-10-09; Feriados = 1",
+            "output": "4"
+          },
+          {
+            "input": "2026-10-05 → 2026-10-09; Feriados = 0",
+            "output": "5"
+          },
+          {
+            "input": "2026-10-10 → 2026-10-11",
+            "output": "0"
+          }
+        ],
+        "age": [
+          {
+            "input": "2000-02-29 → 2025-02-28",
+            "output": "25 × Anos"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-14",
+            "output": "25 × Anos"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-15",
+            "output": "26 × Anos"
+          }
+        ],
+        "countdown": [
+          {
+            "input": "2026-10-09T12:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "12 × horas"
+          },
+          {
+            "input": "2026-10-10T00:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "0"
+          }
+        ]
+      },
+      "firstRows": {
+        "length-conversion-table": {
+          "meter": "1",
+          "centimeter": "100,00",
+          "foot": "3,28",
+          "inch": "39,37",
+          "yard": "1,09"
+        },
+        "area-conversion-table": {
+          "square-meter": "1",
+          "square-foot": "10,76",
+          "square-yard": "1,20",
+          "acre": "0,0002",
+          "hectare": "0,0001"
+        },
+        "volume-conversion-table": {
+          "liter": "1",
+          "milliliter": "1.000",
+          "us-gallon": "0,2642",
+          "imperial-gallon": "0,2200",
+          "us-cup": "4,23"
+        },
+        "pressure-conversion-table": {
+          "bar": "1",
+          "psi": "14,50",
+          "kilopascal": "100,00",
+          "atmosphere": "0,9869"
+        }
+      }
+    },
+    {
+      "locale": "ru-RU",
+      "defaultCountry": "ru",
+      "missing": [],
+      "longContextAbsentFromClient": true,
+      "examples": {
+        "percentage": [
+          {
+            "input": "% от числа: 15% × 200",
+            "output": "30"
+          },
+          {
+            "input": "Сколько % составляет A от B: 30 / 200 × 100",
+            "output": "15,00%"
+          },
+          {
+            "input": "Изменение в %: (125 − 100) / 100 × 100",
+            "output": "25,00%"
+          },
+          {
+            "input": "Увеличить / уменьшить: 200 × (1 − 10 / 100)",
+            "output": "180"
+          },
+          {
+            "input": "0 → 100; 30 / 0",
+            "output": "Нельзя вычислить процент при нулевом знаменателе."
+          },
+          {
+            "input": "100 × 1.10 × 0.90",
+            "output": "99,0000"
+          }
+        ],
+        "number-to-words": [
+          {
+            "input": "12,05",
+            "output": "twelve point zero five"
+          },
+          {
+            "input": "101",
+            "output": "one hundred and one"
+          }
+        ],
+        "words-to-number": [
+          {
+            "input": "one hundred and one",
+            "output": "101"
+          },
+          {
+            "input": "minus twelve point zero five",
+            "output": "-12,0500"
+          },
+          {
+            "input": "one two",
+            "output": "Этот инструмент не может прочитать такое число. Попробуйте только слова, например \"forty-two\"."
+          },
+          {
+            "input": "seventy dogs",
+            "output": "Этот инструмент не может прочитать такое число. Попробуйте только слова, например \"forty-two\"."
+          },
+          {
+            "input": "douze",
+            "output": "Этот инструмент не может прочитать такое число. Попробуйте только слова, например \"forty-two\"."
+          },
+          {
+            "input": "one point zero zero five",
+            "output": "Этот инструмент не может прочитать такое число. Попробуйте только слова, например \"forty-two\"."
+          }
+        ],
+        "password-generator": [
+          {
+            "input": "Длина = 16; Цифры",
+            "output": "Создайте новый личный пароль в инструменте. Никогда не используйте опубликованный пример как пароль."
+          }
+        ],
+        "working-days": [
+          {
+            "input": "2026-10-05 → 2026-10-09; Праздничные дни = 1",
+            "output": "4"
+          },
+          {
+            "input": "2026-10-05 → 2026-10-09; Праздничные дни = 0",
+            "output": "5"
+          },
+          {
+            "input": "2026-10-10 → 2026-10-11",
+            "output": "0"
+          }
+        ],
+        "age": [
+          {
+            "input": "2000-02-29 → 2025-02-28",
+            "output": "25 × лет"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-14",
+            "output": "25 × лет"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-15",
+            "output": "26 × лет"
+          }
+        ],
+        "countdown": [
+          {
+            "input": "2026-10-09T12:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "12 × часы"
+          },
+          {
+            "input": "2026-10-10T00:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "0"
+          }
+        ]
+      },
+      "firstRows": {
+        "length-conversion-table": {
+          "meter": "1",
+          "centimeter": "100,00",
+          "foot": "3,28",
+          "inch": "39,37",
+          "yard": "1,09"
+        },
+        "area-conversion-table": {
+          "square-meter": "1",
+          "square-foot": "10,76",
+          "square-yard": "1,20",
+          "acre": "0,0002",
+          "hectare": "0,0001"
+        },
+        "volume-conversion-table": {
+          "liter": "1",
+          "milliliter": "1 000",
+          "us-gallon": "0,2642",
+          "imperial-gallon": "0,2200",
+          "us-cup": "4,23"
+        },
+        "pressure-conversion-table": {
+          "bar": "1",
+          "psi": "14,50",
+          "kilopascal": "100,00",
+          "atmosphere": "0,9869"
+        }
+      }
+    },
+    {
+      "locale": "tr-TR",
+      "defaultCountry": "tr",
+      "missing": [],
+      "longContextAbsentFromClient": true,
+      "examples": {
+        "percentage": [
+          {
+            "input": "Bir değerin %'si: 15% × 200",
+            "output": "30"
+          },
+          {
+            "input": "A, B'nin yüzde kaçı: 30 / 200 × 100",
+            "output": "15,00%"
+          },
+          {
+            "input": "% değişim: (125 − 100) / 100 × 100",
+            "output": "25,00%"
+          },
+          {
+            "input": "Artış / azalış: 200 × (1 − 10 / 100)",
+            "output": "180"
+          },
+          {
+            "input": "0 → 100; 30 / 0",
+            "output": "Payda sıfır olduğunda yüzde hesaplanamaz."
+          },
+          {
+            "input": "100 × 1.10 × 0.90",
+            "output": "99,0000"
+          }
+        ],
+        "number-to-words": [
+          {
+            "input": "12,05",
+            "output": "twelve point zero five"
+          },
+          {
+            "input": "101",
+            "output": "one hundred and one"
+          }
+        ],
+        "words-to-number": [
+          {
+            "input": "one hundred and one",
+            "output": "101"
+          },
+          {
+            "input": "minus twelve point zero five",
+            "output": "-12,0500"
+          },
+          {
+            "input": "one two",
+            "output": "Bu, aracın okuyabildiği bir sayı değil. \"forty-two\" gibi yalnızca kelimeler deneyin."
+          },
+          {
+            "input": "seventy dogs",
+            "output": "Bu, aracın okuyabildiği bir sayı değil. \"forty-two\" gibi yalnızca kelimeler deneyin."
+          },
+          {
+            "input": "douze",
+            "output": "Bu, aracın okuyabildiği bir sayı değil. \"forty-two\" gibi yalnızca kelimeler deneyin."
+          },
+          {
+            "input": "one point zero zero five",
+            "output": "Bu, aracın okuyabildiği bir sayı değil. \"forty-two\" gibi yalnızca kelimeler deneyin."
+          }
+        ],
+        "password-generator": [
+          {
+            "input": "Uzunluk = 16; Rakamlar",
+            "output": "Araçta yeni ve özel bir parola oluşturun. Yayımlanmış bir örneği asla parola olarak kullanmayın."
+          }
+        ],
+        "working-days": [
+          {
+            "input": "2026-10-05 → 2026-10-09; Resmî tatiller = 1",
+            "output": "4"
+          },
+          {
+            "input": "2026-10-05 → 2026-10-09; Resmî tatiller = 0",
+            "output": "5"
+          },
+          {
+            "input": "2026-10-10 → 2026-10-11",
+            "output": "0"
+          }
+        ],
+        "age": [
+          {
+            "input": "2000-02-29 → 2025-02-28",
+            "output": "25 × Yıl"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-14",
+            "output": "25 × Yıl"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-15",
+            "output": "26 × Yıl"
+          }
+        ],
+        "countdown": [
+          {
+            "input": "2026-10-09T12:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "12 × Saat"
+          },
+          {
+            "input": "2026-10-10T00:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "0"
+          }
+        ]
+      },
+      "firstRows": {
+        "length-conversion-table": {
+          "meter": "1",
+          "centimeter": "100,00",
+          "foot": "3,28",
+          "inch": "39,37",
+          "yard": "1,09"
+        },
+        "area-conversion-table": {
+          "square-meter": "1",
+          "square-foot": "10,76",
+          "square-yard": "1,20",
+          "acre": "0,0002",
+          "hectare": "0,0001"
+        },
+        "volume-conversion-table": {
+          "liter": "1",
+          "milliliter": "1.000",
+          "us-gallon": "0,2642",
+          "imperial-gallon": "0,2200",
+          "us-cup": "4,23"
+        },
+        "pressure-conversion-table": {
+          "bar": "1",
+          "psi": "14,50",
+          "kilopascal": "100,00",
+          "atmosphere": "0,9869"
+        }
+      }
+    },
+    {
+      "locale": "ja-JP",
+      "defaultCountry": "jp",
+      "missing": [],
+      "longContextAbsentFromClient": true,
+      "examples": {
+        "percentage": [
+          {
+            "input": "値の○%: 15% × 200",
+            "output": "30"
+          },
+          {
+            "input": "AはBの何%か: 30 / 200 × 100",
+            "output": "15.00%"
+          },
+          {
+            "input": "増減率: (125 − 100) / 100 × 100",
+            "output": "25.00%"
+          },
+          {
+            "input": "増やす / 減らす: 200 × (1 − 10 / 100)",
+            "output": "180"
+          },
+          {
+            "input": "0 → 100; 30 / 0",
+            "output": "分母がゼロの場合、割合は計算できません。"
+          },
+          {
+            "input": "100 × 1.10 × 0.90",
+            "output": "99.0000"
+          }
+        ],
+        "number-to-words": [
+          {
+            "input": "12.05",
+            "output": "twelve point zero five"
+          },
+          {
+            "input": "101",
+            "output": "one hundred and one"
+          }
+        ],
+        "words-to-number": [
+          {
+            "input": "one hundred and one",
+            "output": "101"
+          },
+          {
+            "input": "minus twelve point zero five",
+            "output": "-12.0500"
+          },
+          {
+            "input": "one two",
+            "output": "このツールでは読み取れない数です。\"forty-two\"のように単語だけで入力してみてください。"
+          },
+          {
+            "input": "seventy dogs",
+            "output": "このツールでは読み取れない数です。\"forty-two\"のように単語だけで入力してみてください。"
+          },
+          {
+            "input": "douze",
+            "output": "このツールでは読み取れない数です。\"forty-two\"のように単語だけで入力してみてください。"
+          },
+          {
+            "input": "one point zero zero five",
+            "output": "このツールでは読み取れない数です。\"forty-two\"のように単語だけで入力してみてください。"
+          }
+        ],
+        "password-generator": [
+          {
+            "input": "長さ = 16; 数字",
+            "output": "ツールで新しい非公開のパスワードを生成してください。公開された例をパスワードに使わないでください。"
+          }
+        ],
+        "working-days": [
+          {
+            "input": "2026-10-05 → 2026-10-09; 祝日 = 1",
+            "output": "4"
+          },
+          {
+            "input": "2026-10-05 → 2026-10-09; 祝日 = 0",
+            "output": "5"
+          },
+          {
+            "input": "2026-10-10 → 2026-10-11",
+            "output": "0"
+          }
+        ],
+        "age": [
+          {
+            "input": "2000-02-29 → 2025-02-28",
+            "output": "25 × 年"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-14",
+            "output": "25 × 年"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-15",
+            "output": "26 × 年"
+          }
+        ],
+        "countdown": [
+          {
+            "input": "2026-10-09T12:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "12 × 時間"
+          },
+          {
+            "input": "2026-10-10T00:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "0"
+          }
+        ]
+      },
+      "firstRows": {
+        "length-conversion-table": {
+          "meter": "1",
+          "centimeter": "100.00",
+          "foot": "3.28",
+          "inch": "39.37",
+          "yard": "1.09"
+        },
+        "area-conversion-table": {
+          "square-meter": "1",
+          "square-foot": "10.76",
+          "square-yard": "1.20",
+          "acre": "0.0002",
+          "hectare": "0.0001"
+        },
+        "volume-conversion-table": {
+          "liter": "1",
+          "milliliter": "1,000",
+          "us-gallon": "0.2642",
+          "imperial-gallon": "0.2200",
+          "us-cup": "4.23"
+        },
+        "pressure-conversion-table": {
+          "bar": "1",
+          "psi": "14.50",
+          "kilopascal": "100.00",
+          "atmosphere": "0.9869"
+        }
+      }
+    },
+    {
+      "locale": "zh-CN",
+      "defaultCountry": "cn",
+      "missing": [],
+      "longContextAbsentFromClient": true,
+      "examples": {
+        "percentage": [
+          {
+            "input": "某值的 %: 15% × 200",
+            "output": "30"
+          },
+          {
+            "input": "A 是 B 的百分之几: 30 / 200 × 100",
+            "output": "15.00%"
+          },
+          {
+            "input": "变化百分比: (125 − 100) / 100 × 100",
+            "output": "25.00%"
+          },
+          {
+            "input": "增加 / 减少: 200 × (1 − 10 / 100)",
+            "output": "180"
+          },
+          {
+            "input": "0 → 100; 30 / 0",
+            "output": "分母为零时无法计算百分比。"
+          },
+          {
+            "input": "100 × 1.10 × 0.90",
+            "output": "99.0000"
+          }
+        ],
+        "number-to-words": [
+          {
+            "input": "12.05",
+            "output": "twelve point zero five"
+          },
+          {
+            "input": "101",
+            "output": "one hundred and one"
+          }
+        ],
+        "words-to-number": [
+          {
+            "input": "one hundred and one",
+            "output": "101"
+          },
+          {
+            "input": "minus twelve point zero five",
+            "output": "-12.0500"
+          },
+          {
+            "input": "one two",
+            "output": "本工具无法识别这个数字。请只输入单词，例如 \"forty-two\"。"
+          },
+          {
+            "input": "seventy dogs",
+            "output": "本工具无法识别这个数字。请只输入单词，例如 \"forty-two\"。"
+          },
+          {
+            "input": "douze",
+            "output": "本工具无法识别这个数字。请只输入单词，例如 \"forty-two\"。"
+          },
+          {
+            "input": "one point zero zero five",
+            "output": "本工具无法识别这个数字。请只输入单词，例如 \"forty-two\"。"
+          }
+        ],
+        "password-generator": [
+          {
+            "input": "长度 = 16; 数字",
+            "output": "请在工具中生成新的私人密码。切勿将公开示例用作密码。"
+          }
+        ],
+        "working-days": [
+          {
+            "input": "2026-10-05 → 2026-10-09; 法定节假日 = 1",
+            "output": "4"
+          },
+          {
+            "input": "2026-10-05 → 2026-10-09; 法定节假日 = 0",
+            "output": "5"
+          },
+          {
+            "input": "2026-10-10 → 2026-10-11",
+            "output": "0"
+          }
+        ],
+        "age": [
+          {
+            "input": "2000-02-29 → 2025-02-28",
+            "output": "25 × 年"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-14",
+            "output": "25 × 年"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-15",
+            "output": "26 × 年"
+          }
+        ],
+        "countdown": [
+          {
+            "input": "2026-10-09T12:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "12 × 小时"
+          },
+          {
+            "input": "2026-10-10T00:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "0"
+          }
+        ]
+      },
+      "firstRows": {
+        "length-conversion-table": {
+          "meter": "1",
+          "centimeter": "100.00",
+          "foot": "3.28",
+          "inch": "39.37",
+          "yard": "1.09"
+        },
+        "area-conversion-table": {
+          "square-meter": "1",
+          "square-foot": "10.76",
+          "square-yard": "1.20",
+          "acre": "0.0002",
+          "hectare": "0.0001"
+        },
+        "volume-conversion-table": {
+          "liter": "1",
+          "milliliter": "1,000",
+          "us-gallon": "0.2642",
+          "imperial-gallon": "0.2200",
+          "us-cup": "4.23"
+        },
+        "pressure-conversion-table": {
+          "bar": "1",
+          "psi": "14.50",
+          "kilopascal": "100.00",
+          "atmosphere": "0.9869"
+        }
+      }
+    },
+    {
+      "locale": "it-IT",
+      "defaultCountry": "it",
+      "missing": [],
+      "longContextAbsentFromClient": true,
+      "examples": {
+        "percentage": [
+          {
+            "input": "% di un valore: 15% × 200",
+            "output": "30"
+          },
+          {
+            "input": "A è che % di B: 30 / 200 × 100",
+            "output": "15,00%"
+          },
+          {
+            "input": "Variazione %: (125 − 100) / 100 × 100",
+            "output": "25,00%"
+          },
+          {
+            "input": "Aumento / riduzione: 200 × (1 − 10 / 100)",
+            "output": "180"
+          },
+          {
+            "input": "0 → 100; 30 / 0",
+            "output": "Non è possibile calcolare una percentuale con denominatore zero."
+          },
+          {
+            "input": "100 × 1.10 × 0.90",
+            "output": "99,0000"
+          }
+        ],
+        "number-to-words": [
+          {
+            "input": "12,05",
+            "output": "twelve point zero five"
+          },
+          {
+            "input": "101",
+            "output": "one hundred and one"
+          }
+        ],
+        "words-to-number": [
+          {
+            "input": "one hundred and one",
+            "output": "101"
+          },
+          {
+            "input": "minus twelve point zero five",
+            "output": "-12,0500"
+          },
+          {
+            "input": "one two",
+            "output": "Questo non è un numero che lo strumento riesce a leggere. Prova solo con parole, come \"forty-two\"."
+          },
+          {
+            "input": "seventy dogs",
+            "output": "Questo non è un numero che lo strumento riesce a leggere. Prova solo con parole, come \"forty-two\"."
+          },
+          {
+            "input": "douze",
+            "output": "Questo non è un numero che lo strumento riesce a leggere. Prova solo con parole, come \"forty-two\"."
+          },
+          {
+            "input": "one point zero zero five",
+            "output": "Questo non è un numero che lo strumento riesce a leggere. Prova solo con parole, come \"forty-two\"."
+          }
+        ],
+        "password-generator": [
+          {
+            "input": "Lunghezza = 16; Cifre",
+            "output": "Genera una nuova password privata nello strumento. Non usare mai un esempio pubblicato come password."
+          }
+        ],
+        "working-days": [
+          {
+            "input": "2026-10-05 → 2026-10-09; Festività = 1",
+            "output": "4"
+          },
+          {
+            "input": "2026-10-05 → 2026-10-09; Festività = 0",
+            "output": "5"
+          },
+          {
+            "input": "2026-10-10 → 2026-10-11",
+            "output": "0"
+          }
+        ],
+        "age": [
+          {
+            "input": "2000-02-29 → 2025-02-28",
+            "output": "25 × Anni"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-14",
+            "output": "25 × Anni"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-15",
+            "output": "26 × Anni"
+          }
+        ],
+        "countdown": [
+          {
+            "input": "2026-10-09T12:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "12 × ore"
+          },
+          {
+            "input": "2026-10-10T00:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "0"
+          }
+        ]
+      },
+      "firstRows": {
+        "length-conversion-table": {
+          "meter": "1",
+          "centimeter": "100,00",
+          "foot": "3,28",
+          "inch": "39,37",
+          "yard": "1,09"
+        },
+        "area-conversion-table": {
+          "square-meter": "1",
+          "square-foot": "10,76",
+          "square-yard": "1,20",
+          "acre": "0,0002",
+          "hectare": "0,0001"
+        },
+        "volume-conversion-table": {
+          "liter": "1",
+          "milliliter": "1000",
+          "us-gallon": "0,2642",
+          "imperial-gallon": "0,2200",
+          "us-cup": "4,23"
+        },
+        "pressure-conversion-table": {
+          "bar": "1",
+          "psi": "14,50",
+          "kilopascal": "100,00",
+          "atmosphere": "0,9869"
+        }
+      }
+    },
+    {
+      "locale": "nl-NL",
+      "defaultCountry": "nl",
+      "missing": [],
+      "longContextAbsentFromClient": true,
+      "examples": {
+        "percentage": [
+          {
+            "input": "% van een waarde: 15% × 200",
+            "output": "30"
+          },
+          {
+            "input": "A is hoeveel % van B: 30 / 200 × 100",
+            "output": "15,00%"
+          },
+          {
+            "input": "% verandering: (125 − 100) / 100 × 100",
+            "output": "25,00%"
+          },
+          {
+            "input": "Verhoging / verlaging: 200 × (1 − 10 / 100)",
+            "output": "180"
+          },
+          {
+            "input": "0 → 100; 30 / 0",
+            "output": "Een percentage kan niet worden berekend met een noemer van nul."
+          },
+          {
+            "input": "100 × 1.10 × 0.90",
+            "output": "99,0000"
+          }
+        ],
+        "number-to-words": [
+          {
+            "input": "12,05",
+            "output": "twelve point zero five"
+          },
+          {
+            "input": "101",
+            "output": "one hundred and one"
+          }
+        ],
+        "words-to-number": [
+          {
+            "input": "one hundred and one",
+            "output": "101"
+          },
+          {
+            "input": "minus twelve point zero five",
+            "output": "-12,0500"
+          },
+          {
+            "input": "one two",
+            "output": "Dat is geen getal dat deze tool kan lezen. Probeer alleen woorden, zoals \"forty-two\"."
+          },
+          {
+            "input": "seventy dogs",
+            "output": "Dat is geen getal dat deze tool kan lezen. Probeer alleen woorden, zoals \"forty-two\"."
+          },
+          {
+            "input": "douze",
+            "output": "Dat is geen getal dat deze tool kan lezen. Probeer alleen woorden, zoals \"forty-two\"."
+          },
+          {
+            "input": "one point zero zero five",
+            "output": "Dat is geen getal dat deze tool kan lezen. Probeer alleen woorden, zoals \"forty-two\"."
+          }
+        ],
+        "password-generator": [
+          {
+            "input": "Lengte = 16; Cijfers",
+            "output": "Maak een nieuw privéwachtwoord in het hulpmiddel. Gebruik nooit een gepubliceerd voorbeeld als wachtwoord."
+          }
+        ],
+        "working-days": [
+          {
+            "input": "2026-10-05 → 2026-10-09; Feestdagen = 1",
+            "output": "4"
+          },
+          {
+            "input": "2026-10-05 → 2026-10-09; Feestdagen = 0",
+            "output": "5"
+          },
+          {
+            "input": "2026-10-10 → 2026-10-11",
+            "output": "0"
+          }
+        ],
+        "age": [
+          {
+            "input": "2000-02-29 → 2025-02-28",
+            "output": "25 × Jr"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-14",
+            "output": "25 × Jr"
+          },
+          {
+            "input": "2000-06-15 → 2026-06-15",
+            "output": "26 × Jr"
+          }
+        ],
+        "countdown": [
+          {
+            "input": "2026-10-09T12:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "12 × uren"
+          },
+          {
+            "input": "2026-10-10T00:00:00Z → 2026-10-10T00:00:00Z",
+            "output": "0"
+          }
+        ]
+      },
+      "firstRows": {
+        "length-conversion-table": {
+          "meter": "1",
+          "centimeter": "100,00",
+          "foot": "3,28",
+          "inch": "39,37",
+          "yard": "1,09"
+        },
+        "area-conversion-table": {
+          "square-meter": "1",
+          "square-foot": "10,76",
+          "square-yard": "1,20",
+          "acre": "0,0002",
+          "hectare": "0,0001"
+        },
+        "volume-conversion-table": {
+          "liter": "1",
+          "milliliter": "1.000",
+          "us-gallon": "0,2642",
+          "imperial-gallon": "0,2200",
+          "us-cup": "4,23"
+        },
+        "pressure-conversion-table": {
+          "bar": "1",
+          "psi": "14,50",
+          "kilopascal": "100,00",
+          "atmosphere": "0,9869"
+        }
+      }
+    }
+  ],
+  "distinctPasswordCharacters": 70
+}

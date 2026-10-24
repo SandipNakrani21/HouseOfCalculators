@@ -1,0 +1,371 @@
+{
+  "scope": "Source/function checks only; no browser requests or ad impressions generated",
+  "publicLocales": [
+    "en-US",
+    "en-GB",
+    "de-DE",
+    "fr-FR",
+    "es-ES",
+    "pt-BR",
+    "ru-RU",
+    "tr-TR",
+    "ja-JP",
+    "zh-CN",
+    "it-IT",
+    "nl-NL"
+  ],
+  "inventory": {
+    "paths": 257,
+    "locales": 12,
+    "eligible": 3084,
+    "allowed": 3084,
+    "excluded": 209,
+    "unexpectedAllowed": []
+  },
+  "defaultConsent": {
+    "types": [
+      "consent",
+      "default"
+    ],
+    "purposes": {
+      "ad_storage": "denied",
+      "ad_user_data": "denied",
+      "ad_personalization": "denied",
+      "analytics_storage": "denied",
+      "wait_for_update": 500
+    },
+    "adRequestsPaused": true
+  },
+  "concrete": [
+    {
+      "locale": "en-US",
+      "contextCountry": "us",
+      "inputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.011,
+        "mix": "1-2-4"
+      },
+      "bags": 200,
+      "positiveRemainderBags": 184,
+      "positiveRemainderInputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.012,
+        "mix": "1-2-4"
+      }
+    },
+    {
+      "locale": "en-GB",
+      "contextCountry": "gb",
+      "inputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.011,
+        "mix": "1-2-4"
+      },
+      "bags": 200,
+      "positiveRemainderBags": 184,
+      "positiveRemainderInputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.012,
+        "mix": "1-2-4"
+      }
+    },
+    {
+      "locale": "de-DE",
+      "contextCountry": "de",
+      "inputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.011,
+        "mix": "1-2-4"
+      },
+      "bags": 200,
+      "positiveRemainderBags": 184,
+      "positiveRemainderInputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.012,
+        "mix": "1-2-4"
+      }
+    },
+    {
+      "locale": "fr-FR",
+      "contextCountry": "fr",
+      "inputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.011,
+        "mix": "1-2-4"
+      },
+      "bags": 200,
+      "positiveRemainderBags": 184,
+      "positiveRemainderInputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.012,
+        "mix": "1-2-4"
+      }
+    },
+    {
+      "locale": "es-ES",
+      "contextCountry": "es",
+      "inputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.011,
+        "mix": "1-2-4"
+      },
+      "bags": 200,
+      "positiveRemainderBags": 184,
+      "positiveRemainderInputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.012,
+        "mix": "1-2-4"
+      }
+    },
+    {
+      "locale": "pt-BR",
+      "contextCountry": "br",
+      "inputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.011,
+        "mix": "1-2-4"
+      },
+      "bags": 200,
+      "positiveRemainderBags": 184,
+      "positiveRemainderInputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.012,
+        "mix": "1-2-4"
+      }
+    },
+    {
+      "locale": "ru-RU",
+      "contextCountry": "ru",
+      "inputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.011,
+        "mix": "1-2-4"
+      },
+      "bags": 200,
+      "positiveRemainderBags": 184,
+      "positiveRemainderInputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.012,
+        "mix": "1-2-4"
+      }
+    },
+    {
+      "locale": "tr-TR",
+      "contextCountry": "tr",
+      "inputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.011,
+        "mix": "1-2-4"
+      },
+      "bags": 200,
+      "positiveRemainderBags": 184,
+      "positiveRemainderInputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.012,
+        "mix": "1-2-4"
+      }
+    },
+    {
+      "locale": "ja-JP",
+      "contextCountry": "jp",
+      "inputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.011,
+        "mix": "1-2-4"
+      },
+      "bags": 200,
+      "positiveRemainderBags": 184,
+      "positiveRemainderInputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.012,
+        "mix": "1-2-4"
+      }
+    },
+    {
+      "locale": "zh-CN",
+      "contextCountry": "cn",
+      "inputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.011,
+        "mix": "1-2-4"
+      },
+      "bags": 200,
+      "positiveRemainderBags": 184,
+      "positiveRemainderInputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.012,
+        "mix": "1-2-4"
+      }
+    },
+    {
+      "locale": "it-IT",
+      "contextCountry": "it",
+      "inputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.011,
+        "mix": "1-2-4"
+      },
+      "bags": 200,
+      "positiveRemainderBags": 184,
+      "positiveRemainderInputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.012,
+        "mix": "1-2-4"
+      }
+    },
+    {
+      "locale": "nl-NL",
+      "contextCountry": "nl",
+      "inputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.011,
+        "mix": "1-2-4"
+      },
+      "bags": 200,
+      "positiveRemainderBags": 184,
+      "positiveRemainderInputs": {
+        "length": 5,
+        "width": 4,
+        "thickness": 0.1,
+        "waste": 10,
+        "bagYield": 0.012,
+        "mix": "1-2-4"
+      }
+    }
+  ],
+  "aboutCopy": [
+    {
+      "locale": "en-US",
+      "text": "Some unit relationships are exact by definition, such as 1 inch = 2.54 centimeters. Other conversions use rounded factors or floating-point arithmetic, and displayed results are rounded. Reference tables reuse the related tool’s data and formulas, which helps consistency but is not independent proof of accuracy. Check the stated units, assumptions and precision before relying on a result.",
+      "checkCopyAligned": true
+    },
+    {
+      "locale": "en-GB",
+      "text": "Some unit relationships are exact by definition, such as 1 inch = 2.54 centimetres. Other conversions use rounded factors or floating-point arithmetic, and displayed results are rounded. Reference tables reuse the related tool’s data and formulas, which helps consistency but is not independent proof of accuracy. Check the stated units, assumptions and precision before relying on a result.",
+      "checkCopyAligned": true
+    },
+    {
+      "locale": "de-DE",
+      "text": "Einige Einheitenbeziehungen sind definitionsgemäß exakt, etwa 1 Zoll = 2,54 Zentimeter. Andere Umrechnungen verwenden gerundete Faktoren oder Gleitkommarechnung; auch Anzeigen werden gerundet. Tabellen verwenden Daten und Formeln des zugehörigen Tools. Das fördert Konsistenz, ist aber kein unabhängiger Genauigkeitsnachweis. Einheiten, Annahmen und Präzision vor Nutzung prüfen.",
+      "checkCopyAligned": true
+    },
+    {
+      "locale": "fr-FR",
+      "text": "Certaines relations sont exactes par définition, comme 1 pouce = 2,54 centimètres. D’autres conversions utilisent des facteurs arrondis ou le calcul flottant ; les résultats affichés sont arrondis. Les tableaux partagent données et formules avec l’outil associé, ce qui favorise la cohérence sans prouver indépendamment la précision. Vérifiez unités, hypothèses et précision avant utilisation.",
+      "checkCopyAligned": true
+    },
+    {
+      "locale": "es-ES",
+      "text": "Algunas relaciones son exactas por definición, como 1 pulgada = 2,54 centímetros. Otras conversiones usan factores redondeados o aritmética de coma flotante; los resultados mostrados también se redondean. Las tablas reutilizan datos y fórmulas de la herramienta, lo que ayuda a la coherencia pero no demuestra independientemente la exactitud. Revise unidades, supuestos y precisión antes de usar un resultado.",
+      "checkCopyAligned": true
+    },
+    {
+      "locale": "pt-BR",
+      "text": "Algumas relações são exatas por definição, como 1 polegada = 2,54 centímetros. Outras conversões usam fatores arredondados ou aritmética de ponto flutuante; os resultados exibidos também são arredondados. As tabelas reutilizam dados e fórmulas da ferramenta, favorecendo consistência sem comprovar a precisão de forma independente. Confira unidades, hipóteses e precisão antes de usar o resultado.",
+      "checkCopyAligned": true
+    },
+    {
+      "locale": "ru-RU",
+      "text": "Некоторые соотношения точны по определению, например 1 дюйм = 2,54 сантиметра. Другие преобразования используют округлённые коэффициенты или арифметику с плавающей точкой; показанные результаты тоже округлены. Таблицы используют данные и формулы соответствующего инструмента, что помогает согласованности, но не является независимым доказательством точности. Проверяйте единицы, допущения и точность перед использованием.",
+      "checkCopyAligned": true
+    },
+    {
+      "locale": "tr-TR",
+      "text": "Bazı birim ilişkileri tanım gereği kesindir: 1 inç = 2,54 santimetre gibi. Diğer dönüşümlerde yuvarlanmış katsayılar veya kayan nokta hesabı kullanılır; gösterilen sonuçlar da yuvarlanır. Tablolar ilgili aracın veri ve formüllerini paylaşır; bu tutarlılığı destekler ancak bağımsız doğruluk kanıtı değildir. Sonucu kullanmadan birimleri, varsayımları ve hassasiyeti kontrol edin.",
+      "checkCopyAligned": true
+    },
+    {
+      "locale": "ja-JP",
+      "text": "1インチ＝2.54センチメートルなど、定義上厳密な単位関係もあります。一方、丸めた係数や浮動小数点演算を使う換算もあり、表示結果も丸められます。表は関連ツールのデータと式を共有するため整合性に役立ちますが、独立した精度の証明ではありません。利用前に単位、仮定、精度を確認してください。",
+      "checkCopyAligned": true
+    },
+    {
+      "locale": "zh-CN",
+      "text": "部分单位关系按定义精确，例如1英寸＝2.54厘米。其他转换使用舍入系数或浮点运算，显示结果也会舍入。参考表复用相关工具的数据和公式，有助于一致性，但并非独立的准确性证明。使用结果前请核对单位、假设和精度。",
+      "checkCopyAligned": true
+    },
+    {
+      "locale": "it-IT",
+      "text": "Alcune relazioni sono esatte per definizione, come 1 pollice = 2,54 centimetri. Altre conversioni usano fattori arrotondati o calcoli in virgola mobile; anche i risultati visualizzati sono arrotondati. Le tabelle riusano dati e formule dello strumento, favorendo coerenza ma senza provare indipendentemente l’accuratezza. Verifica unità, ipotesi e precisione prima dell’uso.",
+      "checkCopyAligned": true
+    },
+    {
+      "locale": "nl-NL",
+      "text": "Sommige relaties zijn per definitie exact, zoals 1 inch = 2,54 centimeter. Andere omzettingen gebruiken afgeronde factoren of drijvendekommagetallen; ook getoonde resultaten zijn afgerond. Tabellen delen gegevens en formules met het bijbehorende hulpmiddel. Dat helpt consistentie, maar bewijst nauwkeurigheid niet onafhankelijk. Controleer eenheden, aannames en precisie vóór gebruik.",
+      "checkCopyAligned": true
+    }
+  ],
+  "generatedInfrastructure": {
+    "adsTxt": "google.com, pub-6814796122648657, DIRECT, f08c47fec0942fa0",
+    "robotsAllowsPublic": true
+  }
+}

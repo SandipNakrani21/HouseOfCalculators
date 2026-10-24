@@ -59,13 +59,14 @@ export const OPERATOR: {
   jurisdiction: string | null;
 } = {
   entity: "Sandip Patel",
-  email: "sandipdpatel2189@gmail.com",
+  email: "support@thecalculatorshouse.com",
   jurisdiction: "Gujarat, India",
 };
 
 export function missingOperatorDetails(): (keyof typeof OPERATOR)[] {
   return (Object.keys(OPERATOR) as (keyof typeof OPERATOR)[]).filter(
-    (field) => !OPERATOR[field],
+    // A public email is optional and may intentionally be withheld.
+    (field) => field !== "email" && !OPERATOR[field],
   );
 }
 
@@ -81,7 +82,7 @@ export function legalParams(): Record<string, string> {
     consentCookie: CONSENT_COOKIE,
     analyticsCookie: GA_SESSION_COOKIE,
     entity: OPERATOR.entity ?? "[ENTITY NAME]",
-    email: OPERATOR.email ?? "[CONTACT EMAIL]",
+    email: OPERATOR.email ?? "",
     jurisdiction: OPERATOR.jurisdiction ?? "[JURISDICTION]",
   };
 }
@@ -105,7 +106,7 @@ const privacy: LegalPage = {
   titleKey: "legal.privacy.title",
   descKey: "legal.privacy.desc",
   introKey: "legal.privacy.intro",
-  updated: "2026-10-19",
+  updated: "2026-10-24",
   sections: [
     {
       titleKey: "legal.privacy.summary.title",
@@ -177,7 +178,7 @@ const privacy: LegalPage = {
     },
     {
       titleKey: "legal.privacy.contact.title",
-      body: ["legal.privacy.contact.1"],
+      body: ["legal.privacy.contact.1", "legal.contact.emailHandling"],
     },
   ],
 };
@@ -295,11 +296,11 @@ const contact: LegalPage = {
   titleKey: "legal.contact.title",
   descKey: "legal.contact.desc",
   introKey: "legal.contact.intro",
-  updated: "2026-10-10",
+  updated: "2026-10-24",
   sections: [
     {
       titleKey: "legal.contact.reach.title",
-      body: ["legal.contact.reach.1", "legal.contact.reach.2"],
+      body: ["legal.contact.reach.1", "legal.contact.reach.2", "legal.contact.emailHandling"],
     },
     {
       titleKey: "legal.contact.errors.title",
@@ -327,7 +328,7 @@ const about: LegalPage = {
   titleKey: "legal.about.title",
   descKey: "legal.about.desc",
   introKey: "legal.about.intro",
-  updated: "2026-10-19",
+  updated: "2026-10-24",
   sections: [
     {
       titleKey: "legal.about.what.title",

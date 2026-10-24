@@ -1,3 +1,5 @@
+import { ToolContext, hasToolContext } from "@/components/tools/ToolContext";
+import { PlanningExample } from "@/components/tools/PlanningExample";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -90,7 +92,9 @@ export default async function ToolPage({
           <h3 className="font-semibold">{t("quality.example")}</h3>
           <p className="text-sm text-muted">{t(["random-number", "dice-roller", "coin-flip", "random-picker", "password-generator"].includes(slug) ? "quality.randomExamples" : "quality.toolExamples")}</p>
           <div className="overflow-x-auto"><table className="w-full text-sm"><caption className="sr-only">{t("quality.example")}</caption><thead><tr><th scope="col" className="p-3 text-start">{t("quality.inputs")}</th><th scope="col" className="p-3 text-start">{t("quality.outputs")}</th></tr></thead><tbody>{examples.map((example, index) => <tr key={index} className="border-t border-border"><th scope="row" className="tabular p-3 text-start font-normal">{example.input}</th><td className="tabular p-3">{example.output}</td></tr>)}</tbody></table></div>
-          <h3 className="font-semibold">{t("quality.limits")}</h3><p className="text-sm leading-relaxed text-muted">{t(`quality.toolLimit.${tool.category}`)}</p>
+          <PlanningExample slug={slug} t={t} fmt={createFormatter(locale.defaultCountry, locale.language, t)} />
+          <h3 className="font-semibold">{t("quality.limits")}</h3>
+          {hasToolContext(slug) ? <ToolContext slug={slug} t={t} /> : <p className="text-sm leading-relaxed text-muted">{t(`quality.toolLimit.${tool.category}`)}</p>}
           {sources.length ? <div><h3 className="font-semibold">{t("calc.sources")}</h3><ul className="mt-2 space-y-2 text-sm">{sources.map(source => <li key={source.href}><a className="text-primary underline" href={source.href} target="_blank" rel="noreferrer">{source.name}</a></li>)}</ul></div> : null}
         </div>,
       }}

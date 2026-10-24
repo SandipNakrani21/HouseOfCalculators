@@ -1,3 +1,5 @@
+import { PrefixContext, PREFIX_SOURCES } from "@/components/charts/PrefixContext";
+import { ConversionContext, CONVERSION_CONTEXT_SLUGS, CONVERSION_REFERENCE } from "@/components/charts/ConversionContext";
 import type { Metadata } from "next";
 import { DetailPage } from "@/components/layout/DetailPage";
 import { itemVisual } from "@/lib/visuals";
@@ -75,6 +77,7 @@ export default async function ChartPage({
     <DetailPage
       locale={code}
       schema="page"
+      sources={slug === "metric-prefixes" ? PREFIX_SOURCES : CONVERSION_CONTEXT_SLUGS.includes(slug) ? [CONVERSION_REFERENCE] : undefined}
       breadcrumbLabel={t("a11y.breadcrumb")}
       trail={[
         { name: t("nav.home"), path: localeHome(code) },
@@ -97,6 +100,8 @@ export default async function ChartPage({
         body: (
           <>
             <p className="text-sm leading-relaxed text-muted">{t(chart.explainerKey)}</p>
+            <PrefixContext slug={slug} t={t} />
+            <ConversionContext slug={slug} table={table} t={t} />
             {/* A table always points at the tool it belongs with, and vice versa. */}
             <h3 data-print-exclude className="mb-3 mt-5 text-sm font-semibold text-heading">{t("chart.useInstead")}</h3>
             <ul data-print-exclude className="flex flex-wrap gap-2.5">

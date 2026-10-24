@@ -6,9 +6,8 @@ import { gpa, scoreNeeded, weightedGrade } from "@/lib/business";
  * Education calculators.
  *
  * Grading scales genuinely differ by country - a 4.0 GPA, a UK classification
- * and a German 1.0 are not the same scale - so rather than pretend one system
- * is universal, the GPA calculator asks which scale you are on and the grade
- * calculators work in percentages, which travel.
+ * and a German 1.0 are not the same scale. GPA uses the fixed mapping below;
+ * it does not provide a country scale selector.
  */
 
 const EVERYWHERE = COUNTRY_CODES;
@@ -17,7 +16,7 @@ const EVERYWHERE = COUNTRY_CODES;
 const COURSE_SLOTS = [1, 2, 3, 4, 5, 6];
 
 /** Points per letter on the common 4.0 scale. */
-const FOUR_POINT: { value: string; points: number; labelKey: string }[] = [
+export const FOUR_POINT: { value: string; points: number; labelKey: string }[] = [
   { value: "a-plus", points: 4.0, labelKey: "grade.aPlus" },
   { value: "a", points: 4.0, labelKey: "grade.a" },
   { value: "a-minus", points: 3.7, labelKey: "grade.aMinus" },

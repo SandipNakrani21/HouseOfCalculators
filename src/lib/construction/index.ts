@@ -50,8 +50,7 @@ export function concrete({
   const volumeWithWaste = withWaste(volume, wastePercent);
 
   const parts = mix[0] + mix[1] + mix[2];
-  // Dry materials occupy roughly 1.54 times the wet volume once voids are
-  // filled; it is the standard site allowance rather than an exact constant.
+  // Fixed illustrative dry-volume assumption, not a validated mix design.
   const dry = volumeWithWaste * 1.54;
 
   return {

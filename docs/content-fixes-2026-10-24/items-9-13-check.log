@@ -1,0 +1,49 @@
+
+> calculator-hub@0.1.0 check
+> node scripts/calculator-metadata.cjs --check && node scripts/client-dictionaries.cjs --check && node scripts/ad-inventory.cjs --check && npm run lint && npx tsc --noEmit && npm run i18n
+
+Calculator metadata: 60 entries
+Client dictionaries: 16 separate locale modules
+Ad inventory: 257 known content paths; 12 locales.
+
+> calculator-hub@0.1.0 lint
+> eslint
+
+
+D:\Calculator\docs\adsense-recheck-2026-10-19\postdeploy-qa\internal-rational.cjs
+  1:1  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-require-imports')
+
+D:\Calculator\docs\adsense-recheck-2026-10-19\postdeploy-qa\verify-all-languages-prerender.cjs
+  14:22  warning  'currencyDecimals' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  24:8   warning  'dict' is assigned a value but never used              @typescript-eslint/no-unused-vars
+
+✖ 3 problems (0 errors, 3 warnings)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+
+
+> calculator-hub@0.1.0 i18n
+> node scripts/i18n-coverage.mjs
+
+English defines 2580 keys.
+Source references 1231 static keys.
+Every statically referenced key is defined in English.
+
+Coverage against English:
+  ar  ███·················  14%  367/2580
+  de  ████████████████████ 100%  2580/2580
+  es  ████████████████████ 100%  2580/2580
+  fr  ████████████████████ 100%  2580/2580
+  gu  ███·················  14%  368/2580
+  hi  ███·················  14%  370/2580
+  it  ████████████████████ 100%  2580/2580
+  ja  ████████████████████ 100%  2580/2580
+  mr  ███·················  14%  368/2580
+  nl  ████████████████████ 100%  2580/2580
+  pt  ████████████████████ 100%  2580/2580
+  ru  ████████████████████ 100%  2580/2580
+  tr  ████████████████████ 100%  2580/2580
+  zh  ████████████████████ 100%  2580/2580
+
+Regional overrides:
+  en-GB  4 keys reworded
+  en-US  151 keys reworded

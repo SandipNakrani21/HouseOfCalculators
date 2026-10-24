@@ -36,6 +36,7 @@ export function reviewScopeKey(slug: string, country: string): string {
 
 /** Contextual references, never an individual medical assessment. */
 export function healthReferences(slug: string): { scopeKey: string; sources: string[] } | undefined {
+  if (slug === "body-fat") return { scopeKey: "calc.bodyFat.explain.source", sources: ["https://escholarship.org/uc/item/9451r851", "https://www.nationalacademies.org/read/6104/chapter/12", "https://dacowits.defense.gov/Portals/48/Documents/Reports/2015/Documents/USMC%20W3.pdf"] };
   if (slug === "bmi") return { scopeKey: "review.health.bmi", sources: ["https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"] };
   if (["bmr", "tdee"].includes(slug)) return { scopeKey: "review.health.energy", sources: ["https://pubmed.ncbi.nlm.nih.gov/2305711/", "https://www.niddk.nih.gov/health-information/weight-management/body-weight-planner"] };
   if (slug === "water-intake") return { scopeKey: "review.health.water", sources: ["https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2010.1459"] };

@@ -224,7 +224,7 @@ export function WordsToNumberTool() {
           onChange={(event) => setText(event.target.value)}
           className={inputClass}
         />
-        <p id="words-hint" className="text-xs text-muted">{t("tool.hint.numberWords")}</p>
+        <p id="words-hint" className="text-xs text-muted">{t("tool.note.englishOnly")} {t("tool.hint.numberWords")}</p>
       </div>
 
       <ToolResult

@@ -1,3 +1,6 @@
+import { Interpretation, hasInterpretation } from "@/components/calculator/Interpretation";
+import { BodyFatMethod } from "@/components/calculator/BodyFatMethod";
+import { ScopeList } from "@/components/calculator/ScopeList";
 import { CalculatorCountryNote } from "@/components/calculator/CalculatorRunner";
 import { CalculatorEntry } from "@/components/calculator/CalculatorEntry";
 import { DetailPage } from "@/components/layout/DetailPage";
@@ -21,6 +24,7 @@ import { healthReferences, reviewScopeKey, ruleReview } from "@/config/calculato
 import { WorkedExample } from "@/components/calculator/WorkedExample";
 import { canonicalCountryToolSlug, isCalculatorPublished } from "@/config/calculators/publication";
 import { LoanComparison } from "@/components/calculator/LoanComparison";
+import { RetirementComparison } from "@/components/calculator/RetirementComparison";
 import { reviewedCalculator } from "@/config/calculators/reviewed";
 
 /** schema.org application categories for the calculator subjects. */
@@ -62,7 +66,7 @@ export function CalculatorPageBody({
   const replacement = reviewedCalculator(calculator.slug, country);
   // The reviewed scope already appears beside the inputs/results and in the
   // source panel. Use this section for worked arithmetic, not another copy.
-  const explanationKeys = replacement ? [] : calculator.explainerKeys;
+  const explanationKeys = replacement || hasInterpretation(calculator.slug) ? [] : calculator.explainerKeys;
   const explanationFormula = replacement ? undefined : calculator.formula;
   const health = healthReferences(calculator.slug);
 
@@ -108,14 +112,14 @@ export function CalculatorPageBody({
             // follows a country's rules for a tax year would be simply untrue.
             <>
               <CalculatorCountryNote relevance={relevance} lockedCountry={lockCountry ? country : undefined} supportedCountries={calculator.countries} year={review?.kind !== "formula" ? review?.period : undefined} />
-              {review && review.kind !== "formula" ? <p className="mt-3 max-w-3xl text-sm leading-relaxed text-on-navy-muted hyphens-auto [overflow-wrap:anywhere]">{t(reviewScopeKey(calculator.slug, country))}</p> : null}
+              {review && review.kind !== "formula" ? <div className="max-w-3xl text-on-navy-muted"><ScopeList text={t(reviewScopeKey(calculator.slug, country))} language={language} /></div> : null}
             </>
           ),
       }}
       adPrefix="calculator"
       ads={relevance !== "rules" || Boolean(review)}
       howItWorks={
-        replacement || explanationKeys?.length || explanationFormula
+        replacement || hasInterpretation(calculator.slug) || explanationKeys?.length || explanationFormula
           ? {
               title: t("calc.howItWorks"),
               body: (
@@ -144,13 +148,16 @@ export function CalculatorPageBody({
                       </dl>
                     </div>
                   ) : null}
+                  <Interpretation slug={calculator.slug} ctx={ctx} />
+                  <BodyFatMethod slug={calculator.slug} t={t} />
                   <WorkedExample calculator={calculator} ctx={ctx} omitNoteKey={replacement?.scopeKey ?? (review ? reviewScopeKey(calculator.slug, country) : undefined)} />
                   <LoanComparison calculator={calculator} ctx={ctx} />
+                  <RetirementComparison calculator={calculator} ctx={ctx} />
                   {relevance === "rules" && !review ? <p className="rounded-md border border-border p-4 text-sm text-muted">{t("quality.unreviewed")}</p> : null}
                   {review ? <aside className="rounded-md border border-border p-4">
                     <h3 className="font-semibold">{t("calc.sources")}</h3>
                     {review.kind !== "formula" ? <p className="mt-1 text-sm text-muted">{t("calc.ruleReview", { period: review.period, revision: review.revision, date: review.reviewed })}</p> : null}
-                    <p className="mt-3 text-sm leading-relaxed text-muted hyphens-auto [overflow-wrap:anywhere]">{t(reviewScopeKey(calculator.slug, country))}</p>
+                    <div className="text-muted"><h4 className="mt-3 font-semibold">{t("quality.limits")}</h4><ScopeList text={t(reviewScopeKey(calculator.slug, country))} language={language} /></div>
                     <ul className="mt-3 space-y-2 text-sm">{review.sources.map(source => <li key={source}><a className="text-primary underline underline-offset-4" href={source} target="_blank" rel="noreferrer">{new URL(source).hostname}</a></li>)}</ul>
                   </aside> : null}
                   {health ? <aside className="rounded-md border border-border p-4">

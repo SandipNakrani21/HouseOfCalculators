@@ -1,0 +1,1106 @@
+{
+  "publicLocales": [
+    "en-US",
+    "en-GB",
+    "de-DE",
+    "fr-FR",
+    "es-ES",
+    "pt-BR",
+    "ru-RU",
+    "tr-TR",
+    "ja-JP",
+    "zh-CN",
+    "it-IT",
+    "nl-NL"
+  ],
+  "missing": [],
+  "numeric": {
+    "savings": [
+      {
+        "annualRate": 0,
+        "months": 25,
+        "reachable": true,
+        "totalDeposited": 5000,
+        "interest": 0
+      },
+      {
+        "annualRate": 6,
+        "months": 24,
+        "reachable": true,
+        "totalDeposited": 4800,
+        "interest": 413.55082442105413
+      }
+    ],
+    "debt": [
+      {
+        "payment": 100,
+        "months": 13,
+        "totalInterest": 84.77913218705314,
+        "totalPaid": 1284.7791321870534,
+        "first": {
+          "month": 1,
+          "payment": 100,
+          "interest": 12,
+          "principal": 88,
+          "balance": 1112
+        },
+        "second": {
+          "month": 2,
+          "payment": 100,
+          "interest": 11.120000000000001,
+          "principal": 88.88,
+          "balance": 1023.12
+        },
+        "last": {
+          "month": 13,
+          "payment": 84.7791321870533,
+          "interest": 0.8393973483866664,
+          "principal": 83.93973483866664,
+          "balance": 0
+        }
+      },
+      {
+        "payment": 200,
+        "months": 7,
+        "totalInterest": 43.855380388212005,
+        "totalPaid": 1243.855380388212,
+        "first": {
+          "month": 1,
+          "payment": 200,
+          "interest": 12,
+          "principal": 188,
+          "balance": 1012
+        },
+        "second": {
+          "month": 2,
+          "payment": 200,
+          "interest": 10.120000000000001,
+          "principal": 189.88,
+          "balance": 822.12
+        },
+        "last": {
+          "month": 7,
+          "payment": 43.85538038821206,
+          "interest": 0.4342116870120006,
+          "principal": 43.42116870120006,
+          "balance": 0
+        }
+      }
+    ],
+    "compound": [
+      1790.8476965428547,
+      3207.135472212848
+    ],
+    "realReturn": 2.9126213592232997
+  },
+  "results": [
+    {
+      "locale": "en-US",
+      "country": "us",
+      "examples": {
+        "savings": [
+          {
+            "input": "Target amount = $6,000.00; Current savings = $1,000.00; Monthly deposit = $200.00; Interest rate (p.a.) = 0.00%",
+            "output": "25 × Mos; Total deposited = $5,000.00; Interest earned = $0.00; Balance = $6,000.00"
+          },
+          {
+            "input": "Target amount = $6,000.00; Current savings = $1,000.00; Monthly deposit = $200.00; Interest rate (p.a.) = 6.00%",
+            "output": "24 × Mos; Total deposited = $4,800.00; Interest earned = $413.55; Balance = $6,213.55"
+          }
+        ],
+        "debt": [
+          {
+            "input": "Balance owed = $1,200.00; Monthly payment = $100.00; Interest rate (p.a.) = 0.00%",
+            "output": "12 × Mos; Total interest = $0.00; Total paid = $1,200.00"
+          },
+          {
+            "input": "Balance owed = $1,200.00; Monthly payment = $100.00; Interest rate (p.a.) = 12.00%",
+            "output": "13 × Mos; Total interest = $84.78; Total paid = $1,284.78"
+          },
+          {
+            "input": "Balance owed = $1,200.00; Monthly payment = $200.00; Interest rate (p.a.) = 12.00%",
+            "output": "7 × Mos; Total interest = $43.86; Total paid = $1,243.86"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "slug": "income-tax",
+          "country": "ca",
+          "text": "2026 scope: federal income-tax bands and basic personal credit, plus annual employee CPP/CPP2 and EI outside Quebec. Provincial tax, other federal credits and payroll-period withholding are excluded.",
+          "sources": [
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032oc-jan/t4032oc-january-general-information.html",
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+            "https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2026-quarterly-july-september.html",
+            "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html"
+          ]
+        },
+        {
+          "slug": "salary",
+          "country": "fr",
+          "text": "France: 2025 wages assessed in 2026. Single resident, one share, ordinary non-executive private employee outside Alsace-Moselle, 12 regular payments, gross €22,000–250,000. Capped pension/Agirc-Arrco, CSG/CRDS and actual qualifying mandatory health premiums; employer pays at least half. 10% employment deduction, single décote, whole-euro tax. No other benefits/income, dependents, credits, exemptions or high-income levy. Contribution-only excludes tax; months are annual averages, not payslips. Health deduction/exemption limits apply; excessive plan contributions are rejected.",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/5956-PGP.html",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1989",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1419",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F34328",
+            "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F2302",
+            "https://reglementation.agirc-arrco.fr/home/liste-fiche-reglementaires/listes-area/liste-de-fiches-reglementaires/taux-de-cotisations.html",
+            "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Chiffres-cles-DSS-2024-ed25.pdf"
+          ]
+        },
+        {
+          "slug": "payroll",
+          "country": "de",
+          "text": "Germany 2026: ordinary private employer liable to insolvency levy, employee age 23–59 outside Saxony, twelve equal payments above €2,000. Capped employer pension/unemployment/health/care shares, monthly component rounding and 0.15% insolvency levy. Supply actual unchanged fund supplement, applicable U1/U2 rates and annual accident/other employer costs. U1 can be zero for an exempt employer. No mini/midijobs, bonuses, public-employer exemptions, special occupations or benefit calculations. Monthly cost is an annual average.",
+          "sources": [
+            "https://www.gesetze-im-internet.de/estg/__32a.html",
+            "https://www.gesetze-im-internet.de/estg/__10.html",
+            "https://www.gesetze-im-internet.de/estg/__10c.html",
+            "https://www.tk.de/resource/blob/2098446/7445181694077ffa3c734446798a01f1/beitraeger-der-tk-fk-version-2026-data.pdf",
+            "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/die-pflegeversicherung/finanzierung",
+            "https://finanzamt.brandenburg.de/fa/de/themen/familien-und-steuern/",
+            "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+            "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage",
+            "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"
+          ]
+        },
+        {
+          "slug": "stamp-duty",
+          "country": "gb",
+          "text": "England and Northern Ireland residential SDLT from 1 April 2025, not Wales or Scotland. Includes standard bands, declared first-time relief up to £500,000, 5 percentage points for additional property and an optional 2 points for non-UK residents. You must establish buyer/relief/residency eligibility. Excludes linked transactions, lease rent, corporate buyers and special reliefs. The table shows base bands; surcharges are separate.",
+          "sources": [
+            "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+            "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+            "https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents"
+          ]
+        }
+      ]
+    },
+    {
+      "locale": "en-GB",
+      "country": "gb",
+      "examples": {
+        "savings": [
+          {
+            "input": "Target amount = £6,000.00; Current savings = £1,000.00; Monthly deposit = £200.00; Interest rate (p.a.) = 0.00%",
+            "output": "25 × Mos; Total deposited = £5,000.00; Interest earned = £0.00; Balance = £6,000.00"
+          },
+          {
+            "input": "Target amount = £6,000.00; Current savings = £1,000.00; Monthly deposit = £200.00; Interest rate (p.a.) = 6.00%",
+            "output": "24 × Mos; Total deposited = £4,800.00; Interest earned = £413.55; Balance = £6,213.55"
+          }
+        ],
+        "debt": [
+          {
+            "input": "Balance owed = £1,200.00; Monthly payment = £100.00; Interest rate (p.a.) = 0.00%",
+            "output": "12 × Mos; Total interest = £0.00; Total paid = £1,200.00"
+          },
+          {
+            "input": "Balance owed = £1,200.00; Monthly payment = £100.00; Interest rate (p.a.) = 12.00%",
+            "output": "13 × Mos; Total interest = £84.78; Total paid = £1,284.78"
+          },
+          {
+            "input": "Balance owed = £1,200.00; Monthly payment = £200.00; Interest rate (p.a.) = 12.00%",
+            "output": "7 × Mos; Total interest = £43.86; Total paid = £1,243.86"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "slug": "income-tax",
+          "country": "ca",
+          "text": "2026 scope: federal income-tax bands and basic personal credit, plus annual employee CPP/CPP2 and EI outside Quebec. Provincial tax, other federal credits and payroll-period withholding are excluded.",
+          "sources": [
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032oc-jan/t4032oc-january-general-information.html",
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+            "https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2026-quarterly-july-september.html",
+            "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html"
+          ]
+        },
+        {
+          "slug": "salary",
+          "country": "fr",
+          "text": "France: 2025 wages assessed in 2026. Single resident, one share, ordinary non-executive private employee outside Alsace-Moselle, 12 regular payments, gross €22,000–250,000. Capped pension/Agirc-Arrco, CSG/CRDS and actual qualifying mandatory health premiums; employer pays at least half. 10% employment deduction, single décote, whole-euro tax. No other benefits/income, dependants, credits, exemptions or high-income levy. Contribution-only excludes tax; months are annual averages, not payslips. Health deduction/exemption limits apply; excessive plan contributions are rejected.",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/5956-PGP.html",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1989",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1419",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F34328",
+            "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F2302",
+            "https://reglementation.agirc-arrco.fr/home/liste-fiche-reglementaires/listes-area/liste-de-fiches-reglementaires/taux-de-cotisations.html",
+            "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Chiffres-cles-DSS-2024-ed25.pdf"
+          ]
+        },
+        {
+          "slug": "payroll",
+          "country": "de",
+          "text": "Germany 2026: ordinary private employer liable to insolvency levy, employee age 23–59 outside Saxony, twelve equal payments above €2,000. Capped employer pension/unemployment/health/care shares, monthly component rounding and 0.15% insolvency levy. Supply actual unchanged fund supplement, applicable U1/U2 rates and annual accident/other employer costs. U1 can be zero for an exempt employer. No mini/midijobs, bonuses, public-employer exemptions, special occupations or benefit calculations. Monthly cost is an annual average.",
+          "sources": [
+            "https://www.gesetze-im-internet.de/estg/__32a.html",
+            "https://www.gesetze-im-internet.de/estg/__10.html",
+            "https://www.gesetze-im-internet.de/estg/__10c.html",
+            "https://www.tk.de/resource/blob/2098446/7445181694077ffa3c734446798a01f1/beitraeger-der-tk-fk-version-2026-data.pdf",
+            "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/die-pflegeversicherung/finanzierung",
+            "https://finanzamt.brandenburg.de/fa/de/themen/familien-und-steuern/",
+            "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+            "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage",
+            "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"
+          ]
+        },
+        {
+          "slug": "stamp-duty",
+          "country": "gb",
+          "text": "England and Northern Ireland residential SDLT from 1 April 2025, not Wales or Scotland. Includes standard bands, declared first-time relief up to £500,000, 5 percentage points for additional property and an optional 2 points for non-UK residents. You must establish buyer/relief/residency eligibility. Excludes linked transactions, lease rent, corporate buyers and special reliefs. The table shows base bands; surcharges are separate.",
+          "sources": [
+            "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+            "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+            "https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents"
+          ]
+        }
+      ]
+    },
+    {
+      "locale": "de-DE",
+      "country": "de",
+      "examples": {
+        "savings": [
+          {
+            "input": "Zielbetrag = 6.000,00 €; Aktuelle Ersparnisse = 1.000,00 €; Monatliche Einzahlung = 200,00 €; Zinssatz (p. a.) = 0,00%",
+            "output": "25 × Monate; Insgesamt eingezahlt = 5.000,00 €; Erhaltene Zinsen = 0,00 €; Restschuld = 6.000,00 €"
+          },
+          {
+            "input": "Zielbetrag = 6.000,00 €; Aktuelle Ersparnisse = 1.000,00 €; Monatliche Einzahlung = 200,00 €; Zinssatz (p. a.) = 6,00%",
+            "output": "24 × Monate; Insgesamt eingezahlt = 4.800,00 €; Erhaltene Zinsen = 413,55 €; Restschuld = 6.213,55 €"
+          }
+        ],
+        "debt": [
+          {
+            "input": "Offener Betrag = 1.200,00 €; Monatliche Rate = 100,00 €; Zinssatz (p. a.) = 0,00%",
+            "output": "12 × Monate; Zinsen insgesamt = 0,00 €; Insgesamt gezahlt = 1.200,00 €"
+          },
+          {
+            "input": "Offener Betrag = 1.200,00 €; Monatliche Rate = 100,00 €; Zinssatz (p. a.) = 12,00%",
+            "output": "13 × Monate; Zinsen insgesamt = 84,78 €; Insgesamt gezahlt = 1.284,78 €"
+          },
+          {
+            "input": "Offener Betrag = 1.200,00 €; Monatliche Rate = 200,00 €; Zinssatz (p. a.) = 12,00%",
+            "output": "7 × Monate; Zinsen insgesamt = 43,86 €; Insgesamt gezahlt = 1.243,86 €"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "slug": "income-tax",
+          "country": "ca",
+          "text": "Umfang 2026: Bundeseinkommensteuertarife und persönlicher Grundabsetzbetrag sowie jährliche Arbeitnehmerbeiträge zu CPP/CPP2 und EI außerhalb Québecs. Provinzsteuern, weitere Steuergutschriften und periodische Lohnsteuerabzüge sind ausgeschlossen.",
+          "sources": [
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032oc-jan/t4032oc-january-general-information.html",
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+            "https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2026-quarterly-july-september.html",
+            "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html"
+          ]
+        },
+        {
+          "slug": "salary",
+          "country": "fr",
+          "text": "Frankreich: Lohn2025, Veranlagung2026. Alleinstehender Resident, ein Steueranteil, privater Nicht-Kaderangestellter außerhalb Elsass-Mosel,12 regelmäßige Zahlungen, Brutto22.000–250.000 €. Gedeckelte Rente/Agirc-Arrco,CSG/CRDS und tatsächliche zulässige Pflicht-Krankenprämien; Arbeitgeber zahlt mindestens die Hälfte. Werbungskosten10%, Single-Décote, Steuer auf Euro. Keine anderen Leistungen/Einkünfte, Kinder, Gutschriften, Befreiungen oder Hochverdienerabgaben. Beitragsrechner ohne Steuer; Monat = Jahresmittel, keine Abrechnung. Abzugs-/Befreiungsgrenzen der Krankenversicherung gelten; zu hohe Planbeiträge werden abgelehnt.",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/5956-PGP.html",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1989",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1419",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F34328",
+            "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F2302",
+            "https://reglementation.agirc-arrco.fr/home/liste-fiche-reglementaires/listes-area/liste-de-fiches-reglementaires/taux-de-cotisations.html",
+            "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Chiffres-cles-DSS-2024-ed25.pdf"
+          ]
+        },
+        {
+          "slug": "payroll",
+          "country": "de",
+          "text": "Deutschland 2026: gewöhnlicher insolvenzgeldumlagepflichtiger privater Arbeitgeber, Arbeitnehmer 23–59 außerhalb Sachsens, zwölf gleiche Zahlungen über 2.000 €. Begrenzte Arbeitgeberanteile für Rente/Arbeitslosigkeit/Gesundheit/Pflege, monatliche Komponentenrundung und 0,15% Insolvenzgeldumlage. Tatsächlichen unveränderten Zusatzbeitrag, geltende U1-/U2-Sätze und jährliche Unfall-/sonstige Arbeitgeberkosten eingeben. U1 darf bei befreiten Arbeitgebern null sein. Ohne Mini-/Midijobs, Boni, öffentliche Arbeitgeberbefreiung, Sonderberufe oder Leistungen. Monatskosten sind Jahresdurchschnitt.",
+          "sources": [
+            "https://www.gesetze-im-internet.de/estg/__32a.html",
+            "https://www.gesetze-im-internet.de/estg/__10.html",
+            "https://www.gesetze-im-internet.de/estg/__10c.html",
+            "https://www.tk.de/resource/blob/2098446/7445181694077ffa3c734446798a01f1/beitraeger-der-tk-fk-version-2026-data.pdf",
+            "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/die-pflegeversicherung/finanzierung",
+            "https://finanzamt.brandenburg.de/fa/de/themen/familien-und-steuern/",
+            "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+            "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage",
+            "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"
+          ]
+        },
+        {
+          "slug": "stamp-duty",
+          "country": "gb",
+          "text": "Wohnimmobilien-SDLT in England und Nordirland ab 1. April 2025, nicht Wales/Schottland. Enthält Standardstufen, angegebene Erstkäuferentlastung bis £500.000, 5 Prozentpunkte für zusätzliche Immobilien und optional 2 für Nichtansässige. Prüfen Sie Käufer-, Entlastungs- und Ansässigkeitskriterien. Verbundene Käufe, Mietbestandteile, Unternehmen und Sonderentlastungen fehlen. Tabelle: Grundstufen; Zuschläge separat.",
+          "sources": [
+            "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+            "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+            "https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents"
+          ]
+        }
+      ]
+    },
+    {
+      "locale": "fr-FR",
+      "country": "fr",
+      "examples": {
+        "savings": [
+          {
+            "input": "Montant visé = 6 000,00 €; Épargne actuelle = 1 000,00 €; Versement mensuel = 200,00 €; Taux d'intérêt (annuel) = 0,00%",
+            "output": "25 × mois; Total versé = 5 000,00 €; Intérêts perçus = 0,00 €; Capital restant = 6 000,00 €"
+          },
+          {
+            "input": "Montant visé = 6 000,00 €; Épargne actuelle = 1 000,00 €; Versement mensuel = 200,00 €; Taux d'intérêt (annuel) = 6,00%",
+            "output": "24 × mois; Total versé = 4 800,00 €; Intérêts perçus = 413,55 €; Capital restant = 6 213,55 €"
+          }
+        ],
+        "debt": [
+          {
+            "input": "Montant dû = 1 200,00 €; Mensualité = 100,00 €; Taux d'intérêt (annuel) = 0,00%",
+            "output": "12 × mois; Total des intérêts = 0,00 €; Total payé = 1 200,00 €"
+          },
+          {
+            "input": "Montant dû = 1 200,00 €; Mensualité = 100,00 €; Taux d'intérêt (annuel) = 12,00%",
+            "output": "13 × mois; Total des intérêts = 84,78 €; Total payé = 1 284,78 €"
+          },
+          {
+            "input": "Montant dû = 1 200,00 €; Mensualité = 200,00 €; Taux d'intérêt (annuel) = 12,00%",
+            "output": "7 × mois; Total des intérêts = 43,86 €; Total payé = 1 243,86 €"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "slug": "income-tax",
+          "country": "ca",
+          "text": "Périmètre 2026 : barèmes fédéraux et crédit personnel de base, ainsi que cotisations annuelles CPP/CPP2 et AE du salarié hors Québec. Impôts provinciaux, autres crédits fédéraux et retenues par période de paie exclus.",
+          "sources": [
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032oc-jan/t4032oc-january-general-information.html",
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+            "https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2026-quarterly-july-september.html",
+            "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html"
+          ]
+        },
+        {
+          "slug": "salary",
+          "country": "fr",
+          "text": "France : salaires2025 imposés en2026. Résident seul, une part, salarié privé non-cadre ordinaire hors Alsace-Moselle,12 versements réguliers, brut22000–250000 €. Retraite plafonnée/Agirc-Arrco,CSG/CRDS et primes santé obligatoires réelles admissibles; employeur au moins la moitié. Frais10%, décote célibataire, impôt à l’euro. Sans autres avantages/revenus, personnes à charge, crédits, exonérations ou prélèvements hauts revenus. Cotisations seules hors impôt; mois = moyenne annuelle, pas bulletin. Les plafonds de déduction/exonération santé s’appliquent; les primes excessives sont refusées.",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/5956-PGP.html",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1989",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1419",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F34328",
+            "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F2302",
+            "https://reglementation.agirc-arrco.fr/home/liste-fiche-reglementaires/listes-area/liste-de-fiches-reglementaires/taux-de-cotisations.html",
+            "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Chiffres-cles-DSS-2024-ed25.pdf"
+          ]
+        },
+        {
+          "slug": "payroll",
+          "country": "de",
+          "text": "Allemagne 2026 : employeur privé ordinaire soumis à la cotisation insolvabilité, salarié de 23–59 ans hors Saxe, douze paiements égaux supérieurs à 2 000 €. Parts patronales retraite/chômage/santé/dépendance plafonnées, arrondis mensuels et cotisation insolvabilité 0,15%. Saisir complément maladie réel inchangé, taux U1/U2 applicables et coûts annuels réels accident/autres. U1 peut être nul si exonération. Sans mini/midijob, primes, exemptions publiques, professions spéciales ou prestations. Coût mensuel = moyenne annuelle.",
+          "sources": [
+            "https://www.gesetze-im-internet.de/estg/__32a.html",
+            "https://www.gesetze-im-internet.de/estg/__10.html",
+            "https://www.gesetze-im-internet.de/estg/__10c.html",
+            "https://www.tk.de/resource/blob/2098446/7445181694077ffa3c734446798a01f1/beitraeger-der-tk-fk-version-2026-data.pdf",
+            "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/die-pflegeversicherung/finanzierung",
+            "https://finanzamt.brandenburg.de/fa/de/themen/familien-und-steuern/",
+            "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+            "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage",
+            "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"
+          ]
+        },
+        {
+          "slug": "stamp-duty",
+          "country": "gb",
+          "text": "SDLT résidentiel en Angleterre et Irlande du Nord dès le 1er avril 2025, pas au pays de Galles/Écosse. Comprend tranches normales, avantage primo-acquéreur déclaré jusqu’à £500 000, 5 points pour bien supplémentaire et 2 facultatifs pour non-résident. Vérifiez admissibilité et résidence. Transactions liées, loyers de bail, sociétés et avantages spéciaux exclus. Tableau de base ; suppléments séparés.",
+          "sources": [
+            "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+            "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+            "https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents"
+          ]
+        }
+      ]
+    },
+    {
+      "locale": "es-ES",
+      "country": "es",
+      "examples": {
+        "savings": [
+          {
+            "input": "Importe objetivo = 6000,00 €; Ahorro actual = 1000,00 €; Aportación mensual = 200,00 €; Tipo de interés (anual) = 0,00%",
+            "output": "25 × meses; Total aportado = 5000,00 €; Intereses obtenidos = 0,00 €; Saldo pendiente = 6000,00 €"
+          },
+          {
+            "input": "Importe objetivo = 6000,00 €; Ahorro actual = 1000,00 €; Aportación mensual = 200,00 €; Tipo de interés (anual) = 6,00%",
+            "output": "24 × meses; Total aportado = 4800,00 €; Intereses obtenidos = 413,55 €; Saldo pendiente = 6213,55 €"
+          }
+        ],
+        "debt": [
+          {
+            "input": "Saldo pendiente = 1200,00 €; Pago mensual = 100,00 €; Tipo de interés (anual) = 0,00%",
+            "output": "12 × meses; Intereses totales = 0,00 €; Total pagado = 1200,00 €"
+          },
+          {
+            "input": "Saldo pendiente = 1200,00 €; Pago mensual = 100,00 €; Tipo de interés (anual) = 12,00%",
+            "output": "13 × meses; Intereses totales = 84,78 €; Total pagado = 1284,78 €"
+          },
+          {
+            "input": "Saldo pendiente = 1200,00 €; Pago mensual = 200,00 €; Tipo de interés (anual) = 12,00%",
+            "output": "7 × meses; Intereses totales = 43,86 €; Total pagado = 1243,86 €"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "slug": "income-tax",
+          "country": "ca",
+          "text": "Alcance de 2026: tramos federales y crédito personal básico, además de CPP/CPP2 y EI anuales del empleado fuera de Quebec. Excluye impuestos provinciales, otros créditos federales y retenciones por período de nómina.",
+          "sources": [
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032oc-jan/t4032oc-january-general-information.html",
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+            "https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2026-quarterly-july-september.html",
+            "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html"
+          ]
+        },
+        {
+          "slug": "salary",
+          "country": "fr",
+          "text": "Francia: salarios2025 liquidados en2026. Residente individual, una parte fiscal, empleado privado ordinario no directivo fuera de Alsacia-Mosela,12 pagos regulares, bruto22000–250000 €. Pensión limitada/Agirc-Arrco,CSG/CRDS y primas sanitarias obligatorias admisibles reales; empleador paga al menos la mitad. Gastos10%, décote individual, impuesto en euros. Sin otras prestaciones/rentas, dependientes, créditos, exenciones o gravámenes de renta alta. Cuotas sin impuesto; mes = media anual, no nómina. Se aplican límites de deducción/exención sanitaria; se rechazan primas excesivas.",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/5956-PGP.html",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1989",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1419",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F34328",
+            "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F2302",
+            "https://reglementation.agirc-arrco.fr/home/liste-fiche-reglementaires/listes-area/liste-de-fiches-reglementaires/taux-de-cotisations.html",
+            "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Chiffres-cles-DSS-2024-ed25.pdf"
+          ]
+        },
+        {
+          "slug": "payroll",
+          "country": "de",
+          "text": "Alemania 2026: empleador privado ordinario sujeto a insolvencia, empleado de 23–59 años fuera de Sajonia, doce pagos iguales superiores a 2.000 €. Aportaciones patronales limitadas de pensión/desempleo/salud/dependencia, redondeo mensual e insolvencia del 0,15%. Introduzca complemento médico real invariable, U1/U2 aplicables y gastos anuales reales de accidente/otros. U1 puede ser cero para empleador exento. Sin mini/midiempleos, primas, exenciones públicas, profesiones especiales ni prestaciones. Coste mensual = promedio anual.",
+          "sources": [
+            "https://www.gesetze-im-internet.de/estg/__32a.html",
+            "https://www.gesetze-im-internet.de/estg/__10.html",
+            "https://www.gesetze-im-internet.de/estg/__10c.html",
+            "https://www.tk.de/resource/blob/2098446/7445181694077ffa3c734446798a01f1/beitraeger-der-tk-fk-version-2026-data.pdf",
+            "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/die-pflegeversicherung/finanzierung",
+            "https://finanzamt.brandenburg.de/fa/de/themen/familien-und-steuern/",
+            "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+            "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage",
+            "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"
+          ]
+        },
+        {
+          "slug": "stamp-duty",
+          "country": "gb",
+          "text": "SDLT residencial en Inglaterra e Irlanda del Norte desde el 1 de abril de 2025, no Gales/Escocia. Incluye tramos normales, alivio declarado del primer comprador hasta £500.000, 5 puntos por vivienda adicional y 2 opcionales por no residencia. Compruebe elegibilidad y residencia. Excluye compras vinculadas, alquiler de arrendamientos, empresas y alivios especiales. La tabla muestra tramos base; recargos aparte.",
+          "sources": [
+            "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+            "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+            "https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents"
+          ]
+        }
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "country": "br",
+      "examples": {
+        "savings": [
+          {
+            "input": "Valor da meta = R$ 6.000,00; Poupança atual = R$ 1.000,00; Depósito mensal = R$ 200,00; Taxa de juros (a.a.) = 0,00%",
+            "output": "25 × Meses; Total depositado = R$ 5.000,00; Juros ganhos = R$ 0,00; Saldo = R$ 6.000,00"
+          },
+          {
+            "input": "Valor da meta = R$ 6.000,00; Poupança atual = R$ 1.000,00; Depósito mensal = R$ 200,00; Taxa de juros (a.a.) = 6,00%",
+            "output": "24 × Meses; Total depositado = R$ 4.800,00; Juros ganhos = R$ 413,55; Saldo = R$ 6.213,55"
+          }
+        ],
+        "debt": [
+          {
+            "input": "Saldo devedor = R$ 1.200,00; Pagamento mensal = R$ 100,00; Taxa de juros (a.a.) = 0,00%",
+            "output": "12 × Meses; Total de juros = R$ 0,00; Total pago = R$ 1.200,00"
+          },
+          {
+            "input": "Saldo devedor = R$ 1.200,00; Pagamento mensal = R$ 100,00; Taxa de juros (a.a.) = 12,00%",
+            "output": "13 × Meses; Total de juros = R$ 84,78; Total pago = R$ 1.284,78"
+          },
+          {
+            "input": "Saldo devedor = R$ 1.200,00; Pagamento mensal = R$ 200,00; Taxa de juros (a.a.) = 12,00%",
+            "output": "7 × Meses; Total de juros = R$ 43,86; Total pago = R$ 1.243,86"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "slug": "income-tax",
+          "country": "ca",
+          "text": "Âmbito de 2026: escalões federais e crédito pessoal básico, mais contribuições anuais do trabalhador para CPP/CPP2 e EI fora do Quebeque. Exclui impostos provinciais, outros créditos federais e retenções por período salarial.",
+          "sources": [
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032oc-jan/t4032oc-january-general-information.html",
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+            "https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2026-quarterly-july-september.html",
+            "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html"
+          ]
+        },
+        {
+          "slug": "salary",
+          "country": "fr",
+          "text": "França: salários2025 liquidados em2026. Residente individual,uma parte fiscal,empregado privado não dirigente fora Alsácia-Mosela,12 pagamentos regulares,bruto22000–250000 €. Pensão limitada/Agirc-Arrco,CSG/CRDS e prémios obrigatórios de saúde reais elegíveis; empregador pelo menos metade. Dedução10%,décote individual,imposto em euros. Sem outros benefícios/rendimentos,dependentes,créditos,isenções ou taxas alto rendimento. Contribuições sem imposto; mês=média anual,não recibo salarial. Aplicam-se limites de dedução/isenção de saúde; prémios excessivos são rejeitados.",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/5956-PGP.html",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1989",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1419",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F34328",
+            "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F2302",
+            "https://reglementation.agirc-arrco.fr/home/liste-fiche-reglementaires/listes-area/liste-de-fiches-reglementaires/taux-de-cotisations.html",
+            "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Chiffres-cles-DSS-2024-ed25.pdf"
+          ]
+        },
+        {
+          "slug": "payroll",
+          "country": "de",
+          "text": "Alemanha 2026: empregador privado comum sujeito à contribuição insolvência, empregado 23–59 fora da Saxónia, doze pagamentos iguais acima de 2.000 €. Partes patronais limitadas de pensão/desemprego/saúde/cuidados, arredondamento mensal e insolvência de 0,15%. Indique complemento de saúde real inalterado, taxas U1/U2 aplicáveis e custos anuais reais de acidentes/outros. U1 pode ser zero para isentos. Sem mini/midiempregos, prémios, isenções públicas, profissões especiais ou prestações. Custo mensal = média anual.",
+          "sources": [
+            "https://www.gesetze-im-internet.de/estg/__32a.html",
+            "https://www.gesetze-im-internet.de/estg/__10.html",
+            "https://www.gesetze-im-internet.de/estg/__10c.html",
+            "https://www.tk.de/resource/blob/2098446/7445181694077ffa3c734446798a01f1/beitraeger-der-tk-fk-version-2026-data.pdf",
+            "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/die-pflegeversicherung/finanzierung",
+            "https://finanzamt.brandenburg.de/fa/de/themen/familien-und-steuern/",
+            "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+            "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage",
+            "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"
+          ]
+        },
+        {
+          "slug": "stamp-duty",
+          "country": "gb",
+          "text": "SDLT residencial em Inglaterra e Irlanda do Norte desde 1 de abril de 2025, não País de Gales/Escócia. Inclui escalões normais, benefício declarado de primeira compra até £500.000, 5 pontos para imóvel adicional e 2 opcionais para não residentes. Verifique elegibilidade e residência. Exclui compras ligadas, rendas de arrendamento, empresas e benefícios especiais. Tabela base; sobretaxas separadas.",
+          "sources": [
+            "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+            "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+            "https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents"
+          ]
+        }
+      ]
+    },
+    {
+      "locale": "ru-RU",
+      "country": "ru",
+      "examples": {
+        "savings": [
+          {
+            "input": "Целевая сумма = 6 000,00 ₽; Текущие сбережения = 1 000,00 ₽; Ежемесячный взнос = 200,00 ₽; Процентная ставка (годовых) = 0,00%",
+            "output": "25 × мес.; Всего внесено = 5 000,00 ₽; Начисленные проценты = 0,00 ₽; Остаток = 6 000,00 ₽"
+          },
+          {
+            "input": "Целевая сумма = 6 000,00 ₽; Текущие сбережения = 1 000,00 ₽; Ежемесячный взнос = 200,00 ₽; Процентная ставка (годовых) = 6,00%",
+            "output": "24 × мес.; Всего внесено = 4 800,00 ₽; Начисленные проценты = 413,55 ₽; Остаток = 6 213,55 ₽"
+          }
+        ],
+        "debt": [
+          {
+            "input": "Сумма долга = 1 200,00 ₽; Ежемесячный платёж = 100,00 ₽; Процентная ставка (годовых) = 0,00%",
+            "output": "12 × мес.; Всего процентов = 0,00 ₽; Всего выплачено = 1 200,00 ₽"
+          },
+          {
+            "input": "Сумма долга = 1 200,00 ₽; Ежемесячный платёж = 100,00 ₽; Процентная ставка (годовых) = 12,00%",
+            "output": "13 × мес.; Всего процентов = 84,78 ₽; Всего выплачено = 1 284,78 ₽"
+          },
+          {
+            "input": "Сумма долга = 1 200,00 ₽; Ежемесячный платёж = 200,00 ₽; Процентная ставка (годовых) = 12,00%",
+            "output": "7 × мес.; Всего процентов = 43,86 ₽; Всего выплачено = 1 243,86 ₽"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "slug": "income-tax",
+          "country": "ca",
+          "text": "Область 2026 года: федеральные ставки и базовый личный налоговый кредит, а также годовые взносы работника CPP/CPP2 и EI вне Квебека. Провинциальные налоги, другие федеральные кредиты и удержания за отдельные периоды выплаты не включены.",
+          "sources": [
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032oc-jan/t4032oc-january-general-information.html",
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+            "https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2026-quarterly-july-september.html",
+            "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html"
+          ]
+        },
+        {
+          "slug": "salary",
+          "country": "fr",
+          "text": "Франция:зарплата2025,налог2026. Одинокий резидент,одна доля,обычный частный работник не руководитель вне Эльзаса-Мозеля,12 регулярных выплат,брутто22000–250000 €. Пенсия с пределом/Agirc-Arrco,CSG/CRDS и реальные допустимые обязательные медвзносы; работодатель минимум половина. Вычет10%,одиночная décote,налог до евро. Без других выплат/доходов,иждивенцев,льгот,освобождений/высокодоходных сборов. Взносы без налога; месяц=среднее,не расчетный лист. Действуют пределы вычета/освобождения медвзносов; чрезмерные взносы отклоняются.",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/5956-PGP.html",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1989",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1419",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F34328",
+            "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F2302",
+            "https://reglementation.agirc-arrco.fr/home/liste-fiche-reglementaires/listes-area/liste-de-fiches-reglementaires/taux-de-cotisations.html",
+            "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Chiffres-cles-DSS-2024-ed25.pdf"
+          ]
+        },
+        {
+          "slug": "payroll",
+          "country": "de",
+          "text": "Германия, 2026: обычный частный работодатель, облагаемый сбором несостоятельности, работник 23–59 лет вне Саксонии, 12 равных выплат свыше 2 000 €. Ограниченные доли работодателя на пенсию/безработицу/медицину/уход, месячное округление и сбор несостоятельности 0,15%. Укажите неизменную фактическую допставку кассы, применимые U1/U2 и фактические годовые расходы на несчастные случаи/прочее. U1 может быть нулевым при освобождении. Без мини-/мидиработ, премий, публичных исключений, особых профессий и пособий. Месяц — годовое среднее.",
+          "sources": [
+            "https://www.gesetze-im-internet.de/estg/__32a.html",
+            "https://www.gesetze-im-internet.de/estg/__10.html",
+            "https://www.gesetze-im-internet.de/estg/__10c.html",
+            "https://www.tk.de/resource/blob/2098446/7445181694077ffa3c734446798a01f1/beitraeger-der-tk-fk-version-2026-data.pdf",
+            "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/die-pflegeversicherung/finanzierung",
+            "https://finanzamt.brandenburg.de/fa/de/themen/familien-und-steuern/",
+            "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+            "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage",
+            "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"
+          ]
+        },
+        {
+          "slug": "stamp-duty",
+          "country": "gb",
+          "text": "Жилая SDLT в Англии и Северной Ирландии с 1 апреля 2025 года, не в Уэльсе/Шотландии. Включены обычные шкалы, заявленная льгота первой покупки до £500 000, 5 процентных пунктов для дополнительного жилья и опциональные 2 для нерезидента. Проверьте право на льготу и статус. Исключены связанные сделки, арендная плата, компании и особые льготы. В таблице базовые ставки; надбавки отдельно.",
+          "sources": [
+            "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+            "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+            "https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents"
+          ]
+        }
+      ]
+    },
+    {
+      "locale": "tr-TR",
+      "country": "tr",
+      "examples": {
+        "savings": [
+          {
+            "input": "Hedef tutar = ₺6.000,00; Mevcut birikim = ₺1.000,00; Aylık yatırım = ₺200,00; Faiz oranı (yıllık) = 0,00%",
+            "output": "25 × Ay; Toplam yatırılan = ₺5.000,00; Kazanılan faiz = ₺0,00; Bakiye = ₺6.000,00"
+          },
+          {
+            "input": "Hedef tutar = ₺6.000,00; Mevcut birikim = ₺1.000,00; Aylık yatırım = ₺200,00; Faiz oranı (yıllık) = 6,00%",
+            "output": "24 × Ay; Toplam yatırılan = ₺4.800,00; Kazanılan faiz = ₺413,55; Bakiye = ₺6.213,55"
+          }
+        ],
+        "debt": [
+          {
+            "input": "Borç bakiyesi = ₺1.200,00; Aylık ödeme = ₺100,00; Faiz oranı (yıllık) = 0,00%",
+            "output": "12 × Ay; Toplam faiz = ₺0,00; Toplam ödenen = ₺1.200,00"
+          },
+          {
+            "input": "Borç bakiyesi = ₺1.200,00; Aylık ödeme = ₺100,00; Faiz oranı (yıllık) = 12,00%",
+            "output": "13 × Ay; Toplam faiz = ₺84,78; Toplam ödenen = ₺1.284,78"
+          },
+          {
+            "input": "Borç bakiyesi = ₺1.200,00; Aylık ödeme = ₺200,00; Faiz oranı (yıllık) = 12,00%",
+            "output": "7 × Ay; Toplam faiz = ₺43,86; Toplam ödenen = ₺1.243,86"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "slug": "income-tax",
+          "country": "ca",
+          "text": "2026 kapsamı: federal gelir vergisi dilimleri ve temel kişisel vergi kredisi ile Quebec dışındaki yıllık çalışan CPP/CPP2 ve EI katkıları. Eyalet vergileri, diğer federal krediler ve ödeme dönemi stopajı hariçtir.",
+          "sources": [
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032oc-jan/t4032oc-january-general-information.html",
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+            "https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2026-quarterly-july-september.html",
+            "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html"
+          ]
+        },
+        {
+          "slug": "salary",
+          "country": "fr",
+          "text": "Fransa:2025 ücret,2026 tarhı. Bekâr mukim,tek vergi payı,Alsace-Moselle dışında normal yönetici olmayan özel çalışan,12 düzenli ödeme,brüt22000–250000 €. Tavanlı emeklilik/Agirc-Arrco,CSG/CRDS ve gerçek uygun zorunlu sağlık primleri;işveren en az yarısı. %10 gider,bekâr décote,avroya yuvarlanan vergi. Başka gelir/yan hak,bağımlı,kredi,muafiyet/yüksek gelir vergisi yok. Prim aracı vergisiz;ay=yıllık ortalama,bordro değil. Sağlık indirim/muafiyet sınırları uygulanır;aşırı plan primleri reddedilir.",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/5956-PGP.html",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1989",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1419",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F34328",
+            "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F2302",
+            "https://reglementation.agirc-arrco.fr/home/liste-fiche-reglementaires/listes-area/liste-de-fiches-reglementaires/taux-de-cotisations.html",
+            "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Chiffres-cles-DSS-2024-ed25.pdf"
+          ]
+        },
+        {
+          "slug": "payroll",
+          "country": "de",
+          "text": "Almanya 2026: iflas payına tabi olağan özel işveren, Saksonya dışında 23–59 yaş çalışan, 2.000 € üzeri 12 eşit ödeme. Tavanlı işveren emeklilik/işsizlik/sağlık/bakım payları, aylık yuvarlama ve %0,15 iflas payı. Gerçek değişmeyen sağlık eki, geçerli U1/U2 ve gerçek yıllık kaza/diğer maliyetleri girin. Muaf işverende U1 sıfır olabilir. Mini/midi iş, prim, kamu muafiyeti, özel meslek ve yardımlar yok. Aylık maliyet yıllık ortalamadır.",
+          "sources": [
+            "https://www.gesetze-im-internet.de/estg/__32a.html",
+            "https://www.gesetze-im-internet.de/estg/__10.html",
+            "https://www.gesetze-im-internet.de/estg/__10c.html",
+            "https://www.tk.de/resource/blob/2098446/7445181694077ffa3c734446798a01f1/beitraeger-der-tk-fk-version-2026-data.pdf",
+            "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/die-pflegeversicherung/finanzierung",
+            "https://finanzamt.brandenburg.de/fa/de/themen/familien-und-steuern/",
+            "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+            "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage",
+            "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"
+          ]
+        },
+        {
+          "slug": "stamp-duty",
+          "country": "gb",
+          "text": "1 Nisan 2025’ten itibaren İngiltere ve Kuzey İrlanda konut SDLT; Galler/İskoçya hariç. Olağan dilimler, £500.000’e kadar beyan edilen ilk alım indirimi, ek mülk için 5 puan ve isteğe bağlı mukim olmayanlar için 2 puan içerir. Uygunluk ve mukimliği doğrulayın. Bağlantılı işlemler, kira, şirketler ve özel indirimler hariçtir. Tabloda temel dilimler, ekler ayrı gösterilir.",
+          "sources": [
+            "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+            "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+            "https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents"
+          ]
+        }
+      ]
+    },
+    {
+      "locale": "ja-JP",
+      "country": "jp",
+      "examples": {
+        "savings": [
+          {
+            "input": "目標金額 = ￥6,000; 現在の貯蓄額 = ￥1,000; 毎月の積立額 = ￥200; 金利（年率） = 0.00%",
+            "output": "25 × か月; 積立総額 = ￥5,000; 受取利息 = ￥0; 残高 = ￥6,000"
+          },
+          {
+            "input": "目標金額 = ￥6,000; 現在の貯蓄額 = ￥1,000; 毎月の積立額 = ￥200; 金利（年率） = 6.00%",
+            "output": "24 × か月; 積立総額 = ￥4,800; 受取利息 = ￥414; 残高 = ￥6,214"
+          }
+        ],
+        "debt": [
+          {
+            "input": "借入残高 = ￥1,200; 毎月の返済額 = ￥100; 金利（年率） = 0.00%",
+            "output": "12 × か月; 利息総額 = ￥0; 支払総額 = ￥1,200"
+          },
+          {
+            "input": "借入残高 = ￥1,200; 毎月の返済額 = ￥100; 金利（年率） = 12.00%",
+            "output": "13 × か月; 利息総額 = ￥85; 支払総額 = ￥1,285"
+          },
+          {
+            "input": "借入残高 = ￥1,200; 毎月の返済額 = ￥200; 金利（年率） = 12.00%",
+            "output": "7 × か月; 利息総額 = ￥44; 支払総額 = ￥1,244"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "slug": "income-tax",
+          "country": "ca",
+          "text": "2026年の対象：連邦所得税率と基礎的個人税額控除、およびケベック州外の年間従業員CPP/CPP2・EI拠出。州税、その他の連邦税額控除、給与期間ごとの源泉徴収は対象外です。",
+          "sources": [
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032oc-jan/t4032oc-january-general-information.html",
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+            "https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2026-quarterly-july-september.html",
+            "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html"
+          ]
+        },
+        {
+          "slug": "salary",
+          "country": "fr",
+          "text": "フランス：2025年給与、2026年課税。独身居住者・1税額単位、アルザス＝モゼル外の通常民間非管理職、年12回の規則的支払、総額22,000～250,000ユーロ。上限付き年金/Agirc-Arrco、CSG/CRDS、実際の適格強制医療保険料。雇用主が半分以上負担。10%就業費控除、独身décote、ユーロ単位税。他の福利厚生・所得・扶養・抵免・免除・高所得税なし。保険料専用は所得税なし。月額は年平均、給与明細ではありません。 医療保険の控除・免除上限を適用し、過大な保険料は受け付けません。",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/5956-PGP.html",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1989",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1419",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F34328",
+            "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F2302",
+            "https://reglementation.agirc-arrco.fr/home/liste-fiche-reglementaires/listes-area/liste-de-fiches-reglementaires/taux-de-cotisations.html",
+            "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Chiffres-cles-DSS-2024-ed25.pdf"
+          ]
+        },
+        {
+          "slug": "payroll",
+          "country": "de",
+          "text": "ドイツ2026年：倒産拠出対象の通常民間雇用主、ザクセン州以外の23～59歳従業員、各2,000ユーロ超の均等12回払い。上限付き雇用主年金・失業・医療・介護負担、月次丸め、倒産拠出0.15%。実際の年間不変医療追加率、適用U1/U2率、年間実額の労災・他費用を入力。免除雇用主はU1ゼロ可。ミニ・ミディジョブ、賞与、公的雇用主免除、特殊職種、給付は対象外。月額費用は年平均です。",
+          "sources": [
+            "https://www.gesetze-im-internet.de/estg/__32a.html",
+            "https://www.gesetze-im-internet.de/estg/__10.html",
+            "https://www.gesetze-im-internet.de/estg/__10c.html",
+            "https://www.tk.de/resource/blob/2098446/7445181694077ffa3c734446798a01f1/beitraeger-der-tk-fk-version-2026-data.pdf",
+            "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/die-pflegeversicherung/finanzierung",
+            "https://finanzamt.brandenburg.de/fa/de/themen/familien-und-steuern/",
+            "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+            "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage",
+            "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"
+          ]
+        },
+        {
+          "slug": "stamp-duty",
+          "country": "gb",
+          "text": "2025年4月1日以降のイングランド・北アイルランドの住宅SDLTで、ウェールズ・スコットランドは対象外です。通常税率、申告した£500,000以下の初回購入優遇、追加物件の5ポイント、任意の非居住者2ポイントを含みます。購入者・優遇・居住資格は自身で確認してください。関連取引、賃料、法人、特別優遇は除外します。表は基本税率、追加分は別表示です。",
+          "sources": [
+            "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+            "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+            "https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents"
+          ]
+        }
+      ]
+    },
+    {
+      "locale": "zh-CN",
+      "country": "cn",
+      "examples": {
+        "savings": [
+          {
+            "input": "目标金额 = ¥6,000.00; 当前储蓄 = ¥1,000.00; 每月存入 = ¥200.00; 利率（年化） = 0.00%",
+            "output": "25 × 个月; 累计存入 = ¥5,000.00; 获得利息 = ¥0.00; 余额 = ¥6,000.00"
+          },
+          {
+            "input": "目标金额 = ¥6,000.00; 当前储蓄 = ¥1,000.00; 每月存入 = ¥200.00; 利率（年化） = 6.00%",
+            "output": "24 × 个月; 累计存入 = ¥4,800.00; 获得利息 = ¥413.55; 余额 = ¥6,213.55"
+          }
+        ],
+        "debt": [
+          {
+            "input": "欠款余额 = ¥1,200.00; 每月还款 = ¥100.00; 利率（年化） = 0.00%",
+            "output": "12 × 个月; 总利息 = ¥0.00; 累计还款 = ¥1,200.00"
+          },
+          {
+            "input": "欠款余额 = ¥1,200.00; 每月还款 = ¥100.00; 利率（年化） = 12.00%",
+            "output": "13 × 个月; 总利息 = ¥84.78; 累计还款 = ¥1,284.78"
+          },
+          {
+            "input": "欠款余额 = ¥1,200.00; 每月还款 = ¥200.00; 利率（年化） = 12.00%",
+            "output": "7 × 个月; 总利息 = ¥43.86; 累计还款 = ¥1,243.86"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "slug": "income-tax",
+          "country": "ca",
+          "text": "2026年范围：联邦所得税档及基本个人抵免，以及魁北克省以外雇员的年度CPP/CPP2和EI缴款。不包括省税、其他联邦抵免和每个工资期的预扣税。",
+          "sources": [
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032oc-jan/t4032oc-january-general-information.html",
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+            "https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2026-quarterly-july-september.html",
+            "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html"
+          ]
+        },
+        {
+          "slug": "salary",
+          "country": "fr",
+          "text": "法国：2025年工资，2026年核税。单身居民、一份税收单位，阿尔萨斯—摩泽尔外普通私营非管理雇员，全年12次规律支付，税前22,000～250,000欧元。有上限养老/Agirc-Arrco、CSG/CRDS和实际合资格强制医疗保费；雇主至少承担一半。10%就业费用扣除、单身décote，所得税按欧元舍入。无其他福利/收入、受抚养人、抵免、豁免或高收入税。缴费专用不含所得税；月额是年均，非工资单。 适用医疗保费扣除及豁免上限，超额计划缴费将被拒绝。",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/5956-PGP.html",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1989",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1419",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F34328",
+            "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F2302",
+            "https://reglementation.agirc-arrco.fr/home/liste-fiche-reglementaires/listes-area/liste-de-fiches-reglementaires/taux-de-cotisations.html",
+            "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Chiffres-cles-DSS-2024-ed25.pdf"
+          ]
+        },
+        {
+          "slug": "payroll",
+          "country": "de",
+          "text": "德国2026年：须缴破产分摊的普通私人雇主，萨克森州外23至59岁雇员，12次等额支付且每次超过2,000欧元。计算有上限的雇主养老、失业、医疗及护理缴费，分项月度舍入及0.15%破产分摊。输入全年不变实际医保附加率、适用U1/U2率及全年实际工伤和其他费用。获豁免雇主U1可为零。不含迷你或过渡就业、奖金、公营雇主豁免、特殊职业或福利。月成本为年均值。",
+          "sources": [
+            "https://www.gesetze-im-internet.de/estg/__32a.html",
+            "https://www.gesetze-im-internet.de/estg/__10.html",
+            "https://www.gesetze-im-internet.de/estg/__10c.html",
+            "https://www.tk.de/resource/blob/2098446/7445181694077ffa3c734446798a01f1/beitraeger-der-tk-fk-version-2026-data.pdf",
+            "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/die-pflegeversicherung/finanzierung",
+            "https://finanzamt.brandenburg.de/fa/de/themen/familien-und-steuern/",
+            "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+            "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage",
+            "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"
+          ]
+        },
+        {
+          "slug": "stamp-duty",
+          "country": "gb",
+          "text": "适用于2025年4月1日起英格兰及北爱尔兰住宅SDLT，不含威尔士/苏格兰。包括标准税档、声明符合条件且房价不超过£500,000的首次购房优惠、额外住房加5个百分点及可选非英国居民加2个百分点。须自行确认购房、优惠及居住资格。不含关联交易、租金、法人及特殊优惠。表格为基础税档，附加税另列。",
+          "sources": [
+            "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+            "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+            "https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents"
+          ]
+        }
+      ]
+    },
+    {
+      "locale": "it-IT",
+      "country": "it",
+      "examples": {
+        "savings": [
+          {
+            "input": "Importo obiettivo = 6000,00 €; Risparmi attuali = 1000,00 €; Versamento mensile = 200,00 €; Tasso di interesse (annuo) = 0,00%",
+            "output": "25 × Mesi; Totale versato = 5000,00 €; Interessi maturati = 0,00 €; Saldo = 6000,00 €"
+          },
+          {
+            "input": "Importo obiettivo = 6000,00 €; Risparmi attuali = 1000,00 €; Versamento mensile = 200,00 €; Tasso di interesse (annuo) = 6,00%",
+            "output": "24 × Mesi; Totale versato = 4800,00 €; Interessi maturati = 413,55 €; Saldo = 6213,55 €"
+          }
+        ],
+        "debt": [
+          {
+            "input": "Debito residuo = 1200,00 €; Rata mensile = 100,00 €; Tasso di interesse (annuo) = 0,00%",
+            "output": "12 × Mesi; Interessi totali = 0,00 €; Totale pagato = 1200,00 €"
+          },
+          {
+            "input": "Debito residuo = 1200,00 €; Rata mensile = 100,00 €; Tasso di interesse (annuo) = 12,00%",
+            "output": "13 × Mesi; Interessi totali = 84,78 €; Totale pagato = 1284,78 €"
+          },
+          {
+            "input": "Debito residuo = 1200,00 €; Rata mensile = 200,00 €; Tasso di interesse (annuo) = 12,00%",
+            "output": "7 × Mesi; Interessi totali = 43,86 €; Totale pagato = 1243,86 €"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "slug": "income-tax",
+          "country": "ca",
+          "text": "Ambito 2026: scaglioni federali e credito personale di base, più contributi annui del dipendente CPP/CPP2 ed EI fuori dal Québec. Esclusi imposte provinciali, altri crediti federali e trattenute per periodo di paga.",
+          "sources": [
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032oc-jan/t4032oc-january-general-information.html",
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+            "https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2026-quarterly-july-september.html",
+            "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html"
+          ]
+        },
+        {
+          "slug": "salary",
+          "country": "fr",
+          "text": "Francia: salari2025 liquidati nel2026. Residente singolo, una quota, dipendente privato non dirigente fuori Alsazia-Mosella,12 pagamenti regolari, lordo22000–250000 €. Pensione limitata/Agirc-Arrco,CSG/CRDS e premi sanitari obbligatori effettivi ammissibili; datore almeno metà. Deduzione10%, décote singola, imposta in euro. Nessun altro reddito/benefit,familiare a carico,credito,esenzione o prelievo alto reddito. Contributi senza imposta; mese=media annua, non busta paga. Si applicano i limiti di deduzione/esenzione sanitaria; i premi eccessivi sono rifiutati.",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/5956-PGP.html",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1989",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1419",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F34328",
+            "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F2302",
+            "https://reglementation.agirc-arrco.fr/home/liste-fiche-reglementaires/listes-area/liste-de-fiches-reglementaires/taux-de-cotisations.html",
+            "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Chiffres-cles-DSS-2024-ed25.pdf"
+          ]
+        },
+        {
+          "slug": "payroll",
+          "country": "de",
+          "text": "Germania 2026: datore privato ordinario soggetto al contributo insolvenza, dipendente 23–59 anni fuori Sassonia, dodici pagamenti uguali oltre 2.000 €. Quote pensione/disoccupazione/sanità/assistenza plafonate, arrotondamento mensile e insolvenza 0,15%. Inserire supplemento sanitario reale invariato, U1/U2 applicabili e costi annui effettivi infortuni/altri. U1 può essere zero per datore esente. Senza mini/midijob, premi, esenzioni pubbliche, professioni speciali o prestazioni. Costo mensile = media annua.",
+          "sources": [
+            "https://www.gesetze-im-internet.de/estg/__32a.html",
+            "https://www.gesetze-im-internet.de/estg/__10.html",
+            "https://www.gesetze-im-internet.de/estg/__10c.html",
+            "https://www.tk.de/resource/blob/2098446/7445181694077ffa3c734446798a01f1/beitraeger-der-tk-fk-version-2026-data.pdf",
+            "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/die-pflegeversicherung/finanzierung",
+            "https://finanzamt.brandenburg.de/fa/de/themen/familien-und-steuern/",
+            "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+            "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage",
+            "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"
+          ]
+        },
+        {
+          "slug": "stamp-duty",
+          "country": "gb",
+          "text": "SDLT residenziale in Inghilterra e Irlanda del Nord dal 1° aprile 2025, non Galles/Scozia. Include scaglioni normali, beneficio dichiarato prima casa fino a £500.000, 5 punti per proprietà aggiuntiva e 2 facoltativi per non residenti. Verifica requisiti e residenza. Esclude transazioni collegate, canoni di locazione, società e benefici speciali. Tabella base; maggiorazioni separate.",
+          "sources": [
+            "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+            "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+            "https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents"
+          ]
+        }
+      ]
+    },
+    {
+      "locale": "nl-NL",
+      "country": "nl",
+      "examples": {
+        "savings": [
+          {
+            "input": "Doelbedrag = € 6.000,00; Huidig spaargeld = € 1.000,00; Maandelijkse inleg = € 200,00; Rente (p.j.) = 0,00%",
+            "output": "25 × Mnd; Totaal ingelegd = € 5.000,00; Ontvangen rente = € 0,00; Saldo = € 6.000,00"
+          },
+          {
+            "input": "Doelbedrag = € 6.000,00; Huidig spaargeld = € 1.000,00; Maandelijkse inleg = € 200,00; Rente (p.j.) = 6,00%",
+            "output": "24 × Mnd; Totaal ingelegd = € 4.800,00; Ontvangen rente = € 413,55; Saldo = € 6.213,55"
+          }
+        ],
+        "debt": [
+          {
+            "input": "Openstaande schuld = € 1.200,00; Maandbedrag = € 100,00; Rente (p.j.) = 0,00%",
+            "output": "12 × Mnd; Totale rente = € 0,00; Totaal betaald = € 1.200,00"
+          },
+          {
+            "input": "Openstaande schuld = € 1.200,00; Maandbedrag = € 100,00; Rente (p.j.) = 12,00%",
+            "output": "13 × Mnd; Totale rente = € 84,78; Totaal betaald = € 1.284,78"
+          },
+          {
+            "input": "Openstaande schuld = € 1.200,00; Maandbedrag = € 200,00; Rente (p.j.) = 12,00%",
+            "output": "7 × Mnd; Totale rente = € 43,86; Totaal betaald = € 1.243,86"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "slug": "income-tax",
+          "country": "ca",
+          "text": "Bereik 2026: federale belastingschijven en persoonlijk basiskrediet, plus jaarlijkse werknemersbijdragen CPP/CPP2 en EI buiten Quebec. Provinciale belasting, andere federale kredieten en inhouding per loonperiode zijn uitgesloten.",
+          "sources": [
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032oc-jan/t4032oc-january-general-information.html",
+            "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+            "https://www.canada.ca/en/employment-social-development/programs/pensions/pension/statistics/2026-quarterly-july-september.html",
+            "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html"
+          ]
+        },
+        {
+          "slug": "salary",
+          "country": "fr",
+          "text": "Frankrijk: loon2025,aanslag2026. Alleenstaande inwoner,één belastingdeel,gewone particuliere niet-kaderwerknemer buiten Elzas-Moezel,12 regelmatige betalingen,bruto22000–250000 €. Begrensd pensioen/Agirc-Arrco,CSG/CRDS en werkelijke toegestane verplichte zorgpremies; werkgever minstens helft. Beroepskosten10%,alleenstaande décote,belasting op euro. Geen andere voordelen/inkomsten,kinderen,credits,vrijstellingen/hoge-inkomensheffing. Bijdragentool zonder belasting; maand=jaargemiddelde,geen loonstrook. Aftrek-/vrijstellingsgrenzen voor zorg gelden; te hoge planbijdragen worden geweigerd.",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/5956-PGP.html",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1989",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F1419",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F34328",
+            "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+            "https://www.service-public.gouv.fr/particuliers/vosdroits/F2302",
+            "https://reglementation.agirc-arrco.fr/home/liste-fiche-reglementaires/listes-area/liste-de-fiches-reglementaires/taux-de-cotisations.html",
+            "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Chiffres-cles-DSS-2024-ed25.pdf"
+          ]
+        },
+        {
+          "slug": "payroll",
+          "country": "de",
+          "text": "Duitsland 2026: gewone particuliere werkgever met insolventieheffing, werknemer 23–59 buiten Saksen, twaalf gelijke betalingen boven €2.000. Geplafonneerde werkgeverspremies pensioen/werkloosheid/zorg/langdurige zorg, maandafronding en 0,15% insolventieheffing. Voer werkelijk ongewijzigd zorgsupplement, toepasselijke U1/U2 en werkelijke jaarlijkse ongeval-/overige kosten in. U1 kan nul zijn bij vrijstelling. Geen mini/midijob, bonus, publieke vrijstelling, bijzonder beroep of uitkeringen. Maandkosten zijn jaargemiddelde.",
+          "sources": [
+            "https://www.gesetze-im-internet.de/estg/__32a.html",
+            "https://www.gesetze-im-internet.de/estg/__10.html",
+            "https://www.gesetze-im-internet.de/estg/__10c.html",
+            "https://www.tk.de/resource/blob/2098446/7445181694077ffa3c734446798a01f1/beitraeger-der-tk-fk-version-2026-data.pdf",
+            "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/die-pflegeversicherung/finanzierung",
+            "https://finanzamt.brandenburg.de/fa/de/themen/familien-und-steuern/",
+            "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+            "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage",
+            "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"
+          ]
+        },
+        {
+          "slug": "stamp-duty",
+          "country": "gb",
+          "text": "Residentiële SDLT in Engeland en Noord-Ierland vanaf 1 april 2025, niet Wales/Schotland. Omvat gewone schijven, opgegeven startersvoordeel tot £500.000, 5 procentpunten voor extra woningen en optioneel 2 voor niet-inwoners. Controleer aanspraak en woonstatus. Gekoppelde aankopen, huur, ondernemingen en bijzondere voordelen ontbreken. Basisschijven in tabel; toeslagen apart.",
+          "sources": [
+            "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+            "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+            "https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents"
+          ]
+        }
+      ]
+    }
+  ]
+}

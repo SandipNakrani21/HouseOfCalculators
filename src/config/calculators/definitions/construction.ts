@@ -93,7 +93,8 @@ export const concreteCalculator: CalculatorDef = {
         hintKey: "units.cubed",
       },
       rows: [
-        { labelKey: "result.bagsNeeded", value: Math.ceil(result.bags), kind: "number", tone: "returns" },
+        // Remove one floating-point rounding unit before ceiling an exact bag ratio.
+        { labelKey: "result.bagsNeeded", value: Math.ceil(result.bags - Number.EPSILON * Math.max(1, result.bags)), kind: "number", tone: "returns" },
         { labelKey: "result.volumeBeforeWaste", value: result.volume, kind: "number", decimals: 3, tone: "neutral" },
         { labelKey: "result.cementPart", value: result.cement, kind: "number", decimals: 3, tone: "principal" },
         { labelKey: "result.sandPart", value: result.sand, kind: "number", decimals: 3, tone: "principal" },

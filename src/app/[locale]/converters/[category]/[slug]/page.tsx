@@ -1,3 +1,4 @@
+import { PairContext } from "@/components/converters/PairContext";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -153,6 +154,7 @@ export default async function ConverterPage({
                 <tbody>{examples.map(input => <tr key={input} className="border-t border-border"><th scope="row" className="p-3 text-start font-normal">{fmt.number(input, { decimals: 6 })}</th><td className="p-3">{fmt.number(convert(converter, input, pair[0], pair[1]), { decimals: 6 })}</td></tr>)}</tbody>
               </table>
             </div>
+            <PairContext slug={slug} category={category} t={t} />
             <p className="mt-4 text-sm leading-relaxed text-muted">{t("conv.pair.precision")}</p>
             <p className="mt-3 text-sm leading-relaxed text-muted">{t("conv.pair.unitsCaution")}</p>
             <h3 className="mt-5 font-semibold">{t("calc.sources")}</h3>

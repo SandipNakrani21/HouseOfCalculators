@@ -1,0 +1,441 @@
+{
+  "at": "2026-10-24T07:51:07.164Z",
+  "scope": "Inspection of locally generated production HTML, not live browser interaction or independent arithmetic testing",
+  "documents": 48,
+  "passed": 48,
+  "findings": [],
+  "rows": [
+    {
+      "route": "/en-us/about",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/en-us/privacy",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/en-us/contact",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/en-us/calculators/finance/retirement",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 2,
+      "passed": true
+    },
+    {
+      "route": "/en-gb/about",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/en-gb/privacy",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/en-gb/contact",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/en-gb/calculators/finance/retirement",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 2,
+      "passed": true
+    },
+    {
+      "route": "/de-de/about",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/de-de/privacy",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/de-de/contact",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/de-de/calculators/finance/retirement",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 2,
+      "passed": true
+    },
+    {
+      "route": "/fr-fr/about",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/fr-fr/privacy",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/fr-fr/contact",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/fr-fr/calculators/finance/retirement",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 2,
+      "passed": true
+    },
+    {
+      "route": "/es-es/about",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/es-es/privacy",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/es-es/contact",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/es-es/calculators/finance/retirement",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 2,
+      "passed": true
+    },
+    {
+      "route": "/pt-br/about",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/pt-br/privacy",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/pt-br/contact",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/pt-br/calculators/finance/retirement",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 2,
+      "passed": true
+    },
+    {
+      "route": "/ru-ru/about",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/ru-ru/privacy",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/ru-ru/contact",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/ru-ru/calculators/finance/retirement",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 2,
+      "passed": true
+    },
+    {
+      "route": "/tr-tr/about",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/tr-tr/privacy",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/tr-tr/contact",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/tr-tr/calculators/finance/retirement",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 2,
+      "passed": true
+    },
+    {
+      "route": "/ja-jp/about",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/ja-jp/privacy",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/ja-jp/contact",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/ja-jp/calculators/finance/retirement",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 2,
+      "passed": true
+    },
+    {
+      "route": "/zh-cn/about",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/zh-cn/privacy",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/zh-cn/contact",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/zh-cn/calculators/finance/retirement",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 2,
+      "passed": true
+    },
+    {
+      "route": "/it-it/about",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/it-it/privacy",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/it-it/contact",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/it-it/calculators/finance/retirement",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 2,
+      "passed": true
+    },
+    {
+      "route": "/nl-nl/about",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/nl-nl/privacy",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/nl-nl/contact",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": true,
+      "comparisonRows": 0,
+      "passed": true
+    },
+    {
+      "route": "/nl-nl/calculators/finance/retirement",
+      "missingCopy": [],
+      "headingCount": 1,
+      "privateEmailPresent": false,
+      "supportLink": false,
+      "comparisonRows": 2,
+      "passed": true
+    }
+  ]
+}

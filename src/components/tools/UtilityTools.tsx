@@ -1,5 +1,6 @@
 "use client";
 
+import { PASSWORD_CHARACTER_SETS } from "@/config/tools/password";
 import { useState } from "react";
 
 import {
@@ -120,12 +121,7 @@ export function RandomNumberTool() {
   );
 }
 
-const SETS = {
-  lower: "abcdefghijkmnopqrstuvwxyz",
-  upper: "ABCDEFGHJKLMNPQRSTUVWXYZ",
-  digits: "23456789",
-  symbols: "!@#$%^&*-_=+?",
-};
+const SETS = PASSWORD_CHARACTER_SETS;
 
 export function PasswordGeneratorTool() {
   const { t } = useLocale();

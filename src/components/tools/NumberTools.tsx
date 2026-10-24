@@ -105,7 +105,7 @@ export function NumberToWordsTool() {
   return (
     <ToolCard>
       <ToolFields>
-        <Field label={t("tool.field.number")}>
+        <Field label={t("tool.field.number")} hint={t("tool.note.englishOnly")}>
           {(id) => (
             <NumberInput rule="words"
               id={id}

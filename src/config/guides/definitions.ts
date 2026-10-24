@@ -231,7 +231,8 @@ export const GUIDES: GuideDefinition[] = [
       { section: "guides", category: "how-to-calculate", slug: "how-to-calculate-compound-interest" },
       { section: "charts", category: "finance", slug: "compound-growth-table" },
     ],
-    reviewed: "2026-09-21",
+    published: "2026-09-21",
+    reviewed: "2026-10-24",
   },
   {
     slug: "what-is-amortisation",
@@ -315,7 +316,8 @@ export const GUIDES: GuideDefinition[] = [
       { section: "calculators", category: "finance", slug: "loan" },
       { section: "calculators", category: "finance", slug: "mortgage" },
     ],
-    reviewed: "2026-09-21",
+    published: "2026-09-21",
+    reviewed: "2026-10-24",
   },
   {
     slug: "how-to-read-an-amortisation-schedule",
@@ -357,7 +359,8 @@ export const GUIDES: GuideDefinition[] = [
       { section: "tools", category: "planning", slug: "savings-goal" },
       { section: "calculators", category: "finance", slug: "retirement" },
     ],
-    reviewed: "2026-09-21",
+    published: "2026-09-21",
+    reviewed: "2026-10-24",
   },
 
   /* Formulas */
