@@ -339,8 +339,8 @@ export function breadcrumbSchema(
 }
 
 /**
- * FAQ markup for the questions a page answers. Answer engines and search
- * both lift these directly, so the text must be exactly what the page shows.
+ * FAQ markup for questions actually answered on the page. It describes the
+ * visible content; it does not guarantee a search feature or AI citation.
  */
 export function faqSchema(
   items: { question: string; answer: string }[],
@@ -368,6 +368,7 @@ export function webApplicationSchema({
   path,
   locale,
   category = "UtilitiesApplication",
+  sources = [],
 }: {
   name: string;
   description: string;
@@ -375,13 +376,17 @@ export function webApplicationSchema({
   locale: LocaleCode;
   /** A schema.org application category, e.g. "FinanceApplication". */
   category?: string;
+  /** The same source links displayed beside the calculator's explanation. */
+  sources?: readonly string[];
 }): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
+    "@id": `${absoluteUrl(path)}#application`,
     name,
     description,
     url: absoluteUrl(path),
+    mainEntityOfPage: absoluteUrl(path),
     inLanguage: locale,
     applicationCategory: category,
     operatingSystem: "Any",
@@ -391,5 +396,6 @@ export function webApplicationSchema({
     offers: { "@type": "Offer", price: "0", priceCurrency: COUNTRIES[LOCALES[locale].defaultCountry].currency.code },
     isPartOf: { "@id": websiteId(locale) },
     publisher: publisherRef(),
+    ...(sources.length ? { citation: [...new Set(sources)].map((url) => ({ "@type": "WebPage", url })) } : {}),
   };
 }

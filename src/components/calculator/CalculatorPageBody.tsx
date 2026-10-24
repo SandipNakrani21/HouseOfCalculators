@@ -95,6 +95,7 @@ export function CalculatorPageBody({
       locale={locale}
       canonicalPath={lockCountry ? countryToolPath(locale, country, canonicalCountryToolSlug(calculator.slug, country)) : undefined}
       appCategory={APP_CATEGORY[calculator.category] ?? "UtilitiesApplication"}
+      sources={[...(review?.sources ?? []), ...(health?.sources ?? [])]}
       breadcrumbLabel={t("a11y.breadcrumb")}
       header={{
         visual: itemVisual("calculators", calculator.category, calculator.slug),

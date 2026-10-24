@@ -1,0 +1,86 @@
+[
+  {
+    "locale": "en-US",
+    "links": 284,
+    "duplicateLinks": 6,
+    "salaryAliases": 4,
+    "bytes": 45494
+  },
+  {
+    "locale": "en-GB",
+    "links": 283,
+    "duplicateLinks": 5,
+    "salaryAliases": 4,
+    "bytes": 45324
+  },
+  {
+    "locale": "de-DE",
+    "links": 281,
+    "duplicateLinks": 6,
+    "salaryAliases": 4,
+    "bytes": 46866
+  },
+  {
+    "locale": "fr-FR",
+    "links": 280,
+    "duplicateLinks": 5,
+    "salaryAliases": 4,
+    "bytes": 49550
+  },
+  {
+    "locale": "es-ES",
+    "links": 279,
+    "duplicateLinks": 4,
+    "salaryAliases": 4,
+    "bytes": 48791
+  },
+  {
+    "locale": "pt-BR",
+    "links": 278,
+    "duplicateLinks": 3,
+    "salaryAliases": 5,
+    "bytes": 48563
+  },
+  {
+    "locale": "ru-RU",
+    "links": 277,
+    "duplicateLinks": 2,
+    "salaryAliases": 4,
+    "bytes": 67176
+  },
+  {
+    "locale": "tr-TR",
+    "links": 279,
+    "duplicateLinks": 4,
+    "salaryAliases": 5,
+    "bytes": 48084
+  },
+  {
+    "locale": "ja-JP",
+    "links": 278,
+    "duplicateLinks": 3,
+    "salaryAliases": 4,
+    "bytes": 49162
+  },
+  {
+    "locale": "zh-CN",
+    "links": 278,
+    "duplicateLinks": 3,
+    "salaryAliases": 5,
+    "bytes": 42206
+  },
+  {
+    "locale": "it-IT",
+    "links": 279,
+    "duplicateLinks": 4,
+    "salaryAliases": 4,
+    "bytes": 48754
+  },
+  {
+    "locale": "nl-NL",
+    "links": 279,
+    "duplicateLinks": 4,
+    "salaryAliases": 4,
+    "bytes": 46434
+  }
+]

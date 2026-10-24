@@ -1,0 +1,140 @@
+{
+  "locales": [
+    {
+      "locale": "en-US",
+      "links": 274,
+      "duplicateLinks": 0,
+      "salaryAliases": 0,
+      "bytes": 44093,
+      "sitemapEntries": 307,
+      "allDestinationsIndexable": true
+    },
+    {
+      "locale": "en-GB",
+      "links": 274,
+      "duplicateLinks": 0,
+      "salaryAliases": 0,
+      "bytes": 44092,
+      "sitemapEntries": 307,
+      "allDestinationsIndexable": true
+    },
+    {
+      "locale": "de-DE",
+      "links": 271,
+      "duplicateLinks": 0,
+      "salaryAliases": 0,
+      "bytes": 45431,
+      "sitemapEntries": 304,
+      "allDestinationsIndexable": true
+    },
+    {
+      "locale": "fr-FR",
+      "links": 271,
+      "duplicateLinks": 0,
+      "salaryAliases": 0,
+      "bytes": 48211,
+      "sitemapEntries": 304,
+      "allDestinationsIndexable": true
+    },
+    {
+      "locale": "es-ES",
+      "links": 271,
+      "duplicateLinks": 0,
+      "salaryAliases": 0,
+      "bytes": 47625,
+      "sitemapEntries": 304,
+      "allDestinationsIndexable": true
+    },
+    {
+      "locale": "pt-BR",
+      "links": 271,
+      "duplicateLinks": 0,
+      "salaryAliases": 0,
+      "bytes": 47543,
+      "sitemapEntries": 304,
+      "allDestinationsIndexable": true
+    },
+    {
+      "locale": "ru-RU",
+      "links": 271,
+      "duplicateLinks": 0,
+      "salaryAliases": 0,
+      "bytes": 66049,
+      "sitemapEntries": 304,
+      "allDestinationsIndexable": true
+    },
+    {
+      "locale": "tr-TR",
+      "links": 271,
+      "duplicateLinks": 0,
+      "salaryAliases": 0,
+      "bytes": 46921,
+      "sitemapEntries": 304,
+      "allDestinationsIndexable": true
+    },
+    {
+      "locale": "ja-JP",
+      "links": 271,
+      "duplicateLinks": 0,
+      "salaryAliases": 0,
+      "bytes": 48147,
+      "sitemapEntries": 304,
+      "allDestinationsIndexable": true
+    },
+    {
+      "locale": "zh-CN",
+      "links": 271,
+      "duplicateLinks": 0,
+      "salaryAliases": 0,
+      "bytes": 41302,
+      "sitemapEntries": 304,
+      "allDestinationsIndexable": true
+    },
+    {
+      "locale": "it-IT",
+      "links": 271,
+      "duplicateLinks": 0,
+      "salaryAliases": 0,
+      "bytes": 47526,
+      "sitemapEntries": 304,
+      "allDestinationsIndexable": true
+    },
+    {
+      "locale": "nl-NL",
+      "links": 271,
+      "duplicateLinks": 0,
+      "salaryAliases": 0,
+      "bytes": 45316,
+      "sitemapEntries": 304,
+      "allDestinationsIndexable": true
+    }
+  ],
+  "robots": [
+    {
+      "userAgent": "*",
+      "allow": "/",
+      "disallow": [
+        "/api/"
+      ]
+    },
+    {
+      "userAgent": [
+        "GPTBot",
+        "OAI-SearchBot",
+        "ChatGPT-User",
+        "ClaudeBot",
+        "Claude-SearchBot",
+        "Claude-User",
+        "PerplexityBot",
+        "Perplexity-User",
+        "Google-Extended",
+        "Applebot-Extended",
+        "Bingbot"
+      ],
+      "allow": "/",
+      "disallow": [
+        "/api/"
+      ]
+    }
+  ]
+}

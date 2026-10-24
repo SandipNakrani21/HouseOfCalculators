@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports -- This Node build script installs a CommonJS TypeScript loader. */
 /* Generate function-free discovery metadata and route engine groups from the source registry. */
-require('../tests/load-typescript.cjs');
+require('./load-typescript.cjs');
 const fs = require('node:fs');
 const { CALCULATORS } = require('../src/config/calculators/index.ts');
 const groups = fs.readdirSync('src/config/calculators/definitions').filter(f=>f.endsWith('.ts')).map(f=>f.slice(0,-3));

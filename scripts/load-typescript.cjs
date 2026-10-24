@@ -1,4 +1,5 @@
-// The tests execute the project's pure TypeScript modules with the installed compiler.
+/* eslint-disable @typescript-eslint/no-require-imports -- Build-time registry loading runs in Node. */
+// Build tools load the project's TypeScript registries with the installed compiler.
 const fs = require('node:fs');
 const path = require('node:path');
 const Module = require('node:module');

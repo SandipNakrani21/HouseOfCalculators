@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports -- Verify generated production documents. */
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 fs.mkdirSync('docs/adsense-recheck-2026-10-19/postdeploy-qa',{recursive:true});
-const {LOCALES}=(()=>{require('../tests/load-typescript.cjs');return require('../src/config/locales.ts');})();
+const {LOCALES}=(()=>{require('./load-typescript.cjs');return require('../src/config/locales.ts');})();
 const locales=Object.values(LOCALES).filter(l=>l.launch);
 const manifest=JSON.parse(fs.readFileSync('.next/prerender-manifest.json'));
 const rows=[];

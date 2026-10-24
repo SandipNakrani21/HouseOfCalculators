@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports -- Build-time TypeScript registry loader. */
 // Generate separately cached locale modules, rather than embedding the same
 // dictionary in the HTML and RSC segments of thousands of static pages.
-require('../tests/load-typescript.cjs');
+require('./load-typescript.cjs');
 const fs = require('node:fs');
 const Module = require('node:module');
 const load = Module._load;

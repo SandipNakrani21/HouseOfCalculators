@@ -54,6 +54,7 @@ export function DetailPage({
   rail = true,
   ads = true,
   canonicalPath,
+  sources,
 }: {
   trail: Crumb[];
   /** For the structured data: the page's locale. */
@@ -72,6 +73,8 @@ export function DetailPage({
   ads?: boolean;
   /** Search identity for a usable alias of an otherwise identical tool. */
   canonicalPath?: string;
+  /** Source URLs already rendered in the explanation, also described in JSON-LD. */
+  sources?: readonly string[];
   breadcrumbLabel: string;
   header: {
     title: string;
@@ -213,6 +216,7 @@ export function DetailPage({
                     path: canonicalPath ?? trail[trail.length - 1]?.path ?? "/",
                     locale,
                     category: appCategory,
+                    sources,
                   }),
             ),
           }}

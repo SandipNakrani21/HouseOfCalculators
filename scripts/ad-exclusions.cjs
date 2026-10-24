@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-require-imports -- Generates an operator worksheet, not account changes. */
-require('../tests/load-typescript.cjs');
+require('./load-typescript.cjs');
 const fs=require('node:fs'),path=require('node:path');
 const {CALCULATORS}=require('../src/config/calculators/index.ts');
 const {ruleReview}=require('../src/config/calculators/provenance.ts');

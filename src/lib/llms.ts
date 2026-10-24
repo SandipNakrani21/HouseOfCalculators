@@ -1,5 +1,6 @@
 import { SECTIONS, sectionKey } from "@/config/categories";
 import { COUNTRIES } from "@/config/countries";
+import { canonicalCountryToolSlug } from "@/config/calculators/publication";
 import { LOCALES, type LocaleCode } from "@/config/locales";
 import { allContent } from "@/lib/content";
 import { createFormatter } from "@/lib/format";
@@ -13,9 +14,10 @@ import { SITE_NAME, readyLocales } from "@/lib/seo";
  * one-line description.
  *
  * One per locale, in that locale's language and spelling and for its default
- * country, so an engine answering in British English quotes "Maths" and
- * "Metres" and links the en-GB pages. Generated at build time from the same
- * registries as the pages, so it can never list something that does not exist.
+ * country, so readers and agents can use the appropriate regional wording
+ * and canonical links. Generated at build time from the same
+ * registries as the pages. Keep canonical destinations once, even when the
+ * search catalogue also includes a saved-tool alias or a default-country entry.
  */
 export function llmsText(locale: LocaleCode, { root = false } = {}): string {
   const { language, defaultCountry: country } = LOCALES[locale];
@@ -25,6 +27,14 @@ export function llmsText(locale: LocaleCode, { root = false } = {}): string {
     country,
     t,
     calcContext: { countryCode: country, country: COUNTRIES[country], t, fmt: createFormatter(country, language, t) },
+  });
+  const seen = new Set<string>();
+  const canonicalItems = items.filter((item) => {
+    const countryRoute = item.href.match(/^\/[^/]+\/countries\/([^/]+)\/([^/]+)$/);
+    if (countryRoute && canonicalCountryToolSlug(countryRoute[2], countryRoute[1]) !== countryRoute[2]) return false;
+    if (seen.has(item.href)) return false;
+    seen.add(item.href);
+    return true;
   });
 
   const lines: string[] = [
@@ -37,7 +47,7 @@ export function llmsText(locale: LocaleCode, { root = false } = {}): string {
   ];
 
   for (const section of SECTIONS) {
-    const entries = items.filter((item) => item.section === section);
+    const entries = canonicalItems.filter((item) => item.section === section);
     if (!entries.length) continue;
     const name = t(sectionKey(section));
     lines.push(`## ${name}`, "", `- [${t("llms.all", { section: name })}](${absoluteUrl(sectionPath(locale, section))})`);

@@ -5,7 +5,7 @@ const zlib = require('node:zlib');
 const root = path.resolve(__dirname, '..');
 const qa = path.join(root, 'docs/adsense-recheck-2026-10-19/postdeploy-qa');
 fs.mkdirSync(qa, {recursive:true});
-require('../tests/load-typescript.cjs');
+require('./load-typescript.cjs');
 const {CALCULATOR_METADATA}=require('../src/config/calculators/metadata.ts');
 const {LOCALES}=require('../src/config/locales.ts');
 const locales=Object.values(LOCALES).filter(locale=>locale.launch);

@@ -105,6 +105,7 @@ export default async function GuidePage({
     mainEntityOfPage: absoluteUrl(url),
     author: publisherRef(),
     publisher: { ...publisherRef(), logo: { "@type": "ImageObject", url: absoluteUrl("/logo.png"), width: 512, height: 512 } },
+    ...(sources.length ? { citation: sources.map(({ name, href }) => ({ "@type": "WebPage", name, url: href })) } : {}),
   };
 
   return (

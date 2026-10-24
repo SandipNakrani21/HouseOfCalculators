@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-require-imports -- Generates the small client-safe inventory manifest. */
-require('../tests/load-typescript.cjs');
+require('./load-typescript.cjs');
 const fs = require('node:fs');
 const path = require('node:path');
 const { CALCULATORS } = require('../src/config/calculators/index.ts');
