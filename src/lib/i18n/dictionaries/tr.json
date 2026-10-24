@@ -2553,5 +2553,6 @@
   "review.root.qe": "Fedakârlık öncesi yıllık uygun kazanç, super hariç",
   "asia.result.childSupport": "Çocuk desteği (çalışan payı)",
   "review.scope.frSocial2026": "Fransa2026 yalnız primler: Alsace-Moselle dışında olağan yönetici olmayan çalışan,12 düzenli ödeme. PASS48.060€/PMSS4.005€; emeklilik,Agirc-Arrco/CEG/CET,CSG/CRDS ve gerçek zorunlu sağlık. Gelir vergisi,diğer plan/yan hak,muafiyet ve işveren payları hariç. Sağlık sınırları güncel PASS; aşım reddedilir. Kuruşa yuvarlanmış aylık toplam,bordro değil.",
-  "review.scope.beSocial2026": "Belçika2026 olağan özel çalışan,yıllık prime tabi ücret en az48.000€:ONSS%13,07 ve gerçek tahakkuk özel prim. Düşük ücret desteği,işveren payı,yan hak ve gelir vergisi yok; ay=yıllık ortalama."
+  "review.scope.beSocial2026": "Belçika2026 olağan özel çalışan,yıllık prime tabi ücret en az48.000€:ONSS%13,07 ve gerçek tahakkuk özel prim. Düşük ücret desteği,işveren payı,yan hak ve gelir vergisi yok; ay=yıllık ortalama.",
+  "result.severanceStampDuty": "Kıdem tazminatı damga vergisi"
 }

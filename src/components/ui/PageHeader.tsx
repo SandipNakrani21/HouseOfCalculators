@@ -81,7 +81,7 @@ export function PageHeader({
                 {eyebrow}
               </p>
             ) : null}
-            <h1 className="text-h1 text-white">{title}</h1>
+            <h1 className="text-h1 text-white hyphens-auto [overflow-wrap:anywhere]">{title}</h1>
             {description ? (
               <p
                 className="mt-3 max-w-2xl text-sm leading-relaxed text-on-navy-muted sm:text-[0.9375rem]"

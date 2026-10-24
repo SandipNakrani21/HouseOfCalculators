@@ -50,7 +50,7 @@
   "calc.elsewhere": "Esta calculadora en otros países",
   "calc.guides": "Aprende cómo funciona",
   "calc.notAvailable": "{country}: esta calculadora no está disponible aquí.",
-  "calc.seeAvailable": "Ver las calculadoras de este país",
+  "calc.seeAvailable": "Ver calculadoras para {country}",
   "units.year": "año",
   "units.years": "años",
   "units.month": "mes",
@@ -2553,5 +2553,6 @@
   "review.root.qe": "Ingresos anuales admisibles antes de sacrificio, sin super",
   "asia.result.childSupport": "Apoyo a la infancia (parte del empleado)",
   "review.scope.frSocial2026": "Francia2026 solo cotizaciones: empleado no directivo ordinario fuera de Alsacia-Mosela,12 pagos regulares. PASS48.060€/PMSS4.005€; pensión,Agirc-Arrco/CEG/CET,CSG/CRDS y salud obligatoria real. Sin IR,otros planes/beneficios,exenciones ni cargas patronales. Límites sanitarios con PASS actual; exceso rechazado. Suma de componentes mensuales redondeados a céntimos,no nómina.",
-  "review.scope.beSocial2026": "Bélgica2026 empleado privado ordinario,salario sujeto anual mínimo48.000€:ONSS13,07% más cuota especial real evaluada. Sin bono salarial bajo,cargas patronales,beneficios ni IR; mes=promedio anual."
+  "review.scope.beSocial2026": "Bélgica2026 empleado privado ordinario,salario sujeto anual mínimo48.000€:ONSS13,07% más cuota especial real evaluada. Sin bono salarial bajo,cargas patronales,beneficios ni IR; mes=promedio anual.",
+  "result.severanceStampDuty": "Impuesto de timbre sobre la indemnización"
 }

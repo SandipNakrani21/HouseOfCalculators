@@ -501,7 +501,7 @@ export const severancePayCalculator: CalculatorDef = {
       },
       rows: [
         { labelKey: "result.grossSeverance", value: severance, kind: "currency", tone: "principal" },
-        { labelKey: "result.stampDuty", value: stampDuty, kind: "currency", tone: "tax" },
+        { labelKey: "result.severanceStampDuty", value: stampDuty, kind: "currency", tone: "tax" },
         { labelKey: "result.grossNoticeIllustration", value: notice, kind: "currency", tone: "neutral" },
         {
           labelKey: "result.cappedAt",
@@ -513,7 +513,7 @@ export const severancePayCalculator: CalculatorDef = {
       ],
       chart: [
         { labelKey: "result.severancePay", value: severance - stampDuty, tone: "principal" },
-        { labelKey: "result.stampDuty", value: stampDuty, tone: "tax" },
+        { labelKey: "result.severanceStampDuty", value: stampDuty, tone: "tax" },
       ],
       notes: [{ key: "review.scope.trSeverance" }],
     };

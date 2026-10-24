@@ -2553,5 +2553,6 @@
   "review.root.qe": "Rendimentos anuais elegíveis antes do sacrifício, sem super",
   "asia.result.childSupport": "Apoio às crianças (parte do empregado)",
   "review.scope.frSocial2026": "França2026 só contribuições: empregado ordinário não dirigente fora Alsácia-Mosela,12 pagamentos regulares. PASS48.060€/PMSS4.005€; pensão,Agirc-Arrco/CEG/CET,CSG/CRDS e saúde obrigatória real. Sem IR,outros planos/benefícios,isenções ou encargos patronais. Limites saúde pelo PASS atual; excesso recusado. Soma de componentes mensais arredondadas a cêntimos,não recibo salarial.",
-  "review.scope.beSocial2026": "Bélgica2026 empregado privado ordinário,salário sujeito anual mínimo48.000€:ONSS13,07% mais contribuição especial real apurada. Sem bónus baixos salários,encargos patronais,benefícios ou IR; mês=média anual."
+  "review.scope.beSocial2026": "Bélgica2026 empregado privado ordinário,salário sujeito anual mínimo48.000€:ONSS13,07% mais contribuição especial real apurada. Sem bónus baixos salários,encargos patronais,benefícios ou IR; mês=média anual.",
+  "result.severanceStampDuty": "Imposto de selo sobre a indenização"
 }

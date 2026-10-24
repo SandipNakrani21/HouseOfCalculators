@@ -1,6 +1,5 @@
 "use client";
 import dynamic from "next/dynamic";
-import { CALCULATOR_METADATA } from "@/config/calculators/metadata";
 import type { EngineProps } from "./EngineGroup";
 const engines = {
   business: dynamic(() => import("./engines/business")),
@@ -14,8 +13,7 @@ const engines = {
   sip: dynamic(() => import("./engines/sip")),
   tax: dynamic(() => import("./engines/tax")),
 };
-export function CalculatorEntry(props: EngineProps) {
-  const group = CALCULATOR_METADATA.find(calculator => calculator.slug === props.slug)?.engineGroup;
-  const Engine = group ? engines[group as keyof typeof engines] : undefined;
+export function CalculatorEntry({ engineGroup, ...props }: EngineProps & { engineGroup?: string }) {
+  const Engine = engineGroup ? engines[engineGroup as keyof typeof engines] : undefined;
   return Engine ? <Engine key={`${props.slug}:${props.lockedCountry ?? "preferred"}`} {...props} /> : null;
 }

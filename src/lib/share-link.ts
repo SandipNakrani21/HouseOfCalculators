@@ -1,6 +1,6 @@
 import type { CalculatorField, FieldValues } from "@/config/calculators/types";
 import { isCountryCode, type CountryCode } from "@/config/countries";
-import { calculatorFieldError, resolveFields, MAX_LIST_CHARACTERS } from "@/lib/validation";
+import { calculatorFieldError, resolveFields } from "@/lib/validation";
 
 /**
  * A calculator's share link: the page URL with the visitor's inputs in the
@@ -17,9 +17,6 @@ import { calculatorFieldError, resolveFields, MAX_LIST_CHARACTERS } from "@/lib/
 
 /** The query key for the country. No calculator field uses it. */
 export const SHARE_COUNTRY_PARAM = "country";
-
-/** Free-text fields are lists of numbers; nothing legitimate is this long. */
-export const MAX_TEXT = MAX_LIST_CHARACTERS;
 
 export function buildShareUrl(href: string, values: FieldValues, country?: CountryCode, version?: number): string {
   const url = new URL(href);

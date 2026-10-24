@@ -2553,5 +2553,6 @@
   "review.root.qe": "Annual qualifying earnings before sacrifice, excluding super",
   "asia.result.childSupport": "Child and child-rearing support (employee share)",
   "review.scope.frSocial2026": "France2026 contributions only: ordinary non-executive private employee, metropolitan France outside Alsace-Moselle,12 regular payments. PASS€48,060/PMSS€4,005; pension, Agirc-Arrco/CEG/CET, CSG/CRDS and actual mandatory health premiums. No income tax, other plans/benefits, exemptions or employer charges. Employee health deduction and combined plan limits use current PASS; excessive plans rejected. Annual sum of cent-rounded monthly components, not a payslip.",
-  "review.scope.beSocial2026": "Belgium2026 ordinary private white-collar employee, annual subject wages at least€48,000: ONSS13.07% plus actual special social charge from assessment. No low-wage bonus, employer charges, benefits or income tax; monthly output is annual average."
+  "review.scope.beSocial2026": "Belgium2026 ordinary private white-collar employee, annual subject wages at least€48,000: ONSS13.07% plus actual special social charge from assessment. No low-wage bonus, employer charges, benefits or income tax; monthly output is annual average.",
+  "result.severanceStampDuty": "Stamp tax on severance"
 }

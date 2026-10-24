@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import type { CountryCode } from "@/config/countries";
 
 /**
  * Icons and flags from the The Calculators House icon pack (public/landing),
@@ -8,7 +7,6 @@ import type { CountryCode } from "@/config/countries";
  * own pastel circle and colour, so it is shown as-is.
  *
  *   <PackIcon name="coins" size={56} />
- *   <PackFlag code="in" width={48} />
  *
  * Decorative: every use sits beside text that says the same thing.
  */
@@ -40,34 +38,6 @@ export function PackIcon({
       unoptimized
       className={`inline-block shrink-0 ${className}`}
       style={{ width: size, height: size }}
-    />
-  );
-}
-
-/** The countries the pack has flags for: the landing page's world row. */
-export const PACK_FLAGS = ["in", "us", "gb", "ca", "au", "ae", "de", "fr", "es", "br", "jp"] as const satisfies readonly CountryCode[];
-
-/** A rounded-rectangle flag from the pack (3:2). */
-export function PackFlag({
-  code,
-  width = 48,
-  className = "",
-}: {
-  code: (typeof PACK_FLAGS)[number];
-  width?: number;
-  className?: string;
-}) {
-  const height = Math.round((width * 2) / 3);
-  return (
-    <Image
-      src={`/landing/flags/${code}.svg`}
-      alt=""
-      aria-hidden
-      width={width}
-      height={height}
-      unoptimized
-      className={`inline-block shrink-0 rounded-sm shadow-[0_2px_6px_rgba(15,23,42,0.18)] ${className}`}
-      style={{ width, height }}
     />
   );
 }

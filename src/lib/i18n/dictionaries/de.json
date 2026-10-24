@@ -50,7 +50,7 @@
   "calc.elsewhere": "Dieser Rechner für andere Länder",
   "calc.guides": "So funktioniert es",
   "calc.notAvailable": "{country}: Dieser Rechner ist hier nicht verfügbar.",
-  "calc.seeAvailable": "Rechner für dieses Land ansehen",
+  "calc.seeAvailable": "Rechner für {country} ansehen",
   "units.year": "J.",
   "units.years": "Jahre",
   "units.month": "Mon.",
@@ -2553,5 +2553,6 @@
   "review.root.qe": "Jährliche qualifizierende Bezüge vor Gehaltsumwandlung, ohne Super",
   "asia.result.childSupport": "Kinder- und Erziehungsunterstützung (Arbeitnehmeranteil)",
   "review.scope.frSocial2026": "Frankreich2026 nur Beiträge: regulärer Nicht-Kaderangestellter außerhalb Elsass-Mosel,12 regelmäßige Zahlungen. PASS48.060€/PMSS4.005€; Rente,Agirc-Arrco/CEG/CET,CSG/CRDS und tatsächliche Pflichtkrankenprämien. Keine Einkommensteuer, weiteren Pläne/Leistungen,Befreiungen oder Arbeitgeberbeiträge. Gesundheitsgrenzen nach aktuellem PASS; Überschreitung abgelehnt. Summe monatlich centgerundeter Beträge,kein Lohnzettel.",
-  "review.scope.beSocial2026": "Belgien2026 regulärer privater Angestellter,Jahresbeitragslohn mindestens48.000€:ONSS13,07% plus tatsächlich festgesetzter Sonderbeitrag. Kein Niedriglohnbonus,Arbeitgeberbeitrag,Leistungen oder Einkommensteuer; Monat ist Jahresdurchschnitt."
+  "review.scope.beSocial2026": "Belgien2026 regulärer privater Angestellter,Jahresbeitragslohn mindestens48.000€:ONSS13,07% plus tatsächlich festgesetzter Sonderbeitrag. Kein Niedriglohnbonus,Arbeitgeberbeitrag,Leistungen oder Einkommensteuer; Monat ist Jahresdurchschnitt.",
+  "result.severanceStampDuty": "Stempelsteuer auf die Abfindung"
 }

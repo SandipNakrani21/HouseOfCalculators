@@ -140,9 +140,9 @@ export function DonutChart({
             aria-hidden
             className="chart-tooltip"
             style={{
-              left: current.x,
+              left: "50%",
               top: current.y,
-              translate: `${current.x < SIZE * 0.35 ? "-15%" : current.x > SIZE * 0.65 ? "-85%" : "-50%"} ${
+              translate: `-50% ${
                 current.y < SIZE / 2 ? "-100%" : "0"
               }`,
             }}

@@ -9,7 +9,7 @@ import { IconTile } from "@/components/ui/Icon";
 import type { CalcContext } from "@/config/calculators/types";
 import { SECTIONS, sectionKey, type Section } from "@/config/categories";
 import { useLocale } from "@/lib/locale-context";
-import { allContent, type ContentItem } from "@/lib/content";
+import type { ContentItem } from "@/lib/content";
 import { search } from "@/lib/search";
 
 /**
@@ -53,13 +53,27 @@ export function SearchBox({
     return () => cancelAnimationFrame(frame);
   }, [autoFocus]);
   const [panelHeight, setPanelHeight] = useState(280);
+  const [catalogue, setCatalogue] = useState<typeof import("@/lib/content") | null>(null);
+  const [loadFailed, setLoadFailed] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
 
   const hasQuery = query.trim().length > 0;
+  // The full site catalogue is needed only once someone starts searching.
+  useEffect(() => {
+    if (!hasQuery || catalogue) return;
+    let cancelled = false;
+    import("@/lib/content").then(module => {
+      if (!cancelled) { setCatalogue(module); setLoadFailed(false); }
+    }).catch(() => {
+      if (!cancelled) setLoadFailed(true);
+    });
+    return () => { cancelled = true; };
+  }, [hasQuery, catalogue, loadAttempt]);
   const items = useMemo(() => {
-    if (!hasQuery) return [];
+    if (!hasQuery || !catalogue) return [];
     const calcContext: CalcContext = { countryCode, country, t, fmt };
-    return allContent({ locale: localeCode, country: countryCode, t, calcContext });
-  }, [hasQuery, localeCode, countryCode, country, t, fmt]);
+    return catalogue.allContent({ locale: localeCode, country: countryCode, t, calcContext });
+  }, [hasQuery, catalogue, localeCode, countryCode, country, t, fmt]);
 
   const results = useMemo(() => search(items, query, 18), [items, query]);
 
@@ -215,9 +229,12 @@ export function SearchBox({
           }}
         >
           {grouped.length === 0 ? (
-            <p className="px-3 py-6 text-center text-sm text-muted">
-              {t("common.noResults", { query: query.trim() })}
-            </p>
+            <div className="px-3 py-6 text-center text-sm text-muted">
+              <p role="status">
+                {loadFailed ? t("error.title") : !catalogue ? t("common.loading") : t("common.noResults", { query: query.trim() })}
+              </p>
+              {loadFailed ? <button type="button" className="btn btn-outline btn-sm mt-3" onClick={() => { setLoadFailed(false); setLoadAttempt(attempt => attempt + 1); }}>{t("error.retry")}</button> : null}
+            </div>
           ) : (
             grouped.map(([section, sectionResults]) => (
               <section key={section} className="mb-1 last:mb-0">

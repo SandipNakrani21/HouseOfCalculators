@@ -50,7 +50,7 @@
   "calc.elsewhere": "Ce calculateur dans d'autres pays",
   "calc.guides": "Comprendre le fonctionnement",
   "calc.notAvailable": "{country} : ce calculateur n'y est pas disponible.",
-  "calc.seeAvailable": "Voir les calculateurs de ce pays",
+  "calc.seeAvailable": "Voir les calculateurs pour {country}",
   "units.year": "an",
   "units.years": "ans",
   "units.month": "mois",
@@ -2553,5 +2553,6 @@
   "review.root.qe": "Rémunération annuelle admissible avant sacrifice, hors super",
   "asia.result.childSupport": "Soutien aux enfants (part salariale)",
   "review.scope.frSocial2026": "France2026 cotisations seules : salarié non-cadre ordinaire hors Alsace-Moselle,12 paiements réguliers. PASS48 060€/PMSS4 005€; vieillesse,Agirc-Arrco/CEG/CET,CSG/CRDS et mutuelle obligatoire réelle. Sans IR,autres plans/avantages,exonérations ou charges patronales. Limites santé selon PASS courant; dépassement refusé. Somme de composantes mensuelles arrondies au centime,pas une fiche de paie.",
-  "review.scope.beSocial2026": "Belgique2026 employé privé ordinaire,brut soumis annuel au moins48 000€:ONSS13,07% plus cotisation spéciale réellement établie. Sans bonus bas salaire,charges patronales,avantages ou IPP; mois=moyenne annuelle."
+  "review.scope.beSocial2026": "Belgique2026 employé privé ordinaire,brut soumis annuel au moins48 000€:ONSS13,07% plus cotisation spéciale réellement établie. Sans bonus bas salaire,charges patronales,avantages ou IPP; mois=moyenne annuelle.",
+  "result.severanceStampDuty": "Droit de timbre sur l’indemnité"
 }

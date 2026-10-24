@@ -463,7 +463,10 @@
     position: absolute;
     z-index: 10;
     pointer-events: none;
-    white-space: nowrap;
+    width: max-content;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
     border-radius: var(--radius-sm);
     background: var(--heading);
     padding: 0.5rem 0.75rem;

@@ -59,15 +59,6 @@ export function stepUpSipInvested(
   return invested;
 }
 
-/** One-off investment compounded annually. */
-export function lumpsumFutureValue(
-  principal: number,
-  annualRate: number,
-  years: number,
-): number {
-  return principal * Math.pow(1 + pct(annualRate), years);
-}
-
 /** Compound interest with an explicit compounding frequency per year. */
 export function compoundFutureValue(
   principal: number,
@@ -78,14 +69,6 @@ export function compoundFutureValue(
   if (compoundsPerYear <= 0) return principal;
   const i = pct(annualRate) / compoundsPerYear;
   return principal * Math.pow(1 + i, compoundsPerYear * years);
-}
-
-export function simpleInterest(
-  principal: number,
-  annualRate: number,
-  years: number,
-): number {
-  return principal * pct(annualRate) * years;
 }
 
 /** Equated monthly instalment for a level-payment loan. */
@@ -145,16 +128,6 @@ export function amortisationSchedule(
     }
   }
   return schedule;
-}
-
-/** Compound annual growth rate as a percentage. */
-export function cagr(
-  initial: number,
-  final: number,
-  years: number,
-): number {
-  if (initial <= 0 || years <= 0) return 0;
-  return (Math.pow(final / initial, 1 / years) - 1) * 100;
 }
 
 /** Value of `amount` after `years` of inflation, and what it buys in today's money. */

@@ -2553,5 +2553,6 @@
   "review.root.qe": "Jaarlijkse kwalificerende inkomsten vóór salary sacrifice, exclusief super",
   "asia.result.childSupport": "Kind- en opvoedingssteun (werknemersdeel)",
   "review.scope.frSocial2026": "Frankrijk2026 alleen bijdragen: gewone niet-kaderwerknemer buiten Elzas-Moezel,12 regelmatige betalingen. PASS48.060€/PMSS4.005€; pensioen,Agirc-Arrco/CEG/CET,CSG/CRDS en werkelijke verplichte zorgpremies. Geen inkomstenbelasting,andere plannen/voordelen,vrijstellingen of werkgeverslasten. Zorggrenzen volgens huidige PASS; overschrijding afgewezen. Som van maandelijks op centen afgeronde delen,geen loonstrook.",
-  "review.scope.beSocial2026": "België2026 gewone private bediende,jaarlijks bijdrageloon minimaal48.000€:ONSS13,07% plus werkelijk vastgestelde bijzondere bijdrage. Geen werkbonus,werkgeverslasten,voordelen of inkomstenbelasting; maand=jaargemiddelde."
+  "review.scope.beSocial2026": "België2026 gewone private bediende,jaarlijks bijdrageloon minimaal48.000€:ONSS13,07% plus werkelijk vastgestelde bijzondere bijdrage. Geen werkbonus,werkgeverslasten,voordelen of inkomstenbelasting; maand=jaargemiddelde.",
+  "result.severanceStampDuty": "Zegelbelasting op de ontslagvergoeding"
 }

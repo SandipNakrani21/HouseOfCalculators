@@ -3,6 +3,7 @@ import { CalculatorEntry } from "@/components/calculator/CalculatorEntry";
 import { DetailPage } from "@/components/layout/DetailPage";
 import type { Crumb } from "@/components/ui/Breadcrumbs";
 import { calculatorsFor } from "@/config/calculators";
+import { CALCULATOR_METADATA } from "@/config/calculators/metadata";
 import { countryRelevanceOf } from "@/config/calculators/types";
 import type { CalcContext, CalculatorDef } from "@/config/calculators/types";
 import { categoryKey } from "@/config/categories";
@@ -106,7 +107,7 @@ export function CalculatorPageBody({
             // follows a country's rules for a tax year would be simply untrue.
             <>
               <CalculatorCountryNote relevance={relevance} lockedCountry={lockCountry ? country : undefined} supportedCountries={calculator.countries} year={review?.kind !== "formula" ? review?.period : undefined} />
-              {review && review.kind !== "formula" ? <p className="mt-3 max-w-3xl text-sm leading-relaxed text-on-navy-muted">{t(reviewScopeKey(calculator.slug, country))}</p> : null}
+              {review && review.kind !== "formula" ? <p className="mt-3 max-w-3xl text-sm leading-relaxed text-on-navy-muted hyphens-auto [overflow-wrap:anywhere]">{t(reviewScopeKey(calculator.slug, country))}</p> : null}
             </>
           ),
       }}
@@ -148,7 +149,7 @@ export function CalculatorPageBody({
                   {review ? <aside className="rounded-md border border-border p-4">
                     <h3 className="font-semibold">{t("calc.sources")}</h3>
                     {review.kind !== "formula" ? <p className="mt-1 text-sm text-muted">{t("calc.ruleReview", { period: review.period, revision: review.revision, date: review.reviewed })}</p> : null}
-                    <p className="mt-3 text-sm leading-relaxed text-muted">{t(reviewScopeKey(calculator.slug, country))}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted hyphens-auto [overflow-wrap:anywhere]">{t(reviewScopeKey(calculator.slug, country))}</p>
                     <ul className="mt-3 space-y-2 text-sm">{review.sources.map(source => <li key={source}><a className="text-primary underline underline-offset-4" href={source} target="_blank" rel="noreferrer">{new URL(source).hostname}</a></li>)}</ul>
                   </aside> : null}
                   {health ? <aside className="rounded-md border border-border p-4">
@@ -190,6 +191,7 @@ export function CalculatorPageBody({
       cta={calculatorsCta(t, locale)}
     >
       <CalculatorEntry
+        engineGroup={CALCULATOR_METADATA.find(item => item.slug === calculator.slug)?.engineGroup}
         slug={calculator.slug}
         lockedCountry={lockCountry ? country : undefined}
         allowedCountries={calculator.countries}

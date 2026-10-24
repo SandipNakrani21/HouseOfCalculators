@@ -314,10 +314,10 @@ test('Turkiye 2026 regular wages use private-sector ninefold cap and monthly min
 test('Turkiye 2026 eligible severance keeps half-year ceilings and separate kurus amounts',()=>{
  for(const [period,gross,stamp,net]of [['2026-h1',324743.85,2464.81,322279.04],['2026-h2',368649.35,2798.05,365851.30]]){
   const r=run('severance-pay',{salary:80000,years:5,period},'tr');
-  close(row(r,'result.grossSeverance'),gross);close(row(r,'result.stampDuty'),stamp);close(r.primary.value,net);
+  close(row(r,'result.grossSeverance'),gross);close(row(r,'result.severanceStampDuty'),stamp);close(r.primary.value,net);
  }
  const fraction=run('severance-pay',{salary:80000,years:1.23,period:'2026-h2'},'tr');
- close(row(fraction,'result.grossSeverance'),90687.74);close(row(fraction,'result.stampDuty'),688.32);close(fraction.primary.value,89999.42);
+ close(row(fraction,'result.grossSeverance'),90687.74);close(row(fraction,'result.severanceStampDuty'),688.32);close(fraction.primary.value,89999.42);
  close(row(run('severance-pay',{salary:80000,years:1,period:'2025-h1'},'tr'),'result.grossSeverance'),46655.43);
 });
 

@@ -2553,5 +2553,6 @@
   "review.root.qe": "Redditi annui ammissibili prima del sacrificio, esclusa super",
   "asia.result.childSupport": "Sostegno ai figli (quota dipendente)",
   "review.scope.frSocial2026": "Francia2026 soli contributi: dipendente ordinario non dirigente fuori Alsazia-Mosella,12 pagamenti regolari. PASS48.060€/PMSS4.005€; pensione,Agirc-Arrco/CEG/CET,CSG/CRDS e sanità obbligatoria effettiva. Esclusi IR,altri piani/benefit,esenzioni e quote datore. Limiti salute dal PASS corrente; eccedenza rifiutata. Somma mensile arrotondata ai centesimi,non cedolino.",
-  "review.scope.beSocial2026": "Belgio2026 impiegato privato ordinario,retribuzione soggetta annua almeno48.000€:ONSS13,07% più contributo speciale accertato effettivo. Esclusi bonus bassi salari,quote datore,benefit e imposta; mese=media annua."
+  "review.scope.beSocial2026": "Belgio2026 impiegato privato ordinario,retribuzione soggetta annua almeno48.000€:ONSS13,07% più contributo speciale accertato effettivo. Esclusi bonus bassi salari,quote datore,benefit e imposta; mese=media annua.",
+  "result.severanceStampDuty": "Imposta di bollo sull’indennità"
 }

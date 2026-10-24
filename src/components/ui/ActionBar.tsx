@@ -76,36 +76,36 @@ export function ActionBar({
       }
     : undefined;
 
-  // Labels may wrap to a second line: "Копировать ссылку" or "CSV downloaden"
-  // is wider than a phone's half-width cell, and a clipped label is worse than
-  // two short lines inside the same fixed-height button.
+  // Fit the result column, which can be narrow even on a wide viewport.
+  // Labels need their own shrinking flex item and room to grow vertically.
   const buttonClass =
-    "btn btn-outline btn-md w-full min-w-0 gap-1.5 px-2.5 whitespace-normal text-center leading-tight hyphens-auto";
+    "btn btn-outline btn-md h-auto min-h-[2.75rem] w-full min-w-0 gap-1.5 px-2.5 py-2 whitespace-normal text-center leading-tight hyphens-auto";
   const iconClass = "h-4 w-4 shrink-0";
+  const labelClass = "min-w-0 [overflow-wrap:anywhere]";
 
   return (
     <div
       className={`grid grid-cols-2 gap-3 border-t border-border pt-7 print:hidden ${
-        layout === "row" ? "sm:grid-flow-col sm:grid-cols-none sm:auto-cols-fr" : ""
+        layout === "row" ? "sm:grid-cols-[repeat(auto-fit,minmax(min(100%,7rem),1fr))]" : ""
       } ${className}`}
     >
       <Button
         variant="outline"
         size="md"
-        className={`w-full min-w-0 px-2.5 ${downloadCsv ? (layout === "row" ? "col-span-2 sm:col-span-1" : "col-span-2") : ""}`}
+        className={`h-auto min-h-[2.75rem] w-full min-w-0 px-2.5 py-2 whitespace-normal ${downloadCsv ? (layout === "row" ? "col-span-2 sm:col-span-1" : "col-span-2") : ""}`}
         onClick={onReset}
         icon={<RotateCcw className="transition-transform duration-500 group-hover:-rotate-180" />}
       >
-        {t("common.reset")}
+        <span className={labelClass}>{t("common.reset")}</span>
       </Button>
       <button type="button" onClick={() => window.print()} className={buttonClass}>
         <Printer aria-hidden className={iconClass} />
-        {t("actions.print")}
+        <span className={labelClass}>{t("actions.print")}</span>
       </button>
       {downloadCsv ? (
         <button type="button" onClick={downloadCsv} className={buttonClass}>
           <Download aria-hidden className={iconClass} />
-          {t("actions.downloadCsv")}
+          <span className={labelClass}>{t("actions.downloadCsv")}</span>
         </button>
       ) : null}
       <button type="button" onClick={copyLink} className={buttonClass}>
@@ -114,11 +114,11 @@ export function ActionBar({
         ) : (
           <Link2 aria-hidden className={iconClass} />
         )}
-        {copied ? t("common.copied") : t(shareUrl ? "common.copyLink" : "actions.copyToolLink")}
+        <span className={labelClass}>{copied ? t("common.copied") : t(shareUrl ? "common.copyLink" : "actions.copyToolLink")}</span>
       </button>
       <button type="button" onClick={share} className={buttonClass}>
         <Share2 aria-hidden className={iconClass} />
-        {t(shareUrl ? "actions.share" : "actions.shareTool")}
+        <span className={labelClass}>{t(shareUrl ? "actions.share" : "actions.shareTool")}</span>
       </button>
       {shareNotice ? <p className="col-span-full text-xs leading-relaxed text-muted">{shareNotice}</p> : null}
     </div>
