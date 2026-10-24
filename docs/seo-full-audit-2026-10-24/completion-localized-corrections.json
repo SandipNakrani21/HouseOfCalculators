@@ -1,0 +1,296 @@
+[
+  {
+    "language": "de",
+    "key": "calc.loan.desc",
+    "before": "Monatsrate, Gesamtzinsen und Tilgungsplan für jeden Kredit.",
+    "after": "Monatsrate, Gesamtzinsen und Tilgungsplan für einen Kredit mit festem Zinssatz und gleichbleibenden Monatsraten. Gebühren sind nicht enthalten."
+  },
+  {
+    "language": "de",
+    "key": "calc.loan.faq.1.a",
+    "before": "Ja. Alles, was über die vereinbarte Rate hinaus gezahlt wird, geht direkt in die Tilgung und senkt damit sowohl die Restschuld als auch sämtliche Zinsen, die darauf noch angefallen wären.",
+    "after": "Zusätzliche Zahlungen, die auf die Restschuld angerechnet werden, können künftige Zinsen senken. Klären Sie mit dem Kreditgeber die Anrechnung und mögliche Vorfälligkeitskosten. Dieser Rechner berücksichtigt nur planmäßige Raten, keine Sondertilgungen oder Gebühren."
+  },
+  {
+    "language": "de",
+    "key": "calc.income-tax.faq.2.a",
+    "before": "Nein. Erfasst sind die wichtigsten Freibeträge und die Pauschale. Sonderregelungen, Steuerermäßigungen und lokale Steuern sind nicht abgebildet - das Ergebnis ist eine Schätzung.",
+    "after": "Nein. Welche Abzüge, Steuerermäßigungen und lokalen Steuern enthalten sind, hängt vom gewählten Ländermodell ab. Lesen Sie dessen Steuerzeitraum, Annahmen und Grenzen bei den Eingaben und Quellen. Nur ausdrücklich genannte Positionen werden berücksichtigt; dies ist keine vollständige Steuererklärung."
+  },
+  {
+    "language": "de",
+    "key": "chart.length.explain",
+    "before": "Jeder Wert wird aus den exakten Definitionen berechnet – ein Zoll ist per Definition 25,4 mm, nicht per Messung –, daher stimmt die Tabelle bis zur letzten angezeigten Stelle mit dem Umrechner überein.",
+    "after": "Tabelle und Umrechner verwenden dieselben Einheitendefinitionen, darunter exakt 25,4 mm je Zoll. Die angezeigte Genauigkeit unterscheidet sich: Tabellenwerte werden gerundet und sind deshalb nicht als exakte Werte zu behandeln."
+  },
+  {
+    "language": "de",
+    "key": "tool.date-difference.explain",
+    "before": "Die Differenz wird in ganzen Tagen in UTC gezählt. Mit Ortszeit wäre das Ergebnis über eine Zeitumstellung hinweg falsch, weil zwei Daten dann 23 oder 25 Stunden auseinanderliegen können.",
+    "after": "Die verstrichene Zeit wird in ganzen UTC-Tagen berechnet. Die Werktagszahl zählt Montag bis Freitag einschließlich beider Enddaten, ohne Feiertage abzuziehen. Derselbe Montag ergibt daher null verstrichene Tage, aber einen Werktag."
+  },
+  {
+    "language": "fr",
+    "key": "calc.loan.desc",
+    "before": "Mensualité, intérêts totaux et tableau d'amortissement pour tout prêt.",
+    "after": "Estimez les mensualités, les intérêts totaux et le tableau de remboursement d’un prêt à taux fixe avec mensualités constantes, hors frais."
+  },
+  {
+    "language": "fr",
+    "key": "calc.loan.faq.1.a",
+    "before": "Oui. Tout ce qui est versé au-delà de l'échéance prévue va directement au capital, ce qui réduit à la fois le solde et tous les intérêts qu'il aurait produits.",
+    "after": "Un versement supplémentaire imputé au capital peut réduire les intérêts futurs. Vérifiez auprès du prêteur son affectation et les éventuels frais de remboursement anticipé. Ce calculateur ne modélise que les échéances prévues, sans versements supplémentaires ni frais."
+  },
+  {
+    "language": "fr",
+    "key": "calc.income-tax.faq.2.a",
+    "before": "Non. Les principaux abattements et la déduction forfaitaire sont couverts. Les régimes particuliers, les crédits d'impôt et les taxes locales ne sont pas modélisés : le résultat est une estimation.",
+    "after": "Non. Les déductions, crédits et taxes locales inclus dépendent du modèle du pays sélectionné. Consultez sa période fiscale, ses hypothèses et ses limites près des saisies et des sources. Seuls les éléments explicitement indiqués sont modélisés ; il ne s’agit pas d’une déclaration fiscale complète."
+  },
+  {
+    "language": "fr",
+    "key": "chart.length.explain",
+    "before": "Chaque valeur est calculée à partir des définitions exactes (un pouce vaut 25,4 mm par définition, et non par mesure) : le tableau concorde avec le convertisseur jusqu'à la dernière décimale affichée.",
+    "after": "Le tableau et le convertisseur utilisent les mêmes définitions, dont exactement 25,4 mm par pouce. Leur précision affichée diffère : les valeurs du tableau sont arrondies et ne doivent pas être considérées comme exactes."
+  },
+  {
+    "language": "fr",
+    "key": "tool.date-difference.explain",
+    "before": "L'écart est compté en jours entiers en UTC. L'heure locale fausserait le résultat lors d'un changement d'heure, où deux dates peuvent être séparées de 23 ou 25 heures.",
+    "after": "L’écart écoulé est calculé en jours UTC entiers. Le nombre de jours ouvrés compte du lundi au vendredi, en incluant les deux dates et sans déduire les jours fériés. Le même lundi donne donc zéro jour écoulé mais un jour ouvré."
+  },
+  {
+    "language": "es",
+    "key": "calc.loan.desc",
+    "before": "Calcula la cuota mensual, los intereses totales y el cuadro de amortización.",
+    "after": "Estima la cuota mensual, los intereses totales y el plan de amortización de un préstamo a tipo fijo con cuotas mensuales iguales. No incluye comisiones."
+  },
+  {
+    "language": "es",
+    "key": "calc.loan.faq.1.a",
+    "before": "Sí. Todo lo que pagues por encima de la cuota va directo al capital, lo que reduce el saldo y todos los intereses que habría generado.",
+    "after": "Los pagos adicionales aplicados al capital pueden reducir los intereses futuros. Confirma con el prestamista cómo los aplica y si cobra por amortización anticipada. Esta calculadora solo modela las cuotas previstas, sin pagos adicionales ni comisiones."
+  },
+  {
+    "language": "es",
+    "key": "calc.income-tax.faq.2.a",
+    "before": "No. Se cubren las reducciones principales y la deducción estándar. No se modelan beneficios especiales, créditos ni impuestos locales, así que tómalo como una estimación.",
+    "after": "No. Las deducciones, créditos e impuestos locales incluidos dependen del modelo del país seleccionado. Lee el período fiscal, los supuestos y las limitaciones junto a los datos y las fuentes. Solo se modelan los conceptos indicados expresamente; no es una declaración fiscal completa."
+  },
+  {
+    "language": "es",
+    "key": "chart.length.explain",
+    "before": "Cada valor se calcula con las definiciones exactas (una pulgada mide 25,4 mm por definición, no por medición), así que la tabla coincide con el conversor hasta el último decimal mostrado.",
+    "after": "La tabla y el conversor usan las mismas definiciones, incluida la equivalencia exacta de 25,4 mm por pulgada. La precisión mostrada es diferente: la tabla redondea los valores, que no deben tratarse como exactos."
+  },
+  {
+    "language": "es",
+    "key": "tool.date-difference.explain",
+    "before": "La diferencia se cuenta en días completos en UTC. Con la hora local, el resultado fallaría al cruzar un cambio de horario, cuando dos fechas pueden estar separadas 23 o 25 horas.",
+    "after": "El intervalo transcurrido se calcula en días completos en UTC. Los días laborables cuentan de lunes a viernes, incluyen ambas fechas y no descuentan festivos. El mismo lunes da cero días transcurridos, pero un día laborable."
+  },
+  {
+    "language": "pt",
+    "key": "calc.loan.desc",
+    "before": "Parcela mensal, total de juros e cronograma de pagamento de qualquer empréstimo.",
+    "after": "Estime a parcela mensal, os juros totais e o cronograma de um empréstimo com taxa fixa e parcelas mensais iguais. Não inclui tarifas."
+  },
+  {
+    "language": "pt",
+    "key": "calc.loan.faq.1.a",
+    "before": "Sim. Tudo o que for pago além do valor programado vai direto para o principal, o que reduz o saldo e todos os juros que incidiriam sobre ele.",
+    "after": "Pagamentos extras aplicados ao principal podem reduzir os juros futuros. Confirme com o credor como são aplicados e se há encargos de quitação antecipada. Esta calculadora considera somente as parcelas previstas, sem pagamentos extras nem tarifas."
+  },
+  {
+    "language": "pt",
+    "key": "calc.income-tax.faq.2.a",
+    "before": "Não. Estão incluídas as principais isenções e a dedução padrão. Benefícios especiais, créditos e impostos locais não são considerados, então trate o resultado como uma estimativa.",
+    "after": "Não. Deduções, créditos e tributos locais incluídos dependem do modelo do país selecionado. Leia o período fiscal, as premissas e os limites junto aos dados e às fontes. Somente os itens indicados expressamente são considerados; não é uma declaração fiscal completa."
+  },
+  {
+    "language": "pt",
+    "key": "chart.length.explain",
+    "before": "Todo valor é calculado a partir das definições exatas - uma polegada tem 25,4 mm por definição, não por medição - então a tabela bate com o conversor até a última casa decimal mostrada.",
+    "after": "A tabela e o conversor usam as mesmas definições, incluindo exatamente 25,4 mm por polegada. A precisão exibida é diferente: os valores da tabela são arredondados e não devem ser tratados como exatos."
+  },
+  {
+    "language": "pt",
+    "key": "tool.date-difference.explain",
+    "before": "A diferença é contada em dias inteiros em UTC. Usar o horário local deixaria a resposta errada na mudança do horário de verão, quando duas datas podem estar a 23 ou 25 horas uma da outra.",
+    "after": "O intervalo decorrido é calculado em dias inteiros em UTC. A contagem de dias úteis considera segunda a sexta, inclui as duas datas e não desconta feriados. A mesma segunda-feira resulta em zero dias decorridos, mas um dia útil."
+  },
+  {
+    "language": "ru",
+    "key": "calc.loan.desc",
+    "before": "Ежемесячный платёж, общая сумма процентов и график погашения для любого кредита.",
+    "after": "Оцените ежемесячный платёж, общую сумму процентов и график кредита с фиксированной ставкой и равными ежемесячными платежами. Комиссии не включены."
+  },
+  {
+    "language": "ru",
+    "key": "calc.loan.faq.1.a",
+    "before": "Да. Всё, что вы платите сверх графика, сразу идёт в погашение основного долга, а это уменьшает и остаток, и все проценты, которые начислились бы на него.",
+    "after": "Дополнительные платежи, зачтённые в основной долг, могут уменьшить будущие проценты. Уточните у кредитора порядок зачёта и возможные расходы на досрочное погашение. Калькулятор учитывает только платежи по графику, без переплат и комиссий."
+  },
+  {
+    "language": "ru",
+    "key": "calc.income-tax.faq.2.a",
+    "before": "Нет. Учтены основные льготы и стандартный вычет. Особые льготы, налоговые кредиты и местные налоги не моделируются, поэтому считайте результат оценкой.",
+    "after": "Нет. Учтённые вычеты, налоговые льготы и местные налоги зависят от модели выбранной страны. Проверьте её налоговый период, допущения и ограничения рядом с полями и источниками. Учитываются только прямо перечисленные позиции; это не полная налоговая декларация."
+  },
+  {
+    "language": "ru",
+    "key": "chart.length.explain",
+    "before": "Каждое значение рассчитано по точным определениям — дюйм равен 25,4 мм по определению, а не по измерению, — поэтому таблица совпадает с конвертером до последнего показанного знака.",
+    "after": "Таблица и конвертер используют одинаковые определения единиц, включая ровно 25,4 мм в дюйме. Точность отображения различается: значения таблицы округлены и не должны считаться точными."
+  },
+  {
+    "language": "ru",
+    "key": "tool.date-difference.explain",
+    "before": "Разница считается целыми днями в UTC. При местном времени ответ был бы неверным при переходе на летнее время, когда между двумя датами может оказаться 23 или 25 часов.",
+    "after": "Прошедший интервал считается в целых днях UTC. Рабочие дни считаются с понедельника по пятницу, включая обе даты и без вычитания праздников. Одинаковый понедельник даёт ноль прошедших дней, но один рабочий день."
+  },
+  {
+    "language": "tr",
+    "key": "calc.loan.desc",
+    "before": "Her türlü kredi için aylık taksit, toplam faiz ve geri ödeme planı.",
+    "after": "Sabit faizli ve eşit aylık taksitli bir kredinin aylık ödemesini, toplam faizini ve ödeme planını tahmin edin. Ücretler dahil değildir."
+  },
+  {
+    "language": "tr",
+    "key": "calc.loan.faq.1.a",
+    "before": "Evet. Planlanan tutarın üzerinde ödediğiniz her şey doğrudan anaparaya gider; bu da hem bakiyeyi hem de ona işleyecek tüm faizi azaltır.",
+    "after": "Anaparaya uygulanan ek ödemeler gelecekteki faizi azaltabilir. Ödemenin nasıl uygulandığını ve erken ödeme masraflarını kredi verenden doğrulayın. Bu hesaplayıcı yalnızca planlanan taksitleri modeller; ek ödemeler ve ücretler dahil değildir."
+  },
+  {
+    "language": "tr",
+    "key": "calc.income-tax.faq.2.a",
+    "before": "Hayır. Başlıca muafiyetler ve standart indirim dahildir. Özel indirimler, vergi kredileri ve yerel vergiler modellenmez; sonucu bir tahmin olarak değerlendirin.",
+    "after": "Hayır. Dahil edilen indirimler, vergi mahsupları ve yerel vergiler seçilen ülke modeline bağlıdır. Girdilerin ve kaynakların yanındaki vergi dönemini, varsayımları ve sınırları okuyun. Yalnızca açıkça belirtilen kalemler modellenir; bu tam bir vergi beyannamesi değildir."
+  },
+  {
+    "language": "tr",
+    "key": "chart.length.explain",
+    "before": "Her değer kesin tanımlardan hesaplanır - bir inç ölçümle değil, tanım gereği 25,4 mm'dir - bu yüzden tablo, gösterilen son ondalığa kadar dönüştürücüyle aynıdır.",
+    "after": "Tablo ve dönüştürücü, bir inç için tam 25,4 mm dahil aynı birim tanımlarını kullanır. Gösterilen hassasiyet farklıdır: tablo değerleri yuvarlanır ve kesin değer sayılmamalıdır."
+  },
+  {
+    "language": "tr",
+    "key": "tool.date-difference.explain",
+    "before": "Fark, UTC'de tam gün olarak sayılır. Yerel saat kullanılsaydı, iki tarihin 23 veya 25 saat arayla olabileceği yaz saati geçişlerinde sonuç yanlış çıkardı.",
+    "after": "Geçen süre tam UTC günleriyle hesaplanır. İş günü sayısı pazartesiden cumaya iki tarihi de kapsar ve resmi tatilleri çıkarmaz. Aynı pazartesi için geçen gün sıfır, iş günü ise birdir."
+  },
+  {
+    "language": "ja",
+    "key": "calc.loan.desc",
+    "before": "あらゆるローンの毎月の返済額、利息総額、返済スケジュールを計算します。",
+    "after": "固定金利で毎月同額を返済するローンの月々の返済額、利息総額、返済予定を試算します。手数料は含みません。"
+  },
+  {
+    "language": "ja",
+    "key": "calc.loan.faq.1.a",
+    "before": "はい。予定額を超えて支払った分はすべて元本に充てられ、残高とそれにかかるはずだった利息がまとめて減ります。",
+    "after": "元本に充当される追加返済は、将来の利息を減らす場合があります。充当方法と繰上返済費用を貸し手に確認してください。この計算では予定どおりの返済のみを扱い、追加返済や手数料は含みません。"
+  },
+  {
+    "language": "ja",
+    "key": "calc.income-tax.faq.2.a",
+    "before": "いいえ。主な控除と標準控除のみを反映しています。特別な優遇措置、税額控除、地方税はモデル化していないため、結果は目安としてご利用ください。",
+    "after": "いいえ。含まれる所得控除、税額控除、地方税は選択した国のモデルによって異なります。入力欄と出典の近くにある対象期間、前提、制限を確認してください。明記された項目のみを扱い、完全な税務申告を作成するものではありません。"
+  },
+  {
+    "language": "ja",
+    "key": "chart.length.explain",
+    "before": "すべての値は正確な定義から計算しています。1インチは測定ではなく定義上25.4 mmなので、表示されている最後の桁まで換算ツールと一致します。",
+    "after": "表と換算ツールは、1インチが正確に25.4 mmであることを含め、同じ単位定義を使います。ただし表示精度は異なります。表の値は丸められており、厳密な値として扱わないでください。"
+  },
+  {
+    "language": "ja",
+    "key": "tool.date-difference.explain",
+    "before": "差はUTCの丸1日単位で数えます。現地時刻を使うと、夏時間の切り替えをまたぐ場合に2つの日付の間が23時間や25時間になり、答えがずれてしまいます。",
+    "after": "経過日数はUTCの暦日単位で計算します。営業日数は月曜日から金曜日を両端の日付を含めて数え、祝日は差し引きません。同じ月曜日を指定すると、経過日数は0日、営業日数は1日になります。"
+  },
+  {
+    "language": "zh",
+    "key": "calc.loan.desc",
+    "before": "计算任何贷款的月供、总利息和还款计划。",
+    "after": "估算固定利率、每月等额还款贷款的月供、总利息和还款计划。不含手续费。"
+  },
+  {
+    "language": "zh",
+    "key": "calc.loan.faq.1.a",
+    "before": "能。超出计划金额的部分会直接冲抵本金，从而减少余额以及原本会在这部分余额上产生的全部利息。",
+    "after": "计入本金的额外还款可能减少未来利息。请向贷款机构确认款项分配方式及提前还款费用。本计算器仅模拟计划内还款，不计额外还款或手续费。"
+  },
+  {
+    "language": "zh",
+    "key": "calc.income-tax.faq.2.a",
+    "before": "不包含。这里只计入主要免税额和标准扣除。特殊减免、税收抵免和地方税未纳入模型，因此结果仅供估算。",
+    "after": "不包含全部项目。计入的扣除、税收抵免和地方税取决于所选国家的模型。请阅读输入栏和来源附近的适用税期、假设与限制。模型只计入明确列出的项目，并非完整的纳税申报。"
+  },
+  {
+    "language": "zh",
+    "key": "chart.length.explain",
+    "before": "每个数值都根据精确定义计算——1 英寸按定义就是 25.4 毫米，而不是测量得出——因此表格与换算器一致，直到显示的最后一位小数。",
+    "after": "表格与换算器使用相同的单位定义，包括1英寸精确等于25.4毫米。但显示精度不同：表格数值经过四舍五入，不应视为精确值。"
+  },
+  {
+    "language": "zh",
+    "key": "tool.date-difference.explain",
+    "before": "间隔按 UTC 的整天计算。如果使用当地时间，跨越夏令时切换时两个日期可能相差 23 或 25 小时，结果就会出错。",
+    "after": "经过的天数按UTC日历日期计算。工作日计数包括两个端点，只计周一至周五，不扣除节假日。因此，同一个星期一对应0个经过日，但有1个工作日。"
+  },
+  {
+    "language": "it",
+    "key": "calc.loan.desc",
+    "before": "Rata mensile, interessi totali e piano di ammortamento per qualsiasi prestito.",
+    "after": "Stima rata mensile, interessi totali e piano di rimborso di un prestito a tasso fisso con rate mensili uguali. Esclude le commissioni."
+  },
+  {
+    "language": "it",
+    "key": "calc.loan.faq.1.a",
+    "before": "Sì. Tutto ciò che versi oltre la rata prevista va direttamente al capitale, riducendo il debito residuo e tutti gli interessi che vi sarebbero maturati.",
+    "after": "I versamenti aggiuntivi imputati al capitale possono ridurre gli interessi futuri. Verifica con il finanziatore come vengono imputati e gli eventuali costi di estinzione anticipata. Questo calcolatore considera solo le rate previste, senza versamenti aggiuntivi o commissioni."
+  },
+  {
+    "language": "it",
+    "key": "chart.length.explain",
+    "before": "Ogni valore è calcolato dalle definizioni esatte - un pollice è 25,4 mm per definizione, non per misurazione - quindi la tabella coincide con il convertitore fino all'ultimo decimale mostrato.",
+    "after": "La tabella e il convertitore usano le stesse definizioni, tra cui esattamente 25,4 mm per pollice. La precisione visualizzata è diversa: i valori della tabella sono arrotondati e non vanno considerati esatti."
+  },
+  {
+    "language": "it",
+    "key": "tool.date-difference.explain",
+    "before": "La differenza si conta in giorni interi in UTC. Usare l'ora locale renderebbe la risposta sbagliata a cavallo del cambio dell'ora legale, quando due date possono distare 23 o 25 ore.",
+    "after": "I giorni trascorsi sono calcolati usando le date UTC. I giorni lavorativi contano dal lunedì al venerdì, includono entrambe le date e non sottraggono i festivi. Lo stesso lunedì dà quindi zero giorni trascorsi ma un giorno lavorativo."
+  },
+  {
+    "language": "nl",
+    "key": "calc.loan.desc",
+    "before": "Maandbedrag, totale rente en aflossingsschema voor elke lening.",
+    "after": "Schat het maandbedrag, de totale rente en het aflossingsschema voor een lening met vaste rente en gelijke maandbetalingen. Kosten zijn niet inbegrepen."
+  },
+  {
+    "language": "nl",
+    "key": "calc.loan.faq.1.a",
+    "before": "Ja. Alles wat je boven het vaste bedrag betaalt, gaat direct naar de hoofdsom. Dat verlaagt de schuld en alle rente die daarover nog zou zijn berekend.",
+    "after": "Extra betalingen die op de hoofdsom worden afgeboekt, kunnen toekomstige rente verlagen. Vraag de kredietgever hoe deze betalingen worden verwerkt en of er kosten voor vervroegd aflossen zijn. Deze calculator rekent alleen met geplande betalingen, zonder extra aflossingen of kosten."
+  },
+  {
+    "language": "nl",
+    "key": "calc.income-tax.faq.2.a",
+    "before": "Nee. De belangrijkste vrijstellingen en de standaardaftrek zijn meegenomen. Bijzondere regelingen, kortingen en lokale belastingen niet, dus zie de uitkomst als een schatting.",
+    "after": "Nee. De opgenomen aftrekposten, belastingkortingen en lokale belastingen hangen af van het gekozen landmodel. Lees de belastingperiode, aannames en beperkingen bij de invoer en bronnen. Alleen uitdrukkelijk genoemde onderdelen worden berekend; dit is geen volledige belastingaangifte."
+  },
+  {
+    "language": "nl",
+    "key": "chart.length.explain",
+    "before": "Elke waarde is berekend uit de exacte definities - een inch is per definitie 25,4 mm, niet gemeten - dus de tabel komt tot de laatste getoonde decimaal overeen met de omrekentool.",
+    "after": "De tabel en omrekentool gebruiken dezelfde eenheidsdefinities, waaronder precies 25,4 mm per inch. De weergegeven nauwkeurigheid verschilt: tabelwaarden zijn afgerond en mogen niet als exact worden behandeld."
+  },
+  {
+    "language": "nl",
+    "key": "tool.date-difference.explain",
+    "before": "Het verschil wordt geteld in hele dagen in UTC. Met lokale tijd zou het antwoord bij de overgang naar zomer- of wintertijd fout gaan, omdat twee datums dan 23 of 25 uur uit elkaar kunnen liggen.",
+    "after": "De verstreken tijd wordt in hele UTC-kalenderdagen berekend. De werkdagen tellen maandag tot en met vrijdag, met beide einddatums inbegrepen en zonder feestdagen af te trekken. Dezelfde maandag geeft dus nul verstreken dagen maar één werkdag."
+  }
+]

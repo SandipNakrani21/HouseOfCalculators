@@ -1,0 +1,2766 @@
+[
+  {
+    "path": "/en-us/calculators/finance/mortgage",
+    "corrections": [
+      "calc.mortgage.explain: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-us/calculators/finance/loan",
+    "corrections": [
+      "Fixed-rate/no-fee description and conditional overpayment FAQ"
+    ]
+  },
+  {
+    "path": "/en-us/calculators/health/bmi",
+    "corrections": [
+      "calc.bmi.explain.2: completion-copy-changes.json",
+      "calc.bmi.faq.1.a: completion-copy-changes.json",
+      "calc.bmi.faq.2.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-us/calculators/health/water-intake",
+    "corrections": [
+      "calc.water.desc: completion-copy-changes.json",
+      "calc.water.faq.1.a: completion-copy-changes.json",
+      "calc.water.faq.2.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-us/calculators/math/statistics",
+    "corrections": [
+      "calc.statistics.faq.1.a: completion-copy-changes.json",
+      "calc.statistics.explain.2: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-us/calculators/business/profit-margin",
+    "corrections": [
+      "calc.margin.explain.2: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-us/calculators/business/growth-rate",
+    "corrections": [
+      "calc.growth.averageHint: completion-copy-changes.json",
+      "calc.growth.explain.2: completion-copy-changes.json",
+      "calc.growth.faq.1.q: completion-copy-changes.json",
+      "calc.growth.faq.1.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-us/calculators/everyday/fuel-cost",
+    "corrections": [
+      "calc.fuelCost.faq.1.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-us/calculators/everyday/electricity-cost",
+    "corrections": [
+      "calc.electricity.note: completion-copy-changes.json",
+      "calc.electricity.explain.2: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-us/calculators/construction/concrete",
+    "corrections": [
+      "calc.concrete.faq.2.a: completion-copy-changes.json",
+      "calc.concrete.faq.1.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-us/calculators/construction/tile",
+    "corrections": [
+      "calc.tile.faq.1.a: completion-copy-changes.json",
+      "calc.tile.faq.2.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-us/calculators/construction/roof-area",
+    "corrections": [
+      "calc.roof.faq.1.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-us/converters/pressure",
+    "corrections": [
+      "Gauge/absolute reference preserved; no reference conversion claimed"
+    ]
+  },
+  {
+    "path": "/en-us/converters/pressure/bar-to-psi",
+    "corrections": [
+      "Gauge/absolute reference preserved; no reference conversion claimed"
+    ]
+  },
+  {
+    "path": "/en-us/converters/pressure/psi-to-bar",
+    "corrections": [
+      "Gauge/absolute reference preserved; no reference conversion claimed"
+    ]
+  },
+  {
+    "path": "/en-us/converters/pressure/kilopascals-to-psi",
+    "corrections": [
+      "Gauge/absolute reference preserved; no reference conversion claimed"
+    ]
+  },
+  {
+    "path": "/en-us/converters/pressure/atmospheres-to-bar",
+    "corrections": [
+      "Gauge/absolute reference preserved; no reference conversion claimed"
+    ]
+  },
+  {
+    "path": "/en-us/tools/date-time/date-difference",
+    "corrections": [
+      "Inclusive weekday endpoints and holiday exclusion explained"
+    ]
+  },
+  {
+    "path": "/en-us/tools/planning/savings-goal",
+    "corrections": [
+      "End-of-month deposits, constant rate and exclusions explicit"
+    ]
+  },
+  {
+    "path": "/en-us/charts/conversion/length-conversion-table",
+    "corrections": [
+      "False equal-displayed-precision claim removed"
+    ]
+  },
+  {
+    "path": "/en-us/guides/how-to-calculate/how-to-calculate-loan-payment",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md",
+      "Shared source links include OCC payment allocation and CFPB prepayment guidance"
+    ]
+  },
+  {
+    "path": "/en-us/guides/how-to-calculate/how-to-calculate-vat",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-us/guides/what-is/what-is-compound-interest",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-us/guides/what-is/what-is-amortisation",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-us/guides/what-is/what-is-a-marginal-tax-rate",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-us/guides/practical/how-to-compare-loan-offers",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-us/guides/practical/how-to-read-an-amortisation-schedule",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-us/guides/formulas/future-value-formula",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-us/countries/in/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/us/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/gb/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/ae/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/ca/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/au/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/de/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/at/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/ch/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/fr/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/be/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/nl/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/jp/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/es/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/mx/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/it/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/pt/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/br/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/pl/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/tr/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/ru/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/cn/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-us/countries/us/401k",
+    "corrections": [
+      "calc.401k.explain: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-us/countries/nl/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/en-us/countries/de/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/en-us/countries/be/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/en-us/countries/fr/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/en-gb/calculators/finance/mortgage",
+    "corrections": [
+      "calc.mortgage.explain: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-gb/calculators/finance/loan",
+    "corrections": [
+      "Fixed-rate/no-fee description and conditional overpayment FAQ"
+    ]
+  },
+  {
+    "path": "/en-gb/calculators/health/bmi",
+    "corrections": [
+      "calc.bmi.explain.2: completion-copy-changes.json",
+      "calc.bmi.faq.1.a: completion-copy-changes.json",
+      "calc.bmi.faq.2.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-gb/calculators/health/water-intake",
+    "corrections": [
+      "calc.water.desc: completion-copy-changes.json",
+      "calc.water.faq.1.a: completion-copy-changes.json",
+      "calc.water.faq.2.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-gb/calculators/math/statistics",
+    "corrections": [
+      "calc.statistics.faq.1.a: completion-copy-changes.json",
+      "calc.statistics.explain.2: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-gb/calculators/business/profit-margin",
+    "corrections": [
+      "calc.margin.explain.2: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-gb/calculators/business/growth-rate",
+    "corrections": [
+      "calc.growth.averageHint: completion-copy-changes.json",
+      "calc.growth.explain.2: completion-copy-changes.json",
+      "calc.growth.faq.1.q: completion-copy-changes.json",
+      "calc.growth.faq.1.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-gb/calculators/everyday/fuel-cost",
+    "corrections": [
+      "calc.fuelCost.faq.1.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-gb/calculators/everyday/electricity-cost",
+    "corrections": [
+      "calc.electricity.note: completion-copy-changes.json",
+      "calc.electricity.explain.2: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-gb/calculators/construction/concrete",
+    "corrections": [
+      "calc.concrete.faq.2.a: completion-copy-changes.json",
+      "calc.concrete.faq.1.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-gb/calculators/construction/tile",
+    "corrections": [
+      "calc.tile.faq.1.a: completion-copy-changes.json",
+      "calc.tile.faq.2.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-gb/calculators/construction/roof-area",
+    "corrections": [
+      "calc.roof.faq.1.a: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-gb/converters/pressure",
+    "corrections": [
+      "Gauge/absolute reference preserved; no reference conversion claimed"
+    ]
+  },
+  {
+    "path": "/en-gb/converters/pressure/bar-to-psi",
+    "corrections": [
+      "Gauge/absolute reference preserved; no reference conversion claimed"
+    ]
+  },
+  {
+    "path": "/en-gb/converters/pressure/psi-to-bar",
+    "corrections": [
+      "Gauge/absolute reference preserved; no reference conversion claimed"
+    ]
+  },
+  {
+    "path": "/en-gb/converters/pressure/kilopascals-to-psi",
+    "corrections": [
+      "Gauge/absolute reference preserved; no reference conversion claimed"
+    ]
+  },
+  {
+    "path": "/en-gb/converters/pressure/atmospheres-to-bar",
+    "corrections": [
+      "Gauge/absolute reference preserved; no reference conversion claimed"
+    ]
+  },
+  {
+    "path": "/en-gb/tools/date-time/date-difference",
+    "corrections": [
+      "Inclusive weekday endpoints and holiday exclusion explained"
+    ]
+  },
+  {
+    "path": "/en-gb/tools/planning/savings-goal",
+    "corrections": [
+      "End-of-month deposits, constant rate and exclusions explicit"
+    ]
+  },
+  {
+    "path": "/en-gb/charts/conversion/length-conversion-table",
+    "corrections": [
+      "False equal-displayed-precision claim removed"
+    ]
+  },
+  {
+    "path": "/en-gb/guides/how-to-calculate/how-to-calculate-loan-payment",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md",
+      "Shared source links include OCC payment allocation and CFPB prepayment guidance"
+    ]
+  },
+  {
+    "path": "/en-gb/guides/how-to-calculate/how-to-calculate-vat",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-gb/guides/what-is/what-is-compound-interest",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-gb/guides/what-is/what-is-amortisation",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-gb/guides/what-is/what-is-a-marginal-tax-rate",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-gb/guides/practical/how-to-compare-loan-offers",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-gb/guides/practical/how-to-read-an-amortisation-schedule",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-gb/guides/formulas/future-value-formula",
+    "corrections": [
+      "English guide assumptions/overclaims corrected; see CONTENT-REVIEW.md"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/in/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/us/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/gb/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/ae/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/ca/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/au/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/de/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/at/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/ch/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/fr/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/be/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/nl/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/jp/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/es/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/mx/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/it/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/pt/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/br/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/pl/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/tr/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/ru/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/cn/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/us/401k",
+    "corrections": [
+      "calc.401k.explain: completion-copy-changes.json"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/nl/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/de/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/be/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/en-gb/countries/fr/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/calculators/finance/loan",
+    "corrections": [
+      "calc.loan.desc: completion-localized-corrections.json",
+      "calc.loan.faq.1.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/calculators/health/bmi",
+    "corrections": [
+      "calc.bmi.faq.2.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/calculators/math/statistics",
+    "corrections": [
+      "calc.statistics.faq.1.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/calculators/business/profit-margin",
+    "corrections": [
+      "calc.margin.explain.2: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/calculators/business/growth-rate",
+    "corrections": [
+      "calc.growth.averageHint: completion-localized-math-corrections.json",
+      "calc.growth.faq.1.q: completion-localized-growth-corrections.json",
+      "calc.growth.faq.1.a: completion-localized-growth-corrections.json",
+      "calc.growth.explain.2: completion-localized-growth-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/tools/date-time/date-difference",
+    "corrections": [
+      "tool.date-difference.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/charts/conversion/length-conversion-table",
+    "corrections": [
+      "chart.length.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/guides/how-to-calculate/how-to-calculate-loan-payment",
+    "corrections": [
+      "Shared source links include OCC payment allocation and CFPB prepayment guidance"
+    ]
+  },
+  {
+    "path": "/de-de/countries/in/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/us/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/gb/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/ae/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/ca/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/au/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/de/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/at/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/ch/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/fr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/be/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/nl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/jp/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/es/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/mx/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/it/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/pt/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/br/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/pl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/tr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/ru/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/cn/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/nl/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/de/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/be/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/de-de/countries/fr/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/calculators/finance/loan",
+    "corrections": [
+      "calc.loan.desc: completion-localized-corrections.json",
+      "calc.loan.faq.1.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/calculators/health/bmi",
+    "corrections": [
+      "calc.bmi.faq.2.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/calculators/math/statistics",
+    "corrections": [
+      "calc.statistics.faq.1.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/calculators/business/profit-margin",
+    "corrections": [
+      "calc.margin.explain.2: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/calculators/business/growth-rate",
+    "corrections": [
+      "calc.growth.averageHint: completion-localized-math-corrections.json",
+      "calc.growth.faq.1.q: completion-localized-growth-corrections.json",
+      "calc.growth.faq.1.a: completion-localized-growth-corrections.json",
+      "calc.growth.explain.2: completion-localized-growth-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/tools/date-time/date-difference",
+    "corrections": [
+      "tool.date-difference.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/charts/conversion/length-conversion-table",
+    "corrections": [
+      "chart.length.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/guides/how-to-calculate/how-to-calculate-loan-payment",
+    "corrections": [
+      "Shared source links include OCC payment allocation and CFPB prepayment guidance"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/in/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/us/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/gb/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/ae/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/ca/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/au/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/de/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/at/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/ch/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/fr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/be/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/nl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/jp/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/es/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/mx/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/it/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/pt/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/br/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/pl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/tr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/ru/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/cn/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/nl/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/de/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/be/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/fr-fr/countries/fr/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/calculators/finance/loan",
+    "corrections": [
+      "calc.loan.desc: completion-localized-corrections.json",
+      "calc.loan.faq.1.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/calculators/health/bmi",
+    "corrections": [
+      "calc.bmi.faq.2.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/calculators/math/statistics",
+    "corrections": [
+      "calc.statistics.faq.1.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/calculators/business/profit-margin",
+    "corrections": [
+      "calc.margin.explain.2: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/calculators/business/growth-rate",
+    "corrections": [
+      "calc.growth.averageHint: completion-localized-math-corrections.json",
+      "calc.growth.faq.1.q: completion-localized-growth-corrections.json",
+      "calc.growth.faq.1.a: completion-localized-growth-corrections.json",
+      "calc.growth.explain.2: completion-localized-growth-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/tools/date-time/date-difference",
+    "corrections": [
+      "tool.date-difference.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/charts/conversion/length-conversion-table",
+    "corrections": [
+      "chart.length.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/guides/how-to-calculate/how-to-calculate-loan-payment",
+    "corrections": [
+      "Shared source links include OCC payment allocation and CFPB prepayment guidance"
+    ]
+  },
+  {
+    "path": "/es-es/countries/in/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/us/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/gb/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/ae/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/ca/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/au/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/de/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/at/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/ch/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/fr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/be/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/nl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/jp/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/es/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/mx/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/it/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/pt/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/br/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/pl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/tr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/ru/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/cn/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/nl/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/de/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/be/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/es-es/countries/fr/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/calculators/finance/loan",
+    "corrections": [
+      "calc.loan.desc: completion-localized-corrections.json",
+      "calc.loan.faq.1.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/calculators/health/bmi",
+    "corrections": [
+      "calc.bmi.faq.2.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/calculators/math/statistics",
+    "corrections": [
+      "calc.statistics.faq.1.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/calculators/business/profit-margin",
+    "corrections": [
+      "calc.margin.explain.2: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/calculators/business/growth-rate",
+    "corrections": [
+      "calc.growth.averageHint: completion-localized-math-corrections.json",
+      "calc.growth.faq.1.q: completion-localized-growth-corrections.json",
+      "calc.growth.faq.1.a: completion-localized-growth-corrections.json",
+      "calc.growth.explain.2: completion-localized-growth-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/tools/date-time/date-difference",
+    "corrections": [
+      "tool.date-difference.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/charts/conversion/length-conversion-table",
+    "corrections": [
+      "chart.length.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/guides/how-to-calculate/how-to-calculate-loan-payment",
+    "corrections": [
+      "Shared source links include OCC payment allocation and CFPB prepayment guidance"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/in/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/us/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/gb/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/ae/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/ca/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/au/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/de/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/at/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/ch/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/fr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/be/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/nl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/jp/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/es/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/mx/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/it/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/pt/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/br/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/pl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/tr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/ru/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/cn/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/nl/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/de/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/be/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/pt-br/countries/fr/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/calculators/finance/loan",
+    "corrections": [
+      "calc.loan.desc: completion-localized-corrections.json",
+      "calc.loan.faq.1.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/calculators/health/bmi",
+    "corrections": [
+      "calc.bmi.faq.2.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/calculators/math/statistics",
+    "corrections": [
+      "calc.statistics.faq.1.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/calculators/business/profit-margin",
+    "corrections": [
+      "calc.margin.explain.2: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/calculators/business/growth-rate",
+    "corrections": [
+      "calc.growth.averageHint: completion-localized-math-corrections.json",
+      "calc.growth.faq.1.q: completion-localized-growth-corrections.json",
+      "calc.growth.faq.1.a: completion-localized-growth-corrections.json",
+      "calc.growth.explain.2: completion-localized-growth-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/tools/date-time/date-difference",
+    "corrections": [
+      "tool.date-difference.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/charts/conversion/length-conversion-table",
+    "corrections": [
+      "chart.length.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/guides/how-to-calculate/how-to-calculate-loan-payment",
+    "corrections": [
+      "Shared source links include OCC payment allocation and CFPB prepayment guidance"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/in/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/us/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/gb/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/ae/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/ca/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/au/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/de/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/at/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/ch/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/fr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/be/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/nl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/jp/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/es/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/mx/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/it/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/pt/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/br/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/pl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/tr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/ru/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/cn/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/nl/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/de/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/be/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ru-ru/countries/fr/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/calculators/finance/loan",
+    "corrections": [
+      "calc.loan.desc: completion-localized-corrections.json",
+      "calc.loan.faq.1.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/calculators/health/bmi",
+    "corrections": [
+      "calc.bmi.faq.2.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/calculators/math/statistics",
+    "corrections": [
+      "calc.statistics.faq.1.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/calculators/business/profit-margin",
+    "corrections": [
+      "calc.margin.explain.2: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/calculators/business/growth-rate",
+    "corrections": [
+      "calc.growth.averageHint: completion-localized-math-corrections.json",
+      "calc.growth.faq.1.q: completion-localized-growth-corrections.json",
+      "calc.growth.faq.1.a: completion-localized-growth-corrections.json",
+      "calc.growth.explain.2: completion-localized-growth-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/tools/date-time/date-difference",
+    "corrections": [
+      "tool.date-difference.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/charts/conversion/length-conversion-table",
+    "corrections": [
+      "chart.length.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/guides/how-to-calculate/how-to-calculate-loan-payment",
+    "corrections": [
+      "Shared source links include OCC payment allocation and CFPB prepayment guidance"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/in/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/us/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/gb/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/ae/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/ca/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/au/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/de/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/at/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/ch/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/fr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/be/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/nl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/jp/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/es/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/mx/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/it/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/pt/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/br/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/pl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/tr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/ru/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/cn/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/nl/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/de/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/be/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/tr-tr/countries/fr/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/calculators/finance/loan",
+    "corrections": [
+      "calc.loan.desc: completion-localized-corrections.json",
+      "calc.loan.faq.1.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/calculators/health/bmi",
+    "corrections": [
+      "calc.bmi.faq.2.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/calculators/math/statistics",
+    "corrections": [
+      "calc.statistics.faq.1.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/calculators/business/profit-margin",
+    "corrections": [
+      "calc.margin.explain.2: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/calculators/business/growth-rate",
+    "corrections": [
+      "calc.growth.averageHint: completion-localized-math-corrections.json",
+      "calc.growth.faq.1.q: completion-localized-growth-corrections.json",
+      "calc.growth.faq.1.a: completion-localized-growth-corrections.json",
+      "calc.growth.explain.2: completion-localized-growth-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/tools/date-time/date-difference",
+    "corrections": [
+      "tool.date-difference.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/charts/conversion/length-conversion-table",
+    "corrections": [
+      "chart.length.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/guides/how-to-calculate/how-to-calculate-loan-payment",
+    "corrections": [
+      "Shared source links include OCC payment allocation and CFPB prepayment guidance"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/in/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/us/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/gb/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/ae/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/ca/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/au/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/de/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/at/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/ch/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/fr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/be/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/nl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/jp/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/es/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/mx/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/it/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/pt/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/br/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/pl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/tr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/ru/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/cn/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/nl/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/de/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/be/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/ja-jp/countries/fr/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/calculators/finance/loan",
+    "corrections": [
+      "calc.loan.desc: completion-localized-corrections.json",
+      "calc.loan.faq.1.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/calculators/health/bmi",
+    "corrections": [
+      "calc.bmi.faq.2.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/calculators/math/statistics",
+    "corrections": [
+      "calc.statistics.faq.1.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/calculators/business/profit-margin",
+    "corrections": [
+      "calc.margin.explain.2: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/calculators/business/growth-rate",
+    "corrections": [
+      "calc.growth.averageHint: completion-localized-math-corrections.json",
+      "calc.growth.faq.1.q: completion-localized-growth-corrections.json",
+      "calc.growth.faq.1.a: completion-localized-growth-corrections.json",
+      "calc.growth.explain.2: completion-localized-growth-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/tools/date-time/date-difference",
+    "corrections": [
+      "tool.date-difference.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/charts/conversion/length-conversion-table",
+    "corrections": [
+      "chart.length.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/guides/how-to-calculate/how-to-calculate-loan-payment",
+    "corrections": [
+      "Shared source links include OCC payment allocation and CFPB prepayment guidance"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/in/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/us/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/gb/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/ae/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/ca/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/au/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/de/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/at/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/ch/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/fr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/be/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/nl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/jp/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/es/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/mx/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/it/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/pt/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/br/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/pl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/tr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/ru/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/cn/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/nl/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/de/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/be/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/zh-cn/countries/fr/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/it-it/calculators/finance/loan",
+    "corrections": [
+      "calc.loan.desc: completion-localized-corrections.json",
+      "calc.loan.faq.1.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/it-it/calculators/health/bmi",
+    "corrections": [
+      "calc.bmi.faq.2.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/it-it/calculators/math/statistics",
+    "corrections": [
+      "calc.statistics.faq.1.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/it-it/calculators/business/profit-margin",
+    "corrections": [
+      "calc.margin.explain.2: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/it-it/calculators/business/growth-rate",
+    "corrections": [
+      "calc.growth.averageHint: completion-localized-math-corrections.json",
+      "calc.growth.faq.1.q: completion-localized-growth-corrections.json",
+      "calc.growth.faq.1.a: completion-localized-growth-corrections.json",
+      "calc.growth.explain.2: completion-localized-growth-corrections.json"
+    ]
+  },
+  {
+    "path": "/it-it/tools/date-time/date-difference",
+    "corrections": [
+      "tool.date-difference.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/it-it/charts/conversion/length-conversion-table",
+    "corrections": [
+      "chart.length.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/it-it/guides/how-to-calculate/how-to-calculate-loan-payment",
+    "corrections": [
+      "Shared source links include OCC payment allocation and CFPB prepayment guidance"
+    ]
+  },
+  {
+    "path": "/it-it/countries/in/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/us/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/gb/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/ae/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/ca/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/au/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/de/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/at/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/ch/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/fr/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/be/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/nl/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/jp/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/es/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/mx/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/it/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/pt/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/br/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/pl/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/tr/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/ru/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/cn/income-tax",
+    "corrections": [
+      "FAQ no longer universally excludes credits/local taxes; refers to actual selected-country scope"
+    ]
+  },
+  {
+    "path": "/it-it/countries/nl/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/it-it/countries/de/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/it-it/countries/be/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/it-it/countries/fr/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/calculators/finance/loan",
+    "corrections": [
+      "calc.loan.desc: completion-localized-corrections.json",
+      "calc.loan.faq.1.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/calculators/health/bmi",
+    "corrections": [
+      "calc.bmi.faq.2.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/calculators/math/statistics",
+    "corrections": [
+      "calc.statistics.faq.1.a: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/calculators/business/profit-margin",
+    "corrections": [
+      "calc.margin.explain.2: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/calculators/business/growth-rate",
+    "corrections": [
+      "calc.growth.averageHint: completion-localized-math-corrections.json",
+      "calc.growth.faq.1.q: completion-localized-growth-corrections.json",
+      "calc.growth.faq.1.a: completion-localized-growth-corrections.json",
+      "calc.growth.explain.2: completion-localized-growth-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/tools/date-time/date-difference",
+    "corrections": [
+      "tool.date-difference.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/charts/conversion/length-conversion-table",
+    "corrections": [
+      "chart.length.explain: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/guides/how-to-calculate/how-to-calculate-loan-payment",
+    "corrections": [
+      "Shared source links include OCC payment allocation and CFPB prepayment guidance"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/in/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/us/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/gb/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/ae/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/ca/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/au/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/de/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/at/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/ch/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/fr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/be/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/nl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/jp/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/es/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/mx/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/it/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/pt/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/br/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/pl/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/tr/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/ru/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/cn/income-tax",
+    "corrections": [
+      "calc.income-tax.faq.2.a: completion-localized-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/nl/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/de/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/be/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  },
+  {
+    "path": "/nl-nl/countries/fr/payroll",
+    "corrections": [
+      "calc.payroll.desc: completion-localized-math-corrections.json"
+    ]
+  }
+]

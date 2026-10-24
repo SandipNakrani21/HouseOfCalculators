@@ -1,0 +1,9 @@
+{
+  "baseline": "D:\\Calculator\\tmp\\speed-baseline",
+  "difference": "Only Logo.tsx restored from HEAD; current source synchronized before baseline rebuild",
+  "copiedEnglishHash": "e9bcb537f340c21338b6be3139e698bcf17f7b714785b5df60be26159829a115",
+  "currentEnglishHash": "e9bcb537f340c21338b6be3139e698bcf17f7b714785b5df60be26159829a115",
+  "browser": "Disabled in Work settings; measurements have not run",
+  "conditionsPlanned": "Same local viewport and unthrottled CPU/network, distinct loopback origin per repetition",
+  "limitations": "Not equivalent to production Slow 4G; no measured improvement claimed"
+}

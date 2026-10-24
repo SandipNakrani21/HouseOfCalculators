@@ -5,6 +5,7 @@ import { CalculatorPageBody } from "@/components/calculator/CalculatorPageBody";
 import { CALCULATORS, getCalculator } from "@/config/calculators";
 import { categoryKey } from "@/config/categories";
 import { calculatorCopy } from "@/lib/calculator-copy";
+import { calculatorSearchCopy } from "@/lib/calculator-search-copy";
 import { COUNTRIES } from "@/config/countries";
 import { LOCALES, localeFromPath } from "@/config/locales";
 import { createFormatter } from "@/lib/format";
@@ -49,11 +50,12 @@ export async function generateMetadata({
   // Offered only where the locale's home country is covered (see
   // calculatorLocales); elsewhere the page still works but stays out of search.
   const offeredIn = calculatorLocales(calculator);
+  const searchCopy = calculatorSearchCopy(locale.code, slug, locale.defaultCountry);
   return buildMetadata({
     locale: locale.code,
     path: contentPath(locale.code, "calculators", category, slug),
-    title: t(calculator.titleKey, values),
-    description: t(calculator.descKey, values),
+    title: searchCopy?.metadataTitle ?? t(calculator.titleKey, values),
+    description: searchCopy?.description ?? t(calculator.descKey, values),
     availableIn: offeredIn,
     noindex: !offeredIn.includes(locale.code),
   });

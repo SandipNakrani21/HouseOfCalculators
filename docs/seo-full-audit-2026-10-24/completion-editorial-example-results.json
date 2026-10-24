@@ -1,0 +1,1363 @@
+{
+  "date": "2026-10-25",
+  "purpose": "Verify specific changed editorial examples and authored converter examples; no engine modifications",
+  "loss": {
+    "margin": -100,
+    "markup": -50
+  },
+  "fallingGrowth": {
+    "cagr": -12.944943670387588,
+    "simple": -10
+  },
+  "risingGrowth": {
+    "cagr": 14.869835499703509
+  },
+  "sameMonday": {
+    "elapsedDays": 0,
+    "weekdays": 1
+  },
+  "conversionRecords": [
+    {
+      "category": "length",
+      "slug": "meters-to-feet",
+      "from": "m",
+      "to": "ft",
+      "formula": "ft = m × 3.28083989501",
+      "examples": [
+        {
+          "input": 1,
+          "output": 3.280839895013123
+        },
+        {
+          "input": 1.8,
+          "output": 5.905511811023622
+        },
+        {
+          "input": 10,
+          "output": 32.808398950131235
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "length",
+      "slug": "centimeters-to-inches",
+      "from": "cm",
+      "to": "in",
+      "formula": "in = cm × 0.393700787402",
+      "examples": [
+        {
+          "input": 2.54,
+          "output": 1.0000000000000002
+        },
+        {
+          "input": 30,
+          "output": 11.811023622047244
+        },
+        {
+          "input": 100,
+          "output": 39.37007874015748
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "length",
+      "slug": "kilometers-to-miles",
+      "from": "km",
+      "to": "mi",
+      "formula": "mi = km × 0.621371192237",
+      "examples": [
+        {
+          "input": 5,
+          "output": 3.1068559611866697
+        },
+        {
+          "input": 10,
+          "output": 6.2137119223733395
+        },
+        {
+          "input": 42.195,
+          "output": 26.218757456454306
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "length",
+      "slug": "feet-to-meters",
+      "from": "ft",
+      "to": "m",
+      "formula": "m = ft × 0.3048",
+      "examples": [
+        {
+          "input": 3,
+          "output": 0.9144000000000001
+        },
+        {
+          "input": 6,
+          "output": 1.8288000000000002
+        },
+        {
+          "input": 12,
+          "output": 3.6576000000000004
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "length",
+      "slug": "inches-to-centimeters",
+      "from": "in",
+      "to": "cm",
+      "formula": "cm = in × 2.54",
+      "examples": [
+        {
+          "input": 1,
+          "output": 2.54
+        },
+        {
+          "input": 12,
+          "output": 30.479999999999997
+        },
+        {
+          "input": 24,
+          "output": 60.959999999999994
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "length",
+      "slug": "miles-to-kilometers",
+      "from": "mi",
+      "to": "km",
+      "formula": "km = mi × 1.609344",
+      "examples": [
+        {
+          "input": 1,
+          "output": 1.609344
+        },
+        {
+          "input": 5,
+          "output": 8.04672
+        },
+        {
+          "input": 26.2,
+          "output": 42.1648128
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "length",
+      "slug": "millimeters-to-inches",
+      "from": "mm",
+      "to": "in",
+      "formula": "in = mm × 0.0393700787402",
+      "examples": [
+        {
+          "input": 10,
+          "output": 0.3937007874015748
+        },
+        {
+          "input": 25.4,
+          "output": 1
+        },
+        {
+          "input": 50,
+          "output": 1.9685039370078743
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "length",
+      "slug": "yards-to-meters",
+      "from": "yd",
+      "to": "m",
+      "formula": "m = yd × 0.9144",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.9144
+        },
+        {
+          "input": 10,
+          "output": 9.144
+        },
+        {
+          "input": 100,
+          "output": 91.44
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "weight",
+      "slug": "kilograms-to-pounds",
+      "from": "kg",
+      "to": "lb",
+      "formula": "lb = kg × 2.20462262185",
+      "examples": [
+        {
+          "input": 1,
+          "output": 2.2046226218487757
+        },
+        {
+          "input": 5,
+          "output": 11.023113109243878
+        },
+        {
+          "input": 70,
+          "output": 154.3235835294143
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "weight",
+      "slug": "pounds-to-kilograms",
+      "from": "lb",
+      "to": "kg",
+      "formula": "kg = lb × 0.45359237",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.45359237
+        },
+        {
+          "input": 10,
+          "output": 4.535923700000001
+        },
+        {
+          "input": 150,
+          "output": 68.0388555
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "weight",
+      "slug": "grams-to-ounces",
+      "from": "g",
+      "to": "oz",
+      "formula": "oz = g × 0.0352739619496",
+      "examples": [
+        {
+          "input": 28.349523125,
+          "output": 1
+        },
+        {
+          "input": 100,
+          "output": 3.5273961949580412
+        },
+        {
+          "input": 250,
+          "output": 8.818490487395103
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "weight",
+      "slug": "ounces-to-grams",
+      "from": "oz",
+      "to": "g",
+      "formula": "g = oz × 28.349523125",
+      "examples": [
+        {
+          "input": 1,
+          "output": 28.349523125
+        },
+        {
+          "input": 4,
+          "output": 113.3980925
+        },
+        {
+          "input": 8,
+          "output": 226.796185
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "weight",
+      "slug": "stones-to-kilograms",
+      "from": "st",
+      "to": "kg",
+      "formula": "kg = st × 6.35029318",
+      "examples": [
+        {
+          "input": 1,
+          "output": 6.35029318
+        },
+        {
+          "input": 10,
+          "output": 63.502931800000006
+        },
+        {
+          "input": 12,
+          "output": 76.20351816
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "weight",
+      "slug": "kilograms-to-stones",
+      "from": "kg",
+      "to": "st",
+      "formula": "st = kg × 0.157473044418",
+      "examples": [
+        {
+          "input": 60,
+          "output": 9.448382665066182
+        },
+        {
+          "input": 70,
+          "output": 11.023113109243878
+        },
+        {
+          "input": 80,
+          "output": 12.597843553421574
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "weight",
+      "slug": "tonnes-to-pounds",
+      "from": "t",
+      "to": "lb",
+      "formula": "lb = t × 2204.62262185",
+      "examples": [
+        {
+          "input": 1,
+          "output": 2204.622621848776
+        },
+        {
+          "input": 2.5,
+          "output": 5511.5565546219395
+        },
+        {
+          "input": 10,
+          "output": 22046.226218487758
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "temperature",
+      "slug": "celsius-to-fahrenheit",
+      "from": "°C",
+      "to": "°F",
+      "formula": "°F = °C × 1.8 + 32",
+      "examples": [
+        {
+          "input": 0,
+          "output": 32
+        },
+        {
+          "input": 37,
+          "output": 98.6
+        },
+        {
+          "input": 100,
+          "output": 212
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "temperature",
+      "slug": "fahrenheit-to-celsius",
+      "from": "°F",
+      "to": "°C",
+      "formula": "°C = °F × 0.555555555556 − 17.7777777778",
+      "examples": [
+        {
+          "input": 32,
+          "output": 0
+        },
+        {
+          "input": 98.6,
+          "output": 37
+        },
+        {
+          "input": 212,
+          "output": 100
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "temperature",
+      "slug": "celsius-to-kelvin",
+      "from": "°C",
+      "to": "K",
+      "formula": "K = °C × 1 + 273.15",
+      "examples": [
+        {
+          "input": -273.15,
+          "output": 0
+        },
+        {
+          "input": 0,
+          "output": 273.15
+        },
+        {
+          "input": 25,
+          "output": 298.15
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "temperature",
+      "slug": "kelvin-to-celsius",
+      "from": "K",
+      "to": "°C",
+      "formula": "°C = K × 1 − 273.15",
+      "examples": [
+        {
+          "input": 0,
+          "output": -273.15
+        },
+        {
+          "input": 273.15,
+          "output": 0
+        },
+        {
+          "input": 300,
+          "output": 26.850000000000023
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "area",
+      "slug": "square-meters-to-square-feet",
+      "from": "m²",
+      "to": "ft²",
+      "formula": "ft² = m² × 10.7639104167",
+      "examples": [
+        {
+          "input": 1,
+          "output": 10.763910416709722
+        },
+        {
+          "input": 100,
+          "output": 1076.391041670972
+        },
+        {
+          "input": 1000,
+          "output": 10763.910416709721
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "area",
+      "slug": "square-feet-to-square-meters",
+      "from": "ft²",
+      "to": "m²",
+      "formula": "m² = ft² × 0.09290304",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.09290304
+        },
+        {
+          "input": 100,
+          "output": 9.290304
+        },
+        {
+          "input": 1000,
+          "output": 92.90304
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "area",
+      "slug": "acres-to-hectares",
+      "from": "ac",
+      "to": "ha",
+      "formula": "ha = ac × 0.40468564224",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.40468564224000003
+        },
+        {
+          "input": 100,
+          "output": 40.468564224000005
+        },
+        {
+          "input": 1000,
+          "output": 404.68564224
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "area",
+      "slug": "hectares-to-acres",
+      "from": "ha",
+      "to": "ac",
+      "formula": "ac = ha × 2.47105381467",
+      "examples": [
+        {
+          "input": 1,
+          "output": 2.471053814671653
+        },
+        {
+          "input": 100,
+          "output": 247.10538146716533
+        },
+        {
+          "input": 1000,
+          "output": 2471.0538146716535
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "area",
+      "slug": "square-kilometers-to-square-miles",
+      "from": "km²",
+      "to": "mi²",
+      "formula": "mi² = km² × 0.386102158542",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.38610215854244584
+        },
+        {
+          "input": 100,
+          "output": 38.610215854244586
+        },
+        {
+          "input": 1000,
+          "output": 386.1021585424458
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "volume",
+      "slug": "liters-to-us-gallons",
+      "from": "L",
+      "to": "gal",
+      "formula": "gal = L × 0.264172052358",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.26417205235814845
+        },
+        {
+          "input": 2,
+          "output": 0.5283441047162969
+        },
+        {
+          "input": 10,
+          "output": 2.6417205235814842
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "volume",
+      "slug": "us-gallons-to-liters",
+      "from": "gal",
+      "to": "L",
+      "formula": "L = gal × 3.785411784",
+      "examples": [
+        {
+          "input": 1,
+          "output": 3.785411784
+        },
+        {
+          "input": 2,
+          "output": 7.570823568
+        },
+        {
+          "input": 10,
+          "output": 37.85411784
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "volume",
+      "slug": "milliliters-to-us-fluid-ounces",
+      "from": "ml",
+      "to": "fl oz",
+      "formula": "fl oz = ml × 0.0338140227018",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.033814022701843
+        },
+        {
+          "input": 2,
+          "output": 0.067628045403686
+        },
+        {
+          "input": 10,
+          "output": 0.33814022701843
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "volume",
+      "slug": "us-cups-to-milliliters",
+      "from": "cup",
+      "to": "ml",
+      "formula": "ml = cup × 236.5882365",
+      "examples": [
+        {
+          "input": 1,
+          "output": 236.5882365
+        },
+        {
+          "input": 2,
+          "output": 473.176473
+        },
+        {
+          "input": 10,
+          "output": 2365.882365
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "volume",
+      "slug": "liters-to-imperial-gallons",
+      "from": "L",
+      "to": "gal",
+      "formula": "gal = L × 0.219969248299",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.21996924829908776
+        },
+        {
+          "input": 2,
+          "output": 0.4399384965981755
+        },
+        {
+          "input": 10,
+          "output": 2.1996924829908777
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "speed",
+      "slug": "kilometer-per-hour-to-mile-per-hour",
+      "from": "km/h",
+      "to": "mph",
+      "formula": "mph = km/h × 0.621371192237",
+      "examples": [
+        {
+          "input": 5,
+          "output": 3.1068559611866697
+        },
+        {
+          "input": 30,
+          "output": 18.64113576712002
+        },
+        {
+          "input": 100,
+          "output": 62.1371192237334
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "speed",
+      "slug": "mile-per-hour-to-kilometer-per-hour",
+      "from": "mph",
+      "to": "km/h",
+      "formula": "km/h = mph × 1.609344",
+      "examples": [
+        {
+          "input": 5,
+          "output": 8.046719999999999
+        },
+        {
+          "input": 30,
+          "output": 48.280319999999996
+        },
+        {
+          "input": 100,
+          "output": 160.93439999999998
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "speed",
+      "slug": "knot-to-kilometer-per-hour",
+      "from": "kn",
+      "to": "km/h",
+      "formula": "km/h = kn × 1.8519984",
+      "examples": [
+        {
+          "input": 5,
+          "output": 9.259992
+        },
+        {
+          "input": 30,
+          "output": 55.559951999999996
+        },
+        {
+          "input": 100,
+          "output": 185.19984
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "speed",
+      "slug": "meter-per-second-to-kilometer-per-hour",
+      "from": "m/s",
+      "to": "km/h",
+      "formula": "km/h = m/s × 3.6",
+      "examples": [
+        {
+          "input": 5,
+          "output": 18
+        },
+        {
+          "input": 30,
+          "output": 108
+        },
+        {
+          "input": 100,
+          "output": 360
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "data",
+      "slug": "gigabytes-to-megabytes",
+      "from": "GB",
+      "to": "MB",
+      "formula": "MB = GB × 1000",
+      "examples": [
+        {
+          "input": 1,
+          "output": 1000
+        },
+        {
+          "input": 8,
+          "output": 8000
+        },
+        {
+          "input": 1024,
+          "output": 1024000
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "data",
+      "slug": "megabytes-to-kilobytes",
+      "from": "MB",
+      "to": "kB",
+      "formula": "kB = MB × 1000",
+      "examples": [
+        {
+          "input": 1,
+          "output": 1000
+        },
+        {
+          "input": 8,
+          "output": 8000
+        },
+        {
+          "input": 1024,
+          "output": 1024000
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "data",
+      "slug": "terabytes-to-gigabytes",
+      "from": "TB",
+      "to": "GB",
+      "formula": "GB = TB × 1000",
+      "examples": [
+        {
+          "input": 1,
+          "output": 1000
+        },
+        {
+          "input": 8,
+          "output": 8000
+        },
+        {
+          "input": 1024,
+          "output": 1024000
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "data",
+      "slug": "gibibytes-to-gigabytes",
+      "from": "GiB",
+      "to": "GB",
+      "formula": "GB = GiB × 1.073741824",
+      "examples": [
+        {
+          "input": 1,
+          "output": 1.0737418239999998
+        },
+        {
+          "input": 8,
+          "output": 8.589934591999999
+        },
+        {
+          "input": 1024,
+          "output": 1099.5116277759998
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "time",
+      "slug": "hours-to-minutes",
+      "from": "h",
+      "to": "min",
+      "formula": "min = h × 60",
+      "examples": [
+        {
+          "input": 1,
+          "output": 60
+        },
+        {
+          "input": 24,
+          "output": 1440
+        },
+        {
+          "input": 90,
+          "output": 5400
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "time",
+      "slug": "minutes-to-seconds",
+      "from": "min",
+      "to": "s",
+      "formula": "s = min × 60",
+      "examples": [
+        {
+          "input": 1,
+          "output": 60
+        },
+        {
+          "input": 24,
+          "output": 1440
+        },
+        {
+          "input": 90,
+          "output": 5400
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "time",
+      "slug": "days-to-hours",
+      "from": "d",
+      "to": "h",
+      "formula": "h = d × 24",
+      "examples": [
+        {
+          "input": 1,
+          "output": 24
+        },
+        {
+          "input": 24,
+          "output": 576
+        },
+        {
+          "input": 90,
+          "output": 2160
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "time",
+      "slug": "weeks-to-days",
+      "from": "wk",
+      "to": "d",
+      "formula": "d = wk × 7",
+      "examples": [
+        {
+          "input": 1,
+          "output": 7
+        },
+        {
+          "input": 24,
+          "output": 168
+        },
+        {
+          "input": 90,
+          "output": 630
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "time",
+      "slug": "years-to-days",
+      "from": "yr",
+      "to": "d",
+      "formula": "d = yr × 365.2425",
+      "examples": [
+        {
+          "input": 1,
+          "output": 365.2425
+        },
+        {
+          "input": 24,
+          "output": 8765.82
+        },
+        {
+          "input": 90,
+          "output": 32871.825
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "energy",
+      "slug": "kilocalories-to-kilojoules",
+      "from": "kcal",
+      "to": "kJ",
+      "formula": "kJ = kcal × 4.184",
+      "examples": [
+        {
+          "input": 1,
+          "output": 4.184
+        },
+        {
+          "input": 1000,
+          "output": 4184
+        },
+        {
+          "input": 3600,
+          "output": 15062.4
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "energy",
+      "slug": "kilojoules-to-kilocalories",
+      "from": "kJ",
+      "to": "kcal",
+      "formula": "kcal = kJ × 0.239005736138",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.2390057361376673
+        },
+        {
+          "input": 1000,
+          "output": 239.0057361376673
+        },
+        {
+          "input": 3600,
+          "output": 860.4206500956022
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "energy",
+      "slug": "kilowatt-hours-to-joules",
+      "from": "kWh",
+      "to": "J",
+      "formula": "J = kWh × 3600000",
+      "examples": [
+        {
+          "input": 1,
+          "output": 3600000
+        },
+        {
+          "input": 1000,
+          "output": 3600000000
+        },
+        {
+          "input": 3600,
+          "output": 12960000000
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "energy",
+      "slug": "btu-to-kilojoules",
+      "from": "BTU",
+      "to": "kJ",
+      "formula": "kJ = BTU × 1.05505585262",
+      "examples": [
+        {
+          "input": 1,
+          "output": 1.05505585262
+        },
+        {
+          "input": 1000,
+          "output": 1055.05585262
+        },
+        {
+          "input": 3600,
+          "output": 3798.201069432
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "pressure",
+      "slug": "bar-to-psi",
+      "from": "bar",
+      "to": "psi",
+      "formula": "psi = bar × 14.503773773",
+      "examples": [
+        {
+          "input": 1,
+          "output": 14.503773773021683
+        },
+        {
+          "input": 100,
+          "output": 1450.3773773021683
+        },
+        {
+          "input": 101.325,
+          "output": 1469.5948775514219
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "pressure",
+      "slug": "psi-to-bar",
+      "from": "psi",
+      "to": "bar",
+      "formula": "bar = psi × 0.0689475729317",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.06894757293168
+        },
+        {
+          "input": 100,
+          "output": 6.894757293168
+        },
+        {
+          "input": 101.325,
+          "output": 6.986112827302476
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "pressure",
+      "slug": "kilopascals-to-psi",
+      "from": "kPa",
+      "to": "psi",
+      "formula": "psi = kPa × 0.14503773773",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.14503773773021683
+        },
+        {
+          "input": 100,
+          "output": 14.503773773021683
+        },
+        {
+          "input": 101.325,
+          "output": 14.69594877551422
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "pressure",
+      "slug": "atmospheres-to-bar",
+      "from": "atm",
+      "to": "bar",
+      "formula": "bar = atm × 1.01325",
+      "examples": [
+        {
+          "input": 1,
+          "output": 1.01325
+        },
+        {
+          "input": 100,
+          "output": 101.325
+        },
+        {
+          "input": 101.325,
+          "output": 102.66755625
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "power",
+      "slug": "kilowatts-to-horsepower",
+      "from": "kW",
+      "to": "hp",
+      "formula": "hp = kW × 1.3410220896",
+      "examples": [
+        {
+          "input": 1,
+          "output": 1.3410220895955138
+        },
+        {
+          "input": 100,
+          "output": 134.10220895955138
+        },
+        {
+          "input": 1000,
+          "output": 1341.0220895955138
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "power",
+      "slug": "horsepower-to-kilowatts",
+      "from": "hp",
+      "to": "kW",
+      "formula": "kW = hp × 0.745699871582",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.745699871582
+        },
+        {
+          "input": 100,
+          "output": 74.56998715820001
+        },
+        {
+          "input": 1000,
+          "output": 745.699871582
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "power",
+      "slug": "kilowatts-to-metric-horsepower",
+      "from": "kW",
+      "to": "PS",
+      "formula": "PS = kW × 1.3596216173",
+      "examples": [
+        {
+          "input": 1,
+          "output": 1.3596216173039044
+        },
+        {
+          "input": 100,
+          "output": 135.96216173039045
+        },
+        {
+          "input": 1000,
+          "output": 1359.6216173039045
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "power",
+      "slug": "watts-to-kilowatts",
+      "from": "W",
+      "to": "kW",
+      "formula": "kW = W × 0.001",
+      "examples": [
+        {
+          "input": 1,
+          "output": 0.001
+        },
+        {
+          "input": 100,
+          "output": 0.1
+        },
+        {
+          "input": 1000,
+          "output": 1
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "angle",
+      "slug": "degrees-to-radians",
+      "from": "°",
+      "to": "rad",
+      "formula": "rad = ° × 0.0174532925199",
+      "examples": [
+        {
+          "input": -90,
+          "output": -1.5707963267948966
+        },
+        {
+          "input": 0,
+          "output": 0
+        },
+        {
+          "input": 180,
+          "output": 3.141592653589793
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "angle",
+      "slug": "radians-to-degrees",
+      "from": "rad",
+      "to": "°",
+      "formula": "° = rad × 57.2957795131",
+      "examples": [
+        {
+          "input": -1.5707963267948966,
+          "output": -90
+        },
+        {
+          "input": 0,
+          "output": 0
+        },
+        {
+          "input": 3.141592653589793,
+          "output": 180
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "angle",
+      "slug": "degrees-to-gradians",
+      "from": "°",
+      "to": "gon",
+      "formula": "gon = ° × 1.11111111111",
+      "examples": [
+        {
+          "input": -90,
+          "output": -100
+        },
+        {
+          "input": 0,
+          "output": 0
+        },
+        {
+          "input": 180,
+          "output": 200
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "fuel-economy",
+      "slug": "liters-per-100km-to-mpg-us",
+      "from": "L/100 km",
+      "to": "mpg (US)",
+      "formula": "mpg (US) = 235.214583571 / L/100 km (L/100 km > 0)",
+      "examples": [
+        {
+          "input": 5,
+          "output": 47.04291671427704
+        },
+        {
+          "input": 8,
+          "output": 29.40182294642315
+        },
+        {
+          "input": 12,
+          "output": 19.601215297615436
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "fuel-economy",
+      "slug": "mpg-us-to-liters-per-100km",
+      "from": "mpg (US)",
+      "to": "L/100 km",
+      "formula": "L/100 km = 235.214583571 / mpg (US) (mpg (US) > 0)",
+      "examples": [
+        {
+          "input": 20,
+          "output": 11.76072917856926
+        },
+        {
+          "input": 30,
+          "output": 7.840486119046173
+        },
+        {
+          "input": 50,
+          "output": 4.704291671427704
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "fuel-economy",
+      "slug": "km-per-liter-to-mpg-us",
+      "from": "km/L",
+      "to": "mpg (US)",
+      "formula": "mpg (US) = km/L × 2.35214583571",
+      "examples": [
+        {
+          "input": 20,
+          "output": 47.04291671427704
+        },
+        {
+          "input": 30,
+          "output": 70.56437507141555
+        },
+        {
+          "input": 50,
+          "output": 117.6072917856926
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    },
+    {
+      "category": "fuel-economy",
+      "slug": "mpg-imperial-to-liters-per-100km",
+      "from": "mpg (UK)",
+      "to": "L/100 km",
+      "formula": "L/100 km = 282.481054377 / mpg (UK) (mpg (UK) > 0)",
+      "examples": [
+        {
+          "input": 20,
+          "output": 14.124052718851617
+        },
+        {
+          "input": 30,
+          "output": 9.416035145901079
+        },
+        {
+          "input": 50,
+          "output": 5.6496210875406465
+        }
+      ],
+      "verification": "Displayed formula agrees with authored examples; independent verification of every conversion constant not claimed"
+    }
+  ]
+}

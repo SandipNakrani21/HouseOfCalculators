@@ -1,0 +1,117 @@
+[
+  {
+    "key": "calc.mortgage.explain",
+    "before": "The payment is level for the whole term. Early payments are mostly interest, and the share going to the principal grows every month - the breakdown table shows exactly when that crosses over for your figures.",
+    "after": "This model uses equal monthly payments at a fixed positive interest rate. The interest share falls as the outstanding balance falls, leaving more of each payment for principal. Whether interest exceeds principal early in the term depends on the rate and term; inspect the schedule for your figures."
+  },
+  {
+    "key": "calc.margin.explain.2",
+    "before": "Markup measures profit against cost: (price − cost) ÷ cost. Margin measures profit against selling price. With positive cost and selling price, margin is lower than markup unless profit is zero, when both are zero.",
+    "after": "Markup measures profit against cost: (price − cost) ÷ cost. Margin measures profit against selling price. With positive cost and selling price, a positive profit gives a lower margin than markup; a loss reverses that comparison. Both are zero when price equals cost."
+  },
+  {
+    "key": "calc.growth.averageHint",
+    "before": "Shown for comparison; it overstates growth whenever the series compounds.",
+    "after": "Total percentage change divided by the number of periods; this is not a compound rate or the average of observed yearly returns."
+  },
+  {
+    "key": "calc.growth.explain.2",
+    "before": "The simple average is shown because people reach for it, and it is almost always too high: dividing total growth by the number of periods ignores that each period compounds on the last.",
+    "after": "The simple average shown divides total percentage change by the number of periods. It does not compound and is not an arithmetic average of yearly observations. For positive growth over multiple periods it exceeds CAGR; falling values can give the opposite ordering."
+  },
+  {
+    "key": "calc.growth.faq.1.q",
+    "before": "Why is CAGR lower than the simple average?",
+    "after": "How does CAGR differ from total growth divided by years?"
+  },
+  {
+    "key": "calc.growth.faq.1.a",
+    "before": "Because growth compounds. Doubling over five years is 100% total, which averages to 20% a year — but 20% compounded for five years is nearly 149%. The true rate is 14.9%.",
+    "after": "CAGR is the constant compound rate joining the starting and ending values. Doubling over five years gives about 14.87% CAGR, while 100% divided by five is 20%. Falling from 100 to 50 over five years gives about −12.94% CAGR, versus −10% from dividing the total change. The latter is not the average of actual yearly returns."
+  },
+  {
+    "key": "calc.statistics.faq.1.a",
+    "before": "Sample, almost always. Use the population version only when your numbers are the entire group you care about, such as the marks of every student in one class rather than a sample of them.",
+    "after": "Use population standard deviation to describe the complete group represented by your data. Use sample standard deviation when estimating variability in a wider population from a sample; it requires at least two observations. The choice depends on the question, not simply the size of the dataset."
+  },
+  {
+    "key": "calc.statistics.explain.2",
+    "before": "Standard deviation measures how spread out the values are. The sample version divides by one less than the count — Bessel's correction — because a sample underestimates the spread of the population it came from.",
+    "after": "Standard deviation describes spread. Population deviation divides squared deviations by the count; sample deviation uses count minus one. That correction makes sample variance unbiased under the usual random-sampling assumptions; it does not make sample standard deviation itself exactly unbiased."
+  },
+  {
+    "key": "calc.bmi.explain.2",
+    "before": "The bands come from the World Health Organization: under 18.5 underweight, 18.5 to 24.9 healthy, 25 to 29.9 overweight, 30 and above obese. They describe risk across a population, not what is right for you.",
+    "after": "The adult categories shown are underweight below 18.5, healthy weight from 18.5 to below 25, overweight from 25 to below 30, and obesity from 30. BMI is a screening measure considered with other health factors; a category alone does not diagnose individual health."
+  },
+  {
+    "key": "calc.bmi.faq.1.a",
+    "before": "Often not. Muscle is denser than fat, so a trained athlete can have a BMI in the overweight band with very little body fat. A body fat estimate is more informative in that case.",
+    "after": "BMI does not distinguish fat, muscle and bone, so a muscular person can have a high BMI without a high body-fat percentage. Interpret it with other health information. A tape-based body-fat estimate also has limitations and is not automatically a more accurate assessment."
+  },
+  {
+    "key": "calc.bmi.faq.2.a",
+    "before": "No. The standard bands were derived largely from European populations, and some health bodies use lower thresholds for people of South Asian descent. BMI is also not designed for children, pregnant people or the very elderly.",
+    "after": "This page uses standard adult BMI categories. Children and teens require age- and sex-specific interpretation. Pregnancy and individual circumstances, including muscle mass and older-age changes in body composition, need additional assessment; this calculator does not make those adjustments."
+  },
+  {
+    "key": "calc.water.desc",
+    "before": "A daily water target from your body weight and how much you exercise.",
+    "after": "Illustrate a rough daily fluid amount from body weight and exercise assumptions."
+  },
+  {
+    "key": "calc.water.faq.1.a",
+    "before": "Yes. The mild diuretic effect of caffeine at normal intakes does not outweigh the fluid in the drink itself. Food contributes too — fruit and vegetables especially.",
+    "after": "Tea, coffee and other drinks can contribute to fluid intake, and food supplies some water too. The model does not measure how much fluid you already obtain from these sources or set an individual clinical target."
+  },
+  {
+    "key": "calc.water.faq.2.a",
+    "before": "Rarely, but yes. Drinking far more than you lose can dilute blood sodium, which is dangerous. This mainly affects endurance athletes. If a target here feels like a lot to force down, it probably is.",
+    "after": "Drinking more than the body can handle can cause harm. Do not force yourself to reach this modeled amount. Medical conditions, medicines and fluid restrictions require individual clinical advice; this tool does not assess a safe maximum."
+  },
+  {
+    "key": "calc.401k.explain",
+    "before": "The employer match is the highest-return part of the plan: contributing at least up to the match limit takes the full amount on offer.",
+    "after": "The projection includes the employer-match rate and limit entered in the tool. Actual eligibility, matching terms and vesting depend on the plan. A projected match is not a guaranteed or immediately owned investment return; check the plan documents and the stated statutory limits."
+  },
+  {
+    "key": "calc.fuelCost.faq.1.a",
+    "before": "Whatever your car actually achieves, not the manufacturer's figure. Real-world consumption is usually 10–20% worse than the official test, and worse again on short urban trips.",
+    "after": "Use consumption measured for comparable journeys when available. Vehicle, driving style, weather, load and traffic can differ from official test conditions. This tool applies the economy and fuel price you enter; it does not predict those differences."
+  },
+  {
+    "key": "calc.electricity.note",
+    "before": "This assumes the appliance draws its rated power the whole time it is on. Anything thermostatic — a fridge, a heater, a kettle — cycles, so real consumption is lower.",
+    "after": "This estimate assumes the entered watts are drawn for every entered operating hour. Cycling and variable-power appliances may differ. Use measured energy consumption or an appropriate average power where available; this tool does not infer operating cycles."
+  },
+  {
+    "key": "calc.electricity.explain.2",
+    "before": "The annual figure is the one worth looking at. A 5 W device left on permanently costs little per day and rather more over a year, and a 2 kW heater is the reverse of that arithmetic.",
+    "after": "Compare total operating time as well as power. A 5 W device running continuously uses 0.12 kWh per day; a 2 kW heater running for one hour uses 2 kWh. Daily, monthly and yearly costs repeat the entered operating pattern and unit tariff, without forecasting seasonal changes."
+  },
+  {
+    "key": "calc.concrete.faq.2.a",
+    "before": "Parts by volume of cement, sand and aggregate. 1:2:4 is the general-purpose mix for paths and bases; 1:1.5:3 is stronger for structural work; 1:3:6 is weaker and used for mass fill.",
+    "after": "The ratio labels indicate illustrative cement, sand and aggregate parts by volume. They do not establish concrete strength, structural suitability or compliance. Use a specified mix and supplier yield appropriate to the project; this calculator is a quantity illustration, not a structural mix design."
+  },
+  {
+    "key": "calc.concrete.faq.1.a",
+    "before": "Bags are practical up to roughly a cubic metre. Beyond that, ready-mix is cheaper, far quicker and more consistent — and a large slab poured in bag-sized batches risks cold joints.",
+    "after": "Compare supplier bag yields, delivery minimums, access, labour and the planned pour before choosing bags or ready-mix. This calculator estimates quantity; it does not determine local prices, installation method or structural suitability."
+  },
+  {
+    "key": "calc.tile.faq.1.a",
+    "before": "Slightly, and in your favour — the joints mean each tile covers marginally more than its own size. It is well inside the waste allowance, so it is not worth modelling.",
+    "after": "Joint spacing changes the covered area, but this model divides by tile area and does not lay out joints or cuts. Check actual package coverage and the planned grid with the supplier; a waste allowance is not proof that spacing can be ignored."
+  },
+  {
+    "key": "calc.tile.faq.2.a",
+    "before": "10% for a straightforward rectangular room with a simple grid. 15% for diagonal or herringbone layouts, large-format tiles, or rooms with lots of corners and obstacles.",
+    "after": "Enter a project-specific allowance for cuts and breakages. The default is illustrative. Layout, tile size, room shape, reusable offcuts and package quantities affect what to order; confirm the final quantity with the supplier."
+  },
+  {
+    "key": "calc.roof.faq.1.a",
+    "before": "Hold a level horizontally against the rake from inside the loft, mark 12 units along it, and measure straight down to the rafter. That drop is the rise per 12 of run.",
+    "after": "Use reliable plans or an existing pitch measurement when available. This tool needs rise per 12 units of horizontal run; it does not assess safe access or measure the roof. Ask a competent surveyor or contractor if the measurement cannot be obtained safely."
+  }
+]

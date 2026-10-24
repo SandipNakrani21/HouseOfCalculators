@@ -14,6 +14,7 @@ import { COUNTRIES, type CountryCode } from "@/config/countries";
 import type { LanguageCode } from "@/config/languages";
 import type { LocaleCode } from "@/config/locales";
 import { calculatorCopy } from "@/lib/calculator-copy";
+import { calculatorSearchCopy } from "@/lib/calculator-search-copy";
 import { createFormatter } from "@/lib/format";
 import { guideLinksFor } from "@/lib/guide-links";
 import { createTranslator } from "@/lib/i18n";
@@ -63,6 +64,7 @@ export function CalculatorPageBody({
   const params = calculator.params?.(ctx);
   const relevance = countryRelevanceOf(calculator);
   const review = ruleReview(calculator.slug, country);
+  const searchCopy = calculatorSearchCopy(locale, calculator.slug, country, review?.period);
   const replacement = reviewedCalculator(calculator.slug, country);
   // The reviewed scope already appears beside the inputs/results and in the
   // source panel. Use this section for worked arithmetic, not another copy.
@@ -104,8 +106,8 @@ export function CalculatorPageBody({
       header={{
         visual: itemVisual("calculators", calculator.category, calculator.slug),
         eyebrow: t(categoryKey("calculators", calculator.category)),
-        title: t(calculator.titleKey, params),
-        description: t(calculator.descKey, params),
+        title: searchCopy?.title ?? t(calculator.titleKey, params),
+        description: searchCopy?.description ?? t(calculator.descKey, params),
         note:
           relevance === "none" ? null : (
             // Say what the country actually changes here. Claiming a BMI

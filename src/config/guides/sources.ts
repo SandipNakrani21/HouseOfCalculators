@@ -2,7 +2,10 @@
 const compound = { name: "Investor.gov — Compound interest", href: "https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator" };
 const amortisation = { name: "CFPB — Amortization", href: "https://www.consumerfinance.gov/ask-cfpb/what-is-amortization-and-how-could-it-affect-my-auto-loan-en-771/" };
 const sources: Record<string, { name: string; href: string }[]> = {
-  "how-to-calculate-loan-payment": [amortisation],
+  "how-to-calculate-loan-payment": [amortisation,
+    { name: "OCC — Applying extra mortgage payments", href: "https://www.helpwithmybank.gov/help-topics/mortgages-home-equity/payments-late-payments/mortgage-payment-principal.html" },
+    { name: "CFPB — Prepayment penalties", href: "https://www.consumerfinance.gov/ask-cfpb/what-is-a-prepayment-penalty-en-1957/" },
+  ],
   "how-to-calculate-compound-interest": [compound],
   "how-to-calculate-vat": [{ name: "GOV.UK — VAT rates (UK)", href: "https://www.gov.uk/vat-rates" }],
   "what-is-compound-interest": [compound],

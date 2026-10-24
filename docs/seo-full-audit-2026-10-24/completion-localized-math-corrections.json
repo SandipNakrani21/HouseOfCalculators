@@ -1,0 +1,308 @@
+[
+  {
+    "language": "en",
+    "key": "calc.payroll.desc",
+    "before": "See the full cost of employing someone, from gross pay to employer charges.",
+    "after": "Estimate gross pay plus the employer charges and additional costs included in the selected country model."
+  },
+  {
+    "language": "de",
+    "key": "calc.payroll.desc",
+    "before": "Sehen Sie die vollen Kosten einer Anstellung, vom Brutto bis zu den Arbeitgeberabgaben.",
+    "after": "Schätzen Sie Bruttolohn und die im gewählten Ländermodell enthaltenen Arbeitgeberabgaben und Zusatzkosten."
+  },
+  {
+    "language": "de",
+    "key": "calc.margin.explain.2",
+    "before": "Der Aufschlag misst den Gewinn im Verhältnis zu den Kosten: (Preis − Kosten) ÷ Kosten. Die Marge bezieht ihn auf den Verkaufspreis. Bei positiven Kosten und Verkaufspreisen ist die Marge kleiner als der Aufschlag; bei einem Gewinn von null sind beide null.",
+    "after": "Der Aufschlag ist (Preis − Kosten) ÷ Kosten; die Marge ist (Preis − Kosten) ÷ Preis. Bei positiven Kosten und Preisen ist bei Gewinn die Marge kleiner als der Aufschlag, bei Verlust ist es umgekehrt. Ohne Gewinn oder Verlust sind beide null."
+  },
+  {
+    "language": "de",
+    "key": "calc.growth.averageHint",
+    "before": "Zum Vergleich angezeigt; er überschätzt das Wachstum, sobald sich die Reihe aufzinst.",
+    "after": "Gesamte prozentuale Änderung geteilt durch die Anzahl der Perioden; kein Zinseszinssatz und kein Mittel beobachteter Jahresrenditen."
+  },
+  {
+    "language": "de",
+    "key": "calc.statistics.faq.1.a",
+    "before": "Fast immer die der Stichprobe. Die Version für die Grundgesamtheit nur, wenn Ihre Zahlen die gesamte Gruppe sind, um die es geht – etwa die Noten aller Schüler einer Klasse statt einer Auswahl.",
+    "after": "Verwenden Sie die Populationsstandardabweichung für die vollständig erfasste Gruppe. Verwenden Sie die Stichprobenstandardabweichung, wenn eine Stichprobe die Streuung einer größeren Grundgesamtheit schätzen soll; dafür sind mindestens zwei Werte nötig."
+  },
+  {
+    "language": "de",
+    "key": "calc.bmi.faq.2.a",
+    "before": "Nein. Die Standardkategorien wurden überwiegend an europäischen Bevölkerungen ermittelt, und einige Gesundheitsbehörden verwenden für Menschen südasiatischer Herkunft niedrigere Schwellen. Der BMI ist außerdem nicht für Kinder, Schwangere oder sehr alte Menschen gedacht.",
+    "after": "Diese Seite verwendet Standardkategorien für Erwachsene. Kinder und Jugendliche benötigen eine alters- und geschlechtsspezifische Einordnung. Schwangerschaft, Muskelmasse und altersbedingte Änderungen der Körperzusammensetzung erfordern zusätzliche Beurteilung; der Rechner berücksichtigt sie nicht."
+  },
+  {
+    "language": "fr",
+    "key": "calc.payroll.desc",
+    "before": "Voyez le coût complet d'un salarié, du brut aux charges patronales.",
+    "after": "Estimez le salaire brut et les charges patronales et coûts supplémentaires inclus dans le modèle du pays choisi."
+  },
+  {
+    "language": "fr",
+    "key": "calc.margin.explain.2",
+    "before": "La majoration rapporte le bénéfice au coût : (prix − coût) ÷ coût. La marge le rapporte au prix de vente. Pour un coût et un prix positifs, la marge est inférieure à la majoration, sauf si le bénéfice est nul : les deux sont alors nuls.",
+    "after": "La majoration est (prix − coût) ÷ coût ; la marge est (prix − coût) ÷ prix. Avec un coût et un prix positifs, un bénéfice donne une marge inférieure à la majoration ; une perte inverse cet ordre. Sans bénéfice ni perte, les deux sont nuls."
+  },
+  {
+    "language": "fr",
+    "key": "calc.growth.averageHint",
+    "before": "Affiché pour comparaison ; il surestime la croissance dès que la série se compose.",
+    "after": "Variation totale en pourcentage divisée par le nombre de périodes ; ce n’est ni un taux composé ni la moyenne de rendements annuels observés."
+  },
+  {
+    "language": "fr",
+    "key": "calc.statistics.faq.1.a",
+    "before": "Celui de l'échantillon, presque toujours. N'utilisez la version population que si vos nombres représentent tout le groupe qui vous intéresse, comme les notes de tous les élèves d'une classe plutôt qu'une partie d'entre eux.",
+    "after": "Utilisez l’écart-type de population pour décrire tout le groupe représenté. Utilisez l’écart-type d’échantillon pour estimer la dispersion d’une population plus large à partir d’un échantillon ; il faut au moins deux observations."
+  },
+  {
+    "language": "fr",
+    "key": "calc.bmi.faq.2.a",
+    "before": "Non. Les catégories standard ont été établies surtout à partir de populations européennes, et certaines autorités sanitaires utilisent des seuils plus bas pour les personnes d'origine sud-asiatique. L'IMC n'est pas non plus conçu pour les enfants, les femmes enceintes ou les personnes très âgées.",
+    "after": "Cette page utilise les catégories standard pour adultes. Les enfants et adolescents nécessitent une interprétation selon l’âge et le sexe. Grossesse, masse musculaire et changements de composition corporelle liés à l’âge nécessitent une évaluation complémentaire ; le calculateur ne les ajuste pas."
+  },
+  {
+    "language": "es",
+    "key": "calc.payroll.desc",
+    "before": "Consulta el coste total de contratar a alguien, del salario bruto a las cargas de la empresa.",
+    "after": "Estima el salario bruto más las cargas empresariales y los costes adicionales incluidos en el modelo del país elegido."
+  },
+  {
+    "language": "es",
+    "key": "calc.margin.explain.2",
+    "before": "El recargo mide el beneficio respecto al coste: (precio − coste) ÷ coste. El margen lo mide respecto al precio de venta. Con coste y precio positivos, el margen es menor que el recargo, salvo cuando el beneficio es cero: ambos son cero.",
+    "after": "El recargo es (precio − coste) ÷ coste; el margen es (precio − coste) ÷ precio. Con coste y precio positivos, si hay beneficio el margen es menor que el recargo; si hay pérdida ocurre lo contrario. Sin beneficio ni pérdida, ambos son cero."
+  },
+  {
+    "language": "es",
+    "key": "calc.growth.averageHint",
+    "before": "Se muestra para comparar; sobrestima el crecimiento siempre que la serie se compone.",
+    "after": "Cambio porcentual total dividido entre el número de períodos; no es una tasa compuesta ni la media de rendimientos anuales observados."
+  },
+  {
+    "language": "es",
+    "key": "calc.statistics.faq.1.a",
+    "before": "La muestral, casi siempre. Usa la poblacional solo cuando tus números sean todo el grupo que te interesa, como las notas de todos los alumnos de una clase y no de una parte de ellos.",
+    "after": "Usa la desviación poblacional para describir el grupo completo representado. Usa la muestral para estimar la variabilidad de una población mayor a partir de una muestra; requiere al menos dos observaciones."
+  },
+  {
+    "language": "es",
+    "key": "calc.bmi.faq.2.a",
+    "before": "No. Las categorías estándar se obtuvieron sobre todo de poblaciones europeas, y algunos organismos sanitarios usan umbrales más bajos para personas de origen surasiático. Además, el IMC no está pensado para niños, embarazadas ni personas muy mayores.",
+    "after": "Esta página usa las categorías estándar para adultos. Niños y adolescentes requieren una interpretación según edad y sexo. Embarazo, masa muscular y cambios de composición corporal en edades avanzadas necesitan una valoración adicional; la calculadora no los ajusta."
+  },
+  {
+    "language": "pt",
+    "key": "calc.payroll.desc",
+    "before": "Veja o custo total de contratar alguém, do salário bruto aos encargos do empregador.",
+    "after": "Estime o salário bruto mais os encargos do empregador e custos adicionais incluídos no modelo do país selecionado."
+  },
+  {
+    "language": "pt",
+    "key": "calc.margin.explain.2",
+    "before": "Markup mede o lucro em relação ao custo: (preço − custo) ÷ custo. A margem mede o lucro em relação ao preço de venda. Com custo e preço positivos, a margem é menor que o markup, exceto quando o lucro é zero: ambos são zero.",
+    "after": "Markup é (preço − custo) ÷ custo; margem é (preço − custo) ÷ preço. Com custo e preço positivos, no lucro a margem é menor que o markup; no prejuízo a ordem se inverte. Sem lucro nem prejuízo, ambos são zero."
+  },
+  {
+    "language": "pt",
+    "key": "calc.growth.averageHint",
+    "before": "Mostrada para comparação; ela exagera o crescimento sempre que a série é composta.",
+    "after": "Variação percentual total dividida pelo número de períodos; não é uma taxa composta nem a média de retornos anuais observados."
+  },
+  {
+    "language": "pt",
+    "key": "calc.statistics.faq.1.a",
+    "before": "O amostral, quase sempre. Use o populacional só quando seus números forem o grupo inteiro que importa, como as notas de todos os alunos de uma turma, e não uma amostra deles.",
+    "after": "Use o desvio padrão populacional para descrever todo o grupo representado. Use o amostral para estimar a variabilidade de uma população maior a partir de uma amostra; são necessárias pelo menos duas observações."
+  },
+  {
+    "language": "pt",
+    "key": "calc.bmi.faq.2.a",
+    "before": "Não. As faixas padrão foram definidas principalmente com populações europeias, e alguns órgãos de saúde usam limites mais baixos para pessoas de origem sul-asiática. O IMC também não foi feito para crianças, gestantes ou idosos muito velhos.",
+    "after": "Esta página usa categorias padrão para adultos. Crianças e adolescentes precisam de interpretação por idade e sexo. Gestação, massa muscular e mudanças de composição corporal em idades avançadas exigem avaliação adicional; a calculadora não faz esses ajustes."
+  },
+  {
+    "language": "ru",
+    "key": "calc.payroll.desc",
+    "before": "Узнайте полную стоимость сотрудника — от зарплаты до вычетов до взносов работодателя.",
+    "after": "Оцените зарплату до вычетов и включённые в модель выбранной страны взносы работодателя и дополнительные расходы."
+  },
+  {
+    "language": "ru",
+    "key": "calc.margin.explain.2",
+    "before": "Наценка измеряет прибыль относительно себестоимости: (цена − себестоимость) ÷ себестоимость. Маржа измеряет прибыль относительно цены продажи. При положительных цене и себестоимости маржа ниже наценки, кроме случая нулевой прибыли: тогда оба показателя равны нулю.",
+    "after": "Наценка равна (цена − себестоимость) ÷ себестоимость; маржа — (цена − себестоимость) ÷ цена. При положительных цене и себестоимости прибыль даёт маржу ниже наценки, а убыток меняет порядок на обратный. Без прибыли и убытка оба показателя равны нулю."
+  },
+  {
+    "language": "ru",
+    "key": "calc.growth.averageHint",
+    "before": "Показано для сравнения; оно завышает рост всякий раз, когда ряд растёт со сложным процентом.",
+    "after": "Общее процентное изменение, делённое на число периодов; это не сложная ставка и не среднее наблюдавшихся годовых доходностей."
+  },
+  {
+    "language": "ru",
+    "key": "calc.statistics.faq.1.a",
+    "before": "Почти всегда выборочное. Для генеральной совокупности используйте его, только если ваши числа — это вся интересующая вас группа, например оценки всех учеников одного класса, а не выборка из них.",
+    "after": "Используйте стандартное отклонение совокупности для описания всей представленной группы. Выборочное отклонение нужно для оценки разброса более широкой совокупности по выборке; необходимо не менее двух наблюдений."
+  },
+  {
+    "language": "ru",
+    "key": "calc.bmi.faq.2.a",
+    "before": "Нет. Стандартные категории выведены в основном по европейским популяциям, а некоторые органы здравоохранения используют более низкие пороги для людей южноазиатского происхождения. Кроме того, ИМТ не предназначен для детей, беременных и людей очень преклонного возраста.",
+    "after": "Страница использует стандартные категории для взрослых. Для детей и подростков нужна интерпретация по возрасту и полу. Беременность, мышечная масса и возрастные изменения состава тела требуют дополнительной оценки; калькулятор их не учитывает."
+  },
+  {
+    "language": "tr",
+    "key": "calc.payroll.desc",
+    "before": "Brüt maaştan işveren yüklerine kadar bir çalışanın toplam maliyetini görün.",
+    "after": "Seçilen ülke modeline dahil brüt maaşı, işveren yüklerini ve ek maliyetleri tahmin edin."
+  },
+  {
+    "language": "tr",
+    "key": "calc.margin.explain.2",
+    "before": "Markup, kârı maliyete göre ölçer: (fiyat − maliyet) ÷ maliyet. Marj, kârı satış fiyatına göre ölçer. Maliyet ve fiyat pozitifken marj, markup değerinden küçüktür; kâr sıfırsa ikisi de sıfırdır.",
+    "after": "Markup = (fiyat − maliyet) ÷ maliyet; marj = (fiyat − maliyet) ÷ fiyat. Fiyat ve maliyet pozitifken kâr varsa marj daha küçüktür; zarar varsa sıralama tersine döner. Kâr ve zarar yoksa ikisi de sıfırdır."
+  },
+  {
+    "language": "tr",
+    "key": "calc.growth.averageHint",
+    "before": "Karşılaştırma için gösterilir; seri bileşik büyüdüğünde büyümeyi olduğundan fazla gösterir.",
+    "after": "Toplam yüzde değişimin dönem sayısına bölümü; bileşik oran veya gözlenen yıllık getirilerin ortalaması değildir."
+  },
+  {
+    "language": "tr",
+    "key": "calc.statistics.faq.1.a",
+    "before": "Neredeyse her zaman örneklem olanına. Anakütle sürümünü yalnızca sayılarınız ilgilendiğiniz grubun tamamıysa kullanın; örneğin bir sınıftaki öğrencilerin bir kısmının değil, hepsinin notları.",
+    "after": "Verilerin temsil ettiği grubun tamamını tanımlamak için anakütle standart sapmasını kullanın. Bir örneklemden daha büyük anakütlenin değişkenliğini tahmin etmek için örneklem standart sapmasını kullanın; en az iki gözlem gerekir."
+  },
+  {
+    "language": "tr",
+    "key": "calc.bmi.faq.2.a",
+    "before": "Hayır. Standart kategoriler büyük ölçüde Avrupalı toplumlardan türetilmiştir ve bazı sağlık kuruluşları Güney Asya kökenli kişiler için daha düşük eşikler kullanır. VKİ ayrıca çocuklar, hamileler ve çok yaşlılar için tasarlanmamıştır.",
+    "after": "Bu sayfa yetişkinler için standart kategorileri kullanır. Çocuklar ve ergenler yaşa ve cinsiyete göre yorum gerektirir. Gebelik, kas kütlesi ve ileri yaşta vücut bileşimi değişiklikleri ek değerlendirme gerektirir; hesaplayıcı bunları ayarlamaz."
+  },
+  {
+    "language": "ja",
+    "key": "calc.payroll.desc",
+    "before": "額面給与から事業主負担まで、従業員を雇う総コストを確認します。",
+    "after": "選択した国のモデルに含まれる額面給与、事業主負担、追加費用を試算します。"
+  },
+  {
+    "language": "ja",
+    "key": "calc.margin.explain.2",
+    "before": "値入率（マークアップ）は利益を原価に対して測ります：(価格 − 原価) ÷ 原価。利益率は利益を販売価格に対して測ります。原価と販売価格が正の場合、利益率は値入率より小さくなります。ただし利益がゼロなら両方ともゼロです。",
+    "after": "値入率は（価格−原価）÷原価、利益率は（価格−原価）÷価格です。価格と原価が正で利益がある場合、利益率は値入率より小さくなり、損失の場合は逆になります。損益がゼロなら両方ともゼロです。"
+  },
+  {
+    "language": "ja",
+    "key": "calc.growth.averageHint",
+    "before": "比較のために表示しています。数値が複利的に推移する場合、成長を過大に示します。",
+    "after": "全体の変化率を期間数で割った値です。複利成長率でも、観測した各年の収益率の平均でもありません。"
+  },
+  {
+    "language": "ja",
+    "key": "calc.statistics.faq.1.a",
+    "before": "ほとんどの場合は標本の標準偏差です。母集団の標準偏差は、クラス全員の点数のように、数値が関心のある集団全体である場合にのみ使います。",
+    "after": "データが表す集団全体を記述する場合は母集団の標準偏差を使います。標本からより大きな母集団のばらつきを推定する場合は標本標準偏差を使い、少なくとも2個の観測値が必要です。"
+  },
+  {
+    "language": "ja",
+    "key": "calc.bmi.faq.2.a",
+    "before": "いいえ。標準の区分は主にヨーロッパの集団をもとに作られており、南アジア系の人にはより低い基準値を使う保健機関もあります。また、BMIは子ども、妊娠中の人、高齢者向けには作られていません。",
+    "after": "このページは成人の標準区分を使います。子どもと10代には年齢・性別に応じた解釈が必要です。妊娠、筋肉量、高齢期の体組成変化などは追加の評価が必要で、この計算では調整しません。"
+  },
+  {
+    "language": "zh",
+    "key": "calc.payroll.desc",
+    "before": "查看雇用一名员工的全部成本，从税前工资到雇主负担。",
+    "after": "估算所选国家模型中计入的税前工资、雇主缴费和额外成本。"
+  },
+  {
+    "language": "zh",
+    "key": "calc.margin.explain.2",
+    "before": "加成率以成本为基准衡量利润：(售价 − 成本) ÷ 成本。利润率以售价为基准衡量利润。当成本和售价均为正数时，利润率小于加成率；利润为零时，两者均为零。",
+    "after": "加成率＝（售价−成本）÷成本；利润率＝（售价−成本）÷售价。成本和售价均为正时，盈利情况下利润率低于加成率，亏损时顺序相反。盈亏为零时，两者均为零。"
+  },
+  {
+    "language": "zh",
+    "key": "calc.growth.averageHint",
+    "before": "仅供比较；只要数据是复合增长的，它就会高估增长。",
+    "after": "总百分比变化除以期间数；并非复合增长率，也不是实际观测的年度回报率平均值。"
+  },
+  {
+    "language": "zh",
+    "key": "calc.statistics.faq.1.a",
+    "before": "几乎总是用样本标准差。只有当您的数字就是您关心的整个群体时才用总体标准差，例如一个班级所有学生的分数，而不是其中一部分学生的分数。",
+    "after": "描述数据所代表的完整群体时，使用总体标准差。根据样本估计更大总体的变异程度时，使用样本标准差，且至少需要两个观测值。"
+  },
+  {
+    "language": "zh",
+    "key": "calc.bmi.faq.2.a",
+    "before": "不是。标准分类主要基于欧洲人群制定，一些卫生机构对南亚裔人群采用更低的临界值。BMI 也不适用于儿童、孕妇和高龄老人。",
+    "after": "本页使用成人标准分类。儿童和青少年需要按年龄及性别解读。孕期、肌肉量和高龄阶段的身体成分变化需要额外评估，本计算器不作这些调整。"
+  },
+  {
+    "language": "it",
+    "key": "calc.payroll.desc",
+    "before": "Scopri il costo totale di un dipendente, dalla retribuzione lorda agli oneri del datore di lavoro.",
+    "after": "Stima retribuzione lorda, oneri del datore di lavoro e costi aggiuntivi inclusi nel modello del paese selezionato."
+  },
+  {
+    "language": "it",
+    "key": "calc.margin.explain.2",
+    "before": "Il ricarico misura l’utile rispetto al costo: (prezzo − costo) ÷ costo. Il margine lo misura rispetto al prezzo di vendita. Con costo e prezzo positivi, il margine è inferiore al ricarico, salvo quando l’utile è zero: entrambi sono zero.",
+    "after": "Il ricarico è (prezzo − costo) ÷ costo; il margine è (prezzo − costo) ÷ prezzo. Con prezzo e costo positivi, in caso di utile il margine è inferiore al ricarico; in caso di perdita vale il contrario. Senza utile né perdita, entrambi sono zero."
+  },
+  {
+    "language": "it",
+    "key": "calc.growth.averageHint",
+    "before": "Mostrata per confronto; sovrastima la crescita ogni volta che la serie è composta.",
+    "after": "Variazione percentuale totale divisa per il numero di periodi; non è un tasso composto né la media di rendimenti annui osservati."
+  },
+  {
+    "language": "it",
+    "key": "calc.statistics.faq.1.a",
+    "before": "Quella campionaria, quasi sempre. Usa quella della popolazione solo quando i tuoi numeri sono l'intero gruppo che ti interessa, come i voti di tutti gli studenti di una classe e non di un campione.",
+    "after": "Usa la deviazione standard della popolazione per descrivere tutto il gruppo rappresentato. Usa quella campionaria per stimare la variabilità di una popolazione più ampia da un campione; servono almeno due osservazioni."
+  },
+  {
+    "language": "it",
+    "key": "calc.bmi.faq.2.a",
+    "before": "No. Le fasce standard sono state ricavate soprattutto da popolazioni europee, e alcuni enti sanitari usano soglie più basse per le persone di origine sud-asiatica. Il BMI inoltre non è pensato per bambini, donne in gravidanza o persone molto anziane.",
+    "after": "Questa pagina usa le categorie standard per adulti. Bambini e adolescenti richiedono interpretazione per età e sesso. Gravidanza, massa muscolare e cambiamenti della composizione corporea in età avanzata richiedono valutazione aggiuntiva; il calcolatore non effettua questi adattamenti."
+  },
+  {
+    "language": "nl",
+    "key": "calc.payroll.desc",
+    "before": "Bekijk de volledige kosten van een werknemer, van brutoloon tot werkgeverslasten.",
+    "after": "Schat brutoloon plus de werkgeverslasten en extra kosten die het gekozen landmodel meeneemt."
+  },
+  {
+    "language": "nl",
+    "key": "calc.margin.explain.2",
+    "before": "Opslag meet de winst ten opzichte van de kostprijs: (prijs − kostprijs) ÷ kostprijs. Marge meet de winst ten opzichte van de verkoopprijs. Bij positieve kosten en verkoopprijs is de marge lager dan de opslag, behalve bij nul winst: dan zijn beide nul.",
+    "after": "Opslag is (prijs − kostprijs) ÷ kostprijs; marge is (prijs − kostprijs) ÷ prijs. Bij positieve prijs en kosten is de marge bij winst lager dan de opslag; bij verlies is de volgorde omgekeerd. Zonder winst of verlies zijn beide nul."
+  },
+  {
+    "language": "nl",
+    "key": "calc.growth.averageHint",
+    "before": "Ter vergelijking getoond; het overschat de groei zodra de reeks samengesteld groeit.",
+    "after": "Totale procentuele verandering gedeeld door het aantal perioden; geen samengesteld percentage en geen gemiddelde van waargenomen jaarrendementen."
+  },
+  {
+    "language": "nl",
+    "key": "calc.statistics.faq.1.a",
+    "before": "Bijna altijd de steekproefversie. Gebruik de populatieversie alleen als je getallen de hele groep zijn waar het om gaat, zoals de cijfers van alle leerlingen in één klas in plaats van een steekproef.",
+    "after": "Gebruik de populatiestandaardafwijking om de volledige vertegenwoordigde groep te beschrijven. Gebruik de steekproefstandaardafwijking om de spreiding van een grotere populatie uit een steekproef te schatten; daarvoor zijn minimaal twee waarnemingen nodig."
+  },
+  {
+    "language": "nl",
+    "key": "calc.bmi.faq.2.a",
+    "before": "Nee. De standaardcategorieën zijn grotendeels afgeleid van Europese bevolkingsgroepen, en sommige gezondheidsinstanties hanteren lagere grenzen voor mensen van Zuid-Aziatische afkomst. BMI is ook niet bedoeld voor kinderen, zwangeren of hoogbejaarden.",
+    "after": "Deze pagina gebruikt standaardcategorieën voor volwassenen. Kinderen en tieners vragen om interpretatie naar leeftijd en geslacht. Zwangerschap, spiermassa en veranderingen in lichaamssamenstelling op hogere leeftijd vragen aanvullende beoordeling; de calculator past hiervoor niet aan."
+  }
+]

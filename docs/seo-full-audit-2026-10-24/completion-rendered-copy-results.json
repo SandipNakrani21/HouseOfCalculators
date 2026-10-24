@@ -1,0 +1,1207 @@
+{
+  "date": "2026-10-25",
+  "records": [
+    {
+      "path": "/en-us/calculators/finance/loan",
+      "keys": [
+        "calc.loan.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/countries/it/income-tax",
+      "keys": [
+        "calc.income-tax.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/charts/conversion/length-conversion-table",
+      "keys": [
+        "chart.length.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/tools/date-time/date-difference",
+      "keys": [
+        "tool.date-difference.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/countries/de/payroll",
+      "keys": [
+        "calc.payroll.desc"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/calculators/business/profit-margin",
+      "keys": [
+        "calc.margin.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/calculators/business/growth-rate",
+      "keys": [
+        "calc.growth.averageHint",
+        "calc.growth.explain.2",
+        "calc.growth.faq.1.q",
+        "calc.growth.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/calculators/math/statistics",
+      "keys": [
+        "calc.statistics.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/calculators/health/bmi",
+      "keys": [
+        "calc.bmi.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-gb/calculators/finance/loan",
+      "keys": [
+        "calc.loan.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-gb/countries/it/income-tax",
+      "keys": [
+        "calc.income-tax.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-gb/charts/conversion/length-conversion-table",
+      "keys": [
+        "chart.length.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-gb/tools/date-time/date-difference",
+      "keys": [
+        "tool.date-difference.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-gb/countries/de/payroll",
+      "keys": [
+        "calc.payroll.desc"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-gb/calculators/business/profit-margin",
+      "keys": [
+        "calc.margin.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-gb/calculators/business/growth-rate",
+      "keys": [
+        "calc.growth.averageHint",
+        "calc.growth.explain.2",
+        "calc.growth.faq.1.q",
+        "calc.growth.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-gb/calculators/math/statistics",
+      "keys": [
+        "calc.statistics.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-gb/calculators/health/bmi",
+      "keys": [
+        "calc.bmi.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/de-de/calculators/finance/loan",
+      "keys": [
+        "calc.loan.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/de-de/countries/it/income-tax",
+      "keys": [
+        "calc.income-tax.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/de-de/charts/conversion/length-conversion-table",
+      "keys": [
+        "chart.length.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/de-de/tools/date-time/date-difference",
+      "keys": [
+        "tool.date-difference.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/de-de/countries/de/payroll",
+      "keys": [
+        "calc.payroll.desc"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/de-de/calculators/business/profit-margin",
+      "keys": [
+        "calc.margin.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/de-de/calculators/business/growth-rate",
+      "keys": [
+        "calc.growth.averageHint",
+        "calc.growth.explain.2",
+        "calc.growth.faq.1.q",
+        "calc.growth.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/de-de/calculators/math/statistics",
+      "keys": [
+        "calc.statistics.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/de-de/calculators/health/bmi",
+      "keys": [
+        "calc.bmi.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/fr-fr/calculators/finance/loan",
+      "keys": [
+        "calc.loan.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/fr-fr/countries/it/income-tax",
+      "keys": [
+        "calc.income-tax.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/fr-fr/charts/conversion/length-conversion-table",
+      "keys": [
+        "chart.length.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/fr-fr/tools/date-time/date-difference",
+      "keys": [
+        "tool.date-difference.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/fr-fr/countries/de/payroll",
+      "keys": [
+        "calc.payroll.desc"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/fr-fr/calculators/business/profit-margin",
+      "keys": [
+        "calc.margin.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/fr-fr/calculators/business/growth-rate",
+      "keys": [
+        "calc.growth.averageHint",
+        "calc.growth.explain.2",
+        "calc.growth.faq.1.q",
+        "calc.growth.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/fr-fr/calculators/math/statistics",
+      "keys": [
+        "calc.statistics.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/fr-fr/calculators/health/bmi",
+      "keys": [
+        "calc.bmi.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/es-es/calculators/finance/loan",
+      "keys": [
+        "calc.loan.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/es-es/countries/it/income-tax",
+      "keys": [
+        "calc.income-tax.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/es-es/charts/conversion/length-conversion-table",
+      "keys": [
+        "chart.length.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/es-es/tools/date-time/date-difference",
+      "keys": [
+        "tool.date-difference.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/es-es/countries/de/payroll",
+      "keys": [
+        "calc.payroll.desc"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/es-es/calculators/business/profit-margin",
+      "keys": [
+        "calc.margin.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/es-es/calculators/business/growth-rate",
+      "keys": [
+        "calc.growth.averageHint",
+        "calc.growth.explain.2",
+        "calc.growth.faq.1.q",
+        "calc.growth.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/es-es/calculators/math/statistics",
+      "keys": [
+        "calc.statistics.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/es-es/calculators/health/bmi",
+      "keys": [
+        "calc.bmi.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/pt-br/calculators/finance/loan",
+      "keys": [
+        "calc.loan.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/pt-br/countries/it/income-tax",
+      "keys": [
+        "calc.income-tax.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/pt-br/charts/conversion/length-conversion-table",
+      "keys": [
+        "chart.length.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/pt-br/tools/date-time/date-difference",
+      "keys": [
+        "tool.date-difference.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/pt-br/countries/de/payroll",
+      "keys": [
+        "calc.payroll.desc"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/pt-br/calculators/business/profit-margin",
+      "keys": [
+        "calc.margin.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/pt-br/calculators/business/growth-rate",
+      "keys": [
+        "calc.growth.averageHint",
+        "calc.growth.explain.2",
+        "calc.growth.faq.1.q",
+        "calc.growth.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/pt-br/calculators/math/statistics",
+      "keys": [
+        "calc.statistics.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/pt-br/calculators/health/bmi",
+      "keys": [
+        "calc.bmi.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ru-ru/calculators/finance/loan",
+      "keys": [
+        "calc.loan.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ru-ru/countries/it/income-tax",
+      "keys": [
+        "calc.income-tax.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ru-ru/charts/conversion/length-conversion-table",
+      "keys": [
+        "chart.length.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ru-ru/tools/date-time/date-difference",
+      "keys": [
+        "tool.date-difference.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ru-ru/countries/de/payroll",
+      "keys": [
+        "calc.payroll.desc"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ru-ru/calculators/business/profit-margin",
+      "keys": [
+        "calc.margin.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ru-ru/calculators/business/growth-rate",
+      "keys": [
+        "calc.growth.averageHint",
+        "calc.growth.explain.2",
+        "calc.growth.faq.1.q",
+        "calc.growth.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ru-ru/calculators/math/statistics",
+      "keys": [
+        "calc.statistics.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ru-ru/calculators/health/bmi",
+      "keys": [
+        "calc.bmi.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/tr-tr/calculators/finance/loan",
+      "keys": [
+        "calc.loan.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/tr-tr/countries/it/income-tax",
+      "keys": [
+        "calc.income-tax.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/tr-tr/charts/conversion/length-conversion-table",
+      "keys": [
+        "chart.length.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/tr-tr/tools/date-time/date-difference",
+      "keys": [
+        "tool.date-difference.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/tr-tr/countries/de/payroll",
+      "keys": [
+        "calc.payroll.desc"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/tr-tr/calculators/business/profit-margin",
+      "keys": [
+        "calc.margin.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/tr-tr/calculators/business/growth-rate",
+      "keys": [
+        "calc.growth.averageHint",
+        "calc.growth.explain.2",
+        "calc.growth.faq.1.q",
+        "calc.growth.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/tr-tr/calculators/math/statistics",
+      "keys": [
+        "calc.statistics.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/tr-tr/calculators/health/bmi",
+      "keys": [
+        "calc.bmi.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ja-jp/calculators/finance/loan",
+      "keys": [
+        "calc.loan.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ja-jp/countries/it/income-tax",
+      "keys": [
+        "calc.income-tax.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ja-jp/charts/conversion/length-conversion-table",
+      "keys": [
+        "chart.length.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ja-jp/tools/date-time/date-difference",
+      "keys": [
+        "tool.date-difference.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ja-jp/countries/de/payroll",
+      "keys": [
+        "calc.payroll.desc"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ja-jp/calculators/business/profit-margin",
+      "keys": [
+        "calc.margin.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ja-jp/calculators/business/growth-rate",
+      "keys": [
+        "calc.growth.averageHint",
+        "calc.growth.explain.2",
+        "calc.growth.faq.1.q",
+        "calc.growth.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ja-jp/calculators/math/statistics",
+      "keys": [
+        "calc.statistics.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/ja-jp/calculators/health/bmi",
+      "keys": [
+        "calc.bmi.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/zh-cn/calculators/finance/loan",
+      "keys": [
+        "calc.loan.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/zh-cn/countries/it/income-tax",
+      "keys": [
+        "calc.income-tax.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/zh-cn/charts/conversion/length-conversion-table",
+      "keys": [
+        "chart.length.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/zh-cn/tools/date-time/date-difference",
+      "keys": [
+        "tool.date-difference.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/zh-cn/countries/de/payroll",
+      "keys": [
+        "calc.payroll.desc"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/zh-cn/calculators/business/profit-margin",
+      "keys": [
+        "calc.margin.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/zh-cn/calculators/business/growth-rate",
+      "keys": [
+        "calc.growth.averageHint",
+        "calc.growth.explain.2",
+        "calc.growth.faq.1.q",
+        "calc.growth.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/zh-cn/calculators/math/statistics",
+      "keys": [
+        "calc.statistics.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/zh-cn/calculators/health/bmi",
+      "keys": [
+        "calc.bmi.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/it-it/calculators/finance/loan",
+      "keys": [
+        "calc.loan.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/it-it/countries/it/income-tax",
+      "keys": [
+        "calc.income-tax.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/it-it/charts/conversion/length-conversion-table",
+      "keys": [
+        "chart.length.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/it-it/tools/date-time/date-difference",
+      "keys": [
+        "tool.date-difference.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/it-it/countries/de/payroll",
+      "keys": [
+        "calc.payroll.desc"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/it-it/calculators/business/profit-margin",
+      "keys": [
+        "calc.margin.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/it-it/calculators/business/growth-rate",
+      "keys": [
+        "calc.growth.averageHint",
+        "calc.growth.explain.2",
+        "calc.growth.faq.1.q",
+        "calc.growth.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/it-it/calculators/math/statistics",
+      "keys": [
+        "calc.statistics.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/it-it/calculators/health/bmi",
+      "keys": [
+        "calc.bmi.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/nl-nl/calculators/finance/loan",
+      "keys": [
+        "calc.loan.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/nl-nl/countries/it/income-tax",
+      "keys": [
+        "calc.income-tax.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/nl-nl/charts/conversion/length-conversion-table",
+      "keys": [
+        "chart.length.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/nl-nl/tools/date-time/date-difference",
+      "keys": [
+        "tool.date-difference.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/nl-nl/countries/de/payroll",
+      "keys": [
+        "calc.payroll.desc"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/nl-nl/calculators/business/profit-margin",
+      "keys": [
+        "calc.margin.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/nl-nl/calculators/business/growth-rate",
+      "keys": [
+        "calc.growth.averageHint",
+        "calc.growth.explain.2",
+        "calc.growth.faq.1.q",
+        "calc.growth.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/nl-nl/calculators/math/statistics",
+      "keys": [
+        "calc.statistics.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/nl-nl/calculators/health/bmi",
+      "keys": [
+        "calc.bmi.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/calculators/finance/mortgage",
+      "keys": [
+        "calc.mortgage.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/calculators/health/water-intake",
+      "keys": [
+        "calc.water.desc",
+        "calc.water.faq.1.a",
+        "calc.water.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/countries/us/401k",
+      "keys": [
+        "calc.401k.explain"
+      ],
+      "parsedSchemaCount": 2,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/calculators/everyday/fuel-cost",
+      "keys": [
+        "calc.fuelCost.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/calculators/everyday/electricity-cost",
+      "keys": [
+        "calc.electricity.note",
+        "calc.electricity.explain.2"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/calculators/construction/concrete",
+      "keys": [
+        "calc.concrete.faq.1.a",
+        "calc.concrete.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/calculators/construction/tile",
+      "keys": [
+        "calc.tile.faq.1.a",
+        "calc.tile.faq.2.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    },
+    {
+      "path": "/en-us/calculators/construction/roof-area",
+      "keys": [
+        "calc.roof.faq.1.a"
+      ],
+      "parsedSchemaCount": 3,
+      "visibleCopy": true,
+      "applicationAndFaqConsistency": true,
+      "method": "Generated final production HTML only; browser interaction not tested in this continuation"
+    }
+  ],
+  "limitations": "Focused content regression; not full page-wise editorial completion, crawl, browser retest or live publication"
+}

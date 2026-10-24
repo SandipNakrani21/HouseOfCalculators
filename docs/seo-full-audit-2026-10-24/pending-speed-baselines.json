@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-25",
+  "timezone": "Asia/Calcutta",
+  "target": "https://thecalculatorshouse.com/en-us",
+  "tool": "PageSpeed Insights browser interface",
+  "conditions": {
+    "device": "Emulated Moto G Power",
+    "throttling": "Slow 4G",
+    "lighthouse": "13.5.0",
+    "browser": "HeadlessChromium 153.0.8010.36 with lr",
+    "load": "Single page session; initial page load",
+    "consent": "No action taken; consent paragraph appears as LCP; undecided initial path inferred, not a controlled accepted state",
+    "cache": "Initial page load reported; exact browser reset procedure not exposed; cached report repetitions excluded"
+  },
+  "runs": [
+    {"id":"2q19bgyky0","captureIST":"00:15","performance":68,"fcpMs":1358,"lcpMs":6158,"tbtMs":251,"displayedCls":0,"speedIndexMs":5432},
+    {"id":"cnwpgusfcq","captureIST":"00:18","performance":72,"fcpMs":1367,"lcpMs":7069,"tbtMs":124,"displayedCls":0.001,"speedIndexMs":5005},
+    {"id":"61ih6dwxv2","captureIST":"00:25","performance":69,"fcpMs":1354,"lcpMs":7266,"tbtMs":196,"displayedCls":0,"speedIndexMs":5105}
+  ],
+  "medians": {"performance":69,"fcpMs":1358,"lcpMs":7069,"tbtMs":196,"displayedCls":0,"speedIndexMs":5105},
+  "excluded": [{"id":"yy95siapmm","reason":"New report wrapper repeated first capture metric set and capture time; independence not established"}],
+  "localAfterLcp": null,
+  "lcpImprovementVerified": false,
+  "deployed": false
+}

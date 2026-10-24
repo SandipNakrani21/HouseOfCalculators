@@ -1,0 +1,24 @@
+{
+  "loan": {
+    "principal": 200000,
+    "annualRate": 6,
+    "months": 300,
+    "payment": 1288.602802971029,
+    "total": 386580.8408913087,
+    "growth": 4.464969812162163,
+    "balanceAfter144": 139350.07388102025
+  },
+  "compound": {
+    "principal": 10000,
+    "annualRate": 6,
+    "years": 10,
+    "monthly": 18193.9673403229,
+    "yearly": 17908.476965428545
+  },
+  "beginningMonthFutureValue": 261982.69933724994,
+  "displayPrecision": {
+    "oneMeterInFeet": 3.280839895013123,
+    "tableDecimals": 2,
+    "converterDecimals": 4
+  }
+}

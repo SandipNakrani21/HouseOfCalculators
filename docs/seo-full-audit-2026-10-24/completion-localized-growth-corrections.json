@@ -1,0 +1,182 @@
+[
+  {
+    "language": "de",
+    "key": "calc.growth.faq.1.q",
+    "before": "Warum ist die CAGR niedriger als der einfache Durchschnitt?",
+    "after": "Wie unterscheidet sich CAGR von Gesamtänderung geteilt durch Jahre?"
+  },
+  {
+    "language": "de",
+    "key": "calc.growth.faq.1.a",
+    "before": "Weil sich Wachstum aufzinst. Eine Verdopplung in fünf Jahren sind insgesamt 100 %, im Schnitt 20 % pro Jahr – aber 20 % über fünf Jahre aufgezinst ergeben fast 149 %. Die tatsächliche Rate liegt bei 14,9 %.",
+    "after": "CAGR ist die konstante jährliche Zinseszinsrate zwischen Anfangs- und Endwert. Von 100 auf 200 in fünf Jahren sind es etwa 14,87% jährlich, während 100% geteilt durch fünf 20% ergibt. Von 100 auf 50 sind es etwa −12,94% CAGR gegenüber −10% einfacher Division."
+  },
+  {
+    "language": "de",
+    "key": "calc.growth.explain.2",
+    "before": "Der einfache Durchschnitt wird angezeigt, weil viele danach greifen, und er ist fast immer zu hoch: Das Gesamtwachstum durch die Anzahl der Perioden zu teilen, ignoriert, dass jede Periode auf der vorherigen aufbaut.",
+    "after": "Der einfache Wert teilt die gesamte prozentuale Änderung durch die Periodenzahl. Er berücksichtigt keinen Zinseszins und ist kein Mittel tatsächlicher Jahresrenditen. Bei Zuwächsen über mehrere Perioden ist er höher als CAGR; bei Rückgängen kann die Reihenfolge umgekehrt sein."
+  },
+  {
+    "language": "fr",
+    "key": "calc.growth.faq.1.q",
+    "before": "Pourquoi le TCAC est-il inférieur à la moyenne simple ?",
+    "after": "Comment le taux composé diffère-t-il de la variation totale divisée par les années ?"
+  },
+  {
+    "language": "fr",
+    "key": "calc.growth.faq.1.a",
+    "before": "Parce que la croissance se compose. Doubler en cinq ans fait 100 % au total, soit 20 % par an en moyenne ; mais 20 % composés sur cinq ans donnent près de 149 %. Le vrai taux est de 14,9 %.",
+    "after": "Le taux composé relie le début et la fin à un taux annuel constant. Passer de 100 à 200 en cinq ans donne environ 14,87% par an, contre 20% pour 100% divisé par cinq. Passer de 100 à 50 donne environ −12,94%, contre −10% par division simple."
+  },
+  {
+    "language": "fr",
+    "key": "calc.growth.explain.2",
+    "before": "La moyenne simple est affichée parce qu'on a tendance à l'utiliser, et elle est presque toujours trop élevée : diviser la croissance totale par le nombre de périodes ignore que chaque période se compose sur la précédente.",
+    "after": "La valeur simple divise la variation totale en pourcentage par le nombre de périodes. Elle ne compose pas les rendements et n’est pas la moyenne des rendements annuels observés. Pour une hausse sur plusieurs périodes elle dépasse le taux composé ; une baisse peut inverser cet ordre."
+  },
+  {
+    "language": "es",
+    "key": "calc.growth.faq.1.q",
+    "before": "¿Por qué la TCAC es menor que la media simple?",
+    "after": "¿En qué se diferencia la tasa compuesta del cambio total dividido entre años?"
+  },
+  {
+    "language": "es",
+    "key": "calc.growth.faq.1.a",
+    "before": "Porque el crecimiento se compone. Duplicar en cinco años es un 100 % total, un 20 % anual de media; pero un 20 % compuesto durante cinco años es casi un 149 %. La tasa real es del 14,9 %.",
+    "after": "La tasa compuesta conecta el valor inicial y final con una tasa anual constante. Pasar de 100 a 200 en cinco años da aproximadamente 14,87% anual, frente al 20% de dividir 100% entre cinco. Pasar de 100 a 50 da aproximadamente −12,94%, frente al −10% de la división simple."
+  },
+  {
+    "language": "es",
+    "key": "calc.growth.explain.2",
+    "before": "La media simple se muestra porque la gente recurre a ella, y casi siempre es demasiado alta: dividir el crecimiento total entre el número de periodos ignora que cada periodo se compone sobre el anterior.",
+    "after": "El valor simple divide el cambio porcentual total entre los períodos. No capitaliza y no es la media de rendimientos anuales observados. Con crecimiento positivo en varios períodos supera la tasa compuesta; con caídas puede ocurrir lo contrario."
+  },
+  {
+    "language": "pt",
+    "key": "calc.growth.faq.1.q",
+    "before": "Por que a CAGR é menor que a média simples?",
+    "after": "Como a taxa composta difere da variação total dividida pelos anos?"
+  },
+  {
+    "language": "pt",
+    "key": "calc.growth.faq.1.a",
+    "before": "Porque o crescimento se compõe. Dobrar em cinco anos é 100% no total, o que dá média de 20% ao ano — mas 20% compostos por cinco anos dão quase 149%. A taxa real é 14,9%.",
+    "after": "A taxa composta liga os valores inicial e final com uma taxa anual constante. De 100 para 200 em cinco anos dá cerca de 14,87% ao ano, contra 20% ao dividir 100% por cinco. De 100 para 50 dá cerca de −12,94%, contra −10% pela divisão simples."
+  },
+  {
+    "language": "pt",
+    "key": "calc.growth.explain.2",
+    "before": "A média simples aparece porque as pessoas recorrem a ela, e ela quase sempre é alta demais: dividir o crescimento total pelo número de períodos ignora que cada período se compõe sobre o anterior.",
+    "after": "O valor simples divide a variação percentual total pelos períodos. Não capitaliza e não é a média de retornos anuais observados. Com crescimento positivo por vários períodos ele supera a taxa composta; com queda a ordem pode se inverter."
+  },
+  {
+    "language": "ru",
+    "key": "calc.growth.faq.1.q",
+    "before": "Почему CAGR ниже простого среднего?",
+    "after": "Чем CAGR отличается от общего изменения, делённого на годы?"
+  },
+  {
+    "language": "ru",
+    "key": "calc.growth.faq.1.a",
+    "before": "Потому что рост складывается по сложному проценту. Удвоение за пять лет — это 100% всего, в среднем 20% в год, но 20% со сложным процентом за пять лет дают почти 149%. Истинный темп — 14,9%.",
+    "after": "CAGR соединяет начальное и конечное значения постоянной годовой сложной ставкой. Рост со 100 до 200 за пять лет даёт около 14,87% в год, а 100%, делённые на пять, дают 20%. Падение со 100 до 50 даёт около −12,94% CAGR против −10% при простом делении."
+  },
+  {
+    "language": "ru",
+    "key": "calc.growth.explain.2",
+    "before": "Простое среднее показано потому, что к нему часто обращаются, а оно почти всегда завышено: деление общего роста на число периодов не учитывает, что каждый период наращивается на предыдущий.",
+    "after": "Простой показатель делит общее процентное изменение на число периодов. Он не учитывает сложный процент и не является средним наблюдавшихся годовых доходностей. При росте за несколько периодов он выше CAGR; при снижении порядок может меняться на обратный."
+  },
+  {
+    "language": "tr",
+    "key": "calc.growth.faq.1.q",
+    "before": "CAGR neden basit ortalamadan düşük?",
+    "after": "Bileşik oran ile toplam değişimin yıl sayısına bölümü nasıl farklıdır?"
+  },
+  {
+    "language": "tr",
+    "key": "calc.growth.faq.1.a",
+    "before": "Çünkü büyüme bileşiktir. Beş yılda ikiye katlanmak toplamda %100'dür, bu da yılda ortalama %20 eder — ama beş yıl boyunca bileşik %20 neredeyse %149 eder. Gerçek oran %14,9'dur.",
+    "after": "Bileşik oran başlangıç ve bitiş değerlerini sabit yıllık oranla bağlar. Beş yılda 100’den 200’e çıkmak yılda yaklaşık %14,87 verir; %100’ü beşe bölmek %20 verir. 100’den 50’ye düşmek yaklaşık −%12,94 bileşik oran, basit bölümle −%10 verir."
+  },
+  {
+    "language": "tr",
+    "key": "calc.growth.explain.2",
+    "before": "Basit ortalama, insanlar ona başvurduğu için gösterilir ve neredeyse her zaman fazla yüksektir: toplam büyümeyi dönem sayısına bölmek, her dönemin bir öncekinin üzerine bileştiğini göz ardı eder.",
+    "after": "Basit değer toplam yüzde değişimi dönem sayısına böler. Bileşik hesaplama yapmaz ve gözlenen yıllık getirilerin ortalaması değildir. Birden çok dönemde pozitif büyümede bileşik orandan yüksektir; düşüşte sıralama tersine dönebilir."
+  },
+  {
+    "language": "ja",
+    "key": "calc.growth.faq.1.q",
+    "before": "CAGRが単純平均より低いのはなぜですか？",
+    "after": "複合成長率と、全体の変化率を年数で割った値はどう違いますか？"
+  },
+  {
+    "language": "ja",
+    "key": "calc.growth.faq.1.a",
+    "before": "成長は複利で積み重なるからです。5年で2倍なら合計100%、平均すると年20%ですが、20%を5年間複利で重ねると約149%になります。実際の成長率は14.9%です。",
+    "after": "複合成長率は開始値と終了値を一定の年率で結びます。5年で100から200なら年率は約14.87%ですが、100%を5で割ると20%です。100から50への減少なら約−12.94%で、単純に割った−10%とは異なります。"
+  },
+  {
+    "language": "ja",
+    "key": "calc.growth.explain.2",
+    "before": "単純平均はよく使われるので表示していますが、ほぼ常に高すぎます。総成長率を期間数で割ると、各期間が前の期間に上乗せされて複利的に増えることを無視してしまうからです。",
+    "after": "単純値は全体の変化率を期間数で割ります。複利計算ではなく、観測した各年の収益率の平均でもありません。複数期間の正の成長では複合成長率より高くなりますが、減少の場合は順序が逆になることがあります。"
+  },
+  {
+    "language": "zh",
+    "key": "calc.growth.faq.1.q",
+    "before": "为什么 CAGR 比简单平均低？",
+    "after": "复合增长率与总变化率除以年数有何不同？"
+  },
+  {
+    "language": "zh",
+    "key": "calc.growth.faq.1.a",
+    "before": "因为增长是复合的。五年翻一倍，总增长 100%，平均每年 20%——但 20% 复合五年接近 149%。真实的增长率是 14.9%。",
+    "after": "复合增长率以恒定年率连接起点和终点。5年内从100增至200，年率约为14.87%，而100%除以5为20%。从100降至50，复合年率约为−12.94%，而简单相除为−10%。"
+  },
+  {
+    "language": "zh",
+    "key": "calc.growth.explain.2",
+    "before": "之所以显示简单平均，是因为人们习惯用它，而它几乎总是偏高：用总增长除以期数，忽略了每一期都是在上一期基础上复合增长的。",
+    "after": "简单值将总百分比变化除以期间数，不进行复利计算，也不是实际观测的年度回报率平均值。多个期间的正增长时，它高于复合增长率；下降时顺序可能相反。"
+  },
+  {
+    "language": "it",
+    "key": "calc.growth.faq.1.q",
+    "before": "Perché il CAGR è più basso della media semplice?",
+    "after": "Qual è la differenza tra CAGR e variazione totale divisa per gli anni?"
+  },
+  {
+    "language": "it",
+    "key": "calc.growth.faq.1.a",
+    "before": "Perché la crescita si compone. Raddoppiare in cinque anni è il 100% totale, cioè in media il 20% all'anno — ma il 20% composto per cinque anni fa quasi il 149%. Il tasso vero è il 14,9%.",
+    "after": "Il CAGR collega valore iniziale e finale con un tasso annuo composto costante. Da 100 a 200 in cinque anni dà circa 14,87% annuo, mentre 100% diviso cinque dà 20%. Da 100 a 50 dà circa −12,94% CAGR, contro −10% con la divisione semplice."
+  },
+  {
+    "language": "it",
+    "key": "calc.growth.explain.2",
+    "before": "La media semplice è mostrata perché è quella a cui si pensa, ed è quasi sempre troppo alta: dividere la crescita totale per il numero di periodi ignora che ogni periodo si compone sul precedente.",
+    "after": "Il valore semplice divide la variazione percentuale totale per i periodi. Non capitalizza e non è la media di rendimenti annui osservati. Con crescita positiva in più periodi supera il CAGR; con un calo l’ordine può invertirsi."
+  },
+  {
+    "language": "nl",
+    "key": "calc.growth.faq.1.q",
+    "before": "Waarom is CAGR lager dan het eenvoudige gemiddelde?",
+    "after": "Hoe verschilt CAGR van totale verandering gedeeld door jaren?"
+  },
+  {
+    "language": "nl",
+    "key": "calc.growth.faq.1.a",
+    "before": "Omdat groei samengesteld is. Verdubbelen in vijf jaar is 100% totaal, gemiddeld 20% per jaar — maar 20% samengesteld over vijf jaar is bijna 149%. Het echte percentage is 14,9%.",
+    "after": "CAGR verbindt begin- en eindwaarde met een constant samengesteld jaarpercentage. Van 100 naar 200 in vijf jaar is ongeveer 14,87% per jaar, tegenover 20% bij 100% gedeeld door vijf. Van 100 naar 50 is ongeveer −12,94% CAGR tegenover −10% bij eenvoudige deling."
+  },
+  {
+    "language": "nl",
+    "key": "calc.growth.explain.2",
+    "before": "Het eenvoudige gemiddelde wordt getoond omdat mensen ernaar grijpen, en het is bijna altijd te hoog: de totale groei delen door het aantal perioden negeert dat elke periode voortbouwt op de vorige.",
+    "after": "De eenvoudige waarde deelt de totale procentuele verandering door het aantal perioden. Deze rekent niet samengesteld en is geen gemiddelde van waargenomen jaarrendementen. Bij positieve groei over meerdere perioden ligt deze boven CAGR; bij daling kan de volgorde omkeren."
+  }
+]

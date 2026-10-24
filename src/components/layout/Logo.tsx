@@ -1,4 +1,6 @@
-/* eslint-disable @next/next/no-img-element -- pre-sized, pre-compressed brand files; the image optimiser adds nothing */
+/* eslint-disable @next/next/no-img-element -- the small standalone mark is served as supplied */
+
+import Image from "next/image";
 
 /**
  * The brand logo: the owner's artwork (a house whose body is a calculator,
@@ -9,8 +11,8 @@
  *   logo-on-dark.webp  the same with white lettering, for the navy footer
  *   mark.png           the house and calculator alone, for small spots
  *
- * The files are 3× the size they are shown at, so they stay sharp on high-
- * density screens. Width and height are set so nothing shifts while loading.
+ * Responsive image candidates retain sharpness on high-density screens without
+ * sending the full artwork to every device. Dimensions reserve the same ratio.
  */
 
 const LOGO = { width: 836, height: 240 };
@@ -36,15 +38,16 @@ export function Logo({
   className?: string;
 }) {
   return (
-    <img
+    <Image
       src={onDark ? "/brand/logo-on-dark.webp" : "/brand/logo.webp"}
       alt={name}
       width={LOGO.width}
       height={LOGO.height}
+      sizes={large ? "(min-width: 640px) 14.805rem, 10.45rem" : "8.71rem"}
       loading={priority ? "eager" : "lazy"}
       fetchPriority={priority ? "high" : "auto"}
       decoding="async"
-      className={`block w-auto ${large ? "h-12 sm:h-[4.25rem]" : "h-10"} ${className}`}
+      className={`block aspect-[836/240] w-auto ${large ? "h-12 sm:h-[4.25rem]" : "h-10"} ${className}`}
     />
   );
 }

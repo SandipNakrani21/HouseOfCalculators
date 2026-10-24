@@ -1,0 +1,58 @@
+{
+  "totals": {
+    "outside-content-review": 648,
+    "partially-reviewed": 1450,
+    "unreviewed": 1556
+  },
+  "byLocale": {
+    "en-us": {
+      "partial": 253,
+      "unreviewed": 0
+    },
+    "en-gb": {
+      "partial": 253,
+      "unreviewed": 0
+    },
+    "de-de": {
+      "partial": 94,
+      "unreviewed": 156
+    },
+    "fr-fr": {
+      "partial": 94,
+      "unreviewed": 156
+    },
+    "es-es": {
+      "partial": 94,
+      "unreviewed": 156
+    },
+    "pt-br": {
+      "partial": 94,
+      "unreviewed": 156
+    },
+    "ru-ru": {
+      "partial": 94,
+      "unreviewed": 156
+    },
+    "tr-tr": {
+      "partial": 94,
+      "unreviewed": 156
+    },
+    "ja-jp": {
+      "partial": 94,
+      "unreviewed": 156
+    },
+    "zh-cn": {
+      "partial": 94,
+      "unreviewed": 156
+    },
+    "it-it": {
+      "partial": 98,
+      "unreviewed": 152
+    },
+    "nl-nl": {
+      "partial": 94,
+      "unreviewed": 156
+    }
+  },
+  "newCorrectionRecords": 153
+}

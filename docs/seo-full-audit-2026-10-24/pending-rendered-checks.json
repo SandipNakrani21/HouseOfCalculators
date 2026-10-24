@@ -1,0 +1,333 @@
+{
+  "date": "2026-10-25",
+  "root": "http://127.0.0.1:3100",
+  "records": [
+    {
+      "path": "/en-us",
+      "status": 200,
+      "title": "The Calculators House - Every Calculation. One Global Home.",
+      "h1": "Every Calculation.One Global Home.",
+      "appDescriptionMatchesVisible": false,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/calculators/finance/loan",
+      "status": 200,
+      "title": "Loan Calculator – Monthly Payments & Total Interest",
+      "h1": "Loan Calculator",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-gb/calculators/finance/loan",
+      "status": 200,
+      "title": "Loan Calculator | The Calculators House",
+      "h1": "Loan Calculator",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/countries/pl/income-tax",
+      "status": 200,
+      "title": "Poland Income Tax Calculator 2026 – Employment PIT",
+      "h1": "Poland Income Tax Calculator 2026",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/charts/math/multiplication-table",
+      "status": 200,
+      "title": "Multiplication Table | The Calculators House",
+      "h1": "Multiplication Table",
+      "appDescriptionMatchesVisible": false,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/converters/weight",
+      "status": 200,
+      "title": "Weight Converter | The Calculators House",
+      "h1": "Weight Converter",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/it-it/countries/us/salary",
+      "status": 200,
+      "title": "Calcolatore dello Stipendio Netto - Stati Uniti",
+      "h1": "Calcolatore dello Stipendio Netto",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/it-it/countries/it/income-tax",
+      "status": 200,
+      "title": "Calcolatore dell'Imposta sul Reddito - Italia",
+      "h1": "Calcolatore dell'Imposta sul Reddito",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/it-it/tools/number-math/words-to-number",
+      "status": 200,
+      "title": "Da Lettere a Numero | The Calculators House",
+      "h1": "Da Lettere a Numero",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/countries/br/salary",
+      "status": 200,
+      "title": "Brazil Salary Calculator | The Calculators House",
+      "h1": "Salary Calculator",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/countries/us/salary",
+      "status": 200,
+      "title": "United States Salary Calculator | The Calculators House",
+      "h1": "Salary Calculator",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/it-it/countries/nl/salary",
+      "status": 200,
+      "title": "Calcolatore dello Stipendio Netto - Paesi Bassi",
+      "h1": "Calcolatore dello Stipendio Netto",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/it-it/converters/length",
+      "status": 200,
+      "title": "Convertitore di Lunghezza | The Calculators House",
+      "h1": "Convertitore di Lunghezza",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/countries/ca/salary",
+      "status": 200,
+      "title": "Canada Salary Calculator | The Calculators House",
+      "h1": "Salary Calculator",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/tools/date-time/date-difference",
+      "status": 200,
+      "title": "Date Difference Calculator | The Calculators House",
+      "h1": "Date Difference Calculator",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/countries/ru/salary",
+      "status": 200,
+      "title": "Russia Salary Calculator | The Calculators House",
+      "h1": "Salary Calculator",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/converters/pressure",
+      "status": 200,
+      "title": "Pressure Converter | The Calculators House",
+      "h1": "Pressure Converter",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/converters/pressure/bar-to-psi",
+      "status": 200,
+      "title": "Bar to Pounds per square inch Converter | The Calculators House",
+      "h1": "Bar to Pounds per square inch Converter",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/charts/conversion/length-conversion-table",
+      "status": 200,
+      "title": "Length Conversion Table | The Calculators House",
+      "h1": "Length Conversion Table",
+      "appDescriptionMatchesVisible": false,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/tools/planning/savings-goal",
+      "status": 200,
+      "title": "Savings Goal Planner | The Calculators House",
+      "h1": "Savings Goal Planner",
+      "appDescriptionMatchesVisible": true,
+      "parsedSchemas": 2,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/guides/how-to-calculate/how-to-calculate-loan-payment",
+      "status": 200,
+      "title": "How to Calculate a Loan Payment | The Calculators House",
+      "h1": "How to Calculate a Loan Payment",
+      "appDescriptionMatchesVisible": false,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-gb/guides/how-to-calculate/how-to-calculate-loan-payment",
+      "status": 200,
+      "title": "How to Calculate a Loan Payment | The Calculators House",
+      "h1": "How to Calculate a Loan Payment",
+      "appDescriptionMatchesVisible": false,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/guides/how-to-calculate/how-to-calculate-vat",
+      "status": 200,
+      "title": "How to Calculate VAT | The Calculators House",
+      "h1": "How to Calculate VAT",
+      "appDescriptionMatchesVisible": false,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/guides/what-is/what-is-compound-interest",
+      "status": 200,
+      "title": "What Is Compound Interest? | The Calculators House",
+      "h1": "What Is Compound Interest?",
+      "appDescriptionMatchesVisible": false,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/guides/what-is/what-is-amortisation",
+      "status": 200,
+      "title": "What Is Amortization? | The Calculators House",
+      "h1": "What Is Amortization?",
+      "appDescriptionMatchesVisible": false,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/guides/what-is/what-is-a-marginal-tax-rate",
+      "status": 200,
+      "title": "What Is a Marginal Tax Rate? | The Calculators House",
+      "h1": "What Is a Marginal Tax Rate?",
+      "appDescriptionMatchesVisible": false,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/guides/practical/how-to-compare-loan-offers",
+      "status": 200,
+      "title": "How to Compare Loan Offers | The Calculators House",
+      "h1": "How to Compare Loan Offers",
+      "appDescriptionMatchesVisible": false,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/guides/practical/how-to-read-an-amortisation-schedule",
+      "status": 200,
+      "title": "How to Read an Amortization Schedule | The Calculators House",
+      "h1": "How to Read an Amortization Schedule",
+      "appDescriptionMatchesVisible": false,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    },
+    {
+      "path": "/en-us/guides/formulas/future-value-formula",
+      "status": 200,
+      "title": "The Future Value Formula | The Calculators House",
+      "h1": "The Future Value Formula",
+      "appDescriptionMatchesVisible": false,
+      "parsedSchemas": 3,
+      "logoSizes": "(min-width: 640px) 14.805rem, 10.45rem",
+      "checked": "local production HTML/content consistency; not browser interaction or full content review"
+    }
+  ],
+  "images": [
+    {
+      "url": "/brand/logo.webp",
+      "bytes": 50582,
+      "width": 836,
+      "height": 240,
+      "type": "image/webp"
+    },
+    {
+      "url": "/_next/image?url=%2Fbrand%2Flogo.webp&w=256&q=75",
+      "bytes": 7066,
+      "width": 256,
+      "height": 73,
+      "type": "image/webp"
+    },
+    {
+      "url": "/_next/image?url=%2Fbrand%2Flogo.webp&w=384&q=75",
+      "bytes": 12836,
+      "width": 384,
+      "height": 110,
+      "type": "image/webp"
+    },
+    {
+      "url": "/_next/image?url=%2Fbrand%2Flogo.webp&w=640&q=75",
+      "bytes": 27226,
+      "width": 640,
+      "height": 184,
+      "type": "image/webp"
+    },
+    {
+      "url": "/_next/image?url=%2Fbrand%2Flogo-on-dark.webp&w=384&q=75",
+      "bytes": 13190,
+      "width": 384,
+      "height": 110,
+      "type": "image/webp"
+    }
+  ]
+}
