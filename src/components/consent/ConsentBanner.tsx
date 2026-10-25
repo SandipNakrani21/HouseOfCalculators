@@ -37,20 +37,31 @@ export function useGoogleConsentApplies(enabled: boolean): "pending" | boolean {
     let stopped = false, registered = false;
     let listenerId: number | undefined;
     let timer: number | undefined;
+    let tcfApplies: boolean | undefined;
     const syncPurposes = () => {
       if (stopped) return;
+      // Outside TCF, the site's explicit Accept/Reject choice owns consent.
+      // A later Google callback must not overwrite that choice with denial.
+      if (tcfApplies === false) return;
       let values: GoogleConsentValues | undefined;
       try { values = window.googlefc?.getGoogleConsentModeValues?.(); }
       catch { update("denied"); return; }
       if (!values) { update("denied"); return; }
-      // Only explicit GRANTED(1)/DENIED(2) values are consent decisions.
-      // UNKNOWN, NOT_APPLICABLE and NOT_CONFIGURED never imply a grant.
       const entries = [
         ["ad_storage", values.adStoragePurposeConsentStatus],
         ["ad_user_data", values.adUserDataPurposeConsentStatus],
         ["ad_personalization", values.adPersonalizationPurposeConsentStatus],
         ["analytics_storage", values.analyticsStoragePurposeConsentStatus],
       ] as const;
+      // Google can resolve an outside-EU request through Consent Mode without
+      // delivering a TCF callback. All purposes NOT_APPLICABLE(3) resolves the
+      // local choice path; it is not permission to load Analytics. Unknown(0)
+      // and NOT_CONFIGURED(4) must never be used as geography or consent.
+      if (tcfApplies !== true && entries.every(([, value]) => value === 3)) {
+        tcfApplies = false;
+        setApplies(false);
+        return;
+      }
       if (!entries.some(([, value]) => value === 1 || value === 2)) {
         const denied: ConsentPurposes = { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", analytics_storage: "denied" };
         window.gtag?.("consent", "update", denied);
@@ -74,9 +85,12 @@ export function useGoogleConsentApplies(enabled: boolean): "pending" | boolean {
         if (stopped) return;
         listenerId = data?.listenerId;
         if (success && typeof data?.gdprApplies === "boolean") {
+          tcfApplies = data.gdprApplies;
           setApplies(data.gdprApplies);
           if (data.gdprApplies) {
             clearConsent();
+            // Invalidate any prior outside-TCF grant before resolving the CMP.
+            update("denied");
             // Consent Mode can update again after each TCF user action.
             window.googlefc?.callbackQueue?.push({ CONSENT_MODE_DATA_READY: syncPurposes });
             if (["tcloaded", "useractioncomplete"].includes(data.eventStatus ?? "")) {
