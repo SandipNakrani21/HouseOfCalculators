@@ -99,9 +99,9 @@ export function SiteHeader({ ready, menu = {} }: { ready: LocaleCode[]; menu?: N
           >
             <Link
               href={base}
-              className="shrink-0 rounded-sm transition-[opacity,transform] duration-200 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+              className="min-w-0 shrink rounded-sm transition-[opacity,transform] duration-200 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
             >
-              <Logo name={t("app.name")} large priority />
+              <Logo name={t("app.name")} large priority className="object-contain" />
             </Link>
 
             <nav aria-label={t("header.primary")} className="hidden flex-1 xl:block">

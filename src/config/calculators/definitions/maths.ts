@@ -353,7 +353,7 @@ export const areaCalculator: CalculatorDef = {
       options: SHAPES_2D.map((shape) => ({ value: shape, labelKey: `shape.${shape}` })),
     },
     { id: "a", labelKey: "field.dimensionA", kind: "number", min: 0.1, max: 1000, step: 0.1, slider: false, default: 10,
-      resolve: values => ({ labelKey: str(values, "shape") === "circle" ? "field.geometry.radius" : str(values, "shape") === "triangle" ? "field.base" : "field.sideA" }) },
+      resolve: values => ({ labelKey: str(values, "shape") === "circle" ? "field.geometry.radius" : ["triangle", "parallelogram"].includes(str(values, "shape")) ? "field.geometry.base" : "field.geometry.sideA" }) },
     {
       id: "b",
       labelKey: "field.dimensionB",
@@ -364,7 +364,7 @@ export const areaCalculator: CalculatorDef = {
       slider: false,
       default: 6,
       // A circle is defined by its radius alone.
-      resolve: values => ({ labelKey: str(values, "shape") === "triangle" ? "field.geometry.height" : "field.sideB" }),
+      resolve: values => ({ labelKey: ["triangle", "parallelogram"].includes(str(values, "shape")) ? "field.geometry.height" : "field.geometry.sideB" }),
       visibleWhen: (values) => str(values, "shape", "rectangle") !== "circle",
     },
     {
@@ -376,7 +376,7 @@ export const areaCalculator: CalculatorDef = {
       step: 0.1,
       slider: false,
       default: 5,
-      resolve: values => ({ labelKey: str(values, "shape") === "trapezoid" ? "field.geometry.height" : "field.dimensionC" }),
+      resolve: values => ({ labelKey: str(values, "shape") === "trapezoid" ? "field.geometry.height" : "field.geometry.sideB" }),
       visibleWhen: (values) => {
         const shape = str(values, "shape", "rectangle");
         return shape === "trapezoid" || shape === "parallelogram";
@@ -422,7 +422,8 @@ export const volumeCalculator: CalculatorDef = {
       default: "box",
       options: SHAPES_3D.map((shape) => ({ value: shape, labelKey: `shape.${shape}` })),
     },
-    { id: "a", labelKey: "field.dimensionA", kind: "number", min: 0.1, max: 1000, step: 0.1, slider: false, default: 10 },
+    { id: "a", labelKey: "field.dimensionA", kind: "number", min: 0.1, max: 1000, step: 0.1, slider: false, default: 10,
+      resolve: values => ({ labelKey: str(values, "shape", "box") === "box" ? "field.dimensionA" : "field.geometry.radius" }) },
     {
       id: "b",
       labelKey: "field.dimensionB",
@@ -434,6 +435,7 @@ export const volumeCalculator: CalculatorDef = {
       default: 6,
       // A sphere is defined by its radius alone.
       visibleWhen: (values) => str(values, "shape", "box") !== "sphere",
+      resolve: values => ({ labelKey: str(values, "shape", "box") === "box" ? "field.dimensionB" : "field.geometry.height" }),
     },
     {
       id: "c",

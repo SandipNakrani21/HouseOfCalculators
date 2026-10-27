@@ -6,12 +6,19 @@ export function LoanComparison({ calculator, ctx }: { calculator: CalculatorDef;
   if (!scenarios.length) return null;
   const { t, fmt } = ctx;
   const fields = calculator.fields(ctx);
+  const studentSource = calculator.slug === "student-loan"
+    ? ctx.countryCode === "gb"
+      ? { href: "https://www.gov.uk/repaying-your-student-loan", name: "GOV.UK" }
+      : ctx.countryCode === "au"
+        ? { href: "https://www.studyassist.gov.au/managing-and-repaying-your-loan/loan-repayments", name: "StudyAssist" }
+        : undefined
+    : undefined;
   return <section data-loan-comparison={calculator.slug} className="mt-6 rounded-lg border border-border p-4 sm:p-6">
     <h3 className="font-semibold text-heading">{t("comparison.loan.title")}</h3>
     <p className="mt-2 text-sm leading-relaxed text-muted">{t("comparison.loan.intro")}</p>
     <div className="mt-4 overflow-x-auto rounded-md border border-border" role="region" aria-label={t("comparison.loan.title")} tabIndex={0}>
       <table className="w-full min-w-[38rem] text-start text-sm">
-        <caption className="sr-only">{t("comparison.loan.intro")}</caption>
+        <caption className="sr-only">{t("comparison.loan.title")}</caption>
         <thead className="bg-bg-soft"><tr>{["quality.inputs", "result.monthlyPayment", "result.totalInterest", "result.totalPayable"].map(key => <th key={key} scope="col" className="p-3 text-start font-semibold">{t(key)}</th>)}</tr></thead>
         <tbody>{scenarios.map(({ fieldId, values, result }) => {
           const field = fields.find(item => item.id === fieldId);
@@ -27,5 +34,6 @@ export function LoanComparison({ calculator, ctx }: { calculator: CalculatorDef;
     <p className="mt-3 text-sm leading-relaxed text-muted">{t("comparison.loan.scope")}</p>
     <p className="mt-3 text-sm leading-relaxed text-muted">{t("comparison.loan.apr")}</p>
     <p className="mt-3 text-sm"><a className="text-primary underline" href="https://www.consumerfinance.gov/ask-cfpb/what-is-the-difference-between-a-mortgage-interest-rate-and-an-apr-en-135/" target="_blank" rel="noreferrer">CFPB — Interest rate / APR (US)</a></p>
+    {studentSource ? <p className="mt-3 text-sm"><a className="text-primary underline" href={studentSource.href} target="_blank" rel="noreferrer">{t("calc.sources")} — {t(`country.${ctx.countryCode}`)} ({studentSource.name})</a></p> : null}
   </section>;
 }

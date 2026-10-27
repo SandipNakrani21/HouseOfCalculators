@@ -505,18 +505,18 @@
    * filling in never pushes content around.
    */
   .ad-slot {
-    display: grid;
-    place-items: center;
+    display: block;
+    min-width: 0;
     width: 100%;
     margin-inline: auto;
     /* Never crop a filled creative or its controls. */
   }
-  .ad-leaderboard { max-width: 728px; height: 90px; }
-  .ad-rectangle { max-width: 300px; height: 250px; }
-  .ad-rail { max-width: 300px; height: 600px; }
+  .ad-leaderboard { max-width: 728px; min-height: 90px; }
+  .ad-rectangle { max-width: 300px; min-height: 250px; }
+  .ad-rail { max-width: 300px; min-height: 600px; }
   @media (max-width: 767px) {
     /* Phones get the mobile banner size in the leaderboard position. */
-    .ad-leaderboard { max-width: 320px; height: 100px; }
+    .ad-leaderboard { max-width: 320px; min-height: 100px; }
   }
   /*
    * When AdSense has no ad for a slot (always the case before the site is
@@ -525,6 +525,8 @@
    */
   .ad-wrap:has(ins.adsbygoogle[data-ad-status="unfilled"]) { visibility: hidden; pointer-events: none; }
   .ad-placeholder {
+    display: grid;
+    place-items: center;
     border: 1px dashed var(--border-strong);
     background:
       repeating-linear-gradient(45deg, transparent 0 10px, color-mix(in srgb, var(--border) 45%, transparent) 10px 11px),

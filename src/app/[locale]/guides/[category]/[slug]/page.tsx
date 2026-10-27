@@ -28,6 +28,7 @@ import { allContent } from "@/lib/content";
 import { COUNTRIES } from "@/config/countries";
 import { guideSources } from "@/config/guides/sources";
 import { createFormatter } from "@/lib/format";
+import { formatGuideExample } from "@/lib/guide-example-format";
 
 type Params = { locale: string; category: string; slug: string };
 
@@ -198,7 +199,7 @@ export default async function GuidePage({
                     className="flex justify-between gap-4 border-b border-border px-4 py-2.5 last:border-0"
                   >
                     <dt className="text-sm text-muted">{t(row.key)}</dt>
-                    <dd className="tabular text-sm font-medium">{row.value}</dd>
+                    <dd className="tabular text-sm font-medium">{formatGuideExample(row.value, code)}</dd>
                   </div>
                 ))}
               </dl>
@@ -207,7 +208,7 @@ export default async function GuidePage({
                   {t(guide.workedExample.resultKey)}
                 </span>
                 <span className="tabular mt-1 block text-2xl font-bold text-primary">
-                  {guide.workedExample.resultValue}
+                  {formatGuideExample(guide.workedExample.resultValue, code)}
                 </span>
               </p>
             </section>

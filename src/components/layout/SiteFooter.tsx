@@ -57,7 +57,7 @@ export function SiteFooter({
         className="pointer-events-none absolute -end-32 -top-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"
       />
 
-      <div className="container-page relative pb-20 pt-16 sm:pb-16">
+      <div className="container-page relative pb-8 pt-16">
         <div className="grid gap-10 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-[1.8fr_1fr_1.25fr_1fr_1fr] lg:gap-10 xl:gap-12">
           {/* Brand, set apart from the link columns by a faint rule on desktop. */}
           <div className="lg:border-e lg:border-white/10 lg:pe-10">
@@ -178,8 +178,8 @@ export function SiteFooter({
           </nav>
         </div>
 
-        {/* Back to top, in the footer's bottom-right corner. */}
-        <div className="absolute bottom-5 end-[var(--gutter)] sm:bottom-8">
+        {/* Keep this below every link column, including Privacy choices. */}
+        <div className="mt-8 flex justify-end">
           <ScrollToTop label={t("common.backToTop")} inline />
         </div>
       </div>

@@ -113,7 +113,7 @@ const chIncome: ReviewedCountryCalculator = {
 };
 const chSalary: ReviewedCountryCalculator = {
   slug: "salary", country: "ch", scopeKey: scope("chFederal2025"), review: chReview,
-  fields: () => [money("salary", "field.grossSalary", 80000, 2500.01), chTaxable(), money("otherEmployee", "field.chOtherEmployee", 5000)],
+  fields: () => [money("salary", "field.annualGrossSalary", 80000, 2500.01), chTaxable(), money("otherEmployee", "field.chOtherEmployee", 5000)],
   validate: v => {
     const gross = num(v, "salary"), other = num(v, "otherEmployee"), taxable = num(v, "federalTaxable");
     const social = cents(gross * .053) + cents(Math.min(gross, 148200) * .011);
@@ -145,7 +145,7 @@ const churchEntries: ReviewedCountryCalculator[] = [
 const payrollReview = review("2026 ordinary German employer annual cost", "Ordinary employee age23–59 outside Saxony, 12 equal full-month payments aboveEUR2000, GKV with entered unchanged supplemental rate. Employer9.3% pension+1.3% unemployment cappedEUR101400, health7.3%+half actual fund supplement and care1.8% cappedEUR69750. Enter actual applicable U1/U2 percentages from fund/employer notice; bases capped at RV ceiling; U1 may legitimately be0 for exempt large employer. Insolvency levy0.15% RV base for liable private employer. Enter actual annual occupational-accident and other employer costs separately. Components rounded monthly cents, annualized. No mini/midijobs, special payments, public/employer levy exemptions, Saxony, special occupations, benefits or determination of U1/U2/accident eligibility. Salary income-tax/employee deductions not part of employer extra cost.", [...deSources, "https://www.kbs.de/SharedDocs/SV_AZ/i/Insolvenzgeldumlage", "https://www.tk.de/firmenkunden/versicherung/beitraege-faq-und-mehr/umlagen-u1-u2-und-insolvenzgeld-2042506"], "2026-10-20");
 const payroll: ReviewedCountryCalculator = {
   slug: "payroll", country: "de", scopeKey: scope("dePayroll2025"), review: payrollReview,
-  fields: () => [money("salary", "field.grossSalary", 60000, 24000.12), supplementField, { id: "u1", labelKey: "field.deU1", kind: "percent", default: 0, min: 0, max: 10, step: .01, slider: false }, { id: "u2", labelKey: "field.deU2", kind: "percent", default: .44, min: 0, max: 10, step: .01, slider: false }, money("otherEmployer", "field.deOtherEmployer", 600)],
+  fields: () => [money("salary", "field.annualGrossSalary", 60000, 24000.12), supplementField, { id: "u1", labelKey: "field.deU1", kind: "percent", default: 0, min: 0, max: 10, step: .01, slider: false }, { id: "u2", labelKey: "field.deU2", kind: "percent", default: .44, min: 0, max: 10, step: .01, slider: false }, money("otherEmployer", "field.deOtherEmployer", 600)],
   compute: v => {
     const gross = num(v, "salary"), rv = Math.min(gross / 12, 8450), kv = Math.min(gross / 12, 5812.5);
     const insurance = 12 * (cents(rv * .093) + cents(rv * .013) + cents(kv * .073) + cents(kv * num(v, "supplement", 2.5) / 200) + cents(kv * .018));
@@ -162,7 +162,7 @@ export const germanicReviewed: ReviewedCountryCalculator[] = [
   }))),
   ...(["de", "at"] as const).map(country => ({
     slug: "social-security", country, scopeKey: scope(country === "de" ? "deEmployment2025" : "atEmployment2025"), review: country === "de" ? deReview : atReview,
-    fields: () => wageFields(country, false).map(f => f.id === "income" ? { ...f, id: "salary", labelKey: "field.grossSalary" } : f),
+    fields: () => wageFields(country, false).map(f => f.id === "income" ? { ...f, id: "salary", labelKey: "field.annualGrossSalary" } : f),
     compute: (v: FieldValues): CalculatorResult => { const gross = num(v, "salary"), p = country === "de" ? germanEmployee2026(gross, num(v, "supplement", 2.5)) : austrianEmployee2026(gross); return { primary: row("result.annualContribution", p.social, true), rows: [row("result.monthlyContribution", p.social / 12)], notes: [{ key: scope(country === "de" ? "deEmployment2025" : "atEmployment2025") }] }; },
   })),
   chIncome, chSalary, ...churchEntries, payroll,

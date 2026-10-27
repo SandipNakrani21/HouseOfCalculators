@@ -93,7 +93,8 @@ export const GUIDES: GuideDefinition[] = [
       { section: "calculators", category: "finance", slug: "loan" },
       { section: "charts", category: "finance", slug: "amortisation-example" },
     ],
-    reviewed: "2026-09-21",
+    published: "2026-09-21",
+    reviewed: "2026-10-27",
   },
   {
     slug: "how-to-calculate-compound-interest",
@@ -136,7 +137,8 @@ export const GUIDES: GuideDefinition[] = [
       { section: "charts", category: "finance", slug: "compound-growth-table" },
       { section: "tools", category: "planning", slug: "savings-goal" },
     ],
-    reviewed: "2026-09-21",
+    published: "2026-09-21",
+    reviewed: "2026-10-27",
   },
   {
     slug: "how-to-calculate-percentage",
@@ -174,7 +176,8 @@ export const GUIDES: GuideDefinition[] = [
       { section: "tools", category: "number-math", slug: "percentage" },
       { section: "charts", category: "math", slug: "percentage-fraction-table" },
     ],
-    reviewed: "2026-09-21",
+    published: "2026-09-21",
+    reviewed: "2026-10-27",
   },
   {
     slug: "how-to-calculate-vat",
@@ -209,7 +212,8 @@ export const GUIDES: GuideDefinition[] = [
       { section: "countries", category: "gb", slug: "vat" },
       { section: "countries", category: "in", slug: "vat" },
     ],
-    reviewed: "2026-09-21",
+    published: "2026-09-21",
+    reviewed: "2026-10-27",
   },
 
   /* What is */
@@ -232,7 +236,7 @@ export const GUIDES: GuideDefinition[] = [
       { section: "charts", category: "finance", slug: "compound-growth-table" },
     ],
     published: "2026-09-21",
-    reviewed: "2026-10-24",
+    reviewed: "2026-10-27",
   },
   {
     slug: "what-is-amortisation",
@@ -252,7 +256,8 @@ export const GUIDES: GuideDefinition[] = [
       { section: "charts", category: "finance", slug: "amortisation-example" },
       { section: "calculators", category: "finance", slug: "mortgage" },
     ],
-    reviewed: "2026-09-21",
+    published: "2026-09-21",
+    reviewed: "2026-10-27",
   },
   {
     slug: "what-is-inflation",
@@ -272,7 +277,8 @@ export const GUIDES: GuideDefinition[] = [
       { section: "calculators", category: "finance", slug: "inflation" },
       { section: "charts", category: "finance", slug: "inflation-reference" },
     ],
-    reviewed: "2026-09-21",
+    published: "2026-09-21",
+    reviewed: "2026-10-27",
   },
   {
     slug: "what-is-a-marginal-tax-rate",
@@ -292,7 +298,8 @@ export const GUIDES: GuideDefinition[] = [
       { section: "countries", category: "us", slug: "income-tax" },
       { section: "countries", category: "gb", slug: "income-tax" },
     ],
-    reviewed: "2026-09-21",
+    published: "2026-09-21",
+    reviewed: "2026-10-27",
   },
 
   /* Practical */
@@ -317,7 +324,7 @@ export const GUIDES: GuideDefinition[] = [
       { section: "calculators", category: "finance", slug: "mortgage" },
     ],
     published: "2026-09-21",
-    reviewed: "2026-10-24",
+    reviewed: "2026-10-27",
   },
   {
     slug: "how-to-read-an-amortisation-schedule",
@@ -338,7 +345,8 @@ export const GUIDES: GuideDefinition[] = [
       { section: "charts", category: "finance", slug: "amortisation-example" },
       { section: "guides", category: "what-is", slug: "what-is-amortisation" },
     ],
-    reviewed: "2026-09-21",
+    published: "2026-09-21",
+    reviewed: "2026-10-27",
   },
   {
     slug: "how-to-plan-monthly-savings",
@@ -360,7 +368,7 @@ export const GUIDES: GuideDefinition[] = [
       { section: "calculators", category: "finance", slug: "retirement" },
     ],
     published: "2026-09-21",
-    reviewed: "2026-10-24",
+    reviewed: "2026-10-27",
   },
 
   /* Formulas */
@@ -398,7 +406,8 @@ export const GUIDES: GuideDefinition[] = [
       { section: "calculators", category: "finance", slug: "sip" },
       { section: "calculators", category: "finance", slug: "retirement" },
     ],
-    reviewed: "2026-09-21",
+    published: "2026-09-21",
+    reviewed: "2026-10-27",
   },
 ];
 

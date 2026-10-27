@@ -129,7 +129,7 @@ export const pensionCalculator: CalculatorDef = {
     return [
       {
         id: "salary",
-        labelKey: "field.grossSalary",
+        labelKey: "field.annualGrossSalary",
         kind: "currency",
         min: scale.incomeMin,
         max: scale.incomeMax,
@@ -505,7 +505,7 @@ export const inflationCalculator: CalculatorDef = {
         emphasis: true,
       },
       rows: [
-        { labelKey: "result.todaysAmount", value: amount, kind: "currency", tone: "principal" },
+        { labelKey: "result.enteredAmount", value: amount, kind: "currency", tone: "principal" },
         {
           labelKey: forward ? "result.increase" : "result.purchasingPowerLost",
           value: Math.abs(answer - amount),

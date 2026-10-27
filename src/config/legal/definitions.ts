@@ -232,7 +232,7 @@ const terms: LegalPage = {
   titleKey: "legal.terms.title",
   descKey: "legal.terms.desc",
   introKey: "legal.terms.intro",
-  updated: "2026-10-01",
+  updated: "2026-10-25",
   sections: [
     {
       titleKey: "legal.terms.accept.title",

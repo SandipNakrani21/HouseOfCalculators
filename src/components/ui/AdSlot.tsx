@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { isAdEligiblePath } from "@/config/ad-inventory";
 
@@ -15,8 +15,8 @@ import { useLocale } from "@/lib/locale-context";
  * Placements: `leaderboard` 728x90 (320x100 on phones), `rectangle` 300x250,
  * `rail` 300x600 for sidebars.
  *
- * Three things here are structural rather than cosmetic: the slot reserves its
- * dimensions before an ad arrives to reduce layout movement; it is
+ * The slot reserves a minimum height before an ad arrives to reduce layout
+ * movement without limiting a responsive creative's height. It is
  * labelled and set apart from calculator controls; without a publisher id it renders a labelled placeholder in
  * development and nothing at all in production (see lib/ads.ts).
  */
@@ -58,8 +58,9 @@ function AdPosition({
   const { t } = useLocale();
   const pushed = useRef(false);
   const slotRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState(0);
+  const [requestWidth, setRequestWidth] = useState(0);
   const [active, setActive] = useState(false);
+  const positionId = `ad_${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const unit = AD_UNITS[placement];
   const live = !preview && isAdEligiblePath(pathname) && ADS_LIVE && /^\d+$/.test(unit);
 
@@ -75,7 +76,12 @@ function AdPosition({
     const check = () => {
       const usable = document.visibilityState !== "hidden" && el.offsetWidth >= 250;
       setActive(usable);
-      if (usable) setHeight(el.clientHeight);
+      // Keep the original request's available width. A later smaller layout
+      // must hide the whole position, not squeeze/crop a retained creative.
+      // clientWidth rounds fractional layout widths up (704.67px becomes
+      // 705px). That threshold would hide the creative in its original slot.
+      // Use whole pixels that actually fit in this borderless container.
+      if (usable) setRequestWidth(previous => previous || Math.floor(el.getBoundingClientRect().width));
     };
     check();
     const observer = new ResizeObserver(check);
@@ -86,32 +92,38 @@ function AdPosition({
 
   // With the <ins> now in the page, this request can only fill it.
   useEffect(() => {
-    if (!live || !height || !active || pushed.current || document.visibilityState === "hidden") return;
+    if (!live || !requestWidth || !active || pushed.current || document.visibilityState === "hidden") return;
     pushed.current = true;
     try {
       (window.adsbygoogle = window.adsbygoogle ?? []).push({});
     } catch {
       // A blocked or failed ad script must never break the page.
     }
-  }, [height, live, active]);
+  }, [requestWidth, live, active]);
 
   if (!preview && (!isAdEligiblePath(pathname) || (!live && !AD_PLACEHOLDERS))) return null;
 
   return (
-    <aside aria-label={t("ads.label")} className={`ad-wrap my-8 flex flex-col items-center gap-1 ${className}`}>
-      <span className="text-[0.625rem] font-semibold uppercase tracking-widest text-subtle">{t("ads.label")}</span>
+    <aside id={positionId} aria-label={t("ads.label")} className={`ad-wrap my-8 flex w-full flex-col items-center gap-1 ${className}`}>
+      {/* Hide the entire retained position when its original width no longer
+          fits. Keep reserved space, the same node and the single request. */}
+      {live && requestWidth > 0 ? <style>{`@container ad-space (width < ${requestWidth}px) { #${positionId} > .ad-slot > .ad-creative { display: none; } }`}</style> : null}
+      <span className="ad-label text-[0.625rem] font-semibold uppercase tracking-widest text-subtle">{t("ads.label")}</span>
       {live ? (
-        <div ref={slotRef} className={`ad-slot ad-${placement}`}>
-          {height > 0 ? (
-          <ins
-            className="adsbygoogle block w-full"
-            style={{ display: "block", width: "100%", height }}
-            data-ad-client={ADSENSE_CLIENT}
-            data-ad-slot={unit}
-            // Google documents expandable width + fixed height via CSS.
-            // No auto format/full-width expansion that can cover controls.
-            data-full-width-responsive="false"
-          />
+        <div ref={slotRef} className={`ad-slot ad-${placement}`} style={{ containerType: "inline-size", containerName: "ad-space" }}>
+          {requestWidth > 0 ? (
+            <div className="ad-creative">
+              <ins
+                className="adsbygoogle block w-full"
+                style={{ display: "block", width: "100%", minWidth: 0, maxWidth: "100%" }}
+                data-ad-client={ADSENSE_CLIENT}
+                data-ad-slot={unit}
+                // Let Google's responsive code own the creative's dimensions.
+                // The surrounding flow reserves space but never caps its height.
+                data-ad-format={placement === "leaderboard" ? "horizontal" : placement === "rail" ? "vertical" : "rectangle"}
+                data-full-width-responsive="false"
+              />
+            </div>
           ) : null}
         </div>
       ) : (
