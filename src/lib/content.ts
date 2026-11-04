@@ -1,5 +1,5 @@
 import { CALCULATOR_METADATA as CALCULATORS } from "@/config/calculators/metadata";
-import { isCalculatorPublished } from "@/config/calculators/publication";
+import { canonicalCountryToolSlug, isCalculatorPublished } from "@/config/calculators/publication";
 import type { CalcContext } from "@/config/calculators/types";
 import { categoryKey, type Section } from "@/config/categories";
 import { CONVERTERS, pairSlug } from "@/config/converters/definitions";
@@ -53,7 +53,7 @@ function calculatorItems({
   t,
   calcContext,
 }: BuildContext): ContentItem[] {
-  return CALCULATORS.filter(calc => calc.countries.includes(country) && isCalculatorPublished(calc, country)).map((calc) => {
+  return CALCULATORS.filter(calc => calc.countries.includes(country) && isCalculatorPublished(calc, country) && (!calc.isCountrySpecific || canonicalCountryToolSlug(calc.slug, country) === calc.slug)).map((calc) => {
     const params = calc.params?.(calcContext);
     return {
       id: `calculator:${calc.slug}`,
@@ -130,7 +130,7 @@ function countryItems({ locale, t }: BuildContext): ContentItem[] {
 
   for (const calc of specific) {
     for (const code of calc.countries) {
-      if (!isCalculatorPublished(calc, code)) continue;
+      if (!isCalculatorPublished(calc, code) || canonicalCountryToolSlug(calc.slug, code) !== calc.slug) continue;
       items.push({
         id: `country:${code}:${calc.slug}`,
         section: "countries",

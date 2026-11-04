@@ -9,6 +9,4 @@ export function isCalculatorPublished(calculator: { slug: string; isCountrySpeci
  * Keep saved tools usable while consolidating their search/sitemap identity.
  * CH/JP have additional salary inputs; other reviewed salary tools have periods.
  */
-export function canonicalCountryToolSlug(slug: string, country: string): string {
-  return slug === "salary" && ["tr", "br", "cn", "mx"].includes(country) ? "income-tax" : slug;
-}
+export { canonicalCountryToolSlug } from "./canonical-slug";

@@ -1,5 +1,6 @@
 import type { Section } from "@/config/categories";
 import type { CountryCode } from "@/config/countries";
+import { canonicalCountryToolSlug } from "@/config/calculators/canonical-slug";
 import { LOCALES, type LocaleCode } from "@/config/locales";
 import { SITE_ORIGIN } from "@/config/site";
 
@@ -49,7 +50,7 @@ export function countryToolPath(
   country: CountryCode,
   slug: string,
 ): string {
-  return `${countryPath(locale, country)}/${slug}`;
+  return `${countryPath(locale, country)}/${canonicalCountryToolSlug(slug, country)}`;
 }
 
 /**

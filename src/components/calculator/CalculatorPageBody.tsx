@@ -73,6 +73,8 @@ export function CalculatorPageBody({
   const health = healthReferences(calculator.slug);
 
   const related = relatedTo(calculator, country, lockCountry)
+    .filter((item) => !item.isCountrySpecific || canonicalCountryToolSlug(item.slug, country) === item.slug)
+    .filter((item) => calculatorPath(locale, item, country) !== calculatorPath(locale, calculator, country))
     .slice(0, 6)
     .map((item) => ({
       key: item.slug,

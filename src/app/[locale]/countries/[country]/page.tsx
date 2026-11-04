@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 
 import { CountryBadge } from "@/components/ui/CountryBadge";
 import { calculatorsFor } from "@/config/calculators";
+import { canonicalCountryToolSlug } from "@/config/calculators/canonical-slug";
 import { COUNTRIES, COUNTRY_CODES, isCountryCode } from "@/config/countries";
 import { LOCALES, localeFromPath } from "@/config/locales";
 import { createTranslator } from "@/lib/i18n";
@@ -58,7 +59,7 @@ export default async function CountryPage({
   const code = locale.code;
   const name = t(`country.${country}`);
   const config = COUNTRIES[country];
-  const tools = calculatorsFor(country).filter((calc) => calc.isCountrySpecific);
+  const tools = calculatorsFor(country).filter((calc) => calc.isCountrySpecific && canonicalCountryToolSlug(calc.slug, country) === calc.slug);
   if (!tools.length) notFound();
 
   return (
