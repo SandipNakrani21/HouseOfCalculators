@@ -611,7 +611,7 @@
   "conv.swap": "単位を入れ替え",
   "conv.rate": "{from} = {to}",
   "conv.formula": "{from}に{factor}を掛けると{to}になります。",
-  "conv.baseUnit": "ここではすべての単位を{unit}を経由して換算するため、どの組み合わせでも同じ精度で正確に換算できます。",
+  "conv.baseUnit": "換算では{unit}を基準単位として使用します。表示結果は丸められており、精度は換算係数と表示する小数点以下の桁数によって異なります。",
   "conv.howItWorks": "この換算のしくみ",
   "conv.table.title": "{from}から{to}への換算表",
   "conv.popular": "よく使われる換算",

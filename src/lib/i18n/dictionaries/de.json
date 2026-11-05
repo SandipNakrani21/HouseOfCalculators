@@ -611,7 +611,7 @@
   "conv.swap": "Einheiten tauschen",
   "conv.rate": "{from} = {to}",
   "conv.formula": "Multiplizieren Sie {from} mit {factor}, um {to} zu erhalten.",
-  "conv.baseUnit": "Jede Einheit hier wird über {unit} umgerechnet. So bleibt jedes Paar mit derselben Genauigkeit exakt.",
+  "conv.baseUnit": "Umrechnungen verwenden {unit} als Basiseinheit. Angezeigte Ergebnisse sind gerundet; die Genauigkeit hängt von den Umrechnungsfaktoren und der Anzahl der angezeigten Nachkommastellen ab.",
   "conv.howItWorks": "Wie funktioniert diese Umrechnung?",
   "conv.table.title": "Umrechnungstabelle {from} in {to}",
   "conv.popular": "Beliebte Umrechnungen",

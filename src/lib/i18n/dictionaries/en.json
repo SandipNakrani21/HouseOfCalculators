@@ -611,7 +611,7 @@
   "conv.swap": "Swap units",
   "conv.rate": "{from} = {to}",
   "conv.formula": "Multiply {from} by {factor} to get {to}.",
-  "conv.baseUnit": "Every unit here converts through {unit}, which keeps any pair exact to the same precision.",
+  "conv.baseUnit": "Conversions use {unit} as the base unit. Displayed results are rounded; precision depends on the conversion factors and the number of decimal places shown.",
   "conv.howItWorks": "How does this conversion work?",
   "conv.table.title": "{from} to {to} conversion table",
   "conv.popular": "Popular conversions",

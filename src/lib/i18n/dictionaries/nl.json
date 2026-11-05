@@ -611,7 +611,7 @@
   "conv.swap": "Eenheden omwisselen",
   "conv.rate": "{from} = {to}",
   "conv.formula": "Vermenigvuldig {from} met {factor} om {to} te krijgen.",
-  "conv.baseUnit": "Elke eenheid hier wordt omgerekend via {unit}, waardoor elk paar even nauwkeurig exact blijft.",
+  "conv.baseUnit": "Omrekeningen gebruiken {unit} als basiseenheid. De getoonde resultaten zijn afgerond; de nauwkeurigheid hangt af van de omrekenfactoren en het aantal getoonde decimalen.",
   "conv.howItWorks": "Hoe werkt deze omrekening?",
   "conv.table.title": "Omrekentabel {from} naar {to}",
   "conv.popular": "Populaire omrekeningen",

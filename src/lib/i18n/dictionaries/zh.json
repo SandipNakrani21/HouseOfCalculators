@@ -611,7 +611,7 @@
   "conv.swap": "交换单位",
   "conv.rate": "{from} = {to}",
   "conv.formula": "将{from}乘以 {factor} 即得{to}。",
-  "conv.baseUnit": "这里的所有单位都通过{unit}换算，因此任意两个单位之间都能以相同精度精确换算。",
+  "conv.baseUnit": "换算以{unit}为基准单位。显示结果经过舍入；精度取决于换算系数和显示的小数位数。",
   "conv.howItWorks": "这个换算是如何进行的？",
   "conv.table.title": "{from}换算{to}对照表",
   "conv.popular": "常用换算",

@@ -611,7 +611,7 @@
   "conv.swap": "Inverser les unités",
   "conv.rate": "{from} = {to}",
   "conv.formula": "Multipliez {from} par {factor} pour obtenir {to}.",
-  "conv.baseUnit": "Chaque unité passe ici par {unit}, ce qui garde chaque paire exacte à la même précision.",
+  "conv.baseUnit": "Les conversions utilisent {unit} comme unité de base. Les résultats affichés sont arrondis ; la précision dépend des facteurs de conversion et du nombre de décimales affichées.",
   "conv.howItWorks": "Comment fonctionne cette conversion ?",
   "conv.table.title": "Tableau de conversion {from} en {to}",
   "conv.popular": "Conversions populaires",

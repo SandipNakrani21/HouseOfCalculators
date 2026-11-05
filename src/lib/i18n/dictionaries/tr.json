@@ -611,7 +611,7 @@
   "conv.swap": "Birimleri değiştir",
   "conv.rate": "{from} = {to}",
   "conv.formula": "{to} elde etmek için {from} değerini {factor} ile çarpın.",
-  "conv.baseUnit": "Buradaki tüm birimler {unit} üzerinden dönüştürülür; bu, her çifti aynı hassasiyetle tam tutar.",
+  "conv.baseUnit": "Dönüşümlerde temel birim olarak {unit} kullanılır. Gösterilen sonuçlar yuvarlanır; hassasiyet, dönüşüm katsayılarına ve gösterilen ondalık basamak sayısına bağlıdır.",
   "conv.howItWorks": "Bu dönüşüm nasıl çalışır?",
   "conv.table.title": "{from} - {to} dönüşüm tablosu",
   "conv.popular": "Popüler dönüşümler",
