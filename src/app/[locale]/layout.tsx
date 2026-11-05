@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Caveat, Plus_Jakarta_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
@@ -26,32 +25,6 @@ import { calculatorPath, siteUrl } from "@/lib/routes";
 import { SITE_NAME, buildMetadata, readyLocales } from "@/lib/seo";
 
 import "../globals.css";
-
-/*
- * The design is set in Plus Jakarta Sans. next/font self-hosts it and
- * subsets it to Latin, so there is no request to Google at runtime and no
- * layout shift while it loads. Other scripts fall back to system faces (see
- * --font-app-sans in globals.css).
- */
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-jakarta",
-  display: "swap",
-});
-
-/*
- * The handwritten flourish on the landing hero. One weight, never preloaded.
- * Cyrillic is included for Russian; unicode-range means only the pages that
- * need a subset download it.
- */
-const caveat = Caveat({
-  subsets: ["latin", "latin-ext", "cyrillic"],
-  weight: ["600"],
-  variable: "--font-caveat",
-  display: "swap",
-  preload: false,
-});
 
 /**
  * One theme: light, on white. Tells the browser not to darken form controls,
@@ -139,7 +112,7 @@ export default async function LocaleLayout({
     <html
       lang={locale.code}
       dir={locale.dir}
-      className={`h-full ${jakarta.variable} ${caveat.variable}`}
+      className="h-full"
       // globals.css sets smooth scrolling for in-page links. This tells
       // Next 16 to switch it off during route changes, so a new page opens
       // at the top instantly instead of gliding up from where you were.
@@ -147,6 +120,9 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Keep the original Latin preloads; other subsets load as needed. */}
+        <link rel="preload" href="/fonts/plus-jakarta-sans-latin.636a5ac981f94f8b.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/plus-jakarta-sans-latin-ext.9e7b0a821b9dfcb4.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         {/* The Content-Security-Policy from next.config.ts, also kept in the
             page itself: Hostinger's CDN replaces the response header with its
             own one-line policy. */}

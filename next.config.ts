@@ -139,6 +139,11 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
+      {
+        // Bundled WOFF2 filenames change when the font bytes change.
+        source: "/fonts/:file([a-z-]+\\.[0-9a-f]{16}\\.woff2)",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
       // Later rules override earlier ones for the same header.
       ...EMBEDDABLE.map((source) => ({
         source,
