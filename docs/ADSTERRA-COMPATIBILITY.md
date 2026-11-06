@@ -2,7 +2,7 @@
 
 ## Result
 
-The Next.js site can host Adsterra JavaScript banners. Adsterra is not integrated or active. Approval, a site-specific Get Code snippet, and vendor-appropriate consent configuration are required before activation. A successful build does not demonstrate ad delivery or revenue.
+The original compatibility review below is historical. A consent-gated Native Banner implementation now exists; see [ADSTERRA-NATIVE-STATUS.md](ADSTERRA-NATIVE-STATUS.md) for current validation and publication status. The approved unit is responsive (four columns/one row with a mobile layout), not the originally suggested fixed 300×250 banner. A successful build does not demonstrate ad delivery or revenue.
 
 Official installation reference: https://help-publishers.adsterra.com/en/articles/5210780-adding-ads-to-a-static-html-site
 

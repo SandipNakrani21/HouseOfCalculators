@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { ADSTERRA_ENABLED, ADSTERRA_POLICY } from "./src/config/adsterra";
 
 import { ADSENSE_PUBLISHER_ID } from "./src/config/adsense";
 import { ANALYTICS_ON } from "./src/config/analytics";
@@ -60,7 +61,7 @@ const csp = [
   `img-src 'self' blob: data: ${ADS.img} ${GA.img}`,
   "font-src 'self'",
   `connect-src 'self'${isDev ? " ws: wss:" : ""} ${ADS.connect} ${GA.connect}`,
-  `frame-src ${ADS.frame || "'none'"}`,
+  `frame-src ${ADSTERRA_ENABLED ? "'self' " : ""}${ADS.frame || (ADSTERRA_ENABLED ? "" : "'none'")}`,
   "worker-src 'self' blob:",
   "manifest-src 'self'",
   "object-src 'none'",
@@ -143,6 +144,14 @@ const nextConfig: NextConfig = {
         // Bundled WOFF2 filenames change when the font bytes change.
         source: "/fonts/:file([a-z-]+\\.[0-9a-f]{16}\\.woff2)",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      // Only the consent-gated native document may be framed by this site.
+      {
+        source: "/api/adsterra-native",
+        headers: [
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Content-Security-Policy", value: ADSTERRA_POLICY },
+        ],
       },
       // Later rules override earlier ones for the same header.
       ...EMBEDDABLE.map((source) => ({

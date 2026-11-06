@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
+import { AdsterraBanner, AdsterraChoices } from "@/components/consent/Adsterra";
 import { AdScript } from "@/components/ui/AdSlot";
 import { Analytics } from "@/components/consent/Analytics";
 import { ConsentBanner } from "@/components/consent/ConsentBanner";
@@ -147,7 +148,9 @@ export default async function LocaleLayout({
             <main id="main" className="relative isolate flex-1 overflow-x-clip">
               <div aria-hidden className="page-wash" />
               {children}
+              <AdsterraBanner />
             </main>
+            <AdsterraChoices />
             <SiteFooter ready={ready} popular={popular} />
             <WelcomeDialog ready={ready} />
             <ConsentBanner />
