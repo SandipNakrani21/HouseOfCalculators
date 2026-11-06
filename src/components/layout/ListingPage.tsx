@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
+import { AdsterraBanner } from "@/components/consent/Adsterra";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { AdSlot } from "@/components/ui/AdSlot";
 import type { Crumb } from "@/components/ui/Breadcrumbs";
 import { CardGrid, ContentCard } from "@/components/ui/ContentCard";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -47,7 +47,6 @@ export function ListingPage({
   items,
   loadMoreLabel,
   emptyLabel,
-  adSlot,
 }: {
   locale: LocaleCode;
   /** Home first, this page last (its path is the page's own). */
@@ -67,7 +66,6 @@ export function ListingPage({
   loadMoreLabel: string;
   /** Shown instead of an empty grid. */
   emptyLabel?: string;
-  adSlot: string;
 }) {
   const shownGroups = groups?.filter((group) => group.items.length) ?? [];
   const all = groups ? shownGroups.flatMap((group) => group.items) : (items ?? []);
@@ -102,8 +100,6 @@ export function ListingPage({
           </p>
         ) : null}
 
-        <AdSlot slot={adSlot} placement="leaderboard" />
-
         {/* The list above as structured data, for search and answer engines. */}
         <JsonLd
           data={collectionPageSchema({
@@ -115,6 +111,7 @@ export function ListingPage({
           })}
         />
       </div>
+      {all.length > 0 ? <AdsterraBanner /> : null}
     </>
   );
 }

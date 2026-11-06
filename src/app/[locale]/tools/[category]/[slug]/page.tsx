@@ -83,7 +83,6 @@ export default async function ToolPage({
         title: t(tool.titleKey),
         description: t(tool.descKey),
       }}
-      adPrefix="tool"
       rail={false}
       howItWorks={{
         title: t("calc.howItWorks"),

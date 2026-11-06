@@ -498,44 +498,6 @@
     animation: fade-up 0.35s var(--ease-premium);
   }
 
-  /* =============================================================== ads */
-
-  /*
-   * Ad containers reserve their height before the ad arrives, so a slot
-   * filling in never pushes content around.
-   */
-  .ad-slot {
-    display: block;
-    min-width: 0;
-    width: 100%;
-    margin-inline: auto;
-    /* Never crop a filled creative or its controls. */
-  }
-  .ad-leaderboard { max-width: 728px; min-height: 90px; }
-  .ad-rectangle { max-width: 300px; min-height: 250px; }
-  .ad-rail { max-width: 300px; min-height: 600px; }
-  @media (max-width: 767px) {
-    /* Phones get the mobile banner size in the leaderboard position. */
-    .ad-leaderboard { max-width: 320px; min-height: 100px; }
-  }
-  /*
-   * When AdSense has no ad for a slot (always the case before the site is
-   * approved, and sometimes after) it marks the unit "unfilled". The whole
-   * position stays reserved; collapsing it would move controls after loading.
-   */
-  .ad-wrap:has(ins.adsbygoogle[data-ad-status="unfilled"]) { visibility: hidden; pointer-events: none; }
-  .ad-placeholder {
-    display: grid;
-    place-items: center;
-    border: 1px dashed var(--border-strong);
-    background:
-      repeating-linear-gradient(45deg, transparent 0 10px, color-mix(in srgb, var(--border) 45%, transparent) 10px 11px),
-      var(--bg-soft);
-    color: var(--subtle);
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-
   /* =============================================================== misc */
 
   /* Numbers in results should not jitter as they animate between values. */
@@ -656,7 +618,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px 
   }
 
   header:not(.page-hero), footer, nav, dialog, dialog::backdrop, [role="dialog"], [role="listbox"],
-  [role="tablist"], [data-print-exclude], .ad-wrap, .ad-rail-col,
+  [role="tablist"], [data-print-exclude],
   button:not([role="radio"]), input[type="range"], [role="radio"][aria-checked="false"] {
     display: none !important;
   }

@@ -3,10 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { CSSProperties, ReactNode } from "react";
 
+import { AdsterraBanner } from "@/components/consent/Adsterra";
 import { CountryMarquee, type CountryChip } from "@/components/home/CountryMarquee";
 import { DeviceMockup } from "@/components/home/DeviceMockup";
 import { GuideArt } from "@/components/home/GuideArt";
-import { AdSlot } from "@/components/ui/AdSlot";
 import { Badge } from "@/components/ui/Badge";
 import { BlogCard } from "@/components/ui/BlogCard";
 import { ButtonLink } from "@/components/ui/Button";
@@ -178,6 +178,8 @@ export default async function HomePage({
         <SearchBar popularLabel={t("home.hero.popular")} chips={chips} centered />
       </Hero>
 
+      <AdsterraBanner loadOnVisit />
+
       <div className="container-page">
         <div className="mt-6">
           <StatsStrip
@@ -190,8 +192,6 @@ export default async function HomePage({
             ]}
           />
         </div>
-
-        <AdSlot slot="home-top" placement="leaderboard" />
 
         {/* ------------------------------------------------------ categories */}
         <section className="section-gap relative isolate">
@@ -235,8 +235,6 @@ export default async function HomePage({
             ))}
           </ul>
         </section>
-
-        <AdSlot slot="home-mid" placement="leaderboard" />
 
         {/* ------------------------------------------------------- more ways */}
         <section className="section-gap relative isolate">
@@ -329,8 +327,6 @@ export default async function HomePage({
             />
           </div>
         </section>
-
-        <AdSlot slot="home-bottom" placement="leaderboard" />
 
         {/* ---------------------------------------------------------- guides */}
         <section className="section-gap relative isolate">

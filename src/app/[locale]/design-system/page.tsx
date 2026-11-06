@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { FormDemo, OverlayDemo } from "@/components/design-system/InteractiveDemos";
 import { GuideArt } from "@/components/home/GuideArt";
 import { Accordion } from "@/components/ui/Accordion";
-import { AdSlot } from "@/components/ui/AdSlot";
 import { Badge } from "@/components/ui/Badge";
 import { BlogCard } from "@/components/ui/BlogCard";
 import { Button, ButtonLink } from "@/components/ui/Button";
@@ -304,12 +303,6 @@ export default async function DesignSystemPage({
           </p>
         </Block>
 
-        <Block id="ads" title="Ad slots" note="Placeholders show in development only; live units need NEXT_PUBLIC_ADSENSE_CLIENT.">
-          <AdSlot slot="design-leaderboard" placement="leaderboard" preview />
-          <div className="flex flex-wrap justify-center gap-6">
-            <AdSlot slot="design-rectangle" placement="rectangle" className="!my-0" preview />
-          </div>
-        </Block>
       </div>
     </>
   );

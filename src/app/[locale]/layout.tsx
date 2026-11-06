@@ -2,10 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
-import { AdsterraBanner, AdsterraChoices } from "@/components/consent/Adsterra";
-import { AdScript } from "@/components/ui/AdSlot";
 import { Analytics } from "@/components/consent/Analytics";
-import { ConsentBanner } from "@/components/consent/ConsentBanner";
+import { AnalyticsConsent } from "@/components/consent/ConsentBanner";
 import { ConsentScript } from "@/components/consent/ConsentScript";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -17,7 +15,6 @@ import { ToastProvider } from "@/components/ui/Toast";
 import { calculatorsFor } from "@/config/calculators";
 import { COUNTRIES } from "@/config/countries";
 import { LOCALES, localeFromPath } from "@/config/locales";
-import { ADSENSE_CLIENT } from "@/lib/ads";
 import { createFormatter } from "@/lib/format";
 import { createTranslator } from "@/lib/i18n";
 import { LocaleDictionaryProvider } from "@/lib/i18n/LocaleDictionaryProvider";
@@ -67,8 +64,6 @@ export async function generateMetadata({
     },
     applicationName: SITE_NAME,
     other: {
-      // AdSense's "verify site" step looks for this tag on the home page.
-      ...(ADSENSE_CLIENT ? { "google-adsense-account": ADSENSE_CLIENT } : {}),
       // Ahrefs Webmaster Tools ownership (free site audit and backlink data).
       "ahrefs-site-verification": "91753911f878be9114f279f406c0715f49b40029228f683a2cf8bb7818985e3b",
     },
@@ -148,12 +143,9 @@ export default async function LocaleLayout({
             <main id="main" className="relative isolate flex-1 overflow-x-clip">
               <div aria-hidden className="page-wash" />
               {children}
-              <AdsterraBanner />
             </main>
-            <AdsterraChoices />
             <SiteFooter ready={ready} popular={popular} />
             <WelcomeDialog ready={ready} />
-            <ConsentBanner />
             <RevealObserver />
             <Interactions />
           </ToastProvider>
@@ -161,7 +153,7 @@ export default async function LocaleLayout({
 
         {/* Organization and WebSite structured data live on the homepage. */}
         <ConsentScript />
-        <AdScript />
+        <AnalyticsConsent />
         <Analytics />
       </body>
     </html>

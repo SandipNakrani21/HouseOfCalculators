@@ -65,7 +65,6 @@ export default async function ToolsPage({
           description: t(item.descKey),
         })),
       }))}
-      adSlot="tools-bottom"
     />
   );
 }

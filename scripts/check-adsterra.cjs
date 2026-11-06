@@ -49,13 +49,12 @@ async function request(cookie, destination = 'iframe') {
   const metaPolicy = html.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)[1];
   assert.ok(!metaPolicy.includes('frame-ancestors'), 'Header-only directives must not appear in HTML policies');
   const { LOCALES } = require('../src/config/locales.ts');
-  const legalCopy = require('../src/config/adsterra-legal-copy.json');
+  const legalCopy = require('../src/config/adsterra-copy.json');
   const { adsterraLegalText } = require('../src/config/adsterra-legal.ts');
   for (const locale of Object.values(LOCALES).filter(locale => locale.launch)) {
     assert.ok(legalCopy[locale.language], 'Every launch language must have its own legal disclosure');
-    assert.match(adsterraLegalText('legal.privacy.ads.1', locale.language), /Google AdSense.*Adsterra/);
-    assert.match(adsterraLegalText('legal.cookies.own.2', locale.language), /hoc_adsterra_v1/);
-    assert.match(adsterraLegalText('legal.cookies.noTracking.withAnalytics', locale.language), /Adsterra/);
+    assert.match(adsterraLegalText('legal.privacy.ads.1', locale.language), /Adsterra/);
+    assert.match(adsterraLegalText('legal.cookies.third.1', locale.language), /hoc_adsterra_v1/);
   }
   assert.equal((await request(`${ADSTERRA_COOKIE}=${record('denied')}`)).html.includes(ADSTERRA_KEY), false);
   assert.equal(isAdEligiblePath('/en-us/converters/length'), true);
@@ -68,9 +67,10 @@ async function request(cookie, destination = 'iframe') {
   global.location = dom.window.location;
   global.Event = dom.window.Event;
   global.IS_REACT_ACT_ENVIRONMENT = true;
+  let inView = true;
   global.IntersectionObserver = class {
     constructor(callback) { this.callback = callback; }
-    observe() { this.callback([{ isIntersecting: true }]); }
+    observe() { this.callback([{ isIntersecting: inView }]); }
     disconnect() {}
   };
   const Module = require('node:module');
@@ -87,7 +87,12 @@ async function request(cookie, destination = 'iframe') {
   const { AdsterraBanner, AdsterraChoices } = require('../src/components/consent/Adsterra.tsx');
   Module._load = load;
   const root = createRoot(document.getElementById('root'));
-  const render = () => root.render(React.createElement(React.StrictMode, null, React.createElement(AdsterraBanner), React.createElement(AdsterraChoices)));
+  const render = () => {
+    const sidebar = pathname === '/en-us/calculators/finance/loan';
+    root.render(React.createElement(React.StrictMode, null,
+      pathname === '/en-us/privacy' ? null : React.createElement(AdsterraBanner, { sidebar, loadOnVisit: sidebar || pathname === '/' }),
+      React.createElement(AdsterraChoices)));
+  };
   await act(render);
   assert.equal(document.querySelectorAll('iframe').length, 0);
   document.cookie = `hoc_consent=${googleGrant}; path=/`;
@@ -106,8 +111,10 @@ async function request(cookie, destination = 'iframe') {
   await act(render);
   assert.equal(document.querySelector('iframe'), first, 'Rerender must not initialise a second placement');
   pathname = '/en-us/calculators/finance/loan';
+  inView = false;
   await act(render);
-  assert.equal(document.querySelectorAll('iframe').length, 1);
+  assert.equal(document.querySelectorAll('iframe').length, 1, 'One native widget loads in the calculator sidebar without scrolling');
+  assert.ok(document.querySelector('.ad-rail-col iframe'));
   assert.equal(first.isConnected, false, 'Navigation must destroy the previous vendor realm');
   assert.ok(stopped > 0, 'Navigation must close the outgoing network policy');
   const beforePageHide = document.querySelector('iframe');
@@ -128,7 +135,18 @@ async function request(cookie, destination = 'iframe') {
   pathname = '/en-us/privacy';
   await act(render);
   await choose('Allow Adsterra ads');
+  assert.equal(document.querySelectorAll('iframe').length, 0, 'Privacy choices remain available without a placement');
+  pathname = '/';
+  inView = false;
+  await act(render);
+  assert.equal(document.querySelectorAll('iframe').length, 1, 'A fresh landing-page mount with saved consent loads before scroll');
+  await choose('Reject / revoke Adsterra');
   assert.equal(document.querySelectorAll('iframe').length, 0);
+  await choose('Allow Adsterra ads');
+  assert.equal(document.querySelectorAll('iframe').length, 1);
+  pathname = '/hi-in/calculators';
+  await act(render);
+  assert.equal(document.querySelectorAll('iframe').length, 0, 'Content placements wait until visible');
   await act(() => root.unmount());
   dom.window.close();
   console.log('Adsterra consent boundary, exact snippet, policy, no-cache and eligibility checks passed. Browser lifecycle/delivery still require acceptance.');

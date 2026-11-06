@@ -163,4 +163,63 @@ visibility gate, CSP and frame shutdown remain in place. The focused consent
 and lifecycle check, scoped ESLint and TypeScript check passed. First-grant
 and Back creative rendering still need verification after deployment. The
 workspace denied creation of `.git/index.lock`, and Git could not resolve
-GitHub from the shell. The candidate remains uncommitted and undeployed.
+GitHub from the shell at that point.
+
+## Production verification for `78fe856e`
+
+The owner committed and pushed the three reviewed files to `main` from Windows
+PowerShell. GitHub Actions Project checks run 42246806666 completed successfully.
+Connected Chrome verified the public length converter after the push. With the
+denied choice set, there was no iframe. Selecting Allow Adsterra ads displayed
+four creative images without reloading. The frame was 272px tall, with state
+`ready`, four cards, and no policy violation marker. Chrome listed the frame
+endpoint as a resource, but its HTTP status was not exposed by the extension.
+
+Privacy Policy navigation removed the iframe. Browser Back returned to the
+converter, where bringing the placement into view restored a 272px frame with
+state `ready`, four cards and visible creative imagery. Revocation immediately
+removed the frame and persisted across reload. No live ad was clicked.
+
+## Three-card layout and broader content coverage
+
+Adsterra placement `32124553` was changed from `4:1` to `3:1` in the
+publisher dashboard. The generated snippet stayed the same. Live Chrome QA
+confirmed three visible creatives after explicit consent on the length
+converter and immediate removal on revocation. The Adult ads control on the
+existing unit was off and read-only. The test still received dating and casino
+creatives, so the switch alone did not establish family-safe inventory.
+
+The local coverage change adds one native widget to the homepage, populated
+content listings, guides and tool detail pages. The homepage starts loading
+after hydration with saved consent, including on reload. Other content
+placements wait until visible where the browser supports intersection
+observation. Privacy, cookies, other legal pages and error routes retain no
+native placement. The change does not modify Google's placements or consent.
+The rollout is pending confirmation of the relevant publisher category filters.
+
+## AdSense removal and calculator sidebar
+
+The local migration removes the AdSense loader, units, seller declaration and
+advertising domains from the page policy. Calculator pages with a rail now
+mount one Adsterra widget in that rail. The same widget appears after the main
+content on narrow screens. The sidebar loads on page visit with saved explicit
+Adsterra consent. Privacy choices in the footer contains the Adsterra and
+optional Google Analytics controls. Analytics has its own saved choice and
+never grants Adsterra consent. The existing publisher-side `3:1` layout is
+retained. The new sidebar still requires live creative verification after a
+GitHub deployment.
+
+## Display banner placements requested
+
+The publisher dashboard shows three additional active display units for
+thecalculatorshouse.com. Adult ads was off when the units were created.
+
+| Publisher unit | Size | Intended placement |
+| --- | --- | --- |
+| `32130507` | 160 × 600 | Right sidebar on calculator pages |
+| `32130508` | 728 × 90 | Dismissible bottom anchor on desktop |
+| `32130509` | 320 × 50 | Dismissible bottom anchor on mobile |
+
+The snippets are available in the publisher dashboard. Website integration
+is pending confirmation of the requested category exclusions and of a
+supported consent-gated embedding method for the fixed bottom anchor.

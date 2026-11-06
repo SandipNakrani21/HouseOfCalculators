@@ -90,7 +90,7 @@ export default async function ConverterCategoryPage({
         title: t(converter.titleKey),
         description: t(converter.descKey),
       }}
-      adPrefix="converter-category"
+      rail={false}
       howItWorks={{
         title: t("conv.howItWorks"),
         body: (

@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { AdsterraBanner } from "@/components/consent/Adsterra";
 import { Accordion } from "@/components/ui/Accordion";
-import { AdSlot } from "@/components/ui/AdSlot";
 import { CalculatorCard, CardGrid } from "@/components/ui/ContentCard";
 import { CTABanner } from "@/components/ui/CTABanner";
 import { IconTile } from "@/components/ui/Icon";
@@ -216,8 +216,6 @@ export default async function GuidePage({
 
           {sources.length ? <section className="mt-10" data-guide-sources={slug}><h2 className="mb-3 text-xl font-bold">{t("calc.sources")}</h2><ul className="space-y-2 text-sm">{sources.map(source => <li key={source.href}><a className="text-primary underline" href={source.href} target="_blank" rel="noreferrer">{source.name}</a></li>)}</ul></section> : null}
 
-          <AdSlot slot="guide-mid" placement="rectangle" />
-
           {guide.notesKeys?.length ? (
             <section data-reveal="up" className="mt-10 space-y-4">
               <h2 className="text-xl font-bold">{t("guide.worthKnowing")}</h2>
@@ -301,6 +299,7 @@ export default async function GuidePage({
           />
         ) : null}
       </div>
+      <AdsterraBanner />
     </>
   );
 }

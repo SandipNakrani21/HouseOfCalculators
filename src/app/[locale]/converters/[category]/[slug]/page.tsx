@@ -131,7 +131,7 @@ export default async function ConverterPage({
         title,
         description,
       }}
-      adPrefix="converter"
+      rail={false}
       howItWorks={{
         title: t("conv.howItWorks"),
         body: (

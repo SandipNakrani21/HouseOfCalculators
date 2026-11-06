@@ -99,7 +99,7 @@ export function proxy(request: NextRequest) {
 
   // The bare domain shows the default locale's home page in place when that
   // is the best guess, instead of redirecting. Crawlers (which send no
-  // language) then find the home page, with its AdSense verification tag, at
+  // language) then find the home page at
   // the address they asked for; its canonical link still names /en-us, so it
   // is not indexed twice. Anyone else is still sent to their own language.
   if (pathname === "/" && locale === DEFAULT_LOCALE) {

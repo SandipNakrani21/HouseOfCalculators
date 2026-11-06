@@ -1,4 +1,5 @@
 import { ANALYTICS_ON, GA_SESSION_COOKIE } from "@/config/analytics";
+import { ADSTERRA_ENABLED } from "@/config/adsterra";
 import { CONSENT_COOKIE, COUNTRY_COOKIE, LOCALE_COOKIE } from "@/lib/preferences";
 
 /**
@@ -87,9 +88,8 @@ export function legalParams(): Record<string, string> {
   };
 }
 
-const GOOGLE_ADS_POLICY = "https://policies.google.com/technologies/ads";
 const GOOGLE_PRIVACY = "https://business.safety.google/privacy/";
-const ADS_SETTINGS = "https://adssettings.google.com";
+const ADSTERRA_PRIVACY = "https://adsterra.com/privacy-policy/";
 const ALL_ABOUT_COOKIES = "https://www.allaboutcookies.org";
 const GA_OPTOUT = "https://tools.google.com/dlpage/gaoptout";
 
@@ -115,13 +115,12 @@ const privacy: LegalPage = {
         "legal.privacy.summary.b1",
         "legal.privacy.summary.b2",
         "legal.privacy.summary.b3",
-        "legal.privacy.summary.b4",
       ],
     },
     {
       titleKey: "legal.privacy.stored.title",
-      body: ["legal.privacy.stored.1", "legal.privacy.stored.2"],
-      bullets: ["legal.privacy.stored.b1", "legal.privacy.stored.b2", "legal.privacy.stored.b3"],
+      body: ["legal.privacy.stored.2"],
+      bullets: ["legal.privacy.stored.b1", "legal.privacy.stored.b2"],
     },
     {
       titleKey: "legal.privacy.notCollected.title",
@@ -133,20 +132,11 @@ const privacy: LegalPage = {
         "legal.privacy.notCollected.b4",
       ],
     },
-    {
+    ...(ADSTERRA_ENABLED ? [{
       titleKey: "legal.privacy.ads.title",
-      body: [
-        "legal.privacy.ads.1",
-        "legal.privacy.ads.2",
-        "legal.privacy.ads.3",
-      ],
-      links: [
-        { labelKey: "legal.link.googleAds", href: GOOGLE_ADS_POLICY },
-        { labelKey: "legal.link.googlePrivacy", href: GOOGLE_PRIVACY },
-        { labelKey: "legal.link.adsSettings", href: ADS_SETTINGS },
-        { labelKey: "legal.link.vendorOptout", href: "https://optout.aboutads.info/" },
-      ],
-    },
+      body: ["legal.privacy.ads.1"],
+      links: [{ labelKey: "legal.link.adsterra", href: ADSTERRA_PRIVACY }],
+    }] : []),
     ...whenAnalytics({
       titleKey: "legal.privacy.analytics.title",
       body: ["legal.privacy.analytics.1", "legal.privacy.analytics.2", "legal.privacy.analytics.3"],
@@ -193,30 +183,27 @@ const cookies: LegalPage = {
   sections: [
     {
       titleKey: "legal.cookies.own.title",
-      body: ["legal.cookies.own.1", "legal.cookies.own.2"],
-      bullets: ["legal.cookies.own.b1", "legal.cookies.own.b2", "legal.cookies.own.b3"],
+      body: ["legal.cookies.own.1"],
+      bullets: ["legal.cookies.own.b1", "legal.cookies.own.b2"],
     },
-    {
+    ...(ADSTERRA_ENABLED ? [{
       titleKey: "legal.cookies.third.title",
-      body: ["legal.cookies.third.1", "legal.cookies.third.2"],
-      links: [
-        { labelKey: "legal.link.googleAds", href: GOOGLE_ADS_POLICY },
-        { labelKey: "legal.link.adsSettings", href: ADS_SETTINGS },
-      ],
-    },
+      body: ["legal.cookies.third.1"],
+      links: [{ labelKey: "legal.link.adsterra", href: ADSTERRA_PRIVACY }],
+    }] : []),
     ...whenAnalytics({
       titleKey: "legal.cookies.analytics.title",
       body: ["legal.cookies.analytics.1"],
       bullets: ["legal.cookies.analytics.b1", "legal.cookies.analytics.b2"],
       links: [{ labelKey: "legal.link.gaOptout", href: GA_OPTOUT }],
     }),
-    {
+    ...(!ADSTERRA_ENABLED ? [{
       titleKey: "legal.cookies.noTracking.title",
       body: [ANALYTICS_ON ? "legal.cookies.noTracking.withAnalytics" : "legal.cookies.noTracking.1"],
-    },
+    }] : []),
     {
       titleKey: "legal.cookies.control.title",
-      body: ["legal.cookies.control.1", "legal.cookies.control.2"],
+      body: ["legal.cookies.control.1"],
       links: [{ labelKey: "legal.link.allAboutCookies", href: ALL_ABOUT_COOKIES }],
     },
     {

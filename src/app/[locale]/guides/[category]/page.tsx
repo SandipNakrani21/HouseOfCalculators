@@ -85,7 +85,6 @@ export default async function GuideCategoryPage({
         title: t(item.titleKey),
         description: t(item.descKey),
       }))}
-      adSlot="guides-category-bottom"
     />
   );
 }

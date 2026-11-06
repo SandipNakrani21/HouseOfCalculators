@@ -72,7 +72,6 @@ export default async function CalculatorsPage({
             ...calculatorCopy(calc, t, locale.defaultCountry, locale.language),
           })),
       }))}
-      adSlot="section-bottom"
     />
   );
 }

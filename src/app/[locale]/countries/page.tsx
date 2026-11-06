@@ -61,7 +61,6 @@ export default async function CountriesPage({
           count: calculatorsFor(country).filter((calc) => calc.isCountrySpecific).length,
         }),
       }))}
-      adSlot="countries-bottom"
     />
   );
 }

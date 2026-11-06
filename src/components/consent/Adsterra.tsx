@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { isAdEligiblePath } from "@/config/ad-inventory";
 import { ADSTERRA_COOKIE, ADSTERRA_ENABLED, ADSTERRA_LIFETIME, parseAdsterraChoice } from "@/config/adsterra";
 import copy from "@/config/adsterra-copy.json";
 import { useLocale } from "@/lib/locale-context";
@@ -35,7 +34,7 @@ export function AdsterraChoices() {
     // Cookie failure must fail closed.
     window.dispatchEvent(new Event("hoc:adsterra"));
   };
-  return <details className="container-page my-8 text-sm text-muted">
+  return <details className="mb-4 text-sm text-muted">
     <summary className="cursor-pointer underline">{c[1]}</summary>
     <p className="my-3 max-w-4xl">{c[4]} <a className="underline" href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Adsterra: {t("legal.privacy.title")}</a></p>
     <div className="flex flex-wrap gap-3">
@@ -45,11 +44,11 @@ export function AdsterraChoices() {
   </details>;
 }
 
-export function AdsterraBanner() {
+export function AdsterraBanner({ loadOnVisit = false, sidebar = false }: { loadOnVisit?: boolean; sidebar?: boolean }) {
   const pathname = usePathname();
-  return ADSTERRA_ENABLED && isAdEligiblePath(pathname) ? <Placement key={pathname} /> : null;
+  return ADSTERRA_ENABLED ? <Placement key={pathname} loadOnVisit={loadOnVisit} sidebar={sidebar} /> : null;
 }
-function Placement() {
+function Placement({ loadOnVisit, sidebar }: { loadOnVisit: boolean; sidebar: boolean }) {
   const { language } = useLocale();
   const c = copy[language.code as keyof typeof copy] ?? copy.en;
   const host = useRef<HTMLElement>(null);
@@ -66,7 +65,10 @@ function Placement() {
   useEffect(() => {
     const refresh = () => {
       const granted = readChoice() === "granted";
-      if (!granted) stopFrame(frame.current);
+      if (!granted) {
+        stopFrame(frame.current);
+        setHeight(0);
+      }
       setAllowed(granted);
     };
     refresh();
@@ -82,10 +84,16 @@ function Placement() {
     };
     window.addEventListener("pagehide", hide);
     window.addEventListener("pageshow", show);
-    const observer = new IntersectionObserver(entries => {
-      if (entries.some(e => e.isIntersecting)) { setVisible(true); observer.disconnect(); }
-    });
-    if (host.current) observer.observe(host.current);
+    let observer: IntersectionObserver | undefined;
+    if (!loadOnVisit && typeof IntersectionObserver !== "undefined" && host.current) {
+      observer = new IntersectionObserver(entries => {
+        if (entries.some(e => e.isIntersecting)) {
+          setVisible(true);
+          observer?.disconnect();
+        }
+      });
+      observer.observe(host.current);
+    }
     const resize = (event: MessageEvent) => {
       if (event.origin !== location.origin || event.source !== frame.current?.contentWindow || event.data?.type !== "hoc:native-size") return;
       const size = event.data.height;
@@ -93,18 +101,18 @@ function Placement() {
     };
     window.addEventListener("message", resize);
     return () => {
-      clearInterval(timer); observer.disconnect();
+      clearInterval(timer); observer?.disconnect();
       window.removeEventListener("hoc:adsterra", refresh);
       window.removeEventListener("focus", refresh);
       window.removeEventListener("pagehide", hide);
       window.removeEventListener("pageshow", show);
       window.removeEventListener("message", resize);
     };
-  }, []);
-  return <aside ref={host} aria-label={c[0]} className="container-page my-12 border-t border-border pt-8">
-    <p className="mb-3 text-center text-xs text-muted">{c[0]}</p>
+  }, [loadOnVisit]);
+  return <aside ref={host} aria-label={height > 0 ? c[0] : undefined} data-print-exclude className={sidebar ? "ad-rail-col min-w-0" : "container-page my-12 border-t border-border pt-8"}>
+    {height > 0 ? <p className="mb-3 text-center text-xs text-muted">{c[0]}</p> : null}
     {/* Mount the consented document directly, without navigating an initial blank frame. */}
-    {allowed && visible ? <iframe key={frameVersion} ref={attachFrame} src="/api/adsterra-native" onLoad={event => {
+    {allowed && (loadOnVisit || visible || typeof IntersectionObserver === "undefined") ? <iframe key={frameVersion} ref={attachFrame} src="/api/adsterra-native" onLoad={event => {
       const element = event.currentTarget;
       try {
         const doc = element.contentDocument;

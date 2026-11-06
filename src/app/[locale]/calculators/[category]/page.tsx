@@ -93,7 +93,6 @@ export default async function CategoryPage({
         ...calculatorCopy(calc, t, locale.defaultCountry, locale.language),
       }))}
       emptyLabel={t("category.empty")}
-      adSlot="category-bottom"
     />
   );
 }

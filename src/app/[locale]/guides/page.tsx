@@ -65,7 +65,6 @@ export default async function GuidesPage({
           description: t(item.descKey),
         })),
       }))}
-      adSlot="guides-bottom"
     />
   );
 }

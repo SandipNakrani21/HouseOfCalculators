@@ -120,7 +120,6 @@ export function CalculatorPageBody({
             </>
           ),
       }}
-      adPrefix="calculator"
       ads={relevance !== "rules" || Boolean(review)}
       howItWorks={
         replacement || hasInterpretation(calculator.slug) || explanationKeys?.length || explanationFormula

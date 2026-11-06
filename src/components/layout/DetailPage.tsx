@@ -2,8 +2,8 @@ import { BookOpen, CircleHelp, Globe2, Lightbulb } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { AdsterraBanner } from "@/components/consent/Adsterra";
 import { Accordion } from "@/components/ui/Accordion";
-import { AdSlot } from "@/components/ui/AdSlot";
 import type { Crumb } from "@/components/ui/Breadcrumbs";
 import { CalculatorCard, CardGrid } from "@/components/ui/ContentCard";
 import { CountryBadge } from "@/components/ui/CountryBadge";
@@ -12,7 +12,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeader, ViewAllLink } from "@/components/ui/SectionHeader";
 import type { CountryCode } from "@/config/countries";
 import type { LocaleCode } from "@/config/locales";
-import { ADS_ENABLED } from "@/lib/ads";
+import { ADSTERRA_ENABLED } from "@/config/adsterra";
 import { faqSchema, jsonLd, webApplicationSchema, webPageSchema } from "@/lib/seo";
 import type { Visual } from "@/lib/visuals";
 
@@ -41,7 +41,6 @@ export function DetailPage({
   breadcrumbLabel,
   header,
   children,
-  adPrefix,
   howItWorks,
   faq,
   guides,
@@ -86,8 +85,6 @@ export function DetailPage({
   };
   /** The calculator card itself. */
   children: ReactNode;
-  /** Ad unit prefix, e.g. "calculator" gives calculator-mid, calculator-rail. */
-  adPrefix: string;
   howItWorks?: { title: string; body: ReactNode };
   faq?: { title: string; items: { id: string; question: string; answer: string }[] };
   /** The guides that explain this page (see lib/guide-links). */
@@ -97,10 +94,7 @@ export function DetailPage({
   related?: { title: string; items: RelatedItem[]; viewAll?: { href: string; label: string } };
   cta: { title: string; body: string; cta: string; href: string };
 }) {
-  // Compact references and converters use one position after their content.
-  // Their utility does not justify the full calculator rail + inline layout.
-  const singleAd = adPrefix === "chart" || adPrefix.startsWith("converter");
-  const showRail = ADS_ENABLED && ads && rail && !singleAd;
+  const showRail = ADSTERRA_ENABLED && ads && rail;
   return (
     <div data-detail-page>
       <PageHeader
@@ -132,8 +126,6 @@ export function DetailPage({
                 />
               </ContentSection>
             ) : null}
-
-            {ads ? <AdSlot slot={`${adPrefix}-mid`} placement="leaderboard" /> : null}
 
             {guides?.items.length ? (
               <div data-print-exclude>
@@ -168,17 +160,9 @@ export function DetailPage({
           </div>
 
           {showRail ? (
-            <aside className="ad-rail-col min-w-0">
-              {/* Scroll with the page so the full creative remains reachable on short screens. */}
-              <div className="hidden lg:block">
-                <AdSlot slot={`${adPrefix}-rail`} placement="rail" className="!mt-0" />
-              </div>
-              <AdSlot slot={`${adPrefix}-rail`} placement="rectangle" className="lg:hidden" />
-            </aside>
+            <AdsterraBanner sidebar loadOnVisit />
           ) : null}
         </div>
-
-        {ADS_ENABLED && ads && !rail && !singleAd ? <AdSlot slot={`${adPrefix}-rail`} placement="leaderboard" /> : null}
 
         {related?.items.length ? (
           <section data-print-exclude className="section-gap">
@@ -228,6 +212,7 @@ export function DetailPage({
           />
         ) : null}
       </div>
+      {ads && !showRail ? <AdsterraBanner /> : null}
     </div>
   );
 }

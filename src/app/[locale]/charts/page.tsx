@@ -65,7 +65,6 @@ export default async function ChartsPage({
           description: t(item.descKey),
         })),
       }))}
-      adSlot="charts-bottom"
     />
   );
 }

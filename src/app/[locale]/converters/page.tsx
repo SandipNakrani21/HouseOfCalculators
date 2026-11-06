@@ -57,7 +57,6 @@ export default async function ConvertersPage({
         title: t(converter.titleKey),
         description: t(converter.descKey),
       }))}
-      adSlot="converters-bottom"
     />
   );
 }

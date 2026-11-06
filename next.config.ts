@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 import { ADSTERRA_ENABLED, ADSTERRA_POLICY } from "./src/config/adsterra";
 
-import { ADSENSE_PUBLISHER_ID } from "./src/config/adsense";
 import { ANALYTICS_ON } from "./src/config/analytics";
 
 /*
@@ -9,15 +8,13 @@ import { ANALYTICS_ON } from "./src/config/analytics";
  *
  * The Content Security Policy is the static "without nonces" form from the
  * Next.js guide: nonces would force every page to render per request and
- * give up static generation. Scripts may only come from this origin (plus
- * Google's ad and consent hosts once AdSense is configured); inline scripts
- * are allowed because Next's own hydration data is inline. Everything else is
+ * give up static generation. Inline scripts are allowed because Next's own
+ * hydration data is inline. Everything else is
  * locked down: no plugins, no framing by other sites, no foreign form posts,
  * no <base> hijacking.
  */
 
 const isDev = process.env.NODE_ENV === "development";
-const adsEnabled = Boolean(ADSENSE_PUBLISHER_ID);
 
 /** The newsletter form may post to its provider, and nowhere else. */
 function newsletterOrigin(): string {
@@ -31,16 +28,6 @@ function newsletterOrigin(): string {
   }
 }
 
-// adtrafficquality.google is AdSense's invalid-traffic detection (Sodar).
-const ADS = adsEnabled
-  ? {
-      script: "https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google",
-      frame: "https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google",
-      img: "https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google",
-      connect: "https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google",
-    }
-  : { script: "", frame: "", img: "", connect: "" };
-
 // Google Analytics 4 (config/analytics): the gtag loader and its collection endpoints.
 const GA = ANALYTICS_ON
   ? {
@@ -52,16 +39,13 @@ const GA = ANALYTICS_ON
 
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} ${ADS.script} ${GA.script}`,
-  // No inline event-handler attributes (onclick="..."): React never writes
-  // them, so this only blocks injected markup. Left off once AdSense is on,
-  // since its script is not ours to vouch for.
-  ...(adsEnabled ? [] : ["script-src-attr 'none'"]),
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} ${GA.script}`,
+  "script-src-attr 'none'",
   "style-src 'self' 'unsafe-inline'",
-  `img-src 'self' blob: data: ${ADS.img} ${GA.img}`,
+  `img-src 'self' blob: data: ${GA.img}`,
   "font-src 'self'",
-  `connect-src 'self'${isDev ? " ws: wss:" : ""} ${ADS.connect} ${GA.connect}`,
-  `frame-src ${ADSTERRA_ENABLED ? "'self' " : ""}${ADS.frame || (ADSTERRA_ENABLED ? "" : "'none'")}`,
+  `connect-src 'self'${isDev ? " ws: wss:" : ""} ${GA.connect}`,
+  `frame-src ${ADSTERRA_ENABLED ? "'self'" : "'none'"}`,
   "worker-src 'self' blob:",
   "manifest-src 'self'",
   "object-src 'none'",
@@ -76,13 +60,6 @@ const csp = [
 
 const securityHeaders = [
   { key: "Content-Security-Policy", value: csp },
-  // Trial the event-handler restriction with advertising enabled before
-  // enforcing it. Report-only leaves hydration and Google integrations intact;
-  // violations appear in the browser console, with no external report upload.
-  // Report-only policies require an HTTP header (a meta tag cannot supply one).
-  ...(!isDev && adsEnabled
-    ? [{ key: "Content-Security-Policy-Report-Only", value: "script-src-attr 'none'" }]
-    : []),
   // Browsers ignore HSTS over plain http, so this only takes effect in production.
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
   { key: "X-Content-Type-Options", value: "nosniff" },

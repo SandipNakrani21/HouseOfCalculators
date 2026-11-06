@@ -88,7 +88,6 @@ export default async function ToolCategoryPage({
         title: t(item.titleKey),
         description: t(item.descKey),
       }))}
-      adSlot="tools-category-bottom"
     />
   );
 }
