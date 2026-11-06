@@ -56,13 +56,8 @@ function Placement() {
   const frame = useRef<HTMLIFrameElement>(null);
   const attachFrame = useCallback((element: HTMLIFrameElement | null) => {
     frame.current = element;
-    // Start only after this committed frame survives ref/lifecycle replay.
-    // Cancelled mounts must never start an advertising document.
-    const start = window.setTimeout(() => {
-      if (element?.isConnected && readChoice() === "granted") element.src = "/api/adsterra-native";
-    }, 0);
     // React 19 ref cleanup runs before the document is detached.
-    return () => { clearTimeout(start); stopFrame(element); frame.current = null; };
+    return () => { stopFrame(element); frame.current = null; };
   }, []);
   const [allowed, setAllowed] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -108,7 +103,8 @@ function Placement() {
   }, []);
   return <aside ref={host} aria-label={c[0]} className="container-page my-12 border-t border-border pt-8">
     <p className="mb-3 text-center text-xs text-muted">{c[0]}</p>
-    {allowed && visible ? <iframe key={frameVersion} ref={attachFrame} onLoad={event => {
+    {/* Mount the consented document directly, without navigating an initial blank frame. */}
+    {allowed && visible ? <iframe key={frameVersion} ref={attachFrame} src="/api/adsterra-native" onLoad={event => {
       const element = event.currentTarget;
       try {
         const doc = element.contentDocument;

@@ -95,13 +95,11 @@ async function request(cookie, destination = 'iframe') {
   await act(render);
   assert.equal(document.querySelectorAll('iframe').length, 0);
   const choose = async text => act(() => [...document.querySelectorAll('button')].find(b => b.textContent === text).click());
-  const settleFrame = () => act(() => new Promise(resolve => setTimeout(resolve, 5)));
   await choose('Reject / revoke Adsterra');
   assert.equal(document.querySelectorAll('iframe').length, 0);
   await choose('Allow Adsterra ads');
   assert.equal(document.querySelectorAll('iframe').length, 1);
-  await settleFrame();
-  assert.equal(document.querySelector('iframe').getAttribute('src'), '/api/adsterra-native', 'A committed consented frame must start its document');
+  assert.equal(document.querySelector('iframe').getAttribute('src'), '/api/adsterra-native', 'The consented frame must mount with its document URL');
   const first = document.querySelector('iframe');
   let stopped = 0;
   first.contentWindow.hocStopNative = () => { stopped++; assert.ok(first.isConnected, 'Stop before frame detaches'); };
@@ -121,6 +119,7 @@ async function request(cookie, destination = 'iframe') {
   assert.equal(document.querySelectorAll('iframe').length, 1);
   assert.notEqual(document.querySelector('iframe'), beforePageHide, 'Back-cache restore must remount a stopped frame');
   const second = document.querySelector('iframe');
+  assert.equal(second.getAttribute('src'), '/api/adsterra-native', 'The restored frame must mount with its document URL');
   second.contentWindow.hocStopNative = () => { stopped++; assert.ok(second.isConnected, 'Revoke before frame detaches'); };
   const beforeRevoke = stopped;
   await choose('Reject / revoke Adsterra');

@@ -118,3 +118,49 @@ Non-sensitive native-document state attributes and an on-load size fallback
 distinguish an empty server consent response from a blocked document/vendor.
 No browser blocking or access controls were disabled. Final CI/deployment and
 live delivery acceptance remain pending; this is not completed ad delivery.
+
+The package correction passed CI (run 42237554531). The early-startup diagnostic
+release `1a1ff6e5973ea3fe7ce03fe13c11d147b999eebf` passed CI (run 42239114108)
+and its response marker is live on Hostinger. All 24 public privacy and cookie
+pages across the 12 launch locales passed disclosure checks. The production
+converter passed input, swap and reset checks in connected Chrome.
+
+An HTTP-only production check exercised missing consent, denial, grant,
+top-level navigation with a grant, and missing consent again after the grant.
+All five responses were private/no-store. Only the granted iframe request
+contained the vendor script. This check did not execute the vendor script.
+
+The live browser frame still showed zero height and no startup marker in the
+last connected Chrome observation. The next diagnostic is the iframe's Network
+entry in a fresh connected Chrome tab after granting consent and bringing the
+placement into view. Record the request status or browser block and whether
+the response starts the frame before testing live creative images and Back.
+The extension again reports local browser use is disabled in Work settings,
+so those browser acceptance checks are still open. The pilot remains enabled
+with its independent consent gate.
+
+## Connected Chrome continuation
+
+Chrome extension access worked in a fresh tab on the public length converter.
+The profile had a saved grant, so the test revoked it before selecting Allow
+Adsterra ads again. The denied state had no native iframe. With the placement
+in view, the first grant produced a 1px iframe whose URL attribute pointed to
+`/api/adsterra-native`, but the frame document was `about:blank` and all three
+delivery markers were absent. The browser's resource inventory later listed
+the endpoint on a repeated grant, without exposing its HTTP status.
+
+A full page reload with the explicit grant saved rendered four visible creative
+images. The frame was 272px tall with `data-adsterra-state="ready"`,
+`data-adsterra-cards="4"` and no `data-adsterra-policy` marker. Opening Privacy
+Policy removed the frame. Back restored a collapsed frame with all three
+markers absent. Revoking removed the iframe immediately, and a fresh visit
+showed the denied choice and no native iframe. No live ad was clicked.
+
+The candidate fix mounts the consented iframe with its endpoint URL in the
+initial commit. The previous implementation mounted a blank iframe and assigned
+its URL in a timer. The server's explicit vendor-cookie and iframe checks,
+visibility gate, CSP and frame shutdown remain in place. The focused consent
+and lifecycle check, scoped ESLint and TypeScript check passed. First-grant
+and Back creative rendering still need verification after deployment. The
+workspace denied creation of `.git/index.lock`, and Git could not resolve
+GitHub from the shell. The candidate remains uncommitted and undeployed.
