@@ -46,7 +46,9 @@ function inspect(dir) {
       inspect(file);
     } else {
       if (relative.startsWith('src/')) {
-        const runtimeData = /^src\/(?:config\/calculators\/(?:metadata|tax-metadata|review-metadata)\.json|lib\/i18n\/dictionaries\/(?:[a-z-]+|regional\/[a-z-]+)\.json)$/i.test(relative);
+        // Next traces the two public native-ad disclosure dictionaries at runtime.
+        const runtimeData = /^src\/(?:config\/calculators\/(?:metadata|tax-metadata|review-metadata)\.json|lib\/i18n\/dictionaries\/(?:[a-z-]+|regional\/[a-z-]+)\.json)$/i.test(relative) ||
+          /^src\/config\/adsterra-(?:legal-)?copy\.json$/.test(relative);
         if (!runtimeData) throw new Error('Unexpected source file in runtime package: ' + relative);
       }
       bytes += fs.statSync(file).size;

@@ -101,3 +101,20 @@ private/no-store, SAMEORIGIN and the intended narrow CSP plus Hostinger's separa
 HTTPS-upgrade policy. No Hostinger environment variables were added. Final pilot
 activation uses the repository production setting and explicit false override.
 No earnings, approval or Google traffic-recovery claim.
+
+## Pilot publication follow-up
+
+Explicit production activation was authorised by the user. Commit
+`af5f796e8342d005acbe86a6289f3c5cfff5769a` was pushed and remote verified;
+Hostinger published the enabled choices and policies. GitHub run 42235581205
+passed project checks and production build, but its package step rejected the
+two newly traced public disclosure JSON files. The package allowlist now permits
+only those two exact additional runtime dictionaries. Local corrected package
+and standalone verification passed (48 routes, 18 scripts).
+
+Live unknown/revoke checks remove the native frame. The live first grant/remount
+has so far remained collapsed; images are not yet accepted on production.
+Non-sensitive native-document state attributes and an on-load size fallback
+distinguish an empty server consent response from a blocked document/vendor.
+No browser blocking or access controls were disabled. Final CI/deployment and
+live delivery acceptance remain pending; this is not completed ad delivery.

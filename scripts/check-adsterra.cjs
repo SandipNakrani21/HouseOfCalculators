@@ -34,6 +34,9 @@ async function request(cookie, destination = 'iframe') {
   const grant = `${ADSTERRA_COOKIE}=${record('granted')}`;
   assert.equal((await request(grant, 'document')).html.includes(ADSTERRA_KEY), false, 'Direct document visits cannot load ads');
   const { response, html } = await request(grant);
+  assert.match(html, /data-adsterra-state="ready"/);
+  assert.match((await request(grant, 'document')).html, /data-adsterra-state="not-iframe"/);
+  assert.match((await request()).html, /data-adsterra-state="no-grant"/);
   assert.equal((html.match(/src="https:\/\/bauval.org\/21\//g) ?? []).length, 1);
   assert.equal((html.match(/<div id="container-/g) ?? []).length, 1);
   assert.match(response.headers.get('cache-control'), /no-store/);

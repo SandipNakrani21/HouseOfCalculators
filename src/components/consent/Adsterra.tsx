@@ -108,6 +108,16 @@ function Placement() {
   }, []);
   return <aside ref={host} aria-label={c[0]} className="container-page my-12 border-t border-border pt-8">
     <p className="mb-3 text-center text-xs text-muted">{c[0]}</p>
-    {allowed && visible ? <iframe key={frameVersion} ref={attachFrame} title={c[0]} sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerPolicy="strict-origin-when-cross-origin" className="w-full border-0" style={{ height, minHeight: 1 }} /> : null}
+    {allowed && visible ? <iframe key={frameVersion} ref={attachFrame} onLoad={event => {
+      const element = event.currentTarget;
+      try {
+        const doc = element.contentDocument;
+        // Non-sensitive delivery state also distinguishes an empty consent response
+        // from a blocked vendor script when inspecting a collapsed placement.
+        element.dataset.adsterraState = doc?.body?.dataset.adsterraState ?? "loading";
+        if (readChoice() !== "granted") { stopFrame(element); return; }
+        if (doc?.querySelector('a')) setHeight(Math.ceil(doc.body.getBoundingClientRect().height));
+      } catch { element.dataset.adsterraState = "unavailable"; }
+    }} title={c[0]} sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerPolicy="strict-origin-when-cross-origin" className="w-full border-0" style={{ height, minHeight: 1 }} /> : null}
   </aside>;
 }
