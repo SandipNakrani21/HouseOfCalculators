@@ -9,6 +9,15 @@ const { ADSTERRA_COOKIE, ADSTERRA_KEY, ADSTERRA_LIFETIME, parseAdsterraChoice } 
 const { isAdEligiblePath } = require('../src/config/ad-inventory.ts');
 const record = (choice, at = Date.now()) => encodeURIComponent(JSON.stringify({ vendor: 'adsterra-v1', choice, at }));
 const googleGrant = encodeURIComponent(JSON.stringify({ version: 2, choice: 'granted', at: Date.now(), scope: 'outside-tcf' }));
+const { spawnSync } = require('node:child_process');
+for (const [environment, override, expected] of [['production', undefined, true], ['production', 'false', false], ['development', undefined, false], ['development', 'true', true]]) {
+  const env = { ...process.env, NODE_ENV: environment };
+  if (override === undefined) delete env.NEXT_PUBLIC_ADSTERRA_ENABLED;
+  else env.NEXT_PUBLIC_ADSTERRA_ENABLED = override;
+  const result = spawnSync(process.execPath, ['-r', './scripts/load-typescript.cjs', '-e', "process.stdout.write(String(require('./src/config/adsterra.ts').ADSTERRA_ENABLED))"], { cwd: require('node:path').join(__dirname, '..'), env, encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(result.stdout, String(expected), 'Production pilot and explicit off switch');
+}
 async function request(cookie, destination = 'iframe') {
   const response = GET(new NextRequest('https://thecalculatorshouse.com/api/adsterra-native', {
     headers: { cookie: cookie ?? '', 'sec-fetch-dest': destination },
@@ -36,6 +45,15 @@ async function request(cookie, destination = 'iframe') {
   assert.match(html, /http-equiv="Content-Security-Policy"/);
   const metaPolicy = html.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)[1];
   assert.ok(!metaPolicy.includes('frame-ancestors'), 'Header-only directives must not appear in HTML policies');
+  const { LOCALES } = require('../src/config/locales.ts');
+  const legalCopy = require('../src/config/adsterra-legal-copy.json');
+  const { adsterraLegalText } = require('../src/config/adsterra-legal.ts');
+  for (const locale of Object.values(LOCALES).filter(locale => locale.launch)) {
+    assert.ok(legalCopy[locale.language], 'Every launch language must have its own legal disclosure');
+    assert.match(adsterraLegalText('legal.privacy.ads.1', locale.language), /Google AdSense.*Adsterra/);
+    assert.match(adsterraLegalText('legal.cookies.own.2', locale.language), /hoc_adsterra_v1/);
+    assert.match(adsterraLegalText('legal.cookies.noTracking.withAnalytics', locale.language), /Adsterra/);
+  }
   assert.equal((await request(`${ADSTERRA_COOKIE}=${record('denied')}`)).html.includes(ADSTERRA_KEY), false);
   assert.equal(isAdEligiblePath('/en-us/converters/length'), true);
   for (const path of ['/en-us/privacy', '/en-us/cookies', '/en-us/design-system', '/en-us/does-not-exist', '/xx-xx/converters/length']) assert.equal(isAdEligiblePath(path), false);
@@ -57,7 +75,7 @@ async function request(cookie, destination = 'iframe') {
   let pathname = '/en-us/converters/length';
   Module._load = function(name, ...args) {
     if (name === 'next/navigation') return { usePathname: () => pathname };
-    if (name === '@/lib/locale-context') return { useLocale: () => ({ language: { code: 'en' } }) };
+    if (name === '@/lib/locale-context') return { useLocale: () => ({ language: { code: 'en' }, t: key => key }) };
     return load.call(this, name, ...args);
   };
   const React = require('react');

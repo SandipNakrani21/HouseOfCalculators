@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { ADSTERRA_ENABLED } from "@/config/adsterra";
+import { adsterraLegalText } from "@/config/adsterra-legal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { legalVisual } from "@/lib/visuals";
@@ -132,7 +134,8 @@ export default async function LegalPage({
   const page = getLegalPage(legal);
   if (!locale || !page) notFound();
 
-  const t = createTranslator(locale.language, locale.code);
+  const translate = createTranslator(locale.language, locale.code);
+  const t: TranslateFn = (key, values) => adsterraLegalText(key, locale.language) ?? translate(key, values);
   const code = locale.code;
   const substitutions = { ...legalParams(), app: t("app.name") };
   const missing = missingOperatorDetails();
@@ -155,7 +158,7 @@ export default async function LegalPage({
         description={t(contactUnavailable ? "legal.contact.unavailable" : page.introKey, substitutions)}
       >
         <p className="mt-3 text-xs font-medium text-muted">
-          {t("legal.updated", { date: page.updated })}
+          {t("legal.updated", { date: ADSTERRA_ENABLED && ["privacy", "cookies"].includes(page.slug) ? "2026-11-06" : page.updated })}
         </p>
       </PageHeader>
       <div className="container-prose pb-12 sm:pb-16">

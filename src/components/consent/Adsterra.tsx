@@ -20,7 +20,7 @@ function stopFrame(frame: HTMLIFrameElement | null) {
 
 /** Also present on privacy/cookie pages, where there is never an ad. */
 export function AdsterraChoices() {
-  const { language } = useLocale();
+  const { language, t } = useLocale();
   const c = copy[language.code as keyof typeof copy] ?? copy.en;
   const [choice, setChoice] = useState<string | null>(null);
   useEffect(() => {
@@ -37,7 +37,7 @@ export function AdsterraChoices() {
   };
   return <details className="container-page my-8 text-sm text-muted">
     <summary className="cursor-pointer underline">{c[1]}</summary>
-    <p className="my-3 max-w-4xl">{c[4]} <a className="underline" href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Adsterra: {c[1]}</a></p>
+    <p className="my-3 max-w-4xl">{c[4]} <a className="underline" href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Adsterra: {t("legal.privacy.title")}</a></p>
     <div className="flex flex-wrap gap-3">
       <button className="btn btn-outline btn-md" aria-pressed={choice === "denied"} onClick={() => choose("denied")}>{c[3]}</button>
       <button className="btn btn-outline btn-md" aria-pressed={choice === "granted"} onClick={() => choose("granted")}>{c[2]}</button>

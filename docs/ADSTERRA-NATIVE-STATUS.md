@@ -2,9 +2,10 @@
 
 ## Release status
 
-Release candidate. Disabled unless `NEXT_PUBLIC_ADSTERRA_ENABLED=true` is set
-when building. Set it to `false` and rebuild/redeploy to switch off. Production
-HTTPS acceptance and publication evidence will be appended after deployment.
+Production pilot release candidate. Development is off unless explicitly enabled;
+production is enabled in the reviewed repository configuration, following the
+existing provider pattern. `NEXT_PUBLIC_ADSTERRA_ENABLED=false` overrides it at
+build time; rebuild/redeploy to switch off. Live HTTPS acceptance is appended below.
 
 Approved website: 6180024. NativeBanner_1: 32124553.
 Public placement key: `77c6f84cefe4773be0e3fd3546792638`.
@@ -21,7 +22,9 @@ The exact public script and container are included once in the consent-gated
   share English). Choices remain accessible on privacy/cookies pages. The copy
   describes cookies/storage, IP, browser/device data, page visits, selection,
   measurement, personalisation and limits of revocation. Translation coverage
-  does not represent native-speaker or legal certification.
+  does not represent native-speaker or legal certification. Enabled privacy and
+  cookie pages replace exclusive Google-only/no-local-storage claims, identify
+  the separate cookie and update their policy date. Google sections are retained.
 - The native document is dynamic, private/no-store, noindex, and only emits the
   snippet for an iframe request with current explicit vendor consent.
 - Header and HTML CSP restrict scripts/connections to bauval.org and images to
@@ -70,10 +73,11 @@ the controlled request was suppressed, not an exhaustive audit of every future
 vendor version. Temporary diagnostics, local-only policy allowances, fixtures,
 raw vendor metrics/identifiers and private account evidence are excluded from Git.
 
-Local HTTP first-load/frame observations were inconsistent during navigation and
-browser background operation. A committed-frame start corrected an observed
-initialisation race; production HTTPS first load, Back and effective host policy
-still require live acceptance. Do not equate script installation with acceptance.
+Local HTTP first-load/frame observations were inconsistent during navigation,
+background operation and concurrent development/production filesystem updates.
+Document start now waits for a committed frame and can be cancelled during ref
+replay. Production HTTPS first load and Back still require live acceptance.
+Do not equate script installation with acceptance.
 
 ## Validation
 
@@ -82,11 +86,18 @@ still require live acceptance. Do not equate script installation with acceptance
   committed document start, navigation, revoke, pagehide and persisted pageshow.
 - Full `npm run check`: passed, 0 errors / 1,539 existing warnings, including
   unrelated untracked audit/download material. No unrelated files are staged.
-- Enabled production build `jHmexispi4JWnix2wtGhF`: passed all 4,067 pages.
+- Production pilot build `cJxPPYxEUANOKuZbM4paP`: passed all 4,067 pages.
+  Rendered privacy/cookie disclosure checks passed all 24 launch-locale pages.
+  The final CI build additionally covers the last cookie-introduction correction.
+- Standalone package `jHmexispi4JWnix2wtGhF`: 48 locale/route smoke checks and
+  18 script assets passed with normal local networking. The initial restricted
+  run could not contact its own server; it was not an application-start failure.
 - Focused lint and scoped whitespace checks passed before publication.
 
-Public Hostinger headers currently preserve the app CSP and add a separate
-upgrade-insecure-requests policy. The new endpoint's no-store, SAMEORIGIN and
-narrow effective policies must be checked after its deployment. The code stays
-disabled by default; Hostinger's build-time activation variable is the intended
-production control. No earnings, approval or Google traffic-recovery claim.
+The disabled first-stage commit `2bef1cc57d4ebb276362263dd3d54d92b4004251`
+was pushed and remote verified. GitHub run 42233155952 passed checks, build,
+packaging and Linux runtime verification. The live endpoint returned 200/empty,
+private/no-store, SAMEORIGIN and the intended narrow CSP plus Hostinger's separate
+HTTPS-upgrade policy. No Hostinger environment variables were added. Final pilot
+activation uses the repository production setting and explicit false override.
+No earnings, approval or Google traffic-recovery claim.
