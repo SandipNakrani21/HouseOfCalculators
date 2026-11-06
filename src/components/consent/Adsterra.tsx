@@ -114,7 +114,9 @@ function Placement() {
         const doc = element.contentDocument;
         // Non-sensitive delivery state also distinguishes an empty consent response
         // from a blocked vendor script when inspecting a collapsed placement.
-        element.dataset.adsterraState = doc?.body?.dataset.adsterraState ?? "loading";
+        if (!element.dataset.adsterraState || element.dataset.adsterraState === "loading") {
+          element.dataset.adsterraState = doc?.body?.dataset.adsterraState ?? "loading";
+        }
         if (readChoice() !== "granted") { stopFrame(element); return; }
         if (doc?.querySelector('a')) setHeight(Math.ceil(doc.body.getBoundingClientRect().height));
       } catch { element.dataset.adsterraState = "unavailable"; }
