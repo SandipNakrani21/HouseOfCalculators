@@ -117,8 +117,13 @@ const SERVER_ONLY_KEY =
   /^(?:(?:calc|tool|chart|conv)\.[^.]+\.(?:faq|explain)(?:\.|$)|guide\.[^.]+\.(?!(?:title|desc)$)[^.]+|legal\.)/;
 
 const CLIENT_DICTIONARIES = new Map<string, Dictionary>();
-// The consent panel is client-rendered and reuses these two short legal labels.
-const CLIENT_LEGAL_LABELS = new Set(["legal.privacy.title", "legal.link.googlePrivacy"]);
+// The consent panel is client-rendered and needs its legal disclosure copy.
+const CLIENT_LEGAL_LABELS = new Set([
+  "legal.privacy.title",
+  "legal.link.googlePrivacy",
+  "legal.cookies.analytics.title",
+  "legal.cookies.analytics.1",
+]);
 
 /**
  * The part of a dictionary the browser needs (see SERVER_ONLY_KEY). Every page

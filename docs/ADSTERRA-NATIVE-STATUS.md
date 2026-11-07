@@ -223,3 +223,27 @@ thecalculatorshouse.com. Adult ads was off when the units were created.
 The snippets are available in the publisher dashboard. Website integration
 is pending confirmation of the requested category exclusions and of a
 supported consent-gated embedding method for the fixed bottom anchor.
+
+## Native placement acceptance — 7 November 2026
+
+Connected Chrome verified the currently deployed native integration at
+`4572cf766b43dfe68c6f39636766e68d55823fa4`. On the length converter, rejecting
+Adsterra left zero frames. A fresh explicit grant rendered three creative images
+in one 335px frame with state `ready`. Privacy navigation removed the frame.
+Back restored one ready frame with three cards. Revocation removed it immediately.
+This supersedes the historical blank-frame blocker recorded above.
+
+The mortgage calculator rendered three cards in its desktop sidebar with state
+`ready`. Its phone layout placed the same single widget below the calculator.
+Phone and tablet document widths matched their scroll widths in the tested
+390px and 768px viewport settings. The current publisher inventory included
+dating and gambling creatives. Category exclusion confirmation remains a separate
+publisher dependency. The additional fixed-size display units and bottom anchor
+are outside this native-placement acceptance.
+
+The privacy dialog exposed two raw analytics translation keys. The correction
+includes its existing analytics heading and disclosure in the client dictionaries
+for all 16 locale modules. Only these two additions are staged in locale files
+that also contain unrelated ongoing edits. Full project checks passed with
+zero errors and the existing 1,539 warnings. Publication uses GitHub main and
+the existing automatic deployment. Hostinger settings are not part of this work.
