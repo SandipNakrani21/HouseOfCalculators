@@ -1,5 +1,6 @@
 import { ArrowRight, Globe } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { CSSProperties, ReactNode } from "react";
 
@@ -29,7 +30,7 @@ import { allContent, type ContentItem } from "@/lib/content";
 import { createFormatter } from "@/lib/format";
 import { createTranslator, plural } from "@/lib/i18n";
 import { categoryPath, countryPath, sectionPath } from "@/lib/routes";
-import { jsonLd, organizationSchema, websiteSchema } from "@/lib/seo";
+import { buildMetadata, jsonLd, organizationSchema, websiteSchema } from "@/lib/seo";
 import type { IconName, Tone, Visual } from "@/lib/visuals";
 import { calculatorsCta } from "@/lib/cta";
 
@@ -107,6 +108,20 @@ const WHY: { key: string; visual: Visual; pack: PackIconName }[] = [
   { key: "global", visual: { icon: "Globe", tone: "blue" }, pack: "globe" },
   { key: "device", visual: { icon: "Smartphone", tone: "violet" }, pack: "phone" },
 ];
+
+export async function generateMetadata({ params }: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = localeFromPath((await params).locale);
+  if (!locale) return {};
+  const t = createTranslator(locale.language, locale.code);
+  return buildMetadata({
+    locale: locale.code,
+    path: `/${locale.path}`,
+    title: `${t("home.hero.line1")} ${t("home.hero.line2")}`,
+    description: t("home.hero.subtitle"),
+  });
+}
 
 export default async function HomePage({
   params,
@@ -233,6 +248,33 @@ export default async function HomePage({
                 description={item.description}
               />
             ))}
+          </ul>
+        </section>
+
+        {/* ---------------------------------------------------- choose a tool */}
+        <section className="section-gap" aria-labelledby="choose-tool-heading">
+          <SectionHeader
+            id="choose-tool-heading"
+            title={t("home.choose.title")}
+            description={t("home.choose.intro")}
+          />
+          <ul className="grid gap-5 lg:grid-cols-3">
+            {([
+              { key: "percentage", title: t("tool.percentage.title"), href: byId.get("tool:percentage")?.href, visual: { icon: "Percent", tone: "violet" } },
+              { key: "length", title: t("conv.length.title"), href: byId.get("converter:length")?.href, visual: { icon: "Ruler", tone: "blue" } },
+              { key: "country", title: t("section.countries"), href: sectionPath(code, "countries"), visual: { icon: "Globe", tone: "green" } },
+            ] satisfies { key: string; title: string; href: string | undefined; visual: Visual }[]).map((example) => example.href ? (
+              <li key={example.key} className="card flex flex-col gap-5 p-6">
+                <FeatureItem
+                  visual={example.visual}
+                  title={example.title}
+                  text={t(`home.choose.${example.key}`)}
+                />
+                <ButtonLink href={example.href} variant="outline" size="sm" className="mt-auto" iconEnd={<ArrowRight size={16} />}>
+                  {example.title}
+                </ButtonLink>
+              </li>
+            ) : null)}
           </ul>
         </section>
 

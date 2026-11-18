@@ -27,6 +27,10 @@ export type GuideDefinition = {
   };
   /** Numbered steps, in order. */
   stepKeys?: string[];
+  stepsTitleKey?: string;
+  notesTitleKey?: string;
+  /** Selected payment rows generated from the same loan engine as the tool. */
+  amortisationExample?: { principal: number; annualRate: number; months: number };
   /** A worked example: each row is a label key and a literal value. */
   workedExample?: {
     introKey: string;
@@ -334,19 +338,24 @@ export const GUIDES: GuideDefinition[] = [
     descKey: "guide.read-schedule.desc",
     keywords: "read amortisation schedule columns balance interest",
     introKeys: ["guide.read-schedule.intro.1", "guide.read-schedule.intro.2"],
+    amortisationExample: { principal: 12000, annualRate: 6, months: 12 },
+    stepsTitleKey: "guide.read-schedule.steps.title",
+    notesTitleKey: "guide.read-schedule.notes.title",
     stepKeys: [
       "guide.read-schedule.step.1",
       "guide.read-schedule.step.2",
       "guide.read-schedule.step.3",
     ],
     notesKeys: ["guide.read-schedule.note.1"],
-    faqKeys: ["guide.read-schedule.faq.1"],
+    faqKeys: ["guide.read-schedule.faq.1", "guide.what-amortisation.faq.1", "guide.read-schedule.faq.2", "guide.read-schedule.faq.3"],
     related: [
+      { section: "calculators", category: "finance", slug: "loan" },
       { section: "charts", category: "finance", slug: "amortisation-example" },
       { section: "guides", category: "what-is", slug: "what-is-amortisation" },
+      { section: "guides", category: "practical", slug: "how-to-compare-loan-offers" },
     ],
     published: "2026-09-21",
-    reviewed: "2026-10-27",
+    reviewed: "2026-11-12",
   },
   {
     slug: "how-to-plan-monthly-savings",

@@ -64,6 +64,12 @@ export const OPERATOR: {
   jurisdiction: "Gujarat, India",
 };
 
+/** The named publisher is an individual, separate from the site's brand. */
+export const OPERATOR_ENTITY_TYPE: "Person" | "Organization" = "Person";
+
+/** Verified public profiles for the publisher, never the brand's social accounts. */
+export const OPERATOR_PROFILE_URLS: string[] = [];
+
 export function missingOperatorDetails(): (keyof typeof OPERATOR)[] {
   return (Object.keys(OPERATOR) as (keyof typeof OPERATOR)[]).filter(
     // A public email is optional and may intentionally be withheld.
@@ -315,7 +321,7 @@ const about: LegalPage = {
   titleKey: "legal.about.title",
   descKey: "legal.about.desc",
   introKey: "legal.about.intro",
-  updated: "2026-10-24",
+  updated: "2026-11-12",
   sections: [
     {
       titleKey: "legal.about.what.title",

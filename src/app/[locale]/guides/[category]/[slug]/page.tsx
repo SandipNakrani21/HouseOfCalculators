@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { AdsterraBanner } from "@/components/consent/Adsterra";
+import { AmortisationExample } from "@/components/guides/AmortisationExample";
 import { Accordion } from "@/components/ui/Accordion";
 import { CalculatorCard, CardGrid } from "@/components/ui/ContentCard";
 import { CTABanner } from "@/components/ui/CTABanner";
@@ -148,6 +149,13 @@ export default async function GuidePage({
             ))}
           </div>
 
+          {guide.amortisationExample ? <AmortisationExample
+            example={guide.amortisationExample}
+            t={t}
+            fmt={createFormatter(countryCode, locale.language, t)}
+            locale={code}
+          /> : null}
+
           {guide.formula ? (
             <section data-reveal="up" className="mt-10">
               <h2 className="mb-3 text-xl font-bold">{t("calc.formula")}</h2>
@@ -169,7 +177,7 @@ export default async function GuidePage({
 
           {guide.stepKeys?.length ? (
             <section data-reveal="up" className="mt-10">
-              <h2 className="mb-3 text-xl font-bold">{t("guide.steps")}</h2>
+              <h2 className="mb-3 text-xl font-bold">{t(guide.stepsTitleKey ?? "guide.steps")}</h2>
               <ol className="space-y-3">
                 {guide.stepKeys.map((key, index) => (
                   <li key={key} className="flex gap-3">
@@ -218,7 +226,7 @@ export default async function GuidePage({
 
           {guide.notesKeys?.length ? (
             <section data-reveal="up" className="mt-10 space-y-4">
-              <h2 className="text-xl font-bold">{t("guide.worthKnowing")}</h2>
+              <h2 className="text-xl font-bold">{t(guide.notesTitleKey ?? "guide.worthKnowing")}</h2>
               {guide.notesKeys.map((key) => (
                 <p key={key} className="text-sm leading-relaxed text-muted">
                   {t(key)}

@@ -8,7 +8,8 @@ import {
 } from "@/config/locales";
 import { COUNTRIES, type CountryCode } from "@/config/countries";
 import { LANGUAGES, type LanguageCode } from "@/config/languages";
-import { OPERATOR } from "@/config/legal/definitions";
+import { OPERATOR, OPERATOR_ENTITY_TYPE, OPERATOR_PROFILE_URLS } from "@/config/legal/definitions";
+import { SOCIAL_LINKS } from "@/config/site";
 import { createTranslator, isLanguageReady } from "@/lib/i18n";
 import { absoluteUrl, swapLocale } from "@/lib/routes";
 
@@ -213,21 +214,49 @@ export function jsonLd(data: Record<string, unknown>): string {
  * consistent business behind every page.
  */
 const ORG_ID = absoluteUrl("/#organization");
+const OPERATOR_ID = absoluteUrl("/#operator");
+
+/** Configuration must contain verified identities; syntax alone proves no ownership. */
+function identityUrls(values: string[]): string[] {
+  return [...new Set(values.flatMap((value) => {
+    try {
+      const url = new URL(value);
+      return url.protocol === "https:" && !url.username && !url.password ? [url.href] : [];
+    } catch {
+      return [];
+    }
+  }))];
+}
+
+/** Mirrors the publisher named visibly on About, without claiming article authorship. */
+function operatorSchema(): Record<string, unknown> | undefined {
+  if (!OPERATOR.entity) return undefined;
+  const profiles = identityUrls(OPERATOR_PROFILE_URLS);
+  return {
+    "@type": OPERATOR_ENTITY_TYPE,
+    "@id": OPERATOR_ID,
+    name: OPERATOR.entity,
+    url: absoluteUrl(`/${LOCALES[DEFAULT_LOCALE].path}/about`),
+    ...(profiles.length ? { sameAs: profiles } : {}),
+  };
+}
 
 export function publisherRef(): Record<string, unknown> {
   return { "@type": "Organization", "@id": ORG_ID, name: SITE_NAME, url: absoluteUrl("/") };
 }
 
 export function organizationSchema(): Record<string, unknown> {
+  const profiles = identityUrls(SOCIAL_LINKS.map(({ url }) => url));
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": ORG_ID,
     name: SITE_NAME,
-    ...(OPERATOR.entity ? { legalName: OPERATOR.entity } : {}),
+    ...(OPERATOR_ENTITY_TYPE === "Organization" && OPERATOR.entity ? { legalName: OPERATOR.entity } : {}),
     url: absoluteUrl("/"),
     logo: { "@type": "ImageObject", url: absoluteUrl("/logo.png"), width: 512, height: 512 },
     slogan: "Every Calculation. One Global Home.",
+    ...(profiles.length ? { sameAs: profiles } : {}),
     knowsLanguage: readyLocales(),
     description:
       "Free calculators, converters and guides that follow each country's currency, units and rules. Every calculation runs on the visitor's device.",
@@ -272,6 +301,7 @@ export function webPageSchema({
   path: string;
   locale: LocaleCode;
 }): Record<string, unknown> {
+  const operator = type === "AboutPage" ? operatorSchema() : undefined;
   return {
     "@context": "https://schema.org",
     "@type": type,
@@ -281,6 +311,7 @@ export function webPageSchema({
     inLanguage: locale,
     isPartOf: { "@id": websiteId(locale) },
     publisher: publisherRef(),
+    ...(type === "AboutPage" ? { about: [publisherRef(), ...(operator ? [operator] : [])] } : {}),
   };
 }
 

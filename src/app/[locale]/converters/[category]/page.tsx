@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { categoryVisual } from "@/lib/visuals";
 import { notFound } from "next/navigation";
 
@@ -9,12 +10,19 @@ import {
   getConverterByCategory,
   pairSlug,
 } from "@/config/converters/definitions";
-import { findUnit } from "@/config/converters/units";
+import { convert, findUnit } from "@/config/converters/units";
+import { CONVERSION_SOURCES } from "@/config/converters/examples";
 import { LOCALES, localeFromPath } from "@/config/locales";
+import { calculatorsCta } from "@/lib/cta";
+import { createFormatter } from "@/lib/format";
 import { createTranslator } from "@/lib/i18n";
 import { categoryPath, contentPath, localeHome, sectionPath } from "@/lib/routes";
 import { buildMetadata, readyLocales } from "@/lib/seo";
-import { calculatorsCta } from "@/lib/cta";
+
+const WEIGHT_EXAMPLES = [
+  { from: "kilogram", to: "pound", relation: "≈" },
+  { from: "pound", to: "kilogram", relation: "=" },
+] as const;
 
 type Params = { locale: string; category: string };
 
@@ -59,6 +67,7 @@ export default async function ConverterCategoryPage({
 
   const t = createTranslator(locale.language, locale.code);
   const code = locale.code;
+  const format = createFormatter(locale.defaultCountry, locale.language, t);
 
   // The converter's featured pairs, as cards below the converter.
   const popular = converter.featuredPairs.flatMap(([from, to]) => {
@@ -101,6 +110,34 @@ export default async function ConverterCategoryPage({
                 unit: t(findUnit(converter, converter.baseUnit)!.labelKey),
               })}
             </p>
+            {converter.id === "weight" ? (
+              <>
+                <h3 className="mt-6 font-semibold">{t("conv.pair.examples")}</h3>
+                <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+                  {WEIGHT_EXAMPLES.map(({ from, to, relation }) => {
+                    const input = findUnit(converter, from)!;
+                    const output = findUnit(converter, to)!;
+                    const factor = format.number(convert(converter, 1, from, to), { decimals: 8 });
+                    const example = format.number(convert(converter, 10, from, to), { decimals: 4 });
+                    return (
+                      <li key={from} className="rounded-md bg-bg-soft p-4 text-sm">
+                        <Link className="font-semibold text-primary underline underline-offset-2" href={contentPath(code, "converters", category, pairSlug(converter, from, to))}>
+                          {t("conv.pair.short", { from: t(input.labelKey), to: t(output.labelKey) })}
+                        </Link>
+                        <p className="tabular mt-2 text-heading" dir="ltr">{output.symbol} {relation} {input.symbol} × {factor}</p>
+                        <p className="tabular mt-1 text-muted" dir="ltr">{format.number(10)} {input.symbol} ≈ {example} {output.symbol}</p>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <h3 className="mt-5 font-semibold">{t("calc.sources")}</h3>
+                <ul className="mt-2 space-y-2 text-sm">
+                  {CONVERSION_SOURCES.map(source => (
+                    <li key={source.href}><a className="text-primary underline" href={source.href}>{source.name}</a></li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
           </>
         ),
       }}

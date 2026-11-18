@@ -130,8 +130,14 @@ export default async function ConverterPage({
         eyebrow: t("section.converters"),
         title,
         description,
+        note: (
+          <p className="tabular mt-3 text-sm font-semibold" dir="ltr">
+            {example.input} {example.from} ≈ {example.output} {example.to}
+          </p>
+        ),
       }}
       rail={false}
+      sources={CONVERSION_SOURCES.map(({ href }) => href)}
       howItWorks={{
         title: t("conv.howItWorks"),
         body: (
