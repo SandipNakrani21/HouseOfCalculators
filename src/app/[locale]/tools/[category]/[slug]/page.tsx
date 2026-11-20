@@ -83,7 +83,6 @@ export default async function ToolPage({
         title: t(tool.titleKey),
         description: t(tool.descKey),
       }}
-      rail={false}
       howItWorks={{
         title: t("calc.howItWorks"),
         body: <div className="space-y-4" data-tool-examples={slug}>

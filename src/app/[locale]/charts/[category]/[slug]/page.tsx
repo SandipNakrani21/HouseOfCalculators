@@ -94,7 +94,6 @@ export default async function ChartPage({
         title,
         description: t(chart.descKey),
       }}
-      rail={false}
       howItWorks={{
         title: t("chart.about"),
         body: (

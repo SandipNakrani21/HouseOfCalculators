@@ -2,7 +2,6 @@ import { BookOpen, CircleHelp, Globe2, Lightbulb } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { AdsterraBanner } from "@/components/consent/Adsterra";
 import { Accordion } from "@/components/ui/Accordion";
 import type { Crumb } from "@/components/ui/Breadcrumbs";
 import { CalculatorCard, CardGrid } from "@/components/ui/ContentCard";
@@ -12,7 +11,6 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeader, ViewAllLink } from "@/components/ui/SectionHeader";
 import type { CountryCode } from "@/config/countries";
 import type { LocaleCode } from "@/config/locales";
-import { ADSTERRA_ENABLED } from "@/config/adsterra";
 import { faqSchema, jsonLd, webApplicationSchema, webPageSchema } from "@/lib/seo";
 import type { Visual } from "@/lib/visuals";
 
@@ -20,11 +18,11 @@ import type { Visual } from "@/lib/visuals";
  * The template every calculator, converter and tool page follows:
  *
  *   Breadcrumb → title and intro → the calculator card →
- *   How it works / formula → FAQ → ad → guides → other countries → related grid →
+ *   How it works / formula → FAQ → guides → other countries → related grid →
  *   call to action
  *
- * with an ad rail beside the content on desktop that moves below it on
- * phones. New tool-like pages should use this rather than laying out their
+ * with one shared ad after the page content in the locale layout.
+ * New tool-like pages should use this rather than laying out their
  * own, so they all read as one product.
  */
 
@@ -50,8 +48,6 @@ export function DetailPage({
   locale,
   appCategory,
   schema = "application",
-  rail = true,
-  ads = true,
   canonicalPath,
   sources,
 }: {
@@ -62,14 +58,6 @@ export function DetailPage({
   appCategory?: string;
   /** "page" for reference material (tables), which is not an application. */
   schema?: "application" | "page";
-  /**
-   * The ad beside the content on desktop. false gives the content the full
-   * width (the tools, whose inputs sit four to a row) and shows that ad as a
-   * horizontal banner below the content instead.
-   */
-  rail?: boolean;
-  /** Exclude models without source coverage and avoid reserving an empty rail. */
-  ads?: boolean;
   /** Search identity for a usable alias of an otherwise identical tool. */
   canonicalPath?: string;
   /** Source URLs already rendered in the explanation, also described in JSON-LD. */
@@ -94,7 +82,6 @@ export function DetailPage({
   related?: { title: string; items: RelatedItem[]; viewAll?: { href: string; label: string } };
   cta: { title: string; body: string; cta: string; href: string };
 }) {
-  const showRail = ADSTERRA_ENABLED && ads && rail;
   return (
     <div data-detail-page>
       <PageHeader
@@ -109,7 +96,7 @@ export function DetailPage({
         {header.note}
       </PageHeader>
       <div className="container-page pb-12 sm:pb-16">
-        <div className={showRail ? "ad-rail-layout grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]" : ""}>
+        <div>
           <div data-detail-content className="min-w-0 space-y-6">
             {children}
 
@@ -159,9 +146,6 @@ export function DetailPage({
             ) : null}
           </div>
 
-          {showRail ? (
-            <AdsterraBanner sidebar loadOnVisit />
-          ) : null}
         </div>
 
         {related?.items.length ? (
@@ -212,7 +196,6 @@ export function DetailPage({
           />
         ) : null}
       </div>
-      {ads && !showRail ? <AdsterraBanner /> : null}
     </div>
   );
 }

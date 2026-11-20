@@ -136,7 +136,6 @@ export default async function ConverterPage({
           </p>
         ),
       }}
-      rail={false}
       sources={CONVERSION_SOURCES.map(({ href }) => href)}
       howItWorks={{
         title: t("conv.howItWorks"),

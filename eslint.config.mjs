@@ -14,8 +14,8 @@ const eslintConfig = defineConfig([
     "dist/**",
     "next-env.d.ts",
     "docs/recheck-2026-10-09/**",
-    // Isolated copy used only for the original-logo production comparison.
-    "tmp/speed-baseline/**",
+    // Local QA exports and isolated build copies are generated artifacts.
+    "tmp/**",
   ]),
 ]);
 

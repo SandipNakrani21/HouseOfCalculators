@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
 import { Analytics } from "@/components/consent/Analytics";
+import { AdsterraSitewide } from "@/components/consent/Adsterra";
 import { AnalyticsConsent } from "@/components/consent/ConsentBanner";
 import { ConsentScript } from "@/components/consent/ConsentScript";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -21,6 +22,7 @@ import { LocaleDictionaryProvider } from "@/lib/i18n/LocaleDictionaryProvider";
 import { buildNavMenu } from "@/lib/nav-menu";
 import { calculatorPath, siteUrl } from "@/lib/routes";
 import { SITE_NAME, buildMetadata, readyLocales } from "@/lib/seo";
+import { sitemapEntries } from "@/lib/sitemap";
 
 import "../globals.css";
 
@@ -143,6 +145,7 @@ export default async function LocaleLayout({
             <main id="main" className="relative isolate flex-1 overflow-x-clip">
               <div aria-hidden className="page-wash" />
               {children}
+              <AdsterraSitewide paths={sitemapEntries(locale.code).map(entry => new URL(entry.url).pathname)} />
             </main>
             <SiteFooter ready={ready} popular={popular} />
             <WelcomeDialog ready={ready} />

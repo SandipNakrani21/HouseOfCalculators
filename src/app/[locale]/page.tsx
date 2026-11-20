@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { CSSProperties, ReactNode } from "react";
 
-import { AdsterraBanner } from "@/components/consent/Adsterra";
 import { CountryMarquee, type CountryChip } from "@/components/home/CountryMarquee";
 import { DeviceMockup } from "@/components/home/DeviceMockup";
 import { GuideArt } from "@/components/home/GuideArt";
@@ -193,7 +192,6 @@ export default async function HomePage({
         <SearchBar popularLabel={t("home.hero.popular")} chips={chips} centered />
       </Hero>
 
-      <AdsterraBanner loadOnVisit />
 
       <div className="container-page">
         <div className="mt-6">

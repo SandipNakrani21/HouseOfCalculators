@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 
-import { AdsterraBanner } from "@/components/consent/Adsterra";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { Crumb } from "@/components/ui/Breadcrumbs";
 import { CardGrid, ContentCard } from "@/components/ui/ContentCard";
@@ -111,7 +110,6 @@ export function ListingPage({
           })}
         />
       </div>
-      {all.length > 0 ? <AdsterraBanner /> : null}
     </>
   );
 }

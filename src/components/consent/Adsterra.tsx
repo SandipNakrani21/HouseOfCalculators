@@ -17,8 +17,8 @@ function stopFrame(frame: HTMLIFrameElement | null) {
   } catch { /* A failed/blocked navigation may have no accessible document. */ }
 }
 
-/** Also present on privacy/cookie pages, where there is never an ad. */
-export function AdsterraChoices() {
+/** Shared by the inline permission prompt and the persistent privacy controls. */
+export function AdsterraChoices({ expanded = false }: { expanded?: boolean }) {
   const { language, t } = useLocale();
   const c = copy[language.code as keyof typeof copy] ?? copy.en;
   const [choice, setChoice] = useState<string | null>(null);
@@ -34,7 +34,7 @@ export function AdsterraChoices() {
     // Cookie failure must fail closed.
     window.dispatchEvent(new Event("hoc:adsterra"));
   };
-  return <details className="mb-4 text-sm text-muted">
+  return <details open={expanded || undefined} className="mb-4 text-sm text-muted">
     <summary className="cursor-pointer underline">{c[1]}</summary>
     <p className="my-3 max-w-4xl">{c[4]} <a className="underline" href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Adsterra: {t("legal.privacy.title")}</a></p>
     <div className="flex flex-wrap gap-3">
@@ -42,6 +42,12 @@ export function AdsterraChoices() {
       <button className="btn btn-outline btn-md" aria-pressed={choice === "granted"} onClick={() => choose("granted")}>{c[2]}</button>
     </div>
   </details>;
+}
+
+/** One placement on every published public page, never on an unknown/error URL. */
+export function AdsterraSitewide({ paths }: { paths: string[] }) {
+  const pathname = usePathname();
+  return paths.includes(pathname) ? <AdsterraBanner loadOnVisit /> : null;
 }
 
 export function AdsterraBanner({ loadOnVisit = false, sidebar = false }: { loadOnVisit?: boolean; sidebar?: boolean }) {
@@ -59,12 +65,15 @@ function Placement({ loadOnVisit, sidebar }: { loadOnVisit: boolean; sidebar: bo
     return () => { stopFrame(element); frame.current = null; };
   }, []);
   const [allowed, setAllowed] = useState(false);
+  const [needsChoice, setNeedsChoice] = useState(false);
   const [visible, setVisible] = useState(false);
   const [height, setHeight] = useState(0);
   const [frameVersion, setFrameVersion] = useState(0);
   useEffect(() => {
     const refresh = () => {
-      const granted = readChoice() === "granted";
+      const choice = readChoice();
+      const granted = choice === "granted";
+      setNeedsChoice(choice === null);
       if (!granted) {
         stopFrame(frame.current);
         setHeight(0);
@@ -109,7 +118,8 @@ function Placement({ loadOnVisit, sidebar }: { loadOnVisit: boolean; sidebar: bo
       window.removeEventListener("message", resize);
     };
   }, [loadOnVisit]);
-  return <aside ref={host} aria-label={height > 0 ? c[0] : undefined} data-print-exclude className={sidebar ? "ad-rail-col min-w-0" : "container-page my-12 border-t border-border pt-8"}>
+  return <aside ref={host} aria-label={height > 0 || needsChoice ? c[0] : undefined} data-print-exclude className={sidebar ? "ad-rail-col min-w-0" : height > 0 || needsChoice ? "container-page my-12 border-t border-border pt-8" : "container-page"}>
+    {needsChoice ? <AdsterraChoices expanded /> : null}
     {height > 0 ? <p className="mb-3 text-center text-xs text-muted">{c[0]}</p> : null}
     {/* Mount the consented document directly, without navigating an initial blank frame. */}
     {allowed && (loadOnVisit || visible || typeof IntersectionObserver === "undefined") ? <iframe key={frameVersion} ref={attachFrame} src="/api/adsterra-native" onLoad={event => {

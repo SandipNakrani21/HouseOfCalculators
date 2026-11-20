@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { AdsterraBanner } from "@/components/consent/Adsterra";
 import { AmortisationExample } from "@/components/guides/AmortisationExample";
 import { Accordion } from "@/components/ui/Accordion";
 import { CalculatorCard, CardGrid } from "@/components/ui/ContentCard";
@@ -307,7 +306,6 @@ export default async function GuidePage({
           />
         ) : null}
       </div>
-      <AdsterraBanner />
     </>
   );
 }
