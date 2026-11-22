@@ -9,7 +9,7 @@ import { COUNTRIES, isCountryCode, type CountryCode } from "@/config/countries";
 import { LOCALES, localeFromPath } from "@/config/locales";
 import { createFormatter } from "@/lib/format";
 import { createTranslator } from "@/lib/i18n";
-import { calculatorSearchCopy } from "@/lib/calculator-search-copy";
+import { calculatorReviewPeriod, calculatorSearchCopy } from "@/lib/calculator-search-copy";
 import { contentPath, countryPath, countryToolPath, localeHome, sectionPath } from "@/lib/routes";
 import { buildMetadata, readyLocales } from "@/lib/seo";
 
@@ -65,7 +65,7 @@ export async function generateMetadata({
     description: searchCopy?.description ?? t("country.tool.metaDesc", {
       description: t(calculator.descKey, values),
       country: countryName,
-      year: ruleReview(slug, country)?.period ?? COUNTRIES[country].fiscalYear.label,
+      year: calculatorReviewPeriod(locale.code, slug, country, ruleReview(slug, country)?.period) ?? COUNTRIES[country].fiscalYear.label,
       currency: COUNTRIES[country].currency.code,
     }),
     noindex: !ruleReview(slug, country),

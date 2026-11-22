@@ -297,7 +297,7 @@ export const autoLoanCalculator: CalculatorDef = {
 export const personalLoanCalculator: CalculatorDef = {
   slug: "loan",
   icon: "🏦",
-  version: 1,
+  version: 2,
   category: "finance",
   titleKey: "calc.loan.title",
   descKey: "calc.loan.desc",
@@ -318,7 +318,7 @@ export const personalLoanCalculator: CalculatorDef = {
         id: "rate",
         labelKey: "field.interestRate",
         kind: "percent",
-        min: 0.5,
+        min: 0,
         max: 60,
         step: 0.05,
         default: mortgageRate(countryCode) + 3,

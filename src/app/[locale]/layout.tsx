@@ -13,14 +13,15 @@ import { RevealObserver } from "@/components/motion/RevealObserver";
 import { RouteProgress } from "@/components/motion/RouteProgress";
 import { WelcomeDialog } from "@/components/navigation/WelcomeDialog";
 import { ToastProvider } from "@/components/ui/Toast";
-import { calculatorsFor } from "@/config/calculators";
+import { CALCULATORS, calculatorsFor } from "@/config/calculators";
+import { canonicalCountryToolSlug, isCalculatorPublished } from "@/config/calculators/publication";
 import { COUNTRIES } from "@/config/countries";
 import { LOCALES, localeFromPath } from "@/config/locales";
 import { createFormatter } from "@/lib/format";
 import { createTranslator } from "@/lib/i18n";
 import { LocaleDictionaryProvider } from "@/lib/i18n/LocaleDictionaryProvider";
 import { buildNavMenu } from "@/lib/nav-menu";
-import { calculatorPath, siteUrl } from "@/lib/routes";
+import { calculatorPath, countryPath, siteUrl } from "@/lib/routes";
 import { SITE_NAME, buildMetadata, readyLocales } from "@/lib/seo";
 import { sitemapEntries } from "@/lib/sitemap";
 
@@ -105,6 +106,17 @@ export default async function LocaleLayout({
     }));
 
   const navMenu = buildNavMenu({ locale: locale.code, country, t, calcContext });
+  // Ad coverage includes usable saved-tool aliases and the rewritten root home.
+  // Keep search identity separate: aliases still canonicalize to their main tool
+  // and stay out of sitemaps; unknown and unpublished URLs remain excluded.
+  const adPaths = [
+    "/",
+    ...sitemapEntries(locale.code).map(entry => new URL(entry.url).pathname),
+    ...CALCULATORS.filter(calc => calc.isCountrySpecific).flatMap(calc =>
+      calc.countries.filter(country => isCalculatorPublished(calc, country) &&
+        canonicalCountryToolSlug(calc.slug, country) !== calc.slug)
+        .map(country => `${countryPath(locale.code, country)}/${calc.slug}`)),
+  ];
 
   return (
     <html
@@ -145,7 +157,7 @@ export default async function LocaleLayout({
             <main id="main" className="relative isolate flex-1 overflow-x-clip">
               <div aria-hidden className="page-wash" />
               {children}
-              <AdsterraSitewide paths={sitemapEntries(locale.code).map(entry => new URL(entry.url).pathname)} />
+              <AdsterraSitewide paths={adPaths} />
             </main>
             <SiteFooter ready={ready} popular={popular} />
             <WelcomeDialog ready={ready} />

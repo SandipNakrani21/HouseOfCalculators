@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { AmortisationExample } from "@/components/guides/AmortisationExample";
+import { PageLearning } from "@/components/seo/PageLearning";
+import { pageLearning } from "@/config/page-learning";
 import { Accordion } from "@/components/ui/Accordion";
 import { CalculatorCard, CardGrid } from "@/components/ui/ContentCard";
 import { CTABanner } from "@/components/ui/CTABanner";
@@ -81,6 +83,7 @@ export default async function GuidePage({
   const code = locale.code;
   const title = t(guide.titleKey);
   const url = contentPath(code, "guides", category, slug);
+  const reviewed = pageLearning(url)?.reviewed ?? guide.reviewed;
   const related = guidesIn(guide.category).filter((item) => item.slug !== slug);
   const sources = guideSources(slug);
   const countryCode = locale.defaultCountry;
@@ -100,7 +103,7 @@ export default async function GuidePage({
     description: t(guide.descKey),
     inLanguage: code,
     datePublished: guide.published ?? guide.reviewed,
-    dateModified: guide.reviewed,
+    dateModified: reviewed,
     // The guide's generated share image (opengraph-image.tsx beside this page).
     image: absoluteUrl(`${url}/opengraph-image`),
     mainEntityOfPage: absoluteUrl(url),
@@ -131,9 +134,9 @@ export default async function GuidePage({
         <p className="mt-3 text-xs font-medium text-muted">
           {/* Written the way the locale writes dates (September 21, 2026 /
               21 September 2026); the machine-readable form stays ISO. */}
-          <time dateTime={guide.reviewed}>
+          <time dateTime={reviewed}>
             {t("guide.reviewed", {
-              date: new Intl.DateTimeFormat(code, { dateStyle: "long", timeZone: "UTC" }).format(new Date(guide.reviewed)),
+              date: new Intl.DateTimeFormat(code, { dateStyle: "long", timeZone: "UTC" }).format(new Date(reviewed)),
             })}
           </time>
         </p>
@@ -147,6 +150,8 @@ export default async function GuidePage({
               </p>
             ))}
           </div>
+
+          <PageLearning path={url} className="mt-10" />
 
           {guide.amortisationExample ? <AmortisationExample
             example={guide.amortisationExample}

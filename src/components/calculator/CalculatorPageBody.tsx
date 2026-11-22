@@ -14,7 +14,7 @@ import { COUNTRIES, type CountryCode } from "@/config/countries";
 import type { LanguageCode } from "@/config/languages";
 import type { LocaleCode } from "@/config/locales";
 import { calculatorCopy } from "@/lib/calculator-copy";
-import { calculatorSearchCopy } from "@/lib/calculator-search-copy";
+import { calculatorReviewPeriod, calculatorSearchCopy } from "@/lib/calculator-search-copy";
 import { createFormatter } from "@/lib/format";
 import { guideLinksFor } from "@/lib/guide-links";
 import { createTranslator } from "@/lib/i18n";
@@ -64,6 +64,7 @@ export function CalculatorPageBody({
   const params = calculator.params?.(ctx);
   const relevance = countryRelevanceOf(calculator);
   const review = ruleReview(calculator.slug, country);
+  const displayedPeriod = calculatorReviewPeriod(locale, calculator.slug, country, review?.period);
   const searchCopy = calculatorSearchCopy(locale, calculator.slug, country, review?.period);
   const replacement = reviewedCalculator(calculator.slug, country);
   // The reviewed scope already appears beside the inputs/results and in the
@@ -115,7 +116,7 @@ export function CalculatorPageBody({
             // Say what the country actually changes here. Claiming a BMI
             // follows a country's rules for a tax year would be simply untrue.
             <>
-              <CalculatorCountryNote relevance={relevance} lockedCountry={lockCountry ? country : undefined} supportedCountries={calculator.countries} year={review?.kind !== "formula" ? review?.period : undefined} />
+              <CalculatorCountryNote relevance={relevance} lockedCountry={lockCountry ? country : undefined} supportedCountries={calculator.countries} year={review?.kind !== "formula" ? displayedPeriod : undefined} />
               {review && review.kind !== "formula" ? <div className="max-w-3xl text-on-navy-muted"><ScopeList text={t(reviewScopeKey(calculator.slug, country))} language={language} /></div> : null}
             </>
           ),
@@ -158,7 +159,7 @@ export function CalculatorPageBody({
                   {relevance === "rules" && !review ? <p className="rounded-md border border-border p-4 text-sm text-muted">{t("quality.unreviewed")}</p> : null}
                   {review ? <aside className="rounded-md border border-border p-4">
                     <h3 className="font-semibold">{t("calc.sources")}</h3>
-                    {review.kind !== "formula" ? <p className="mt-1 text-sm text-muted">{t("calc.ruleReview", { period: review.period, revision: review.revision, date: review.reviewed })}</p> : null}
+                    {review.kind !== "formula" ? <p className="mt-1 text-sm text-muted">{t("calc.ruleReview", { period: displayedPeriod ?? review.period, revision: review.revision, date: review.reviewed })}</p> : null}
                     <div className="text-muted"><h4 className="mt-3 font-semibold">{t("quality.limits")}</h4><ScopeList text={t(reviewScopeKey(calculator.slug, country))} language={language} /></div>
                     <ul className="mt-3 space-y-2 text-sm">{review.sources.map(source => <li key={source}><a className="text-primary underline underline-offset-4" href={source} target="_blank" rel="noreferrer">{new URL(source).hostname}</a></li>)}</ul>
                   </aside> : null}

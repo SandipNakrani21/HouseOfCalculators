@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageLearning } from "@/components/seo/PageLearning";
 import type { Crumb } from "@/components/ui/Breadcrumbs";
 import { CardGrid, ContentCard } from "@/components/ui/ContentCard";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -98,6 +99,8 @@ export function ListingPage({
             {emptyLabel}
           </p>
         ) : null}
+
+        <PageLearning path={trail[trail.length - 1]?.path} className="mt-10" />
 
         {/* The list above as structured data, for search and answer engines. */}
         <JsonLd

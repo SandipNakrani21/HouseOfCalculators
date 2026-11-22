@@ -1,6 +1,14 @@
 import type { CountryCode } from "@/config/countries";
 import type { LocaleCode } from "@/config/locales";
 
+/** Translate the reviewed period without changing its source year or scope. */
+export function calculatorReviewPeriod(locale: LocaleCode, slug: string, country: CountryCode, period?: string): string | undefined {
+  if (locale === "it-IT" && slug === "income-tax" && country === "it") {
+    return period?.replace(/full-year ordinary employment$/, "(lavoro dipendente ordinario per l’intero anno)");
+  }
+  return period;
+}
+
 /** Copy for the two exact pages reviewed against the October 2026 GSC exports. */
 export function calculatorSearchCopy(
   locale: LocaleCode,

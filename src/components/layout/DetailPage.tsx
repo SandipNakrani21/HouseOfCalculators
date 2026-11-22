@@ -1,6 +1,7 @@
 import { BookOpen, CircleHelp, Globe2, Lightbulb } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { PageLearning } from "@/components/seo/PageLearning";
 
 import { Accordion } from "@/components/ui/Accordion";
 import type { Crumb } from "@/components/ui/Breadcrumbs";
@@ -105,6 +106,8 @@ export function DetailPage({
                 {howItWorks.body}
               </ContentSection>
             ) : null}
+
+            <PageLearning path={trail[trail.length - 1]?.path} />
 
             {faq?.items.length ? (
               <ContentSection icon={<CircleHelp className="h-5 w-5" />} tone="violet" title={faq.title}>

@@ -106,7 +106,7 @@
   {
     "slug": "loan",
     "icon": "🏦",
-    "version": 1,
+    "version": 2,
     "category": "finance",
     "titleKey": "calc.loan.title",
     "descKey": "calc.loan.desc",
