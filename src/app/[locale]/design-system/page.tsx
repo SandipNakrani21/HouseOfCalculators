@@ -87,7 +87,7 @@ export default async function DesignSystemPage({
       />
       <div className="container-page pb-12 sm:pb-16">
         <nav aria-label="Sections" className="mb-12 flex flex-wrap gap-2">
-          {["Colours", "Typography", "Spacing", "Buttons", "Badges", "Cards", "Sections", "Forms", "Overlays", "Feedback", "Motion", "Ads"].map(
+          {["Colours", "Typography", "Spacing", "Buttons", "Badges", "Cards", "Sections", "Forms", "Overlays", "Feedback", "Motion"].map(
             (name) => (
               <a key={name} href={`#${name.toLowerCase()}`} className="chip chip-outline">
                 {name}

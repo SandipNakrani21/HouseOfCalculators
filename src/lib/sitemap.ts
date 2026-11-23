@@ -24,6 +24,7 @@ import {
 } from "@/lib/routes";
 import { LOCALES, type LocaleCode } from "@/config/locales";
 import { calculatorLocales, hreflangAlternates, readyLocales } from "@/lib/seo";
+import { guideDates } from "@/lib/guide-dates";
 
 export type SitemapEntry = {
   url: string;
@@ -123,7 +124,8 @@ export function sitemapEntries(locale: LocaleCode): SitemapEntry[] {
   }
 
   for (const guide of GUIDES) {
-    add(contentPath(locale, "guides", guide.category, guide.slug), 0.8, "monthly", guide.reviewed);
+    const path = contentPath(locale, "guides", guide.category, guide.slug);
+    add(path, 0.8, "monthly", guideDates(guide, path).modified);
   }
 
   for (const country of COUNTRY_CODES) {
@@ -135,7 +137,7 @@ export function sitemapEntries(locale: LocaleCode): SitemapEntry[] {
   // Listed so they are indexable and discoverable, but low priority: they
   // exist to be found when looked for, not to compete with the tools.
   for (const page of LEGAL_PAGES) {
-    add(`${localeHome(locale)}/${page.slug}`, 0.3, "monthly");
+    add(`${localeHome(locale)}/${page.slug}`, 0.3, "monthly", page.updated);
   }
 
   for (const calc of CALCULATORS) {

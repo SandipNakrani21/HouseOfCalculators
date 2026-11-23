@@ -32,6 +32,11 @@ export function useConsentState() {
   return useSyncExternalStore(subscribe, () => current, () => initial);
 }
 
+/** Read the latest choice inside long-lived performance callbacks. */
+export function getConsentState() {
+  return current;
+}
+
 /** Revocation removes only this site's GA cookies, including domain cookies. */
 export function clearAnalyticsCookies() {
   const names = document.cookie.split(";").map(cookie => cookie.trim().split("=")[0])

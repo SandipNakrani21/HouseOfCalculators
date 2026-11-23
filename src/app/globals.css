@@ -10,7 +10,8 @@
  *
  * docs/DESIGN_SYSTEM.md explains how the pieces fit together.
  */
-@import "tailwindcss";
+/* Generate utilities from application source, not saved audits or previews. */
+@import "tailwindcss" source("../");
 @import "../styles/fonts.css";
 @import "../styles/tokens.css";
 @import "../styles/base.css";

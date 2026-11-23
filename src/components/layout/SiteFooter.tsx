@@ -17,9 +17,6 @@ import { sectionPath, swapLocale } from "@/lib/routes";
 /** The legal pages the footer lists; the rest are linked from within them. */
 const SUPPORT_PAGES: LegalSlug[] = ["about", "contact", "privacy", "terms", "cookies"];
 
-/** Languages listed in the footer; the header picker offers every one. */
-const FOOTER_LANGUAGES = 5;
-
 /** The footer lists Guides last, after the tool sections. */
 const FOOTER_SECTIONS = [...SECTIONS.filter((s) => s !== "guides"), ...SECTIONS.filter((s) => s === "guides")];
 
@@ -146,10 +143,11 @@ export function SiteFooter({
               {t("header.language")}
             </h2>
             <ul className="space-y-3">
-              {ready.slice(0, FOOTER_LANGUAGES).map((code) => (
+              {ready.map((code) => (
                 <li key={code}>
                   <Link
                     href={swapLocale(base, code)}
+                    prefetch={false}
                     hrefLang={code}
                     lang={LOCALES[code].language}
                     className={link}

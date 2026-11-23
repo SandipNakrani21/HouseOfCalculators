@@ -5,6 +5,7 @@ import { useEffect } from "react";
 
 import { ANALYTICS_ON, GA_MEASUREMENT_ID } from "@/config/analytics";
 import { clearAnalyticsCookies, useConsentState } from "@/lib/consent-state";
+import { WebVitals } from "@/components/consent/WebVitals";
 
 /**
  * Google Analytics 4, under Google Consent Mode.
@@ -44,9 +45,13 @@ export function Analytics() {
     // scroll), takes page_location from here; set before config so not even
     // the first one carries the query string.
     window.gtag("set", { page_location: cleanLocation(), page_referrer: cleanReferrer() });
+    // ChatGPT search adds a fixed source marker. Report only the known source,
+    // separately from the sanitized page address and only after consent.
+    const fromChatGPT = new URLSearchParams(window.location.search).get("utm_source") === "chatgpt.com";
     window.gtag("config", GA_MEASUREMENT_ID, {
       send_page_view: false, page_location: cleanLocation(), page_referrer: cleanReferrer(),
       allow_google_signals: false, allow_ad_personalization_signals: false,
+      ...(fromChatGPT ? { campaign_source: "chatgpt.com", campaign_medium: "referral" } : {}),
     });
     const script = document.createElement("script");
     script.id = "ga-loader";
@@ -65,7 +70,8 @@ export function Analytics() {
     window.gtag("event", "page_view", { page_location: location, page_referrer: cleanReferrer(), page_path: pathname, page_title: document.title });
   }, [pathname, allowed]);
 
-  return null;
+  // Performance observation is optional on browsers without this API.
+  return ANALYTICS_ON && typeof window !== "undefined" && typeof window.PerformanceObserver !== "undefined" ? <WebVitals /> : null;
 }
 
 /** The current address without its query string or hash (see the note above). */

@@ -122,6 +122,12 @@ const nextConfig: NextConfig = {
         source: "/fonts/:file([a-z-]+\\.[0-9a-f]{16}\\.woff2)",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
+      {
+        // These filenames are mutable: cache repeat visits, then revalidate.
+        // Keep this limited to public artwork rather than HTML or ad routes.
+        source: "/:folder(flags|landing|illustrations)/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400, must-revalidate" }],
+      },
       // Only the consent-gated native document may be framed by this site.
       {
         source: "/api/adsterra-native",

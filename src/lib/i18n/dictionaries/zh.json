@@ -1330,7 +1330,7 @@
   "legal.privacy.analytics.title": "访问统计（Google Analytics）",
   "legal.privacy.analytics.1": "为了了解大家使用哪些计算器和指南，并找出不好用的地方，本网站使用 Google Analytics。它统计哪些页面被浏览、大致来自哪里（根据 IP 地址推算出的国家和城市，Google Analytics 不会存储 IP 地址）、设备和浏览器类型，以及是从哪个网站链接过来的。",
   "legal.privacy.analytics.2": "只有明确同意分析存储后才会加载分析标签。拒绝或撤回同意会停止本站分析事件，并删除可访问的第一方Google Analytics Cookie。Google区域消息必须已发布，Consent Mode必须已配置。",
-  "legal.privacy.analytics.3": "分析页面地址不含查询参数或片段。保留期限及其他设置由Google Analytics管理；请联系发布者了解当前配置。",
+  "legal.privacy.analytics.3": "分析页面地址不含查询参数或片段。保留期限及其他设置由Google Analytics管理；请联系发布者了解当前配置。 经您同意使用统计分析后，还会测量页面加载速度、响应速度、视觉稳定性以及是否存在广告框架。不会记录您在计算器中输入的数据。",
   "legal.privacy.hosting.title": "托管与服务器日志",
   "legal.privacy.hosting.1": "页面由托管服务商提供。与任何网络服务器一样，它会处理请求的技术细节——IP 地址、浏览器用户代理、所请求的页面和时间——以便传送页面并保护服务免遭滥用。",
   "legal.privacy.hosting.2": "这是标准的基础设施日志。它不会被用来建立您的个人画像，也不会与本网站上的任何其他信息相结合。",

@@ -17,12 +17,12 @@ Module._load = function (name, ...args) {
   return originalLoad.call(this, name, ...args);
 };
 
-async function scenario(run) {
+async function scenario(run, url = 'https://example.test/en-us?private=input#secret') {
   for (const name of Object.keys(require.cache)) {
     if (/[/\\]src[/\\](components[/\\]consent|lib[/\\](consent-state|preferences))/.test(name)) delete require.cache[name];
   }
   // No external scripts or network requests execute in these component checks.
-  const dom = new JSDOM('<div id="root"></div>', { url: 'https://example.test/en-us?private=input#secret' });
+  const dom = new JSDOM('<div id="root"></div>', { url });
   global.window = dom.window;
   global.document = dom.window.document;
   window.dataLayer = [];
@@ -57,6 +57,7 @@ async function scenario(run) {
     assert.ok(document.getElementById('ga-loader'));
     assert.equal(events().length, 1);
     assert.equal(events()[0][2].page_location, 'https://example.test/en-us');
+    assert.equal(window.dataLayer.find(row => row[0] === 'config')[2].campaign_source, undefined);
     assert.equal(window.adsbygoogle, undefined);
     document.cookie = '_ga=test; path=/';
     await click('consent.rejectWithStats');
@@ -64,5 +65,16 @@ async function scenario(run) {
     assert.ok(!document.cookie.includes('_ga='));
     assert.equal(events().length, 1);
   });
-  console.log('Analytics consent checks passed: opt-in and revocation, no AdSense queue, sanitized page URL.');
+  await scenario(async ({ click, events }) => {
+    assert.equal(window.dataLayer.some(row => row[0] === 'config'), false);
+    await click('consent.manage');
+    await click('consent.acceptWithStats');
+    const config = window.dataLayer.find(row => row[0] === 'config')[2];
+    assert.equal(config.campaign_source, 'chatgpt.com');
+    assert.equal(config.campaign_medium, 'referral');
+    assert.equal(config.page_location, 'https://example.test/en-us');
+    assert.equal(events()[0][2].page_location, config.page_location);
+    assert.doesNotMatch(JSON.stringify(window.dataLayer), /private|secret|utm_campaign/);
+  }, 'https://example.test/en-us?utm_source=chatgpt.com&utm_campaign=private#secret');
+  console.log('Analytics consent checks passed: opt-in, revocation, sanitized URLs and ChatGPT source attribution.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

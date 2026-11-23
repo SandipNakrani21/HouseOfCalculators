@@ -112,7 +112,7 @@ const privacy: LegalPage = {
   titleKey: "legal.privacy.title",
   descKey: "legal.privacy.desc",
   introKey: "legal.privacy.intro",
-  updated: "2026-10-24",
+  updated: "2026-11-23",
   sections: [
     {
       titleKey: "legal.privacy.summary.title",

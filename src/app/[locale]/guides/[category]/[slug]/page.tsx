@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 import { AmortisationExample } from "@/components/guides/AmortisationExample";
 import { PageLearning } from "@/components/seo/PageLearning";
-import { pageLearning } from "@/config/page-learning";
+import { guideDates } from "@/lib/guide-dates";
 import { Accordion } from "@/components/ui/Accordion";
 import { CalculatorCard, CardGrid } from "@/components/ui/ContentCard";
 import { CTABanner } from "@/components/ui/CTABanner";
@@ -55,12 +55,15 @@ export async function generateMetadata({
   if (!locale || !guide || guide.category !== category) return {};
 
   const t = createTranslator(locale.language, locale.code);
+  const guidePath = contentPath(locale.code, "guides", category, slug);
+  const dates = guideDates(guide, guidePath);
   return buildMetadata({
     locale: locale.code,
-    path: contentPath(locale.code, "guides", category, slug),
+    path: guidePath,
     title: t(guide.titleKey),
     description: t(guide.descKey),
     type: "article",
+    articleDates: dates,
     image: {
       url: absoluteUrl(`${contentPath(locale.code, "guides", category, slug)}/opengraph-image`),
       width: 1200,
@@ -83,7 +86,8 @@ export default async function GuidePage({
   const code = locale.code;
   const title = t(guide.titleKey);
   const url = contentPath(code, "guides", category, slug);
-  const reviewed = pageLearning(url)?.reviewed ?? guide.reviewed;
+  const dates = guideDates(guide, url);
+  const reviewed = dates.modified;
   const related = guidesIn(guide.category).filter((item) => item.slug !== slug);
   const sources = guideSources(slug);
   const countryCode = locale.defaultCountry;
@@ -102,7 +106,7 @@ export default async function GuidePage({
     headline: title,
     description: t(guide.descKey),
     inLanguage: code,
-    datePublished: guide.published ?? guide.reviewed,
+    datePublished: dates.published,
     dateModified: reviewed,
     // The guide's generated share image (opengraph-image.tsx beside this page).
     image: absoluteUrl(`${url}/opengraph-image`),

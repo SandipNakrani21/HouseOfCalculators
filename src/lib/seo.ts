@@ -10,7 +10,7 @@ import { COUNTRIES, type CountryCode } from "@/config/countries";
 import { LANGUAGES, type LanguageCode } from "@/config/languages";
 import { OPERATOR, OPERATOR_ENTITY_TYPE, OPERATOR_PROFILE_URLS } from "@/config/legal/definitions";
 import { SOCIAL_LINKS } from "@/config/site";
-import { createTranslator, isLanguageReady } from "@/lib/i18n";
+import { isLanguageReady } from "@/lib/i18n";
 import { absoluteUrl, swapLocale } from "@/lib/routes";
 
 /**
@@ -41,51 +41,6 @@ export const SITE_NAME = "The Calculators House";
 const BRAND_SUFFIX = ` | ${SITE_NAME}`;
 const MAX_TITLE = 65;
 
-/**
- * Meta description length, in characters. Under 100 leaves the snippet half
- * empty; over 160 is cut off in results. Japanese and Chinese characters are
- * about twice as wide, so results cut them sooner.
- */
-const DESCRIPTION_MIN = 100;
-const DESCRIPTION_MAX = 160;
-const DESCRIPTION_MAX_CJK = 140;
-
-/**
- * The page's own description, topped up with the site's promise in the page's
- * language until it fills a search snippet without running past it. The
- * candidates are tried in order of preference; the first that fits wins.
- */
-function fitDescription(description: string, locale: LocaleCode): string {
-  const language = LOCALES[locale].language;
-  const t = createTranslator(language, locale);
-  const cjk = language === "ja" || language === "zh";
-  const max = cjk ? DESCRIPTION_MAX_CJK : DESCRIPTION_MAX;
-  const length = (text: string) => [...text].length;
-  const fits = (text: string) => length(text) >= DESCRIPTION_MIN && length(text) <= max;
-
-  // Sentences run on without a space in Japanese and Chinese. A description
-  // that stops without a full stop gets one before anything is added after it.
-  const join = (...parts: string[]) => parts.join(cjk ? "" : " ");
-  const base = /[.!?。！？…]$/.test(description) ? description : `${description}${cjk ? "。" : "."}`;
-  const suffix = t("seo.descriptionSuffix");
-  const more = t("seo.descriptionMore");
-  const short = t("seo.descriptionSuffixShort");
-  const candidates = [
-    description,
-    join(base, suffix),
-    join(base, suffix, more),
-    join(base, more),
-    join(base, short, more),
-    join(base, short),
-  ];
-  return (
-    candidates.find(fits) ??
-    // Nothing lands in range: the longest that still fits in a snippet.
-    candidates.filter((text) => length(text) <= max).sort((a, b) => length(b) - length(a))[0] ??
-    description
-  );
-}
-
 /** The generated share card. Next serves it from this root-level route. */
 const OG_IMAGE = absoluteUrl("/opengraph-image");
 
@@ -102,6 +57,8 @@ type MetaInput = {
   type?: "website" | "article";
   /** The page's own share image (absolute URL and size); defaults to the site card. */
   image?: { url: string; width: number; height: number };
+  /** Actual editorial dates for article pages; never the build time. */
+  articleDates?: { published: string; modified: string };
 };
 
 /**
@@ -120,13 +77,16 @@ export function buildMetadata({
   noindex,
   type = "website",
   image,
+  articleDates,
 }: MetaInput): Metadata {
   const alternates = (availableIn ?? readyLocales()).filter(isLocaleReady);
   const languages = hreflangAlternates(path, alternates);
 
   const canonical = absoluteUrl(path);
 
-  const fullDescription = fitDescription(description, locale);
+  // Use the page's own summary. Search engines have no minimum description
+  // length; padding a short summary with site-wide promises adds no detail.
+  const fullDescription = description.trim();
 
   return {
     // The layout appends " | The Calculators House". Search results cut titles
@@ -135,11 +95,13 @@ export function buildMetadata({
     title: title.length + BRAND_SUFFIX.length > MAX_TITLE ? { absolute: title } : title,
     description: fullDescription,
     alternates: { canonical, languages },
-    robots: noindex ? { index: false, follow: true } : undefined,
+    robots: noindex
+      ? { index: false, follow: true }
+      : { index: true, follow: true, "max-image-preview": "large" },
     openGraph: {
       type,
       title,
-      description,
+      description: fullDescription,
       url: canonical,
       siteName: SITE_NAME,
       locale: ogLocale(locale),
@@ -149,11 +111,15 @@ export function buildMetadata({
       // `openGraph` here replaces it wholesale, so without this every page
       // would be shared with no preview image at all.
       images: [image ? { ...image, alt: title } : { url: OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
+      ...(type === "article" && articleDates ? {
+        publishedTime: articleDates.published,
+        modifiedTime: articleDates.modified,
+      } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title,
-      description,
+      description: fullDescription,
       images: [image?.url ?? OG_IMAGE],
     },
   };
