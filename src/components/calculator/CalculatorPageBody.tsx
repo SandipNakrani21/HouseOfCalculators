@@ -109,7 +109,9 @@ export function CalculatorPageBody({
       header={{
         visual: itemVisual("calculators", calculator.category, calculator.slug),
         eyebrow: t(categoryKey("calculators", calculator.category)),
-        title: searchCopy?.title ?? t(calculator.titleKey, params),
+        title: searchCopy?.title ?? (lockCountry
+          ? t("country.tool.title", { country: t(`country.${country}`), tool: t(calculator.titleKey, params) })
+          : t(calculator.titleKey, params)),
         description: searchCopy?.description ?? t(calculator.descKey, params),
         note:
           relevance === "none" ? null : (

@@ -37,9 +37,9 @@ export function calculatorLocales(calculator: { countries: readonly CountryCode[
 
 export const SITE_NAME = "The Calculators House";
 
-/** What the layout's title template adds, and the longest title worth showing. */
+/** Optional branding budget; search snippets are measured in pixels, not characters. */
 const BRAND_SUFFIX = ` | ${SITE_NAME}`;
-const MAX_TITLE = 65;
+const MAX_TITLE = 60;
 
 /** The generated share card. Next serves it from this root-level route. */
 const OG_IMAGE = absoluteUrl("/opengraph-image");
@@ -89,9 +89,8 @@ export function buildMetadata({
   const fullDescription = description.trim();
 
   return {
-    // The layout appends " | The Calculators House". Search results cut titles
-    // at roughly 60-65 characters, so where the brand would push a title past
-    // that, the page's own words win and the brand is left off.
+    // Preserve the full topic. Omit optional branding when it would exceed
+    // our editorial budget; this is not a search-engine character limit.
     title: title.length + BRAND_SUFFIX.length > MAX_TITLE ? { absolute: title } : title,
     description: fullDescription,
     alternates: { canonical, languages },

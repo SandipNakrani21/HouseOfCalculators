@@ -23,7 +23,7 @@ export async function generateMetadata({
   return buildMetadata({
     locale: locale.code,
     path: sectionPath(locale.code, "calculators"),
-    title: t("section.calculators"),
+    title: t("section.calculators.metaTitle"),
     description: t("section.calculators.desc"),
   });
 }

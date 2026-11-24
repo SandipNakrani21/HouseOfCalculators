@@ -44,7 +44,7 @@ export async function generateMetadata({
     locale: locale.code,
     path: categoryPath(locale.code, "charts", resolved),
     title: t("charts.category.title", { category: name }),
-    description: t("charts.category.desc", { category: name }),
+    description: t(`category.charts.${resolved}.intro`),
   });
 }
 

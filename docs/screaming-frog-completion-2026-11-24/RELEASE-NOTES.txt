@@ -1,0 +1,68 @@
+SCREAMING FROG FIXES — 24 NOVEMBER 2026
+
+Result
+Confirmed source issues from the reviewed crawl scope are addressed locally. The deployment candidate passes code checks, build and final local HTTP checks. This note accompanies the reviewed source changes. Publication and static hosting-header behavior still require separate live verification.
+
+Coverage
+- Preserved the original 421-page crawl and the earlier 500-page crawl.
+- Ran another supported 500-page List Mode crawl in the desktop Screaming Frog application. Zero overlap with the preceding 921 page URLs.
+- Public total: 1,421 distinct HTML pages; every page returned HTTP 200. Intentional canonical salary aliases remain consolidated.
+- Ran a separate 156-page local Screaming Frog crawl covering the changed directories, eight category types and country examples in all 12 published locales.
+- Two local requests returned temporary JSON-related 500 errors while generated files were changing. Both passed rechecks. After the build completed, repeated ALL 156 local requests: 156 HTTP 200, zero missing titles/descriptions/H1s. The original local crawl CSV is preserved unchanged; final-local-verification.json records the clean final checks.
+
+Changes
+1. Country-specific H1s and application-schema names now use the localized country/tool title; bespoke Poland copy stays intact.
+2. Optional branding is omitted from long titles without truncating their actual topic.
+3. Calculators, tools, charts and guides directory metadata has clearer titles and specific descriptions in 11 languages (12 locales).
+4. Tools/charts category metadata now uses the relevant visible category introduction instead of a generic template.
+5. Country metadata includes the actual reviewed model year/range without leaking English scope sentences into other languages. Full reviewed scope is preserved in the page content. No current-date year substitution.
+6. Employer-cost summaries are shorter and clearer while retaining the selected-country-model limitation.
+7. France pension contribution citation points to official calculation guidance that returned 200. Broad annual-news citation is replaced with the official private-sector contribution-rate table. The many relevant official citations are retained.
+8. Five asset-only .htaccess files add the missing security-header policy to Hostinger-served public artwork, fonts and media. The rules contain no routing directives, cannot match HTML or /api/adsterra-native, and preserve the existing page/ad policy. They remain unverified on Hostinger until deployed.
+9. Earlier effective-tax-rate FAQ corrections remain intact. Generated client dictionaries were refreshed.
+
+Warnings accepted after contextual review
+- Decorative icons/flags: empty alt and aria-hidden beside visible labels are appropriate; brand images retain meaningful text.
+- Repeated/multiple H2s: input, result and explanation sections need headings.
+- Cross-language/regional title matches and intentional canonical aliases are not duplicate-topic defects.
+- Concise converter/table/tool summaries can be complete below a crawler's character or word threshold. No filler was added.
+- Flesch readability thresholds do not certify non-English text, and technical scope statements must retain their qualifications.
+- A title may legitimately match its H1.
+These decisions are recorded for all 22 original warning categories in issue-resolution-register.csv. Shared-template review is not a native editorial certification of every translation.
+
+Validation
+- npm run metadata: passed.
+- npm run check: passed, including existing Adsterra consent, exact snippet, policy, cache and eligibility checks. Three pre-existing warnings remain in old documentation scripts.
+- npm run build: passed, 4,066 generated routes.
+- Generated metadata audit: 3,744 localized page HTML files; zero missing title, description or H1; no matches for the checked English review-scope leak patterns.
+- Final local HTTP audit: all 156 pages returned 200 with required metadata and H1s.
+- Source diff whitespace checks passed.
+- No new automated test cases were introduced.
+- Actual ad delivery/consent interaction and responsive screenshots were not visually retested in this crawl-focused pass. No ad clicks, account reports or Search Console access.
+
+Deployment boundary
+- Git history records publication of the source changes. A GitHub push does not itself verify hosting deployment.
+- Include the exact five new .htaccess files in the release; do not accidentally add unrelated existing files under public/videos or old audit outputs.
+- Hosting must retain/read these per-asset-directory files. Existing CDN objects may need cache clearing.
+- Verify live security headers, asset rendering and the consent-gated ad document after deployment. Do not claim the original 41 live asset warnings are cleared until those responses are checked.
+- Detailed steps: hosting-verification.txt.
+
+Evidence
+crawl-3-input.txt / crawl-3-pages.csv — new public batch
+all-1421-pages.csv / page-register.csv — combined public coverage
+local-verification-pages.csv — original local crawler snapshot
+final-local-verification.json — clean final 156-page HTTP checks
+local-country-metadata.json — translated country examples
+generated-metadata-review.json — generated-page metadata checks
+payroll-external-links.json — original external-link checks (pre-replacement URLs)
+issue-resolution-register.csv — all original warning categories and decisions
+changed-source-files.txt — tracked source files in the candidate
+
+Primary references
+https://www.hostinger.com/support/how-to-deploy-a-nodejs-website-in-hostinger/
+https://www.hostinger.com/support/1583307-how-to-create-an-htaccess-file-at-hostinger/
+https://httpd.apache.org/docs/2.4/mod/mod_headers.html
+https://developers.google.com/search/docs/appearance/snippet
+https://www.w3.org/WAI/tutorials/images/decorative/
+https://www.agirc-arrco.fr/entreprises/gerer-une-entreprise/calculer-et-declarer/le-calcul-des-cotisations-de-retraite-complementaire/
+https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-secteur-prive.html

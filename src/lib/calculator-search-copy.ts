@@ -1,6 +1,11 @@
 import type { CountryCode } from "@/config/countries";
 import type { LocaleCode } from "@/config/locales";
 
+/** A compact source period for metadata; detailed scope stays on the page. */
+export function calculatorMetadataPeriod(period: string): string {
+  return period.match(/\b(?:19|20)\d{2}(?:[–\/-](?:\d{4}|\d{2}))?\b/)?.[0] ?? period;
+}
+
 /** Translate the reviewed period without changing its source year or scope. */
 export function calculatorReviewPeriod(locale: LocaleCode, slug: string, country: CountryCode, period?: string): string | undefined {
   if (locale === "it-IT" && slug === "income-tax" && country === "it") {

@@ -1,0 +1,19 @@
+HOSTINGER ASSET-HEADER VERIFICATION
+
+Deploy these exact files with their containing asset directories:
+public/flags/.htaccess
+public/landing/.htaccess
+public/fonts/.htaccess
+public/brand/.htaccess
+public/videos/.htaccess
+
+Do not replace Hostinger's generated public_html root .htaccess. Its Node.js routing must remain intact. Per-directory policies apply only to matching asset extensions.
+
+After publishing:
+1. Confirm the files survived deployment in the actual static-serving directories, using the hosting file layout for this application. Do not guess the filesystem target or overwrite another application's configuration.
+2. Clear the site's cached static objects if old headers persist.
+3. Read actual asset responses, for example /flags/mx.svg, /landing/icons/calculator.svg, /brand/mark.png and a bundled /fonts/*.woff2. Confirm 200, correct content type, and all five headers: X-Content-Type-Options, Strict-Transport-Security, X-Frame-Options, Referrer-Policy, Content-Security-Policy.
+4. Confirm images/fonts still display, and page HTML retains its application policy. The native ad document must retain its own policy and SAMEORIGIN framing; asset DENY/default-src-none must never apply to the ad HTML.
+5. Exercise first-time ad consent without clicking advertisements. Then rerun a small public Screaming Frog crawl including these assets.
+
+If headers remain absent, the hosting/CDN is not applying these per-directory rules. Inspect the actual serving configuration before changing it; do not add more duplicate Next.js header declarations or call the live issue resolved.

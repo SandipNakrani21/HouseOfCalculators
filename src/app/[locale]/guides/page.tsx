@@ -22,7 +22,7 @@ export async function generateMetadata({
   return buildMetadata({
     locale: locale.code,
     path: sectionPath(locale.code, "guides"),
-    title: t("section.guides"),
+    title: t("section.guides.metaTitle"),
     description: t("section.guides.desc"),
   });
 }
